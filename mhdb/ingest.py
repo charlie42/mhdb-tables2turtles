@@ -1209,33 +1209,33 @@ def Project(
             int(
                 disorder_index.strip()
             ) for disorder_index in row[1][
-                "disorder_index"
+                "Disorder_index"
             ].split(",")
         ] if (
             (
                 isinstance(
                     row[1][
-                        "disorder_index"
+                        "Disorder_index"
                     ],
                     str
                 )
             ) and (
                 "," in row[1][
-                    "disorder_index"
+                    "Disorder_index"
                 ]
             )
         ) else [
             int(row[1][
-                "disorder_index"
+                "Disorder_index"
             ])
         ] if (
             not isinstance(
-                row[1]["disorder_index"],
+                row[1]["Disorder_index"],
                 float
             ) or (
                 not np.isnan(
                     row[1][
-                        "disorder_index"
+                        "Disorder_index"
                     ]
                 )
             )
