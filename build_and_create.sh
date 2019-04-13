@@ -1,4 +1,4 @@
-# buid_and_create.sh
+# build_and_create.sh
 #
 # This is a simple BASH script to build and execute mhdb/create_mhdb.
 #
