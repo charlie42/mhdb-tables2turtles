@@ -36,7 +36,7 @@ http://github.com/ChildMindInstitute/mhdb.
 
 # Main setup parameters
 NAME                = 'MHDB'
-MAINTAINER          = "Arno Klein, Jon Clucas, Anirudh Krishnakumar"
+MAINTAINER          = "Arno Klein, Jon Clucas"
 MAINTAINER_EMAIL    = "arno@childmind.org"
 DESCRIPTION         = description
 LONG_DESCRIPTION    = long_description
@@ -44,7 +44,7 @@ URL                 = "http://mentalhealth.tech/"
 DOWNLOAD_URL        = "http://mentalhealth.tech/"
 LICENSE             = "Apache v2.0"
 CLASSIFIERS         = CLASSIFIERS
-AUTHOR              = "Arno Klein, Jon Clucas, Anirudh Krishnakumar"
+AUTHOR              = "Arno Klein, Jon Clucas"
 AUTHOR_EMAIL        = "arno@childmind.org"
 PLATFORMS           = "Linux"
 VERSION             = __version__

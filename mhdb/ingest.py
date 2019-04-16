@@ -4,10 +4,11 @@ This script contains specific functions to interpret a specific set of
 spreadsheets
 
 Authors:
-    - Jon Clucas, 2017 – 2018 (jon.clucas@childmind.org)
-    - Anirudh Krishnakumar, 2017 – 2018
+    - Jon Clucas, 2017–2018 (jon.clucas@childmind.org)
+    - Anirudh Krishnakumar, 2017–2018
+    - Arno Klein, 2019 (arno@childmind.org)  http://binarybottle.com
 
-Copyright 2018, Child Mind Institute (http://childmind.org), Apache v2.0 License
+Copyright 2019, Child Mind Institute (http://childmind.org), Apache v2.0 License
 
 """
 try:
@@ -146,22 +147,17 @@ def audience_statements(statements={}):
     return(statements)
 
 
-def BehaviorSheet1(
-    behavior_xls,
-    mentalhealth_xls=None,
-    sign_or_symptom=None,
-    statements={}
-):
-    '''
-    Function to ingest 1sQp63K5nGrYSgK2ZvsTfTDmlM4W5_eFHfy6Ckoi7yP4 Sheet1
+def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
+    """
+    Function to ingest dsm5 spreadsheet
 
     Parameters
     ----------
-    sheet: spreadsheet workbook
-        1sQp63K5nGrYSgK2ZvsTfTDmlM4W5_eFHfy6Ckoi7yP4
+    dsm5_xls: pandas ExcelFile
 
-    mentalhealth_xls: spreadsheet workbook, optional
-        1MfW9yDw7e8MLlWWSBBXQAC2Q4SDiFiMMb7mRtr7y97Q
+    behaviors_xls: pandas ExcelFile
+
+    references_xls: pandas ExcelFile
 
     statements:  dictionary
         key: string
@@ -194,69 +190,60 @@ def BehaviorSheet1(
     >>> import os
     >>> import pandas as pd
     >>> try:
-    ...     behaviorFILE = download_google_sheet(
-    ...         'data/separating.xlsx',
-    ...         "1sQp63K5nGrYSgK2ZvsTfTDmlM4W5_eFHfy6Ckoi7yP4"
+    ...     dsm5FILE = download_google_sheet(
+    ...         'data/dsm5.xlsx',
+    ...         "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
+    ...     )
+    ...     behaviorsFILE = download_google_sheet(
+    ...         'data/behaviors.xlsx',
+    ...         "1OHtVRqRXvCUuhyavcLSBU9YkiEJfThFKrXHmcg4627M"
+    ...     )
+    ...     referencesFILE = download_google_sheet(
+    ...         'data/references.xlsx',
+    ...         "1KDZhoz9CgHBVclhoOKBgDegUA9Vczui5wj61sXMgh34"
     ...     )
     ... except:
-    ...     behaviorFILE = 'data/separating.xlsx'
-    >>> behavior_xls = pd.ExcelFile(behaviorFILE)
-    >>> statements = BehaviorSheet1(
-    ...     behavior_xls
-    ... )
+    ...     dsm5FILE = 'data/dsm5.xlsx'
+    ...     behaviorsFILE = 'data/behaviors.xlsx'
+    ...     referencesFILE = 'data/references.xlsx'
+    >>> dsm5_xls = pd.ExcelFile(dsm5FILE)
+    >>> behaviors_xls = pd.ExcelFile(behaviorsFILE)
+    >>> references_xls = pd.ExcelFile(referencesFILE)
+    >>> statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
+    ...     statements={})
     >>> print(turtle_from_dict({
     ...     statement: statements[
     ...         statement
     ...     ] for statement in statements if statement == "mhdb:despair"
     ... }).split("\\n\\t")[0])
-    mhdb:despair rdfs:label """despair"""@en ;
-    '''
-    sheet = behavior_xls.parse("Sheet1")
-    gender = behavior_xls.parse("gender")
+    #mhdb:despair rdfs:label "despair"@en ;
+    """
+
+    sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
+    # behaviors = behaviors_xls.parse("behaviors")
+    # genders = behaviors_xls.parse("genders")
+    references = references_xls.parse("references")
+
     statements = audience_statements(statements)
 
-    if not mentalhealth_xls:
-        try:
-            mentalhealthFILE = download_google_sheet(
-                'data/mentalhealth.xlsx',
-                "1MfW9yDw7e8MLlWWSBBXQAC2Q4SDiFiMMb7mRtr7y97Q"
-            )
-        except:
-            mentalhealthFILE = 'data/mentalhealth.xlsx'
-        mentalhealth_xls = pd.ExcelFile(mentalhealthFILE)
+    for row in sign_or_symptoms.iterrows():
+        sign_or_symptom = "health-lifesci:MedicalSign" \
+            if (row[1]["index_sign_or_symptom_index"]) == 1 \
+            else "health-lifesci:MedicalSymptom" \
+            if (row[1]["index_sign_or_symptom_index"] == 2) \
+            else "health-lifesci:MedicalSignOrSymptom"
 
-    mh_reference = mentalhealth_xls.parse("Reference")
-
-    for row in sheet.iterrows():
-        sign_or_symptom = "health-lifesci:MedicalSign" if (row[1][
-            "sign_or_symptom_index"
-        ]) == 1 else "health-lifesci:MedicalSymptom" if (row[1][
-            "sign_or_symptom_index"
-        ] == 2) else "health-lifesci:MedicalSignOrSymptom"
-
-        source = mh_reference[
-            mh_reference["index"] == row[1][
-                "reference_index (refer to reference in our master spreadsheet."
-                " 8=dsm, 84=us)"
-            ]
-        ]["ReferenceLink"].values[0]
+        source = references[
+            references["index"] == row[1]["index_reference"]
+        ]["link"].values[0]
         source = None if isinstance(
             source,
             float
         ) else check_iri(source)
 
-        symptom_label = language_string(row[1]["symptom"])
+        symptom_label = language_string(row[1]["sign_or_symptom"])
 
-        symptom_iri = check_iri(row[1]["symptom"])
-
-        audience_gender = gender[
-            gender["index"] == row[1]["gender_index"]
-        ]["gender"]
-
-        audience_gender = None if not audience_gender.size else \
-        audience_gender.values[
-            0
-        ]
+        symptom_iri = check_iri(row[1]["sign_or_symptom"])
 
         for predicates in [
             ("rdfs:label", symptom_label),
@@ -270,24 +257,116 @@ def BehaviorSheet1(
                 statements
             )
 
-        if audience_gender:
-            for prop in [
-                "schema:audience",
-                "schema:epidemiology"
-            ]:
-                statements = add_if(
-                    symptom_iri,
-                    prop,
-                    audience_gender,
-                    statements
-                )
+        # audience_gender = None
+        # for x in behaviors.indices_sign_or_symptom:
+        #     if type(x) != 'NoneType' and \
+        #             row[1]["index"] == x or \
+        #             (np.size(x) > 1 and row[1]["index"] in x):
+        #         audience_gender = genders.gender[
+        #             behaviors.index_gender[row[1]["index"]]
+        #         ]
+        #         break
+        # if audience_gender:
+        #     for prop in [
+        #         "schema:audience",
+        #         "schema:epidemiology"
+        #     ]:
+        #         statements = add_if(
+        #             symptom_iri,
+        #             prop,
+        #             audience_gender,
+        #             statements
+        #         )
+
+    return(statements)
+
+
+def ingest_assessments(assessments_xls, dsm_xls, behaviors_xls,
+                       technologies_xls, references_xls, statements={}):
+    """
+    Function to ingest assessments spreadsheet
+
+    Parameters
+    ----------
+    assessments_xls: pandas ExcelFile
+
+    dsm5_xls: pandas ExcelFile
+
+    behaviors_xls: pandas ExcelFile
+
+    technologies_xls: pandas ExcelFile
+
+    references_xls: pandas ExcelFile
+
+    statements:  dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Returns
+    -------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Example
+    -------
+    """
+
+    assessments = assessments_xls.parse("enenhehenhen")
+    sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
+    behaviors = behaviors_xls.parse("behaviors")
+    genders = behaviors_xls.parse("genders")
+    references = references_xls.parse("references")
+
+    statements = audience_statements(statements)
+
+    for row in sign_or_symptoms.iterrows():
+        sign_or_symptom = "health-lifesci:MedicalSign" \
+            if (row[1]["index_sign_or_symptom_index"]) == 1 \
+            else "health-lifesci:MedicalSymptom" \
+            if (row[1]["index_sign_or_symptom_index"] == 2) \
+            else "health-lifesci:MedicalSignOrSymptom"
+
+        source = references[
+            references["index"] == row[1]["index_reference"]
+        ]["link"].values[0]
+        source = None if isinstance(
+            source,
+            float
+        ) else check_iri(source)
+
+        symptom_label = language_string(row[1]["sign_or_symptom"])
+
+        symptom_iri = check_iri(row[1]["sign_or_symptom"])
+
+        for predicates in [
+            ("rdfs:label", symptom_label),
+            ("rdfs:subClassOf", sign_or_symptom),
+            ("dcterms:source", source)
+        ]:
+            statements = add_if(
+                symptom_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
 
     return(statements)
 
 
 def disorder_iri(
         index,
-        mentalhealth_xls=None,
+        dsm5_xls=None,
         pre_specifiers_indices=[
             6,
             7,
@@ -311,7 +390,7 @@ def disorder_iri(
     index: int
         key to lookup in Disorder table
 
-    mentalhealth_xls: spreadsheet workbook, optional
+    dsm5_xls: spreadsheet workbook, optional
         1MfW9yDw7e8MLlWWSBBXQAC2Q4SDiFiMMb7mRtr7y97Q
 
     pre_specifiers_indices: [int], optional
@@ -332,10 +411,10 @@ def disorder_iri(
             value: {string}
                 set of RDF objects
     """
-    disorder = mentalhealth_xls.parse("Disorder")
-    severity = mentalhealth_xls.parse("DisorderSeverity")
-    specifier = mentalhealth_xls.parse("DiagnosticSpecifier")
-    criterion = mentalhealth_xls.parse("DiagnosticCriterion")
+    disorder = dsm5_xls.parse("Disorder")
+    severity = dsm5_xls.parse("DisorderSeverity")
+    specifier = dsm5_xls.parse("DiagnosticSpecifier")
+    criterion = dsm5_xls.parse("DiagnosticCriterion")
     disorderSeries = disorder[disorder["index"]==index]
     disorder_name = disorderSeries["DisorderName"].values[0]
     if (
@@ -542,7 +621,7 @@ def doi_iri(
 
 
 def MHealthPeople(
-    technology_xls,
+    domains_xls,
     statements={}
 ):
     '''
@@ -594,7 +673,7 @@ def MHealthPeople(
             statements
         )
 
-    mhealthpeople = technology_xls.parse("MHealthPeople")
+    mhealthpeople = domains_xls.parse("MHealthPeople")
 
     for row in mhealthpeople.iterrows():
         predicates = set()
@@ -850,8 +929,8 @@ def object_split_lookup(
 
 
 def Project(
-    technology_xls,
-    mentalhealth_xls=None,
+    domains_xls,
+    dsm5_xls=None,
     statements={}
 ):
     '''
@@ -862,7 +941,7 @@ def Project(
     sheet: spreadsheet workbook
         1cuJXT1Un7HPLYcDyHAXprH-wGS1azuUNmVQnb3dV1cY
 
-    mentalhealth_xls: spreadsheet workbook, optional
+    dsm5_xls: spreadsheet workbook, optional
         1MfW9yDw7e8MLlWWSBBXQAC2Q4SDiFiMMb7mRtr7y97Q
 
     statements:  dictionary
@@ -979,7 +1058,7 @@ def Project(
             "accessories."
         )),
         ("rdfs:isDefinedBy", check_iri(
-            "https://en.wikipedia.org/wiki/Wearable_technology"
+            "https://en.wikipedia.org/wiki/Wearable_domains"
         )),
         ("rdfs:label", language_string("Wearable"))
     ]:
@@ -1190,11 +1269,11 @@ def Project(
 
     #TODO: define Toy, StudentProject, Hackathon, OutreachProgram, SupportGroup
 
-    project = technology_xls.parse("Project", convert_float=False)
-    homepage = technology_xls.parse("HomePageLink")
-    type_of_project = technology_xls.parse("TypeOfProject")
-    mhealthpeople = technology_xls.parse("MHealthPeople")
-    research_study = technology_xls.parse("ResearchStudyOnProject")
+    project = domains_xls.parse("Project", convert_float=False)
+    homepage = domains_xls.parse("HomePageLink")
+    type_of_project = domains_xls.parse("TypeOfProject")
+    mhealthpeople = domains_xls.parse("MHealthPeople")
+    research_study = domains_xls.parse("ResearchStudyOnProject")
 
     for row in project.iterrows():
         if isinstance(
@@ -1277,7 +1356,7 @@ def Project(
             for disorder in disorder_iris:
                 disorder_statements = disorder_iri(
                     disorder,
-                    mentalhealth_xls=mentalhealth_xls,
+                    dsm5_xls=dsm5_xls,
                     pre_specifiers_indices=[
                         6,
                         7,
@@ -1365,21 +1444,21 @@ def Project(
     return(statements)
 
 
-def technology(
-    technology_xls,
-    mentalhealth_xls=None,
+def domains(
+    domains_xls,
+    dsm5_xls=None,
     statements={}
 ):
     '''
-    Function to ingest 1cuJXT1Un7HPLYcDyHAXprH-wGS1azuUNmVQnb3dV1cY workbook
+    Function to ingest 1OHtVRqRXvCUuhyavcLSBU9YkiEJfThFKrXHmcg4627M workbook
 
     Parameters
     ----------
     sheet: spreadsheet workbook
-        1cuJXT1Un7HPLYcDyHAXprH-wGS1azuUNmVQnb3dV1cY
+        1OHtVRqRXvCUuhyavcLSBU9YkiEJfThFKrXHmcg4627M
 
-    mentalhealth_xls: spreadsheet workbook, optional
-        1MfW9yDw7e8MLlWWSBBXQAC2Q4SDiFiMMb7mRtr7y97Q
+    dsm5_xls: spreadsheet workbook, optional
+        13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0
 
     statements:  dictionary
         key: string
@@ -1407,10 +1486,10 @@ def technology(
     '''
     return(
         Project(
-            technology_xls,
-            mentalhealth_xls,
+            domains_xls,
+            dsm5_xls,
             MHealthPeople(
-                technology_xls,
+                domains_xls,
                 statements
             )
         )

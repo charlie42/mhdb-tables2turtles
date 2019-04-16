@@ -114,7 +114,7 @@ def download_google_sheet(filepath, docid):
 
     Returns
     -------
-    filepath : sting
+    filepath : string
     """
     if not os.path.exists(os.path.abspath(os.path.dirname(filepath))):
         os.makedirs(os.path.abspath(os.path.dirname(filepath)))

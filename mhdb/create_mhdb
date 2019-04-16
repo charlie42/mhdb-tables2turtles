@@ -1,26 +1,19 @@
 #!/usr/bin/env python
 """
-This program converts four specific mental health spreadsheet workbooks to RDF
+This program converts five specific mental health spreadsheet workbooks to RDF
 text documents.
 
 Authors:
-    - Arno Klein, 2017  (arno@childmind.org)  http://binarybottle.com
-    - Jon Clucas, 2017 – 2018 (jon.clucas@childmind.org)
+    - Arno Klein, 2017-2019 (arno@childmind.org)  http://binarybottle.com
+    - Jon Clucas, 2017–2018 (jon.clucas@childmind.org)
 
-Copyright 2018, Child Mind Institute MATTER Lab (https://matter.childmind.org),
+Copyright 2019, Child Mind Institute MATTER Lab (https://matter.childmind.org),
 Apache v2.0 License
 
 """
 import os
 import sys
-mhdb_path = os.path.abspath(
-    os.path.join(
-        __file__,
-        os.pardir,
-        os.pardir,
-        os.pardir
-    )
-)
+mhdb_path = os.path.abspath(os.getcwd())
 if mhdb_path not in sys.path:
     sys.path= [
         mhdb_path,
@@ -28,13 +21,13 @@ if mhdb_path not in sys.path:
     ]
 try:
     from mhdb.info import __version__ as version
-    from mhdb.ingest import *
     from mhdb.spreadsheet_io import download_google_sheet
+    from mhdb.ingest import *
     from mhdb.write_ttl import check_iri, turtle_from_dict, write_header
 except:
     from mhdb.mhdb.info import __version__ as version
+    from mhdb.spreadsheet_io import download_google_sheet
     from mhdb.mhdb.ingest import *
-    from mhdb.mhdb.spreadsheet_io import download_google_sheet
     from mhdb.mhdb.write_ttl import check_iri, turtle_from_dict, write_header
 import numpy as np
 import pandas as pd
@@ -46,89 +39,120 @@ def main():
     # Except use local copies
     # ------------------------------------------------------------------------------
     try:
-        behaviorFILE = download_google_sheet(
-            'data/separating.xlsx',
-            "1sQp63K5nGrYSgK2ZvsTfTDmlM4W5_eFHfy6Ckoi7yP4"
-        )
-    except:
-        behaviorFILE = 'data/separating.xlsx'
-    try:
-        mentalhealthFILE = download_google_sheet(
-            'data/mentalhealth.xlsx',
-            "1MfW9yDw7e8MLlWWSBBXQAC2Q4SDiFiMMb7mRtr7y97Q"
-        )
-    except:
-        mentalhealthFILE = 'data/mentalhealth.xlsx'
-    try:
-        technologyFILE = download_google_sheet(
-            'data/technology.xlsx',
+        behaviorsFILE = download_google_sheet(
+            'data/behaviors.xlsx',
             "1OHtVRqRXvCUuhyavcLSBU9YkiEJfThFKrXHmcg4627M"
         )
     except:
-        technologyFILE = 'data/technology.xlsx'
-    base_uri = "http://www.purl.org/mentalhealth"
-    outfile = os.path.join(os.getcwd(), 'behavior.ttl')
-    dsm_outfile = os.path.join(os.getcwd(), 'dsm.ttl')
+        behaviorsFILE = 'data/behaviors.xlsx'
+    try:
+        assessmentsFILE = download_google_sheet(
+            'data/assessments.xlsx',
+            "1VUf3XnieYThY8OA6JWtpNP4zI2xa9xak9LXuyH_PaoE"
+        )
+    except:
+        assessmentsFILE = 'data/assessments.xlsx'
+    try:
+        technologiesFILE = download_google_sheet(
+            'data/technologies.xlsx',
+            "1LeLlrsvBWMYTTIXTVtkynmBzzb0Uzi1OwpRLfyRAwzM"
+        )
+    except:
+        technologiesFILE = 'data/technologies.xlsx'
+    try:
+        dsm5FILE = download_google_sheet(
+            'data/dsm5.xlsx',
+            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
+        )
+    except:
+        dsm5FILE = 'data/dsm5.xlsx'
+    try:
+        referencesFILE = download_google_sheet(
+            'data/references.xlsx',
+            "1KDZhoz9CgHBVclhoOKBgDegUA9Vczui5wj61sXMgh34"
+        )
+    except:
+        referencesFILE = 'data/references.xlsx'
 
-    # ------------------------------------------------------------------------------
+    base_uri = "http://www.purl.org/mentalhealth"
+    behaviors_outfile = os.path.join(os.getcwd(), 'behaviors.ttl')
+    assessments_outfile = os.path.join(os.getcwd(), 'assessments.ttl')
+    technologies_outfile = os.path.join(os.getcwd(), 'technologies.ttl')
+    dsm5_outfile = os.path.join(os.getcwd(), 'dsm5.ttl')
+    references_outfile = os.path.join(os.getcwd(), 'references.ttl')
+
+    # --------------------------------------------------------------------------
     # Import spreadsheets
-    # ------------------------------------------------------------------------------
-    behavior_xls = pd.ExcelFile(behaviorFILE)
-    mentalhealth_xls = pd.ExcelFile(mentalhealthFILE)
-    technology_xls = pd.ExcelFile(technologyFILE)
+    # --------------------------------------------------------------------------
+    behaviors_xls = pd.ExcelFile(behaviorsFILE)
+    assessments_xls = pd.ExcelFile(assessmentsFILE)
+    technologies_xls = pd.ExcelFile(technologiesFILE)
+    dsm5_xls = pd.ExcelFile(dsm5FILE)
+    references_xls = pd.ExcelFile(referencesFILE)
     X = ['', 'nan', np.nan, 'None', None]
 
-    # ------------------------------------------------------------------------------
-    # Create output RDF mentalhealthFILE
-    # ------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
+    # Create output RDF
+    # --------------------------------------------------------------------------
     label = "mental health database"
-    comment="""
-    ======================
-    Mental Health Database
-    ======================
+    ddashes = "================================================================================"
+    comment="""\n\n{0}\n\t\tMental Health Database\n{0}
+This mental health database inter-relates information about mental health
+symptoms, assessment questionnaires and tasks, etc., and is licensed
+under the terms of the Creative Commons BY license.
+Current information can be found on the website, http://mentalhealth.tech.
 
-    This mental health database inter-relates information about mental health
-    diagnoses, symptoms, assessement questionnaires, etc., and is licensed
-    under the terms of the Creative Commons BY license.
-    Current information can be found on the website, http://mentalhealth.tech.
-    """
+""".format(ddashes)
 
-    statements = technology(
-        technology_xls,
-        mentalhealth_xls,
-        BehaviorSheet1(
-            behavior_xls = behavior_xls,
-            mentalhealth_xls = mentalhealth_xls
-        )
-    )
+    dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
+                                  statements={})
 
-    dsm_statements = {
-        statement: statements[
-            statement
-        ] for statement in statements if (
-            (
-                "dcterms:source" in statements[statement]
-            ) and any(
-                "dsm" in s for s in [
-                    source.lower() for source in statements[
-                        statement
-                    ][
-                        "dcterms:source"
-                    ]
-                ]
-            )
-        )
-    }
+    statements = dsm5_statements
 
-    non_dsm_statements = {
-        statement: statements[
-            statement
-        ] for statement in statements if statement not in dsm_statements
-    }
+    #assessments_statements = ingest_assessments(assessments_xls, dsm_xls,
+    #                                            behaviors_xls, technologies_xls,
+    #                                            references_xls, statements={})
 
-    mhdb_turtle = turtle_from_dict(non_dsm_statements)
-    dsm_turtle = turtle_from_dict(dsm_statements)
 
+    # statements = domains(
+    #     domains_xls,
+    #     dsm5_xls,
+    #     behaviors_sheet1(
+    #         behaviors_xls = behaviors_xls,
+    #         dsm5_xls = dsm5_xls
+    #     )
+    # )
+    #
+    # dsm_statements = {
+    #     statement: statements[
+    #         statement
+    #     ] for statement in statements if (
+    #         (
+    #             "dcterms:source" in statements[statement]
+    #         ) and any(
+    #             "dsm" in s for s in [
+    #                 source.lower() for source in statements[
+    #                     statement
+    #                 ][
+    #                     "dcterms:source"
+    #                 ]
+    #             ]
+    #         )
+    #     )
+    # }
+    #
+    # non_dsm_statements = {
+    #     statement: statements[
+    #         statement
+    #     ] for statement in statements if statement not in dsm_statements
+    # }
+    #
+    # mhdb_turtle = turtle_from_dict(non_dsm_statements)
+    dsm5_turtle = turtle_from_dict(dsm5_statements)
+
+    # --------------------------------------------------------------------------
+    # Create header with ontologies
+    # --------------------------------------------------------------------------
     import_prefixes = set()
     for subject in statements:
         if ":" in subject and \
@@ -141,49 +165,52 @@ def main():
             not predicate.startswith('"'):
                 import_prefixes.add(predicate.split(":")[0])
             for object in statements[subject][predicate]:
+                #print(subject, predicate, object)
                 if ":" in object and \
                 "://" not in object and \
                 not object.startswith('"'):
                     import_prefixes.add(object.split(":")[0])
 
-    # ------------------------------------------------------------------------------
-    # Extract worksheets as pandas dataframes
-    # ------------------------------------------------------------------------------
     prefixes = [(
         row[1]["Prefix"],
         row[1]["PrefixURI"],
         row[1]["ImportURI"]
-    ) for row in mentalhealth_xls.parse(
-        'Ontologies'
+    ) for row in references_xls.parse(
+        'ontologies'
     ).iterrows() if row[1]["Prefix"] in import_prefixes]
-    # ------------------------------------------------------------------------------
-    # Write header
-    # with Ontologies listed in mentalhealth.Ontologies ------------------------------------------------------------------------------
 
-    fid = open(outfile, 'w')
-    dsmfid = open(dsm_outfile, 'w')
-    header_string = write_header(
-        base_uri,
-        version,
-        label,
-        comment,
-        prefixes=prefixes,
-        imports=True
-    )
-    fid.write(header_string)
-    dsmfid.write(write_header(
+    # header_string = write_header(
+    #     base_uri,
+    #     version,
+    #     label,
+    #     comment,
+    #     prefixes=prefixes,
+    #     imports=True
+    # )
+
+    # --------------------------------------------------------------------------
+    # Write to DSM5 output file
+    # --------------------------------------------------------------------------
+    dsm5fid = open(dsm5_outfile, 'w')
+    dsm5fid.write(write_header(
         "{0}/{1}".format(base_uri, "dsm"),
         version,
         "{0} — {1}".format(label, "DSM-V supplement"),
         "\n".join([
             comment,
-            "\t\t================\n\t\tDSM-V supplement\n\t\t================"
+            "{0}\n\t\tDSM-V supplement\n{0}".format(ddashes)
         ]),
         prefixes=prefixes
     ))
+    dsm5fid.write("{0} .\n".format(dsm5_turtle.rstrip(" .")))
 
-    fid.write("{0} .\n".format(mhdb_turtle.rstrip(" .")))
-    dsmfid.write("{0} .\n".format(dsm_turtle.rstrip(" .")))
+    # --------------------------------------------------------------------------
+    # Write to each of the other output files
+    # --------------------------------------------------------------------------
+    # fid = open(outfile, 'w')
+    # fid.write(header_string)
+    # fid.write("{0} .\n".format(mhdb_turtle.rstrip(" .")))
+
 
 if __name__ == "__main__":
     main()

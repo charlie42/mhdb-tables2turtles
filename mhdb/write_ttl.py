@@ -59,6 +59,7 @@ def check_iri(
             print("unknown prefix: {0}".format(iri.split(":")[0]))
         return(iri.strip())
     else:
+        from mhdb.write_ttl import mhdb_iri
         return(mhdb_iri(iri))
 
 
