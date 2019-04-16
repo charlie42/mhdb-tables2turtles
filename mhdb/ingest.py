@@ -242,7 +242,6 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
         ) else check_iri(source)
 
         symptom_label = language_string(row[1]["sign_or_symptom"])
-
         symptom_iri = check_iri(row[1]["sign_or_symptom"])
 
         for predicates in [
@@ -281,7 +280,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
     return(statements)
 
 
-def ingest_assessments(assessments_xls, dsm_xls, behaviors_xls,
+def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
                        technologies_xls, references_xls, statements={}):
     """
     Function to ingest assessments spreadsheet
@@ -322,40 +321,70 @@ def ingest_assessments(assessments_xls, dsm_xls, behaviors_xls,
     -------
     """
 
-    assessments = assessments_xls.parse("enenhehenhen")
-    sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
-    behaviors = behaviors_xls.parse("behaviors")
-    genders = behaviors_xls.parse("genders")
+    questions = assessments_xls.parse("questions")
+    response_types = assessments_xls.parse("response_types")
     references = references_xls.parse("references")
+    #sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
+    #behaviors = behaviors_xls.parse("behaviors")
+    #genders = behaviors_xls.parse("genders")
 
-    statements = audience_statements(statements)
+    #statements = audience_statements(statements)
 
-    for row in sign_or_symptoms.iterrows():
-        sign_or_symptom = "health-lifesci:MedicalSign" \
-            if (row[1]["index_sign_or_symptom_index"]) == 1 \
-            else "health-lifesci:MedicalSymptom" \
-            if (row[1]["index_sign_or_symptom_index"] == 2) \
-            else "health-lifesci:MedicalSignOrSymptom"
+    for row in questions.iterrows():
 
         source = references[
             references["index"] == row[1]["index_reference"]
         ]["link"].values[0]
-        source = None if isinstance(
-            source,
-            float
-        ) else check_iri(source)
+        if isinstance(source, float):
+            source = check_iri(references[
+                references["index"] == row[1]["index_reference"]
+                ]["reference"].values[0])
+        else:
+            source = check_iri(source)
 
-        symptom_label = language_string(row[1]["sign_or_symptom"])
-
-        symptom_iri = check_iri(row[1]["sign_or_symptom"])
+        question_label = language_string(row[1]["question"])
+        question_iri = check_iri(row[1]["question"])
 
         for predicates in [
-            ("rdfs:label", symptom_label),
-            ("rdfs:subClassOf", sign_or_symptom),
+            ("rdfs:label", question_label),
             ("dcterms:source", source)
         ]:
             statements = add_if(
-                symptom_iri,
+                question_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
+
+        predicates_list = []
+        instructions = row[1]["instructions"]
+        #print('instructions: {0} {1}'.format(instructions,
+        #                                     type(instructions)))
+        if isinstance(instructions, str):
+            #print('{0} {1}'.format(instructions, type(instructions)))
+            predicates_list.append(("rdfs:instructionsBLOOP",
+                                    language_string(instructions)))
+        group_instructions = row[1]["question_group_instructions"]
+        if isinstance(group_instructions, str):
+            #print('{0} {1}'.format(group_instructions, type(group_instructions)))
+            predicates_list.append(("rdfs:grpinstructionsBLOOP",
+                                    language_string(group_instructions)))
+        response_options = row[1]["response_options"]
+        if isinstance(response_options, str):
+            predicates_list.append(("rdfs:responseoptionsBLOOP",
+                                    language_string(response_options)))
+
+        response_type = response_types.response_type[
+            response_types["index"] == row[1]["index_response_type"]
+        ]
+        if isinstance(response_type, str):
+            predicates_list.append(("rdfs:responsetypeBLOOP",
+                                    language_string(response_type)))
+
+        #print(predicates_list)
+        for predicates in predicates_list:
+            statements = add_if(
+                question_iri,
                 predicates[0],
                 predicates[1],
                 statements

@@ -104,15 +104,20 @@ Current information can be found on the website, http://mentalhealth.tech.
 
 """.format(ddashes)
 
-    dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
-                                  statements={})
+    do_dsm5 = False
+    if do_dsm5:
+        dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
+                                      statements={})
+        dsm5_turtle = turtle_from_dict(dsm5_statements)
 
-    statements = dsm5_statements
 
-    #assessments_statements = ingest_assessments(assessments_xls, dsm_xls,
-    #                                            behaviors_xls, technologies_xls,
-    #                                            references_xls, statements={})
+    assessments_statements = ingest_assessments(assessments_xls, dsm5_xls,
+                                                behaviors_xls, technologies_xls,
+                                                references_xls, statements={})
+    assessments_turtle = turtle_from_dict(assessments_statements)
 
+
+    statements = assessments_statements
 
     # statements = domains(
     #     domains_xls,
@@ -148,7 +153,6 @@ Current information can be found on the website, http://mentalhealth.tech.
     # }
     #
     # mhdb_turtle = turtle_from_dict(non_dsm_statements)
-    dsm5_turtle = turtle_from_dict(dsm5_statements)
 
     # --------------------------------------------------------------------------
     # Create header with ontologies
@@ -179,37 +183,38 @@ Current information can be found on the website, http://mentalhealth.tech.
         'ontologies'
     ).iterrows() if row[1]["Prefix"] in import_prefixes]
 
-    # header_string = write_header(
-    #     base_uri,
-    #     version,
-    #     label,
-    #     comment,
-    #     prefixes=prefixes,
-    #     imports=True
-    # )
+    header_string = write_header(
+        base_uri,
+        version,
+        label,
+        comment,
+        prefixes=prefixes,
+        imports=True
+    )
 
     # --------------------------------------------------------------------------
     # Write to DSM5 output file
     # --------------------------------------------------------------------------
-    dsm5fid = open(dsm5_outfile, 'w')
-    dsm5fid.write(write_header(
-        "{0}/{1}".format(base_uri, "dsm"),
-        version,
-        "{0} — {1}".format(label, "DSM-V supplement"),
-        "\n".join([
-            comment,
-            "{0}\n\t\tDSM-V supplement\n{0}".format(ddashes)
-        ]),
-        prefixes=prefixes
-    ))
-    dsm5fid.write("{0} .\n".format(dsm5_turtle.rstrip(" .")))
+    if do_dsm5:
+        dsm5fid = open(dsm5_outfile, 'w')
+        dsm5fid.write(write_header(
+            "{0}/{1}".format(base_uri, "dsm"),
+            version,
+            "{0} — {1}".format(label, "DSM-V supplement"),
+            "\n".join([
+                comment,
+                "{0}\n\t\tDSM-V supplement\n{0}".format(ddashes)
+            ]),
+            prefixes=prefixes
+        ))
+        dsm5fid.write("{0} .\n".format(dsm5_turtle.rstrip(" .")))
 
     # --------------------------------------------------------------------------
     # Write to each of the other output files
     # --------------------------------------------------------------------------
-    # fid = open(outfile, 'w')
-    # fid.write(header_string)
-    # fid.write("{0} .\n".format(mhdb_turtle.rstrip(" .")))
+    fid = open(assessments_outfile, 'w')
+    fid.write(header_string)
+    fid.write("{0} .\n".format(assessments_turtle.rstrip(" .")))
 
 
 if __name__ == "__main__":
