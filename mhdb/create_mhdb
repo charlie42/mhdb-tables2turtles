@@ -75,21 +75,21 @@ def main():
         referencesFILE = 'data/references.xlsx'
 
     base_uri = "http://www.purl.org/mentalhealth"
-    behaviors_outfile = os.path.join(os.getcwd(), 'behaviors.ttl')
+    dsm5_outfile = os.path.join(os.getcwd(), 'dsm5.ttl')
     assessments_outfile = os.path.join(os.getcwd(), 'assessments.ttl')
     technologies_outfile = os.path.join(os.getcwd(), 'technologies.ttl')
-    dsm5_outfile = os.path.join(os.getcwd(), 'dsm5.ttl')
+    behaviors_outfile = os.path.join(os.getcwd(), 'behaviors.ttl')
     references_outfile = os.path.join(os.getcwd(), 'references.ttl')
 
     # --------------------------------------------------------------------------
     # Import spreadsheets
     # --------------------------------------------------------------------------
-    behaviors_xls = pd.ExcelFile(behaviorsFILE)
+    dsm5_xls = pd.ExcelFile(dsm5FILE)
     assessments_xls = pd.ExcelFile(assessmentsFILE)
     technologies_xls = pd.ExcelFile(technologiesFILE)
-    dsm5_xls = pd.ExcelFile(dsm5FILE)
+    behaviors_xls = pd.ExcelFile(behaviorsFILE)
     references_xls = pd.ExcelFile(referencesFILE)
-    X = ['', 'nan', np.nan, 'None', None]
+    X = ['', 'nan', np.nan, 'None', None, []]
 
     # --------------------------------------------------------------------------
     # Create output RDF
@@ -104,31 +104,30 @@ Current information can be found on the website, http://mentalhealth.tech.
 
 """.format(ddashes)
 
-    do_dsm5 = False
-    do_assessments = False
-    do_references = False
-    do_technologies = False
-    do_behaviors = True
-
-    statements = {}
+    do_dsm5 = False #True
+    do_assessments = False #True #False
+    do_references = False #True #False
+    do_technologies = True
+    do_behaviors = False #True #False
 
     if do_dsm5:
-        dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements)
+        dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
+                                      statements={})
         dsm5_turtle = turtle_from_dict(dsm5_statements)
     else:
         dsm5_statements = []
         dsm5_turtle = []
     if do_assessments:
         assessments_statements = ingest_assessments(assessments_xls, dsm5_xls,
-            behaviors_xls, technologies_xls, references_xls, statements)
+            behaviors_xls, technologies_xls, references_xls, statements={})
         assessments_turtle = turtle_from_dict(assessments_statements)
     else:
         assessments_statements = []
         assessments_turtle = []
 
     if do_technologies:
-        technologies_statements = ingest_technologies(technologies_xls,
-            assessments_xls, dsm5_xls, behaviors_xls, references_xls, statements)
+        technologies_statements = ingest_technologies(technologies_xls, dsm5_xls,
+            behaviors_xls, statements={})
         technologies_turtle = turtle_from_dict(technologies_statements)
     else:
         technologies_statements = []
@@ -136,86 +135,84 @@ Current information can be found on the website, http://mentalhealth.tech.
 
     if do_behaviors:
         behaviors_statements = ingest_behaviors(behaviors_xls, technologies_xls,
-            assessments_xls, dsm5_xls, references_xls, statements)
+                                                dsm5_xls, statements={})
         behaviors_turtle = turtle_from_dict(behaviors_statements)
     else:
         behaviors_statements = []
         behaviors_turtle = []
 
     if do_references:
-        references_statements = ingest_references(references_xls, behaviors_xls, statements)
+        references_statements = ingest_references(references_xls, behaviors_xls,
+                                                  statements={})
         references_turtle = turtle_from_dict(references_statements)
     else:
         references_statements = []
         references_turtle = []
 
     # --------------------------------------------------------------------------
-    # Write statements to DSM5 output file
+    # Write header and statements to turtle files
     # --------------------------------------------------------------------------
-    if do_dsm5:
-        dsm5fid = open(dsm5_outfile, 'w')
-        dsm5fid.write(write_header(
-            "{0}/{1}".format(base_uri, "dsm"),
-            version,
-            "{0} — {1}".format(label, "DSM-V supplement"),
-            "\n".join([
-                comment,
-                "{0}\n\t\tDSM-V supplement\n{0}".format(ddashes)
-            ]),
-            prefixes=prefixes
-        ))
-        dsm5fid.write("{0} .\n".format(dsm5_turtle.rstrip(" .")))
-
-    # --------------------------------------------------------------------------
-    # Write statements to other output files
-    # --------------------------------------------------------------------------
-    outputs_list = [[assessments_statements, assessments_outfile, assessments_turtle],
+    outputs_list = [[dsm5_statements, dsm5_outfile, dsm5_turtle],
+                    [assessments_statements, assessments_outfile, assessments_turtle],
                     [references_statements, references_outfile, references_turtle],
                     [technologies_statements, technologies_outfile, technologies_turtle],
                     [behaviors_statements, behaviors_outfile, behaviors_turtle]]
-    for output_list in outputs_list:
-        statements = output_list[0]
-        outfile = output_list[1]
-        turtlefile = output_list[2]
+    for ioutput, output_list in enumerate(outputs_list):
+        out_statements = output_list[0]
+        out_file = output_list[1]
+        out_turtle = output_list[2]
 
-        # Create header with ontologies
-        import_prefixes = set()
-        for subject in statements:
-            if ":" in subject and \
-            "://" not in subject and \
-            not subject.startswith('"'):
-                import_prefixes.add(subject.split(":")[0])
-            for predicate in statements[subject]:
-                if ":" in predicate and \
-                "://" not in predicate and \
-                not predicate.startswith('"'):
-                    import_prefixes.add(predicate.split(":")[0])
-                for object in statements[subject][predicate]:
-                    #print(subject, predicate, object)
-                    if ":" in object and \
-                    "://" not in object and \
-                    not object.startswith('"'):
-                        import_prefixes.add(object.split(":")[0])
-        prefixes = [(
-            row[1]["Prefix"],
-            row[1]["PrefixURI"],
-            row[1]["ImportURI"]
-        ) for row in references_xls.parse(
-            'ontologies'
-        ).iterrows() if row[1]["Prefix"] in import_prefixes]
+        if out_statements not in X:
 
-        header_string = write_header(
-            base_uri,
-            version,
-            label,
-            comment,
-            prefixes=prefixes,
-            imports=True
-        )
+            # Create header with ontologies
+            import_prefixes = set()
+            for subject in out_statements:
+                if ":" in subject and \
+                "://" not in subject and \
+                not subject.startswith('"'):
+                    import_prefixes.add(subject.split(":")[0])
+                for predicate in out_statements[subject]:
+                    if ":" in predicate and \
+                    "://" not in predicate and \
+                    not predicate.startswith('"'):
+                        import_prefixes.add(predicate.split(":")[0])
+                    for object in out_statements[subject][predicate]:
+                        if ":" in object and \
+                        "://" not in object and \
+                        not object.startswith('"'):
+                            import_prefixes.add(object.split(":")[0])
+            prefixes = [(
+                row[1]["Prefix"],
+                row[1]["PrefixURI"],
+                row[1]["ImportURI"]
+            ) for row in references_xls.parse(
+                'ontologies'
+            ).iterrows() if row[1]["Prefix"] in import_prefixes]
 
-        fid = open(outfile, 'w')
-        fid.write(header_string)
-        fid.write("{0} .\n".format(turtlefile.rstrip(" .")))
+            if ioutput == 0:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "dsm"),
+                    version,
+                    "{0} — {1}".format(label, "DSM-V supplement"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tDSM-V supplement\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            else:
+                header_string = write_header(
+                    base_uri,
+                    version,
+                    label,
+                    comment,
+                    prefixes=prefixes,
+                    imports=True
+                )
+
+            fid = open(out_file, 'w')
+            fid.write(header_string)
+            fid.write("{0} .\n".format(out_turtle.rstrip(" .")))
 
 
 if __name__ == "__main__":
