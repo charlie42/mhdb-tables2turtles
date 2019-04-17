@@ -506,8 +506,7 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
     return(statements)
 
 
-def ingest_references(assessments_xls, dsm5_xls, behaviors_xls,
-                      technologies_xls, references_xls, statements={}):
+def ingest_references(references_xls, behaviors_xls, statements={}):
     """
     Function to ingest references spreadsheet
 
@@ -549,6 +548,8 @@ def ingest_references(assessments_xls, dsm5_xls, behaviors_xls,
 
     references = references_xls.parse("references")
     reference_types = references_xls.parse("reference_types")
+    domains = behaviors_xls.parse("domains")
+    domain_categories = behaviors_xls.parse("domain_categories")
     age_groups = behaviors_xls.parse("age_groups")
     keywords = behaviors_xls.parse("keywords")
     informants = behaviors_xls.parse("informants")
@@ -562,16 +563,15 @@ def ingest_references(assessments_xls, dsm5_xls, behaviors_xls,
 
         source = row[1]["link"]
         if isinstance(source, float):
-            source = check_iri(row[1]["reference"].values[0])
+            source = check_iri(row[1]["reference"])
         else:
             source = check_iri(source)
 
         for predicates in [
-            ("rdfs:label", reference_label),
-            ("dcterms:source", source)
+            ("rdfs:label", reference_label)
         ]:
             statements = add_if(
-                reference_iri,
+                source,
                 predicates[0],
                 predicates[1],
                 statements
@@ -671,7 +671,7 @@ def ingest_references(assessments_xls, dsm5_xls, behaviors_xls,
 
         for predicates in predicates_list:
             statements = add_if(
-                reference_iri,
+                source,
                 predicates[0],
                 predicates[1],
                 statements
