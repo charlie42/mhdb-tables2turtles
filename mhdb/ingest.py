@@ -323,13 +323,19 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
 
     questions = assessments_xls.parse("questions")
     response_types = assessments_xls.parse("response_types")
+    tasks = assessments_xls.parse("tasks")
+    presentations = assessments_xls.parse("presentations")
+    domains = behaviors_xls.parse("domains")
+    domain_categories = behaviors_xls.parse("domain_categories")
+    technologies = technologies_xls.parse("technologies")
+    software = technologies_xls.parse("software")
+    digital_platforms = technologies_xls.parse("digital_platforms")
+    disorders = dsm5_xls.parse("disorders")
     references = references_xls.parse("references")
-    #sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
-    #behaviors = behaviors_xls.parse("behaviors")
-    #genders = behaviors_xls.parse("genders")
 
     #statements = audience_statements(statements)
 
+    # questions worksheet
     for row in questions.iterrows():
 
         source = references[
@@ -357,19 +363,17 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
             )
 
         predicates_list = []
+
         instructions = row[1]["instructions"]
-        #print('instructions: {0} {1}'.format(instructions,
-        #                                     type(instructions)))
+        group_instructions = row[1]["question_group_instructions"]
+        response_options = row[1]["response_options"]
+
         if isinstance(instructions, str):
-            #print('{0} {1}'.format(instructions, type(instructions)))
             predicates_list.append(("rdfs:instructionsBLOOP",
                                     language_string(instructions)))
-        group_instructions = row[1]["question_group_instructions"]
         if isinstance(group_instructions, str):
-            #print('{0} {1}'.format(group_instructions, type(group_instructions)))
             predicates_list.append(("rdfs:grpinstructionsBLOOP",
                                     language_string(group_instructions)))
-        response_options = row[1]["response_options"]
         if isinstance(response_options, str):
             predicates_list.append(("rdfs:responseoptionsBLOOP",
                                     language_string(response_options)))
@@ -381,10 +385,293 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
             predicates_list.append(("rdfs:responsetypeBLOOP",
                                     language_string(response_type)))
 
-        #print(predicates_list)
         for predicates in predicates_list:
             statements = add_if(
                 question_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
+
+    # tasks worksheet
+    for row in tasks.iterrows():
+
+        task_label = language_string(row[1]["task"])
+        task_iri = check_iri(row[1]["task"])
+
+        for predicates in [
+            ("rdfs:label", task_label)
+        ]:
+            statements = add_if(
+                task_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
+
+        predicates_list = []
+
+        instructions = row[1]["instructions"]
+        respond_to_advance = row[1]["respond_to_advance"]
+        response_affects_presentation = row[1]["response_affects_presentation"]
+        response_based_feedback = row[1]["response_based_feedback"]
+        animation = row[1]["animation"]
+
+        if isinstance(instructions, str):
+            predicates_list.append(("rdfs:instructionsBLOOP",
+                                    language_string(instructions)))
+        if respond_to_advance == "1":
+            predicates_list.append(("rdfs:respond_to_advanceBLOOP",
+                                    language_string(respond_to_advance)))
+        if response_affects_presentation == "1":
+            predicates_list.append(("rdfs:response_affects_presentationBLOOP",
+                                    language_string(response_affects_presentation)))
+        if response_based_feedback == "1":
+            predicates_list.append(("rdfs:response_based_feedbackBLOOP",
+                                    language_string(response_based_feedback)))
+        if animation == "1":
+            predicates_list.append(("rdfs:animationBLOOP",
+                                    language_string(animation)))
+
+        indices_domain = row[1]["indices_domain"]
+        indices_domain_category = row[1]["indices_domain_category"]
+        indices_software = row[1]["indices_software"]
+        indices_task_groups = row[1]["indices_task_groups"]
+        indices_presentations = row[1]["indices_presentations"]
+        indices_digital_platform = row[1]["indices_digital_platform"]
+        indices_claimed_disorder = row[1]["indices_claimed_disorder"]
+
+        if isinstance(indices_domain, str):
+            indices = [np.int(x) for x in indices_domain.split(',')]
+            for index in indices:
+                objectRDF = domains.domain[domains["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:domainBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_domain_category, str):
+            indices = [np.int(x) for x in indices_domain_category.split(',')]
+            for index in indices:
+                objectRDF = domain_categories.domain_category[
+                    domain_categories["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:domain_categoryBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_software, str):
+            indices = [np.int(x) for x in indices_software.split(',')]
+            for index in indices:
+                objectRDF = software.software[technologies["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:softwareBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_task_groups, str):
+            indices = [np.int(x) for x in indices_task_groups.split(',')]
+            for index in indices:
+                objectRDF = task_groups.task_group[task_groups["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:task_groupBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_presentations, str):
+            indices = [np.int(x) for x in indices_presentations.split(',')]
+            for index in indices:
+                objectRDF = presentations.presentation[
+                    presentations["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:presentationBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_digital_platform, str):
+            indices = [np.int(x) for x in indices_digital_platform.split(',')]
+            for index in indices:
+                objectRDF = digital_platforms.digital_platform[technologies["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:digital_platformBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_claimed_disorder, str):
+            indices = [np.int(x) for x in indices_claimed_disorder.split(',')]
+            for index in indices:
+                objectRDF = disorders.disorder[disorders["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:claimed_disorderBLOOP",
+                                            language_string(objectRDF)))
+
+
+
+        for predicates in predicates_list:
+            statements = add_if(
+                task_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
+
+    return(statements)
+
+
+def ingest_references(assessments_xls, dsm5_xls, behaviors_xls,
+                      technologies_xls, references_xls, statements={}):
+    """
+    Function to ingest references spreadsheet
+
+    Parameters
+    ----------
+    assessments_xls: pandas ExcelFile
+
+    dsm5_xls: pandas ExcelFile
+
+    behaviors_xls: pandas ExcelFile
+
+    technologies_xls: pandas ExcelFile
+
+    references_xls: pandas ExcelFile
+
+    statements:  dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Returns
+    -------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Example
+    -------
+    """
+
+    references = references_xls.parse("references")
+    reference_types = references_xls.parse("reference_types")
+    age_groups = behaviors_xls.parse("age_groups")
+    keywords = behaviors_xls.parse("keywords")
+    informants = behaviors_xls.parse("informants")
+
+    #statements = audience_statements(statements)
+
+    # references worksheet
+    for row in references.iterrows():
+
+        reference_label = language_string(row[1]["reference"])
+
+        source = row[1]["link"]
+        if isinstance(source, float):
+            source = check_iri(row[1]["reference"].values[0])
+        else:
+            source = check_iri(source)
+
+        for predicates in [
+            ("rdfs:label", reference_label),
+            ("dcterms:source", source)
+        ]:
+            statements = add_if(
+                reference_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
+
+        predicates_list = []
+
+        abbreviation = row[1]["abbreviation"]
+        description = row[1]["description"]
+        cited_reference = row[1]["cited_reference"]
+        number_of_questions = row[1]["number_of_questions"]
+        minutes_to_complete = row[1]["minutes_to_complete"]
+
+        if isinstance(abbreviation, str):
+            predicates_list.append(("rdfs:abbreviationBLOOP",
+                                    language_string(abbreviation)))
+        if isinstance(description, str):
+            predicates_list.append(("rdfs:descriptionBLOOP",
+                                    language_string(description)))
+        if isinstance(cited_reference, str):
+            predicates_list.append(("rdfs:cited_referenceBLOOP",
+                                    language_string(cited_reference)))
+        if isinstance(number_of_questions, str):
+            predicates_list.append(("rdfs:number_of_questionsBLOOP",
+                                    language_string(number_of_questions)))
+        if isinstance(minutes_to_complete, str):
+            predicates_list.append(("rdfs:minutes_to_completeBLOOP",
+                                    language_string(minutes_to_complete)))
+
+        index_reference_type = row[1]["index_reference_type"]
+        age_group_index = row[1]["age_group_index"]
+
+        if isinstance(index_reference_type, str):
+            objectRDF = reference_types.reference_type[
+                reference_types["index"] == index_reference_type]
+            if isinstance(objectRDF, str):
+                predicates_list.append(("rdfs:reference_typeBLOOP",
+                                        language_string(objectRDF)))
+        if isinstance(age_group_index, str):
+            objectRDF = age_groups.age_group[
+                age_group_index["index"] == age_group_index]
+            if isinstance(objectRDF, str):
+                predicates_list.append(("rdfs:age_group_indexBLOOP",
+                                        language_string(objectRDF)))
+
+        indices_study_or_clinic = row[1]["indices_study_or_clinic"]
+        indices_domain = row[1]["indices_domain"]
+        indices_domain_category = row[1]["indices_domain_category"]
+        indices_keywords = row[1]["indices_keywords"]
+        indices_age_group = row[1]["indices_age_group"]
+        indices_informants = row[1]["indices_informants"]
+
+        if isinstance(indices_study_or_clinic, str):
+            indices = [np.int(x) for x in indices_study_or_clinic.split(',')]
+            for index in indices:
+                objectRDF = studies_or_clinics.study_or_clinic[
+                    studies_or_clinics["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:study_or_clinicBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_domain, str):
+            indices = [np.int(x) for x in indices_domain.split(',')]
+            for index in indices:
+                objectRDF = domains.domain[domains["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:domainBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_domain_category, str):
+            indices = [np.int(x) for x in indices_domain_category.split(',')]
+            for index in indices:
+                objectRDF = domain_categories.domain_category[
+                    domain_categories["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:domain_categoryBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_keywords, str):
+            indices = [np.int(x) for x in indices_keywords.split(',')]
+            for index in indices:
+                objectRDF = keywords.keywords[keywords["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:keywordsBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_age_group, str):
+            indices = [np.int(x) for x in indices_age_group.split(',')]
+            for index in indices:
+                objectRDF = age_groups.age_group[age_groups["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:age_groupBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_informants, str):
+            indices = [np.int(x) for x in indices_informants.split(',')]
+            for index in indices:
+                objectRDF = informants.informant[informants["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:informantsBLOOP",
+                                            language_string(objectRDF)))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                reference_iri,
                 predicates[0],
                 predicates[1],
                 statements
