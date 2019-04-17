@@ -442,14 +442,14 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
         indices_claimed_disorder = row[1]["indices_claimed_disorder"]
 
         if isinstance(indices_domain, str):
-            indices = [np.int(x) for x in indices_domain.split(',')]
+            indices = [np.int(x) for x in indices_domain.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = domains.domain[domains["index"] == index]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:domainBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_domain_category, str):
-            indices = [np.int(x) for x in indices_domain_category.split(',')]
+            indices = [np.int(x) for x in indices_domain_category.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = domain_categories.domain_category[
                     domain_categories["index"] == index]
@@ -457,21 +457,21 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
                     predicates_list.append(("rdfs:domain_categoryBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_software, str):
-            indices = [np.int(x) for x in indices_software.split(',')]
+            indices = [np.int(x) for x in indices_software.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = software.software[technologies["index"] == index]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:softwareBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_task_groups, str):
-            indices = [np.int(x) for x in indices_task_groups.split(',')]
+            indices = [np.int(x) for x in indices_task_groups.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = task_groups.task_group[task_groups["index"] == index]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:task_groupBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_presentations, str):
-            indices = [np.int(x) for x in indices_presentations.split(',')]
+            indices = [np.int(x) for x in indices_presentations.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = presentations.presentation[
                     presentations["index"] == index]
@@ -479,14 +479,14 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
                     predicates_list.append(("rdfs:presentationBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_digital_platform, str):
-            indices = [np.int(x) for x in indices_digital_platform.split(',')]
+            indices = [np.int(x) for x in indices_digital_platform.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = digital_platforms.digital_platform[technologies["index"] == index]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:digital_platformBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_claimed_disorder, str):
-            indices = [np.int(x) for x in indices_claimed_disorder.split(',')]
+            indices = [np.int(x) for x in indices_claimed_disorder.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = disorders.disorder[disorders["index"] == index]
                 if isinstance(objectRDF, str):
@@ -505,6 +505,194 @@ def ingest_assessments(assessments_xls, dsm5_xls, behaviors_xls,
 
     return(statements)
 
+def ingest_technologies(technologies_xls, assessments_xls, dsm5_xls,
+                        behaviors_xls, references_xls, statements={}):
+    """
+    Function to ingest technologies spreadsheet
+
+    Parameters
+    ----------
+    assessments_xls: pandas ExcelFile
+
+    dsm5_xls: pandas ExcelFile
+
+    behaviors_xls: pandas ExcelFile
+
+    technologies_xls: pandas ExcelFile
+
+    references_xls: pandas ExcelFile
+
+    statements:  dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Returns
+    -------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Example
+    -------
+    """
+
+    technologies = technologies_xls.parse("technologies")
+    links = technologies_xls.parse("links")
+    technology_types = technologies_xls.parse("technology_types")
+    people = technologies_xls.parse("people")
+    sensors = behaviors_xls.parse("sensors")
+    measures = behaviors_xls.parse("measures")
+    measure_categories = behaviors_xls.parse("measure_categories")
+    keywords = behaviors_xls.parse("keywords")
+    keywords_categories = behaviors_xls.parse("keywords_categories")
+    domains = behaviors_xls.parse("domains")
+    domain_categories = behaviors_xls.parse("domain_categories")
+    disorders = dsm5_xls.parse("disorders")
+
+    #statements = audience_statements(statements)
+
+    # technologies worksheet
+    for row in technologies.iterrows():
+
+        # follow index to link in separate worksheet
+        technology_iri = links[links["index"] == row[1]["index_link"]]
+        if isinstance(technology_iri, float):
+            technology_iri = check_iri(row[1]["technology"])
+        else:
+            technology_iri = check_iri(technology_iri)
+
+        technology_label = language_string(row[1]["technology"])
+
+        for predicates in [
+            ("rdfs:label", technology_label)
+        ]:
+            statements = add_if(
+                technology_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
+
+        predicates_list = []
+
+        description = row[1]["description"]
+
+        if isinstance(description, str):
+            predicates_list.append(("rdfs:descriptionBLOOP",
+                                    language_string(description)))
+
+        indices_domain = row[1]["indices_domain"]
+        indices_domain_category = row[1]["indices_domain_category"]
+        indices_disorder = row[1]["indices_disorder"]
+        indices_technology_type = row[1]["indices_technology_type"]
+        indices_people = row[1]["indices_people"]
+        indices_sensor = row[1]["indices_sensor"]
+        indices_measure = row[1]["indices_measure"]
+        indices_measure_category = row[1]["indices_measure_category"]
+        indices_keywords = row[1]["indices_keywords"]
+        indices_keywords_category = row[1]["indices_keywords_category"]
+
+        if isinstance(indices_domain, str):
+            indices = [np.int(x) for x in
+                       indices_domain.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = domains.domain[domains["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:domainBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_domain_category, str):
+            indices = [np.int(x) for x in
+                       indices_domain_category.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = domain_categories.domain_category[
+                    domain_categories["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:domain_categoryBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_disorder, str):
+            indices = [np.int(x) for x in
+                       indices_disorder.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = disorders.disorder[disorders["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:claimed_disorderBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_technology_type, str):
+            indices = [np.int(x) for x in
+                       indices_technology_type.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = technology_types.technology_type[technology_types["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:technology_typeBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_people, str):
+            indices = [np.int(x) for x in
+                       indices_people.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = people.people[people["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:peopleBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_sensor, str):
+            indices = [np.int(x) for x in
+                       indices_sensor.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = sensors.sensor[sensors["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:sensorBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_measure, str):
+            indices = [np.int(x) for x in
+                       indices_measure.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = measures.measure[measures["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:measureBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_measure_category, str):
+            indices = [np.int(x) for x in
+                       indices_measure_category.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = measure_categories.measure_category[measure_categories["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:measure_categoryBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_keywords, str):
+            indices = [np.int(x) for x in
+                       indices_keywords.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = keywords.keywords[keywords["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:keywordsBLOOP",
+                                            language_string(objectRDF)))
+        if isinstance(indices_keywords_category, str):
+            indices = [np.int(x) for x in
+                       indices_keywords_category.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = keywords_categories.keywords_category[keywords_categories["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:keywords_categoryBLOOP",
+                                            language_string(objectRDF)))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                technology_iri,
+                predicates[0],
+                predicates[1],
+                statements
+            )
+
+    return(statements)
 
 def ingest_references(references_xls, behaviors_xls, statements={}):
     """
@@ -625,7 +813,8 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
         indices_informants = row[1]["indices_informants"]
 
         if isinstance(indices_study_or_clinic, str):
-            indices = [np.int(x) for x in indices_study_or_clinic.split(',')]
+            indices = [np.int(x) for x in
+                       indices_study_or_clinic.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = studies_or_clinics.study_or_clinic[
                     studies_or_clinics["index"] == index]
@@ -633,14 +822,16 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
                     predicates_list.append(("rdfs:study_or_clinicBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_domain, str):
-            indices = [np.int(x) for x in indices_domain.split(',')]
+            indices = [np.int(x) for x in
+                       indices_domain.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = domains.domain[domains["index"] == index]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:domainBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_domain_category, str):
-            indices = [np.int(x) for x in indices_domain_category.split(',')]
+            indices = [np.int(x) for x in
+                       indices_domain_category.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = domain_categories.domain_category[
                     domain_categories["index"] == index]
@@ -648,21 +839,24 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
                     predicates_list.append(("rdfs:domain_categoryBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_keywords, str):
-            indices = [np.int(x) for x in indices_keywords.split(',')]
+            indices = [np.int(x) for x in
+                       indices_keywords.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = keywords.keywords[keywords["index"] == index]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:keywordsBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_age_group, str):
-            indices = [np.int(x) for x in indices_age_group.split(',')]
+            indices = [np.int(x) for x in
+                       indices_age_group.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = age_groups.age_group[age_groups["index"] == index]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:age_groupBLOOP",
                                             language_string(objectRDF)))
         if isinstance(indices_informants, str):
-            indices = [np.int(x) for x in indices_informants.split(',')]
+            indices = [np.int(x) for x in
+                       indices_informants.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = informants.informant[informants["index"] == index]
                 if isinstance(objectRDF, str):
