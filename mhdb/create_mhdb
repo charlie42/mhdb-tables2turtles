@@ -107,35 +107,38 @@ Current information can be found on the website, http://mentalhealth.tech.
     do_dsm5 = False
     do_assessments = False
     do_references = False
-    do_technologies = True
-    do_behaviors = False
+    do_technologies = False
+    do_behaviors = True
+
+    statements = {}
 
     if do_dsm5:
-        dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
-                                      statements={})
+        dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements)
         dsm5_turtle = turtle_from_dict(dsm5_statements)
+        statements = statements.update(dsm5_statements)
 
     if do_assessments:
         assessments_statements = ingest_assessments(assessments_xls, dsm5_xls,
-            behaviors_xls, technologies_xls, references_xls, statements={})
+            behaviors_xls, technologies_xls, references_xls, statements)
         assessments_turtle = turtle_from_dict(assessments_statements)
-
-    if do_references:
-        references_statements = ingest_references(references_xls, behaviors_xls,
-                                                  statements={})
-        references_turtle = turtle_from_dict(references_statements)
+        statements = statements.update(assessments_statements)
 
     if do_technologies:
         technologies_statements = ingest_technologies(technologies_xls,
-            assessments_xls, dsm5_xls, behaviors_xls, references_xls, statements={})
+            assessments_xls, dsm5_xls, behaviors_xls, references_xls, statements)
         technologies_turtle = turtle_from_dict(technologies_statements)
+        statements = statements.update(technologies_statements)
 
     if do_behaviors:
         behaviors_statements = ingest_behaviors(behaviors_xls, technologies_xls,
-            assessments_xls, dsm5_xls, references_xls, statements={})
+            assessments_xls, dsm5_xls, references_xls, statements)
         behaviors_turtle = turtle_from_dict(behaviors_statements)
+        statements = statements.update(behaviors_statements)
 
-    statements = technologies_statements
+    if do_references:
+        references_statements = ingest_references(references_xls, behaviors_xls, statements)
+        references_turtle = turtle_from_dict(references_statements)
+        statements = statements.update(references_statements)
 
     # statements = domains(
     #     domains_xls,
