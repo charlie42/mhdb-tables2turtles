@@ -1,35 +1,256 @@
 #!/usr/bin/env python
 """
-This program converts a mental health spreadsheet to an RDF text document.
+This program contains functions for working with spreadsheets and RDF text documents.
 
 Authors:
-    - Arno Klein, 2017  (arno@childmind.org)  http://binarybottle.com
+    - Arno Klein, 2017-2019  (arno@childmind.org)  http://binarybottle.com
     - Jon Clucas, 2017 (jon.clucas@childmind.org)
 
 Copyright 2017, Child Mind Institute (http://childmind.org), Apache v2.0 License
 
 """
-import argparse
 import logging
 import numpy as np
-import os
 import pandas as pd
-import re
 import sys
-import traceback
-import urllib.request
-import warnings
 
 
-from mhdb.info import __version__ as version
-from mhdb.spreadsheet_io import convert_string_to_label, create_label
-from mhdb.spreadsheet_io import download_google_sheet, get_index2, get_cell
+from mhdb.spreadsheet_io import download_google_sheet, get_cell
 from mhdb.spreadsheet_io import split_on_slash
-from mhdb.write_ttl import check_iri, mhdb_iri, write_header, write_ttl
+from mhdb.write_ttl import check_iri
 
 
-logging.basicConfig(filename='debug.log',level=logging.DEBUG)
-logging.captureWarnings(True)
+def ICD_code(Disorder, ICD, id, X):
+    # function to turtle ICD code and coding system
+    ICD = str(ICD)
+    ICD_uri_code = get_cell(
+        Disorder,
+        'ICD{0}code'.format(ICD),
+        iD,
+        X,
+        True
+    )
+    if ICD_uri_code:
+        ICD_uri = "ICD{0}:{1}".format(
+            ICD,
+            str(ICD_uri_code)
+        )
+        ICD_coding_string = (
+            "{0} health-lifesci:codingSystem \"ICD{1}CM\"^^rdfs:Literal "
+        ).format(
+            ICD_uri,
+            ICD
+        )
+    else:
+        ICD_uri, ICD_coding_string = None, None
+    return(ICD_uri, ICD_coding_string)
+
+
+def disorder_iri(index, mentalhealth_xls=None, pre_specifiers_indices=[6, 7, 24, 25, 26],
+                 post_specifiers_indices=[27, 28, 56, 78]):
+    """
+    Function to figure out IRIs for disorders based on
+    mentalhealth.xls::Disorder
+    Parameters
+    ----------
+    index: int
+        key to lookup in Disorder table
+    mentalhealth_xls: spreadsheet workbook, optional
+        1MfW9yDw7e8MLlWWSBBXQAC2Q4SDiFiMMb7mRtr7y97Q
+    pre_specifiers_indices: [int], optional
+        list of indices of diagnostic specifiers to precede disorder names
+    post_specifiers_indices: [int], optional
+        list of indices of diagnostic specifiers to be preceded by disorder
+        names
+    Returns
+    -------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Example
+    -------
+    disorder_statements = {}
+    if disorder_iris and len(disorder_iris):
+        for disorder in disorder_iris:
+            disorder_statements = disorder_iri(
+                disorder,
+                mentalhealth_xls=mentalhealth_xls,
+                pre_specifiers_indices=[
+                    6,
+                    7,
+                    24,
+                    25,
+                    26
+                ],
+                post_specifiers_indices=[
+                    27,
+                    28,
+                    56,
+                    78
+                ]
+            )
+            statements = add_if(
+                project_iri,
+                "dcterms:subject",
+                [
+                    k for k in disorder_statements
+                ][0],
+                {
+                    **statements,
+                    **disorder_statements
+                }
+            )
+
+    """
+    disorder = mentalhealth_xls.parse("Disorder")
+    severity = mentalhealth_xls.parse("DisorderSeverity")
+    specifier = mentalhealth_xls.parse("DiagnosticSpecifier")
+    criterion = mentalhealth_xls.parse("DiagnosticCriterion")
+    disorderSeries = disorder[disorder["index"]==index]
+    disorder_name = disorderSeries["DisorderName"].values[0]
+    if (
+        not isinstance(
+            disorderSeries["DiagnosticSpecifier_index"].values[0],
+            float
+        )
+    ) or (
+        not np.isnan(
+            disorderSeries["DiagnosticSpecifier_index"].values[0]
+        )
+    ):
+        disorder_name = " ".join([
+            specifier[
+                specifier[
+                    "index"
+                ]==disorderSeries[
+                    "DiagnosticSpecifier_index"
+                ].values[0]
+            ]["DiagnosticSpecifierName"].values[0],
+            disorder_name
+        ]) if disorderSeries[
+            "DiagnosticSpecifier_index"
+        ].values[0] in pre_specifiers_indices else " ".join([
+            disorder_name,
+            specifier[
+                specifier[
+                    "index"
+                ]==disorderSeries[
+                    "DiagnosticSpecifier_index"
+                ].values[0]
+            ]["DiagnosticSpecifierName"].values[0]
+        ]) if disorderSeries[
+            "DiagnosticSpecifier_index"
+        ].values[0] in post_specifiers_indices else ", ".join([
+            disorder_name,
+            specifier[
+                specifier[
+                    "index"
+                ]==disorderSeries[
+                    "DiagnosticSpecifier_index"
+                ].values[0]
+            ]["DiagnosticSpecifierName"].values[0]
+        ])
+    disorder_name = " with ".join([
+        disorder_name,
+        criterion[
+            criterion["index"]==disorderSeries[
+                "DiagnosticInclusionCriterion_index"
+            ]
+        ]["DiagnosticCriterionName"].values[0]
+    ]) if (
+        not isinstance(
+            disorderSeries["DiagnosticInclusionCriterion_index"].values[0],
+            float
+        )
+    ) or (
+        not np.isnan(
+            disorderSeries["DiagnosticInclusionCriterion_index"].values[0]
+        )
+    ) else disorder_name
+    disorder_name = " and ".join([
+        disorder_name,
+        criterion[
+            criterion["index"]==disorderSeries[
+                "DiagnosticInclusionCriterion2_index"
+            ]
+        ]["DiagnosticCriterionName"].values[0]
+    ]) if (
+        not isinstance(
+            disorderSeries["DiagnosticInclusionCriterion2_index"].values[0],
+            float
+        )
+    ) or (
+        not np.isnan(
+            disorderSeries["DiagnosticInclusionCriterion2_index"].values[0]
+        )
+    ) else disorder_name
+    disorder_name = " without ".join([
+        disorder_name,
+        criterion[
+            criterion["index"]==disorderSeries[
+                "DiagnosticExclusionCriterion_index"
+            ]
+        ]["DiagnosticCriterionName"].values[0]
+    ]) if (
+        not isinstance(
+            disorderSeries["DiagnosticExclusionCriterion_index"].values[0],
+            float
+        )
+    ) or (
+        not np.isnan(
+            disorderSeries["DiagnosticExclusionCriterion_index"].values[0]
+        )
+    ) else disorder_name
+    disorder_name = " and ".join([
+        disorder_name,
+        criterion[
+            criterion["index"]==disorderSeries[
+                "DiagnosticExclusionCriterion2_index"
+            ]
+        ]["DiagnosticCriterionName"].values[0]
+    ]) if (
+        not isinstance(
+            disorderSeries["DiagnosticExclusionCriterion2_index"].values[0],
+            float
+        )
+    ) or (
+        not np.isnan(
+            disorderSeries["DiagnosticExclusionCriterion2_index"].values[0]
+        )
+    ) else disorder_name
+    disorder_name = " ".join([
+        severity[
+            severity[
+                "index"
+            ]==int(disorderSeries[
+                "DisorderSeverity_index"
+            ])
+        ]["DisorderSeverityName"].values[0],
+        disorder_name
+    ]) if (
+        not isinstance(
+            disorderSeries[
+                "DisorderSeverity_index"
+            ].values[0],
+            float
+        )
+    ) or (
+        not np.isnan(
+            disorderSeries[
+                "DisorderSeverity_index"
+            ].values[0]
+        )
+    ) else disorder_name
+    iri = check_iri(disorder_name)
+    label = language_string(disorder_name)
+    statements = {iri: {"rdfs:label": [label]}}
+    return(statements)
 
 
 def collect_predicates(subject, row, structure_row, files, stc, prefixes):
@@ -74,6 +295,49 @@ def collect_predicates(subject, row, structure_row, files, stc, prefixes):
         predicates[1]: string
             Turtle object
     """
+    def type_pred(row, prefixes):
+        """
+        Function to create and return a tuple of
+        Turtle property and Turtle object for a
+        given label
+
+        Parameters
+        ----------
+        row : Series
+            row from structure_to_keep
+            pandas series from generator
+            ie, row[1] for row in iterrows()
+
+        prefixes : iterable of 2-tuples
+            (prefix_string: string
+            prefix_iri: string)
+            defined RDF prefixes
+
+        Returns
+        -------
+        predicate : 2-tuple
+            predicate[0]: string
+                Turtle property
+
+            predicate[1]: string
+                Turtle object
+        """
+        prop = "rdfs:subClassOf" if row[
+                                        "Class, Property or Instance"
+                                    ] == "Class" else "rdfs:subPropertyOf" if row[
+                                                                                  "Class, Property or Instance"
+                                                                              ] == "Property" else "rdfs:type"
+        predicate = tuple(
+            (
+                prop,
+                check_iri(
+                    row["Type"],
+                    prefixes
+                )
+            )
+        ) if row["Type"] else None
+        return (predicate)
+
     related_predicates = set()
     for related_row in stc.iterrows():
         if (
@@ -148,74 +412,6 @@ def follow_fk(sheet, foreign_key_header, foreign_value_header, fk):
                 str(fk)
             ])
         ))
-
-
-def follow_structure(row, files, stc, prefixes=None):
-    """
-    Function to follow format of "structure_to_keep"
-
-    Parameters
-    ----------
-    row: Series
-        pandas series from generator
-        ie, row[1] for row in iterrows()
-
-    files : dictionary
-        {fn: string:
-        file: DataFrame}
-        one entry per unique value in structure_to_keep's "File" column
-
-    stc : DataFrame
-
-    prefixes : iterable of 2-tuples
-        (prefix_string: string
-        prefix_iri: string)
-        defined RDF prefixes
-
-    Returns
-    -------
-    ttl_dict : dictionary
-        keys: str
-            subjects
-        values: sets of 2-tuple (str, str)
-            [0]: predicate
-            [1]: object
-    """
-    sheet = files[row.File].parse(row.Sheet)
-    ttl_dict = dict()
-    if row.Type != "foreign key":
-        for structure_row in sheet.iterrows():
-            subjects = structure_row[1][row.Indexed_Entity]
-            if isinstance(subjects, str):
-                subjects = subjects.split(
-                    row.split_indexed_by
-                ) if (
-                    isinstance(
-                        row.split_indexed_by,
-                        str
-                    ) and (
-                        row.split_indexed_by in subjects
-                    )
-                ) else [subjects]
-                subject = check_iri(
-                    subjects[0],
-                    prefixes
-                )
-                related_predicates = collect_predicates(
-                    subject,
-                    row,
-                    structure_row[1],
-                    files,
-                    stc,
-                    prefixes
-                )
-                ttl_dict[subject] = related_predicates if (
-                    subject not in ttl_dict
-                ) else (
-                    ttl_dict[subject] |
-                    related_predicates
-                )
-    return(ttl_dict)
 
 
 def foreign(structure_row, related_row, files, stc, prefixes):
@@ -412,32 +608,6 @@ def label(row, structure_row, prefixes):
     )
 
 
-def ICD_code(Disorder, ICD, id, X):
-    # function to turtle ICD code and coding system
-    ICD = str(ICD)
-    ICD_uri_code = get_cell(
-        Disorder,
-        'ICD{0}code'.format(ICD),
-        iD,
-        X,
-        True
-    )
-    if ICD_uri_code:
-        ICD_uri = "ICD{0}:{1}".format(
-            ICD,
-            str(ICD_uri_code)
-        )
-        ICD_coding_string = (
-            "{0} health-lifesci:codingSystem \"ICD{1}CM\"^^rdfs:Literal "
-        ).format(
-            ICD_uri,
-            ICD
-        )
-    else:
-        ICD_uri, ICD_coding_string = None, None
-    return(ICD_uri, ICD_coding_string)
-
-
 def structure_to_keep(files, prefixes=None):
     """
     Parameter
@@ -459,6 +629,74 @@ def structure_to_keep(files, prefixes=None):
         unsourced : dictionary
             dictionary of unsourced triples
     """
+
+    def follow_structure(row, files, stc, prefixes=None):
+        """
+        Function to follow format of "structure_to_keep"
+
+        Parameters
+        ----------
+        row: Series
+            pandas series from generator
+            ie, row[1] for row in iterrows()
+
+        files : dictionary
+            {fn: string:
+            file: DataFrame}
+            one entry per unique value in structure_to_keep's "File" column
+
+        stc : DataFrame
+
+        prefixes : iterable of 2-tuples
+            (prefix_string: string
+            prefix_iri: string)
+            defined RDF prefixes
+
+        Returns
+        -------
+        ttl_dict : dictionary
+            keys: str
+                subjects
+            values: sets of 2-tuple (str, str)
+                [0]: predicate
+                [1]: object
+        """
+        sheet = files[row.File].parse(row.Sheet)
+        ttl_dict = dict()
+        if row.Type != "foreign key":
+            for structure_row in sheet.iterrows():
+                subjects = structure_row[1][row.Indexed_Entity]
+                if isinstance(subjects, str):
+                    subjects = subjects.split(
+                        row.split_indexed_by
+                    ) if (
+                            isinstance(
+                                row.split_indexed_by,
+                                str
+                            ) and (
+                                    row.split_indexed_by in subjects
+                            )
+                    ) else [subjects]
+                    subject = check_iri(
+                        subjects[0],
+                        prefixes
+                    )
+                    related_predicates = collect_predicates(
+                        subject,
+                        row,
+                        structure_row[1],
+                        files,
+                        stc,
+                        prefixes
+                    )
+                    ttl_dict[subject] = related_predicates if (
+                            subject not in ttl_dict
+                    ) else (
+                            ttl_dict[subject] |
+                            related_predicates
+                    )
+        return (ttl_dict)
+
     dicts = [
         dict(),
         dict()
@@ -511,52 +749,7 @@ def structure_to_keep(files, prefixes=None):
     return(dicts)
 
 
-def type_pred(row, prefixes):
-    """
-    Function to create and return a tuple of
-    Turtle property and Turtle object for a
-    given label
-
-    Parameters
-    ----------
-    row : Series
-        row from structure_to_keep
-        pandas series from generator
-        ie, row[1] for row in iterrows()
-
-    prefixes : iterable of 2-tuples
-        (prefix_string: string
-        prefix_iri: string)
-        defined RDF prefixes
-
-    Returns
-    -------
-    predicate : 2-tuple
-        predicate[0]: string
-            Turtle property
-
-        predicate[1]: string
-            Turtle object
-    """
-    prop = "rdfs:subClassOf" if row[
-        "Class, Property or Instance"
-    ] == "Class" else "rdfs:subPropertyOf" if row[
-        "Class, Property or Instance"
-    ] == "Property" else "rdfs:type"
-    predicate = tuple(
-        (
-            prop,
-            check_iri(
-                row["Type"],
-                prefixes
-            )
-        )
-    ) if row["Type"] else None
-    return(predicate)
-
-
-def doi_iri(doi, title=None, statements={}
-            ):
+def doi_iri(doi, title=None, statements={}):
     """
     Function to create relevant statements about a DOI.
 
@@ -614,9 +807,9 @@ def doi_iri(doi, title=None, statements={}
         ) if title else statements
     )
 
+
 def object_split_lookup(object_indices, lookup_sheet, lookup_key_column,
-                        lookup_value_column, separator=","
-                        ):
+                        lookup_value_column, separator=","):
     """
     Function to lookup values from comma-separated key columns.
 
@@ -702,151 +895,44 @@ def object_split_lookup(object_indices, lookup_sheet, lookup_key_column,
         return ([])
 
 
-def main():
-    # ------------------------------------------------------------------------------
-    # Try to get latest spreadsheets
-    # Except use local copies
-    # ------------------------------------------------------------------------------
-    try:
-        mentalhealthFILE = download_google_sheet(
-            'data/mentalhealth.xlsx',
-            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
-        )
-    except:
-        mentalhealthFILE = 'data/mentalhealth.xlsx'
-    try:
-        mentalhealthtechnology3FILE = download_google_sheet(
-            'data/mentalhealthtechnology3.xlsx',
-            "1SK-kT7EH34omb4FJnFW2uJbsXbklawlPXFx2X7hLnc8"
-        )
-    except:
-        mentalhealthtechnology3FILE = 'data/mentalhealthtechnology3.xlsx'
-    try:
-        revised_structureFILE = download_google_sheet(
-            'data/revised_structure.xlsx',
-            "1REHmDXldCZ_L403Zq0N0LdhwNNEAXEIJHcNHzOIjnSQ"
-        )
-    except:
-        revised_structureFILE = 'data/revised_structure.xlsx'
-    base_uri = "http://www.purl.org/mentalhealth"
-    outfile = os.path.join(os.getcwd(), 'mhdb.ttl')
-    dsm_outfile = os.path.join(os.getcwd(), 'dsm.ttl')
-
-    # ------------------------------------------------------------------------------
-    # Import spreadsheets
-    # ------------------------------------------------------------------------------
-    mentalhealth_xls = pd.ExcelFile(mentalhealthFILE)
-    mentalhealthtechnology3_xls = pd.ExcelFile(mentalhealthtechnology3FILE)
-    revised_structure_xls = pd.ExcelFile(revised_structureFILE)
-    X = ['', 'nan', np.nan, 'None', None]
-
-    # ------------------------------------------------------------------------------
-    # Create output RDF mentalhealthFILE
-    # ------------------------------------------------------------------------------
-    label = "mental health database"
-    comment="""
-    ======================
-    Mental Health Database
-    ======================
-
-    This mental health database inter-relates information about mental health
-    diagnoses, symptoms, assessement questionnaires, etc., and is licensed
-    under the terms of the Creative Commons BY license.
-    Current information can be found on the website, http://mentalhealth.tech.
+def gen_questions(nb, p1=None, s1=None, dim_p1=None):
     """
+    Generate the questions we can from the given prefixes and suffixes
 
-    # ------------------------------------------------------------------------------
-    # Extract worksheets as pandas dataframes
-    # ------------------------------------------------------------------------------
-    prefixes = [(
-        row[1]["Prefix"],
-        row[1]["PrefixURI"]
-    ) for row in mentalhealth_xls.parse('Ontologies').iterrows()]
+    Parameters
+    ----------
+    nb: string
+        "neutral behaviour"
 
-    # ------------------------------------------------------------------------------
-    # Write header
-    # with Ontologies listed in mentalhealth.Ontologies ------------------------------------------------------------------------------
+    p1: string, optional
+        prefix string
 
-    fid = open(outfile, 'w')
-    dsmfid = open(dsm_outfile, 'w')
-    header_string = write_header(
-        base_uri,
-        version,
-        label,
-        comment,
-        prefixes=prefixes
-    )
-    fid.write(header_string)
-    dsmfid.write(write_header(
-        "{0}/{1}".format(base_uri, "dsm"),
-        version,
-        "{0} — {1}".format(label, "DSM-V supplement"),
-        "\n".join([
-            comment,
-            "\t\t================\n\t\tDSM-V supplement\n\t\t================"
-        ]),
-        prefixes=prefixes
-    ))
-    sourced, unsourced = structure_to_keep(
-        {
-            "mentalhealth":
-                mentalhealth_xls,
-            "revised structure for neutral states & lead questions":
-                revised_structure_xls,
-            "mentalhealthtechnology3":
-                mentalhealthtechnology3_xls
-        },
-        prefixes
-    )
-    dsm_turtle = ""
-    mhdb_turtle = ""
-    for subject in sourced:
-        dsm = False
-        for predicate in sourced[subject]:
-            if (
-                "dsm.psychiatryonline.org" in predicate[1]
-            ) or (
-                "DSM" in predicate[1]
-            ):
-                dsm = True
-        if dsm:
-            dsm_turtle = " \n\n".join([
-                dsm_turtle,
-                turtle_from_dict(
-                    subject,
-                    sourced[subject]
-                )
-            ]) if len(dsm_turtle) else turtle_from_dict(
-                subject,
-                sourced[subject]
-            )
-        else:
-            mhdb_turtle = " \n\n".join([
-                mhdb_turtle,
-                turtle_from_dict(
-                    subject,
-                    sourced[subject]
-                )
-            ]) if len(mhdb_turtle) else turtle_from_dict(
-                subject,
-                sourced[subject]
-            )
-    mhdb_turtle = " \n\n".join([
-        mhdb_turtle,
-        *[
-            turtle_from_dict(
-                subject,
-                unsourced[subject]
-            ) for subject in unsourced
-        ]
-    ]) if len(mhdb_turtle) else " \n\n".join([
-        turtle_from_dict(
-            subject,
-            unsourced[subject]
-        )
-    ] for subject in unsourced)
-    fid.write("{0} .\n".format(mhdb_turtle.rstrip(" .")))
-    dsmfid.write("{0} .\n".format(dsm_turtle.rstrip(" .")))
+    dim_p1: string, optional
+        prefix string
 
-if __name__ == "__main__":
-    main()
+    s1: string, optional
+        prefix string
+
+    Returns
+    -------
+    qs: list of strings
+        list of questions
+    """
+    qs = []
+    nb = nb.strip()
+    p1 = p1.strip() if p1 else None
+    s1 = s1.strip().strip("?") if s1 else None
+    dim_p1 = dim_p1.strip() if dim_p1 else None
+    if p1:
+        qs.append("{0} {1}?".format(p1, nb))
+        if s1:
+            qs.append("{0} {1} {2}?".format(p1, nb, s1))
+            if dim_p1:
+                qs.append("{3} {0} {1} {2}?".format(p1, nb, s1, dim_p1))
+        elif dim_p1:
+            qs.append("{2} {0} {1}?".format(p1, nb, dim_p1))
+    elif s1:
+        qs.append("{0} {1}?".format(nb, s1))
+        if dim_p1:
+            qs.append("{2} {0} {1}?".format(nb, s1, dim_p1))
+    return(qs)
