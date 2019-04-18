@@ -104,11 +104,11 @@ Current information can be found on the website, http://mentalhealth.tech.
 
 """.format(ddashes)
 
-    do_dsm5 = False #True
-    do_assessments = False #True #False
-    do_references = False #True #False
+    do_dsm5 = True
+    do_assessments = True #False
+    do_references = True #False
     do_technologies = True
-    do_behaviors = False #True #False
+    do_behaviors = True #False
 
     if do_dsm5:
         dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
@@ -157,7 +157,9 @@ Current information can be found on the website, http://mentalhealth.tech.
                     [references_statements, references_outfile, references_turtle],
                     [technologies_statements, technologies_outfile, technologies_turtle],
                     [behaviors_statements, behaviors_outfile, behaviors_turtle]]
+
     for ioutput, output_list in enumerate(outputs_list):
+
         out_statements = output_list[0]
         out_file = output_list[1]
         out_turtle = output_list[2]
@@ -177,6 +179,7 @@ Current information can be found on the website, http://mentalhealth.tech.
                     not predicate.startswith('"'):
                         import_prefixes.add(predicate.split(":")[0])
                     for object in out_statements[subject][predicate]:
+                        #print(subject,predicate,object)
                         if ":" in object and \
                         "://" not in object and \
                         not object.startswith('"'):

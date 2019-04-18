@@ -511,9 +511,6 @@ def structure_to_keep(files, prefixes=None):
     return(dicts)
 
 
-
-
-
 def type_pred(row, prefixes):
     """
     Function to create and return a tuple of
@@ -556,6 +553,153 @@ def type_pred(row, prefixes):
         )
     ) if row["Type"] else None
     return(predicate)
+
+
+def doi_iri(doi, title=None, statements={}
+            ):
+    """
+    Function to create relevant statements about a DOI.
+
+    Parameters
+    ----------
+    doi: string
+        Digital Object Identifier
+
+    title: string, optional
+        title of digital object
+
+    Returns
+    -------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Example
+    -------
+    >>> print([k for k in doi_iri(
+    ...     "10.1109/IEEESTD.2015.7084073",
+    ...     "1872-2015 - IEEE Standard Ontologies for Robotics and Automation"
+    ... )][0])
+    <https://dx.doi.org/10.1109/IEEESTD.2015.7084073>
+    """
+    local_iri = check_iri(
+        'https://dx.doi.org/{0}'.format(
+            doi
+        )
+    )
+    doi = '"""{0}"""^^rdfs:Literal'.format(doi)
+    for pred in [
+        ("datacite:usesIdentifierScheme", "datacite:doi"),
+        ("datacite:hasIdentifier", doi)
+    ]:
+        statements = add_if(
+            local_iri,
+            pred[0],
+            pred[1],
+            statements
+        )
+    return (
+        add_if(
+            local_iri,
+            "rdfs:label",
+            language_string(
+                title
+            ),
+            statements
+        ) if title else statements
+    )
+
+def object_split_lookup(object_indices, lookup_sheet, lookup_key_column,
+                        lookup_value_column, separator=","
+                        ):
+    """
+    Function to lookup values from comma-separated key columns.
+
+    Parameters
+    ----------
+    object_indices: string
+        maybe-separated string of foreign keys
+
+    lookup_sheet: DataFrame
+        foreign table
+
+    lookup_key_column: string
+        foreign table key column header
+
+    lookup_value_column: string
+        foreign table value column header
+
+    separator: string
+        default=","
+
+    Returns
+    -------
+    object_iris: list of strings
+        list of Turtle-formatted IRIs or empty list if none
+
+    Example
+    -------
+    >>> import pandas as pd
+    >>> sheet = pd.DataFrame({
+    ...     "index": list(range(3)),
+    ...     "bird": [":duck", ":goose", ":swan"]
+    ... })
+    >>> print(object_split_lookup(
+    ...     object_indices="0/2",
+    ...     lookup_sheet=sheet,
+    ...     lookup_key_column="index",
+    ...     lookup_value_column="bird",
+    ...     separator="/"
+    ... ))
+    [':duck', ':swan']
+    """
+    try:
+        if not isinstance(
+                object_indices,
+                float
+        ) and len(str(object_indices).strip()):
+            object_indices = str(object_indices)
+            if separator not in object_indices:
+                object_iris = [check_iri(
+                    lookup_sheet[
+                        lookup_sheet[
+                            lookup_key_column
+                        ] == int(
+                            object_indices
+                        )
+                        ][lookup_value_column].values[0]
+                )] if lookup_sheet[
+                    lookup_sheet[
+                        lookup_key_column
+                    ] == int(
+                        object_indices
+                    )
+                    ][lookup_value_column].values.size else None
+            else:
+                object_iris = [
+                    int(
+                        s.strip()
+                    ) for s in object_indices.split(
+                        separator
+                    )
+                ]
+                object_iris = [check_iri(
+                    lookup_sheet[
+                        lookup_sheet[lookup_key_column] == object_i
+                        ][lookup_value_column].values[0]
+                ) for object_i in object_iris]
+            return (object_iris)
+        else:
+            return ([])
+    except:
+        print(str(lookup_value_column))
+        print(str(object_indices))
+        return ([])
 
 
 def main():
