@@ -309,6 +309,14 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
                 if isinstance(disorder, str):
                     predicates_list.append(("rdfs:disorderBLOOP",
                                             check_iri(disorder)))
+        index_super_sign = row[1]["sign_or_symptom_index"]
+        if index_super_sign not in exclude_list and not np.isnan(index_super_sign):
+            super_sign = sign_or_symptoms[sign_or_symptoms["index"] ==
+                                          np.int(index_super_sign)
+            ]["sign_or_symptom"].values[0]
+            if isinstance(super_sign, str):
+                predicates_list.append(("rdfs:subClassOf",
+                                            check_iri(super_sign)))
         for predicates in predicates_list:
             statements = add_if(
                 symptom_iri,
@@ -341,6 +349,55 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
                 exclude_list
             )
 
+    # diagnostic_specifiers worksheet
+    for row in diagnostic_specifiers.iterrows():
+
+        diagnostic_specifier_label = language_string(row[1]["diagnostic_specifier"])
+        diagnostic_specifier_iri = check_iri(row[1]["diagnostic_specifier"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", diagnostic_specifier_label))
+        if row[1]["equivalentClass"] not in exclude_list:
+            predicates_list.append(("rdfs:equivalentClass",
+                                    check_iri(row[1]["equivalentClass"])))
+        if row[1]["subClassOf"] not in exclude_list:
+            predicates_list.append(("rdfs:subClassOf",
+                                    check_iri(row[1]["subClassOf"])))
+        for predicates in predicates_list:
+            statements = add_if(
+                diagnostic_specifier_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # diagnostic_criteria worksheet
+    for row in diagnostic_criteria.iterrows():
+
+        diagnostic_criterion_label = language_string(row[1]["diagnostic_criterion"])
+        diagnostic_criterion_iri = check_iri(row[1]["diagnostic_criterion"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", diagnostic_criterion_label))
+        if row[1]["equivalentClass"] not in exclude_list:
+            predicates_list.append(("rdfs:equivalentClass",
+                                    check_iri(row[1]["equivalentClass"])))
+        if row[1]["equivalentClass_2"] not in exclude_list:
+            predicates_list.append(("rdfs:equivalentClass",
+                                    check_iri(row[1]["equivalentClass_2"])))
+        if row[1]["subClassOf"] not in exclude_list:
+            predicates_list.append(("rdfs:subClassOf",
+                                    check_iri(row[1]["subClassOf"])))
+        for predicates in predicates_list:
+            statements = add_if(
+                diagnostic_criterion_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
     # disorders worksheet
     for row in disorders.iterrows():
 
@@ -367,11 +424,11 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
         #                             language_string(row[1]["disorder_full_name"])))
         if row[1]["ICD9_code"] not in exclude_list and \
                 row[1]["ICD9_code"] != np.nan:
-            predicates_list.append(("ICD9_codeBLOOP",
+            predicates_list.append(("hasICD10Code",
                                     check_iri('ICD9_' + str(row[1]["ICD9_code"]))))
         if row[1]["ICD10_code"] not in exclude_list and \
                 row[1]["ICD10_code"] != np.nan:
-            predicates_list.append(("ICD10_codeBLOOP",
+            predicates_list.append(("hasICD10Code",
                                     check_iri('ICD10_' + str(row[1]["ICD10_code"]))))
         if row[1]["note"] not in exclude_list and \
                 not isinstance(row[1]["note"], float):
@@ -420,7 +477,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
             diagnostic_specifiers["index"] == int(row[1]["index_diagnostic_specifier"])
             ]["diagnostic_specifier"].values[0]
             if isinstance(diagnostic_specifier, str):
-                predicates_list.append(("rdfs:diagnostic_specifierBLOOP",
+                predicates_list.append(("rdfs:hasDiagnosticSpecifier",
                                         check_iri(diagnostic_specifier)))
 
         if row[1]["index_diagnostic_inclusion_criterion"] not in exclude_list and \
@@ -429,7 +486,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_inclusion_criterion"])
             ]["diagnostic_criterion"].values[0]
             if isinstance(diagnostic_inclusion_criterion, str):
-                predicates_list.append(("rdfs:diagnostic_inclusion_criterionBLOOP",
+                predicates_list.append(("rdfs:hasInclusionCriterion",
                                         check_iri(diagnostic_inclusion_criterion)))
 
         if row[1]["index_diagnostic_inclusion_criterion2"] not in exclude_list and \
@@ -438,7 +495,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_inclusion_criterion2"])
             ]["diagnostic_criterion"].values[0]
             if isinstance(diagnostic_inclusion_criterion2, str):
-                predicates_list.append(("rdfs:diagnostic_inclusion_criterionBLOOP",
+                predicates_list.append(("rdfs:hasInclusionCriterion",
                                         check_iri(diagnostic_inclusion_criterion2)))
 
         if row[1]["index_diagnostic_exclusion_criterion"] not in exclude_list and \
@@ -447,7 +504,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_exclusion_criterion"])
             ]["diagnostic_criterion"].values[0]
             if isinstance(diagnostic_exclusion_criterion, str):
-                predicates_list.append(("rdfs:diagnostic_exclusion_criterionBLOOP",
+                predicates_list.append(("rdfs:hasExclusionCriterion",
                                         check_iri(diagnostic_exclusion_criterion)))
 
         if row[1]["index_diagnostic_exclusion_criterion2"] not in exclude_list and \
@@ -456,7 +513,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_exclusion_criterion2"])
             ]["diagnostic_criterion"].values[0]
             if isinstance(diagnostic_exclusion_criterion2, str):
-                predicates_list.append(("rdfs:diagnostic_exclusion_criterionBLOOP",
+                predicates_list.append(("rdfs:hasExclusionCriterion",
                                         check_iri(diagnostic_exclusion_criterion2)))
 
         if row[1]["index_severity"] not in exclude_list and \
@@ -465,7 +522,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, technologies_xls,
             severities["index"] == int(row[1]["index_severity"])
             ]["severity"].values[0]
             if isinstance(severity, str) and severity not in exclude_list:
-                predicates_list.append(("rdfs:severityBLOOP",
+                predicates_list.append(("rdfs:hasSeverity",
                                         check_iri(severity)))
 
         for predicates in predicates_list:
