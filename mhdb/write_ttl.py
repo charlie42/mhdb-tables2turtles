@@ -38,11 +38,13 @@ def check_iri(
 
     prefixes: set of 2-or-3-tuples
 
+    alert_unknown: Boolean
+
     Returns
     -------
     iri: string
     """
-    iri = str(iri)
+    iri = str(iri).strip()
     prefix_strings = {"","_"} if not prefixes else {
         "",
         "_",
@@ -57,10 +59,10 @@ def check_iri(
             return("<{0}>".format(iri))
         if alert_unknown:
             print("unknown prefix: {0}".format(iri.split(":")[0]))
-        return(iri.strip())
+        return iri.strip()
     else:
         from mhdb.write_ttl import mhdb_iri
-        return(mhdb_iri(iri))
+        return mhdb_iri(iri)
 
 
 def language_string(s, lang="en"):
