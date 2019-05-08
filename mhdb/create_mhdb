@@ -96,11 +96,11 @@ def main():
     # --------------------------------------------------------------------------
     label = "mental health database"
     ddashes = "================================================================================"
-    comment="""\n\n{0}\n\t\tMental Health Database\n{0}
-This mental health database inter-relates information about mental health
+    comment="""\n\n{0}\n\t\tMental Health Database (MHDB)\n{0}
+This mental health database interrelates information about mental health
 symptoms, assessment questionnaires and tasks, etc., and is licensed
 under the terms of the Creative Commons BY license.
-Current information can be found on the website, http://mentalhealth.tech.
+Current information can be found on the website, http://matter.childmind.org.
 
 """.format(ddashes)
 
