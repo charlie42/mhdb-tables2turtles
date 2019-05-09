@@ -1376,6 +1376,17 @@ def ingest_projects(projects_xls, behaviors_xls, statements={}):
         else:
             project_type_iri = check_iri(row[1]["project_type"])
 
+        if isinstance(row[1]["indices_project_category"], str):
+            indices = [np.int(x) for x in
+                       row[1]["indices_project_category"].strip().split(',')
+                       if len(x)>0]
+            for index in indices:
+                objectRDF = project_types[project_types["index"]  ==
+                                        index]["project_type"].values[0]
+                print(objectRDF, type(objectRDF))
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:subClassOf",
+                                            check_iri(objectRDF)))
         for predicates in predicates_list:
             statements = add_if(
                 project_type_iri,
