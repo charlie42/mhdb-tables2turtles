@@ -53,12 +53,12 @@ def main():
     except:
         assessmentsFILE = 'data/assessments.xlsx'
     try:
-        technologiesFILE = download_google_sheet(
-            'data/technologies.xlsx',
+        projectsFILE = download_google_sheet(
+            'data/projects.xlsx',
             "1LeLlrsvBWMYTTIXTVtkynmBzzb0Uzi1OwpRLfyRAwzM"
         )
     except:
-        technologiesFILE = 'data/technologies.xlsx'
+        projectsFILE = 'data/projects.xlsx'
     try:
         dsm5FILE = download_google_sheet(
             'data/dsm5.xlsx',
@@ -77,7 +77,7 @@ def main():
     base_uri = "http://www.purl.org/mentalhealth"
     dsm5_outfile = os.path.join(os.getcwd(), 'dsm5.ttl')
     assessments_outfile = os.path.join(os.getcwd(), 'assessments.ttl')
-    technologies_outfile = os.path.join(os.getcwd(), 'technologies.ttl')
+    projects_outfile = os.path.join(os.getcwd(), 'projects.ttl')
     behaviors_outfile = os.path.join(os.getcwd(), 'behaviors.ttl')
     references_outfile = os.path.join(os.getcwd(), 'references.ttl')
 
@@ -86,7 +86,7 @@ def main():
     # --------------------------------------------------------------------------
     dsm5_xls = pd.ExcelFile(dsm5FILE)
     assessments_xls = pd.ExcelFile(assessmentsFILE)
-    technologies_xls = pd.ExcelFile(technologiesFILE)
+    projects_xls = pd.ExcelFile(projectsFILE)
     behaviors_xls = pd.ExcelFile(behaviorsFILE)
     references_xls = pd.ExcelFile(referencesFILE)
     X = ['', 'nan', np.nan, 'None', None, []]
@@ -100,41 +100,41 @@ def main():
 This mental health database interrelates information about mental health
 symptoms, assessment questionnaires and tasks, etc., and is licensed
 under the terms of the Creative Commons BY license.
-Current information can be found on the website, http://matter.childmind.org.
+Current information can be found on the website, https://matter.childmind.org.
 
 """.format(ddashes)
 
-    do_dsm5 = True
+    do_dsm5 = 0#True
     do_assessments = 0#True #False
-    do_references = 0# True #False
-    do_technologies = 0# True
-    do_behaviors = 0# True #False
+    do_projects = 0# True
+    do_behaviors = 1# True #False
+    do_references = 0 #False
 
     if do_dsm5:
         dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
-                                      technologies_xls, statements={})
+                                      projects_xls, statements={})
         dsm5_turtle = turtle_from_dict(dsm5_statements)
     else:
         dsm5_statements = []
         dsm5_turtle = []
     if do_assessments:
         assessments_statements = ingest_assessments(assessments_xls,
-            behaviors_xls, technologies_xls, references_xls, statements={})
+            behaviors_xls, projects_xls, references_xls, statements={})
         assessments_turtle = turtle_from_dict(assessments_statements)
     else:
         assessments_statements = []
         assessments_turtle = []
 
-    if do_technologies:
-        technologies_statements = ingest_technologies(technologies_xls, dsm5_xls,
+    if do_projects:
+        projects_statements = ingest_projects(projects_xls,
             behaviors_xls, statements={})
-        technologies_turtle = turtle_from_dict(technologies_statements)
+        projects_turtle = turtle_from_dict(projects_statements)
     else:
-        technologies_statements = []
-        technologies_turtle = []
+        projects_statements = []
+        projects_turtle = []
 
     if do_behaviors:
-        behaviors_statements = ingest_behaviors(behaviors_xls, technologies_xls,
+        behaviors_statements = ingest_behaviors(behaviors_xls, projects_xls,
                                                 dsm5_xls, statements={})
         behaviors_turtle = turtle_from_dict(behaviors_statements)
     else:
@@ -155,7 +155,7 @@ Current information can be found on the website, http://matter.childmind.org.
     outputs_list = [[dsm5_statements, dsm5_outfile, dsm5_turtle],
                     [assessments_statements, assessments_outfile, assessments_turtle],
                     [references_statements, references_outfile, references_turtle],
-                    [technologies_statements, technologies_outfile, technologies_turtle],
+                    [projects_statements, projects_outfile, projects_turtle],
                     [behaviors_statements, behaviors_outfile, behaviors_turtle]]
 
     for ioutput, output_list in enumerate(outputs_list):
