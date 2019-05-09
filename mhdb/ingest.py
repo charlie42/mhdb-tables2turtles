@@ -958,6 +958,8 @@ def ingest_assessments(assessments_xls, behaviors_xls,
 
         instructions = row[1]["instructions"]
         group_instructions = row[1]["question_group_instructions"]
+        mindlogger_instructions = row[1]["mindlogger_instructions"]
+        mindlogger_group_instructions = row[1]["mindlogger_group_instructions"]
         response_options = row[1]["response_options"]
         indices_response_type = row[1]["indices_response_type"]
 
@@ -969,6 +971,14 @@ def ingest_assessments(assessments_xls, behaviors_xls,
                 isinstance(group_instructions, str):
             predicates_list.append(("hasGroupInstructions",
                                     language_string(group_instructions)))
+        if mindlogger_instructions not in exclude_list and \
+                isinstance(mindlogger_instructions, str):
+            predicates_list.append(("hasMindLoggerInstructions",
+                                    language_string(mindlogger_instructions)))
+        if mindlogger_group_instructions not in exclude_list and \
+                isinstance(mindlogger_group_instructions, str):
+            predicates_list.append(("hasMindLoggerGroupInstructions",
+                                    language_string(mindlogger_group_instructions)))
         if response_options not in exclude_list and \
                 isinstance(response_options, str):
             predicates_list.append(("hasResponseOptions",

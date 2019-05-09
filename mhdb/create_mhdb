@@ -105,8 +105,8 @@ Current information can be found on the website, https://matter.childmind.org.
 """.format(ddashes)
 
     do_dsm5 = 0#True
-    do_assessments = 0#True #False
-    do_projects = 1# True
+    do_assessments = 1#True #False
+    do_projects = 0# True
     do_behaviors = 0# True #False
     do_references = 0 #False
 
