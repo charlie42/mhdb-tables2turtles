@@ -1439,7 +1439,7 @@ def ingest_projects(projects_xls, behaviors_xls, statements={}):
     return statements
 
 
-def ingest_behaviors(behaviors_xls, projects_xls, dsm5_xls, statements={}):
+def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
     """
     Function to ingest behaviors spreadsheet
 
@@ -1483,17 +1483,16 @@ def ingest_behaviors(behaviors_xls, projects_xls, dsm5_xls, statements={}):
     behavior_properties = behaviors_xls.parse("Properties")
     behaviors = behaviors_xls.parse("behaviors")
     question_preposts = behaviors_xls.parse("question_preposts")
-    genders = behaviors_xls.parse("genders")
     sensors = behaviors_xls.parse("sensors")
     measures = behaviors_xls.parse("measures")
     locations = behaviors_xls.parse("locations")
     domains = behaviors_xls.parse("domains")
     domain_types = behaviors_xls.parse("domain_types")
     claims = behaviors_xls.parse("claims")
-    projects = projects_xls.parse("projects")
     sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
+    references = references_xls.parse("references")
 
-    #statements = audience_statements(statements)
+    statements = audience_statements(statements)
 
     # Classes worksheet
     for row in behavior_classes.iterrows():
@@ -1626,15 +1625,15 @@ def ingest_behaviors(behaviors_xls, projects_xls, dsm5_xls, statements={}):
         if row[1]["index_gender"] not in exclude_list and \
                 not np.isnan(row[1]["index_gender"]):
             gender_index = np.int(row[1]["index_gender"])
-            if gender_index != 1:
-                gender = genders[genders["index"] == gender_index
-                                 ]["gender"].values[0]
-                if isinstance(gender, str):
-                    predicates_list.append(("isGenderSpecific",
-                                            check_iri(gender)))
+            #gender = genders[genders["index"] == gender_index]["gender"].values[0]
+            if gender_index == 2:  # male
+                predicates_list.append(
+                    ("intendedAudience", "MaleAudience"))
+            elif gender_index == 3: # female
+                predicates_list.append(
+                    ("intendedAudience", "FemaleAudience"))
 
         indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
-
         if isinstance(indices_sign_or_symptom, str) and \
                 indices_sign_or_symptom not in exclude_list:
             indices = [np.int(x) for x in
@@ -1645,7 +1644,6 @@ def ingest_behaviors(behaviors_xls, projects_xls, dsm5_xls, statements={}):
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:sign_or_symptomBLOOP",
                                             check_iri(objectRDF)))
-
         for predicates in predicates_list:
             statements = add_if(
                 behavior_iri,
@@ -1655,239 +1653,278 @@ def ingest_behaviors(behaviors_xls, projects_xls, dsm5_xls, statements={}):
                 exclude_list
             )
 
-    # # sensors worksheet
-    # for row in sensors.iterrows():
-    #
-    #     sensor_label = language_string(row[1]["sensor"])
-    #     sensor_iri = check_iri(row[1]["sensor"])
-    #
-    #     for predicates in [
-    #         ("rdfs:label", sensor_label)
-    #     ]:
-    #         statements = add_if(
-    #             sensor_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    #     predicates_list = []
-    #
-    #     abbreviation = row[1]["abbreviation"]
-    #
-    #     if isinstance(abbreviation, str):
-    #         predicates_list.append(("rdfs:abbreviationBLOOP",
-    #                                 language_string(abbreviation)))
-    #
-    #     indices_measure = row[1]["indices_measure"]
-    #
-    #     if isinstance(indices_measure, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_measure.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = measures.measure[measures["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:measureBLOOP",
-    #                                         language_string(objectRDF)))
-    #     for predicates in predicates_list:
-    #         statements = add_if(
-    #             sensor_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    # # measures worksheet
-    # for row in measures.iterrows():
-    #
-    #     measure_label = language_string(row[1]["measure"])
-    #     measure_iri = check_iri(row[1]["measure"])
-    #
-    #     for predicates in [
-    #         ("rdfs:label", measure_label)
-    #     ]:
-    #         statements = add_if(
-    #             measure_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    #     predicates_list = []
-    #
-    #     indices_location = row[1]["indices_location"]
-    #
-    #     if isinstance(indices_location, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_location.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = measures.location[measures["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:locationBLOOP",
-    #                                         language_string(objectRDF)))
-    #
-    #     for predicates in predicates_list:
-    #         statements = add_if(
-    #             measure_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    # # locations worksheet
-    # for row in locations.iterrows():
-    #
-    #     location_label = language_string(row[1]["location"])
-    #
-    #     location_iri = row[1]["IRI"]
-    #     if isinstance(location_iri, float):
-    #         location_iri = check_iri(location_label)
-    #     else:
-    #         location_iri = check_iri(location_iri)
-    #
-    #     for predicates in [
-    #         ("rdfs:label", location_label)
-    #     ]:
-    #         statements = add_if(
-    #             location_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    # # domains worksheet
-    # for row in domains.iterrows():
-    #
-    #     domain_label = language_string(row[1]["domain"])
-    #     domain_iri = check_iri(row[1]["domain"])
-    #
-    #     for predicates in [
-    #         ("rdfs:label", domain_label)
-    #     ]:
-    #         statements = add_if(
-    #             domain_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    #     predicates_list = []
-    #
-    #     index_domain_type = row[1]["index_domain_type"]
-    #
-    #     if isinstance(index_domain_type, str):
-    #         domain_type = domain_types.domain_type[domain_types["index"] == index]
-    #         predicates_list.append(("rdfs:domain_typeBLOOP",
-    #                                 language_string(domain_type)))
-    #
-    #     for predicates in predicates_list:
-    #         statements = add_if(
-    #             domain_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    # # claims worksheet
-    # for row in claims.iterrows():
-    #
-    #     claim_label = language_string(row[1]["claim"])
-    #     claim_iri = check_iri(row[1]["claim"])
-    #
-    #     for predicates in [
-    #         ("rdfs:label", claim_label)
-    #     ]:
-    #         statements = add_if(
-    #             claim_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-    #
-    #     predicates_list = []
-    #
-    #     indices_domain = row[1]["indices_domain"]
-    #
-    #     if isinstance(indices_domain, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_domain.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = domains.domain[domains["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:domainBLOOP",
-    #                                         language_string(objectRDF)))
-    #
-    #     indices_measure = row[1]["indices_measure"]
-    #
-    #     if isinstance(indices_measure, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_measure.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = measures.measure[measures["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:measureBLOOP",
-    #                                         language_string(objectRDF)))
-    #
-    #     indices_sensor = row[1]["indices_sensor"]
-    #
-    #     if isinstance(indices_sensor, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_sensor.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = sensors.sensor[sensors["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:sensorBLOOP",
-    #                                         language_string(objectRDF)))
-    #
-    #     indices_location = row[1]["indices_location"]
-    #
-    #     if isinstance(indices_location, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_location.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = locations.location[locations["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:locationBLOOP",
-    #                                         language_string(objectRDF)))
-    #
-    #     indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
-    #
-    #     if isinstance(indices_sign_or_symptom, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_sign_or_symptom.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = signs_or_symptoms.sign_or_symptom[signs_or_symptoms["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:sign_or_symptomBLOOP",
-    #                                         language_string(objectRDF)))
-    #
-    #     indices_project = row[1]["indices_project"]
-    #
-    #     if isinstance(indices_project, str):
-    #         indices = [np.int(x) for x in
-    #                    indices_project.strip().split(',') if len(x)>0]
-    #         for index in indices:
-    #             objectRDF = projects.project[projects["index"] == index]
-    #             if isinstance(objectRDF, str):
-    #                 predicates_list.append(("rdfs:projectBLOOP",
-    #                                         language_string(objectRDF)))
-    #
-    #     for predicates in predicates_list:
-    #         statements = add_if(
-    #             claim_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
+    # sensors worksheet
+    for row in sensors.iterrows():
+
+        sensor_label = language_string(row[1]["sensor"])
+        sensor_iri = check_iri(row[1]["sensor"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "Sensor"))
+        predicates_list.append(("rdfs:label", sensor_label))
+
+        abbreviation = row[1]["abbreviation"]
+        if isinstance(abbreviation, str)and \
+                abbreviation not in exclude_list:
+            predicates_list.append(("rdfs:abbreviationBLOOP",
+                                    language_string(abbreviation)))
+
+        indices_measure = row[1]["indices_measure"]
+        if isinstance(indices_measure, str) and \
+                indices_measure not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_measure.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = measures.measure[measures["index"] == index]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("takesMeasure",
+                                            language_string(objectRDF)))
+        for predicates in predicates_list:
+            statements = add_if(
+                sensor_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # measures worksheet
+    for row in measures.iterrows():
+
+        measure_label = language_string(row[1]["measure"])
+        measure_iri = check_iri(row[1]["measure"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "Measure"))
+        predicates_list.append(("rdfs:label", measure_label))
+
+        indices_measure_category = row[1]["indices_measure_category"]
+        if isinstance(indices_measure_category, str):
+            indices = [np.int(x) for x in
+                       indices_measure_category.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = measures[measures["index"] ==
+                                     index]["measure"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:subClassOf",
+                                            check_iri(objectRDF)))
+
+        indices_location = row[1]["indices_location"]
+        if not np.isnan(indices_location) and \
+                indices_location not in exclude_list:
+            if isinstance(indices_location, str):
+                indices = [np.int(x) for x in
+                           indices_location.strip().split(',') if len(x)>0]
+            elif isinstance(indices_location, float):
+                indices = [np.int(indices_location)]
+            for index in indices:
+                objectRDF = locations[locations["index"] ==
+                                      index]["IRI"].values[0]
+                if isinstance(objectRDF, str) and objectRDF not in exclude_list:
+                    predicates_list.append(("rdfs:locationBLOOP",
+                                            check_iri(objectRDF)))
+                else:
+                    location = locations[locations["index"] ==
+                                         index]["location"].values[0]
+                    predicates_list.append(("rdfs:locationBLOOP",
+                                            check_iri(location)))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                measure_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # locations worksheet
+    for row in locations.iterrows():
+
+        location_label = language_string(row[1]["location"])
+
+        location_iri = row[1]["IRI"]
+        if isinstance(location_iri, float) or location_iri in exclude_list:
+            location_iri = check_iri(location_label)
+        else:
+            location_iri = check_iri(location_iri)
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "BodyLocation"))
+        predicates_list.append(("rdfs:label", location_label))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                location_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # domains worksheet
+    for row in domains.iterrows():
+
+        domain_label = language_string(row[1]["domain"])
+        domain_iri = check_iri(row[1]["domain"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "Domain"))
+        predicates_list.append(("rdfs:label", domain_label))
+
+        indices_domain_type = row[1]["indices_domain_type"]
+        if isinstance(indices_domain_type, str) and \
+                indices_domain_type not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_domain_type.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = domain_types[domain_types["index"] ==
+                                         index]["domain_type"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("hasDomainType",
+                                            check_iri(objectRDF)))
+        indices_domain_category = row[1]["indices_domain_category"]
+        if isinstance(indices_domain_category, str) and \
+                indices_domain_category not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_domain_category.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = domains[domains["index"] ==
+                                         index]["domain"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:subClassOf",
+                                            check_iri(objectRDF)))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                domain_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # domain_types worksheet
+    for row in domain_types.iterrows():
+
+        domain_type_label = language_string(row[1]["domain_type"])
+        domain_type_iri = check_iri(row[1]["domain_type"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "DomainType"))
+        predicates_list.append(("rdfs:label", domain_type_label))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                domain_type_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # question_preposts worksheet
+    for row in question_preposts.iterrows():
+
+        question_prepost_label = language_string(row[1]["question_prepost"])
+        question_prepost_iri = check_iri(row[1]["question_prepost"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "QuestionPrePost"))
+        predicates_list.append(("rdfs:label", question_prepost_label))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                question_prepost_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # claims worksheet
+    for row in claims.iterrows():
+
+        claim_label = language_string(row[1]["claim"])
+        claim_iri = check_iri(row[1]["claim"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "Claim"))
+        predicates_list.append(("rdfs:label", claim_label))
+
+        indices_domain = row[1]["indices_domain"]
+        if isinstance(indices_domain, str) and \
+                indices_domain not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_domain.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = domains[domains["index"] ==
+                                    index]["domain"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("makesClaimAbout",
+                                            language_string(objectRDF)))
+
+        indices_measure = row[1]["indices_measure"]
+        if isinstance(indices_measure, str) and \
+                indices_measure not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_measure.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = measures[measures["index"] ==
+                                     index]["measure"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("makesClaimAbout",
+                                            language_string(objectRDF)))
+
+        indices_sensor = row[1]["indices_sensor"]
+        if isinstance(indices_sensor, str) and \
+                indices_sensor not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_sensor.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = sensors[sensors["index"] ==
+                                     index]["sensor"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("makesClaimAbout",
+                                            language_string(objectRDF)))
+
+        indices_location = row[1]["indices_location"]
+        if isinstance(indices_location, str) and \
+                indices_location not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_location.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = locations[locations["index"] ==
+                                     index]["location"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("makesClaimAbout",
+                                            language_string(objectRDF)))
+
+        indices_reference = row[1]["indices_references"]
+        if isinstance(indices_reference, str) and \
+                indices_reference not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_reference.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = references[references["index"] ==
+                                       index]["reference"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("dcterms:source",
+                                            check_iri(objectRDF)))
+
+        if isinstance(row[1]["link"], str) and \
+                row[1]["link"] not in exclude_list:
+            predicates_list.append(("dcterms:source",
+                                    check_iri(row[1]["link"])))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                claim_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
 
     return statements
 

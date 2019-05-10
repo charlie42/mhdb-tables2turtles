@@ -105,9 +105,9 @@ Current information can be found on the website, https://matter.childmind.org.
 """.format(ddashes)
 
     do_dsm5 = 0#True
-    do_assessments = 1#True #False
+    do_assessments = 0#True #False
     do_projects = 0# True
-    do_behaviors = 0# True #False
+    do_behaviors = 1# True #False
     do_references = 0 #False
 
     if do_dsm5:
@@ -134,7 +134,7 @@ Current information can be found on the website, https://matter.childmind.org.
         projects_turtle = []
 
     if do_behaviors:
-        behaviors_statements = ingest_behaviors(behaviors_xls, projects_xls,
+        behaviors_statements = ingest_behaviors(behaviors_xls, references_xls,
                                                 dsm5_xls, statements={})
         behaviors_turtle = turtle_from_dict(behaviors_statements)
     else:
