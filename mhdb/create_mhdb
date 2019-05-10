@@ -104,11 +104,11 @@ Current information can be found on the website, https://matter.childmind.org.
 
 """.format(ddashes)
 
-    do_dsm5 = 0#True
-    do_assessments = 0#True #False
-    do_projects = 0# True
-    do_behaviors = 1# True #False
-    do_references = 0 #False
+    do_dsm5 = 0
+    do_assessments = 0
+    do_projects = 0
+    do_behaviors = 0
+    do_references = 1
 
     if do_dsm5:
         dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,

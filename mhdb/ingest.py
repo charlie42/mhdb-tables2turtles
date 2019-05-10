@@ -2254,6 +2254,8 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
     -------
     """
 
+    reference_classes = references_xls.parse("Classes")
+    reference_properties = references_xls.parse("Properties")
     references = references_xls.parse("references")
     reference_types = references_xls.parse("reference_types")
     domains = behaviors_xls.parse("domains")
@@ -2262,10 +2264,21 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
 
     #statements = audience_statements(statements)
 
+    # Classes worksheet
+    for row in behavior_classes.iterrows():
+
+        behavior_class_label = language_string(row[1]["ClassName"])
+        behavior_class_iri = check_iri(row[1]["ClassName"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", behavior_class_label))
+        predicates_list.append(("rdf:type", "rdf:Class"))
+
+
+
+
     # references worksheet
     for row in references.iterrows():
-
-        reference_label = language_string(row[1]["reference"])
 
         source = row[1]["link"]
         if isinstance(source, float):
@@ -2273,18 +2286,10 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
         else:
             source = check_iri(source)
 
-        for predicates in [
-            ("rdfs:label", reference_label)
-        ]:
-            statements = add_if(
-                source,
-                predicates[0],
-                predicates[1],
-                statements,
-                exclude_list
-            )
-
         predicates_list = []
+        predicates_list.append(("rdfs:label",
+                                language_string(row[1]["reference"])))
+        predicates_list.append(("rdf:type", "Reference"))
 
         PubmedID = row[1]["PubmedID"]
         abbreviation = row[1]["abbreviation"]
