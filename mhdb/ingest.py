@@ -72,6 +72,10 @@ def add_if(subject, predicate, object, statements={},
             predicate not in exclude_list and \
             object not in exclude_list:
 
+        subject.strip()
+        predicate.strip()
+        object.strip()
+
         if subject not in statements:
             statements[subject] = {}
         if predicate not in statements[subject]:
@@ -245,8 +249,9 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, projects_xls,
     diagnostic_specifiers = dsm5_xls.parse("diagnostic_specifiers")
     diagnostic_criteria = dsm5_xls.parse("diagnostic_criteria")
     references = references_xls.parse("references")
+    behaviors = behaviors_xls.parse("behaviors")
 
-    #statements = audience_statements(statements)
+    statements = audience_statements(statements)
 
     # Classes worksheet
     for row in dsm_classes.iterrows():
@@ -376,36 +381,38 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, projects_xls,
                     ]["reference"].values[0]
                 source = check_iri(source)
 
-        # audience_gender = None
-        # for x in behaviors.indices_sign_or_symptom:
-        #     if type(x) != 'NoneType' and \
-        #             row[1]["index"] == x or \
-        #             (np.size(x) > 1 and row[1]["index"] in x):
-        #         audience_gender = genders.gender[
-        #             behaviors.index_gender[row[1]["index"]]
-        #         ]
-        #         break
-        # if audience_gender:
-        #     for prop in [
-        #         "schema:audience",
-        #         "schema:epidemiology"
-        #     ]:
-        #         statements = add_if(
-        #             symptom_iri,
-        #             prop,
-        #             audience_gender,
-        #             statements,
-        #             exclude_list
-        #         )
-
         symptom_label = language_string(row[1]["sign_or_symptom"])
         symptom_iri = check_iri(row[1]["sign_or_symptom"])
 
         predicates_list = []
         predicates_list.append(("rdfs:label", symptom_label))
         predicates_list.append(("rdf:type", sign_or_symptom))
-
         predicates_list.append(("dcterms:source", source))
+
+        # male/female
+        for row2 in behaviors.iterrows():
+            indices_sign_or_symptom = row2[1]["indices_sign_or_symptom"]
+            if indices_sign_or_symptom not in exclude_list and \
+                    isinstance(indices_sign_or_symptom, str):
+                indices_sign_or_symptom = [np.int(x) for x in
+                    indices_sign_or_symptom.strip().split(',') if len(x)>0]
+                for index_sign in indices_sign_or_symptom:
+                    if index_sign == row[1]["index"]:
+                        if row2[1]["index_gender"] not in exclude_list and \
+                            not np.isnan(row2[1]["index_gender"]):
+                            gender_index = np.int(row2[1]["index_gender"])
+                            if gender_index == 2:  # male
+                                predicates_list.append(
+                                    ("schema:audience", "MaleAudience"))
+                                predicates_list.append(
+                                    ("schema:epidemiology", "MaleAudience"))
+                            elif gender_index == 3:  # female
+                                predicates_list.append(
+                                    ("schema:audience", "FemaleAudience"))
+                                predicates_list.append(
+                                    ("schema:epidemiology", "FemaleAudience"))
+                        break
+
         indices_disorder = row[1]["indices_disorder"]
         if indices_disorder not in exclude_list:
             if not isinstance(indices_disorder, list):
@@ -1613,26 +1620,25 @@ def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
             if isinstance(adverb_prefix, str):
                 predicates_list.append(("rdfs:adverb_prefixBLOOP",
                                         check_iri(adverb_prefix)))
-        if row[1]["index_adverb_suffix"] not in exclude_list and \
-                 not np.isnan(row[1]["index_adverb_suffix"]):
-            index_adverb_suffix = np.int(row[1]["index_adverb_suffix"])
-            adverb_suffix = question_preposts[question_preposts["index"] ==
-                index_adverb_suffix]["question_prepost"].values[0]
-            if isinstance(adverb_suffix, str):
-                predicates_list.append(("rdfs:adverb_suffixBLOOP",
-                                        check_iri(adverb_suffix)))
-
+        # if row[1]["index_adverb_suffix"] not in exclude_list and \
+        #          not np.isnan(row[1]["index_adverb_suffix"]):
+        #     index_adverb_suffix = np.int(row[1]["index_adverb_suffix"])
+        #     adverb_suffix = question_preposts[question_preposts["index"] ==
+        #         index_adverb_suffix]["question_prepost"].values[0]
+        #     if isinstance(adverb_suffix, str):
+        #         predicates_list.append(("rdfs:adverb_suffixBLOOP",
+        #                                 check_iri(adverb_suffix)))
         if row[1]["index_gender"] not in exclude_list and \
                 not np.isnan(row[1]["index_gender"]):
             gender_index = np.int(row[1]["index_gender"])
             #gender = genders[genders["index"] == gender_index]["gender"].values[0]
             if gender_index == 2:  # male
                 predicates_list.append(
-                    ("intendedAudience", "MaleAudience"))
+                    ("schema:audience", "MaleAudience"))
             elif gender_index == 3: # female
+                print(gender_index)
                 predicates_list.append(
-                    ("intendedAudience", "FemaleAudience"))
-
+                    ("schema:audience", "FemaleAudience"))
         indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
         if isinstance(indices_sign_or_symptom, str) and \
                 indices_sign_or_symptom not in exclude_list:
@@ -1929,289 +1935,289 @@ def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
     return statements
 
 
-def projects(statements={}):
-    """
-    Function to create rdf statements about projects
-
-    Parameters
-    ----------
-    statements: dictionary
-        key: string
-            RDF subject
-        value: dictionary
-            key: string
-                RDF predicate
-            value: {string}
-                set of RDF objects
-
-    Returns
-    -------
-    statements: dictionary
-        key: string
-            RDF subject
-        value: dictionary
-            key: string
-                RDF predicate
-            value: {string}
-                set of RDF objects
-    """
-
-    for subject in [
-        "schema:Book",
-        "schema:Article"
-    ]:
-        statements = add_if(
-            subject,
-            "rdfs:subClassOf",
-            "mhdb:BookOrArticle",
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:CreativeWork"),
-        ("rdfs:subClassOf", "dcterms:BibliographicResource"),
-        ("rdfs:label", language_string("Book / Article"))
-    ]:
-        statements = add_if(
-            "mhdb:BookOrArticle",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:CreativeWork"),
-        ("rdfs:subClassOf", "schema:MedicalTest"),
-        ("rdfs:label", language_string("Assessment"))
-    ]:
-        statements = add_if(
-            "mhdb:Assessment",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:CreativeWork"),
-        ("rdfs:subClassOf", "dcterms:InteractiveResource"),
-        ("rdfs:label", language_string("Virtual Reality"))
-    ]:
-        statements = add_if(
-            "mhdb:VirtualReality",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:CreativeWork"),
-        ("rdfs:subClassOf", "dcterms:InteractiveResource"),
-        ("rdfs:label", language_string("Augmented Reality"))
-    ]:
-        statements = add_if(
-            "mhdb:AugmentedReality",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:Book"),
-        ("rdfs:label", language_string("Resource Guide"))
-    ]:
-        statements = add_if(
-            "mhdb:ResourceGuide",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:Service"),
-        ("rdfs:subClassOf", "schema:OrganizeAction"),
-        ("rdfs:label", language_string("Community Initiative"))
-    ]:
-        statements = add_if(
-            "mhdb:CommunityInitiative",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "ssn:Device"),
-        ("rdfs:comment", language_string(
-            "A smart electronic device (electronic device with "
-            "micro-controller(s)) that can be worn on the body as implants or "
-            "accessories."
-        )),
-        ("rdfs:isDefinedBy", check_iri(
-            "https://en.wikipedia.org/wiki/Wearable_domains"
-        )),
-        ("rdfs:label", language_string("Wearable"))
-    ]:
-        statements = add_if(
-            "mhdb:Wearable",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-        for pred in [
-            ("rdfs:subClassOf", "ssn:Device"),
-            ("rdfs:label", language_string("Tablet"))
-        ]:
-            statements = add_if(
-                "mhdb:Tablet",
-                pred[0],
-                pred[1],
-                statements,
-                exclude_list
-            )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:Game"),
-        ("owl:disjointWith", "schema:VideoGame"),
-        ("rdfs:label", language_string("Non-Digital Game"))
-    ]:
-        statements = add_if(
-            "mhdb:NonDigitalGame",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "dcterms:Agent"),
-        ("rdfs:subClassOf", "ssn:Device"),
-        (
-                "dcterms:source",
-                check_iri(
-                    'https://dx.doi.org/10.1109/IEEESTD.2015.7084073'
-                )
-        ),
-        ("rdfs:label", language_string("Robot")),
-        (
-                "rdfs:comment",
-                language_string(
-                    "An agentive device (Agent and Device in SUMO) in a broad "
-                    "sense, purposed to act in the physical world in order to "
-                    "accomplish one or more tasks. In some cases, the actions of a "
-                    "robot might be subordinated to actions of other agents (Agent "
-                    "in SUMO), such as software agents (bots) or humans. A robot "
-                    "is composed of suitable mechanical and electronic parts. "
-                    "Robots might form social groups, where they interact to "
-                    "achieve a common goal. A robot (or a group of robots) can "
-                    "form robotic systems together with special environments "
-                    "geared to facilitate their work."
-                )
-        )
-    ]:
-        statements = add_if(
-            "mhdb:Robot",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "schema:CreativeWork"),
-        (
-                "dcterms:source",
-                check_iri(
-                    "http://afirm.fpg.unc.edu/social-narratives"
-                )
-        ),
-        (
-                "rdfs:isDefinedBy",
-                check_iri(
-                    "http://afirm.fpg.unc.edu/social-narratives"
-                )
-        ),
-        (
-                "rdfs:comment",
-                language_string(
-                    "Social narratives (SN) describe social situations for "
-                    "learners by providing relevant cues, explanation of the "
-                    "feelings and thoughts of others, and descriptions of "
-                    "appropriate behavior expectations."
-                )
-        ),
-        ("rdfs:label", language_string("Social Narrative"))
-    ]:
-        statements = add_if(
-            "mhdb:SocialNarrative",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:subClassOf", "mhdb:SocialNarrative"),
-        ("rdfs:subClassOf", "schema:Game"),
-        (
-                "rdfs:label",
-                language_string(
-                    "Combination of a Social Narrative and Gaming System"
-                )
-        )
-    ]:
-        statements = add_if(
-            "mhdb:SocialNarrativeGamingSystem",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:label", language_string("Competition")),
-        ("rdfs:subClassOf", "schema:Event")
-    ]:
-        statements = add_if(
-            "mhdb:Competition",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:label", language_string("Science Contest")),
-        ("rdfs:subClassOf", "mhdb:Competition")
-    ]:
-        statements = add_if(
-            "mhdb:ScienceContest",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    for pred in [
-        ("rdfs:label", language_string("Massive Open Online Course")),
-        ("rdfs:subClassOf", "schema:Course")
-    ]:
-        statements = add_if(
-            "mhdb:MOOC",
-            pred[0],
-            pred[1],
-            statements,
-            exclude_list
-        )
-
-    return statements
+# def projects(statements={}):
+#     """
+#     Function to create rdf statements about projects
+#
+#     Parameters
+#     ----------
+#     statements: dictionary
+#         key: string
+#             RDF subject
+#         value: dictionary
+#             key: string
+#                 RDF predicate
+#             value: {string}
+#                 set of RDF objects
+#
+#     Returns
+#     -------
+#     statements: dictionary
+#         key: string
+#             RDF subject
+#         value: dictionary
+#             key: string
+#                 RDF predicate
+#             value: {string}
+#                 set of RDF objects
+#     """
+#
+#     for subject in [
+#         "schema:Book",
+#         "schema:Article"
+#     ]:
+#         statements = add_if(
+#             subject,
+#             "rdfs:subClassOf",
+#             "mhdb:BookOrArticle",
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:CreativeWork"),
+#         ("rdfs:subClassOf", "dcterms:BibliographicResource"),
+#         ("rdfs:label", language_string("Book / Article"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:BookOrArticle",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:CreativeWork"),
+#         ("rdfs:subClassOf", "schema:MedicalTest"),
+#         ("rdfs:label", language_string("Assessment"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:Assessment",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:CreativeWork"),
+#         ("rdfs:subClassOf", "dcterms:InteractiveResource"),
+#         ("rdfs:label", language_string("Virtual Reality"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:VirtualReality",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:CreativeWork"),
+#         ("rdfs:subClassOf", "dcterms:InteractiveResource"),
+#         ("rdfs:label", language_string("Augmented Reality"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:AugmentedReality",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:Book"),
+#         ("rdfs:label", language_string("Resource Guide"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:ResourceGuide",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:Service"),
+#         ("rdfs:subClassOf", "schema:OrganizeAction"),
+#         ("rdfs:label", language_string("Community Initiative"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:CommunityInitiative",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "ssn:Device"),
+#         ("rdfs:comment", language_string(
+#             "A smart electronic device (electronic device with "
+#             "micro-controller(s)) that can be worn on the body as implants or "
+#             "accessories."
+#         )),
+#         ("rdfs:isDefinedBy", check_iri(
+#             "https://en.wikipedia.org/wiki/Wearable_domains"
+#         )),
+#         ("rdfs:label", language_string("Wearable"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:Wearable",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#         for pred in [
+#             ("rdfs:subClassOf", "ssn:Device"),
+#             ("rdfs:label", language_string("Tablet"))
+#         ]:
+#             statements = add_if(
+#                 "mhdb:Tablet",
+#                 pred[0],
+#                 pred[1],
+#                 statements,
+#                 exclude_list
+#             )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:Game"),
+#         ("owl:disjointWith", "schema:VideoGame"),
+#         ("rdfs:label", language_string("Non-Digital Game"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:NonDigitalGame",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "dcterms:Agent"),
+#         ("rdfs:subClassOf", "ssn:Device"),
+#         (
+#                 "dcterms:source",
+#                 check_iri(
+#                     'https://dx.doi.org/10.1109/IEEESTD.2015.7084073'
+#                 )
+#         ),
+#         ("rdfs:label", language_string("Robot")),
+#         (
+#                 "rdfs:comment",
+#                 language_string(
+#                     "An agentive device (Agent and Device in SUMO) in a broad "
+#                     "sense, purposed to act in the physical world in order to "
+#                     "accomplish one or more tasks. In some cases, the actions of a "
+#                     "robot might be subordinated to actions of other agents (Agent "
+#                     "in SUMO), such as software agents (bots) or humans. A robot "
+#                     "is composed of suitable mechanical and electronic parts. "
+#                     "Robots might form social groups, where they interact to "
+#                     "achieve a common goal. A robot (or a group of robots) can "
+#                     "form robotic systems together with special environments "
+#                     "geared to facilitate their work."
+#                 )
+#         )
+#     ]:
+#         statements = add_if(
+#             "mhdb:Robot",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "schema:CreativeWork"),
+#         (
+#                 "dcterms:source",
+#                 check_iri(
+#                     "http://afirm.fpg.unc.edu/social-narratives"
+#                 )
+#         ),
+#         (
+#                 "rdfs:isDefinedBy",
+#                 check_iri(
+#                     "http://afirm.fpg.unc.edu/social-narratives"
+#                 )
+#         ),
+#         (
+#                 "rdfs:comment",
+#                 language_string(
+#                     "Social narratives (SN) describe social situations for "
+#                     "learners by providing relevant cues, explanation of the "
+#                     "feelings and thoughts of others, and descriptions of "
+#                     "appropriate behavior expectations."
+#                 )
+#         ),
+#         ("rdfs:label", language_string("Social Narrative"))
+#     ]:
+#         statements = add_if(
+#             "mhdb:SocialNarrative",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:subClassOf", "mhdb:SocialNarrative"),
+#         ("rdfs:subClassOf", "schema:Game"),
+#         (
+#                 "rdfs:label",
+#                 language_string(
+#                     "Combination of a Social Narrative and Gaming System"
+#                 )
+#         )
+#     ]:
+#         statements = add_if(
+#             "mhdb:SocialNarrativeGamingSystem",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:label", language_string("Competition")),
+#         ("rdfs:subClassOf", "schema:Event")
+#     ]:
+#         statements = add_if(
+#             "mhdb:Competition",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:label", language_string("Science Contest")),
+#         ("rdfs:subClassOf", "mhdb:Competition")
+#     ]:
+#         statements = add_if(
+#             "mhdb:ScienceContest",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     for pred in [
+#         ("rdfs:label", language_string("Massive Open Online Course")),
+#         ("rdfs:subClassOf", "schema:Course")
+#     ]:
+#         statements = add_if(
+#             "mhdb:MOOC",
+#             pred[0],
+#             pred[1],
+#             statements,
+#             exclude_list
+#         )
+#
+#     return statements
 
 
 def ingest_references(references_xls, behaviors_xls, statements={}):
@@ -2258,24 +2264,113 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
     reference_properties = references_xls.parse("Properties")
     references = references_xls.parse("references")
     reference_types = references_xls.parse("reference_types")
-    domains = behaviors_xls.parse("domains")
+    studies_or_clinics = references_xls.parse("studies_or_clinics")
     age_groups = references_xls.parse("age_groups")
     informants = references_xls.parse("informants")
+    domains = behaviors_xls.parse("domains")
 
     #statements = audience_statements(statements)
 
     # Classes worksheet
-    for row in behavior_classes.iterrows():
+    for row in reference_classes.iterrows():
 
-        behavior_class_label = language_string(row[1]["ClassName"])
-        behavior_class_iri = check_iri(row[1]["ClassName"])
+        reference_class_label = language_string(row[1]["ClassName"])
+        reference_class_iri = check_iri(row[1]["ClassName"])
 
         predicates_list = []
-        predicates_list.append(("rdfs:label", behavior_class_label))
+        predicates_list.append(("rdfs:label", reference_class_label))
         predicates_list.append(("rdf:type", "rdf:Class"))
 
+        source = None
+        if row[1]["DefinitionReference_index"] not in exclude_list and not \
+                isinstance(row[1]["DefinitionReference_index"], float):
+            index_source = references[
+                    references["index"] == row[1]["DefinitionReference_index"]
+                ]["indices_link"].values[0]
+            if index_source not in exclude_list and not \
+                    isinstance(index_source, float):
+                source = references[references["index"] ==
+                                    index_source]["link"].values[0]
+                source = check_iri(source)
+            else:
+                source = references[
+                        references["index"] == row[1]["index_reference"]
+                    ]["reference"].values[0]
+                source = check_iri(source)
+            #predicates_list.append(("dcterms:source", source))
+            predicates_list.append(("rdfs:isDefinedBy", source))
 
+        if row[1]["Definition"] not in exclude_list and not \
+                    isinstance(row[1]["Definition"], float):
+            predicates_list.append(("rdfs:comment",
+                                    check_iri(row[1]["Definition"])))
+        if row[1]["sameAs"] not in exclude_list and not \
+                    isinstance(row[1]["sameAs"], float):
+            predicates_list.append(("owl:sameAs",
+                                    check_iri(row[1]["sameAs"])))
+        if row[1]["equivalentClass"] not in exclude_list and not \
+                    isinstance(row[1]["equivalentClass"], float):
+            predicates_list.append(("rdfs:equivalentClass",
+                                    check_iri(row[1]["equivalentClass"])))
+        if row[1]["equivalentClass_2"] not in exclude_list and not \
+                    isinstance(row[1]["equivalentClass_2"], float):
+            predicates_list.append(("rdfs:equivalentClass",
+                                    check_iri(row[1]["equivalentClass_2"])))
+        if row[1]["subClassOf"] not in exclude_list and not \
+                    isinstance(row[1]["subClassOf"], float):
+            predicates_list.append(("rdfs:subClassOf",
+                                    check_iri(row[1]["subClassOf"])))
+        for predicates in predicates_list:
+            statements = add_if(
+                reference_class_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
 
+    # Properties worksheet
+    for row in reference_properties.iterrows():
+
+        reference_property_label = language_string(row[1]["property"])
+        reference_property_iri = check_iri(row[1]["property"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", reference_property_label))
+        predicates_list.append(("rdf:type", "rdf:Property"))
+
+        if row[1]["propertyDomain"] not in exclude_list and not \
+                    isinstance(row[1]["propertyDomain"], float):
+            predicates_list.append(("rdfs:domain",
+                                    check_iri(row[1]["propertyDomain"])))
+        if row[1]["propertyRange"] not in exclude_list and not \
+                    isinstance(row[1]["propertyRange"], float):
+            predicates_list.append(("rdfs:range",
+                                    check_iri(row[1]["propertyRange"])))
+        # if row[1]["Definition"] not in exclude_list and not \
+        #                     isinstance(index_source, float):
+        #     predicates_list.append(("rdfs:comment",
+        #                             check_iri(row[1]["Definition"])))
+        if row[1]["sameAs"] not in exclude_list and not \
+                    isinstance(row[1]["sameAs"], float):
+            predicates_list.append(("owl:sameAs",
+                                    check_iri(row[1]["sameAs"])))
+        if row[1]["equivalentProperty"] not in exclude_list and not \
+                    isinstance(row[1]["equivalentProperty"], float):
+            predicates_list.append(("rdfs:equivalentProperty",
+                                    check_iri(row[1]["equivalentProperty"])))
+        if row[1]["subPropertyOf"] not in exclude_list and not \
+                    isinstance(row[1]["subPropertyOf"], float):
+            predicates_list.append(("rdfs:subPropertyOf",
+                                    check_iri(row[1]["subPropertyOf"])))
+        for predicates in predicates_list:
+            statements = add_if(
+                reference_property_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
 
     # references worksheet
     for row in references.iterrows():
@@ -2291,92 +2386,120 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
                                 language_string(row[1]["reference"])))
         predicates_list.append(("rdf:type", "Reference"))
 
-        PubmedID = row[1]["PubmedID"]
+        PubMedID = row[1]["PubMedID"]
         abbreviation = row[1]["abbreviation"]
         description = row[1]["description"]
-        cited_reference = row[1]["cited_reference"]
+        link = row[1]["link"]
         number_of_questions = row[1]["number_of_questions"]
         minutes_to_complete = row[1]["minutes_to_complete"]
         age_min = row[1]["age_min"]
         age_max = row[1]["age_max"]
 
-        if isinstance(age_min, str):
-            predicates_list.append(("rdfs:age_minBLOOP",
-                                    language_string(age_min)))
-        if isinstance(age_max, str):
-            predicates_list.append(("rdfs:age_maxBLOOP",
-                                    language_string(age_max)))
-
-        if isinstance(PubmedID, str):
-            predicates_list.append(("rdfs:PubmedID",
-                                    check_iri(PubmedID)))
-        if isinstance(abbreviation, str):
-            predicates_list.append(("rdfs:abbreviationBLOOP",
+        if not isinstance(PubMedID, float) and PubMedID not in exclude_list:
+            predicates_list.append(("PubMedIDBLOOP",
+                                    check_iri(PubMedID)))
+        if isinstance(abbreviation, str) and abbreviation not in exclude_list:
+            predicates_list.append(("abbreviationBLOOP",
                                     language_string(abbreviation)))
-        if isinstance(description, str):
-            predicates_list.append(("rdfs:descriptionBLOOP",
+        if isinstance(description, str) and description not in exclude_list:
+            predicates_list.append(("rdfs:comment",
                                     language_string(description)))
-        if isinstance(cited_reference, str):
-            predicates_list.append(("rdfs:cited_referenceBLOOP",
-                                    check_iri(cited_reference)))
-        if isinstance(number_of_questions, str):
+        if isinstance(link, str) and link not in exclude_list:
+            predicates_list.append(("schema:WebSite", check_iri(link)))
+        if isinstance(number_of_questions, str) and \
+                number_of_questions not in exclude_list:
             predicates_list.append(("rdfs:number_of_questionsBLOOP",
-                                    language_string(number_of_questions)))
-        if isinstance(minutes_to_complete, str):
+                                    language_string(str(number_of_questions))))
+        if not isinstance(minutes_to_complete, float) and \
+                minutes_to_complete not in exclude_list:
             predicates_list.append(("rdfs:minutes_to_completeBLOOP",
-                                    language_string(minutes_to_complete)))
+                                    language_string(str(minutes_to_complete))))
+        if not isinstance(age_min, float) and age_min not in exclude_list:
+            predicates_list.append(("rdfs:age_minBLOOP",
+                                    language_string(str(age_min))))
+        if not isinstance(age_max, float) and age_max not in exclude_list:
+            predicates_list.append(("rdfs:age_maxBLOOP",
+                                    language_string(str(age_max))))
 
         indices_reference_type = row[1]["indices_reference_type"]
-        indices_age_group = row[1]["index_age_group"]
-
-        if isinstance(indices_reference_type, str):
-            indices = [np.int(x) for x in
-                       indices_reference_type.strip().split(',') if len(x)>0]
-            for index in indices:
-                objectRDF = reference_types.reference_type[
-                    reference_types["index"] == index]
-                if isinstance(objectRDF, str):
-                    predicates_list.append(("rdfs:reference_typeBLOOP",
-                                            check_iri(objectRDF)))
-        if isinstance(indices_age_group, str):
-            indices = [np.int(x) for x in
-                       indices_age_group.strip().split(',') if len(x)>0]
-            for index in indices:
-                objectRDF = age_groups.age_group[
-                    age_groups["index"] == index]
-                if isinstance(objectRDF, str):
-                    predicates_list.append(("rdfs:age_groupBLOOP",
-                                            check_iri(objectRDF)))
-
         indices_study_or_clinic = row[1]["indices_study_or_clinic"]
         indices_domain = row[1]["indices_domain"]
         indices_informants = row[1]["indices_informants"]
+        indices_age_group = row[1]["indices_age_group"]
+        indices_cited_references = row[1]["indices_cited_references"]
+        # Access from other spreadsheets (e.g., projects->people->references)
+        #indices_people = row[1]["indices_people"]
+        #indices_sensor = row[1]["indices_sensor"]
+        #indices_measure = row[1]["indices_measure"]
 
-        if isinstance(indices_study_or_clinic, str):
-            indices = [np.int(x) for x in
-                       indices_study_or_clinic.strip().split(',') if len(x)>0]
+        if not np.isnan(indices_reference_type) and \
+                indices_reference_type not in exclude_list:
+            if isinstance(indices_reference_type, str):
+                indices = [np.int(x) for x in
+                           indices_reference_type.strip().split(',') if len(x)>0]
+            elif isinstance(indices_reference_type, float):
+                indices = [np.int(indices_reference_type)]
             for index in indices:
-                objectRDF = studies_or_clinics.study_or_clinic[
-                    studies_or_clinics["index"] == index]
+                objectRDF = reference_types[
+                    reference_types["index"] == index]["reference_type"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:reference_typeBLOOP",
+                                            check_iri(objectRDF)))
+        if isinstance(indices_study_or_clinic, str) and \
+                indices_study_or_clinic not in exclude_list:
+            if isinstance(indices_study_or_clinic, str):
+                indices = [np.int(x) for x in
+                           indices_study_or_clinic.strip().split(',') if len(x)>0]
+            elif isinstance(indices_study_or_clinic, float):
+                indices = [np.int(indices_study_or_clinic)]
+            for index in indices:
+                objectRDF = studies_or_clinics[
+                    studies_or_clinics["index"] == index]["study_or_clinic"].values[0]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:study_or_clinicBLOOP",
                                             language_string(objectRDF)))
-        if isinstance(indices_domain, str):
+        if isinstance(indices_domain, str) and \
+                indices_domain not in exclude_list:
             indices = [np.int(x) for x in
                        indices_domain.strip().split(',') if len(x)>0]
             for index in indices:
-                objectRDF = domains.domain[domains["index"] == index]
+                objectRDF = domains[domains["index"] == index]["domain"].values[0]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:domainBLOOP",
                                             language_string(objectRDF)))
-        if isinstance(indices_informants, str):
+        if isinstance(indices_informants, str) and \
+                indices_informants not in exclude_list:
             indices = [np.int(x) for x in
                        indices_informants.strip().split(',') if len(x)>0]
             for index in indices:
-                objectRDF = informants.informant[informants["index"] == index]
+                objectRDF = informants[informants["index"] == index]["informant"].values[0]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("rdfs:informantsBLOOP",
                                             language_string(objectRDF)))
+        if isinstance(indices_age_group, str) and \
+                indices_age_group not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_age_group.strip().split(',') if len(x)>0]
+            for index in indices:
+                objectRDF = age_groups[
+                    age_groups["index"] == index]["age_group"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:age_groupBLOOP",
+                                            check_iri(objectRDF)))
+        if isinstance(indices_cited_references, str) and \
+                indices_cited_references not in exclude_list:
+            indices = [np.int(x) for x in
+                       indices_cited_references.strip().split(',') if len(x)>0]
+            for index in indices:
+                ref_source = references[
+                    references["index"] == index]["link"].values[0]
+                if isinstance(ref_source, float):
+                    ref_source = references[
+                        references["index"] == index]["reference"].values[0]
+                    ref_source = check_iri(ref_source)
+                else:
+                    ref_source = check_iri(ref_source)
+                predicates_list.append(("hasReference", ref_source))
 
         for predicates in predicates_list:
             statements = add_if(
@@ -2391,23 +2514,23 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
     for row in reference_types.iterrows():
 
         reference_type_label = language_string(row[1]["reference_type"])
-        reference_type_iri = check_iri(row[1]["reference_type"])
 
-        for predicates in [
-            ("rdfs:label", reference_type_label)
-        ]:
-            statements = add_if(
-                reference_type_iri,
-                predicates[0],
-                predicates[1],
-                statements,
-                exclude_list
-            )
+        if isinstance(row[1]["IRI"], str) and \
+            row[1]["IRI"] not in exclude_list:
+            reference_type_iri = check_iri(row[1]["IRI"])
+        elif isinstance(row[1]["reference_type"], str) and \
+            row[1]["reference_type"] not in exclude_list:
+            reference_type_iri = check_iri(row[1]["reference_type"])
 
         predicates_list = []
+        predicates_list.append(("rdfs:label",
+                                language_string(reference_type_label)))
+        predicates_list.append(("rdf:type", "ReferenceType"))
+
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
+
         for predicates in predicates_list:
             statements = add_if(
                 reference_type_iri,
@@ -2417,7 +2540,7 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
                 exclude_list
             )
 
-    statements = projects(statements=statements)
+    #statements = projects(statements=statements)
 
     return statements
 
