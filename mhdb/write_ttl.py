@@ -359,7 +359,7 @@ def write_header_prefixes(prefixes, imports=False):
                 )
             ])
         )
-    return(header_prefix)
+    return header_prefix
 
 
 def write_ttl(subject, predicates, common_statements=None):

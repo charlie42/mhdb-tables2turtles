@@ -32,6 +32,12 @@ except:
 import numpy as np
 import pandas as pd
 
+do_questions = 1
+do_tasks = 1
+do_projects = 1
+do_behaviors = 1
+do_dsm5 = 1
+do_references = 1
 
 def main():
     # ------------------------------------------------------------------------------
@@ -46,12 +52,19 @@ def main():
     except:
         behaviorsFILE = 'data/behaviors.xlsx'
     try:
-        assessmentsFILE = download_google_sheet(
-            'data/assessments.xlsx',
+        questionsFILE = download_google_sheet(
+            'data/questions.xlsx',
             "1VUf3XnieYThY8OA6JWtpNP4zI2xa9xak9LXuyH_PaoE"
         )
     except:
-        assessmentsFILE = 'data/assessments.xlsx'
+        questionsFILE = 'data/questions.xlsx'
+    try:
+        tasksFILE = download_google_sheet(
+            'data/tasks.xlsx',
+            "1jTeq7whH8y2MkhLpMFh52y5FOMDxKCantPTrkD48zuQ"
+        )
+    except:
+        tasksFILE = 'data/tasks.xlsx'
     try:
         projectsFILE = download_google_sheet(
             'data/projects.xlsx',
@@ -76,7 +89,8 @@ def main():
 
     base_uri = "http://www.purl.org/mentalhealth"
     dsm5_outfile = os.path.join(os.getcwd(), 'dsm5.ttl')
-    assessments_outfile = os.path.join(os.getcwd(), 'assessments.ttl')
+    questions_outfile = os.path.join(os.getcwd(), 'questions.ttl')
+    tasks_outfile = os.path.join(os.getcwd(), 'tasks.ttl')
     projects_outfile = os.path.join(os.getcwd(), 'projects.ttl')
     behaviors_outfile = os.path.join(os.getcwd(), 'behaviors.ttl')
     references_outfile = os.path.join(os.getcwd(), 'references.ttl')
@@ -85,7 +99,8 @@ def main():
     # Import spreadsheets
     # --------------------------------------------------------------------------
     dsm5_xls = pd.ExcelFile(dsm5FILE)
-    assessments_xls = pd.ExcelFile(assessmentsFILE)
+    questions_xls = pd.ExcelFile(questionsFILE)
+    tasks_xls = pd.ExcelFile(tasksFILE)
     projects_xls = pd.ExcelFile(projectsFILE)
     behaviors_xls = pd.ExcelFile(behaviorsFILE)
     references_xls = pd.ExcelFile(referencesFILE)
@@ -97,33 +112,40 @@ def main():
     label = "mental health database"
     ddashes = "================================================================================"
     comment="""\n\n{0}\n\t\tMental Health Database (MHDB)\n{0}
-This mental health database interrelates information about mental health
-symptoms, assessment questionnaires and tasks, etc., and is licensed
-under the terms of the Creative Commons BY license.
+This mental health database interrelates information about mental health-related
+(1) signs, symptoms, and disorders from the DSM-5, 
+(2) questions from questionnaires, 
+(3) cognitive tasks, 
+(4) behaviors, cognitive domains, measures, and sensors,  
+(5) projects and technologies, and 
+(6) relevant references.
+The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
-
 """.format(ddashes)
-
-    do_dsm5 = 0
-    do_assessments = 0
-    do_projects = 0
-    do_behaviors = 0
-    do_references = 1
 
     if do_dsm5:
         dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
-                                      projects_xls, statements={})
+                                      statements={})
         dsm5_turtle = turtle_from_dict(dsm5_statements)
     else:
         dsm5_statements = []
         dsm5_turtle = []
-    if do_assessments:
-        assessments_statements = ingest_assessments(assessments_xls,
-            behaviors_xls, projects_xls, references_xls, statements={})
-        assessments_turtle = turtle_from_dict(assessments_statements)
+
+    if do_questions:
+        questions_statements = ingest_questions(questions_xls,
+            references_xls, statements={})
+        questions_turtle = turtle_from_dict(questions_statements)
     else:
-        assessments_statements = []
-        assessments_turtle = []
+        questions_statements = []
+        questions_turtle = []
+
+    if do_tasks:
+        tasks_statements = ingest_tasks(tasks_xls,
+            behaviors_xls, projects_xls, references_xls, statements={})
+        tasks_turtle = turtle_from_dict(tasks_statements)
+    else:
+        tasks_statements = []
+        tasks_turtle = []
 
     if do_projects:
         projects_statements = ingest_projects(projects_xls,
@@ -153,7 +175,8 @@ Current information can be found on the website, https://matter.childmind.org.
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
     outputs_list = [[dsm5_statements, dsm5_outfile, dsm5_turtle],
-                    [assessments_statements, assessments_outfile, assessments_turtle],
+                    [questions_statements, questions_outfile, questions_turtle],
+                    [tasks_statements, tasks_outfile, tasks_turtle],
                     [references_statements, references_outfile, references_turtle],
                     [projects_statements, projects_outfile, projects_turtle],
                     [behaviors_statements, behaviors_outfile, behaviors_turtle]]
@@ -193,26 +216,73 @@ Current information can be found on the website, https://matter.childmind.org.
 
             if ioutput == 0:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "dsm"),
+                    "{0}/{1}".format(base_uri, "dsm5"),
                     version,
-                    "{0} — {1}".format(label, "DSM-V supplement"),
+                    "{0} — {1}".format(label, "DSM-5 supplement"),
                     "\n".join([
                         comment,
-                        "{0}\n\t\tDSM-V supplement\n{0}\n\n".format(ddashes)
+                        "{0}\n\t\tDSM-5 supplement\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
-            else:
+            if ioutput == 1:
                 header_string = write_header(
-                    base_uri,
+                    "{0}/{1}".format(base_uri, "questions"),
                     version,
-                    label,
-                    comment,
-                    prefixes=prefixes,
-                    imports=True
+                    "{0} — {1}".format(label, "Questions"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tQuestions\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 2:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "tasks"),
+                    version,
+                    "{0} — {1}".format(label, "Tasks"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tTasks\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 3:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "references"),
+                    version,
+                    "{0} — {1}".format(label, "References"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tReferences\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 4:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "projects"),
+                    version,
+                    "{0} — {1}".format(label, "Projects"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tProjects\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 5:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "behaviors"),
+                    version,
+                    "{0} — {1}".format(label, "Behaviors"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tBehaviors\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
                 )
 
             fid = open(out_file, 'w')
+            fid.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n".format(out_turtle.rstrip(" .")))
             fid.write(header_string)
             fid.write("{0} .\n".format(out_turtle.rstrip(" .")))
 
