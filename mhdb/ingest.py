@@ -322,7 +322,6 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                         references["index"] == row[1]["index_reference"]
                     ]["reference"].values[0]
                 source = check_iri(source)
-
         question_label = language_string(row[1]["question"])
         question_iri = mhdb_iri(row[1]["question"])
 

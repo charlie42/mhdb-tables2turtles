@@ -36,7 +36,7 @@ do_questions = 1
 do_tasks = 1
 do_projects = 1
 do_behaviors = 0
-do_dsm5 = 0
+do_dsm5 = 1
 do_references = 1
 
 def main():
@@ -88,12 +88,12 @@ def main():
         referencesFILE = 'data/references.xlsx'
 
     base_uri = "http://www.purl.org/mentalhealth"
-    dsm5_outfile = os.path.join(os.getcwd(), 'dsm5.ttl')
-    questions_outfile = os.path.join(os.getcwd(), 'questions.ttl')
-    tasks_outfile = os.path.join(os.getcwd(), 'tasks.ttl')
-    projects_outfile = os.path.join(os.getcwd(), 'projects.ttl')
-    behaviors_outfile = os.path.join(os.getcwd(), 'behaviors.ttl')
-    references_outfile = os.path.join(os.getcwd(), 'references.ttl')
+    dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
+    questions_outfile = os.path.join('../output', 'questions.ttl')
+    tasks_outfile = os.path.join('../output', 'tasks.ttl')
+    projects_outfile = os.path.join('../output', 'projects.ttl')
+    behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
+    references_outfile = os.path.join('../output', 'references.ttl')
 
     # --------------------------------------------------------------------------
     # Import spreadsheets
