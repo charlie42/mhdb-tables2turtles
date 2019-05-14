@@ -1916,50 +1916,50 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
                                     language_string(description)))
         if isinstance(link, str) and link not in exclude_list:
             predicates_list.append(("schema:WebSite", check_iri(link)))
-        if isinstance(number_of_questions, str) and \
-                number_of_questions not in exclude_list:
-            predicates_list.append(("mhdb:hasNumberOfQuestions",
-                    language_string(number_of_questions)))
-        if not isinstance(minutes_to_complete, float) and \
-                minutes_to_complete not in exclude_list:
-            predicates_list.append(("mhdb:takesMinutesToComplete",
-                    language_string(minutes_to_complete)))
-        if not isinstance(age_min, float) and age_min not in exclude_list:
-            predicates_list.append(("schema:requiredMinAge",
-                    language_string(age_min)))
-        if not isinstance(age_max, float) and age_max not in exclude_list:
-            predicates_list.append(("schema:requiredMaxAge",
-                    language_string(age_max)))
         # if isinstance(number_of_questions, str) and \
         #         number_of_questions not in exclude_list:
-        #     if "-" in number_of_questions:
-        #         predicates_list.append(("mhdb:hasNumberOfQuestions",
-        #             '"{0}"^^xsd:string'.format(number_of_questions)))
-        #     else:
-        #         predicates_list.append(("mhdb:hasNumberOfQuestions",
-        #             '"{0}"^^xsd:nonNegativeInteger'.format(number_of_questions)))
+        #     predicates_list.append(("mhdb:hasNumberOfQuestions",
+        #             language_string(number_of_questions)))
         # if not isinstance(minutes_to_complete, float) and \
         #         minutes_to_complete not in exclude_list:
-        #     if "-" in minutes_to_complete:
-        #         predicates_list.append(("mhdb:takesMinutesToComplete",
-        #             '"{0}"^^xsd:string'.format(minutes_to_complete)))
-        #     else:
-        #         predicates_list.append(("mhdb:takesMinutesToComplete",
-        #             '"{0}"^^xsd:nonNegativeInteger'.format(minutes_to_complete)))
+        #     predicates_list.append(("mhdb:takesMinutesToComplete",
+        #             language_string(minutes_to_complete)))
         # if not isinstance(age_min, float) and age_min not in exclude_list:
-        #     if "-" in age_min:
-        #         predicates_list.append(("schema:requiredMinAge",
-        #             '"{0}"^^xsd:string'.format(age_min)))
-        #     else:
-        #         predicates_list.append(("schema:requiredMinAge",
-        #             '"{0}"^^xsd:nonNegativeInteger'.format(age_min)))
+        #     predicates_list.append(("schema:requiredMinAge",
+        #             language_string(age_min)))
         # if not isinstance(age_max, float) and age_max not in exclude_list:
-        #     if "-" in age_max:
-        #         predicates_list.append(("schema:requiredMaxAge",
-        #             '"{0}"^^xsd:string'.format(age_max)))
-        #     else:
-        #         predicates_list.append(("schema:requiredMaxAge",
-        #             '"{0}"^^xsd:nonNegativeInteger'.format(age_max)))
+        #     predicates_list.append(("schema:requiredMaxAge",
+        #             language_string(age_max)))
+        if isinstance(number_of_questions, str) and \
+                number_of_questions not in exclude_list:
+            if "-" in number_of_questions:
+                predicates_list.append(("mhdb:hasNumberOfQuestions",
+                    '"{0}"^^xsd:string'.format(number_of_questions)))
+            else:
+                predicates_list.append(("mhdb:hasNumberOfQuestions",
+                    '"{0}"^^xsd:nonNegativeInteger'.format(number_of_questions)))
+        if not isinstance(minutes_to_complete, float) and \
+                minutes_to_complete not in exclude_list:
+            if "-" in minutes_to_complete:
+                predicates_list.append(("mhdb:takesMinutesToComplete",
+                    '"{0}"^^xsd:string'.format(minutes_to_complete)))
+            else:
+                predicates_list.append(("mhdb:takesMinutesToComplete",
+                    '"{0}"^^xsd:nonNegativeInteger'.format(minutes_to_complete)))
+        if not isinstance(age_min, float) and age_min not in exclude_list:
+            if "-" in age_min:
+                predicates_list.append(("schema:requiredMinAge",
+                    '"{0}"^^xsd:string'.format(age_min)))
+            else:
+                predicates_list.append(("schema:requiredMinAge",
+                    '"{0}"^^xsd:nonNegativeInteger'.format(age_min)))
+        if not isinstance(age_max, float) and age_max not in exclude_list:
+            if "-" in age_max:
+                predicates_list.append(("schema:requiredMaxAge",
+                    '"{0}"^^xsd:string'.format(age_max)))
+            else:
+                predicates_list.append(("schema:requiredMaxAge",
+                    '"{0}"^^xsd:nonNegativeInteger'.format(age_max)))
 
         indices_reference_type = row[1]["indices_reference_type"]
         indices_study_or_clinic = row[1]["indices_study_or_clinic"]

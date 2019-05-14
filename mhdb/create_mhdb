@@ -283,6 +283,7 @@ Current information can be found on the website, https://matter.childmind.org.
 
             fid = open(out_file, 'w')
             fid.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n".format(out_turtle.rstrip(" .")))
+            fid.write("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n".format(out_turtle.rstrip(" .")))
             fid.write(header_string)
             fid.write("{0} .\n".format(out_turtle.rstrip(" .")))
 
