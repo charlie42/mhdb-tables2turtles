@@ -35,8 +35,8 @@ import pandas as pd
 do_questions = 1
 do_tasks = 1
 do_projects = 1
-do_behaviors = 1
-do_dsm5 = 1
+do_behaviors = 0
+do_dsm5 = 0
 do_references = 1
 
 def main():

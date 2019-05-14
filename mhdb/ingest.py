@@ -328,7 +328,8 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
         predicates_list = []
         predicates_list.append(("rdfs:label", question_label))
-        predicates_list.append(("rdf:type", "mhdb:Question"))
+        predicates_list.append(("rdf:type", "disco:Question"))
+        predicates_list.append(("disco:questionText", question_label))
         predicates_list.append(("dcterms:source", source))
 
         instructions = row[1]["instructions"]
@@ -559,7 +560,7 @@ def ingest_tasks(tasks_xls, behaviors_xls, projects_xls, references_xls,
 
         predicates_list = []
         predicates_list.append(("rdfs:label", task_label))
-        predicates_list.append(("rdf:type", "mhdb:Task"))
+        predicates_list.append(("rdf:type", "demcare:Task"))
 
         instructions = row[1]["instructions"]
         # respond_to_advance = row[1]["respond_to_advance"]
@@ -624,7 +625,7 @@ def ingest_tasks(tasks_xls, behaviors_xls, projects_xls, references_xls,
                 objectRDF = presentations[presentations["index"] ==
                                           index]["presentation"].values[0]
                 if isinstance(objectRDF, str):
-                    predicates_list.append(("mhdb:hasPresentation",
+                    predicates_list.append(("mhdb:hasTaskPresentation",
                                             check_iri(objectRDF)))
         for predicates in predicates_list:
             statements = add_if(
@@ -643,7 +644,7 @@ def ingest_tasks(tasks_xls, behaviors_xls, projects_xls, references_xls,
 
         predicates_list = []
         predicates_list.append(("rdfs:label", task_category_label))
-        predicates_list.append(("rdf:type", "mhdb:Task"))
+        predicates_list.append(("rdf:type", "demcare:Task"))
 
         for predicates in predicates_list:
             statements = add_if(
@@ -662,7 +663,7 @@ def ingest_tasks(tasks_xls, behaviors_xls, projects_xls, references_xls,
 
         predicates_list = []
         predicates_list.append(("rdfs:label", presentation_label))
-        predicates_list.append(("rdf:type", "mhdb:Presentation"))
+        predicates_list.append(("rdf:type", "mhdb:TaskPresentation"))
 
         for predicates in predicates_list:
             statements = add_if(
@@ -830,7 +831,7 @@ def ingest_projects(projects_xls, behaviors_xls, statements={}):
         project_link = check_iri(row[1]["link"])
 
         predicates_list = []
-        predicates_list.append(("rdf:type", "mhdb:Project"))
+        predicates_list.append(("rdf:type", "foaf:Project"))
         predicates_list.append(("rdfs:label", project_label))
         predicates_list.append(("schema:WebSite", project_link))
         if isinstance(row[1]["description"], str):
@@ -872,7 +873,7 @@ def ingest_projects(projects_xls, behaviors_xls, statements={}):
                 objectRDF = people[people["index"] ==
                                         index]["person"].values[0]
                 if isinstance(objectRDF, str):
-                    predicates_list.append(("mhdb:hasActor",
+                    predicates_list.append(("mhdb:hasOrganization",
                                             check_iri(objectRDF)))
         if isinstance(indices_sensor, str):
             indices = [np.int(x) for x in
@@ -890,7 +891,7 @@ def ingest_projects(projects_xls, behaviors_xls, statements={}):
                 objectRDF = measures[measures["index"]  ==
                                         index]["measure"].values[0]
                 if isinstance(objectRDF, str):
-                    predicates_list.append(("mhdb:takesMeasure",
+                    predicates_list.append(("ssn:observes",
                                             check_iri(objectRDF)))
         for predicates in predicates_list:
             statements = add_if(
@@ -939,9 +940,8 @@ def ingest_projects(projects_xls, behaviors_xls, statements={}):
 
         person_iri = check_iri(row[1]["person"])
         person_label = language_string(row[1]["person"])
-
         predicates_list = []
-        predicates_list.append(("rdf:type", "mhdb:Actor"))
+        predicates_list.append(("rdf:type", "org:organization"))
         predicates_list.append(("rdfs:label", person_label))
         if isinstance(row[1]["link"], str) and \
                 row[1]["link"] not in exclude_list:
@@ -949,11 +949,11 @@ def ingest_projects(projects_xls, behaviors_xls, statements={}):
                                     check_iri(row[1]["link"])))
         if isinstance(row[1]["affiliate"], str) and \
                 row[1]["affiliate"] not in exclude_list:
-            predicates_list.append(("mhdb:hasAffiliate",
+            predicates_list.append(("org:hasMember",
                                     check_iri(row[1]["affiliate"])))
         if isinstance(row[1]["location"], str) and \
                 row[1]["location"] not in exclude_list:
-            predicates_list.append(("mhdb:hasLocation",
+            predicates_list.append(("frapo:hasLocation",
                                     mhdb_iri(row[1]["location"])))
         for predicates in predicates_list:
             statements = add_if(
@@ -1182,7 +1182,7 @@ def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
         sensor_iri = check_iri(row[1]["sensor"])
 
         predicates_list = []
-        predicates_list.append(("rdf:type", "mhdb:Sensor"))
+        predicates_list.append(("rdf:type", "ssn:SensingDevice"))
         predicates_list.append(("rdfs:label", sensor_label))
 
         abbreviation = row[1]["abbreviation"]
@@ -1199,7 +1199,7 @@ def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
             for index in indices:
                 objectRDF = measures.measure[measures["index"] == index]
                 if isinstance(objectRDF, str):
-                    predicates_list.append(("mhdb:takesMeasure",
+                    predicates_list.append(("ssn:observes",
                                             check_iri(objectRDF)))
         for predicates in predicates_list:
             statements = add_if(
@@ -1217,7 +1217,7 @@ def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
         measure_iri = check_iri(row[1]["measure"])
 
         predicates_list = []
-        predicates_list.append(("rdf:type", "mhdb:Measure"))
+        predicates_list.append(("rdf:type", "m3-lite:MeasurementType"))
         predicates_list.append(("rdfs:label", measure_label))
 
         indices_measure_category = row[1]["indices_measure_category"]
@@ -1291,7 +1291,7 @@ def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
         domain_iri = check_iri(row[1]["domain"])
 
         predicates_list = []
-        predicates_list.append(("rdf:type", "mhdb:Domain"))
+        predicates_list.append(("rdf:type", "m3-lite:DomainOfInterest"))
         predicates_list.append(("rdfs:label", domain_label))
 
         indices_domain_type = row[1]["indices_domain_type"]
@@ -1894,7 +1894,7 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
         predicates_list = []
         predicates_list.append(("rdfs:label",
                                 language_string(row[1]["reference"])))
-        predicates_list.append(("rdf:type", "mhdb:Reference"))
+        predicates_list.append(("rdf:type", "dcterms:source"))
 
         PubMedID = row[1]["PubMedID"]
         abbreviation = row[1]["abbreviation"]
@@ -1906,7 +1906,7 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
         age_max = row[1]["age_max"]
 
         if not isinstance(PubMedID, float) and PubMedID not in exclude_list:
-            predicates_list.append(("mhdb:hasPubMedID",
+            predicates_list.append(("fabio:hasPubMedId",
                                     check_iri(PubMedID)))
         if isinstance(abbreviation, str) and abbreviation not in exclude_list:
             predicates_list.append(("mhdb:hasAbbreviation",
@@ -1919,17 +1919,47 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
         if isinstance(number_of_questions, str) and \
                 number_of_questions not in exclude_list:
             predicates_list.append(("mhdb:hasNumberOfQuestions",
-                                    check_iri(str(number_of_questions))))
+                    language_string(number_of_questions)))
         if not isinstance(minutes_to_complete, float) and \
                 minutes_to_complete not in exclude_list:
             predicates_list.append(("mhdb:takesMinutesToComplete",
-                                    check_iri(str(minutes_to_complete))))
+                    language_string(minutes_to_complete)))
         if not isinstance(age_min, float) and age_min not in exclude_list:
-            predicates_list.append(("mhdb:isForMinimumAge",
-                                    check_iri(str(age_min))))
+            predicates_list.append(("schema:requiredMinAge",
+                    language_string(age_min)))
         if not isinstance(age_max, float) and age_max not in exclude_list:
-            predicates_list.append(("mhdb:isForMaximumAge",
-                                    check_iri(str(age_max))))
+            predicates_list.append(("schema:requiredMaxAge",
+                    language_string(age_max)))
+        # if isinstance(number_of_questions, str) and \
+        #         number_of_questions not in exclude_list:
+        #     if "-" in number_of_questions:
+        #         predicates_list.append(("mhdb:hasNumberOfQuestions",
+        #             '"{0}"^^xsd:string'.format(number_of_questions)))
+        #     else:
+        #         predicates_list.append(("mhdb:hasNumberOfQuestions",
+        #             '"{0}"^^xsd:nonNegativeInteger'.format(number_of_questions)))
+        # if not isinstance(minutes_to_complete, float) and \
+        #         minutes_to_complete not in exclude_list:
+        #     if "-" in minutes_to_complete:
+        #         predicates_list.append(("mhdb:takesMinutesToComplete",
+        #             '"{0}"^^xsd:string'.format(minutes_to_complete)))
+        #     else:
+        #         predicates_list.append(("mhdb:takesMinutesToComplete",
+        #             '"{0}"^^xsd:nonNegativeInteger'.format(minutes_to_complete)))
+        # if not isinstance(age_min, float) and age_min not in exclude_list:
+        #     if "-" in age_min:
+        #         predicates_list.append(("schema:requiredMinAge",
+        #             '"{0}"^^xsd:string'.format(age_min)))
+        #     else:
+        #         predicates_list.append(("schema:requiredMinAge",
+        #             '"{0}"^^xsd:nonNegativeInteger'.format(age_min)))
+        # if not isinstance(age_max, float) and age_max not in exclude_list:
+        #     if "-" in age_max:
+        #         predicates_list.append(("schema:requiredMaxAge",
+        #             '"{0}"^^xsd:string'.format(age_max)))
+        #     else:
+        #         predicates_list.append(("schema:requiredMaxAge",
+        #             '"{0}"^^xsd:nonNegativeInteger'.format(age_max)))
 
         indices_reference_type = row[1]["indices_reference_type"]
         indices_study_or_clinic = row[1]["indices_study_or_clinic"]
@@ -2009,7 +2039,7 @@ def ingest_references(references_xls, behaviors_xls, statements={}):
                     ref_source = mhdb_iri(ref_source)
                 else:
                     ref_source = mhdb_iri(ref_source)
-                predicates_list.append(("mhdb:hasReference", ref_source))
+                predicates_list.append(("dcterms:isReferencedBy", ref_source))
 
         for predicates in predicates_list:
             statements = add_if(
