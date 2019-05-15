@@ -72,10 +72,10 @@ mhdb:pplkpr rdf:type foaf:Project ;
 mhdb:Spire rdf:type foaf:Project ;
 	rdfs:label """Spire"""@en ;
 	schema:WebSite <https://spirehealth.com/pages/stone> ;
+	mhdb:isForDomain mhdb:behavior ;
+	mhdb:isForDomain mhdb:calmness ;
 	mhdb:isForDomain mhdb:mindfulness ;
 	mhdb:isForDomain mhdb:emotional_awareness ;
-	mhdb:isForDomain mhdb:calmness ;
-	mhdb:isForDomain mhdb:behavior ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:Calming_Technology_Lab ;
 	mhdb:hasSensor mhdb:single-axis_accelerometer ;
@@ -88,7 +88,7 @@ mhdb:AccuBite rdf:type foaf:Project ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:BitWear_Lab ;
 	mhdb:hasSensor mhdb:bluetooth ;
-	mhdb:hasSensor mhdb:piezoelectric_sensors ;
+	mhdb:hasSensor mhdb:piezoelectric_sensor ;
 	ssn:observes mhdb:frequency_of_vibrations .
 
 mhdb:WearSens rdf:type foaf:Project ;
@@ -98,17 +98,17 @@ mhdb:WearSens rdf:type foaf:Project ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:Wearable_Biosensing_Lab ;
 	mhdb:hasOrganization mhdb:Personal_Health_Informatics__Rehabilitation_Engineering_PHIRE_Lab ;
-	mhdb:hasSensor mhdb:piezoelectric_sensors ;
+	mhdb:hasSensor mhdb:piezoelectric_sensor ;
 	ssn:observes mhdb:movement .
 
 mhdb:microfluidic_skin_device rdf:type foaf:Project ;
 	rdfs:label """microfluidic skin device"""@en ;
 	schema:WebSite <https://news.northwestern.edu/stories/2016/11/researchers-develop-soft-microfluidic-lab-on-the-skin-for-sweat-analysis/> ;
-	mhdb:isForDomain mhdb:fluid_status ;
 	mhdb:isForDomain mhdb:bodys_response_to_exercise ;
+	mhdb:isForDomain mhdb:fluid_status ;
 	mhdb:hasProjectType mhdb:wearable ;
-	ssn:observes mhdb:sweat_volume ;
-	ssn:observes mhdb:electrolytes .
+	ssn:observes mhdb:electrolytes ;
+	ssn:observes mhdb:sweat_volume .
 
 mhdb:E4 rdf:type foaf:Project ;
 	rdfs:label """E4"""@en ;
@@ -116,9 +116,9 @@ mhdb:E4 rdf:type foaf:Project ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Affective_Computing_GroupMIT_Media_Lab ;
-	mhdb:hasSensor mhdb:photoplethysmogram ;
+	mhdb:hasSensor mhdb:infrared_thermopile ;
 	mhdb:hasSensor mhdb:accelerometer ;
-	mhdb:hasSensor mhdb:infrared_thermophiles ;
+	mhdb:hasSensor mhdb:photoplethysmogram ;
 	mhdb:hasSensor mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
 	ssn:observes mhdb:Heart_Rate_VariabilityHRV ;
 	ssn:observes mhdb:temperature ;
@@ -127,11 +127,11 @@ mhdb:E4 rdf:type foaf:Project ;
 mhdb:MoXomPath rdf:type foaf:Project ;
 	rdfs:label """MoXo/mPath"""@en ;
 	schema:WebSite <http://www.buildempathy.com/the-moxo-sensor/> ;
-	mhdb:isForDomain mhdb:emotion_recognition ;
-	mhdb:isForDomain mhdb:excitement ;
-	mhdb:isForDomain mhdb:confusion ;
-	mhdb:isForDomain mhdb:emotional_reactions ;
 	mhdb:isForDomain mhdb:frustration ;
+	mhdb:isForDomain mhdb:emotional_reaction ;
+	mhdb:isForDomain mhdb:excitement ;
+	mhdb:isForDomain mhdb:emotion_recognition ;
+	mhdb:isForDomain mhdb:confusion ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:mPath ;
 	mhdb:hasSensor mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
@@ -142,14 +142,14 @@ mhdb:Muse rdf:type foaf:Project ;
 	schema:WebSite <http://www.choosemuse.com/> ;
 	mhdb:isForDomain mhdb:calmness ;
 	mhdb:hasProjectType mhdb:wearable ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor ;
+	mhdb:hasSensor mhdb:electroencephalography ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:Cortechs rdf:type foaf:Project ;
 	rdfs:label """Cortechs"""@en ;
 	schema:WebSite <http://www.cortechs.ie/> ;
 	mhdb:hasProjectType mhdb:wearable ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor ;
+	mhdb:hasSensor mhdb:electroencephalography ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:NightWare rdf:type foaf:Project ;
@@ -160,25 +160,25 @@ mhdb:NightWare rdf:type foaf:Project ;
 	mhdb:hasSensor mhdb:accelerometer ;
 	mhdb:hasSensor mhdb:vibration_sensor ;
 	ssn:observes mhdb:heart_rate ;
-	ssn:observes mhdb:frequency_of_tremors ;
-	ssn:observes mhdb:shaking .
+	ssn:observes mhdb:shaking ;
+	ssn:observes mhdb:frequency_of_tremors .
 
 mhdb:Priori rdf:type foaf:Project ;
 	rdfs:label """Priori"""@en ;
 	schema:WebSite <https://medicine.umich.edu/dept/prechter-program/bipolar-research/bipolar-disorder-research-projects/priori-longitudinal-voice-patterns-bipolar-disorder> ;
-	mhdb:isForDomain mhdb:voice_analysis ;
-	mhdb:isForDomain mhdb:voice ;
 	mhdb:isForDomain mhdb:physical_elements_of_speech ;
 	mhdb:isForDomain mhdb:silence ;
-	mhdb:hasProjectType fabio:API ;
+	mhdb:isForDomain mhdb:voice ;
+	mhdb:isForDomain mhdb:voice_analysis ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Heinz_C_Prechter_Bipolar_Research_Program ;
 	mhdb:hasSensor mhdb:microphone ;
 	ssn:observes mhdb:amount_of_speech ;
-	ssn:observes mhdb:speech_pitch ;
-	ssn:observes mhdb:speech_volume ;
 	ssn:observes mhdb:speech_rate ;
-	ssn:observes mhdb:speech_rhythm .
+	ssn:observes mhdb:speech_pitch ;
+	ssn:observes mhdb:speech_rhythm ;
+	ssn:observes mhdb:speech_volume .
 
 mhdb:Emotion_AI rdf:type foaf:Project ;
 	rdfs:label """Emotion AI"""@en ;
@@ -186,15 +186,15 @@ mhdb:Emotion_AI rdf:type foaf:Project ;
 	mhdb:isForDomain mhdb:face_tracking ;
 	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Affectiva ;
-	mhdb:hasSensor mhdb:optical_sensors ;
-	ssn:observes mhdb:photo ;
-	ssn:observes mhdb:video .
+	mhdb:hasSensor mhdb:optical_sensor ;
+	ssn:observes mhdb:video ;
+	ssn:observes mhdb:photo .
 
 mhdb:Companion rdf:type foaf:Project ;
 	rdfs:label """Companion"""@en ;
 	schema:WebSite <https://companionapp.io/> ;
-	mhdb:isForDomain mhdb:face_tracking ;
 	mhdb:isForDomain mhdb:head_tracking ;
+	mhdb:isForDomain mhdb:face_tracking ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
 	mhdb:hasSensor mhdb:camera ;
 	ssn:observes mhdb:movement ;
@@ -207,52 +207,52 @@ mhdb:Compression_clothing_for_autismSensory_Processing_Disorder rdf:type foaf:Pr
 	mhdb:isForDomain mhdb:Facial_Action_Coding_System_FACS ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:Wearable_Technology_Lab ;
-	mhdb:hasSensor mhdb:pressure_sensor ;
 	mhdb:hasSensor mhdb:spring_actuator ;
-	ssn:observes mhdb:photo ;
+	mhdb:hasSensor mhdb:pressure_sensor ;
+	ssn:observes mhdb:pressure ;
 	ssn:observes mhdb:video ;
-	ssn:observes mhdb:pressure .
+	ssn:observes mhdb:photo .
 
 mhdb:Vibe rdf:type foaf:Project ;
 	rdfs:label """Vibe"""@en ;
 	schema:WebSite <https://www.microsoft.com/en-us/research/group/vibe/?from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fgroups%2Fvibe%2F> ;
-	mhdb:isForDomain mhdb:emotion_tracking ;
-	mhdb:isForDomain mhdb:emotion_recognition ;
 	mhdb:isForDomain mhdb:user_behaviour ;
-	mhdb:isForDomain mhdb:voice_tone ;
+	mhdb:isForDomain mhdb:emotion_tracking ;
 	mhdb:isForDomain mhdb:language ;
 	mhdb:isForDomain mhdb:facial_expression ;
+	mhdb:isForDomain mhdb:voice_tone ;
+	mhdb:isForDomain mhdb:emotion_recognition ;
 	mhdb:hasOrganization mhdb:The_Visualization_and_Interaction_for_Business_and_Entertainment_VIBE_group ;
 	mhdb:hasSensor mhdb:camera ;
-	ssn:observes mhdb:physiological_responses .
+	ssn:observes mhdb:physiological_response .
 
 mhdb:Thync rdf:type foaf:Project ;
 	rdfs:label """Thync"""@en ;
 	schema:WebSite <http://www.thync.com/> ;
-	mhdb:isForDomain mhdb:anxiety ;
 	mhdb:isForDomain mhdb:stress ;
+	mhdb:isForDomain mhdb:anxiety ;
 	mhdb:isForDomain mhdb:sleep ;
 	mhdb:hasProjectType mhdb:wearable .
 
 mhdb:Mindlight rdf:type foaf:Project ;
 	rdfs:label """Mindlight"""@en ;
 	schema:WebSite <http://theplayniceinstitute.com/mindlight-2/> ;
+	mhdb:isForDomain mhdb:calmness ;
 	mhdb:isForDomain mhdb:anxiety ;
 	mhdb:isForDomain mhdb:fear ;
-	mhdb:isForDomain mhdb:calmness ;
 	mhdb:hasProjectType schema:VideoGame ;
 	mhdb:hasOrganization mhdb:Adolescent_Dynamics_Lab ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor ;
+	mhdb:hasSensor mhdb:electroencephalography ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:iCalm rdf:type foaf:Project ;
 	rdfs:label """iCalm"""@en ;
 	schema:WebSite <https://www.media.mit.edu/projects/measuring-arousal-during-therapy-for-children-with-autism-and-adhd/overview/> ;
-	mhdb:isForDomain mhdb:intrinsic_motivation ;
-	mhdb:isForDomain mhdb:excitement ;
-	mhdb:isForDomain mhdb:behavior ;
 	mhdb:isForDomain mhdb:arousal_in_therapy ;
 	mhdb:isForDomain mhdb:stress ;
+	mhdb:isForDomain mhdb:behavior ;
+	mhdb:isForDomain mhdb:excitement ;
+	mhdb:isForDomain mhdb:intrinsic_motivation ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:Affective_Computing_GroupMIT_Media_Lab ;
 	mhdb:hasSensor mhdb:motion_sensor ;
@@ -271,33 +271,33 @@ mhdb:Q_Sensor rdf:type foaf:Project ;
 mhdb:Emotion_as_a_service rdf:type foaf:Project ;
 	rdfs:label """Emotion as a service"""@en ;
 	schema:WebSite <https://www.affectiva.com/product/emotion-as-a-service/> ;
-	mhdb:isForDomain mhdb:emotion_tracking ;
-	mhdb:isForDomain mhdb:emotion_recognition ;
-	mhdb:isForDomain mhdb:face_tracking ;
 	mhdb:isForDomain mhdb:head_tracking ;
+	mhdb:isForDomain mhdb:emotion_tracking ;
+	mhdb:isForDomain mhdb:face_tracking ;
 	mhdb:isForDomain mhdb:facial_expression ;
+	mhdb:isForDomain mhdb:emotion_recognition ;
 	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Affectiva ;
-	mhdb:hasSensor mhdb:optical_sensors ;
 	mhdb:hasSensor mhdb:camera ;
-	ssn:observes mhdb:photo ;
-	ssn:observes mhdb:video .
+	mhdb:hasSensor mhdb:optical_sensor ;
+	ssn:observes mhdb:video ;
+	ssn:observes mhdb:photo .
 
 mhdb:In_Lab_Biometric_Solution rdf:type foaf:Project ;
 	rdfs:label """In Lab Biometric Solution"""@en ;
 	schema:WebSite <https://www.affectiva.com/product/individual-product-page-imotions/> ;
-	mhdb:isForDomain mhdb:behavior ;
 	mhdb:isForDomain mhdb:Facial_Action_Coding_System_FACS ;
+	mhdb:isForDomain mhdb:behavior ;
 	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Affectiva ;
-	ssn:observes mhdb:photo ;
-	ssn:observes mhdb:video .
+	ssn:observes mhdb:video ;
+	ssn:observes mhdb:photo .
 
 mhdb:Speech_based_Classifiers rdf:type foaf:Project ;
 	rdfs:label """Speech based Classifiers"""@en ;
 	schema:WebSite <https://www.affectiva.com/what/products/> ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:emotion_recognition ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Affectiva ;
 	ssn:observes mhdb:speech .
@@ -308,12 +308,12 @@ mhdb:Janssen_Autism_Knowledge_Engine_JAKE rdf:type foaf:Project ;
 	mhdb:isForDomain mhdb:behavior ;
 	mhdb:hasProjectType mhdb:technology ;
 	mhdb:hasOrganization mhdb:Kim_Leventhal_Lab ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor .
+	mhdb:hasSensor mhdb:electroencephalography .
 
 mhdb:Audio_and_Motion_sensor_system rdf:type foaf:Project ;
 	rdfs:label """Audio and Motion sensor system"""@en ;
 	schema:WebSite <https://news.stthomas.edu/autism-research-sensing-better-way/> ;
-	mhdb:isForDomain mhdb:motor_skills ;
+	mhdb:isForDomain mhdb:motor_skill ;
 	mhdb:hasProjectType mhdb:technology ;
 	mhdb:hasOrganization mhdb:School_of_Engineering__Cheol-Hong_Min ;
 	ssn:observes mhdb:movement ;
@@ -331,29 +331,29 @@ mhdb:Emotiv rdf:type foaf:Project ;
 	rdfs:label """Emotiv"""@en ;
 	schema:WebSite <http://www.emotiv.com/> ;
 	mhdb:hasProjectType mhdb:wearable ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor ;
+	mhdb:hasSensor mhdb:electroencephalography ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:HarimataAutomated_Therapy_Monitoring_for_Children_with_Developmental_Disorders_of_Autism_Spectrum_AUTMON rdf:type foaf:Project ;
 	rdfs:label """Harimata/Automated Therapy Monitoring for Children with Developmental Disorders of Autism Spectrum (AUTMON)"""@en ;
 	schema:WebSite <http://autmon.eti.pg.gda.pl/> ;
 	rdfs:comment """Harimata’s goal is to develop an IT system supporting early stage assessment of ASD based on the analysis of behavioral patterns of using mobile devices (tablets). The research reveals that it is possible to differentiate typically developing children from those suffering from ASD with 92% sensitivity and 90% specificity, solely on the basis of analyzing movement dynamics. (ITASD)"""@en ;
-	mhdb:isForDomain mhdb:behaviometrics ;
+	mhdb:isForDomain mhdb:behaviometric ;
 	mhdb:hasProjectType schema:VideoGame ;
 	mhdb:hasOrganization mhdb:Harimata ;
-	mhdb:hasSensor mhdb:touch_screen_sensor ;
 	mhdb:hasSensor mhdb:accelerometer ;
-	mhdb:hasSensor mhdb:gyroscope .
+	mhdb:hasSensor mhdb:gyroscope ;
+	mhdb:hasSensor mhdb:touchscreen .
 
 mhdb:Lena rdf:type foaf:Project ;
 	rdfs:label """Lena"""@en ;
 	schema:WebSite <https://www.lena.org/> ;
+	mhdb:isForDomain mhdb:voice_pattern ;
 	mhdb:isForDomain mhdb:communication ;
-	mhdb:isForDomain mhdb:voice_patterns ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasSensor mhdb:microphone ;
-	ssn:observes mhdb:word_count ;
 	ssn:observes mhdb:grunt_count ;
+	ssn:observes mhdb:word_count ;
 	ssn:observes mhdb:squeal_count .
 
 mhdb:Melomind rdf:type foaf:Project ;
@@ -361,8 +361,8 @@ mhdb:Melomind rdf:type foaf:Project ;
 	schema:WebSite <http://www.mybraintech.com/> ;
 	mhdb:isForDomain mhdb:calmness ;
 	mhdb:hasProjectType mhdb:wearable ;
+	mhdb:hasSensor mhdb:electroencephalography ;
 	mhdb:hasSensor mhdb:microphone ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:Purple_Robot rdf:type foaf:Project ;
@@ -392,7 +392,7 @@ mhdb:PainQx rdf:type foaf:Project ;
 	rdfs:label """PainQx"""@en ;
 	schema:WebSite <https://www.painqx.com/> ;
 	mhdb:hasProjectType mhdb:wearable ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor ;
+	mhdb:hasSensor mhdb:electroencephalography ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:Medasense rdf:type foaf:Project ;
@@ -408,7 +408,7 @@ mhdb:Myndlift rdf:type foaf:Project ;
 	rdfs:label """Myndlift"""@en ;
 	schema:WebSite <http://www.myndlift.com/> ;
 	mhdb:hasProjectType mhdb:wearable ;
-	mhdb:hasSensor mhdb:electroencephalography_sensor ;
+	mhdb:hasSensor mhdb:electroencephalography ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:Champions_of_the_shenga rdf:type foaf:Project ;
@@ -427,9 +427,9 @@ mhdb:Pop_the_balloon_test rdf:type foaf:Project ;
 mhdb:Pip rdf:type foaf:Project ;
 	rdfs:label """Pip"""@en ;
 	schema:WebSite <https://thepip.com/en-us/> ;
-	mhdb:isForDomain mhdb:anxiety ;
-	mhdb:isForDomain mhdb:stress ;
 	mhdb:isForDomain mhdb:calmness ;
+	mhdb:isForDomain mhdb:stress ;
+	mhdb:isForDomain mhdb:anxiety ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasSensor mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
 	ssn:observes mhdb:galvanic_skin_responseGSRskin_conductance .
@@ -441,14 +441,14 @@ mhdb:Wearsens_necklace rdf:type foaf:Project ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:eHealth_and_Data_Analytics_Research_lab_ER ;
 	mhdb:hasSensor mhdb:bluetooth ;
-	mhdb:hasSensor mhdb:piezoelectric_sensors ;
+	mhdb:hasSensor mhdb:piezoelectric_sensor ;
 	ssn:observes mhdb:frequency_of_vibrations .
 
 mhdb:MediSens_Wearable_Sensor_Platform rdf:type foaf:Project ;
 	rdfs:label """MediSens Wearable Sensor Platform"""@en ;
 	schema:WebSite <http://www.medisens.com/team> ;
-	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasProjectType mhdb:technology ;
+	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:eHealth_and_Data_Analytics_Research_lab_ER .
 
 mhdb:Cognition_Kit rdf:type foaf:Project ;
@@ -460,11 +460,11 @@ mhdb:Cognition_Kit rdf:type foaf:Project ;
 mhdb:ADHD_assessment_system_using_Virtual_Reality rdf:type foaf:Project ;
 	rdfs:label """ADHD assessment system using Virtual Reality"""@en ;
 	schema:WebSite <http://ict.usc.edu/pubs/An%20innovative%20ADHD%20assessment%20system%20using%20virtual%20reality.pdf> ;
+	mhdb:isForDomain mhdb:executive_function ;
 	mhdb:isForDomain mhdb:working_memory ;
-	mhdb:isForDomain mhdb:executive_functions ;
 	mhdb:hasProjectType mhdb:virtual_reality ;
-	mhdb:hasOrganization mhdb:Department_of_Computer_Science__Information_Engineering ;
-	mhdb:hasOrganization mhdb:Institute_for_Creative_Technologies .
+	mhdb:hasOrganization mhdb:Institute_for_Creative_Technologies ;
+	mhdb:hasOrganization mhdb:Department_of_Computer_Science__Information_Engineering .
 
 mhdb:reVIVEDisrupt_Hackathon rdf:type foaf:Project ;
 	rdfs:label """reVIVE/Disrupt Hackathon"""@en ;
@@ -474,9 +474,9 @@ mhdb:reVIVEDisrupt_Hackathon rdf:type foaf:Project ;
 mhdb:Gingerio rdf:type foaf:Project ;
 	rdfs:label """Ginger.io"""@en ;
 	schema:WebSite <https://ginger.io/> ;
-	mhdb:isForDomain mhdb:phone_usage_patterns ;
 	mhdb:isForDomain mhdb:stress ;
 	mhdb:isForDomain mhdb:depression ;
+	mhdb:isForDomain mhdb:phone_usage_patterns ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
 	mhdb:hasSensor mhdb:accelerometer ;
 	mhdb:hasSensor mhdb:global_positioning_system ;
@@ -485,19 +485,19 @@ mhdb:Gingerio rdf:type foaf:Project ;
 mhdb:CrossCheck rdf:type foaf:Project ;
 	rdfs:label """CrossCheck"""@en ;
 	schema:WebSite <https://www.mh4mh.org/single-post/2013/01/01/Mobile-Behavioral-Sensing-for-Relapse-Prevention-in-Schizophrenia> ;
-	mhdb:isForDomain mhdb:phone_usage_patterns ;
 	mhdb:isForDomain mhdb:multimodal_behavioural_sensing ;
 	mhdb:isForDomain mhdb:psychotic_relapse ;
+	mhdb:isForDomain mhdb:phone_usage_patterns ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
 	mhdb:hasOrganization mhdb:mHealth_for_Mental_Health_ProgramPsychiatry_and_Behavioural_Sciences ;
-	ssn:observes mhdb:speech_frequency ;
-	ssn:observes mhdb:amount_of_speech .
+	ssn:observes mhdb:amount_of_speech ;
+	ssn:observes mhdb:speech_frequency .
 
 mhdb:Sidekicks rdf:type foaf:Project ;
 	rdfs:label """Sidekicks"""@en ;
 	schema:WebSite <https://www.sidekicks.com/> ;
-	mhdb:isForDomain mhdb:fixated_interests ;
-	mhdb:isForDomain mhdb:affinities ;
+	mhdb:isForDomain mhdb:affinity ;
+	mhdb:isForDomain mhdb:fixated_interest ;
 	mhdb:hasProjectType schema:SoftwareApplication .
 
 mhdb:Monarca rdf:type foaf:Project ;
@@ -517,18 +517,18 @@ mhdb:Yepson_wearable_locator_device rdf:type foaf:Project ;
 mhdb:Sensus rdf:type foaf:Project ;
 	rdfs:label """Sensus"""@en ;
 	schema:WebSite <https://github.com/predictive-technology-laboratory/sensus/wiki> ;
-	mhdb:hasProjectType fabio:API ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Predictive_Technology_lab .
 
 mhdb:Trocs rdf:type foaf:Project ;
 	rdfs:label """Troc@s"""@en ;
 	schema:WebSite <http://web.ist.utl.pt/~daniel.j.goncalves/research.html> ;
-	mhdb:isForDomain mhdb:sleep ;
-	mhdb:isForDomain mhdb:fixated_interests ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:hasProjectType fabio:API ;
+	mhdb:isForDomain mhdb:fixated_interest ;
+	mhdb:isForDomain mhdb:sleep ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType fabio:API ;
 	mhdb:hasOrganization mhdb:Visualization_and_Multimodal_Interfaces_Group .
 
 mhdb:A_Smartphone_Application_to_Measure_Response_to_Name_in_Everyday_Environments rdf:type foaf:Project ;
@@ -546,23 +546,23 @@ mhdb:Stress_Sense rdf:type foaf:Project ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
 	mhdb:hasOrganization mhdb:People_Aware_Computing_Group ;
 	mhdb:hasSensor mhdb:microphone ;
-	ssn:observes mhdb:speech_frequency ;
-	ssn:observes mhdb:amplitude ;
 	ssn:observes mhdb:speech_rate ;
+	ssn:observes mhdb:amplitude ;
+	ssn:observes mhdb:speech_frequency ;
 	ssn:observes mhdb:jitter .
 
 mhdb:BeWell rdf:type foaf:Project ;
 	rdfs:label """BeWell"""@en ;
 	schema:WebSite mhdb:nan ;
-	mhdb:isForDomain mhdb:behavior ;
 	mhdb:isForDomain mhdb:phone_usage_patterns ;
-	mhdb:isForDomain mhdb:wellbeing ;
+	mhdb:isForDomain mhdb:behavior ;
 	mhdb:isForDomain mhdb:text_activity ;
+	mhdb:isForDomain mhdb:wellbeing ;
 	mhdb:isForDomain mhdb:app_use ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
 	mhdb:hasOrganization mhdb:People_Aware_Computing_Group ;
-	mhdb:hasSensor mhdb:microphone ;
 	mhdb:hasSensor mhdb:accelerometer ;
+	mhdb:hasSensor mhdb:microphone ;
 	mhdb:hasSensor mhdb:global_positioning_system .
 
 mhdb:An_objective_measure_of_hyperactivity_aspects_with_compressed_webcam_video rdf:type foaf:Project ;
@@ -602,8 +602,8 @@ mhdb:Nimble_patchBiostamp_technologies rdf:type foaf:Project ;
 	schema:WebSite <https://www.mc10inc.com/> ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasOrganization mhdb:MC10_Inc_Lexington_MA_USA ;
-	mhdb:hasSensor mhdb:accelerometer ;
 	mhdb:hasSensor mhdb:electromyograph ;
+	mhdb:hasSensor mhdb:accelerometer ;
 	ssn:observes mhdb:movement ;
 	ssn:observes mhdb:muscle_activity .
 
@@ -633,8 +633,8 @@ mhdb:Rapid_ABC rdf:type foaf:Project ;
 	rdfs:label """Rapid ABC"""@en ;
 	schema:WebSite <https://autism.cc.gatech.edu/projects.htm> ;
 	rdfs:comment """Rapid ABC stands for Attend to their social environment, Establish Back-and-forth games, Engage others socially by Communicating using eye contact, facial expressions,vocalizations or words, and gestures.The goal of this project is to design a technological solutions that would facilitate the integration of an autism screening form into the medical office’s work flow and to engineer incentives that would provide value added data for the physician. Rapid ABC Screener, is a paper form screener used for screening Infants to indicate atypical social-emotional development that can be associated with autism spectrum disorders. The Screener is designed to supplement other screening instruments that assess language and motor skill development. Once this screening is complete manually by the physician, the screener can be converted to digital format and stored using our technological Rapid ABC Solution. This solution would generate data concerning the child’s performance compared to the normed values and if applicable, data from the child’s 18-month results. The staff can then give these to the physician and the parent. The data provided by solution could be used for research."""@en ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:social_interaction ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType mhdb:technology ;
 	mhdb:hasOrganization mhdb:College_of_Computing .
 
@@ -688,7 +688,7 @@ mhdb:LudabyProject_Abby rdf:type foaf:Project ;
 	rdfs:label """Ludaby/Project Abby"""@en ;
 	schema:WebSite <http://ludaby.com/aboutus.html> ;
 	rdfs:comment """The Ludaby toys use sensory stimulation (visual, auditory and tactile) as the learning channel, thus promoting a higher level of attention from the child and therefore more willingness to acquire new knowledge and skills, useful for pursuing academic and therapeutic goals that can be taken home."""@en ;
-	mhdb:hasProjectType mhdb:toy .
+	mhdb:hasProjectType mhdb:technology .
 
 mhdb:Awesome_Evening__Preferred_Play_Activities_of_Children_with_Autism_Spectrum_Disorder_in_Naturalistic_Settings rdf:type foaf:Project ;
 	rdfs:label """Awesome Evening / Preferred Play Activities of Children with Autism Spectrum Disorder in Naturalistic Settings"""@en ;
@@ -711,8 +711,8 @@ mhdb:GOLIAH_A_Gaming_Platform_for_Home-Based_Intervention_in_Autism__Principles_
 	rdfs:comment """An automated serious gaming platform enabling intensive intervention in nomadic settings has been developed by mapping two pivotal skills in autism spectrum disorder: Imitation and Joint Attention (JA). Eleven games – seven Imitations and four JA – were derived from the Early Start Denver Model. The games involved application of visual and audio stimuli with multiple difficulty levels and a wide variety of tasks and actions pertaining to the Imitation and JA."""@en ;
 	mhdb:isForDomain mhdb:social_interaction ;
 	mhdb:hasProjectType schema:VideoGame ;
-	mhdb:hasOrganization mhdb:Electronics_and_Computer_Science ;
-	mhdb:hasOrganization mhdb:Institute_of_Intelligent_Systems_and_Robotics .
+	mhdb:hasOrganization mhdb:Institute_of_Intelligent_Systems_and_Robotics ;
+	mhdb:hasOrganization mhdb:Electronics_and_Computer_Science .
 
 mhdb:applications-autisme_website rdf:type foaf:Project ;
 	rdfs:label """applications-autisme website"""@en ;
@@ -756,11 +756,11 @@ mhdb:JeStiMulE_a_serious_game_to_teach_emotion_recognition_for_individuals_with_
 	rdfs:label """JeStiMulE, a serious game to teach emotion recognition for individuals with low- and high functioning autism"""@en ;
 	schema:WebSite mhdb:nan ;
 	rdfs:comment """JeStiMulE is a serious game to teach emotion recognition on avatars (faces and gestures) and in virtual reality (social situations) for children and adolescents with Autism independently of their age, intellectual, verbal and academic level. JeStiMulE is based on ASC-specific skills, offering a model of logical processing of social information to compensate for difficulties with intuitive social processing."""@en ;
-	mhdb:isForDomain mhdb:emotion_recognition ;
 	mhdb:isForDomain mhdb:social_interaction ;
+	mhdb:isForDomain mhdb:emotion_recognition ;
 	mhdb:hasProjectType schema:VideoGame ;
-	mhdb:hasOrganization mhdb:Sensory_And_Ambient_Interfaces_Laboratory ;
-	mhdb:hasOrganization mhdb:Autism_Resources_Center_Child_and_Adolescent_Psychiatry_Department .
+	mhdb:hasOrganization mhdb:Autism_Resources_Center_Child_and_Adolescent_Psychiatry_Department ;
+	mhdb:hasOrganization mhdb:Sensory_And_Ambient_Interfaces_Laboratory .
 
 mhdb:Support_and_Training_Applications_to_Further_Academic_Inclusion_of_Students_with_Autism_Spectrum_Disorder_Tablet-Based_Activity_Schedule_in_Mainstream_Environment_for_Children_with_Autism_and_Children_with_ID rdf:type foaf:Project ;
 	rdfs:label """Support and Training Applications to Further Academic Inclusion of Students with Autism Spectrum Disorder: Tablet-Based Activity Schedule in Mainstream Environment for Children with Autism and Children with ID"""@en ;
@@ -774,15 +774,15 @@ mhdb:The_Roadmap_transmitting_information_about_our_child rdf:type foaf:Project 
 	rdfs:label """The Roadmap: transmitting information about our child"""@en ;
 	schema:WebSite <http://www.participate-autisme.be/> ;
 	rdfs:comment """Many parents of children or adults with autism have doubts regarding information to give to professionals or their relatives about their child’s autism. What is important to say and how? The Roadmap is an online tool helping parents, professionals or the person itself, to gather information about their interests, lifestyle, skills, etc. to improve mutual communication and interactions - ITASD"""@en ;
-	mhdb:hasProjectType mhdb:resource ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType mhdb:resource .
 
 mhdb:SEMA-TIC__a_serious_game_application_to_teach_children_with_autism_without_functional_verbal-skills_how_to_read rdf:type foaf:Project ;
 	rdfs:label """SEMA-TIC : a serious game application to teach children with autism without functional verbal-skills how to read"""@en ;
 	schema:WebSite mhdb:nan ;
 	rdfs:comment """SEMA-TIC is a software to teach words and sentences decoding for children with Autism without functional verbal skills. The preliminary results obtained, suggest that children with Autism can learn new associations rapidly when they are given the opportunity to use their non-verbal skills on a motivated and adapted support. - ITASD Description"""@en ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:learning ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType schema:VideoGame ;
 	mhdb:hasOrganization mhdb:Autism_Resources_Center_Child_and_Adolescent_Psychiatry_Department .
 
@@ -790,9 +790,9 @@ mhdb:Collaborative_Learning_Orchestration_for_Verbal_Engagement_and_Reflection_C
 	rdfs:label """Collaborative Learning Orchestration for Verbal Engagement and Reflection (CLOVER) framework."""@en ;
 	schema:WebSite mhdb:nan ;
 	rdfs:comment """CLOVER, an environment to provide support for children with autism to work collaboratively using tablets and large displays naturally and fluidly. Three studies supporting small-group collaboration on picture-sorting and pragmatic language tasks in special schools (6-16yrs) will be summarized. This will show how design features involving task control, awareness of partner and social influence promote behaviors that foster collaborative interaction - ITASD description"""@en ;
-	mhdb:isForDomain mhdb:communication ;
-	mhdb:isForDomain mhdb:social_interaction ;
 	mhdb:isForDomain mhdb:learning ;
+	mhdb:isForDomain mhdb:social_interaction ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType mhdb:tablet ;
 	mhdb:hasOrganization mhdb:Department_of_Computing_Faculty_of_Mathematics_Computing_and_Technology .
 
@@ -847,8 +847,8 @@ mhdb:Happy_Geese_Games rdf:type foaf:Project ;
 	rdfs:label """Happy Geese Games"""@en ;
 	schema:WebSite <http://www.happygeese.com/index.php/eng/> ;
 	rdfs:comment """Presentation of Appically’s approach to develop well-thought apps for people with ASD or to adapt any generic app for them. The methodology consists in analyzing the neurotypical app, simplify it, add features one step at a time, add extra learning features, add extra features to address other specific issues related to ASD, etc."""@en ;
-	mhdb:hasProjectType schema:VideoGame ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType schema:VideoGame .
 
 mhdb:ABC_Autismo rdf:type foaf:Project ;
 	rdfs:label """ABC Autismo"""@en ;
@@ -1028,8 +1028,8 @@ mhdb:Look_at_me_app rdf:type foaf:Project ;
 	rdfs:label """Look at me app"""@en ;
 	schema:WebSite <http://www.samsung.com/sec/lookatme/> ;
 	rdfs:comment """Look At Me is, in essence, a series of short games that teach autistic kids to look at faces, read facial expressions and understand emotional responses."""@en ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:emotion_recognition ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType schema:SoftwareApplication .
 
 mhdb:Video_games_help_autistic_students_in_classrooms-news_feature rdf:type foaf:Project ;
@@ -1039,7 +1039,7 @@ mhdb:Video_games_help_autistic_students_in_classrooms-news_feature rdf:type foaf
 	mhdb:hasProjectType schema:VideoObject ;
 	mhdb:hasProjectType mhdb:student_project ;
 	mhdb:hasProjectType mhdb:virtual_reality ;
-	mhdb:hasSensor mhdb:kinect .
+	mhdb:hasSensor mhdb:Kinect .
 
 mhdb:The_NODA_system_Naturalistic_Observation_Diagnosis_Assessment-smartphone_videos_to_diagnose_autism rdf:type foaf:Project ;
 	rdfs:label """The NODA system (Naturalistic Observation Diagnosis Assessment) - smartphone videos to diagnose autism"""@en ;
@@ -1055,11 +1055,11 @@ mhdb:Empower_Me_augmented-reality_system_for_autism-Brain_Power_GOOGLE_GLASS_pro
 	rdfs:label """“Empower Me” augmented-reality system for autism - Brain Power GOOGLE GLASS program"""@en ;
 	schema:WebSite <http://www.brain-power.com/> ;
 	rdfs:comment """The child or adult wears light, computerized glasses and sees and hears special feedback geared to the situation. For instance, digital coaching on facial expressions of emotions, when to look at people, feedback on the user’s own state of stress or anxiety, and much more. Empower Me gives an augmented-reality experience, which our tests show autistic users LOVE. Meanwhile, they get points and rewards for learning the social-emotional as well as cognitive skills they want."""@en ;
-	mhdb:isForDomain mhdb:communication ;
-	mhdb:isForDomain mhdb:behavior ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:hasProjectType mhdb:wearable ;
-	mhdb:hasProjectType mhdb:augmented_reality .
+	mhdb:isForDomain mhdb:behavior ;
+	mhdb:isForDomain mhdb:communication ;
+	mhdb:hasProjectType mhdb:augmented_reality ;
+	mhdb:hasProjectType mhdb:wearable .
 
 mhdb:Exceptional_minds rdf:type foaf:Project ;
 	rdfs:label """Exceptional minds"""@en ;
@@ -1090,8 +1090,8 @@ mhdb:SpeechMatch-iPad_app_designed_to_show_what_speech_looks_like_visually_repre
 	rdfs:label """SpeechMatch - iPad app designed to show what speech looks like visually, represented by sound waves."""@en ;
 	schema:WebSite <http://www.sentinelsource.com/news/local/keene-state-college-professor-making-strides-in-autism-research/article_31fd5102-1c75-5a02-b3fd-2ce05492194d.html> ;
 	rdfs:comment """His latest advancement is an iPad app designed to show what speech looks like visually, represented by sound waves. That, he says, can help people with autism see and match how emotions are conveyed in their speech. research aims to help people with autism learn to understand and mimic the subtle patterns of everyday speech."""@en ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:social_interaction ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType schema:SoftwareApplication .
 
 mhdb:Automated_video_analysis_tool-autism_screening rdf:type foaf:Project ;
@@ -1115,40 +1115,40 @@ mhdb:Touch_talking-Pufferfish_apps rdf:type foaf:Project ;
 	schema:WebSite <http://www.pufferfishapps.com/> ;
 	rdfs:comment """Touch Talking is an app designed as a speech learning assistant, displaying pictures of common objects. When the autistic person taps on this picture, the name of the object plays. Double tap on any image on the home page, and it opens up the category."""@en ;
 	mhdb:isForDomain mhdb:communication ;
-	mhdb:hasProjectType mhdb:student_project ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType mhdb:student_project .
 
 mhdb:Social_stories-Pufferfish_apps rdf:type foaf:Project ;
 	rdfs:label """Social stories - Pufferfish apps"""@en ;
 	schema:WebSite <http://www.pufferfishapps.com/> ;
 	rdfs:comment """Social Stories is an ABA app designed to help autistic people understand social situations and give them tools to respond correctly to their environment, in their environment. Social Stories is designed to be easy to use and easy to understand, with big controls and no fine-motor required for use."""@en ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:hasProjectType mhdb:student_project ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType mhdb:student_project .
 
 mhdb:Visual_Routine-Pufferfish_apps rdf:type foaf:Project ;
 	rdfs:label """Visual Routine - Pufferfish apps"""@en ;
 	schema:WebSite <http://www.pufferfishapps.com/> ;
 	rdfs:comment """Visual Routine is a simple, easy to program visual schedule that helps autistic people keep a routine. Routines can be tailored to their needs with audio feedback, and customizable pictures, audio, and text. Instead of carrying around pecs or a laminated schedule, this app will let you have routines preset and then run them to show the person, in an easy way, what they have to do."""@en ;
-	mhdb:hasProjectType mhdb:student_project ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType mhdb:student_project .
 
 mhdb:Present_a_choice-Pufferfish_apps rdf:type foaf:Project ;
 	rdfs:label """Present a choice - Pufferfish apps"""@en ;
 	schema:WebSite <http://www.pufferfishapps.com/> ;
 	rdfs:comment """Present a Choice is an app designed to help a caregiver quickly present a set of choices to someone with autism. Great for when the autistic person is having a meltdown or shutdown, or other trouble communicating."""@en ;
 	mhdb:isForDomain mhdb:communication ;
-	mhdb:hasProjectType mhdb:student_project ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType mhdb:student_project .
 
 mhdb:Emotions_cards_app-Pufferfish_apps rdf:type foaf:Project ;
 	rdfs:label """Emotions cards app - Pufferfish apps"""@en ;
 	schema:WebSite <http://www.pufferfishapps.com/> ;
 	rdfs:comment """Emotion Cards is a set of picture cards on the iPhone of 81 emotions. A broad selection of pictures of emotions helps the autistic person find the emotion they’re feeling, and express it to a caregiver or teacher."""@en ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:emotion ;
-	mhdb:hasProjectType mhdb:student_project ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:isForDomain mhdb:communication ;
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType mhdb:student_project .
 
 mhdb:Romibo_the_Robot rdf:type foaf:Project ;
 	rdfs:label """Romibo the Robot"""@en ;
@@ -1182,25 +1182,24 @@ mhdb:Autism_Hackathon_idea-Virtual_Interactive_practice rdf:type foaf:Project ;
 	rdfs:label """Autism Hackathon idea - Virtual Interactive practice"""@en ;
 	schema:WebSite <http://www.cnet.com/news/hacking-for-autism-apps-to-help-everyone-on-the-spectrum/> ;
 	rdfs:comment """ViP (Virtual Interactive Practice), built an app that will guide autistic people through various social scenarios using Kinect. Because of Kinect, this app is a game-based, fun approach for autistic users to learn social and nonverbal communication skills in situations like a job interview."""@en ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:hasProjectType mhdb:hackathon ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
-	mhdb:hasSensor mhdb:kinect .
+	mhdb:hasProjectType mhdb:hackathon ;
+	mhdb:hasSensor mhdb:Kinect .
 
 mhdb:The_Biohug_vest-HUGS_FOR_AUTISM rdf:type foaf:Project ;
 	rdfs:label """The Biohug vest - HUGS FOR AUTISM"""@en ;
 	schema:WebSite <http://www.biohug.com/> ;
 	rdfs:comment """The BioHug vest lowers stress levels in any wearer, even those with autism, PTSD or ADHD."""@en ;
-	mhdb:isForDomain mhdb:sensory_skills ;
+	mhdb:isForDomain mhdb:sensory_skill ;
 	mhdb:hasProjectType mhdb:wearable .
 
 mhdb:Sensory_Chair rdf:type foaf:Project ;
 	rdfs:label """Sensory Chair"""@en ;
 	schema:WebSite <http://www.sensorychair.com/home.html> ;
 	rdfs:comment """This funky chair is meant to comfort and soothe kids with autism who suffer from Sensory Processing Disorder"""@en ;
-	mhdb:isForDomain mhdb:sensory_skills ;
-	mhdb:hasProjectType mhdb:non-digital_tool .
+	mhdb:isForDomain mhdb:sensory_skill .
 
 mhdb:Special_Salsa rdf:type foaf:Project ;
 	rdfs:label """Special Salsa"""@en ;
@@ -1233,7 +1232,7 @@ mhdb:Drive_Focus rdf:type foaf:Project ;
 	rdfs:label """Drive Focus"""@en ;
 	schema:WebSite <http://www.drivefocus.com/> ;
 	rdfs:comment """Practice key driving skills on your iPad. Drive Focus is a driver training tool that uses clickable-item videos to improve awareness, visual processing and reaction speed."""@en ;
-	mhdb:isForDomain mhdb:sensory_skills ;
+	mhdb:isForDomain mhdb:sensory_skill ;
 	mhdb:isForDomain mhdb:behavior ;
 	mhdb:hasProjectType schema:SoftwareApplication .
 
@@ -1247,7 +1246,7 @@ mhdb:Open_Book rdf:type foaf:Project ;
 	rdfs:label """Open Book"""@en ;
 	schema:WebSite <http://www.first-asd.eu/> ;
 	rdfs:comment """Open Book is a tool for making texts more accessible for people with autism."""@en ;
-	mhdb:isForDomain mhdb:sensory_skills ;
+	mhdb:isForDomain mhdb:sensory_skill ;
 	mhdb:hasProjectType schema:SoftwareApplication .
 
 mhdb:Andys_garden_based_on_ECHOES rdf:type foaf:Project ;
@@ -1261,8 +1260,8 @@ mhdb:Leka_robot rdf:type foaf:Project ;
 	rdfs:label """Leka robot"""@en ;
 	schema:WebSite <http://www.leka.io/> ;
 	rdfs:comment """interactive and multi-sensory smart toy for children with special needs"""@en ;
+	mhdb:isForDomain mhdb:motor_skill ;
 	mhdb:isForDomain mhdb:communication ;
-	mhdb:isForDomain mhdb:motor_skills ;
 	mhdb:hasProjectType mhdb:robot .
 
 mhdb:Angel_sense rdf:type foaf:Project ;
@@ -1271,25 +1270,25 @@ mhdb:Angel_sense rdf:type foaf:Project ;
 	rdfs:comment """The AngelSense device is a small tracker that can be attached anywhere on a child’s clothing — preferably in an out-of-the-way place, such as a front pocket or on a belt, where the child is less likely to notice it, and thus less likely to try to remove it."""@en ;
 	mhdb:hasProjectType mhdb:wearable ;
 	mhdb:hasSensor mhdb:microphone ;
-	mhdb:hasSensor mhdb:camera ;
-	mhdb:hasSensor mhdb:global_positioning_system .
+	mhdb:hasSensor mhdb:global_positioning_system ;
+	mhdb:hasSensor mhdb:camera .
 
 mhdb:CARRY-Autism_Cooperation_Station rdf:type foaf:Project ;
 	rdfs:label """CARRY! - Autism Cooperation Station"""@en ;
 	schema:WebSite <https://itunes.apple.com/us/app/cooperation-station-autism-teamwork-trainer/id1067863932?mt=8> ;
-	mhdb:isForDomain mhdb:action_syncronization ;
-	mhdb:isForDomain mhdb:cooperative_goal_setting ;
 	mhdb:isForDomain mhdb:social_interaction ;
+	mhdb:isForDomain mhdb:cooperative_goal_setting ;
+	mhdb:isForDomain mhdb:action_syncronization ;
 	mhdb:hasProjectType schema:VideoGame ;
 	mhdb:hasOrganization mhdb:Department_of_Psychology .
 
 mhdb:LIFTY-Autism_Cooperation_Station rdf:type foaf:Project ;
 	rdfs:label """LIFTY! - Autism Cooperation Station"""@en ;
 	schema:WebSite <https://itunes.apple.com/us/app/cooperation-station-autism-teamwork-trainer/id1067863932?mt=8> ;
-	mhdb:isForDomain mhdb:complementary_action ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:isForDomain mhdb:joint_attention ;
 	mhdb:isForDomain mhdb:action_prediction ;
+	mhdb:isForDomain mhdb:complementary_action ;
+	mhdb:isForDomain mhdb:joint_attention ;
 	mhdb:hasProjectType schema:VideoGame ;
 	mhdb:hasOrganization mhdb:Department_of_Psychology .
 
@@ -1327,8 +1326,8 @@ mhdb:ME_BOOK rdf:type foaf:Project ;
 	rdfs:label """ME BOOK"""@en ;
 	schema:WebSite <http://www.sciencedaily.com/releases/2015/08/150824114732.htm> ;
 	rdfs:comment """a combination of a social narrative and gaming system that psychologists and parents can use as behavioral therapies for autistic children."""@en ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:social_interaction ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType mhdb:media ;
 	mhdb:hasOrganization mhdb:MEBOOK_team ;
 	mhdb:hasSensor mhdb:vibration_sensor .
@@ -1336,16 +1335,16 @@ mhdb:ME_BOOK rdf:type foaf:Project ;
 mhdb:BRICKY-Autism_Cooperation_Station rdf:type foaf:Project ;
 	rdfs:label """BRICKY! - Autism Cooperation Station"""@en ;
 	schema:WebSite <https://itunes.apple.com/us/app/cooperation-station-autism-teamwork-trainer/id1067863932?mt=8> ;
-	mhdb:isForDomain mhdb:social_interaction ;
 	mhdb:isForDomain mhdb:cooperation ;
+	mhdb:isForDomain mhdb:social_interaction ;
 	mhdb:hasProjectType schema:VideoGame ;
 	mhdb:hasOrganization mhdb:Department_of_Psychology .
 
 mhdb:TANKY-Autism_Cooperation_Station rdf:type foaf:Project ;
 	rdfs:label """TANKY! - Autism Cooperation Station"""@en ;
 	schema:WebSite <https://itunes.apple.com/us/app/cooperation-station-autism-teamwork-trainer/id1067863932?mt=8> ;
-	mhdb:isForDomain mhdb:social_interaction ;
 	mhdb:isForDomain mhdb:cooperation ;
+	mhdb:isForDomain mhdb:social_interaction ;
 	mhdb:hasProjectType schema:VideoGame ;
 	mhdb:hasOrganization mhdb:Department_of_Psychology .
 
@@ -1365,10 +1364,10 @@ mhdb:Autism_Hackathon_idea-audeo rdf:type foaf:Project ;
 	schema:WebSite <http://www.cnet.com/news/hacking-for-autism-apps-to-help-everyone-on-the-spectrum/> ;
 	rdfs:comment """Audeo helps people on the autism spectrum learn about emotional context within a conversation through visual cues. Audeo displays images related to the conversation and reading material to help the user understand what emotions they should be aware of and their context in the conversation."""@en ;
 	mhdb:isForDomain mhdb:emotion_recognition ;
-	mhdb:isForDomain mhdb:emotional_awareness ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:hasProjectType mhdb:hackathon ;
+	mhdb:isForDomain mhdb:emotional_awareness ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType mhdb:hackathon ;
 	ssn:observes mhdb:word_count ;
 	ssn:observes mhdb:synchronous_electrical_activity .
 
@@ -1428,8 +1427,8 @@ mhdb:Random_acts_of_kindness_app rdf:type foaf:Project ;
 mhdb:Playing_with_friends_with_the_wankidos rdf:type foaf:Project ;
 	rdfs:label """Playing with friends with the wankidos"""@en ;
 	schema:WebSite <https://www.wonkido.com/about> ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:social_interaction ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType schema:SoftwareApplication .
 
 mhdb:Conversation_Coach rdf:type foaf:Project ;
@@ -1454,30 +1453,30 @@ mhdb:Autism_Therapy_with_Mental_Imagery_therapy_for_Autism_MITA rdf:type foaf:Pr
 mhdb:Touch_autism_apps rdf:type foaf:Project ;
 	rdfs:label """Touch autism apps"""@en ;
 	schema:WebSite <http://touchautism.com/app/autism-apps/> ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:hasProjectType schema:WebSite ;
-	mhdb:hasProjectType schema:SoftwareApplication .
+	mhdb:isForDomain mhdb:communication ;
+	mhdb:hasProjectType schema:SoftwareApplication ;
+	mhdb:hasProjectType schema:WebSite .
 
 mhdb:Holli-Google_Glass_app_as_a_social-skills_coach_for_children_with_autism_spectrum_disorder_ASD rdf:type foaf:Project ;
 	rdfs:label """Holli - Google Glass app as a social-skills coach for children with autism spectrum disorder (ASD)"""@en ;
 	schema:WebSite <http://www.ibbme.utoronto.ca/news/google-glass-app-helps-autistic-children-social-interactions/> ;
-	mhdb:isForDomain mhdb:communication ;
 	mhdb:isForDomain mhdb:social_interaction ;
-	mhdb:hasProjectType mhdb:wearable ;
+	mhdb:isForDomain mhdb:communication ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
-	mhdb:hasOrganization mhdb:Autism_Research_Centre ;
-	mhdb:hasOrganization mhdb:Institute_of_Biomaterials__Biomedical_Engineering .
+	mhdb:hasProjectType mhdb:wearable ;
+	mhdb:hasOrganization mhdb:Institute_of_Biomaterials__Biomedical_Engineering ;
+	mhdb:hasOrganization mhdb:Autism_Research_Centre .
 
 mhdb:samsung_simband rdf:type foaf:Project ;
 	rdfs:label """samsung simband"""@en ;
 	schema:WebSite <https://www.simband.io/documentation/simband-documentation/> ;
 	mhdb:hasProjectType mhdb:wearable ;
-	mhdb:hasSensor mhdb:microphone ;
-	mhdb:hasSensor mhdb:accelerometer ;
-	mhdb:hasSensor mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
 	mhdb:hasSensor mhdb:gyroscope ;
+	mhdb:hasSensor mhdb:microphone ;
+	mhdb:hasSensor mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
 	mhdb:hasSensor mhdb:electrocardiography_sensor ;
+	mhdb:hasSensor mhdb:accelerometer ;
 	mhdb:hasSensor mhdb:photoplethysmogram .
 
 mhdb:nonin_pulse_oximeters-medical_device rdf:type foaf:Project ;
@@ -1490,8 +1489,8 @@ mhdb:nonin_pulse_oximeters-medical_device rdf:type foaf:Project ;
 mhdb:Personalized_Real-Time_Intervention_for_Motivation_Enhancement_PRIME_app_for_schizophrenia rdf:type foaf:Project ;
 	rdfs:label """Personalized Real-Time Intervention for Motivation Enhancement (PRIME) app for schizophrenia"""@en ;
 	schema:WebSite mhdb:nan ;
-	mhdb:isForDomain mhdb:reward_processing_impairment ;
 	mhdb:isForDomain mhdb:motivation ;
+	mhdb:isForDomain mhdb:reward_processing_impairment ;
 	mhdb:hasProjectType schema:SoftwareApplication ;
 	mhdb:hasOrganization mhdb:The_Digital_Research_and_Interventions_for_Volitional_Enhancement_DRIVE_Lab .
 
@@ -1546,8 +1545,8 @@ mhdb:Social_Cognition_Perception_Executive_Functions rdf:type foaf:Project ;
 mhdb:Cambridge_Cognition rdf:type org:organization ;
 	rdf:type foaf:Project ;
 	rdfs:label """Cambridge Cognition"""@en ;
-	schema:WebSite <http://www.cambridgecognition.com/services/neuroscience-consultancy/francesca-cormack/> ;
 	schema:WebSite <http://www.cambridgecognition.com/cantab/cognitive-tests/> ;
+	schema:WebSite <http://www.cambridgecognition.com/services/neuroscience-consultancy/francesca-cormack/> ;
 	mhdb:hasProjectType mhdb:software ;
 	org:hasMember mhdb:Francesca_Cormack .
 
@@ -1607,6 +1606,17 @@ mhdb:University_of_Pennsylvania_Penn_Computerized_Neurocognitive_Battery rdf:typ
 	schema:WebSite <https://penncnp.med.upenn.edu/> ;
 	mhdb:hasProjectType mhdb:software .
 
+mhdb:operating_system rdf:type mhdb:ProjectType ;
+	rdfs:label """operating system"""@en ;
+	rdfs:subClassOf mhdb:digital_platform .
+
+mhdb:mobile_device rdf:type mhdb:ProjectType ;
+	rdfs:label """mobile device"""@en ;
+	rdfs:subClassOf mhdb:digital_platform .
+
+mhdb:game rdf:type mhdb:ProjectType ;
+	rdfs:label """game"""@en .
+
 mhdb:technology rdf:type mhdb:ProjectType ;
 	rdfs:label """technology"""@en .
 
@@ -1615,13 +1625,15 @@ mhdb:wearable rdf:type mhdb:ProjectType ;
 	rdfs:subClassOf mhdb:technology .
 
 schema:SoftwareApplication rdf:type mhdb:ProjectType ;
-	rdfs:label """app"""@en ;
 	rdfs:label """digital tool"""@en ;
+	rdfs:label """app"""@en ;
+	rdfs:subClassOf mhdb:software ;
 	rdfs:subClassOf mhdb:technology .
 
 schema:VideoGame rdf:type mhdb:ProjectType ;
 	rdfs:label """digital game"""@en ;
-	rdfs:subClassOf mhdb:technology .
+	rdfs:subClassOf mhdb:technology ;
+	rdfs:subClassOf mhdb:game .
 
 mhdb:virtual_reality rdf:type mhdb:ProjectType ;
 	rdfs:label """virtual reality"""@en ;
@@ -1657,7 +1669,8 @@ mhdb:augmented_reality rdf:type mhdb:ProjectType ;
 	rdfs:subClassOf mhdb:technology .
 
 mhdb:non-digital_game rdf:type mhdb:ProjectType ;
-	rdfs:label """non-digital game"""@en .
+	rdfs:label """non-digital game"""@en ;
+	rdfs:subClassOf mhdb:game .
 
 mhdb:robot rdf:type mhdb:ProjectType ;
 	rdfs:label """robot"""@en ;
@@ -1675,8 +1688,8 @@ mhdb:hackathon rdf:type mhdb:ProjectType ;
 
 mhdb:tablet rdf:type mhdb:ProjectType ;
 	rdfs:label """tablet"""@en ;
-	rdfs:subClassOf mhdb:digital_platform ;
-	rdfs:subClassOf mhdb:technology .
+	rdfs:subClassOf mhdb:technology ;
+	rdfs:subClassOf mhdb:digital_platform .
 
 mhdb:competition rdf:type mhdb:ProjectType ;
 	rdfs:label """competition"""@en .
@@ -1686,10 +1699,6 @@ mhdb:mooc rdf:type mhdb:ProjectType ;
 
 mhdb:science_contest rdf:type mhdb:ProjectType ;
 	rdfs:label """science contest"""@en .
-
-mhdb:toy rdf:type mhdb:ProjectType ;
-	rdfs:label """toy"""@en ;
-	rdfs:subClassOf mhdb:non-digital_tool .
 
 health-lifesci:MedicalDevice rdf:type mhdb:ProjectType ;
 	rdfs:label """medical device"""@en ;
@@ -1715,9 +1724,6 @@ mhdb:program rdf:type mhdb:ProjectType ;
 mhdb:patient_innovation rdf:type mhdb:ProjectType ;
 	rdfs:label """patient innovation"""@en .
 
-mhdb:non-digital_tool rdf:type mhdb:ProjectType ;
-	rdfs:label """non-digital tool"""@en .
-
 mhdb:software rdf:type mhdb:ProjectType ;
 	rdfs:label """software"""@en ;
 	rdfs:subClassOf mhdb:technology .
@@ -1740,11 +1746,11 @@ mhdb:personal_computer rdf:type mhdb:ProjectType ;
 
 mhdb:cell_phone rdf:type mhdb:ProjectType ;
 	rdfs:label """cell phone"""@en ;
-	rdfs:subClassOf mhdb:digital_platform .
+	rdfs:subClassOf mhdb:mobile_device .
 
 mhdb:smartphone rdf:type mhdb:ProjectType ;
 	rdfs:label """smartphone"""@en ;
-	rdfs:subClassOf mhdb:digital_platform .
+	rdfs:subClassOf mhdb:mobile_device .
 
 mhdb:laptop rdf:type mhdb:ProjectType ;
 	rdfs:label """laptop"""@en ;
@@ -1752,11 +1758,11 @@ mhdb:laptop rdf:type mhdb:ProjectType ;
 
 mhdb:iOS rdf:type mhdb:ProjectType ;
 	rdfs:label """iOS"""@en ;
-	rdfs:subClassOf mhdb:digital_platform .
+	rdfs:subClassOf mhdb:operating_system .
 
 mhdb:Android rdf:type mhdb:ProjectType ;
 	rdfs:label """Android"""@en ;
-	rdfs:subClassOf mhdb:digital_platform .
+	rdfs:subClassOf mhdb:operating_system .
 
 mhdb:Wearable_Health_Lab rdf:type org:organization ;
 	rdfs:label """Wearable Health Lab"""@en ;
@@ -2011,16 +2017,6 @@ mhdb:Center_for_AdvancedSelf-Powered_Systems_ofIntegrated_SensorsandTechnologies
 	org:hasMember mhdb:Dr_Veena_Misra ;
 	frapo:hasLocation mhdb:North_Carolina_State_University_with_NSF .
 
-mhdb:Also_affiliated_with_ASSIST_at_NCSU rdf:type org:organization ;
-	rdfs:label """Also affiliated with ASSIST at NCSU:"""@en ;
-	frapo:hasLocation mhdb:University_of_Virginia ;
-	frapo:hasLocation mhdb:The_University_of_Adelaide ;
-	frapo:hasLocation mhdb:Korea_Advanced_Institute_of_Science_and_Technology_KAIST ;
-	frapo:hasLocation mhdb:Penn_State_University ;
-	frapo:hasLocation mhdb:Florida_International_University ;
-	frapo:hasLocation mhdb:University_of_Michigan ;
-	frapo:hasLocation mhdb:University_of_North_Carolina_at_Chapel_Hill .
-
 mhdb:The_Visualization_and_Interaction_for_Business_and_Entertainment_VIBE_group rdf:type org:organization ;
 	rdfs:label """The Visualization and Interaction for Business and Entertainment (VIBE) group"""@en ;
 	schema:WebSite <https://www.microsoft.com/en-us/research/group/vibe/?from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fgroups%2Fvibe%2F> ;
@@ -2150,17 +2146,17 @@ mhdb:MATTER_Lab rdf:type org:organization ;
 
 mhdb:Child_Study_Center rdf:type org:organization ;
 	rdfs:label """Child Study Center"""@en ;
-	schema:WebSite <https://med.nyu.edu/child-adolescent-psychiatry/home> ;
 	schema:WebSite <http://childstudycenter.yale.edu/> ;
-	org:hasMember mhdb:Denis_G_Sukhodolsky ;
+	schema:WebSite <https://med.nyu.edu/child-adolescent-psychiatry/home> ;
 	org:hasMember mhdb:Helen_L_Egger ;
-	frapo:hasLocation mhdb:Yale_University ;
-	frapo:hasLocation mhdb:NYU_Langone .
+	org:hasMember mhdb:Denis_G_Sukhodolsky ;
+	frapo:hasLocation mhdb:NYU_Langone ;
+	frapo:hasLocation mhdb:Yale_University .
 
 mhdb:Department_of_Computer_Science__Information_Engineering rdf:type org:organization ;
 	rdfs:label """Department of Computer Science & Information Engineering"""@en ;
-	schema:WebSite <https://en.csie.ncu.edu.tw/> ;
 	schema:WebSite <https://en.csie.ncu.edu.tw/department/member> ;
+	schema:WebSite <https://en.csie.ncu.edu.tw/> ;
 	org:hasMember mhdb:Fu-Hau_Hsu ;
 	org:hasMember mhdb:Hsu_Fu-Hau ;
 	frapo:hasLocation mhdb:National_Central_University ;
@@ -2168,8 +2164,8 @@ mhdb:Department_of_Computer_Science__Information_Engineering rdf:type org:organi
 
 mhdb:Institute_for_Creative_Technologies rdf:type org:organization ;
 	rdfs:label """Institute for Creative Technologies"""@en ;
-	schema:WebSite <http://ict.usc.edu/people/research-leads/> ;
 	schema:WebSite <http://ict.usc.edu/profile/albert-skip-rizzo/> ;
+	schema:WebSite <http://ict.usc.edu/people/research-leads/> ;
 	org:hasMember mhdb:Albert_Rizzo ;
 	org:hasMember mhdb:Randall_Hill_Jr ;
 	frapo:hasLocation mhdb:USC ;
@@ -2348,8 +2344,8 @@ mhdb:Department_of_Psychiatry rdf:type org:organization ;
 mhdb:Department_of_Psychology rdf:type org:organization ;
 	rdfs:label """Department of Psychology"""@en ;
 	schema:WebSite <https://sc.edu/study/colleges_schools/artsandsciences/our-people/faculty-staff/newman-norlund_roger.php> ;
-	org:hasMember mhdb:Roger_Newman-Norlund ;
 	org:hasMember mhdb:Carl_Sutton ;
+	org:hasMember mhdb:Roger_Newman-Norlund ;
 	frapo:hasLocation mhdb:University_of_South_Carolina ;
 	frapo:hasLocation mhdb:University_of_Chester .
 
@@ -2554,8 +2550,8 @@ mhdb:ImagiRation rdf:type org:organization ;
 
 mhdb:Department_of_Computer_Science_and_Engineering rdf:type org:organization ;
 	rdfs:label """Department of Computer Science and Engineering"""@en ;
-	schema:WebSite <http://www.pit.ac.in/cse.html> ;
 	schema:WebSite <http://www.acsu.buffalo.edu/~trivu/> ;
+	schema:WebSite <http://www.pit.ac.in/cse.html> ;
 	org:hasMember mhdb:Tri_Vu ;
 	org:hasMember mhdb:TA_Mohanprakash ;
 	frapo:hasLocation mhdb:University_at_Buffalo_Buffalo_NY ;
