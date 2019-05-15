@@ -2158,9 +2158,10 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
 
     dsm_classes = dsm5_xls.parse("Classes")
     dsm_properties = dsm5_xls.parse("Properties")
-    sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
-    severities = dsm5_xls.parse("severities")
     disorders = dsm5_xls.parse("disorders")
+    sign_or_symptoms = dsm5_xls.parse("sign_or_symptoms")
+    examples_sign_or_symptoms = dsm5_xls.parse("examples_sign_or_symptoms")
+    severities = dsm5_xls.parse("severities")
     disorder_categories = dsm5_xls.parse("disorder_categories")
     disorder_subcategories = dsm5_xls.parse("disorder_subcategories")
     disorder_subsubcategories = dsm5_xls.parse("disorder_subsubcategories")
@@ -2363,6 +2364,40 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
         for predicates in predicates_list:
             statements = add_if(
                 symptom_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # examples_sign_or_symptoms worksheet
+    for row in examples_sign_or_symptoms.iterrows():
+
+        example_symptom_label = language_string(row[1]["examples_sign_or_symptoms"])
+        example_symptom_iri = check_iri(row[1]["examples_sign_or_symptoms"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", example_symptom_label))
+        predicates_list.append(("rdf:type", "mhdb:ExampleSignOrSymptom"))
+
+        indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
+        if indices_sign_or_symptom not in exclude_list and \
+                not isinstance(indices_sign_or_symptom, float):
+            if isinstance(indices_sign_or_symptom, str):
+                indices = [np.int(x) for x in
+                           indices_sign_or_symptom.strip().split(',') if len(x) > 0]
+            elif isinstance(indices_sign_or_symptom, int):
+                indices = [indices_sign_or_symptom]
+            for index in indices:
+                objectRDF = sign_or_symptoms[sign_or_symptoms["index"] ==
+                                           index]["sign_or_symptom"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("mhdb:isExampleOf",
+                                            check_iri(objectRDF)))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                example_symptom_iri,
                 predicates[0],
                 predicates[1],
                 statements,
