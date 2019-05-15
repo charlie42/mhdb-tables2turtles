@@ -1154,12 +1154,14 @@ def ingest_behaviors(behaviors_xls, references_xls, dsm5_xls, statements={}):
             elif gender_index == 3: # female
                 predicates_list.append(
                     ("schema:audience", "FemaleAudience"))
+
         indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
         if isinstance(indices_sign_or_symptom, str) and \
                 indices_sign_or_symptom not in exclude_list:
             indices = [np.int(x) for x in
                        indices_sign_or_symptom.strip().split(',') if len(x)>0]
             for index in indices:
+                #print(row[1]["index"], index)
                 objectRDF = sign_or_symptoms[sign_or_symptoms["index"] ==
                                              index]["sign_or_symptom"].values[0]
                 if isinstance(objectRDF, str):
@@ -2326,14 +2328,14 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                             gender_index = np.int(row2[1]["index_gender"])
                             if gender_index == 2:  # male
                                 predicates_list.append(
-                                    ("schema:audience", "MaleAudience"))
+                                    ("schema:audience", "mhdb:MaleAudience"))
                                 predicates_list.append(
-                                    ("schema:epidemiology", "MaleAudience"))
+                                    ("schema:epidemiology", "mhdb:MaleAudience"))
                             elif gender_index == 3:  # female
                                 predicates_list.append(
-                                    ("schema:audience", "FemaleAudience"))
+                                    ("schema:audience", "mhdb:FemaleAudience"))
                                 predicates_list.append(
-                                    ("schema:epidemiology", "FemaleAudience"))
+                                    ("schema:epidemiology", "mhdb:FemaleAudience"))
                         break
 
         indices_disorder = row[1]["indices_disorder"]
