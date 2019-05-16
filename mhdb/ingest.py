@@ -620,6 +620,17 @@ def ingest_tasks(tasks_xls, domains_xls, projects_xls, references_xls,
         predicates_list.append(("rdfs:label", task_category_label))
         predicates_list.append(("rdf:type", "demcare:Task"))
 
+        indices_domain = row[1]["indices_domain"]
+        if isinstance(indices_domain, str):
+            indices = [np.int(x) for x in indices_domain.strip().split(',')
+                       if len(x)>0]
+            for index in indices:
+                objectRDF = domains[domains["index"] ==
+                                    index]["domain"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("mhdb:assessesDomain",
+                                            check_iri(objectRDF)))
+
         for predicates in predicates_list:
             statements = add_if(
                 task_category_iri,
