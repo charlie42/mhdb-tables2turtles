@@ -57,7 +57,7 @@ if run_all:
     do_references = 1
 else:
     do_questions = 0
-    do_tasks = 0
+    do_tasks = 1
     do_projects = 0
     do_behaviors = 0
     do_domains = 0
