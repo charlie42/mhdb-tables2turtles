@@ -1,7 +1,19 @@
 #!/usr/bin/env python
 """
-This program converts five specific mental health spreadsheet workbooks to RDF
+This program converts specific mental health spreadsheet workbooks to RDF
 text documents.
+
+This mental health database interrelates information about mental health-related
+(1) signs, symptoms, and disorders from the DSM-5,
+(2) questions from questionnaires,
+(3) cognitive tasks,
+(4) behaviors,
+(5) cognitive domains,
+(6) measures and sensors,
+(7) projects and products, and
+(8) relevant references.
+The database is licensed under the terms of the Creative Commons BY license.
+Current information can be found on the website, https://matter.childmind.org.
 
 Authors:
     - Arno Klein, 2017-2019 (arno@childmind.org)  http://binarybottle.com
@@ -32,12 +44,27 @@ except:
 import numpy as np
 import pandas as pd
 
-do_questions = 1
-do_tasks = 1
-do_projects = 1
-do_behaviors = 1
-do_dsm5 = 1
-do_references = 1
+run_all = 1
+if run_all:
+    do_questions = 1
+    do_tasks = 1
+    do_projects = 1
+    do_behaviors = 1
+    do_domains = 1
+    do_measures = 1
+    do_claims = 1
+    do_dsm5 = 1
+    do_references = 1
+else:
+    do_questions = 0
+    do_tasks = 0
+    do_projects = 0
+    do_behaviors = 0
+    do_domains = 0
+    do_measures = 0
+    do_claims = 0
+    do_dsm5 = 0
+    do_references = 0
 
 def main():
     # ------------------------------------------------------------------------------
@@ -51,6 +78,27 @@ def main():
         )
     except:
         behaviorsFILE = 'data/behaviors.xlsx'
+    try:
+        domainsFILE = download_google_sheet(
+            'data/domains.xlsx',
+            "11OkIWLwZYi9xkpuFODAKXQZHEFeMvYCQ8BTfIBKm0Z8"
+        )
+    except:
+        domainsFILE = 'data/domains.xlsx'
+    try:
+        measuresFILE = download_google_sheet(
+            'data/measures.xlsx',
+            "1ELaw79zmtmjmrg3J7slyoP-HXdfQRWa1Aqnbp50cmj8"
+        )
+    except:
+        measuresFILE = 'data/measures.xlsx'
+    try:
+        claimsFILE = download_google_sheet(
+            'data/claims.xlsx',
+            "1XaOcztrjtoh2Jf5c5FrxNNvbAriNnvSD9YYzgOpv474"
+        )
+    except:
+        claimsFILE = 'data/claims.xlsx'
     try:
         questionsFILE = download_google_sheet(
             'data/questions.xlsx',
@@ -93,6 +141,9 @@ def main():
     tasks_outfile = os.path.join('../output', 'tasks.ttl')
     projects_outfile = os.path.join('../output', 'projects.ttl')
     behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
+    domains_outfile = os.path.join('../output', 'domains.ttl')
+    measures_outfile = os.path.join('../output', 'measures.ttl')
+    claims_outfile = os.path.join('../output', 'claims.ttl')
     references_outfile = os.path.join('../output', 'references.ttl')
 
     # --------------------------------------------------------------------------
@@ -103,6 +154,9 @@ def main():
     tasks_xls = pd.ExcelFile(tasksFILE)
     projects_xls = pd.ExcelFile(projectsFILE)
     behaviors_xls = pd.ExcelFile(behaviorsFILE)
+    domains_xls = pd.ExcelFile(domainsFILE)
+    measures_xls = pd.ExcelFile(measuresFILE)
+    claims_xls = pd.ExcelFile(claimsFILE)
     references_xls = pd.ExcelFile(referencesFILE)
     X = ['', 'nan', np.nan, 'None', None, []]
 
@@ -116,9 +170,11 @@ This mental health database interrelates information about mental health-related
 (1) signs, symptoms, and disorders from the DSM-5, 
 (2) questions from questionnaires, 
 (3) cognitive tasks, 
-(4) behaviors, cognitive domains, measures, and sensors,  
-(5) projects and technologies, and 
-(6) relevant references.
+(4) behaviors,
+(5) cognitive domains,
+(6) measures and sensors,  
+(7) projects and products, and 
+(8) relevant references.
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 """.format(ddashes)
@@ -140,16 +196,16 @@ Current information can be found on the website, https://matter.childmind.org.
         questions_turtle = []
 
     if do_tasks:
-        tasks_statements = ingest_tasks(tasks_xls,
-            behaviors_xls, projects_xls, references_xls, statements={})
+        tasks_statements = ingest_tasks(tasks_xls, domains_xls, projects_xls,
+                                        references_xls, statements={})
         tasks_turtle = turtle_from_dict(tasks_statements)
     else:
         tasks_statements = []
         tasks_turtle = []
 
     if do_projects:
-        projects_statements = ingest_projects(projects_xls,
-            behaviors_xls, statements={})
+        projects_statements = ingest_projects(projects_xls, domains_xls,
+                                              measures_xls, statements={})
         projects_turtle = turtle_from_dict(projects_statements)
     else:
         projects_statements = []
@@ -163,8 +219,32 @@ Current information can be found on the website, https://matter.childmind.org.
         behaviors_statements = []
         behaviors_turtle = []
 
+    if do_domains:
+        domains_statements = ingest_domains(domains_xls, references_xls,
+                                            statements={})
+        domains_turtle = turtle_from_dict(domains_statements)
+    else:
+        domains_statements = []
+        domains_turtle = []
+
+    if do_measures:
+        measures_statements = ingest_measures(measures_xls, references_xls,
+                                              statements={})
+        measures_turtle = turtle_from_dict(measures_statements)
+    else:
+        measures_statements = []
+        measures_turtle = []
+
+    if do_claims:
+        claims_statements = ingest_claims(claims_xls, domains_xls, measures_xls,
+                                          references_xls, statements={})
+        claims_turtle = turtle_from_dict(claims_statements)
+    else:
+        claims_statements = []
+        claims_turtle = []
+
     if do_references:
-        references_statements = ingest_references(references_xls, behaviors_xls,
+        references_statements = ingest_references(references_xls, domains_xls,
                                                   statements={})
         references_turtle = turtle_from_dict(references_statements)
     else:
@@ -179,7 +259,10 @@ Current information can be found on the website, https://matter.childmind.org.
                     [tasks_statements, tasks_outfile, tasks_turtle],
                     [references_statements, references_outfile, references_turtle],
                     [projects_statements, projects_outfile, projects_turtle],
-                    [behaviors_statements, behaviors_outfile, behaviors_turtle]]
+                    [behaviors_statements, behaviors_outfile, behaviors_turtle],
+                    [domains_statements, domains_outfile, domains_turtle],
+                    [measures_statements, measures_outfile, measures_turtle],
+                    [claims_statements, claims_outfile, claims_turtle]]
 
     for ioutput, output_list in enumerate(outputs_list):
 
@@ -274,6 +357,39 @@ Current information can be found on the website, https://matter.childmind.org.
                     "{0}/{1}".format(base_uri, "behaviors"),
                     version,
                     "{0} — {1}".format(label, "Behaviors"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tBehaviors\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 6:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "domains"),
+                    version,
+                    "{0} — {1}".format(label, "Domains"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tBehaviors\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 7:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "measures"),
+                    version,
+                    "{0} — {1}".format(label, "Measures"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tBehaviors\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 8:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "claims"),
+                    version,
+                    "{0} — {1}".format(label, "Claims"),
                     "\n".join([
                         comment,
                         "{0}\n\t\tBehaviors\n{0}\n\n".format(ddashes)

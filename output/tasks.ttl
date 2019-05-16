@@ -19,9 +19,11 @@ This mental health database interrelates information about mental health-related
 (1) signs, symptoms, and disorders from the DSM-5, 
 (2) questions from questionnaires, 
 (3) cognitive tasks, 
-(4) behaviors, cognitive domains, measures, and sensors,  
-(5) projects and technologies, and 
-(6) relevant references.
+(4) behaviors,
+(5) cognitive domains,
+(6) measures and sensors,  
+(7) projects and products, and 
+(8) relevant references.
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 
@@ -72,19 +74,19 @@ mhdb:Simultaneity_Test_DIAT-SHIF_stems_from_the_classic_Stroop_test rdfs:label "
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Follow_the_ball_and_pay_attention_to_the_words_in_the_middle_of_the_screen_Focus_on_two_stimuli_at_the_same_time_There_will_be_a_background_with_a_white_ball_on_the_screen_Its_role_is_to_move_randomly_with_the_cursor_on_the_screen_You_must_press_the_space_bar_when_the_name_of_the_color_corresponds_to_the_color_of_the_letters_on_the_screen_When_the_color_does_not_correspond_to_the_name_on_the_screen_you_do_not_need_to_do_anything_The_important_thing_is_to_pay_attention_to_both_actions_at_the_same_time ;
 	rdfs:subClassOf mhdb:Stroop_task ;
-	mhdb:assessesDomain mhdb:divided_attention ;
 	mhdb:assessesDomain mhdb:inhibition ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:visual_perception ;
+	mhdb:assessesDomain mhdb:divided_attention ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:Cognifit .
 
 mhdb:Left_Right_Task_Stroop_task__Simon_Task rdfs:label """Left Right Task; Stroop task + Simon Task"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Study_the_interference_effects_of_conflicting_response_information_vs_conflicting_stimulus_information ;
-	rdfs:subClassOf mhdb:Stroop_task ;
 	rdfs:subClassOf mhdb:simon_task ;
-	mhdb:assessesDomain mhdb:hand-eye_coordination ;
+	rdfs:subClassOf mhdb:Stroop_task ;
 	mhdb:assessesDomain mhdb:inhibition ;
+	mhdb:assessesDomain mhdb:hand-eye_coordination ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:simon_effect_spatial_interference_task rdfs:label """simon effect (spatial interference task)"""@en ;
@@ -99,18 +101,18 @@ mhdb:Flanker_task_also_called_Eriksen_flanker_task_on_cog_atlas rdfs:label """Fl
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Flanker_Look_at_these_two_circles_Do_you_see_how_this_one_pointing_to_the_button_on_the_left_has_the_letters_A_and_B_in_it_And_this_one_pointing_to_the_button_on_the_right_has_the_letters_C_and_D_in_it_You_are_going_to_see_a_letter_in_the_middle_of_the_screen_like_this_A_and_then_click_the_button_that_has_that_letter_in_it_So_for_this_example_you_would_click_this_button_pointing_to_the_button_on_the_left_because_it_has_the_A_Do_you_understand ;
 	rdfs:subClassOf mhdb:flanker_task ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:selective_attention_capacity ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:Flanker_task rdfs:label """Flanker task"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_subject_must_focus_on_a_target_stimulus_while_ignoring_adjacent_flanker_stimuli ;
 	rdfs:subClassOf mhdb:flanker_task ;
-	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:assessesDomain mhdb:inhibition ;
-	mhdb:assessesDomain mhdb:processing_speed ;
+	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:assessesDomain mhdb:attention ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:negative_priming_paradigms_flanker_test rdfs:label """negative priming; paradigms: flanker test"""@en ;
@@ -125,9 +127,9 @@ mhdb:NIH_Toolbox_Flanker_Inhibitory_Control_and_Attention_Test_This_test_is_a_ve
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:On_each_trial_a_central_directional_target_fish_for_children_younger_than_8_arrows_for_ages_8_and_older_is_flanked_by_similar_stimuli_on_the_left_and_right_The_task_is_to_indicate_the_direction_of_the_central_stimulus_On_congruent_trials_the_flankers_face_the_same_direction_as_the_target_On_incongruent_trials_they_face_the_opposite_direction ;
 	rdfs:subClassOf mhdb:flanker_task ;
-	mhdb:assessesDomain mhdb:divided_attention ;
 	mhdb:assessesDomain mhdb:sustained_attention ;
 	mhdb:assessesDomain mhdb:selected_attention ;
+	mhdb:assessesDomain mhdb:divided_attention ;
 	mhdb:assessesDomain mhdb:attention ;
 	mhdb:hasProject mhdb:National_Institute_of_Health_Toolbox .
 
@@ -141,11 +143,11 @@ mhdb:Flanker rdfs:label """Flanker"""@en ;
 mhdb:ANT-1_Paradigm_revised_version_of_the_ANT_test_Attentional_Network_Task_ANT rdfs:label """ANT - 1 Paradigm (revised version of the ANT test); Attentional Network Task (ANT)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_ANT-I_paradigm_is_addressing_all_three_concepts_by_introducing_baseline_and_treatment_conditions_for_each_attentional_control_system_in_form_of_an_auditory_alert_Posner__Peterson_a_visual_location_cue_and_conflicting_flanker_stimuli_Erikson__Erikson_The_ANT-I_is_a_revised_version_of_the_original_ANT_test ;
-	mhdb:assessesDomain mhdb:executive_attention_Executive_attention_involves_conflict_resolution_and_control_over_decision-making_error_detection_and_habitual_response_inhibition ;
-	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:assessesDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
 	mhdb:assessesDomain mhdb:orienting_attention_Orienting_involves_selective_allocation_of_attention_to_a_source_of_signals_in_space ;
 	mhdb:assessesDomain mhdb:attention ;
+	mhdb:assessesDomain mhdb:executive_attention_Executive_attention_involves_conflict_resolution_and_control_over_decision-making_error_detection_and_habitual_response_inhibition ;
+	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:audiometric rdfs:label """audiometric"""@en ;
@@ -164,9 +166,9 @@ mhdb:stop_signal_task rdfs:label """stop signal task"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_participant_must_respond_to_an_arrow_stimulus_by_selecting_one_of_two_options_depending_on_the_direction_in_which_the_arrow_points_If_an_audio_tone_is_present_the_subject_must_withhold_making_that_response_inhibition_The_test_consists_of_two_parts_In_the_first_part_the_participant_is_introduced_to_the_test_and_told_to_select_the_left-hand_button_when_they_see_a_left-pointing_arrow_and_the_right-hand_button_when_they_see_a_right-pointing_arrow_There_is_one_block_of_16_trials_for_the_participant_to_practice_this_In_the_second_part_the_participant_is_told_to_continue_selecting_the_buttons_when_they_see_the_arrows_but_if_they_hear_an_auditory_signal_a_beep_they_should_withhold_their_response_and_not_select_the_button_The_task_uses_a_staircase_design_for_the_stop_signal_delay_SSD_allowing_the_task_to_adapt_to_the_performance_of_the_participant_narrowing_in_on_the_50_success_rate_for_inhibition ;
 	rdfs:subClassOf mhdb:stop_signal_task ;
-	mhdb:assessesDomain mhdb:executive_function ;
-	mhdb:assessesDomain mhdb:inhibition ;
 	mhdb:assessesDomain mhdb:impulsivity ;
+	mhdb:assessesDomain mhdb:inhibition ;
+	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:hasProject mhdb:Cambridge_Cognition .
 
 mhdb:Stop-Signal_task rdfs:label """Stop-Signal task"""@en ;
@@ -191,16 +193,16 @@ mhdb:impulsivity_and_attention_control_The_AX_-Continuous_Performance_Test___Coh
 mhdb:inter-hemispheric_integration_Modified_Posner_Letter_matching_Task_Posners_name_identity_match_task rdfs:label """inter-hemispheric integration; Modified Posner Letter matching Task; Posner's name identity match task."""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_task_is_a_modified_Posner_Letter_Matching_paradigm_in_which_a_pair_of_letters_one_lower_and_one_upper_case_is_presented_either_left_or_right_from_the_center_of_the_screen_In_the_spatial_task_condition_subjects_have_to_decide_which_letter_is_the_bigger_one_The_upper_case_letter_is_presented_physically_bigger_than_the_lower_case_letter_In_the_symbolic_task_condition_subjects_must_decide_if_both_symbols_lower_and_upper_case_reference_the_same_letter_name_This_is_equivalent_to_the_Posners_name_identity_match ;
-	mhdb:assessesDomain mhdb:spatial_processing ;
 	mhdb:assessesDomain mhdb:spatial_skill ;
+	mhdb:assessesDomain mhdb:spatial_processing ;
 	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:Boxed rdfs:label """Boxed"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Boxed_For_this_game_youll_be_looking_at_these_boxes_Do_you_see_how_they_all_have_a_gap_in_them_where_there_is_a_space_and_the_box_is_open_For_this_game_you_only_have_to_look_for_the_green_boxes_you_should_ignore_the_red_ones__SWIPE__There_are_two_buttons_one_says_Top_and_one_says_Bottom_If_the_green_box_is_open_toward_the_top_you_press_the_button_that_says_top_SWIPE__If_the_green_box_is_open_toward_the_bottom_you_press_the_button_that_says_bottom ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:selective_attention_capacity ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:vigilance rdfs:label """vigilance"""@en ;
@@ -216,15 +218,15 @@ mhdb:Motor_Praxis_Task_MPT rdfs:label """Motor Praxis Task (MPT)"""@en ;
 mhdb:SAAT rdfs:label """SAAT"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:SAAT_You_are_going_to_see_this_symbol_again_in_this_game_Sometimes_the_symbol_will_be_at_the_top_of_the_screen_and_sometimes_it_will_be_at_the_bottom_of_the_screen__SWIPE__You_job_is_to_tap_this_button_point_to_the_Tap_button_ONLY_when_you_see_it_at_the_top_of_the_screen_SWIPE__When_it_is_at_the_bottom_of_the_screen_you_dont_click_anything__SWIPE__Go_as_fast_as_you_can_without_making_mistakes_but_if_you_make_a_mistake_just_keep_going_Do_you_understand_how_to_play ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:selective_attention_capacity ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:BRT rdfs:label """BRT"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:BRT_You_are_going_to_see_this_symbol_appear_in_the_middle_of_the_screen_pointing_at_the_ACE_logo_There_will_be_a_button_on_the_bottom_of_the_screen_with_the_word_Tap_on_it_SWIPE_Your_job_is_to_press_that_button_as_fast_as_you_can_when_you_see_the_symbol_appear_on_the_screen_First_you_are_going_to_use_your_NON-DOMINANT_index_finger__SWIPE__Then_the_iPad_will_tell_you_to_use_your_DOMINANT_index_finger__Do_you_understand_how_to_play ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:selective_attention_capacity ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:mental_rotation rdfs:label """mental rotation"""@en ;
@@ -253,27 +255,22 @@ mhdb:hierarchical_stimuli_in_divided_attention rdfs:label """hierarchical stimul
 
 mhdb:Spatial_Span rdfs:label """Spatial Span"""@en ;
 	rdf:type demcare:Task ;
-	mhdb:hasTaskInstructions mhdb:na ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:TNT rdfs:label """TNT"""@en ;
 	rdf:type demcare:Task ;
-	mhdb:hasTaskInstructions mhdb:na ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:Spatial_Cueing rdfs:label """Spatial Cueing"""@en ;
 	rdf:type demcare:Task ;
-	mhdb:hasTaskInstructions mhdb:na ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:Spatial_Span_B rdfs:label """Spatial Span B"""@en ;
 	rdf:type demcare:Task ;
-	mhdb:hasTaskInstructions mhdb:na ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:Filter rdfs:label """Filter"""@en ;
 	rdf:type demcare:Task ;
-	mhdb:hasTaskInstructions mhdb:na ;
 	mhdb:hasProject mhdb:ACE .
 
 mhdb:nested_figures_different_versions_of_the_nested_figure_task_EFT_Coates_1972_Witkin_et_al_1971_but_see_Minshew_et_al_2008 rdfs:label """nested figures (different versions of the nested figure task (EFT Coates 1972 Witkin et al., 1971 but see Minshew et al., 2008))"""@en ;
@@ -405,8 +402,8 @@ mhdb:coordination_test_HECOOR_based_on_the_classic_Wisconsin_Card_Sorting_Test_M
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Follow_the_ball_manually_and_visually_A_moving_ball_will_appear_on_the_screen_You_must_follow_the_ball_with_the_cursor_without_leaving_it ;
 	rdfs:subClassOf mhdb:Wisconsin_card_sorting_task ;
-	mhdb:assessesDomain mhdb:hand-eye_coordination ;
 	mhdb:assessesDomain mhdb:visual_perception ;
+	mhdb:assessesDomain mhdb:hand-eye_coordination ;
 	mhdb:hasProject mhdb:Cognifit .
 
 mhdb:COOR_Precision_test_inspired_by_the_Wisconsin_Card_Sorting_Test_Manual_test rdfs:label """COOR Precision test (inspired by the Wisconsin (Card Sorting Test Manual) test)"""@en ;
@@ -444,15 +441,15 @@ mhdb:hide_and_seek rdfs:label """hide and seek"""@en ;
 mhdb:hidden_path_learning rdfs:label """hidden path learning"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:learn_and_remember_a_hidden_pathway ;
-	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:assessesDomain mhdb:memory ;
+	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:VAS rdfs:label """VAS"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Measure_subjective_experience_by_rating_statements_on_an_visual_analogue_scale ;
-	mhdb:assessesDomain mhdb:mood ;
 	mhdb:assessesDomain mhdb:pain ;
+	mhdb:assessesDomain mhdb:mood ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:Road_tracking rdfs:label """Road tracking"""@en ;
@@ -462,13 +459,13 @@ mhdb:Road_tracking rdfs:label """Road tracking"""@en ;
 
 mhdb:N-Back_task rdfs:label """N-Back task"""@en ;
 	rdf:type demcare:Task ;
-	mhdb:hasTaskInstructions mhdb:The_n-back_paradigm_is_a_widely_used_measure_of_working_memory_that_requires_flexible_updating_capabilities_EXAMINER_includes_a_spatial_1-back_and_2-back_task_to_assess_spatial_working_memory_The_1-back_requires_maintaining_and_updating_one_location_at_a_time_whereas_the_more_difficult_2-back_requires_maintaining_and_updating_two_locations ;
 	mhdb:hasTaskInstructions mhdb:Study_the_ability_to_recognize_items_that_have_been_presented_n-steps_before ;
+	mhdb:hasTaskInstructions mhdb:The_n-back_paradigm_is_a_widely_used_measure_of_working_memory_that_requires_flexible_updating_capabilities_EXAMINER_includes_a_spatial_1-back_and_2-back_task_to_assess_spatial_working_memory_The_1-back_requires_maintaining_and_updating_one_location_at_a_time_whereas_the_more_difficult_2-back_requires_maintaining_and_updating_two_locations ;
 	rdfs:subClassOf mhdb:n-back_task ;
 	mhdb:assessesDomain mhdb:working_memory ;
 	mhdb:assessesDomain mhdb:attention ;
-	mhdb:hasProject mhdb:University_of_California_San_Francisco_Examiner ;
-	mhdb:hasProject mhdb:ERTS .
+	mhdb:hasProject mhdb:ERTS ;
+	mhdb:hasProject mhdb:University_of_California_San_Francisco_Examiner .
 
 mhdb:LNB_letter_N-Back rdfs:label """LNB (letter N-Back)"""@en ;
 	rdf:type demcare:Task ;
@@ -496,8 +493,8 @@ mhdb:One_Back_Test rdfs:label """One Back Test"""@en ;
 	mhdb:hasTaskInstructions mhdb:The_One_Back_test_measures_working_memory_using_an_n-back_paradigm_The_on-screen_instructions_ask_Is_the_previous_card_the_same_A_playing_card_is_presented_face_up_in_the_center_of_the_screen_The_participant_must_decide_whether_the_card_is_the_same_as_the_previous_card_If_the_card_is_the_same_the_participant_should_press_Yes_and_if_it_is_not_the_same_the_participant_should_press_No_The_participant_is_encouraged_to_work_as_quickly_as_they_can_and_be_as_accurate_as_possible ;
 	rdfs:subClassOf mhdb:n-back_task ;
 	mhdb:assessesDomain mhdb:working_memory ;
-	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD ;
-	mhdb:hasProject mhdb:Cogstate .
+	mhdb:hasProject mhdb:Cogstate ;
+	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD .
 
 mhdb:3_steps_behind rdfs:label """3 steps behind"""@en ;
 	rdf:type demcare:Task ;
@@ -510,9 +507,9 @@ mhdb:Unstable_Tracking_N-back_task__MemoryCRT_Task_adapted_and_updated_from_the_
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Use_compensatory_tracking_to_measure_mental_stress_and_impact_of_secondary_task_on_performance ;
 	rdfs:subClassOf mhdb:n-back_task ;
-	mhdb:assessesDomain mhdb:executive_function ;
-	mhdb:assessesDomain mhdb:inhibition ;
 	mhdb:assessesDomain mhdb:memory ;
+	mhdb:assessesDomain mhdb:inhibition ;
+	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:sternberg_memory_search_variable_set rdfs:label """sternberg memory search (variable set)"""@en ;
@@ -554,8 +551,8 @@ mhdb:Judgement_of_line_orientation_JOLO rdfs:label """Judgement of line orientat
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_Judgment_of_Line_Orientation_JOLO_is_a_computerized_version_of_Bentons_Benton_et_al_1978_test_Gur_et_al_1982_It_presents_two_lines_at_an_angle_and_participants_indicate_the_corresponding_lines_on_a_simultaneously_presented_array_The_number_of_correct_responses_is_entered_as_the_accuracy_score ;
 	rdfs:subClassOf mhdb:line_orientation_task ;
-	mhdb:assessesDomain mhdb:spatial_perception ;
 	mhdb:assessesDomain mhdb:spatial_skill ;
+	mhdb:assessesDomain mhdb:spatial_perception ;
 	mhdb:hasProject mhdb:University_of_Pennsylvania_Penn_Computerized_Neurocognitive_Battery .
 
 mhdb:Judgement_of_Line_Orientation_JLO rdfs:label """Judgement of Line Orientation (JLO)"""@en ;
@@ -609,8 +606,8 @@ mhdb:delayed_matching_to_sample rdfs:label """delayed matching to sample"""@en ;
 mhdb:Recognition_Test_WOM-REST_based_off_of_Conners_CPT_test_the_classic_Test_of_Memory_Malingering_TOMM_test_the_classic_Hooper_Visual_Organization_Task_VOT_test_by_Hooper_1982_and_the_classic_TOVA_test rdfs:label """Recognition Test WOM-REST (based off of Conner's (CPT) test, the classic Test of Memory Malingering (TOMM) test, the classic Hooper Visual Organization Task (VOT) test by Hooper (1982), and the classic TOVA test)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Detect_which_is_the_series_of_three_objects_that_were_previously_shown_and_select_which_series_is_correct_in_the_shortest_time_possible_When_the_game_starts_you_will_see_three_common_objects_on_the_screen_and_you_must_remember_the_order_in_which_these_objects_appeared_After_a_few_seconds_the_objects_will_disappear_and_three_sets_of_four_different_objects_will_be_presented_It_is_important_to_pay_attention_to_the_order_in_which_the_sequence_appeared_in_the_first_few_seconds_as_you_will_have_you_identify_which_objects_they_were_later ;
-	mhdb:assessesDomain mhdb:auditory_short_term_memory ;
 	mhdb:assessesDomain mhdb:short_term_memory ;
+	mhdb:assessesDomain mhdb:auditory_short_term_memory ;
 	mhdb:assessesDomain mhdb:working_memory ;
 	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:Cognifit .
@@ -707,8 +704,8 @@ mhdb:visual_search rdfs:label """visual search"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:In_the_visual_search_paradigm_subject_must_search_for_a_target_symbol_among_distractor_symbols_Study_the_speed_of_detecting_a_target_symbol_among_distractors ;
 	mhdb:assessesDomain mhdb:perception ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:attention ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:serial_arithmetic_task_variant_of_the_Paced_Auditory_Serial_Addition_Test_PASAT rdfs:label """serial arithmetic task; variant of the Paced Auditory Serial Addition Test (PASAT)"""@en ;
@@ -727,8 +724,8 @@ mhdb:digit_symbol_substitution rdfs:label """digit symbol substitution"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:This_test_measures_the_speed_of_matching_symbols_to_digits ;
 	rdfs:subClassOf mhdb:digit_symbol_substitution_task ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:attention ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:Digital_Symbol_Substitution_Task_DSST rdfs:label """Digital Symbol Substitution Task (DSST)"""@en ;
@@ -761,8 +758,8 @@ mhdb:serial_reaction_time_task rdfs:label """serial reaction time task"""@en ;
 mhdb:task_switching rdfs:label """task switching"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:ask_Switching_Paradigm_requires_subjects_to_switch_between_two_or_more_instructions_on_a_trial-by-trial_base_It_focuses_on_the_appropriation_of_the_instruction_and_the_costs_of_alternating_between_different_and_potentially_conflicting_response_sets_Study_the_effect_of_blocked_vs_mixed_instructions_on_your_response_time ;
-	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:assessesDomain mhdb:inhibition ;
+	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:assessesDomain mhdb:attention ;
 	mhdb:hasProject mhdb:ERTS .
 
@@ -776,8 +773,8 @@ mhdb:stimulus_quality rdfs:label """stimulus quality"""@en ;
 mhdb:spatial_attention_task rdfs:label """spatial attention task"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Study_how_you_can_benefit_from_a_cue_that_predicts_the_stimulus_location_To_study_the_difference_between_endo-exogenous_cues_within_the_same_choice_reaction_task_location_information_is_given_to_the_subject_before_the_actual_stimulus_is_presented_In_the_exogenous_condition_the_location_of_the_upcoming_stimulus_is_highlighted_to_indicate_the_likely_position_of_the_stimulus_In_the_endogenous_condition_an_arrow_in_the_center_of_the_screen_is_either_pointing_to_the_right_or_left ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:attention ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:ERTS .
 
 mhdb:random_dots rdfs:label """random dots"""@en ;
@@ -801,8 +798,8 @@ mhdb:letter_match_adapted_from_2_versions-matching_exact_physical_characteristic
 mhdb:concentration_test_VISMEM-PLAN_inspired_by_the_Wecshler_Memory_Scale_WMS_direct_and_indirect_digit_test_the_classic_Memory_Malingering_TOMM_test_and_Tower_of_London_TOL_test rdfs:label """concentration test VISMEM-PLAN (inspired by the Wecshler Memory Scale (WMS) direct and indirect digit test, the classic Memory Malingering (TOMM) test, and Tower of London (TOL) test)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Remember_the_highest_number_of_series_in_the_most_precise_way_possible_and_constantly_be_aware_of_the_stimuli_shown_In_this_exercise_the_stimuli_will_be_auditory_A_few_different_stimuli_will_be_positioned_on_the_screen_The_stimuli_on_the_screen_will_light_up_and_play_a_sound_one_after_another_until_a_series_is_completed_The_user_must_pay_close_attention_when_its_the_computers_turn_as_they_will_have_to_repeat_the_sequence_during_their_turn ;
-	mhdb:assessesDomain mhdb:spatial_perception ;
 	mhdb:assessesDomain mhdb:working_memory ;
+	mhdb:assessesDomain mhdb:spatial_perception ;
 	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:Cognifit .
 
@@ -816,8 +813,8 @@ mhdb:Sequencing_Test_WOM-ASM_based_on_Conners_classic_test_CPT_and_the_Wecshler_
 mhdb:decoding_test_VIPER-NAM_Korkman_Kirk_and_Kemp_test_of_1998_NEPSY rdfs:label """decoding test VIPER-NAM (Korkman, Kirk and Kemp test of 1998 (NEPSY))"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Recognize_the_object_and_identify_the_first_letter_of_the_displayed_image_as_quickly_as_possible_The_picture_of_an_object_will_appear_on_the_screen_for_a_short_period_of_time_After_a_few_seconds_the_image_will_disappear_and_you_will_see_various_letters_on_the_screen_One_of_these_letters_corresponds_to_the_first_object_that_was_shown ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:visual_perception ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:Cognifit .
 
 mhdb:estimation_test_1 rdfs:label """estimation test 1"""@en ;
@@ -854,15 +851,15 @@ mhdb:Identification_Test_COM-NAM_used_the_classic_test_from_Korkman_Kirk_and_Kem
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Remember_if_the_object_was_presented_as_an_image_or_sound_or_if_had_not_been_previously_presented_Sound_is_required_for_this_task_Objects_will_appear_on_the_screen_or_through_the_speakersheadphones_The_user_must_memorize_each_object_and_identify_the_boxes_that_appear_below_it_The_user_must_choose_the_correct_option_that_corresponds_to_each_object ;
 	mhdb:assessesDomain mhdb:visual_memory ;
-	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:assessesDomain mhdb:visual_perception ;
+	mhdb:assessesDomain mhdb:processing_speed ;
 	mhdb:hasProject mhdb:Cognifit .
 
 mhdb:Inattention_Test_FOCU-SHIF_based_on_the_classic_Conners_CPT_test rdfs:label """Inattention Test FOCU-SHIF (based on the classic Conners (CPT) test.)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Be_perceptive_to_changes_in_screen_color_and_press_the_yellow_light_as_quickly_as_possible_There_will_be_four_lights_in_each_of_the_corners_of_the_screen_When_the_light_turns_yellow_you_must_press_it_as_fast_as_you_can_If_the_lights_turn_red_you_must_stop_everything_until_the_lights_turn_yellow_again ;
-	mhdb:assessesDomain mhdb:inhibition ;
 	mhdb:assessesDomain mhdb:emotional_awareness ;
+	mhdb:assessesDomain mhdb:inhibition ;
 	mhdb:hasProject mhdb:Cognifit .
 
 mhdb:Inquiry_Test_REST-COM_used_the_classic_test_by_Korkman_Kirk_and_Kemp_in_1998_NEPSY_and_the_classic_TOVA_test_as_references_to_test_reaction_time rdfs:label """Inquiry Test REST-COM (used the classic test by Korkman, Kirk, and Kemp in 1998 (NEPSY), and the classic TOVA test as references to test reaction time)"""@en ;
@@ -893,8 +890,8 @@ mhdb:Processing_Test_REST-INH_inspired_by_the_classic_Variables_of_Attention_TOV
 mhdb:Programming_Test_VIPER-PLAN_referenced_the_classic_Tower_of_London_TOL_and_Hooper_Visual_Organization_Task_VOT_by_Hooper_1983_tests rdfs:label """Programming Test VIPER-PLAN (referenced the classic Tower of London (TOL) and Hooper Visual Organization Task (VOT) by Hooper (1983) tests)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:A_maze_will_appear_on_the_screen_Move_the_ball_from_the_top_right_part_of_the_screen_until_it_gets_out_of_the_maze_There_are_a_given_number_of_moves_in_which_this_should_be_completed_but_if_it_isnt_possible_you_should_try_to_get_across_in_the_fewest_moves_possible ;
-	mhdb:assessesDomain mhdb:spatial_perception ;
 	mhdb:assessesDomain mhdb:visual_perception ;
+	mhdb:assessesDomain mhdb:spatial_perception ;
 	mhdb:hasProject mhdb:Cognifit .
 
 mhdb:Recovery_Test_VISMEM_created_using_the_classic_Memory_Malingering_TOMM_test rdfs:label """Recovery Test VISMEM (created using the classic Memory Malingering (TOMM) test)"""@en ;
@@ -958,9 +955,9 @@ mhdb:Psychomotor_Vigilance_Test_PVT rdfs:label """Psychomotor Vigilance Test (PV
 mhdb:reaction_time_RTI rdfs:label """reaction time (RTI)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_participant_must_select_and_hold_a_button_at_the_bottom_of_the_screen_Circles_are_presented_above_one_for_the_simple_mode_and_five_for_the_five-choice_mode_In_each_case_a_yellow_dot_will_appear_in_one_of_the_circles_and_the_participant_must_react_as_soon_as_possible_releasing_the_button_at_the_bottom_of_the_screen_and_selecting_the_circle_in_which_the_dot_appeared ;
-	mhdb:assessesDomain mhdb:impulsivity ;
 	mhdb:assessesDomain mhdb:psychomotor_speed ;
 	mhdb:assessesDomain mhdb:attention ;
+	mhdb:assessesDomain mhdb:impulsivity ;
 	mhdb:hasProject mhdb:Cambridge_Cognition .
 
 mhdb:Rapid_visual_information_processing_RVP rdfs:label """Rapid visual information processing (RVP)"""@en ;
@@ -974,8 +971,8 @@ mhdb:Rapid_visual_information_processing_RVP rdfs:label """Rapid visual informat
 mhdb:motor_screening_task rdfs:label """motor screening task"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:Coloured_crosses_are_presented_in_different_locations_on_the_screen_one_at_a_time_The_participant_must_select_the_cross_on_the_screen_as_quickly_and_accurately_as_possible ;
-	mhdb:assessesDomain mhdb:sensorimotor_skill ;
 	mhdb:assessesDomain mhdb:psychomotor_speed ;
+	mhdb:assessesDomain mhdb:sensorimotor_skill ;
 	mhdb:assessesDomain mhdb:attention ;
 	mhdb:hasProject mhdb:Cambridge_Cognition .
 
@@ -994,8 +991,8 @@ mhdb:Multitasking_test rdfs:label """Multitasking test"""@en ;
 mhdb:One_touch_stockings_of_Cambridge_based_upon_the_Tower_of_Hanoi_test rdfs:label """One touch stockings of Cambridge (based upon the Tower of Hanoi test)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_participant_is_shown_two_displays_containing_three_coloured_balls_The_displays_are_presented_in_such_a_way_that_they_can_be_easily_perceived_as_stacks_of_coloured_balls_held_in_stockings_or_socks_suspended_from_a_beam_This_arrangement_makes_the_3-D_concepts_involved_apparent_to_the_participant_and_fits_with_the_verbal_instructions_There_is_a_row_of_numbered_boxes_along_the_bottom_of_the_screen_The_test_administrator_first_demonstrates_to_the_participant_how_to_move_the_balls_in_the_lower_display_to_copy_the_pattern_in_the_upper_display_and_completes_one_demonstration_problem_where_the_solution_requires_one_move_The_participant_must_then_complete_three_further_problems_one_each_requiring_two_moves_three_moves_and_four_moves_Next_the_participant_is_shown_further_problems_and_must_work_out_in_their_head_how_many_moves_the_solutions_require_and_then_select_the_appropriate_box_at_the_bottom_of_the_screen_to_indicate_their_response ;
-	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:assessesDomain mhdb:working_memory ;
+	mhdb:assessesDomain mhdb:executive_function ;
 	mhdb:hasProject mhdb:Cambridge_Cognition .
 
 mhdb:spatial_span rdfs:label """spatial span"""@en ;
@@ -1021,8 +1018,8 @@ mhdb:pattern_recognition_memory rdfs:label """pattern recognition memory"""@en ;
 mhdb:spatial_working_memory rdfs:label """spatial working memory"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_test_begins_with_a_number_of_coloured_squares_boxes_shown_on_the_screen_The_aim_of_this_test_is_that_by_selecting_the_boxes_and_using_a_process_of_elimination_the_participant_should_find_one_yellow_token_in_each_of_a_number_of_boxes_and_use_them_to_fill_up_an_empty_column_on_the_right-hand_side_of_the_screen_Depending_on_the_difficulty_level_used_for_this_test_the_number_of_boxes_can_be_gradually_increased_until_a_maximum_of_12_boxes_are_shown_for_the_participants_to_search_The_colour_and_position_of_the_boxes_used_are_changed_from_trial_to_trial_to_discourage_the_use_of_stereotyped_search_strategies ;
-	mhdb:assessesDomain mhdb:spatial_working_memory ;
 	mhdb:assessesDomain mhdb:working_memory ;
+	mhdb:assessesDomain mhdb:spatial_working_memory ;
 	mhdb:hasProject mhdb:Cambridge_Cognition .
 
 mhdb:NIH_Toolbox_Picture_SequenceMemory_Test_derived_from_imitation-based_tasks_elicited_and_deferred_imitation_used_in_research_with_infants_and_young_children rdfs:label """NIH Toolbox Picture Sequence Memory Test (derived from imitation-based tasks (elicited and deferred imitation) used in research with infants and young children.)"""@en ;
@@ -1147,8 +1144,8 @@ mhdb:Naming rdfs:label """Naming"""@en ;
 mhdb:sentence_repetition rdfs:label """sentence repetition"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_examiner_gives_the_following_instructions_I_am_going_to_read_you_a_sentence_Repeat_it_after_me_exactly_as_I_say_it_pause_I_only_know_that_John_is_the_one_to_help_today_Following_the_response_say_Now_I_am_going_to_read_you_another_sentence_Repeat_it_after_me_exactly_as_I_say_it_pause_The_cat_always_hid_under_the_couch_when_dogs_were_in_the_room ;
-	mhdb:assessesDomain mhdb:sentence_repetition ;
 	mhdb:assessesDomain mhdb:language ;
+	mhdb:assessesDomain mhdb:sentence_repetition ;
 	mhdb:hasProject mhdb:Montreal_Cognitive_Assessment .
 
 mhdb:Phonemic_fluency rdfs:label """Phonemic fluency"""@en ;
@@ -1161,8 +1158,8 @@ mhdb:Phonemic_fluency rdfs:label """Phonemic fluency"""@en ;
 mhdb:verbal_fluency rdfs:label """verbal fluency"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_examiner_gives_the_following_instructions_Now_I_want_you_to_tell_me_as_many_words_as_you_can_think_of_that_begin_with_the_letter_F_I_will_tell_you_to_stop_after_one_minute_Proper_nouns_numbers_and_different_forms_of_a_verb_are_not_permitted ;
-	mhdb:assessesDomain mhdb:verbal_fluency ;
 	mhdb:assessesDomain mhdb:language ;
+	mhdb:assessesDomain mhdb:verbal_fluency ;
 	mhdb:hasProject mhdb:Montreal_Cognitive_Assessment .
 
 mhdb:orientation rdfs:label """orientation"""@en ;
@@ -1192,8 +1189,8 @@ mhdb:Three_Letters rdfs:label """Three Letters"""@en ;
 mhdb:Input_module_numbers rdfs:label """Input module (numbers)"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:A_panel_with_1_to_9_is_shown_Numbers_are_presented_aurally_and_light_up_on_the_panel_sequentially_Participants_then_have_to_click_on_the_numbers_in_the_reversed_sequence ;
-	mhdb:assessesDomain mhdb:verbal_working_memory_with_visuospatial_components ;
 	mhdb:assessesDomain mhdb:working_memory ;
+	mhdb:assessesDomain mhdb:verbal_working_memory_with_visuospatial_components ;
 	mhdb:hasProject mhdb:COGMED .
 
 mhdb:Input_module_with_lid_hidden_numbers rdfs:label """Input module with lid (hidden numbers)"""@en ;
@@ -1595,8 +1592,8 @@ mhdb:Detection_Test rdfs:label """Detection Test"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_Detection_test_measures_processing_speed_using_a_simple_reaction_time_paradigm_The_on-screen_instructions_ask_Has_the_card_turned_over_A_playing_card_is_presented_face_down_in_the_center_of_the_screen_The_card_flips_over_so_it_is_face_up_As_soon_as_the_card_flips_over_the_participant_must_press_Yes_The_participant_is_encouraged_to_work_as_quickly_as_they_can_and_be_as_accurate_as_possible ;
 	mhdb:assessesDomain mhdb:psychomotor_function ;
-	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD ;
-	mhdb:hasProject mhdb:Cogstate .
+	mhdb:hasProject mhdb:Cogstate ;
+	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD .
 
 mhdb:Groton_Maze_Learning_Test rdfs:label """Groton Maze Learning Test"""@en ;
 	rdf:type demcare:Task ;
@@ -1608,8 +1605,8 @@ mhdb:Identification_Test rdfs:label """Identification Test"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_Identification_test_measures_attention_using_a_choice_reaction_time_paradigm_The_on-screen_instructions_ask_Is_the_card_red_A_playing_card_is_presented_face_down_in_the_center_of_the_screen_The_card_flips_over_so_it_is_face_up_As_soon_as_it_flips_over_the_participant_must_decide_whether_the_card_is_red_or_not_If_it_is_red_the_participant_should_press_Yes_and_if_it_is_not_red_the_participant_should_press_No_The_participant_is_encouraged_to_work_as_quickly_as_they_can_and_be_as_accurate_as_possible ;
 	mhdb:assessesDomain mhdb:attention ;
-	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD ;
-	mhdb:hasProject mhdb:Cogstate .
+	mhdb:hasProject mhdb:Cogstate ;
+	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD .
 
 mhdb:International_Shopping_List_Test rdfs:label """International Shopping List Test"""@en ;
 	rdf:type demcare:Task ;
@@ -1621,8 +1618,8 @@ mhdb:One_Card_Learning_Test rdfs:label """One Card Learning Test"""@en ;
 	rdf:type demcare:Task ;
 	mhdb:hasTaskInstructions mhdb:The_One_Card_Learning_test_measures_visual_memory_using_a_pattern_separation_paradigm_The_on-screen_instructions_ask_Have_you_seen_this_card_before_in_this_test_A_playing_card_is_presented_face_up_in_the_center_of_the_screen_and_the_participant_must_decide_whether_they_have_seen_the_card_before_in_this_test_The_participant_is_encouraged_to_work_as_quickly_as_they_can_and_be_as_accurate_as_possible ;
 	mhdb:assessesDomain mhdb:learning ;
-	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD ;
-	mhdb:hasProject mhdb:Cogstate .
+	mhdb:hasProject mhdb:Cogstate ;
+	mhdb:hasProject mhdb:Computerized_Cognitive_Composite_for_Preclinical_Alzheimers_Disease_C3-PAD .
 
 mhdb:Social-Emotional_Cognition_Test rdfs:label """Social-Emotional Cognition Test"""@en ;
 	rdf:type demcare:Task ;

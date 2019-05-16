@@ -37,9 +37,11 @@ This mental health database interrelates information about mental health-related
 (1) signs, symptoms, and disorders from the DSM-5, 
 (2) questions from questionnaires, 
 (3) cognitive tasks, 
-(4) behaviors, cognitive domains, measures, and sensors,  
-(5) projects and technologies, and 
-(6) relevant references.
+(4) behaviors,
+(5) cognitive domains,
+(6) measures and sensors,  
+(7) projects and products, and 
+(8) relevant references.
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 
@@ -49,18 +51,18 @@ Current information can be found on the website, https://matter.childmind.org.
 
 """@en .
 
-mhdb:FemaleAudience rdfs:subClassOf schema:PeopleAudience ;
-	rdfs:label """Female Audience"""@en ;
-	schema:requiredGender schema:Female .
-
 mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
 	rdfs:label """Male Audience"""@en ;
 	schema:requiredGender schema:Male .
 
+mhdb:FemaleAudience rdfs:subClassOf schema:PeopleAudience ;
+	rdfs:label """Female Audience"""@en ;
+	schema:requiredGender schema:Female .
+
 mhdb:MentalDisorder rdfs:label """MentalDisorder"""@en ;
 	rdf:type rdf:Class ;
-	rdfs:equivalentClass DOID:150 ;
-	rdfs:equivalentClass ICD10:F01-F99 .
+	rdfs:equivalentClass ICD10:F01-F99 ;
+	rdfs:equivalentClass DOID:150 .
 
 mhdb:Disorder rdfs:label """Disorder"""@en ;
 	rdf:type rdf:Class ;
@@ -334,8 +336,8 @@ mhdb:Obsessions rdfs:label """Obsessions"""@en ;
 
 mhdb:Compulsions rdfs:label """Compulsions"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
-	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	dcterms:source <https://depts.washington.edu/dbpeds/Screening%20Tools/DSM-5(ASD.Guidelines)Feb2013.pdf> ;
+	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Obsessive-Compulsive_Disorder ;
 	rdfs:subClassOf mhdb:Ritualized_Patterns_of_Verbal_and_Nonverbal_Behavior .
@@ -664,16 +666,16 @@ mhdb:Absence_of_interest_in_others rdfs:label """Absence of interest in others""
 
 mhdb:Stereotyped_or_repetitive_speech rdfs:label """Stereotyped or repetitive speech"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
-	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	dcterms:source <https://depts.washington.edu/dbpeds/Screening%20Tools/DSM-5(ASD.Guidelines)Feb2013.pdf> ;
+	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
 	rdfs:subClassOf mhdb:Stereotyped_or_repetitive_motor_movements_use_of_objects_or_speech .
 
 mhdb:Stereotyped_or_repetitive_motor_movements rdfs:label """Stereotyped or repetitive motor movements"""@en ;
 	rdf:type health-lifesci:MedicalSign ;
 	rdf:type health-lifesci:MedicalSymptom ;
-	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	dcterms:source <https://depts.washington.edu/dbpeds/Screening%20Tools/DSM-5(ASD.Guidelines)Feb2013.pdf> ;
+	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSignOf mhdb:Autism_Spectrum_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
 	rdfs:subClassOf mhdb:Stereotyped_or_repetitive_motor_movements_use_of_objects_or_speech .
@@ -745,8 +747,8 @@ mhdb:Excessive_focus_on_nonrelevant_or_nonfunctional_parts_of_objects rdfs:label
 
 mhdb:Preoccupations rdfs:label """Preoccupations"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
-	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	dcterms:source <https://depts.washington.edu/dbpeds/Screening%20Tools/DSM-5(ASD.Guidelines)Feb2013.pdf> ;
+	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	schema:audience mhdb:MaleAudience ;
 	schema:epidemiology mhdb:MaleAudience ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
@@ -2732,29 +2734,29 @@ mhdb:Hypervigilance rdfs:label """Hypervigilance"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
-	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
-	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
+	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
+	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
 
 mhdb:Exaggerated_startle_response rdfs:label """Exaggerated startle response"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
-	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
-	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
+	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
+	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
 
 mhdb:Problems_with_concentration rdfs:label """Problems with concentration"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
-	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
-	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
+	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
+	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
 
 mhdb:Sleep_disturbance rdfs:label """Sleep disturbance"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
-	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
-	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
+	rdfs:subClassOf mhdb:Marked_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred ;
+	rdfs:subClassOf mhdb:In_children_6_years_and_younger_alterations_in_arousal_and_reactivity_associated_with_the_traumatic_events_beginning_or_worsening_after_the_traumatic_events_occurred .
 
 mhdb:In_children_6_years_and_younger_directly_experiencing_the_traumatic_events rdfs:label """In children 6 years and younger, directly experiencing the traumatic event(s)"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
@@ -3495,11 +3497,11 @@ mhdb:Tolerance_as_defined_by_a_need_for_markedly_increased_amounts_of_cannabis_t
 mhdb:Tolerance_as_defined_by_a_markedly_diminished_effect_with_continued_use_of_the_same_amount_of_cannabis rdfs:label """Tolerance, as defined by a markedly diminished effect with continued use of the same amount of cannabis."""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Stimulant_Use_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Opioid_Use_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Cannabis_Use_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Use_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Other_or_Unknown_Substance_Use_Disorder .
+	mhdb:isMedicalSymptomOf mhdb:Cannabis_Use_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Stimulant_Use_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Other_or_Unknown_Substance_Use_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Opioid_Use_Disorder .
 
 mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_cannabis rdfs:label """Withdrawal, as manifested by the characteristic withdrawal syndrome for cannabis"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
@@ -3669,8 +3671,8 @@ mhdb:Important_social_occupational_or_recreational_activities_are_given_up_or_re
 mhdb:Recurrent_hallucinogen_use_in_situations_in_which_it_is_physically_hazardous rdfs:label """Recurrent hallucinogen use in situations in which it is physically hazardous"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Other_Hallucinogen_Use_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Inhalant_Use_Disorder .
+	mhdb:isMedicalSymptomOf mhdb:Inhalant_Use_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Other_Hallucinogen_Use_Disorder .
 
 mhdb:hallucinogen_use_is_continued_despite_knowledge_of_having_a_persistent_or_recurrent_physical_or_psychological_problem_that_is_likely_to_have_been_caused_or_exacerbated_by_the_hallucinogen rdfs:label """hallucinogen use is continued despite knowledge of having a persistent or recurrent physical or psychological problem that is likely to have been caused or exacerbated by the hallucinogen"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
@@ -4452,12 +4454,12 @@ mhdb:A_distinct_period_of_abnormally_and_persistently_elevated_expansive_or_irri
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder .
 
-mhdb:Inflated_self-esteem_or_grandiosity rdfs:label """Inflated self-esteem or grandiosity."""@en ;
-	rdfs:label """Inflated self-esteem or grandiosity"""@en ;
+mhdb:Inflated_self-esteem_or_grandiosity rdfs:label """Inflated self-esteem or grandiosity"""@en ;
+	rdfs:label """Inflated self-esteem or grandiosity."""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Unspecified_Bipolar_or_Related_Disorder .
+	mhdb:isMedicalSymptomOf mhdb:Unspecified_Bipolar_or_Related_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder .
 
 mhdb:Decreased_need_for_sleep rdfs:label """Decreased need for sleep"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
@@ -4577,8 +4579,8 @@ mhdb:Indecisiveness_nearly_every_day_as_observed_by_others rdfs:label """Indecis
 mhdb:Recurrent_thoughts_of_death_not_just_fear_of_dying_recurrent_suicidal_ideation_without_a_specific_plan_or_a_suicide_attempt_or_a_specific_plan_for_committing_suicide rdfs:label """Recurrent thoughts of death (not just fear of dying), recurrent suicidal ideation without a specific plan, or a suicide attempt or a specific plan for committing suicide"""@en ;
 	rdf:type health-lifesci:MedicalSymptom ;
 	dcterms:source <http://dsm.psychiatryonline.org/doi/book/10.1176/appi.books.9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Unspecified_Bipolar_or_Related_Disorder .
+	mhdb:isMedicalSymptomOf mhdb:Unspecified_Bipolar_or_Related_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder .
 
 mhdb:a_suicide_attempt rdfs:label """a suicide attempt"""@en ;
 	rdf:type health-lifesci:MedicalSign ;
@@ -5787,8 +5789,8 @@ mhdb:physical_aggression_toward_people_or_property rdfs:label """physical aggres
 
 mhdb:feels_sad_empty_hopeless rdfs:label """feels sad, empty, hopeless"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Depressed_mood_most_of_the_day_nearly_every_day_as_indicated_by_either_subjective_report ;
-	mhdb:isExampleOf mhdb:Depressed_mood_most_of_the_day_nearly_every_day_as_indicated_by_subjective_report .
+	mhdb:isExampleOf mhdb:Depressed_mood_most_of_the_day_nearly_every_day_as_indicated_by_subjective_report ;
+	mhdb:isExampleOf mhdb:Depressed_mood_most_of_the_day_nearly_every_day_as_indicated_by_either_subjective_report .
 
 mhdb:appears_tearful rdfs:label """appears tearful"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
@@ -5925,8 +5927,8 @@ mhdb:autonomic_hyperactivity_like_sweating_or_pulse_rate_greater_than_100_bpm rd
 
 mhdb:clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_substance_use_like_inappropriate_sexual_or_aggressive_behavior_mood_lability_impaired_judgment rdfs:label """clinically significant problematic behavioral or psychological changes that developed during, or shortly after, substance use like inappropriate sexual or aggressive behavior, mood lability, impaired judgment"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_sedative_hypnotic_or_anxiolytic_use ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_alcohol_ingestion .
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_alcohol_ingestion ;
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_sedative_hypnotic_or_anxiolytic_use .
 
 mhdb:difficulty_falling_or_staying_asleep_restless_sleep rdfs:label """difficulty falling or staying asleep, restless sleep"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
@@ -6002,8 +6004,8 @@ mhdb:marked_fear_or_anxiety_about_being_in_enclosed_places_like_shops_theaters_c
 
 mhdb:clinically_significant_problematic_behavioral_or_psychological_changes_like_impaired_motor_coordination_euphoria_anxiety_sensation_of_slowed_time_impaired_judgment_social_withdrawal_that_developed_during_or_shortly_after_substanceuse rdfs:label """clinically significant problematic behavioral or psychological changes like impaired motor coordination, euphoria, anxiety, sensation of slowed time, impaired judgment, social withdrawal that developed during, or shortly after, substanceuse."""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_are_attributable_to_the_effect_of_the_substance_on_the_central_nervous_system ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_cannabis_use .
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_cannabis_use ;
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_are_attributable_to_the_effect_of_the_substance_on_the_central_nervous_system .
 
 mhdb:sleep_difficulty_like_insomnia_disturbing_dreams_develop_within_approximately_1_week_after_cessation_of_cannabis_use_that_has_been_heavy_and_prolonged_ie_usually_daily_or_almost_daily_use_over_a_period_of_at_least_a_few_months rdfs:label """sleep difficulty like insomnia, disturbing dreams develop within approximately 1 week after cessation of cannabis use that has been heavy and prolonged (i.e., usually daily or almost daily use over a period of at least a few months)"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
@@ -6012,24 +6014,24 @@ mhdb:sleep_difficulty_like_insomnia_disturbing_dreams_develop_within_approximate
 mhdb:repeated_absences_from_work_or_poor_work_performance_related_to_the_substances_use_substance-related_absences_suspensions_or_expulsions_from_school_neglect_of_children_or_household rdfs:label """repeated absences from work or poor work performance related to the substance's use; substance-related absences, suspensions, or expulsions from school; neglect of children or household"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
 	mhdb:isExampleOf mhdb:Recurrent_phencyclidine_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home ;
-	mhdb:isExampleOf mhdb:Recurrent_hallucinogen_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home ;
-	mhdb:isExampleOf mhdb:Recurrent_inhalant_substance_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home .
+	mhdb:isExampleOf mhdb:Recurrent_inhalant_substance_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home ;
+	mhdb:isExampleOf mhdb:Recurrent_hallucinogen_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home .
 
 mhdb:having_arguments_with_a_spouse_about_consequences_of_intoxication_physical_fights rdfs:label """having arguments with a spouse about consequences of intoxication; physical fights"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
+	mhdb:isExampleOf mhdb:Continued_phencyclidine_use_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine ;
 	mhdb:isExampleOf mhdb:Continued_hallucinogen_use_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine ;
-	mhdb:isExampleOf mhdb:Continued_use_of_inhalant_substances_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine ;
-	mhdb:isExampleOf mhdb:Continued_phencyclidine_use_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine .
+	mhdb:isExampleOf mhdb:Continued_use_of_inhalant_substances_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine .
 
 mhdb:driving_an_automobile_or_operating_a_machine_when_impaired_by_a_substance rdfs:label """driving an automobile or operating a machine when impaired by a substance"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Recurrent_phencyclidine_use_in_situations_in_which_it_is_physically_hazardous ;
-	mhdb:isExampleOf mhdb:Recurrent_hallucinogen_use_in_situations_in_which_it_is_physically_hazardous .
+	mhdb:isExampleOf mhdb:Recurrent_hallucinogen_use_in_situations_in_which_it_is_physically_hazardous ;
+	mhdb:isExampleOf mhdb:Recurrent_phencyclidine_use_in_situations_in_which_it_is_physically_hazardous .
 
 mhdb:haveexperience_clinically_significant_problematic_behavioral_changes_belligerence_assaultiveness_impulsiveness_unpredictability_psychomotor_agitation_impaired_judgment rdfs:label """have/experience clinically significant problematic behavioral changes belligerence, assaultiveness, impulsiveness, unpredictability, psychomotor agitation, impaired judgment"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_changes_that_developed_during_or_shortly_after_phencyclidine_use ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes .
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes ;
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_changes_that_developed_during_or_shortly_after_phencyclidine_use .
 
 mhdb:haveexperience_clinically_significant_problematic_behavioral_or_psychological_changes_like_marked_anxiety_or_depression_ideas_of_reference_fear_of_losing_ones_mind_paranoid_ideation_impaired_judgment rdfs:label """have/experience clinically significant problematic behavioral or psychological changes like marked anxiety or depression, ideas of reference, fear of “losing one’s mind,” paranoid ideation, impaired judgment"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
@@ -6062,23 +6064,23 @@ mhdb:there_has_been_a_regular_temporal_relationship_between_the_onset_of_manic_h
 
 mhdb:having_to_think_about_or_say_something_over_and_over_like_counting_or_repeating_words_over_and_over_silently_or_out_loud rdfs:label """having to think about or say something over and over like counting, or repeating words over and over silently or out loud"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Having_compulsions ;
-	mhdb:isExampleOf mhdb:Having_obsessions .
+	mhdb:isExampleOf mhdb:Having_obsessions ;
+	mhdb:isExampleOf mhdb:Having_compulsions .
 
 mhdb:having_to_do_something_over_and_over_like_handwashing_placing_things_in_a_specific_order_or_checking_the_same_things_over_and_over_like_whether_a_door_is_locked rdfs:label """having to do something over and over like handwashing, placing things in a specific order, or checking the same things over and over, like whether a door is locked"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Having_compulsions ;
-	mhdb:isExampleOf mhdb:Having_obsessions .
+	mhdb:isExampleOf mhdb:Having_obsessions ;
+	mhdb:isExampleOf mhdb:Having_compulsions .
 
 mhdb:having_unwanted_thoughts_impulses_or_images_that_occur_over_and_over_and_which_cause_anxiety_or_distress rdfs:label """having unwanted thoughts, impulses, or images that occur over and over and which cause anxiety or distress."""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Having_compulsions ;
-	mhdb:isExampleOf mhdb:Having_obsessions .
+	mhdb:isExampleOf mhdb:Having_obsessions ;
+	mhdb:isExampleOf mhdb:Having_compulsions .
 
 mhdb:having_to_do_something_over_and_over_according_to_certain_rules_that_must_be_followed_exactly_in_order_to_make_an_obsession_go_away rdfs:label """having to do something over and over according to certain rules that must be followed exactly in order to make an obsession go away."""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
-	mhdb:isExampleOf mhdb:Having_compulsions ;
-	mhdb:isExampleOf mhdb:Having_obsessions .
+	mhdb:isExampleOf mhdb:Having_obsessions ;
+	mhdb:isExampleOf mhdb:Having_compulsions .
 
 mhdb:persistent_eating_of_nonnutritive_nonfood_substances_like_buttons_and_pins rdfs:label """persistent eating of nonnutritive, nonfood substances like buttons and pins"""@en ;
 	rdf:type mhdb:ExampleSignOrSymptom ;
@@ -6168,8 +6170,8 @@ mhdb:cocaine rdfs:label """cocaine"""@en ;
 	rdf:type mhdb:DiagnosticSpecifier ;
 	rdfs:equivalentClass SNOMEDCT:14816004 .
 
-mhdb:other_or_unknown_substance rdfs:label """other (or unknown substance)"""@en ;
-	rdfs:label """other (or unknown) substance"""@en ;
+mhdb:other_or_unknown_substance rdfs:label """other (or unknown) substance"""@en ;
+	rdfs:label """other (or unknown substance)"""@en ;
 	rdf:type mhdb:DiagnosticSpecifier .
 
 mhdb:single_episode rdfs:label """single episode"""@en ;
@@ -6453,8 +6455,8 @@ mhdb:delusions rdfs:label """delusions"""@en ;
 
 mhdb:hallucinations rdfs:label """hallucinations"""@en ;
 	rdf:type mhdb:DiagnosticCriterion ;
-	rdfs:equivalentClass HP:0000738 ;
-	rdfs:equivalentClass NBO:0000608 .
+	rdfs:equivalentClass NBO:0000608 ;
+	rdfs:equivalentClass HP:0000738 .
 
 mhdb:psychotic_features rdfs:label """psychotic features"""@en ;
 	rdf:type mhdb:DiagnosticCriterion ;
@@ -6494,8 +6496,8 @@ mhdb:mixed_disturbance_of_emotions_and_conduct rdfs:label """mixed disturbance o
 
 mhdb:dissociative_fugue rdfs:label """dissociative fugue"""@en ;
 	rdf:type mhdb:DiagnosticCriterion ;
-	rdfs:equivalentClass NCIt:C94329 ;
-	rdfs:equivalentClass NBO:0000254 .
+	rdfs:equivalentClass NBO:0000254 ;
+	rdfs:equivalentClass NCIt:C94329 .
 
 mhdb:weakness_or_paralysis rdfs:label """weakness or paralysis"""@en ;
 	rdf:type mhdb:DiagnosticCriterion .
@@ -6540,73 +6542,73 @@ mhdb:cataplexy rdfs:label """cataplexy"""@en ;
 
 mhdb:Intellectual_Disability_Intellectual_Development_Disorder rdfs:label """Intellectual Disability (Intellectual Development Disorder)"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F71 ;
-	mhdb:hasICD10Code mhdb:ICD10_F72 ;
 	mhdb:hasICD10Code mhdb:ICD10_F70 ;
+	mhdb:hasICD10Code mhdb:ICD10_F72 ;
 	mhdb:hasICD10Code mhdb:ICD10_F73 ;
 	mhdb:hasICD10Code mhdb:ICD9_319 ;
+	mhdb:hasICD10Code mhdb:ICD10_F71 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Intellectual_Disability ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
-	mhdb:hasSeverity mhdb:profound ;
-	mhdb:hasSeverity mhdb:moderate .
+	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasSeverity mhdb:moderate ;
+	mhdb:hasSeverity mhdb:profound .
 
 mhdb:Global_Developmental_Delay rdfs:label """Global Developmental Delay"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F88 ;
 	mhdb:hasICD10Code mhdb:ICD9_3158 ;
+	mhdb:hasICD10Code mhdb:ICD10_F88 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Intellectual_Disability .
 
 mhdb:Unspecified_Intellectual_Disability_Intellectual_Developmental_Disorder rdfs:label """Unspecified Intellectual Disability (Intellectual Developmental Disorder)"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F79 ;
 	mhdb:hasICD10Code mhdb:ICD9_319 ;
+	mhdb:hasICD10Code mhdb:ICD10_F79 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Intellectual_Disability .
 
 mhdb:Language_Disorder rdfs:label """Language Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F809 ;
 	mhdb:hasICD10Code mhdb:ICD9_31539 ;
+	mhdb:hasICD10Code mhdb:ICD10_F809 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Communication_Disorder .
 
 mhdb:Speech_Sound_Disorder rdfs:label """Speech Sound Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_31539 ;
 	mhdb:hasICD10Code mhdb:ICD10_F800 ;
+	mhdb:hasICD10Code mhdb:ICD9_31539 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Communication_Disorder .
 
 mhdb:Childhood-Onset_Fluency_Disorder_Stuttering rdfs:label """Childhood-Onset Fluency Disorder (Stuttering)"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F8081 ;
 	mhdb:hasICD10Code mhdb:ICD9_31535 ;
+	mhdb:hasICD10Code mhdb:ICD10_F8081 ;
 	mhdb:hasNote """Later-onset cases are diagnosed as 307.0 (F98.5) adult-onset fluency disorder."""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Communication_Disorder .
 
 mhdb:Social_Pragmatic_Communication_Disorder rdfs:label """Social (Pragmatic) Communication Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F8089 ;
 	mhdb:hasICD10Code mhdb:ICD9_31539 ;
+	mhdb:hasICD10Code mhdb:ICD10_F8089 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Communication_Disorder .
 
 mhdb:Unspecified_Communication_Disorder rdfs:label """Unspecified Communication Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F809 ;
 	mhdb:hasICD10Code mhdb:ICD9_3079 ;
+	mhdb:hasICD10Code mhdb:ICD10_F809 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Communication_Disorder .
 
 mhdb:Autism_Spectrum_Disorder rdfs:label """Autism Spectrum Disorder"""@en ;
-	rdf:type mhdb:DisorderSubcategory ;
 	rdf:type mhdb:Disorder ;
+	rdf:type mhdb:DisorderSubcategory ;
 	mhdb:hasICD10Code mhdb:ICD10_F840 ;
 	mhdb:hasICD10Code mhdb:ICD9_299 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
@@ -6615,26 +6617,26 @@ mhdb:Autism_Spectrum_Disorder rdfs:label """Autism Spectrum Disorder"""@en ;
 
 mhdb:Attention-DeficitHyperactivity_Disorder rdfs:label """Attention-Deficit/Hyperactivity Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	rdfs:equivalentClass SNOMEDCT:31177006 ;
 	rdfs:equivalentClass SNOMEDCT:7461003 ;
-	rdfs:equivalentClass SNOMEDCT:406506008 ;
 	rdfs:equivalentClass SNOMEDCT:35253001 ;
+	rdfs:equivalentClass SNOMEDCT:31177006 ;
+	rdfs:equivalentClass SNOMEDCT:406506008 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Attention_DeficitHyperactivity_Disorder ;
+	mhdb:hasICD10Code mhdb:ICD9_314 ;
+	mhdb:hasICD10Code mhdb:ICD10_F901 ;
 	mhdb:hasICD10Code mhdb:ICD9_31401 ;
 	mhdb:hasICD10Code mhdb:ICD10_F900 ;
 	mhdb:hasICD10Code mhdb:ICD10_F902 ;
-	mhdb:hasICD10Code mhdb:ICD9_314 ;
-	mhdb:hasICD10Code mhdb:ICD10_F901 ;
-	mhdb:hasDiagnosticSpecifier mhdb:predominantly_inattentive_presentation ;
+	mhdb:hasDiagnosticSpecifier mhdb:combined_presentation ;
 	mhdb:hasDiagnosticSpecifier mhdb:predominantly_hyperactiveimpulsive_presentation ;
-	mhdb:hasDiagnosticSpecifier mhdb:combined_presentation .
+	mhdb:hasDiagnosticSpecifier mhdb:predominantly_inattentive_presentation .
 
 mhdb:Other_Specified_Attention-DeficitHyperactivity_Disorder rdfs:label """Other Specified Attention-Deficit/Hyperactivity Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:406506008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F908 ;
 	mhdb:hasICD10Code mhdb:ICD9_31401 ;
+	mhdb:hasICD10Code mhdb:ICD10_F908 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Attention_DeficitHyperactivity_Disorder .
 
@@ -6642,59 +6644,59 @@ mhdb:Unspecified_Attention-DeficitHyperactivity_Disorder rdfs:label """Unspecifi
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
 	rdfs:subClassOf SNOMEDCT:406506008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F909 ;
 	mhdb:hasICD10Code mhdb:ICD9_31401 ;
+	mhdb:hasICD10Code mhdb:ICD10_F909 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Attention_DeficitHyperactivity_Disorder .
 
 mhdb:Specific_Learning_Disorder rdfs:label """Specific Learning Disorder"""@en ;
-	rdf:type mhdb:DisorderSubcategory ;
 	rdf:type mhdb:Disorder ;
+	rdf:type mhdb:DisorderSubcategory ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Specific_Learning_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F8181 ;
-	mhdb:hasICD10Code mhdb:ICD10_F810 ;
 	mhdb:hasICD10Code mhdb:ICD9_3151 ;
+	mhdb:hasICD10Code mhdb:ICD10_F810 ;
+	mhdb:hasICD10Code mhdb:ICD10_F8181 ;
 	mhdb:hasICD10Code mhdb:ICD10_F812 ;
 	mhdb:hasICD10Code mhdb:ICD9_315 ;
 	mhdb:hasICD10Code mhdb:ICD9_3152 ;
-	mhdb:hasInclusionCriterion mhdb:impairment_in_mathematics ;
 	mhdb:hasInclusionCriterion mhdb:impairment_in_reading ;
+	mhdb:hasInclusionCriterion mhdb:impairment_in_mathematics ;
 	mhdb:hasInclusionCriterion mhdb:impairment_in_written_expression ;
 	rdfs:equivalentClass MESH:D000067559 .
 
 mhdb:Developmental_Coordination_Disorder rdfs:label """Developmental Coordination Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3154 ;
 	mhdb:hasICD10Code mhdb:ICD10_F82 ;
+	mhdb:hasICD10Code mhdb:ICD9_3154 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Motor_Disorder .
 
 mhdb:Sterotypic_Movement_Disorder rdfs:label """Sterotypic Movement Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3073 ;
 	mhdb:hasICD10Code mhdb:ICD10_F984 ;
+	mhdb:hasICD10Code mhdb:ICD9_3073 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Motor_Disorder .
 
 mhdb:Tic_Disorder rdfs:label """Tic Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30722 ;
 	mhdb:hasICD10Code mhdb:ICD9_30723 ;
+	mhdb:hasICD10Code mhdb:ICD9_30722 ;
 	mhdb:hasICD10Code mhdb:ICD9_30721 ;
-	mhdb:hasICD10Code mhdb:ICD10_F952 ;
 	mhdb:hasICD10Code mhdb:ICD10_F951 ;
 	mhdb:hasICD10Code mhdb:ICD10_F950 ;
+	mhdb:hasICD10Code mhdb:ICD10_F952 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Motor_Disorder ;
 	mhdb:hasDiagnosticSpecifier mhdb:persistent_chronic_motor_or_vocal_tic_disorder ;
-	mhdb:hasDiagnosticSpecifier mhdb:provisional_tic_disorder ;
-	mhdb:hasDiagnosticSpecifier mhdb:tourettes_disorder .
+	mhdb:hasDiagnosticSpecifier mhdb:tourettes_disorder ;
+	mhdb:hasDiagnosticSpecifier mhdb:provisional_tic_disorder .
 
 mhdb:Other_Specified_Tic_Disorder rdfs:label """Other Specified Tic Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3072 ;
 	mhdb:hasICD10Code mhdb:ICD10_F958 ;
+	mhdb:hasICD10Code mhdb:ICD9_3072 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Motor_Disorder .
 
@@ -6708,16 +6710,16 @@ mhdb:Unspecified_Tic_Disorder rdfs:label """Unspecified Tic Disorder"""@en ;
 
 mhdb:Other_Specified_Neurodevelopmental_Disorder rdfs:label """Other Specified Neurodevelopmental Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F88 ;
 	mhdb:hasICD10Code mhdb:ICD9_3158 ;
+	mhdb:hasICD10Code mhdb:ICD10_F88 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Neurodevelopmental_Disorder .
 
 mhdb:Unspecified_Neurodevelopmental_Disorder rdfs:label """Unspecified Neurodevelopmental Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_3159 ;
 	mhdb:hasICD10Code mhdb:ICD10_F89 ;
+	mhdb:hasICD10Code mhdb:ICD9_3159 ;
 	mhdb:hasDisorderCategory mhdb:Neurodevelopmental_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Neurodevelopmental_Disorder .
 
@@ -6729,8 +6731,8 @@ mhdb:Schizotypal_Disorder_Personality rdfs:label """Schizotypal Disorder (Person
 
 mhdb:Delusional_Disorder rdfs:label """Delusional Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_2971 ;
 	mhdb:hasICD10Code mhdb:ICD10_F22 ;
+	mhdb:hasICD10Code mhdb:ICD9_2971 ;
 	mhdb:hasDisorderCategory mhdb:Schizophrenia_Spectrum_and_Other_Psychotic_Disorders .
 
 mhdb:Brief_Psychotic_Disorder rdfs:label """Brief Psychotic Disorder"""@en ;
@@ -6741,8 +6743,8 @@ mhdb:Brief_Psychotic_Disorder rdfs:label """Brief Psychotic Disorder"""@en ;
 
 mhdb:Schizophreniform_Disorder rdfs:label """Schizophreniform Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_2954 ;
 	mhdb:hasICD10Code mhdb:ICD10_F2081 ;
+	mhdb:hasICD10Code mhdb:ICD9_2954 ;
 	mhdb:hasDisorderCategory mhdb:Schizophrenia_Spectrum_and_Other_Psychotic_Disorders .
 
 mhdb:Schizophrenia rdfs:label """Schizophrenia"""@en ;
@@ -6754,8 +6756,8 @@ mhdb:Schizophrenia rdfs:label """Schizophrenia"""@en ;
 mhdb:Schizoaffective_Disorder rdfs:label """Schizoaffective Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Schizophrenia_Spectrum_and_Other_Psychotic_Disorders ;
-	mhdb:hasICD10Code mhdb:ICD10_F250 ;
 	mhdb:hasICD10Code mhdb:ICD10_F251 ;
+	mhdb:hasICD10Code mhdb:ICD10_F250 ;
 	mhdb:hasICD10Code mhdb:ICD9_2957 ;
 	mhdb:hasDiagnosticSpecifier mhdb:depressive ;
 	mhdb:hasDiagnosticSpecifier mhdb:bipolar .
@@ -6768,12 +6770,12 @@ mhdb:SubstanceMedication-Induced_Psychotic_Disorder rdfs:label """Substance/Medi
 mhdb:Psychotic_Disorder_Due_to_Another_Medical_Condition rdfs:label """Psychotic Disorder Due to Another Medical Condition"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Schizophrenia_Spectrum_and_Other_Psychotic_Disorders ;
-	mhdb:hasICD10Code mhdb:ICD9_29381 ;
-	mhdb:hasICD10Code mhdb:ICD10_F060 ;
-	mhdb:hasICD10Code mhdb:ICD9_29382 ;
 	mhdb:hasICD10Code mhdb:ICD10_F062 ;
-	mhdb:hasInclusionCriterion mhdb:delusions ;
-	mhdb:hasInclusionCriterion mhdb:hallucinations .
+	mhdb:hasICD10Code mhdb:ICD10_F060 ;
+	mhdb:hasICD10Code mhdb:ICD9_29381 ;
+	mhdb:hasICD10Code mhdb:ICD9_29382 ;
+	mhdb:hasInclusionCriterion mhdb:hallucinations ;
+	mhdb:hasInclusionCriterion mhdb:delusions .
 
 mhdb:Catatonia_Associated_With_Another_Mental_Disorder_Catatonia_Specifier rdfs:label """Catatonia Associated With Another Mental Disorder (Catatonia Specifier)"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -6811,105 +6813,105 @@ mhdb:Unspecified_Schizophrenia_Spectrum_and_Other_Psychotic_Disorder rdfs:label 
 mhdb:Bipolar_I_Disorder rdfs:label """Bipolar I Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Bipolar_or_Related_Disorder ;
-	mhdb:hasDiagnosticSpecifier mhdb:current_or_most_recent_episode_manic ;
-	mhdb:hasDiagnosticSpecifier mhdb:current_or_most_recent_episode_depressed ;
 	mhdb:hasDiagnosticSpecifier mhdb:current_or_most_recent_episode_unspecified ;
 	mhdb:hasDiagnosticSpecifier mhdb:current_or_most_recent_episode_hypomanic ;
-	mhdb:hasICD10Code mhdb:ICD10_F3175 ;
-	mhdb:hasICD10Code mhdb:ICD9_29646 ;
-	mhdb:hasICD10Code mhdb:ICD10_F31 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3113 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3173 ;
-	mhdb:hasICD10Code mhdb:ICD10_F315 ;
-	mhdb:hasICD10Code mhdb:ICD9_29642 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3131 ;
-	mhdb:hasICD10Code mhdb:ICD9_2967 ;
-	mhdb:hasICD10Code mhdb:ICD9_2964 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3132 ;
-	mhdb:hasICD10Code mhdb:ICD9_29655 ;
-	mhdb:hasICD10Code mhdb:ICD10_F314 ;
+	mhdb:hasDiagnosticSpecifier mhdb:current_or_most_recent_episode_depressed ;
+	mhdb:hasDiagnosticSpecifier mhdb:current_or_most_recent_episode_manic ;
 	mhdb:hasICD10Code mhdb:ICD9_29643 ;
-	mhdb:hasICD10Code mhdb:ICD9_29654 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3111 ;
-	mhdb:hasICD10Code mhdb:ICD10_F319 ;
-	mhdb:hasICD10Code mhdb:ICD9_29656 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3174 ;
-	mhdb:hasICD10Code mhdb:ICD9_29652 ;
 	mhdb:hasICD10Code mhdb:ICD9_29644 ;
-	mhdb:hasICD10Code mhdb:ICD9_29641 ;
-	mhdb:hasICD10Code mhdb:ICD9_2965 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3174 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3111 ;
 	mhdb:hasICD10Code mhdb:ICD9_29651 ;
 	mhdb:hasICD10Code mhdb:ICD9_29653 ;
-	mhdb:hasICD10Code mhdb:ICD9_29645 ;
-	mhdb:hasICD10Code mhdb:ICD10_F312 ;
+	mhdb:hasICD10Code mhdb:ICD9_29655 ;
 	mhdb:hasICD10Code mhdb:ICD10_F3176 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3132 ;
 	mhdb:hasICD10Code mhdb:ICD10_F3112 ;
-	mhdb:hasSeverity mhdb:in_partial_remission ;
+	mhdb:hasICD10Code mhdb:ICD9_29656 ;
+	mhdb:hasICD10Code mhdb:ICD10_F319 ;
+	mhdb:hasICD10Code mhdb:ICD9_2964 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3173 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3113 ;
+	mhdb:hasICD10Code mhdb:ICD9_29645 ;
+	mhdb:hasICD10Code mhdb:ICD10_F315 ;
+	mhdb:hasICD10Code mhdb:ICD9_29652 ;
+	mhdb:hasICD10Code mhdb:ICD9_29641 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3175 ;
+	mhdb:hasICD10Code mhdb:ICD10_F314 ;
+	mhdb:hasICD10Code mhdb:ICD10_F312 ;
+	mhdb:hasICD10Code mhdb:ICD9_29646 ;
+	mhdb:hasICD10Code mhdb:ICD9_29642 ;
+	mhdb:hasICD10Code mhdb:ICD10_F31 ;
+	mhdb:hasICD10Code mhdb:ICD9_29654 ;
+	mhdb:hasICD10Code mhdb:ICD9_2967 ;
+	mhdb:hasICD10Code mhdb:ICD9_2965 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3131 ;
 	mhdb:hasSeverity mhdb:moderate ;
-	mhdb:hasSeverity mhdb:unspecified ;
 	mhdb:hasSeverity mhdb:severe ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:in_full_remission ;
+	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasSeverity mhdb:in_partial_remission ;
+	mhdb:hasSeverity mhdb:unspecified ;
 	mhdb:hasInclusionCriterion mhdb:psychotic_features .
 
 mhdb:Bipolar_II_Disorder rdfs:label """Bipolar II Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_29689 ;
 	mhdb:hasICD10Code mhdb:ICD10_F3181 ;
+	mhdb:hasICD10Code mhdb:ICD9_29689 ;
 	mhdb:hasDisorderCategory mhdb:Bipolar_or_Related_Disorder .
 
 mhdb:Cyclothymic_Disorder rdfs:label """Cyclothymic Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30113 ;
 	mhdb:hasICD10Code mhdb:ICD10_F340 ;
+	mhdb:hasICD10Code mhdb:ICD9_30113 ;
 	mhdb:hasDisorderCategory mhdb:Bipolar_or_Related_Disorder .
 
 mhdb:SubstanceMedication-Induced_Bipolar_and_Related_Disorder rdfs:label """Substance/Medication-Induced Bipolar and Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasNote """See the criteria set and corresponding recording procedures for substance-specific codes and ICD-9-CM and ICD-IO-CM coding."""@en ;
 	mhdb:hasDisorderCategory mhdb:Bipolar_or_Related_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F1014 ;
-	mhdb:hasICD10Code mhdb:ICD9_29189 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1594 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1394 ;
-	mhdb:hasICD10Code mhdb:ICD9_29284 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1514 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1914 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1314 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1094 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1694 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1414 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1994 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1614 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1524 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1924 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1424 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1624 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1414 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1694 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1094 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1324 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1494 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1024 ;
-	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
+	mhdb:hasICD10Code mhdb:ICD10_F1524 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1494 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1624 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1394 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1424 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1594 ;
+	mhdb:hasICD10Code mhdb:ICD9_29284 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1924 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1314 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1324 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1914 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1514 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1014 ;
+	mhdb:hasICD10Code mhdb:ICD9_29189 ;
 	mhdb:hasDiagnosticSpecifier mhdb:alcohol ;
-	mhdb:hasDiagnosticSpecifier mhdb:phencyclidine_or_other_hallucinogen ;
-	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine_or_other_stimulant ;
+	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
+	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
+	mhdb:hasDiagnosticSpecifier mhdb:phencyclidine_or_other_hallucinogen ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
 mhdb:Bipolar_and_Related_Disorder_Due_to_Another_Medical_condition rdfs:label """Bipolar and Related Disorder Due to Another Medical condition"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F0633 ;
 	mhdb:hasICD10Code mhdb:ICD9_29383 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0634 ;
+	mhdb:hasICD10Code mhdb:ICD10_F0633 ;
 	mhdb:hasDisorderCategory mhdb:Bipolar_or_Related_Disorder ;
 	mhdb:hasNote """Include the name of the other medical condition in the name of the mental disorder (e.g. 293.83 [F06.33] bipolar disorder to do hyperthyroidism, with manic features). The other medical condition should also be coded and listed separately immediately before the bipolar related disorder due to the medical condition (e.g., 242.90 [E05.90] hyperthyroidism;293.83 [F06.33] bipolar disorder to do hyperthyroidism, with manic features)."""@en ;
 	mhdb:hasInclusionCriterion mhdb:manic_features ;
-	mhdb:hasInclusionCriterion mhdb:manic-_or_hypomanic-like_features ;
-	mhdb:hasInclusionCriterion mhdb:mixed_features .
+	mhdb:hasInclusionCriterion mhdb:mixed_features ;
+	mhdb:hasInclusionCriterion mhdb:manic-_or_hypomanic-like_features .
 
 mhdb:Other_Specified_Bipolar_and_Related_Disorder rdfs:label """Other Specified Bipolar and Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -6926,55 +6928,55 @@ mhdb:Unspecified_Bipolar_or_Related_Disorder rdfs:label """Unspecified Bipolar o
 
 mhdb:Disruptive_Mood_Dysregulation_Disorder rdfs:label """Disruptive Mood Dysregulation Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F348 ;
 	mhdb:hasICD10Code mhdb:ICD9_29699 ;
+	mhdb:hasICD10Code mhdb:ICD10_F348 ;
 	mhdb:hasDisorderCategory mhdb:Depressive_Disorder .
 
 mhdb:Major_Depressive_Disorder rdfs:label """Major Depressive Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_2962 ;
-	mhdb:hasICD10Code mhdb:ICD10_F330 ;
-	mhdb:hasICD10Code mhdb:ICD9_29621 ;
-	mhdb:hasICD10Code mhdb:ICD10_F332 ;
-	mhdb:hasICD10Code mhdb:ICD10_F322 ;
-	mhdb:hasICD10Code mhdb:ICD9_29633 ;
-	mhdb:hasICD10Code mhdb:ICD9_29625 ;
-	mhdb:hasICD10Code mhdb:ICD10_F320 ;
-	mhdb:hasICD10Code mhdb:ICD9_29623 ;
-	mhdb:hasICD10Code mhdb:ICD9_29636 ;
+	mhdb:hasICD10Code mhdb:ICD9_29632 ;
+	mhdb:hasICD10Code mhdb:ICD10_F324 ;
 	mhdb:hasICD10Code mhdb:ICD10_F329 ;
-	mhdb:hasICD10Code mhdb:ICD10_F333 ;
 	mhdb:hasICD10Code mhdb:ICD10_F339 ;
 	mhdb:hasICD10Code mhdb:ICD9_29631 ;
-	mhdb:hasICD10Code mhdb:ICD9_29624 ;
-	mhdb:hasICD10Code mhdb:ICD9_29632 ;
-	mhdb:hasICD10Code mhdb:ICD9_29626 ;
-	mhdb:hasICD10Code mhdb:ICD9_29635 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3342 ;
-	mhdb:hasICD10Code mhdb:ICD10_F3341 ;
 	mhdb:hasICD10Code mhdb:ICD9_29634 ;
-	mhdb:hasICD10Code mhdb:ICD10_F323 ;
+	mhdb:hasICD10Code mhdb:ICD9_29624 ;
 	mhdb:hasICD10Code mhdb:ICD10_F325 ;
-	mhdb:hasICD10Code mhdb:ICD9_2963 ;
 	mhdb:hasICD10Code mhdb:ICD10_F321 ;
-	mhdb:hasICD10Code mhdb:ICD10_F324 ;
-	mhdb:hasICD10Code mhdb:ICD10_F331 ;
+	mhdb:hasICD10Code mhdb:ICD9_2962 ;
+	mhdb:hasICD10Code mhdb:ICD10_F330 ;
+	mhdb:hasICD10Code mhdb:ICD9_29626 ;
 	mhdb:hasICD10Code mhdb:ICD9_29622 ;
+	mhdb:hasICD10Code mhdb:ICD10_F320 ;
+	mhdb:hasICD10Code mhdb:ICD9_2963 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3341 ;
+	mhdb:hasICD10Code mhdb:ICD10_F332 ;
+	mhdb:hasICD10Code mhdb:ICD9_29633 ;
+	mhdb:hasICD10Code mhdb:ICD9_29636 ;
+	mhdb:hasICD10Code mhdb:ICD9_29625 ;
+	mhdb:hasICD10Code mhdb:ICD9_29623 ;
+	mhdb:hasICD10Code mhdb:ICD10_F322 ;
+	mhdb:hasICD10Code mhdb:ICD10_F331 ;
+	mhdb:hasICD10Code mhdb:ICD10_F333 ;
+	mhdb:hasICD10Code mhdb:ICD9_29635 ;
+	mhdb:hasICD10Code mhdb:ICD9_29621 ;
+	mhdb:hasICD10Code mhdb:ICD10_F323 ;
+	mhdb:hasICD10Code mhdb:ICD10_F3342 ;
 	mhdb:hasDisorderCategory mhdb:Depressive_Disorder ;
 	mhdb:hasDiagnosticSpecifier mhdb:single_episode ;
 	mhdb:hasDiagnosticSpecifier mhdb:recurrent_episode ;
-	mhdb:hasSeverity mhdb:in_partial_remission ;
 	mhdb:hasSeverity mhdb:moderate ;
-	mhdb:hasSeverity mhdb:unspecified ;
 	mhdb:hasSeverity mhdb:severe ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:in_full_remission ;
+	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasSeverity mhdb:in_partial_remission ;
+	mhdb:hasSeverity mhdb:unspecified ;
 	mhdb:hasInclusionCriterion mhdb:psychotic_features .
 
 mhdb:Persistent_Depressive_Disorder_Dysthymia rdfs:label """Persistent Depressive Disorder (Dysthymia)"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3004 ;
 	mhdb:hasICD10Code mhdb:ICD10_F341 ;
+	mhdb:hasICD10Code mhdb:ICD9_3004 ;
 	mhdb:hasDisorderCategory mhdb:Depressive_Disorder .
 
 mhdb:Premenstrual_Dysphoric_Disorder rdfs:label """Premenstrual Dysphoric Disorder"""@en ;
@@ -6990,10 +6992,10 @@ mhdb:SubstanceMedication-Induced_Depressive_Disorder rdfs:label """Substance/Med
 
 mhdb:Depressive_Disorder_Due_to_Another_Medical_Condition rdfs:label """Depressive Disorder Due to Another Medical Condition"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F0631 ;
-	mhdb:hasICD10Code mhdb:ICD10_F0632 ;
 	mhdb:hasICD10Code mhdb:ICD9_29383 ;
+	mhdb:hasICD10Code mhdb:ICD10_F0631 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0634 ;
+	mhdb:hasICD10Code mhdb:ICD10_F0632 ;
 	mhdb:hasDisorderCategory mhdb:Depressive_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:depressive_features ;
 	mhdb:hasInclusionCriterion mhdb:major_depressive-like_episode ;
@@ -7008,8 +7010,8 @@ mhdb:Other_Specified_Depressive_Disorder rdfs:label """Other Specified Depressiv
 mhdb:Unspecified_Depressive_Disorder rdfs:label """Unspecified Depressive Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F329 ;
 	mhdb:hasICD10Code mhdb:ICD9_311 ;
+	mhdb:hasICD10Code mhdb:ICD10_F329 ;
 	mhdb:hasDisorderCategory mhdb:Depressive_Disorder .
 
 mhdb:Separation_Anxiety_Disorder rdfs:label """Separation Anxiety Disorder"""@en ;
@@ -7027,22 +7029,22 @@ mhdb:Selective_Mutism rdfs:label """Selective Mutism"""@en ;
 mhdb:Specific_Phobia rdfs:label """Specific Phobia"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasICD10Code mhdb:ICD10_F40230 ;
-	mhdb:hasICD10Code mhdb:ICD10_F40228 ;
-	mhdb:hasICD10Code mhdb:ICD10_F40233 ;
-	mhdb:hasICD10Code mhdb:ICD10_F40298 ;
+	mhdb:hasICD10Code mhdb:ICD10_F40231 ;
 	mhdb:hasICD10Code mhdb:ICD10_F40248 ;
+	mhdb:hasICD10Code mhdb:ICD10_F40298 ;
 	mhdb:hasICD10Code mhdb:ICD9_30029 ;
+	mhdb:hasICD10Code mhdb:ICD10_F40233 ;
+	mhdb:hasICD10Code mhdb:ICD10_F40228 ;
 	mhdb:hasICD10Code mhdb:ICD10_F40218 ;
 	mhdb:hasICD10Code mhdb:ICD10_F40232 ;
-	mhdb:hasICD10Code mhdb:ICD10_F40231 ;
 	mhdb:hasDisorderCategory mhdb:Anxiety_Disorder ;
-	mhdb:hasDiagnosticSpecifier mhdb:blood-injection-injury_fear_of_other_medical_care ;
 	mhdb:hasDiagnosticSpecifier mhdb:situational ;
-	mhdb:hasDiagnosticSpecifier mhdb:blood-injection-injury_fear_of_injury ;
-	mhdb:hasDiagnosticSpecifier mhdb:blood-injection-injury_fear_of_injections_and_transfusions ;
-	mhdb:hasDiagnosticSpecifier mhdb:other ;
-	mhdb:hasDiagnosticSpecifier mhdb:animal ;
 	mhdb:hasDiagnosticSpecifier mhdb:blood-injection-injury_fear_of_blood ;
+	mhdb:hasDiagnosticSpecifier mhdb:blood-injection-injury_fear_of_injections_and_transfusions ;
+	mhdb:hasDiagnosticSpecifier mhdb:blood-injection-injury_fear_of_other_medical_care ;
+	mhdb:hasDiagnosticSpecifier mhdb:other ;
+	mhdb:hasDiagnosticSpecifier mhdb:blood-injection-injury_fear_of_injury ;
+	mhdb:hasDiagnosticSpecifier mhdb:animal ;
 	mhdb:hasDiagnosticSpecifier mhdb:natural_environment .
 
 mhdb:Social_Anxiety_Disorder_Social_Phobia rdfs:label """Social Anxiety Disorder (Social Phobia)"""@en ;
@@ -7059,8 +7061,8 @@ mhdb:Panic_Disorder rdfs:label """Panic Disorder"""@en ;
 
 mhdb:Agoraphobia rdfs:label """Agoraphobia"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30022 ;
 	mhdb:hasICD10Code mhdb:ICD10_F4000 ;
+	mhdb:hasICD10Code mhdb:ICD9_30022 ;
 	mhdb:hasDisorderCategory mhdb:Anxiety_Disorder .
 
 mhdb:Generalized_Anxiety_Disorder rdfs:label """Generalized Anxiety Disorder"""@en ;
@@ -7076,8 +7078,8 @@ mhdb:SubstanceMedication-Induced_Anxiety_Disorder rdfs:label """Substance/Medica
 
 mhdb:Anxiety_Disorder_Due_to_Another_Medical_Condition rdfs:label """Anxiety Disorder Due to Another Medical Condition"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F064 ;
 	mhdb:hasICD10Code mhdb:ICD9_29384 ;
+	mhdb:hasICD10Code mhdb:ICD10_F064 ;
 	mhdb:hasDisorderCategory mhdb:Anxiety_Disorder .
 
 mhdb:Other_Specified_Anxiety_Disorder rdfs:label """Other Specified Anxiety Disorder"""@en ;
@@ -7089,8 +7091,8 @@ mhdb:Other_Specified_Anxiety_Disorder rdfs:label """Other Specified Anxiety Diso
 mhdb:Unspecified_Anxiety_Disorder rdfs:label """Unspecified Anxiety Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F419 ;
 	mhdb:hasICD10Code mhdb:ICD9_300 ;
+	mhdb:hasICD10Code mhdb:ICD10_F419 ;
 	mhdb:hasDisorderCategory mhdb:Anxiety_Disorder .
 
 mhdb:Obsessive-Compulsive_Disorder rdfs:label """Obsessive-Compulsive Disorder"""@en ;
@@ -7113,14 +7115,14 @@ mhdb:Hoarding_Disorder rdfs:label """Hoarding Disorder"""@en ;
 
 mhdb:Trichotillomania_Hair-Pulling_Disorder rdfs:label """Trichotillomania (Hair-Pulling Disorder)"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_31239 ;
 	mhdb:hasICD10Code mhdb:ICD10_F633 ;
+	mhdb:hasICD10Code mhdb:ICD9_31239 ;
 	mhdb:hasDisorderCategory mhdb:Obsessive-Compulsive_or_Related_Disorder .
 
 mhdb:Excoriation_Skin-Picking_Disorder rdfs:label """Excoriation (Skin-Picking) Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_6984 ;
 	mhdb:hasICD10Code mhdb:ICD10_L981 ;
+	mhdb:hasICD10Code mhdb:ICD9_6984 ;
 	mhdb:hasDisorderCategory mhdb:Obsessive-Compulsive_or_Related_Disorder .
 
 mhdb:SubstanceMedication-Induced_Obsessive-Compulsive_and_Related_Disorder rdfs:label """Substance/Medication-Induced Obsessive-Compulsive and Related Disorder"""@en ;
@@ -7130,8 +7132,8 @@ mhdb:SubstanceMedication-Induced_Obsessive-Compulsive_and_Related_Disorder rdfs:
 
 mhdb:Obsessive-Compulsive_and_Related_Disorder_Due_to_Another_Medical_Condition rdfs:label """Obsessive-Compulsive and Related Disorder Due to Another Medical Condition"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F068 ;
 	mhdb:hasICD10Code mhdb:ICD9_2948 ;
+	mhdb:hasICD10Code mhdb:ICD10_F068 ;
 	mhdb:hasDisorderCategory mhdb:Obsessive-Compulsive_or_Related_Disorder .
 
 mhdb:Other_Specified_Obsessive-Compulsive_and_Related_Disorder rdfs:label """Other Specified Obsessive-Compulsive and Related Disorder"""@en ;
@@ -7161,42 +7163,42 @@ mhdb:Disinhibited_Social_Engagement_Disorder rdfs:label """Disinhibited Social E
 
 mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger rdfs:label """Posttraumatic Stress Disorder (includes Posttraumatic Stress Disorder for Children 6 Years and Younger)"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30981 ;
 	mhdb:hasICD10Code mhdb:ICD10_F4310 ;
+	mhdb:hasICD10Code mhdb:ICD9_30981 ;
 	mhdb:hasDisorderCategory mhdb:Trauma-_or_Stressor-Related_Disorder .
 
 mhdb:Acute_Stress_Disorder rdfs:label """Acute Stress Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3083 ;
 	mhdb:hasICD10Code mhdb:ICD10_F430 ;
+	mhdb:hasICD10Code mhdb:ICD9_3083 ;
 	mhdb:hasDisorderCategory mhdb:Trauma-_or_Stressor-Related_Disorder .
 
 mhdb:Adjustment_Disorders rdfs:label """Adjustment Disorders"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:equivalentClass SNOMEDCT:47372000 ;
-	rdfs:equivalentClass SNOMEDCT:57194009 ;
 	rdfs:equivalentClass SNOMEDCT:84984002 ;
-	mhdb:hasICD10Code mhdb:ICD10_F4325 ;
-	mhdb:hasICD10Code mhdb:ICD9_30924 ;
+	rdfs:equivalentClass SNOMEDCT:57194009 ;
+	mhdb:hasICD10Code mhdb:ICD10_F4321 ;
+	mhdb:hasICD10Code mhdb:ICD10_F4323 ;
 	mhdb:hasICD10Code mhdb:ICD9_309 ;
+	mhdb:hasICD10Code mhdb:ICD10_F4324 ;
 	mhdb:hasICD10Code mhdb:ICD10_F4320 ;
+	mhdb:hasICD10Code mhdb:ICD10_F4322 ;
+	mhdb:hasICD10Code mhdb:ICD9_3099 ;
 	mhdb:hasICD10Code mhdb:ICD9_30928 ;
 	mhdb:hasICD10Code mhdb:ICD9_3094 ;
-	mhdb:hasICD10Code mhdb:ICD10_F4321 ;
-	mhdb:hasICD10Code mhdb:ICD10_F4322 ;
+	mhdb:hasICD10Code mhdb:ICD10_F4325 ;
 	mhdb:hasICD10Code mhdb:ICD9_3093 ;
-	mhdb:hasICD10Code mhdb:ICD10_F4323 ;
-	mhdb:hasICD10Code mhdb:ICD9_3099 ;
-	mhdb:hasICD10Code mhdb:ICD10_F4324 ;
+	mhdb:hasICD10Code mhdb:ICD9_30924 ;
 	mhdb:hasDisorderCategory mhdb:Trauma-_or_Stressor-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:mixed_disturbance_of_emotions_and_conduct ;
 	mhdb:hasInclusionCriterion mhdb:mixed_anxiety_and_depressed_mood ;
-	mhdb:hasInclusionCriterion mhdb:depressed_mood ;
 	mhdb:hasInclusionCriterion mhdb:disturbance_of_conduct ;
 	mhdb:hasInclusionCriterion mhdb:anxiety ;
-	rdfs:subClassOf <http://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=84984002> ;
+	mhdb:hasInclusionCriterion mhdb:depressed_mood ;
 	rdfs:subClassOf <http://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=47372000> ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
+	rdfs:subClassOf <http://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=84984002> ;
 	rdfs:subClassOf SNOMEDCT:57194009 ;
 	rdfs:subClassOf <http://bioportal.bioontology.org/ontologies/SNOMEDCT/?p=classes&conceptid=http%3A%2F%2Fpurl.bioontology.org%2Fontology%2FSNOMEDCT%2F17226007> ;
 	mhdb:hasDiagnosticSpecifier mhdb:unspecified .
@@ -7210,22 +7212,22 @@ mhdb:Other_Specified_Trauma-_and_Stressor-Related_Disorder rdfs:label """Other S
 mhdb:Unspecified_Trauma-_and_Stressor-Related_Disorder rdfs:label """Unspecified Trauma- and Stressor-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F439 ;
 	mhdb:hasICD10Code mhdb:ICD9_3099 ;
+	mhdb:hasICD10Code mhdb:ICD10_F439 ;
 	mhdb:hasDisorderCategory mhdb:Trauma-_or_Stressor-Related_Disorder .
 
 mhdb:Dissociative_Identity_Disorder rdfs:label """Dissociative Identity Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F4481 ;
 	mhdb:hasICD10Code mhdb:ICD9_30014 ;
+	mhdb:hasICD10Code mhdb:ICD10_F4481 ;
 	mhdb:hasDisorderCategory mhdb:Dissociative_Disorder .
 
 mhdb:Dissociative_Amnesia rdfs:label """Dissociative Amnesia"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F440 ;
-	mhdb:hasICD10Code mhdb:ICD10_F441 ;
 	mhdb:hasICD10Code mhdb:ICD9_30012 ;
+	mhdb:hasICD10Code mhdb:ICD10_F441 ;
 	mhdb:hasICD10Code mhdb:ICD9_30013 ;
+	mhdb:hasICD10Code mhdb:ICD10_F440 ;
 	mhdb:hasDisorderCategory mhdb:Dissociative_Disorder ;
 	mhdb:hasExclusionCriterion mhdb:dissociative_fugue ;
 	mhdb:hasInclusionCriterion mhdb:dissociative_fugue .
@@ -7251,8 +7253,8 @@ mhdb:Unspecified_Dissociative_Disorder rdfs:label """Unspecified Dissociative Di
 
 mhdb:Somatic_Symptom_Disorder rdfs:label """Somatic Symptom Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F451 ;
 	mhdb:hasICD10Code mhdb:ICD9_30082 ;
+	mhdb:hasICD10Code mhdb:ICD10_F451 ;
 	mhdb:hasDisorderCategory mhdb:Somatic_Symptom_or_Related_Disorder .
 
 mhdb:Illness_Anxiety_Disorder rdfs:label """Illness Anxiety Disorder"""@en ;
@@ -7263,20 +7265,20 @@ mhdb:Illness_Anxiety_Disorder rdfs:label """Illness Anxiety Disorder"""@en ;
 
 mhdb:Conversion_Disorder_Functional_Neurological_Symptom_Disorder rdfs:label """Conversion Disorder (Functional Neurological Symptom Disorder)"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD10_F444 ;
 	mhdb:hasICD10Code mhdb:ICD10_F445 ;
 	mhdb:hasICD10Code mhdb:ICD10_F446 ;
-	mhdb:hasICD10Code mhdb:ICD10_F447 ;
 	mhdb:hasICD10Code mhdb:ICD9_30011 ;
-	mhdb:hasICD10Code mhdb:ICD10_F444 ;
+	mhdb:hasICD10Code mhdb:ICD10_F447 ;
 	mhdb:hasDisorderCategory mhdb:Somatic_Symptom_or_Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:speech_symptom ;
-	mhdb:hasInclusionCriterion mhdb:weakness_or_paralysis ;
 	mhdb:hasInclusionCriterion mhdb:anesthesia_or_sensory_loss ;
 	mhdb:hasInclusionCriterion mhdb:special_sensory_symptom ;
-	mhdb:hasInclusionCriterion mhdb:swallowing_symptoms ;
+	mhdb:hasInclusionCriterion mhdb:weakness_or_paralysis ;
 	mhdb:hasInclusionCriterion mhdb:mixed_symptoms ;
+	mhdb:hasInclusionCriterion mhdb:abnormal_movement ;
 	mhdb:hasInclusionCriterion mhdb:attacks_or_seizures ;
-	mhdb:hasInclusionCriterion mhdb:abnormal_movement .
+	mhdb:hasInclusionCriterion mhdb:swallowing_symptoms .
 
 mhdb:Psychological_Factors_Affecting_Other_Medical_Conditions rdfs:label """Psychological Factors Affecting Other Medical Conditions"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -7299,8 +7301,8 @@ mhdb:Other_Specified_Somatic_Symptom_and_Related_Disorder rdfs:label """Other Sp
 mhdb:Unspecified_Somatic_Symptom_and_Related_Disorder rdfs:label """Unspecified Somatic Symptom and Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F459 ;
 	mhdb:hasICD10Code mhdb:ICD9_30082 ;
+	mhdb:hasICD10Code mhdb:ICD10_F459 ;
 	mhdb:hasDisorderCategory mhdb:Somatic_Symptom_or_Related_Disorder .
 
 mhdb:Pica rdfs:label """Pica"""@en ;
@@ -7309,8 +7311,8 @@ mhdb:Pica rdfs:label """Pica"""@en ;
 	mhdb:hasICD10Code mhdb:ICD10_F508 ;
 	mhdb:hasICD10Code mhdb:ICD9_30752 ;
 	mhdb:hasDisorderCategory mhdb:Feeding_or_Eating_Disorder ;
-	mhdb:hasDiagnosticSpecifier mhdb:in_adults ;
-	mhdb:hasDiagnosticSpecifier mhdb:in_children .
+	mhdb:hasDiagnosticSpecifier mhdb:in_children ;
+	mhdb:hasDiagnosticSpecifier mhdb:in_adults .
 
 mhdb:Rumination_Disorder rdfs:label """Rumination Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -7326,15 +7328,15 @@ mhdb:AvoidantRestrictive_Food_Intake_Disorder rdfs:label """Avoidant/Restrictive
 
 mhdb:Anorexia_Nervosa rdfs:label """Anorexia Nervosa"""@en ;
 	rdf:type mhdb:Disorder ;
-	rdfs:equivalentClass SNOMEDCT:77675002 ;
-	rdfs:equivalentClass SNOMEDCT:63393005 ;
 	rdfs:equivalentClass SNOMEDCT:56882008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F5002 ;
+	rdfs:equivalentClass SNOMEDCT:63393005 ;
+	rdfs:equivalentClass SNOMEDCT:77675002 ;
 	mhdb:hasICD10Code mhdb:ICD10_F5001 ;
 	mhdb:hasICD10Code mhdb:ICD9_3071 ;
+	mhdb:hasICD10Code mhdb:ICD10_F5002 ;
 	mhdb:hasDisorderCategory mhdb:Feeding_or_Eating_Disorder ;
-	mhdb:hasDiagnosticSpecifier mhdb:restricting_type ;
-	mhdb:hasDiagnosticSpecifier mhdb:binge-eatingpurging_type .
+	mhdb:hasDiagnosticSpecifier mhdb:binge-eatingpurging_type ;
+	mhdb:hasDiagnosticSpecifier mhdb:restricting_type .
 
 mhdb:Bulimia_Nervosa rdfs:label """Bulimia Nervosa"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -7344,8 +7346,8 @@ mhdb:Bulimia_Nervosa rdfs:label """Bulimia Nervosa"""@en ;
 
 mhdb:Binge-Eating_Disorder rdfs:label """Binge-Eating Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F508 ;
 	mhdb:hasICD10Code mhdb:ICD9_30751 ;
+	mhdb:hasICD10Code mhdb:ICD10_F508 ;
 	mhdb:hasDisorderCategory mhdb:Feeding_or_Eating_Disorder .
 
 mhdb:Other_Specified_Feeding_or_Eating_Disorder rdfs:label """Other Specified Feeding or Eating Disorder"""@en ;
@@ -7357,10 +7359,10 @@ mhdb:Other_Specified_Feeding_or_Eating_Disorder rdfs:label """Other Specified Fe
 
 mhdb:Unspecified_Feeding_or_Eating_Disorder rdfs:label """Unspecified Feeding or Eating Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	rdfs:subClassOf SNOMEDCT:10003008 ;
 	rdfs:subClassOf SNOMEDCT:72366004 ;
-	mhdb:hasICD10Code mhdb:ICD10_F509 ;
+	rdfs:subClassOf SNOMEDCT:10003008 ;
 	mhdb:hasICD10Code mhdb:ICD9_3075 ;
+	mhdb:hasICD10Code mhdb:ICD10_F509 ;
 	mhdb:hasDisorderCategory mhdb:Feeding_or_Eating_Disorder .
 
 mhdb:Enuresis rdfs:label """Enuresis"""@en ;
@@ -7371,30 +7373,30 @@ mhdb:Enuresis rdfs:label """Enuresis"""@en ;
 
 mhdb:Encopresis rdfs:label """Encopresis"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F981 ;
 	mhdb:hasICD10Code mhdb:ICD9_3077 ;
+	mhdb:hasICD10Code mhdb:ICD10_F981 ;
 	mhdb:hasDisorderCategory mhdb:Elimination_Disorder .
 
 mhdb:Other_Specified_Elimination_Disorder rdfs:label """Other Specified Elimination Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Elimination_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_78839 ;
 	mhdb:hasICD10Code mhdb:ICD9_7876 ;
 	mhdb:hasICD10Code mhdb:ICD10_N39498 ;
+	mhdb:hasICD10Code mhdb:ICD9_78839 ;
 	mhdb:hasICD10Code mhdb:ICD10_R159 ;
-	mhdb:hasInclusionCriterion mhdb:fecal_symptoms ;
-	mhdb:hasInclusionCriterion mhdb:urinary_symptoms .
+	mhdb:hasInclusionCriterion mhdb:urinary_symptoms ;
+	mhdb:hasInclusionCriterion mhdb:fecal_symptoms .
 
 mhdb:Unspecified_Elimination_Disorder rdfs:label """Unspecified Elimination Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
 	mhdb:hasDisorderCategory mhdb:Elimination_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_R159 ;
 	mhdb:hasICD10Code mhdb:ICD9_7876 ;
-	mhdb:hasICD10Code mhdb:ICD10_R32 ;
 	mhdb:hasICD10Code mhdb:ICD9_7883 ;
-	mhdb:hasInclusionCriterion mhdb:fecal_symptoms ;
-	mhdb:hasInclusionCriterion mhdb:urinary_symptoms .
+	mhdb:hasICD10Code mhdb:ICD10_R32 ;
+	mhdb:hasICD10Code mhdb:ICD10_R159 ;
+	mhdb:hasInclusionCriterion mhdb:urinary_symptoms ;
+	mhdb:hasInclusionCriterion mhdb:fecal_symptoms .
 
 mhdb:Insomnia_Disorder rdfs:label """Insomnia Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -7404,26 +7406,26 @@ mhdb:Insomnia_Disorder rdfs:label """Insomnia Disorder"""@en ;
 
 mhdb:Hypersomnolence_Disorder rdfs:label """Hypersomnolence Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_78054 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4710 ;
+	mhdb:hasICD10Code mhdb:ICD9_78054 ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder .
 
 mhdb:Narcolepsy rdfs:label """Narcolepsy"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_G47411 ;
 	mhdb:hasICD10Code mhdb:ICD9_34701 ;
+	mhdb:hasICD10Code mhdb:ICD9_3471 ;
+	mhdb:hasICD10Code mhdb:ICD10_G47429 ;
 	mhdb:hasICD10Code mhdb:ICD9_347 ;
 	mhdb:hasICD10Code mhdb:ICD10_G47419 ;
-	mhdb:hasICD10Code mhdb:ICD10_G47429 ;
-	mhdb:hasICD10Code mhdb:ICD9_3471 ;
-	mhdb:hasInclusionCriterion mhdb:cataplexy ;
+	mhdb:hasICD10Code mhdb:ICD10_G47411 ;
 	mhdb:hasInclusionCriterion mhdb:hypocretin_deficiency ;
-	mhdb:hasExclusionCriterion mhdb:cataplexy ;
+	mhdb:hasInclusionCriterion mhdb:cataplexy ;
 	mhdb:hasExclusionCriterion mhdb:hypocretin_deficiency ;
+	mhdb:hasExclusionCriterion mhdb:cataplexy ;
+	mhdb:hasDiagnosticSpecifier mhdb:narcolepsy_secondary_to_another_medical_condition ;
 	mhdb:hasDiagnosticSpecifier mhdb:autosomal_dominant_cerebellar_ataxia_fearness_and_narcolepsy ;
-	mhdb:hasDiagnosticSpecifier mhdb:autosomal_dominant_narcolepsy_obesity_and_type_2_diabetes ;
-	mhdb:hasDiagnosticSpecifier mhdb:narcolepsy_secondary_to_another_medical_condition .
+	mhdb:hasDiagnosticSpecifier mhdb:autosomal_dominant_narcolepsy_obesity_and_type_2_diabetes .
 
 mhdb:Obstructive_Sleep_Apnea_Hypopnea rdfs:label """Obstructive Sleep Apnea Hypopnea"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -7436,14 +7438,14 @@ mhdb:Central_Sleep_Apnea rdfs:label """Central Sleep Apnea"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Breathing-Related_Sleep_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_78057 ;
 	mhdb:hasICD10Code mhdb:ICD9_78604 ;
-	mhdb:hasICD10Code mhdb:ICD10_R063 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4737 ;
-	mhdb:hasICD10Code mhdb:ICD10_G4731 ;
+	mhdb:hasICD10Code mhdb:ICD9_78057 ;
 	mhdb:hasICD10Code mhdb:ICD9_32721 ;
-	mhdb:hasDiagnosticSpecifier mhdb:idiopathic_central_sleep_apnea ;
+	mhdb:hasICD10Code mhdb:ICD10_R063 ;
+	mhdb:hasICD10Code mhdb:ICD10_G4731 ;
 	mhdb:hasDiagnosticSpecifier mhdb:central_sleep_apnea_comorbid_with_opioid_use ;
+	mhdb:hasDiagnosticSpecifier mhdb:idiopathic_central_sleep_apnea ;
 	mhdb:hasDiagnosticSpecifier mhdb:cheyne-stokes_breathing ;
 	mhdb:hasNote """First code opioid use disorder, if present."""@en .
 
@@ -7451,38 +7453,38 @@ mhdb:Sleep-Related_Hypoventilation rdfs:label """Sleep-Related Hypoventilation""
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Breathing-Related_Sleep_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_G4734 ;
+	mhdb:hasICD10Code mhdb:ICD10_G4735 ;
+	mhdb:hasICD10Code mhdb:ICD9_32724 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4736 ;
 	mhdb:hasICD10Code mhdb:ICD9_32726 ;
-	mhdb:hasICD10Code mhdb:ICD9_32724 ;
 	mhdb:hasICD10Code mhdb:ICD9_32725 ;
-	mhdb:hasICD10Code mhdb:ICD10_G4735 ;
-	mhdb:hasDiagnosticSpecifier mhdb:idiopathic_hypoventilation ;
+	mhdb:hasICD10Code mhdb:ICD10_G4734 ;
+	mhdb:hasDiagnosticSpecifier mhdb:comorbid_sleep-related_hypoventilation ;
 	mhdb:hasDiagnosticSpecifier mhdb:congenital_central_alveolar_hypoventilation ;
-	mhdb:hasDiagnosticSpecifier mhdb:comorbid_sleep-related_hypoventilation .
+	mhdb:hasDiagnosticSpecifier mhdb:idiopathic_hypoventilation .
 
 mhdb:Circadian_Rhythm_Sleep-Wake_Disorder rdfs:label """Circadian Rhythm Sleep-Wake Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	rdfs:equivalentClass SNOMEDCT:3745000 ;
-	rdfs:equivalentClass SNOMEDCT:31537005 ;
-	rdfs:equivalentClass SNOMEDCT:713498009 ;
-	rdfs:equivalentClass SNOMEDCT:28011000119104 ;
 	rdfs:equivalentClass SNOMEDCT:271793004 ;
+	rdfs:equivalentClass SNOMEDCT:713498009 ;
+	rdfs:equivalentClass SNOMEDCT:31537005 ;
+	rdfs:equivalentClass SNOMEDCT:28011000119104 ;
+	rdfs:equivalentClass SNOMEDCT:3745000 ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Breathing-Related_Sleep_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30745 ;
-	mhdb:hasICD10Code mhdb:ICD10_G4723 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4722 ;
-	mhdb:hasICD10Code mhdb:ICD10_G4720 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4721 ;
-	mhdb:hasICD10Code mhdb:ICD10_G4724 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4726 ;
-	mhdb:hasDiagnosticSpecifier mhdb:unspecified_type ;
+	mhdb:hasICD10Code mhdb:ICD9_30745 ;
+	mhdb:hasICD10Code mhdb:ICD10_G4720 ;
+	mhdb:hasICD10Code mhdb:ICD10_G4723 ;
+	mhdb:hasICD10Code mhdb:ICD10_G4724 ;
 	mhdb:hasDiagnosticSpecifier mhdb:non-24-hour_sleep-wake_type ;
-	mhdb:hasDiagnosticSpecifier mhdb:delayed_sleep_phase_type ;
-	mhdb:hasDiagnosticSpecifier mhdb:irregular_sleep-wake_type ;
-	mhdb:hasDiagnosticSpecifier mhdb:advanced_sleep_phase_type ;
+	mhdb:hasDiagnosticSpecifier mhdb:unspecified_type ;
 	mhdb:hasDiagnosticSpecifier mhdb:shift_work_type ;
+	mhdb:hasDiagnosticSpecifier mhdb:irregular_sleep-wake_type ;
+	mhdb:hasDiagnosticSpecifier mhdb:delayed_sleep_phase_type ;
+	mhdb:hasDiagnosticSpecifier mhdb:advanced_sleep_phase_type ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
 	rdfs:subClassOf SNOMEDCT:3745000 .
 
@@ -7491,10 +7493,10 @@ mhdb:Non-Rapid_Eye_Movement_Sleep_Arousal_Disorder rdfs:label """Non-Rapid Eye M
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Parasomnia ;
 	mhdb:hasICD10Code mhdb:ICD10_F513 ;
-	mhdb:hasICD10Code mhdb:ICD9_30746 ;
 	mhdb:hasICD10Code mhdb:ICD10_F514 ;
-	mhdb:hasDiagnosticSpecifier mhdb:sleepwalking_type ;
-	mhdb:hasDiagnosticSpecifier mhdb:sleep_terror_type .
+	mhdb:hasICD10Code mhdb:ICD9_30746 ;
+	mhdb:hasDiagnosticSpecifier mhdb:sleep_terror_type ;
+	mhdb:hasDiagnosticSpecifier mhdb:sleepwalking_type .
 
 mhdb:Nightmare_Disorder rdfs:label """Nightmare Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
@@ -7505,8 +7507,8 @@ mhdb:Nightmare_Disorder rdfs:label """Nightmare Disorder"""@en ;
 
 mhdb:Rapid_Eye_Movement_Sleep_Behavior_Disorder rdfs:label """Rapid Eye Movement Sleep Behavior Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_G4752 ;
 	mhdb:hasICD10Code mhdb:ICD9_32742 ;
+	mhdb:hasICD10Code mhdb:ICD10_G4752 ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Parasomnia .
 
@@ -7522,14 +7524,14 @@ mhdb:SubstanceMedication-Induced_Sleep_Disorder rdfs:label """Substance/Medicati
 	mhdb:hasNote """See the criteria set and corresponding recording procedures for substance-specific codes and ICD-9-CM and ICD-IO-CM coding."""@en ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Parasomnia ;
-	mhdb:hasDiagnosticSpecifier mhdb:cannabis ;
-	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
-	mhdb:hasDiagnosticSpecifier mhdb:alcohol ;
-	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
 	mhdb:hasDiagnosticSpecifier mhdb:caffeine ;
-	mhdb:hasDiagnosticSpecifier mhdb:opioid ;
+	mhdb:hasDiagnosticSpecifier mhdb:alcohol ;
 	mhdb:hasDiagnosticSpecifier mhdb:tobacco ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine_or_other_stimulant ;
+	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
+	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
+	mhdb:hasDiagnosticSpecifier mhdb:opioid ;
+	mhdb:hasDiagnosticSpecifier mhdb:cannabis ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine .
 
 mhdb:Other_Specified_Insomnia_Disorder rdfs:label """Other Specified Insomnia Disorder"""@en ;
@@ -7557,30 +7559,30 @@ mhdb:Other_Specified_Hypersomnolence_Disorder rdfs:label """Other Specified Hype
 mhdb:Unspecified_Hypersomnolence_Disorder rdfs:label """Unspecified Hypersomnolence Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_78054 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4710 ;
+	mhdb:hasICD10Code mhdb:ICD9_78054 ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Parasomnia .
 
 mhdb:Other_Specified_Sleep-Wake_Disorder rdfs:label """Other Specified Sleep-Wake Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_78059 ;
 	mhdb:hasICD10Code mhdb:ICD10_G478 ;
+	mhdb:hasICD10Code mhdb:ICD9_78059 ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Parasomnia .
 
 mhdb:Unspecified_Sleep-Wake_Disorder rdfs:label """Unspecified Sleep-Wake Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_78059 ;
 	mhdb:hasICD10Code mhdb:ICD10_G479 ;
+	mhdb:hasICD10Code mhdb:ICD9_78059 ;
 	mhdb:hasDisorderCategory mhdb:Sleep-Wake_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Parasomnia .
 
 mhdb:Delayed_Ejaculation rdfs:label """Delayed Ejaculation"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30274 ;
 	mhdb:hasICD10Code mhdb:ICD10_F5232 ;
+	mhdb:hasICD10Code mhdb:ICD9_30274 ;
 	mhdb:hasDisorderCategory mhdb:Sexual_Dysfunction .
 
 mhdb:Erectile_Disorder rdfs:label """Erectile Disorder"""@en ;
@@ -7603,14 +7605,14 @@ mhdb:Female_Sexual_InterestArousal_Disorder rdfs:label """Female Sexual Interest
 
 mhdb:Genito-Pelvic_PainPenetration_Disorder rdfs:label """Genito-Pelvic Pain/Penetration Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F526 ;
 	mhdb:hasICD10Code mhdb:ICD9_30276 ;
+	mhdb:hasICD10Code mhdb:ICD10_F526 ;
 	mhdb:hasDisorderCategory mhdb:Sexual_Dysfunction .
 
 mhdb:Male_Hypoactive_Sexual_Desire_Disorder rdfs:label """Male Hypoactive Sexual Desire Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F520 ;
 	mhdb:hasICD10Code mhdb:ICD9_30271 ;
+	mhdb:hasICD10Code mhdb:ICD10_F520 ;
 	mhdb:hasDisorderCategory mhdb:Sexual_Dysfunction .
 
 mhdb:Premature_Early_Ejaculation rdfs:label """Premature (Early) Ejaculation"""@en ;
@@ -7621,43 +7623,43 @@ mhdb:Premature_Early_Ejaculation rdfs:label """Premature (Early) Ejaculation"""@
 
 mhdb:SubstanceMedication-Induced_Sexual_Dysfunction rdfs:label """Substance/Medication-Induced Sexual Dysfunction"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_29189 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15281 ;
-	mhdb:hasICD10Code mhdb:ICD10_F19281 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14981 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14281 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15181 ;
-	mhdb:hasICD10Code mhdb:ICD10_F13281 ;
 	mhdb:hasICD10Code mhdb:ICD10_F13181 ;
-	mhdb:hasICD10Code mhdb:ICD10_F19981 ;
-	mhdb:hasICD10Code mhdb:ICD10_F10181 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15981 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11181 ;
-	mhdb:hasICD10Code mhdb:ICD10_F13981 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14181 ;
 	mhdb:hasICD10Code mhdb:ICD10_F11981 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11281 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15181 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15281 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14281 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15981 ;
 	mhdb:hasICD10Code mhdb:ICD10_F10981 ;
-	mhdb:hasICD10Code mhdb:ICD9_29289 ;
-	mhdb:hasICD10Code mhdb:ICD10_F10291 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14981 ;
+	mhdb:hasICD10Code mhdb:ICD10_F19281 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13281 ;
+	mhdb:hasICD10Code mhdb:ICD10_F19981 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14181 ;
+	mhdb:hasICD10Code mhdb:ICD10_F10181 ;
 	mhdb:hasICD10Code mhdb:ICD10_F19181 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11181 ;
+	mhdb:hasICD10Code mhdb:ICD10_F10291 ;
+	mhdb:hasICD10Code mhdb:ICD9_29289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13981 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11281 ;
+	mhdb:hasICD10Code mhdb:ICD9_29189 ;
 	mhdb:hasDisorderCategory mhdb:Sexual_Dysfunction ;
-	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
 	mhdb:hasDiagnosticSpecifier mhdb:alcohol ;
-	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
-	mhdb:hasDiagnosticSpecifier mhdb:opioid ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine_or_other_stimulant ;
+	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
+	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
+	mhdb:hasDiagnosticSpecifier mhdb:opioid ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
 mhdb:Other_Specified_Sexual_Dysfunction rdfs:label """Other Specified Sexual Dysfunction"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30279 ;
 	mhdb:hasICD10Code mhdb:ICD10_F528 ;
+	mhdb:hasICD10Code mhdb:ICD9_30279 ;
 	mhdb:hasDisorderCategory mhdb:Sexual_Dysfunction .
 
 mhdb:Unspecified_Sexual_Dysfunction rdfs:label """Unspecified Sexual Dysfunction"""@en ;
@@ -7668,15 +7670,15 @@ mhdb:Unspecified_Sexual_Dysfunction rdfs:label """Unspecified Sexual Dysfunction
 	mhdb:hasDisorderCategory mhdb:Sexual_Dysfunction .
 
 mhdb:Gender_Dysphoria rdfs:label """Gender Dysphoria"""@en ;
-	rdf:type mhdb:DisorderCategory ;
 	rdf:type mhdb:Disorder ;
+	rdf:type mhdb:DisorderCategory ;
 	mhdb:hasDisorderCategory mhdb:Gender_Dysphoria ;
-	mhdb:hasICD10Code mhdb:ICD9_3026 ;
 	mhdb:hasICD10Code mhdb:ICD10_F642 ;
+	mhdb:hasICD10Code mhdb:ICD9_3026 ;
 	mhdb:hasICD10Code mhdb:ICD9_30285 ;
 	mhdb:hasICD10Code mhdb:ICD10_F641 ;
-	mhdb:hasDiagnosticSpecifier mhdb:in_adolescents_and_adults ;
 	mhdb:hasDiagnosticSpecifier mhdb:in_children ;
+	mhdb:hasDiagnosticSpecifier mhdb:in_adolescents_and_adults ;
 	rdfs:equivalentClass MESH:D000068116 ;
 	rdfs:equivalentClass OMIT:0001245 .
 
@@ -7695,8 +7697,8 @@ mhdb:Unspecified_Gender_Dysphoria rdfs:label """Unspecified Gender Dysphoria"""@
 
 mhdb:Oppositional_Defiant_Disorder rdfs:label """Oppositional Defiant Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F913 ;
 	mhdb:hasICD10Code mhdb:ICD9_31381 ;
+	mhdb:hasICD10Code mhdb:ICD10_F913 ;
 	mhdb:hasDisorderCategory mhdb:Disruptive_Impulse-Control_or_Conduct_Disorder .
 
 mhdb:Intermittent_Explosive_Disorder rdfs:label """Intermittent Explosive Disorder"""@en ;
@@ -7707,16 +7709,16 @@ mhdb:Intermittent_Explosive_Disorder rdfs:label """Intermittent Explosive Disord
 
 mhdb:Conduct_Disorder rdfs:label """Conduct Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	rdfs:equivalentClass SNOMEDCT:48826008 ;
 	rdfs:equivalentClass SNOMEDCT:17961008 ;
 	rdfs:equivalentClass SNOMEDCT:430909002 ;
+	rdfs:equivalentClass SNOMEDCT:48826008 ;
 	mhdb:hasDisorderCategory mhdb:Disruptive_Impulse-Control_or_Conduct_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_31289 ;
-	mhdb:hasICD10Code mhdb:ICD10_F911 ;
-	mhdb:hasICD10Code mhdb:ICD9_31232 ;
-	mhdb:hasICD10Code mhdb:ICD10_F912 ;
-	mhdb:hasICD10Code mhdb:ICD9_31281 ;
 	mhdb:hasICD10Code mhdb:ICD10_F919 ;
+	mhdb:hasICD10Code mhdb:ICD10_F911 ;
+	mhdb:hasICD10Code mhdb:ICD10_F912 ;
+	mhdb:hasICD10Code mhdb:ICD9_31232 ;
+	mhdb:hasICD10Code mhdb:ICD9_31289 ;
+	mhdb:hasICD10Code mhdb:ICD9_31281 ;
 	mhdb:hasDiagnosticSpecifier mhdb:adolescent-onset_type ;
 	mhdb:hasDiagnosticSpecifier mhdb:unspecified_onset ;
 	mhdb:hasDiagnosticSpecifier mhdb:childhood-onset_type ;
@@ -7732,20 +7734,20 @@ mhdb:Antisocial_Personality_Disorder rdfs:label """Antisocial Personality Disord
 
 mhdb:Pyromania rdfs:label """Pyromania"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_31233 ;
 	mhdb:hasICD10Code mhdb:ICD10_F631 ;
+	mhdb:hasICD10Code mhdb:ICD9_31233 ;
 	mhdb:hasDisorderCategory mhdb:Disruptive_Impulse-Control_or_Conduct_Disorder .
 
 mhdb:Kleptomania rdfs:label """Kleptomania"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_31232 ;
 	mhdb:hasICD10Code mhdb:ICD10_F633 ;
+	mhdb:hasICD10Code mhdb:ICD9_31232 ;
 	mhdb:hasDisorderCategory mhdb:Disruptive_Impulse-Control_or_Conduct_Disorder .
 
 mhdb:Other_Specified_Disruptive_Impulse-Control_and_Conduct_Disorder rdfs:label """Other Specified Disruptive, Impulse-Control, and Conduct Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F918 ;
 	mhdb:hasICD10Code mhdb:ICD9_31289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F918 ;
 	mhdb:hasDisorderCategory mhdb:Disruptive_Impulse-Control_or_Conduct_Disorder .
 
 mhdb:Unspecified_Disruptive_Impulse-Control_and_Conduct_Disorder rdfs:label """Unspecified Disruptive, Impulse-Control, and Conduct Disorder"""@en ;
@@ -7760,34 +7762,34 @@ mhdb:Alcohol_Use_Disorder rdfs:label """Alcohol Use Disorder"""@en ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Alcohol-Related_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3039 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1010 ;
+	mhdb:hasICD10Code mhdb:ICD9_3039 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1020 ;
 	mhdb:hasICD10Code mhdb:ICD9_305 ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Alcohol_Intoxication rdfs:label """Alcohol Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F10129 ;
 	mhdb:hasICD10Code mhdb:ICD9_303 ;
 	mhdb:hasICD10Code mhdb:ICD10_F10229 ;
 	mhdb:hasICD10Code mhdb:ICD10_F10929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F10129 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Alcohol-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
 mhdb:Alcohol_Withdrawal rdfs:label """Alcohol Withdrawal"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_29181 ;
 	mhdb:hasICD10Code mhdb:ICD10_F10232 ;
 	mhdb:hasICD10Code mhdb:ICD10_F10239 ;
+	mhdb:hasICD10Code mhdb:ICD9_29181 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Alcohol-Related_Disorder ;
@@ -7803,8 +7805,8 @@ mhdb:Other_Alcohol-Induced_Disorder rdfs:label """Other Alcohol-Induced Disorder
 mhdb:Unspecified_Alcohol-Related_Disorder rdfs:label """Unspecified Alcohol-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1099 ;
 	mhdb:hasICD10Code mhdb:ICD9_2919 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1099 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Alcohol-Related_Disorder .
@@ -7834,8 +7836,8 @@ mhdb:Other_Caffeine-Induced_Disorder rdfs:label """Other Caffeine-Induced Disord
 mhdb:Unspecified_Caffeine-Related_Disorder rdfs:label """Unspecified Caffeine-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1599 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1599 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Caffeine-Related_Disorder .
@@ -7846,38 +7848,38 @@ mhdb:Cannabis_Use_Disorder rdfs:label """Cannabis Use Disorder"""@en ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Caffeine-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F1220 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1210 ;
-	mhdb:hasICD10Code mhdb:ICD9_3043 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1220 ;
 	mhdb:hasICD10Code mhdb:ICD9_3052 ;
-	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasICD10Code mhdb:ICD9_3043 ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Cannabis_Intoxication rdfs:label """Cannabis Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F12122 ;
-	mhdb:hasICD10Code mhdb:ICD10_F12222 ;
 	mhdb:hasICD10Code mhdb:ICD10_F12288 ;
-	mhdb:hasICD10Code mhdb:ICD10_F12229 ;
-	mhdb:hasICD10Code mhdb:ICD10_F12129 ;
 	mhdb:hasICD10Code mhdb:ICD10_F12929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12129 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12229 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12122 ;
 	mhdb:hasICD10Code mhdb:ICD9_29289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12222 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Caffeine-Related_Disorder ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
 	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
 	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance .
 
 mhdb:Cannabis_Withdrawal rdfs:label """Cannabis Withdrawal"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F12288 ;
 	mhdb:hasICD10Code mhdb:ICD9_292 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12288 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Caffeine-Related_Disorder .
@@ -7891,8 +7893,8 @@ mhdb:Other_Cannabis-Induced_Disorders rdfs:label """Other Cannabis-Induced Disor
 mhdb:Unspecified_Cannabis-Related_Disorder rdfs:label """Unspecified Cannabis-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1299 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1299 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Caffeine-Related_Disorder .
@@ -7903,12 +7905,12 @@ mhdb:Phencyclidine_Use_Disorder rdfs:label """Phencyclidine Use Disorder"""@en ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Hallucinogen-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3046 ;
-	mhdb:hasICD10Code mhdb:ICD9_3059 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1610 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1620 ;
-	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasICD10Code mhdb:ICD10_F1610 ;
+	mhdb:hasICD10Code mhdb:ICD9_3059 ;
+	mhdb:hasICD10Code mhdb:ICD9_3046 ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Other_Hallucinogen_Use_Disorder rdfs:label """Other Hallucinogen Use Disorder"""@en ;
@@ -7917,42 +7919,42 @@ mhdb:Other_Hallucinogen_Use_Disorder rdfs:label """Other Hallucinogen Use Disord
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Hallucinogen-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F1620 ;
-	mhdb:hasICD10Code mhdb:ICD10_G1620 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1610 ;
 	mhdb:hasICD10Code mhdb:ICD9_3053 ;
 	mhdb:hasICD10Code mhdb:ICD9_3045 ;
-	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasICD10Code mhdb:ICD10_F1620 ;
+	mhdb:hasICD10Code mhdb:ICD10_G1620 ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Phencyclidine_Intoxication rdfs:label """Phencyclidine Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F16929 ;
 	mhdb:hasICD10Code mhdb:ICD9_29289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F16929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F16129 ;
 	mhdb:hasICD10Code mhdb:ICD10_F16229 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Hallucinogen-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
 mhdb:Other_Hallucinogen_Intoxication rdfs:label """Other Hallucinogen Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F16929 ;
 	mhdb:hasICD10Code mhdb:ICD9_29289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F16929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F16129 ;
 	mhdb:hasICD10Code mhdb:ICD10_F16229 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Hallucinogen-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
@@ -7979,8 +7981,8 @@ mhdb:Other_Hallucinogen-Induced_Disorder rdfs:label """Other Hallucinogen-Induce
 mhdb:Unspecified_Phencyclidine-Related_Disorder rdfs:label """Unspecified Phencyclidine-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1699 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1699 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Hallucinogen-Related_Disorder .
@@ -7988,8 +7990,8 @@ mhdb:Unspecified_Phencyclidine-Related_Disorder rdfs:label """Unspecified Phency
 mhdb:Unspecified_Hallucinogen-Related_Disorder rdfs:label """Unspecified Hallucinogen-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1699 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1699 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Hallucinogen-Related_Disorder .
@@ -8000,20 +8002,20 @@ mhdb:Inhalant_Use_Disorder rdfs:label """Inhalant Use Disorder"""@en ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Inhalant-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3046 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1810 ;
-	mhdb:hasICD10Code mhdb:ICD9_3059 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1820 ;
-	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasICD10Code mhdb:ICD9_3059 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1810 ;
+	mhdb:hasICD10Code mhdb:ICD9_3046 ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Inhalant_Intoxication rdfs:label """Inhalant Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F18229 ;
 	mhdb:hasICD10Code mhdb:ICD9_29289 ;
-	mhdb:hasICD10Code mhdb:ICD10_F18129 ;
 	mhdb:hasICD10Code mhdb:ICD10_F18929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F18129 ;
+	mhdb:hasICD10Code mhdb:ICD10_F18229 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Inhalant-Related_Disorder ;
@@ -8029,8 +8031,8 @@ mhdb:Other_Inhalant-Induced_Disorder rdfs:label """Other Inhalant-Induced Disord
 mhdb:Unspecified_Inhalant-Related_Disorder rdfs:label """Unspecified Inhalant-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1899 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1899 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Inhalant-Related_Disorder .
@@ -8042,22 +8044,22 @@ mhdb:Opioid_Use_Disorder rdfs:label """Opioid Use Disorder"""@en ;
 	mhdb:hasDisorderSubsubcategory mhdb:Opioid-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
 	mhdb:hasICD10Code mhdb:ICD9_304 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1110 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1120 ;
 	mhdb:hasICD10Code mhdb:ICD9_3055 ;
-	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasICD10Code mhdb:ICD10_F1110 ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Opioid_Intoxication rdfs:label """Opioid Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F11922 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11122 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11129 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11222 ;
-	mhdb:hasICD10Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F11229 ;
 	mhdb:hasICD10Code mhdb:ICD10_F11929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11122 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11129 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11922 ;
+	mhdb:hasICD10Code mhdb:ICD9_29289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11222 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Opioid-Related_Disorder ;
@@ -8065,14 +8067,14 @@ mhdb:Opioid_Intoxication rdfs:label """Opioid Intoxication"""@en ;
 	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
 	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Opioid_Withdrawal rdfs:label """Opioid Withdrawal"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F1123 ;
 	mhdb:hasICD10Code mhdb:ICD9_292 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1123 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Opioid-Related_Disorder .
@@ -8086,8 +8088,8 @@ mhdb:Other_Opioid-Induced_Disorder rdfs:label """Other Opioid-Induced Disorder""
 mhdb:Unspecified_Opioid-Related_Disorder rdfs:label """Unspecified Opioid-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1199 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1199 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Opioid-Related_Disorder .
@@ -8098,34 +8100,34 @@ mhdb:Sedative_Hypnotic_or_Anxiolytic_Use_Disorder rdfs:label """Sedative, Hypnot
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3041 ;
-	mhdb:hasICD10Code mhdb:ICD9_3054 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1310 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1320 ;
-	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasICD10Code mhdb:ICD9_3054 ;
+	mhdb:hasICD10Code mhdb:ICD9_3041 ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Sedative_Hypnotic_or_Anxiolytic_Intoxication rdfs:label """Sedative, Hypnotic, or Anxiolytic Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasICD10Code mhdb:ICD9_29289 ;
-	mhdb:hasICD10Code mhdb:ICD10_F13929 ;
-	mhdb:hasICD10Code mhdb:ICD10_F13229 ;
 	mhdb:hasICD10Code mhdb:ICD10_F13129 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13229 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13929 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
 mhdb:Sedative_Hypnotic_or_Anxiolytic_Withdrawal rdfs:label """Sedative, Hypnotic, or Anxiolytic Withdrawal"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F13232 ;
-	mhdb:hasICD10Code mhdb:ICD9_292 ;
 	mhdb:hasICD10Code mhdb:ICD10_F13239 ;
+	mhdb:hasICD10Code mhdb:ICD9_292 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13232 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder ;
@@ -8141,8 +8143,8 @@ mhdb:Other_Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder rdfs:label """Othe
 mhdb:Unspecified_Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder rdfs:label """Unspecified Sedative-, Hypnotic-, or Anxiolytic-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1399 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1399 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder .
@@ -8153,36 +8155,36 @@ mhdb:Stimulant_Use_Disorder rdfs:label """Stimulant Use Disorder"""@en ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Stimulant-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
+	mhdb:hasICD10Code mhdb:ICD9_3057 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1420 ;
+	mhdb:hasICD10Code mhdb:ICD9_3042 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1510 ;
 	mhdb:hasICD10Code mhdb:ICD9_3056 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1410 ;
-	mhdb:hasICD10Code mhdb:ICD9_3042 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1420 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1520 ;
 	mhdb:hasICD10Code mhdb:ICD9_3044 ;
-	mhdb:hasICD10Code mhdb:ICD9_3057 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1510 ;
-	mhdb:hasDiagnosticSpecifier mhdb:other_or_unspecified_stimulant ;
+	mhdb:hasICD10Code mhdb:ICD10_F1520 ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine-type_substance ;
-	mhdb:hasDiagnosticSpecifier mhdb:cocaine .
+	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
+	mhdb:hasDiagnosticSpecifier mhdb:other_or_unspecified_stimulant .
 
 mhdb:Stimulant_Intoxication rdfs:label """Stimulant Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F14222 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15122 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15922 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14929 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14122 ;
 	mhdb:hasICD10Code mhdb:ICD10_F15222 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14129 ;
 	mhdb:hasICD10Code mhdb:ICD10_F14229 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15229 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15929 ;
-	mhdb:hasICD10Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F14922 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14122 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15122 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14222 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15229 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14129 ;
 	mhdb:hasICD10Code mhdb:ICD10_F15129 ;
+	mhdb:hasICD10Code mhdb:ICD9_29289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15922 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Stimulant-Related_Disorder ;
@@ -8192,14 +8194,14 @@ mhdb:Stimulant_Intoxication rdfs:label """Stimulant Intoxication"""@en ;
 	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
 	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Stimulant_Withdrawal rdfs:label """Stimulant Withdrawal"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F1499 ;
 	mhdb:hasICD10Code mhdb:ICD9_292 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1499 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1523 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
@@ -8216,9 +8218,9 @@ mhdb:Other_Stimulant-Induced_Disorder rdfs:label """Other Stimulant-Induced Diso
 mhdb:Unspecified_Stimulant-Related_Disorder rdfs:label """Unspecified Stimulant-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
+	mhdb:hasICD10Code mhdb:ICD9_2929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1599 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1499 ;
-	mhdb:hasICD10Code mhdb:ICD9_2929 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Stimulant-Related_Disorder ;
@@ -8227,21 +8229,21 @@ mhdb:Unspecified_Stimulant-Related_Disorder rdfs:label """Unspecified Stimulant-
 
 mhdb:Tobacco_Use_Disorder rdfs:label """Tobacco Use Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD10_F17200 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z720 ;
 	mhdb:hasICD10Code mhdb:ICD9_3051 ;
-	mhdb:hasICD10Code mhdb:ICD10_F17200 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Tobacco-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Tobacco_Withdrawal rdfs:label """Tobacco Withdrawal"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F17203 ;
 	mhdb:hasICD10Code mhdb:ICD9_292 ;
+	mhdb:hasICD10Code mhdb:ICD10_F17203 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Tobacco-Related_Disorder .
@@ -8255,8 +8257,8 @@ mhdb:Other_Tobacco-Induced_Disorder rdfs:label """Other Tobacco-Induced Disorder
 mhdb:Unspecified_Tobacco-Related_Disorder rdfs:label """Unspecified Tobacco-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F17209 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F17209 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Tobacco-Related_Disorder .
@@ -8267,26 +8269,26 @@ mhdb:Other_or_Unknown_Substance_Use_Disorder rdfs:label """Other (or Unknown) Su
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Other_or_Unknown_Substance-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F1920 ;
-	mhdb:hasICD10Code mhdb:ICD9_3059 ;
-	mhdb:hasICD10Code mhdb:ICD9_3049 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1910 ;
-	mhdb:hasSeverity mhdb:mild ;
+	mhdb:hasICD10Code mhdb:ICD9_3059 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1920 ;
+	mhdb:hasICD10Code mhdb:ICD9_3049 ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate .
 
 mhdb:Other_or_Unknown_Substance_Intoxication rdfs:label """Other (or Unknown) Substance Intoxication"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F19229 ;
 	mhdb:hasICD10Code mhdb:ICD9_29289 ;
-	mhdb:hasICD10Code mhdb:ICD10_F19929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F19129 ;
+	mhdb:hasICD10Code mhdb:ICD10_F19229 ;
+	mhdb:hasICD10Code mhdb:ICD10_F19929 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Other_or_Unknown_Substance-Related_Disorder ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
@@ -8307,8 +8309,8 @@ mhdb:Other_or_Unknown_Substance-Induced_Disorder rdfs:label """Other (or Unknown
 mhdb:Unspecified_Other_or_Unknown_Substance-Related_Disorder rdfs:label """Unspecified Other (or Unknown) Substance-Related Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1999 ;
 	mhdb:hasICD10Code mhdb:ICD9_2929 ;
+	mhdb:hasICD10Code mhdb:ICD10_F1999 ;
 	mhdb:hasDisorderCategory mhdb:Substance-Related_or_Addictive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Substance-Related_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Other_or_Unknown_Substance-Related_Disorder .
@@ -8327,102 +8329,102 @@ mhdb:Delirium rdfs:label """Delirium"""@en ;
 mhdb:Substance_intoxication_delirium rdfs:label """Substance intoxication delirium"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F16221 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F13921 ;
-	mhdb:hasICD10Code mhdb:ICD9_291 ;
-	mhdb:hasICD10Code mhdb:ICD10_F10221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15121 ;
 	mhdb:hasICD10Code mhdb:ICD10_F19221 ;
-	mhdb:hasICD10Code mhdb:ICD10_F16121 ;
 	mhdb:hasICD10Code mhdb:ICD9_29281 ;
+	mhdb:hasICD10Code mhdb:ICD10_F16121 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14921 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14121 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13921 ;
+	mhdb:hasICD10Code mhdb:ICD10_F19121 ;
+	mhdb:hasICD10Code mhdb:ICD10_F10921 ;
+	mhdb:hasICD10Code mhdb:ICD9_291 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13121 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12921 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11921 ;
+	mhdb:hasICD10Code mhdb:ICD10_F10221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F14221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F12121 ;
+	mhdb:hasICD10Code mhdb:ICD10_F18121 ;
+	mhdb:hasICD10Code mhdb:ICD10_F19921 ;
+	mhdb:hasICD10Code mhdb:ICD10_F11121 ;
+	mhdb:hasICD10Code mhdb:ICD10_F18221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F18921 ;
 	mhdb:hasICD10Code mhdb:ICD10_F10121 ;
 	mhdb:hasICD10Code mhdb:ICD10_F16921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F18921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11121 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15221 ;
-	mhdb:hasICD10Code mhdb:ICD10_F19921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F13221 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14221 ;
-	mhdb:hasICD10Code mhdb:ICD10_F11221 ;
-	mhdb:hasICD10Code mhdb:ICD10_F14121 ;
-	mhdb:hasICD10Code mhdb:ICD10_F12121 ;
-	mhdb:hasICD10Code mhdb:ICD10_F13121 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15121 ;
-	mhdb:hasICD10Code mhdb:ICD10_F10921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F18221 ;
+	mhdb:hasICD10Code mhdb:ICD10_F16221 ;
 	mhdb:hasICD10Code mhdb:ICD10_F15921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F18121 ;
-	mhdb:hasICD10Code mhdb:ICD10_F12221 ;
-	mhdb:hasICD10Code mhdb:ICD10_F12921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F19121 ;
-	mhdb:hasDiagnosticSpecifier mhdb:cannabis ;
-	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
-	mhdb:hasDiagnosticSpecifier mhdb:alcohol ;
-	mhdb:hasDiagnosticSpecifier mhdb:opioid ;
-	mhdb:hasDiagnosticSpecifier mhdb:phencyclidine_or_other_hallucinogen ;
-	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
-	mhdb:hasDiagnosticSpecifier mhdb:other_hallucinogen ;
 	mhdb:hasDiagnosticSpecifier mhdb:inhalant ;
+	mhdb:hasDiagnosticSpecifier mhdb:alcohol ;
+	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
+	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
+	mhdb:hasDiagnosticSpecifier mhdb:opioid ;
+	mhdb:hasDiagnosticSpecifier mhdb:cannabis ;
+	mhdb:hasDiagnosticSpecifier mhdb:phencyclidine_or_other_hallucinogen ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
+	mhdb:hasDiagnosticSpecifier mhdb:other_hallucinogen ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
-	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:severe ;
+	mhdb:hasSeverity mhdb:mild ;
 	mhdb:hasSeverity mhdb:moderate ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder .
 
 mhdb:Substance_withdrawal_delirium rdfs:label """Substance withdrawal delirium"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F13231 ;
 	mhdb:hasICD10Code mhdb:ICD10_F10231 ;
 	mhdb:hasICD10Code mhdb:ICD9_292 ;
-	mhdb:hasICD10Code mhdb:ICD9_291 ;
-	mhdb:hasICD10Code mhdb:ICD10_F1123 ;
 	mhdb:hasICD10Code mhdb:ICD10_F19231 ;
-	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
-	mhdb:hasDiagnosticSpecifier mhdb:alcohol ;
+	mhdb:hasICD10Code mhdb:ICD10_F1123 ;
+	mhdb:hasICD10Code mhdb:ICD10_F13231 ;
+	mhdb:hasICD10Code mhdb:ICD9_291 ;
 	mhdb:hasDiagnosticSpecifier mhdb:other_or_unknown_substance ;
-	mhdb:hasDiagnosticSpecifier mhdb:opioid .
+	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic ;
+	mhdb:hasDiagnosticSpecifier mhdb:opioid ;
+	mhdb:hasDiagnosticSpecifier mhdb:alcohol .
 
 mhdb:Medication-induced_delirium rdfs:label """Medication-induced delirium"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasICD10Code mhdb:ICD9_29281 ;
 	mhdb:hasICD10Code mhdb:ICD10_F11921 ;
-	mhdb:hasICD10Code mhdb:ICD10_F15921 ;
 	mhdb:hasICD10Code mhdb:ICD10_F19921 ;
 	mhdb:hasICD10Code mhdb:ICD10_F13921 ;
+	mhdb:hasICD10Code mhdb:ICD10_F15921 ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDiagnosticSpecifier mhdb:sedative_hypnotic_or_anxiolytic_taken_as_prescribed ;
-	mhdb:hasDiagnosticSpecifier mhdb:amphetamine-type_or_other_stimulant_taken_as_prescribed ;
 	mhdb:hasDiagnosticSpecifier mhdb:opioid_taken_as_prescribed ;
-	mhdb:hasDiagnosticSpecifier mhdb:medications_that_do_not_fit_into_any_of_these_classes_or_specific_class_of_substances_is_unknown .
+	mhdb:hasDiagnosticSpecifier mhdb:medications_that_do_not_fit_into_any_of_these_classes_or_specific_class_of_substances_is_unknown ;
+	mhdb:hasDiagnosticSpecifier mhdb:amphetamine-type_or_other_stimulant_taken_as_prescribed .
 
 mhdb:Delirium_due_to_another_medical_condition rdfs:label """Delirium due to another medical condition"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_293 ;
 	mhdb:hasICD10Code mhdb:ICD10_F05 ;
+	mhdb:hasICD10Code mhdb:ICD9_293 ;
 	mhdb:hasNote """Include the name of the other medical condition in the name of the delirium (e.g., 293.0 [F05] delirium due to hepatic encephalopathy). The other medical condition should also be coded and listed separately immediately before the delirium due to another medical condition (e.g., 572.2 [K72.0] hepatic encephalopathy; 293.0 [F05] delirium due to hepatic encephalopathy)."""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder .
 
 mhdb:Delirium_due_to_multiple_etiologies rdfs:label """Delirium due to multiple etiologies"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_293 ;
 	mhdb:hasICD10Code mhdb:ICD10_F05 ;
+	mhdb:hasICD10Code mhdb:ICD9_293 ;
 	mhdb:hasNote """Use multiple separate codes reflecting specific delirium etiologies (e.g., 572.2 [K72.90] hepatic encephalopathy, 293.0 [F05] delirium due to hepatic failure; 291.0 [F10.231] alcohol withdrawal delirium). Note that the etiological medical condition both appears as a separate code that precededs the delirium code and is substitutted into the delirium due to another medical contition rubric."""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder .
 
 mhdb:Other_Specified_Delirium rdfs:label """Other Specified Delirium"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_78009 ;
 	mhdb:hasICD10Code mhdb:ICD10_R410 ;
+	mhdb:hasICD10Code mhdb:ICD9_78009 ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder .
 
 mhdb:Unspecified_Delirium rdfs:label """Unspecified Delirium"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_78009 ;
 	mhdb:hasICD10Code mhdb:ICD10_R410 ;
+	mhdb:hasICD10Code mhdb:ICD9_78009 ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder .
 
 mhdb:Probable_Major_Neurocognitive_Disorder_Due_to_Alzheimers_Disease rdfs:label """Probable Major Neurocognitive Disorder Due to Alzheimer's Disease"""@en ;
@@ -8431,17 +8433,17 @@ mhdb:Probable_Major_Neurocognitive_Disorder_Due_to_Alzheimers_Disease rdfs:label
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_to_Alzheimers_Disease ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
 mhdb:Possible_Major_Neurocognitive_Disorder_Due_to_Alzheimers_Disease rdfs:label """Possible Major Neurocognitive Disorder Due to Alzheimer's Disease"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasICD10Code mhdb:ICD10_G319 ;
+	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasNote """Do not use the additional code for Alzheimer's disease. Behavioral disturbance cannot be coded but should be indicated in writing."""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
@@ -8462,17 +8464,17 @@ mhdb:Probable_Major_Neurocognitive_Disorder_Due_To_Frontotemporal_Lobar_Degenera
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Frontotemporal_Neurocognitive_Disorder ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
 mhdb:Possibile_Major_Neurocognitive_Disorder_Due_to_Frontotemporal_Lobar_Degeneration rdfs:label """Possibile Major Neurocognitive Disorder Due to Frontotemporal Lobar Degeneration"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasICD10Code mhdb:ICD10_G319 ;
+	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasNote """Do not use the additional code for frontotemporal disease. Behavioral disturbance cannot be coded but should be indicated in writing"""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
@@ -8493,17 +8495,17 @@ mhdb:Probable_Major_Neurocognitive_Disorder_With_Lewy_Bodies rdfs:label """Proba
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_With_Lewy_Bodies ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
 mhdb:Possible_Major_Neurocognitive_Disorder_with_Lewy_Bodies rdfs:label """Possible Major Neurocognitive Disorder with Lewy Bodies"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasICD10Code mhdb:ICD10_G319 ;
+	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasNote """Do not use the additional code for Lewy body disease. Behavioral disturbance cannot be coded but should be indicated in writing"""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
@@ -8520,21 +8522,21 @@ mhdb:Mild_Neurocognitive_Disorder_with_Lewy_Bodies rdfs:label """Mild Neurocogni
 
 mhdb:Probable_Major_Vascular_Neurocognitive_Disorder rdfs:label """Probable Major Vascular Neurocognitive Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasNote """Do not use the additional code for vascular disease. Behavioral disturbance cannot be coded but should be indicated in writing"""@en ;
 	mhdb:hasNote """Do not use the additional code for Lewy body disease. Behavioral disturbance cannot be coded but should be indicated in writing"""@en ;
+	mhdb:hasNote """Do not use the additional code for vascular disease. Behavioral disturbance cannot be coded but should be indicated in writing"""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Vascular_Neurocognitive_Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_2904 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0151 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0150 ;
+	mhdb:hasICD10Code mhdb:ICD9_2904 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
 mhdb:Possible_Major_Vascular_Neurocognitive_Disorder rdfs:label """Possible Major Vascular Neurocognitive Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasICD10Code mhdb:ICD10_G319 ;
+	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasNote """Do not use the additional code for Lewy body disease. Behavioral disturbance cannot be coded but should be indicated in writing"""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
@@ -8555,10 +8557,10 @@ mhdb:Major_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury rdfs:label """M
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
@@ -8584,10 +8586,10 @@ mhdb:Major_Neurocognitive_Disorder_Due_to_HIV_Infection rdfs:label """Major Neur
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
@@ -8606,10 +8608,10 @@ mhdb:Major_Neurocognitive_Disorder_Due_to_Prion_Disease rdfs:label """Major Neur
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
@@ -8628,17 +8630,17 @@ mhdb:Major_Neurocognitive_Disorder_Probably_Due_to_Parkinsons_Disease rdfs:label
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
 mhdb:Major_Neurocognitive_Disorder_Possibly_Due_to_Parkinsons_Disease rdfs:label """Major Neurocognitive Disorder Possibly Due to Parkinson's Disease"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasICD10Code mhdb:ICD10_G319 ;
+	mhdb:hasICD10Code mhdb:ICD9_3319 ;
 	mhdb:hasNote """Do not use the additional code for Parkinson's Disease. Behavioral disturbance cannot be coded but should be indicated in writing"""@en ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
@@ -8659,10 +8661,10 @@ mhdb:Major_Neurocognitive_Disorder_Due_to_Huntingtons_Disease rdfs:label """Majo
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
@@ -8681,10 +8683,10 @@ mhdb:Major_Neurocognitive_Disorder_Due_to_Another_Medical_COndition rdfs:label "
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
@@ -8703,10 +8705,10 @@ mhdb:Major_Neurocognitive_Disorder_Due_to_Multiple_Etiologies rdfs:label """Majo
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury ;
+	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0281 ;
 	mhdb:hasICD10Code mhdb:ICD9_29411 ;
 	mhdb:hasICD10Code mhdb:ICD10_F0280 ;
-	mhdb:hasICD10Code mhdb:ICD9_2941 ;
 	mhdb:hasInclusionCriterion mhdb:behavioral_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:behavioral_disturbance .
 
@@ -8720,11 +8722,11 @@ mhdb:Mild_Neurocognitive_Disorder_Due_to_Multiple_Etiologies rdfs:label """Mild 
 	mhdb:hasDisorderSubsubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder_Due_To_Traumatic_Brain_Injury .
 
 mhdb:Unspecified_Neurocognitive_Disorder rdfs:label """Unspecified Neurocognitive Disorder"""@en ;
-	rdf:type mhdb:DisorderSubsubcategory ;
 	rdf:type mhdb:Disorder ;
+	rdf:type mhdb:DisorderSubsubcategory ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_79959 ;
 	mhdb:hasICD10Code mhdb:ICD10_R419 ;
+	mhdb:hasICD10Code mhdb:ICD9_79959 ;
 	mhdb:hasDisorderCategory mhdb:Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Major_or_Mild_Neurocognitive_Disorder ;
 	mhdb:hasDisorderSubsubcategory mhdb:Unspecified_Neurocognitive_Disorder .
@@ -8738,8 +8740,8 @@ mhdb:Paranoid_Personality_Disorder rdfs:label """Paranoid Personality Disorder""
 
 mhdb:Schizoid_Personality_Disorder rdfs:label """Schizoid Personality Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3012 ;
 	mhdb:hasICD10Code mhdb:ICD10_F601 ;
+	mhdb:hasICD10Code mhdb:ICD9_3012 ;
 	mhdb:hasDisorderCategory mhdb:Personality_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Cluster_A_Personality_Disorder .
 
@@ -8752,8 +8754,8 @@ mhdb:Schizotypal_Personality_Disorder rdfs:label """Schizotypal Personality Diso
 
 mhdb:Borderline_Personality_Disorder rdfs:label """Borderline Personality Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30183 ;
 	mhdb:hasICD10Code mhdb:ICD10_F603 ;
+	mhdb:hasICD10Code mhdb:ICD9_30183 ;
 	mhdb:hasDisorderCategory mhdb:Personality_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Cluster_B_Personality_Disorder .
 
@@ -8773,8 +8775,8 @@ mhdb:Narcissistic_Personality_Disorder rdfs:label """Narcissistic Personality Di
 
 mhdb:Avoidant_Personality_Disorder rdfs:label """Avoidant Personality Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F606 ;
 	mhdb:hasICD10Code mhdb:ICD9_30182 ;
+	mhdb:hasICD10Code mhdb:ICD10_F606 ;
 	mhdb:hasDisorderCategory mhdb:Personality_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Cluster_C_Personality_Disorder .
 
@@ -8794,36 +8796,36 @@ mhdb:Obsessive-Compulsive_Personality_Disorder rdfs:label """Obsessive-Compulsiv
 
 mhdb:Personality_Change_Due_to_Another_Medical_Condition rdfs:label """Personality Change Due to Another Medical Condition"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_3011 ;
 	mhdb:hasICD10Code mhdb:ICD10_F070 ;
+	mhdb:hasICD10Code mhdb:ICD9_3011 ;
 	mhdb:hasDisorderCategory mhdb:Personality_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Personality_Disorder .
 
 mhdb:Other_Specified_Personality_Disorder rdfs:label """Other Specified Personality Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F6089 ;
 	mhdb:hasICD10Code mhdb:ICD9_30189 ;
+	mhdb:hasICD10Code mhdb:ICD10_F6089 ;
 	mhdb:hasDisorderCategory mhdb:Personality_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Personality_Disorder .
 
 mhdb:Unspecified_Personality_Disorder rdfs:label """Unspecified Personality Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_3019 ;
 	mhdb:hasICD10Code mhdb:ICD10_F609 ;
+	mhdb:hasICD10Code mhdb:ICD9_3019 ;
 	mhdb:hasDisorderCategory mhdb:Personality_Disorder ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Personality_Disorder .
 
 mhdb:Voyeuristic_Disorder rdfs:label """Voyeuristic Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30282 ;
 	mhdb:hasICD10Code mhdb:ICD10_F653 ;
+	mhdb:hasICD10Code mhdb:ICD9_30282 ;
 	mhdb:hasDisorderCategory mhdb:Paraphilic_Disorder .
 
 mhdb:Exhibitionistic_Disorder rdfs:label """Exhibitionistic Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F652 ;
 	mhdb:hasICD10Code mhdb:ICD9_3024 ;
+	mhdb:hasICD10Code mhdb:ICD10_F652 ;
 	mhdb:hasDisorderCategory mhdb:Paraphilic_Disorder .
 
 mhdb:Frotteuristic_Disorder rdfs:label """Frotteuristic Disorder"""@en ;
@@ -8834,8 +8836,8 @@ mhdb:Frotteuristic_Disorder rdfs:label """Frotteuristic Disorder"""@en ;
 
 mhdb:Sexual_Masochism_Disorder rdfs:label """Sexual Masochism Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_30283 ;
 	mhdb:hasICD10Code mhdb:ICD10_F6551 ;
+	mhdb:hasICD10Code mhdb:ICD9_30283 ;
 	mhdb:hasDisorderCategory mhdb:Paraphilic_Disorder .
 
 mhdb:Sexual_Sadism_Disorder rdfs:label """Sexual Sadism Disorder"""@en ;
@@ -8846,8 +8848,8 @@ mhdb:Sexual_Sadism_Disorder rdfs:label """Sexual Sadism Disorder"""@en ;
 
 mhdb:Pedophilic_Disorder rdfs:label """Pedophilic Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F654 ;
 	mhdb:hasICD10Code mhdb:ICD9_3022 ;
+	mhdb:hasICD10Code mhdb:ICD10_F654 ;
 	mhdb:hasDisorderCategory mhdb:Paraphilic_Disorder .
 
 mhdb:Fetishistic_Disorder rdfs:label """Fetishistic Disorder"""@en ;
@@ -8864,8 +8866,8 @@ mhdb:Transvestic_Disorder rdfs:label """Transvestic Disorder"""@en ;
 
 mhdb:Other_Specified_Paraphilic_Disorder rdfs:label """Other Specified Paraphilic Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F6589 ;
 	mhdb:hasICD10Code mhdb:ICD9_30289 ;
+	mhdb:hasICD10Code mhdb:ICD10_F6589 ;
 	mhdb:hasDisorderCategory mhdb:Paraphilic_Disorder .
 
 mhdb:Unspecified_Paraphilic_Disorder rdfs:label """Unspecified Paraphilic Disorder"""@en ;
@@ -8877,15 +8879,15 @@ mhdb:Unspecified_Paraphilic_Disorder rdfs:label """Unspecified Paraphilic Disord
 
 mhdb:Other_Specified_Mental_Disorder_Due_to_Another_Medical_Condition rdfs:label """Other Specified Mental Disorder Due to Another Medical Condition"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_F068 ;
 	mhdb:hasICD10Code mhdb:ICD9_2948 ;
+	mhdb:hasICD10Code mhdb:ICD10_F068 ;
 	mhdb:hasDisorderCategory mhdb:Other_Mental_Disorder .
 
 mhdb:Unspecified_Mental_Disorder_Due_to_Another_Medical_Condition rdfs:label """Unspecified Mental Disorder Due to Another Medical Condition"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_2949 ;
 	mhdb:hasICD10Code mhdb:ICD10_F09 ;
+	mhdb:hasICD10Code mhdb:ICD9_2949 ;
 	mhdb:hasDisorderCategory mhdb:Other_Mental_Disorder .
 
 mhdb:Other_Specified_Mental_Disorder rdfs:label """Other Specified Mental Disorder"""@en ;
@@ -8921,8 +8923,8 @@ mhdb:Neuroleptic_Malignant_Syndrome rdfs:label """Neuroleptic Malignant Syndrome
 
 mhdb:Medication-Induced_Acute_Dystonia rdfs:label """Medication-Induced Acute Dystonia"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_G2402 ;
 	mhdb:hasICD10Code mhdb:ICD9_33372 ;
+	mhdb:hasICD10Code mhdb:ICD10_G2402 ;
 	mhdb:hasDisorderCategory mhdb:Medication-Induced_Movement_Disorder_or_Other_Adverse_Effects_of_Medication .
 
 mhdb:Medication-Induced_Acute_Akathisia rdfs:label """Medication-Induced Acute Akathisia"""@en ;
@@ -8957,17 +8959,17 @@ mhdb:Medication-Induced_Postural_Tremor rdfs:label """Medication-Induced Postura
 
 mhdb:Other_Medication-Induced_Movement_Disorder rdfs:label """Other Medication-Induced Movement Disorder"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_33399 ;
 	mhdb:hasICD10Code mhdb:ICD10_G2579 ;
+	mhdb:hasICD10Code mhdb:ICD9_33399 ;
 	mhdb:hasDisorderCategory mhdb:Medication-Induced_Movement_Disorder_or_Other_Adverse_Effects_of_Medication .
 
 mhdb:Antidepressant_Discontinuation_Syndrome rdfs:label """Antidepressant Discontinuation Syndrome"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Medication-Induced_Movement_Disorder_or_Other_Adverse_Effects_of_Medication ;
 	mhdb:hasICD10Code mhdb:ICD10_T43205D ;
+	mhdb:hasICD10Code mhdb:ICD9_99529 ;
 	mhdb:hasICD10Code mhdb:ICD10_T43205S ;
 	mhdb:hasICD10Code mhdb:ICD10_T43205A ;
-	mhdb:hasICD10Code mhdb:ICD9_99529 ;
 	mhdb:hasDiagnosticSpecifier mhdb:sequelae ;
 	mhdb:hasDiagnosticSpecifier mhdb:subsequent_encounter ;
 	mhdb:hasDiagnosticSpecifier mhdb:initial_encounter .
@@ -8975,18 +8977,18 @@ mhdb:Antidepressant_Discontinuation_Syndrome rdfs:label """Antidepressant Discon
 mhdb:Other_Adverse_Effect_of_Medication rdfs:label """Other Adverse Effect of Medication"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasDisorderCategory mhdb:Medication-Induced_Movement_Disorder_or_Other_Adverse_Effects_of_Medication ;
-	mhdb:hasICD10Code mhdb:ICD9_9952 ;
-	mhdb:hasICD10Code mhdb:ICD10_T50905S ;
 	mhdb:hasICD10Code mhdb:ICD10_T50905A ;
 	mhdb:hasICD10Code mhdb:ICD10_T50905D ;
+	mhdb:hasICD10Code mhdb:ICD9_9952 ;
+	mhdb:hasICD10Code mhdb:ICD10_T50905S ;
 	mhdb:hasDiagnosticSpecifier mhdb:sequelae ;
 	mhdb:hasDiagnosticSpecifier mhdb:subsequent_encounter ;
 	mhdb:hasDiagnosticSpecifier mhdb:initial_encounter .
 
 mhdb:Parent-Child_Relational_Problem rdfs:label """Parent-Child Relational Problem"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6120 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z62820 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6120 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Relational_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Problems_Related_to_Family_Upbringing .
@@ -9025,8 +9027,8 @@ mhdb:Relationship_Distress_With_Spouse_or_Intimate_Partner rdfs:label """Relatio
 
 mhdb:Disruption_of_Family_by_Separate_or_Divorce rdfs:label """Disruption of Family by Separate or Divorce"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6103 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z635 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6103 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Relational_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Other_Problems_Related_to_Primary_Support_Group .
@@ -9041,8 +9043,8 @@ mhdb:High_Expressed_Emotion_Level_Within_Family rdfs:label """High Expressed Emo
 
 mhdb:Uncomplicated_Bereavement rdfs:label """Uncomplicated Bereavement"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z634 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6282 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z634 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Relational_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Other_Problems_Related_to_Primary_Support_Group .
@@ -9050,8 +9052,8 @@ mhdb:Uncomplicated_Bereavement rdfs:label """Uncomplicated Bereavement"""@en ;
 mhdb:Child_Physical_Abuse_Confirmed rdfs:label """Child Physical Abuse, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasICD10Code mhdb:ICD9_99554 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7412XA ;
 	mhdb:hasICD10Code mhdb:ICD10_T7412XD ;
+	mhdb:hasICD10Code mhdb:ICD10_T7412XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Child_Maltreatment_and_Neglect_Problems ;
@@ -9073,28 +9075,28 @@ mhdb:Child_Physical_Abuse_Suspected rdfs:label """Child Physical Abuse, Suspecte
 
 mhdb:Other_Circumstances_Related_to_Child_Physical_Abuse rdfs:label """Other Circumstances Related to Child Physical Abuse"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z62810 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69021 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1541 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z69010 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69021 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6283 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z62810 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Child_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Child_Physical_Abuse ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonparental_child_abuse ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_child_abuse_by_parent ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_parental_child_abuse ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonparental_child_abuse ;
 	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_physical_abuse_in_childhood .
 
 mhdb:Child_Sexual_Abuse_Confirmed rdfs:label """Child Sexual Abuse, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_T7422XA ;
 	mhdb:hasICD10Code mhdb:ICD9_99553 ;
+	mhdb:hasICD10Code mhdb:ICD10_T7422XA ;
 	mhdb:hasICD10Code mhdb:ICD10_T7422XD ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
@@ -9106,8 +9108,8 @@ mhdb:Child_Sexual_Abuse_Confirmed rdfs:label """Child Sexual Abuse, Confirmed"""
 mhdb:Child_Sexual_Abuse_Suspected rdfs:label """Child Sexual Abuse, Suspected"""@en ;
 	rdf:type mhdb:Disorder ;
 	mhdb:hasICD10Code mhdb:ICD9_99553 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7622XD ;
 	mhdb:hasICD10Code mhdb:ICD10_T7622XA ;
+	mhdb:hasICD10Code mhdb:ICD10_T7622XD ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Child_Maltreatment_and_Neglect_Problems ;
@@ -9117,29 +9119,29 @@ mhdb:Child_Sexual_Abuse_Suspected rdfs:label """Child Sexual Abuse, Suspected"""
 
 mhdb:Other_Circumstances_Related_to_Child_Sexual_Abuse rdfs:label """Other Circumstances Related to Child Sexual Abuse"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z62810 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69021 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1541 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z69010 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69021 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6283 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z62810 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Child_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Child_Sexual_Abuse ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_parental_child_abuse ;
+	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_sexual_abuse_in_childhood ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_child_sexual_abuse_by_parent ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonparental_child_abuse ;
-	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_sexual_abuse_in_childhood ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_parental_child_abuse ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_pepetrator_of_nonparental_child_sexual_abuse .
 
 mhdb:Child_Neglect_Confirmed rdfs:label """Child Neglect, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99552 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7402XD ;
+	mhdb:hasICD10Code mhdb:ICD9_99552 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7402XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
@@ -9150,8 +9152,8 @@ mhdb:Child_Neglect_Confirmed rdfs:label """Child Neglect, Confirmed"""@en ;
 
 mhdb:Child_Neglect_Suspected rdfs:label """Child Neglect, Suspected"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99552 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7602XD ;
+	mhdb:hasICD10Code mhdb:ICD9_99552 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7602XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
@@ -9162,29 +9164,29 @@ mhdb:Child_Neglect_Suspected rdfs:label """Child Neglect, Suspected"""@en ;
 
 mhdb:Other_Circumstances_Related_to_Child_Neglect rdfs:label """Other Circumstances Related to Child Neglect"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69010 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z62812 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z69021 ;
-	mhdb:hasICD10Code mhdb:ICD9_V1542 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69010 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z62812 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6283 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
+	mhdb:hasICD10Code mhdb:ICD9_V1542 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Child_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Child_Neglect ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_child_neglect_by_parent ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_pepetrator_of_nonparental_child_neglect ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_parental_child_neglect ;
 	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_neglect_in_childhood ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonparental_child_neglect .
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_pepetrator_of_nonparental_child_neglect ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonparental_child_neglect ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_child_neglect_by_parent ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_parental_child_neglect .
 
 mhdb:Child_Psychological_Abuse_Confirmed rdfs:label """Child Psychological Abuse, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_T7432XA ;
 	mhdb:hasICD10Code mhdb:ICD9_99551 ;
+	mhdb:hasICD10Code mhdb:ICD10_T7432XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Child_Maltreatment_and_Neglect_Problems ;
@@ -9206,29 +9208,29 @@ mhdb:Child_Psychological_Abuse_Suspected rdfs:label """Child Psychological Abuse
 
 mhdb:Other_Circumstances_Related_to_Child_Psychological_Abuse rdfs:label """Other Circumstances Related to Child Psychological Abuse"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z62811 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z69010 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z69021 ;
-	mhdb:hasICD10Code mhdb:ICD9_V1542 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69010 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69020 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6121 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z62811 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6283 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6122 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z69011 ;
+	mhdb:hasICD10Code mhdb:ICD9_V1542 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Child_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Child_Psychological_Abuse ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_child_psychological_abuse_by_parent ;
-	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_psychological_abuse_in_childhood ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_nonparental_child_psychological_abuse ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonparental_child_psychological_abuse ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_parental_child_psychological_abuse ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonparental_child_psychological_abuse .
+	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_psychological_abuse_in_childhood ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_nonparental_child_psychological_abuse .
 
 mhdb:Spouse_or_Partner_Violence_Physical_Confirmed rdfs:label """Spouse or Partner Violence, Physical, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99581 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7411XA ;
+	mhdb:hasICD10Code mhdb:ICD9_99581 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7411XD ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
@@ -9239,9 +9241,9 @@ mhdb:Spouse_or_Partner_Violence_Physical_Confirmed rdfs:label """Spouse or Partn
 
 mhdb:Spouse_or_Partner_Violence_Physical_Suspected rdfs:label """Spouse or Partner Violence, Physical, Suspected"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99581 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7611XA ;
 	mhdb:hasICD10Code mhdb:ICD10_T7611XD ;
+	mhdb:hasICD10Code mhdb:ICD10_T7611XA ;
+	mhdb:hasICD10Code mhdb:ICD9_99581 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9251,25 +9253,25 @@ mhdb:Spouse_or_Partner_Violence_Physical_Suspected rdfs:label """Spouse or Partn
 
 mhdb:Other_Circumstances_Related_to_Spouse_or_Partner_Violence_Physical rdfs:label """Other Circumstances Related to Spouse or Partner Violence, Physical"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD9_V6112 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6111 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1541 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z6911 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z91410 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6112 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Spouse_or_Partner_Violence_Physical ;
-	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_spouse_or_partner_violence_physical ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_spouse_or_partner_violence_physical ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_violence_physical .
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_violence_physical ;
+	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_spouse_or_partner_violence_physical .
 
 mhdb:Spouse_or_Partner_Violence_Sexual_Confirmed rdfs:label """Spouse or Partner Violence, Sexual, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99583 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7421XD ;
 	mhdb:hasICD10Code mhdb:ICD10_T7421XA ;
+	mhdb:hasICD10Code mhdb:ICD10_T7421XD ;
+	mhdb:hasICD10Code mhdb:ICD9_99583 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9279,9 +9281,9 @@ mhdb:Spouse_or_Partner_Violence_Sexual_Confirmed rdfs:label """Spouse or Partner
 
 mhdb:Spouse_or_Partner_Violence_Sexual_Suspected rdfs:label """Spouse or Partner Violence, Sexual, Suspected"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD10_T7621XA ;
 	mhdb:hasICD10Code mhdb:ICD10_T7621XD ;
 	mhdb:hasICD10Code mhdb:ICD9_99583 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7621XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9291,25 +9293,25 @@ mhdb:Spouse_or_Partner_Violence_Sexual_Suspected rdfs:label """Spouse or Partner
 
 mhdb:Other_Circumstances_Related_to_Spouse_or_Partner_Violence_Sexual rdfs:label """Other Circumstances Related to Spouse or Partner Violence, Sexual"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD9_V6112 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6111 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1541 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z91410 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z6981 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6112 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Spouse_or_Partner_Violence_Sexual ;
+	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_spouse_or_partner_violence_sexual ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_spouse_or_partner_violence_sexual ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_violence_sexual ;
-	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_spouse_or_partner_violence_sexual .
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_violence_sexual .
 
 mhdb:Spouse_or_Partner_Neglect_Confirmed rdfs:label """Spouse or Partner Neglect, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_T7401XD ;
 	mhdb:hasICD10Code mhdb:ICD9_99585 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7401XA ;
+	mhdb:hasICD10Code mhdb:ICD10_T7401XD ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9319,9 +9321,9 @@ mhdb:Spouse_or_Partner_Neglect_Confirmed rdfs:label """Spouse or Partner Neglect
 
 mhdb:Spouse_or_Partner_Neglect_Suspected rdfs:label """Spouse or Partner Neglect, Suspected"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_T7601XA ;
 	mhdb:hasICD10Code mhdb:ICD9_99585 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7601XD ;
+	mhdb:hasICD10Code mhdb:ICD10_T7601XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9331,25 +9333,25 @@ mhdb:Spouse_or_Partner_Neglect_Suspected rdfs:label """Spouse or Partner Neglect
 
 mhdb:Other_Circumstances_Related_to_Spouse_or_Partner_Neglect rdfs:label """Other Circumstances Related to Spouse or Partner Neglect"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6111 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6911 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z91412 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6112 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6111 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z91412 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6911 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1542 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Spouse_or_Partner_Neglect ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_spouse_or_partner_neglect ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_neglect ;
 	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_spouse_or_partner_neglect ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_neglect .
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_spouse_or_partner_neglect .
 
 mhdb:Spouse_or_Partner_Abuse_Psychological_Confirmed rdfs:label """Spouse or Partner Abuse, Psychological, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD10_T7431XA ;
 	mhdb:hasICD10Code mhdb:ICD9_99582 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7431XD ;
-	mhdb:hasICD10Code mhdb:ICD10_T7431XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9371,24 +9373,24 @@ mhdb:Spouse_or_Partner_Abuse_Psychological_Suspected rdfs:label """Spouse or Par
 
 mhdb:Other_Circumstances_Related_to_Spouse_or_Partner_Abuse_Psychological rdfs:label """Other Circumstances Related to Spouse or Partner Abuse, Psychological"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z91411 ;
-	mhdb:hasICD10Code mhdb:ICD9_V6111 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6911 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6112 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6111 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6911 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6912 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z91411 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1542 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Spouse_or_Partner_Abuse_Psychological ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_psychological_abuse ;
 	mhdb:hasDiagnosticSpecifier mhdb:personal_history_past_history_of_spouse_or_partner_psychological_abuse ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_spouse_or_partner_psychological_abuse ;
 	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_spouse_or_partner_psychological_abuse .
 
 mhdb:Adult_Physical_Abuse_by_Nonspouse_or_Nonpartner_Confirmed rdfs:label """Adult Physical Abuse by Nonspouse or Nonpartner, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99581 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7411XA ;
+	mhdb:hasICD10Code mhdb:ICD9_99581 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7411XD ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
@@ -9399,9 +9401,9 @@ mhdb:Adult_Physical_Abuse_by_Nonspouse_or_Nonpartner_Confirmed rdfs:label """Adu
 
 mhdb:Adult_Physical_Abuse_by_Nonspouse_or_Nonpartner_Suspected rdfs:label """Adult Physical Abuse by Nonspouse or Nonpartner, Suspected"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99581 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7611XA ;
 	mhdb:hasICD10Code mhdb:ICD10_T7611XD ;
+	mhdb:hasICD10Code mhdb:ICD10_T7611XA ;
+	mhdb:hasICD10Code mhdb:ICD9_99581 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9411,9 +9413,9 @@ mhdb:Adult_Physical_Abuse_by_Nonspouse_or_Nonpartner_Suspected rdfs:label """Adu
 
 mhdb:Adult_Sexual_Abuse_by_Nonspouse_or_Nonpartner_Confirmed rdfs:label """Adult Sexual Abuse by Nonspouse or Nonpartner, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_99583 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7421XD ;
 	mhdb:hasICD10Code mhdb:ICD10_T7421XA ;
+	mhdb:hasICD10Code mhdb:ICD10_T7421XD ;
+	mhdb:hasICD10Code mhdb:ICD9_99583 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9423,9 +9425,9 @@ mhdb:Adult_Sexual_Abuse_by_Nonspouse_or_Nonpartner_Confirmed rdfs:label """Adult
 
 mhdb:Adult_Sexual_Abuse_by_Nonspouse_or_Nonpartner_Suspected rdfs:label """Adult Sexual Abuse by Nonspouse or Nonpartner, Suspected"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD10_T7621XA ;
 	mhdb:hasICD10Code mhdb:ICD10_T7621XD ;
 	mhdb:hasICD10Code mhdb:ICD9_99583 ;
-	mhdb:hasICD10Code mhdb:ICD10_T7621XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9435,9 +9437,9 @@ mhdb:Adult_Sexual_Abuse_by_Nonspouse_or_Nonpartner_Suspected rdfs:label """Adult
 
 mhdb:Adult_Psychological_Abuse_by_Nonspouse_or_Nonpartner_Confirmed rdfs:label """Adult Psychological Abuse by Nonspouse or Nonpartner, Confirmed"""@en ;
 	rdf:type mhdb:Disorder ;
+	mhdb:hasICD10Code mhdb:ICD10_T7431XA ;
 	mhdb:hasICD10Code mhdb:ICD9_99582 ;
 	mhdb:hasICD10Code mhdb:ICD10_T7431XD ;
-	mhdb:hasICD10Code mhdb:ICD10_T7431XA ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
@@ -9459,69 +9461,69 @@ mhdb:Adult_Psychological_Abuse_by_Nonspouse_or_Nonpartner_Suspected rdfs:label "
 
 mhdb:Other_Circumstances_Related_to_Adult_Abuse_by_Nonspouse_or_Nonpartner rdfs:label """Other Circumstances Related to Adult Abuse by Nonspouse or Nonpartner"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6283 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6981 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z6982 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6549 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6982 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z6981 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6283 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Abuse_and_Neglect ;
 	mhdb:hasDisorderSubsubcategory mhdb:Adult_Maltreatment_and_Neglect_Problems ;
 	mhdb:hasDisorderSubsubsubcategory mhdb:Adult_Abuse_by_Nonspouse_or_Nonpartner ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonspousal_adult_abuse ;
-	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_nonspousal_adult_abuse .
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_perpetrator_of_nonspousal_adult_abuse ;
+	mhdb:hasDiagnosticSpecifier mhdb:encounter_for_mental_health_services_for_victim_of_nonspousal_adult_abuse .
 
 mhdb:Academic_or_Educational_Problem rdfs:label """Academic or Educational Problem"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z559 ;
 	mhdb:hasICD10Code mhdb:ICD9_V623 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z559 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Education_and_Occupational_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Educational_Problems .
 
 mhdb:Problem_Related_to_Current_Military_Deployment_Status rdfs:label """Problem Related to Current Military Deployment Status"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z5682 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6221 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z5682 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Education_and_Occupational_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Occupational_Problems .
 
 mhdb:Other_Problem_Related_to_Employment rdfs:label """Other Problem Related to Employment"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6229 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z569 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6229 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Education_and_Occupational_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Occupational_Problems .
 
 mhdb:Homelessness rdfs:label """Homelessness"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V600 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z590 ;
+	mhdb:hasICD10Code mhdb:ICD9_V600 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Housing_and_Economic_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Housing_Problems .
 
 mhdb:Inadequate_Housing rdfs:label """Inadequate Housing"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V601 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z591 ;
+	mhdb:hasICD10Code mhdb:ICD9_V601 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Housing_and_Economic_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Housing_Problems .
 
 mhdb:Discord_With_Neighbor_Lodger_or_Landlord rdfs:label """Discord With Neighbor, Lodger, or Landlord"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z592 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6089 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z592 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Housing_and_Economic_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Housing_Problems .
 
 mhdb:Problem_Related_to_Living_in_a_Residential_Institution rdfs:label """Problem Related to Living in a Residential Institution"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V606 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z593 ;
+	mhdb:hasICD10Code mhdb:ICD9_V606 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Housing_and_Economic_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Housing_Problems .
@@ -9536,8 +9538,8 @@ mhdb:Lack_of_Adequate_Food_or_Safe_Drinking_Water rdfs:label """Lack of Adequate
 
 mhdb:Extreme_Poverty rdfs:label """Extreme Poverty"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z595 ;
 	mhdb:hasICD10Code mhdb:ICD9_V602 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z595 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Housing_and_Economic_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Economic_Problems .
@@ -9561,16 +9563,16 @@ mhdb:Insufficient_Social_Insurance_or_Welfare_Support rdfs:label """Insufficient
 mhdb:Unspecified_Housing_or_Economic_Problem rdfs:label """Unspecified Housing or Economic Problem"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD10_Z599 ;
 	mhdb:hasICD10Code mhdb:ICD9_V609 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z599 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Housing_and_Economic_Problems ;
 	mhdb:hasDisorderSubsubcategory mhdb:Economic_Problems .
 
 mhdb:Phase_of_Life_Problem rdfs:label """Phase of Life Problem"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z600 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Problems_Related_to_the_Social_Environment .
 
@@ -9590,15 +9592,15 @@ mhdb:Acculturation_Difficulty rdfs:label """Acculturation Difficulty"""@en ;
 
 mhdb:Social_Exclusion_or_Rejection rdfs:label """Social Exclusion or Rejection"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V624 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z604 ;
+	mhdb:hasICD10Code mhdb:ICD9_V624 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Problems_Related_to_the_Social_Environment .
 
 mhdb:Target_of_Perceived_Adverse_Discrimination_or_Persecution rdfs:label """Target of (Perceived) Adverse Discrimination or Persecution"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V624 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z605 ;
+	mhdb:hasICD10Code mhdb:ICD9_V624 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Problems_Related_to_the_Social_Environment .
 
@@ -9612,15 +9614,15 @@ mhdb:Unspecified_Problem_Related_to_Social_Environment rdfs:label """Unspecified
 
 mhdb:Victim_of_Crime rdfs:label """Victim of Crime"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z654 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Crime_or_Interaction_With_the_Legal_System .
 
 mhdb:Conviction_in_Civil_or_Criminal_Proceedings_Without_Imprisonment rdfs:label """Conviction in Civil or Criminal Proceedings Without Imprisonment"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z650 ;
 	mhdb:hasICD10Code mhdb:ICD9_V625 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z650 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Crime_or_Interaction_With_the_Legal_System .
 
@@ -9640,15 +9642,15 @@ mhdb:Problems_Related_to_Release_From_Prison rdfs:label """Problems Related to R
 
 mhdb:Problems_Related_to_Other_Legal_Circumstances rdfs:label """Problems Related to Other Legal Circumstances"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z653 ;
 	mhdb:hasICD10Code mhdb:ICD9_V625 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z653 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Crime_or_Interaction_With_the_Legal_System .
 
 mhdb:Sex_Counseling rdfs:label """Sex Counseling"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z709 ;
 	mhdb:hasICD10Code mhdb:ICD9_V6549 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z709 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Health_Service_Encounters_for_Counseling_and_Medical_Advice .
 
@@ -9675,29 +9677,29 @@ mhdb:Problems_Related_to_Unwanted_Pregnancy rdfs:label """Problems Related to Un
 
 mhdb:Problems_Realated_to_Multiparity rdfs:label """Problems Realated to Multiparity"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z641 ;
 	mhdb:hasICD10Code mhdb:ICD9_V615 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z641 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Other_Psychosocial_Personal_and_Environmental_Circumstances .
 
 mhdb:Discord_With_Social_Service_Provider_Including_Probation_Officer_Case_Manager_or_Social_Services_Worker rdfs:label """Discord With Social Service Provider, Including Probation Officer, Case Manager, or Social Services Worker"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z654 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Other_Psychosocial_Personal_and_Environmental_Circumstances .
 
 mhdb:Victim_of_Terrorism_or_Torture rdfs:label """Victim of Terrorism or Torture"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z654 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Other_Psychosocial_Personal_and_Environmental_Circumstances .
 
 mhdb:Exposure_to_Disaster_War_or_Other_Hostilities rdfs:label """Exposure to Disaster, War, or Other Hostilities"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6222 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z655 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6222 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Other_Psychosocial_Personal_and_Environmental_Circumstances .
 
@@ -9711,8 +9713,8 @@ mhdb:Other_Problem_Related_to_Unspecified_Psychosocial_Circumstances rdfs:label 
 mhdb:Unspecified_Problem_Related_to_Unspecified_Psychosical_Circumstances rdfs:label """Unspecified Problem Related to Unspecified Psychosical Circumstances"""@en ;
 	rdf:type mhdb:Disorder ;
 	rdfs:subClassOf SNOMEDCT:10003008 ;
-	mhdb:hasICD10Code mhdb:ICD9_V629 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z659 ;
+	mhdb:hasICD10Code mhdb:ICD9_V629 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Problems_Related_to_Other_Psychosocial_Personal_and_Environmental_Circumstances .
 
@@ -9732,22 +9734,22 @@ mhdb:Personal_History_of_Self-Harm rdfs:label """Personal History of Self-Harm""
 
 mhdb:Personal_History_of_Military_Deployment rdfs:label """Personal History of Military Deployment"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6222 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z9182 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6222 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Circumstances_of_Personal_History .
 
 mhdb:Other_Personal_Risk_Factors rdfs:label """Other Personal Risk Factors"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z9189 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1589 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z9189 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Circumstances_of_Personal_History .
 
 mhdb:Problem_Related_to_Lifestyle rdfs:label """Problem Related to Lifestyle"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V699 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z729 ;
+	mhdb:hasICD10Code mhdb:ICD9_V699 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Circumstances_of_Personal_History .
 
@@ -9760,8 +9762,8 @@ mhdb:Adult_Antisocial_Behavior rdfs:label """Adult Antisocial Behavior"""@en ;
 
 mhdb:Child_or_Adolescent_Antisocial_Behavior rdfs:label """Child or Adolescent Antisocial Behavior"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V7102 ;
 	mhdb:hasICD10Code mhdb:ICD10_Z72810 ;
+	mhdb:hasICD10Code mhdb:ICD9_V7102 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Circumstances_of_Personal_History .
 
@@ -9782,8 +9784,8 @@ mhdb:Unavailability_or_Inaccessibility_of_Other_Helping_Agencies rdfs:label """U
 	mhdb:hasDisorderSubsubcategory mhdb:Problems_Related_to_Access_to_Medical_and_Other_Health_Care .
 
 mhdb:Nonadherence_to_Medical_Treatment rdfs:label """Nonadherence to Medical Treatment"""@en ;
-	rdf:type mhdb:DisorderSubsubcategory ;
 	rdf:type mhdb:Disorder ;
+	rdf:type mhdb:DisorderSubsubcategory ;
 	mhdb:hasICD10Code mhdb:ICD10_Z9119 ;
 	mhdb:hasICD10Code mhdb:ICD9_V1581 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
@@ -9800,8 +9802,8 @@ mhdb:Overweight_or_Obesity rdfs:label """Overweight or Obesity"""@en ;
 
 mhdb:Malingering rdfs:label """Malingering"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD10_Z765 ;
 	mhdb:hasICD10Code mhdb:ICD9_V652 ;
+	mhdb:hasICD10Code mhdb:ICD10_Z765 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Circumstances_of_Personal_History ;
 	mhdb:hasDisorderSubsubcategory mhdb:Nonadherence_to_Medical_Treatment .
@@ -9816,8 +9818,8 @@ mhdb:Wandering_Associated_With_a_Mental_Disorder rdfs:label """Wandering Associa
 
 mhdb:Borderline_Intellectual_Functioning rdfs:label """Borderline Intellectual Functioning"""@en ;
 	rdf:type mhdb:Disorder ;
-	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasICD10Code mhdb:ICD10_R4183 ;
+	mhdb:hasICD10Code mhdb:ICD9_V6289 ;
 	mhdb:hasDisorderCategory mhdb:Other_Conditions_That_May_Be_a_Focus_of_Clinical_Attention ;
 	mhdb:hasDisorderSubcategory mhdb:Other_Circumstances_of_Personal_History ;
 	mhdb:hasDisorderSubsubcategory mhdb:Nonadherence_to_Medical_Treatment .
@@ -9848,8 +9850,8 @@ mhdb:Anxiety_Disorder rdfs:label """Anxiety Disorder"""@en ;
 
 mhdb:Obsessive-Compulsive_or_Related_Disorder rdfs:label """Obsessive-Compulsive or Related Disorder"""@en ;
 	rdf:type mhdb:DisorderCategory ;
-	rdfs:equivalentClass SNOMEDCT:191736004 ;
-	rdfs:equivalentClass <http://purl.obolibrary.org/obo/OMIM_164230> .
+	rdfs:equivalentClass <http://purl.obolibrary.org/obo/OMIM_164230> ;
+	rdfs:equivalentClass SNOMEDCT:191736004 .
 
 mhdb:Trauma-_or_Stressor-Related_Disorder rdfs:label """Trauma- or Stressor-Related Disorder"""@en ;
 	rdf:type mhdb:DisorderCategory ;

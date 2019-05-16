@@ -1,0 +1,1176 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://www.purl.org/mentalhealth/domains#> .
+@prefix schema: <http://schema.org/> .
+@prefix mhdb: <http://www.purl.org/mentalhealth#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix m3-lite: <http://purl.org/iot/vocab/m3-lite> .
+@base <http://www.purl.org/mentalhealth/domains> .
+<http://www.purl.org/mentalhealth/domains> rdf:type owl:Ontology ;
+    owl:versionIRI <http://www.purl.org/mentalhealth/domains/0.3.0> ;
+    owl:versionInfo "0.3.0"^^rdfs:Literal ;
+    rdfs:label "mental health database — Domains"^^rdfs:Literal ;
+    rdfs:comment """
+
+================================================================================
+		Mental Health Database (MHDB)
+================================================================================
+This mental health database interrelates information about mental health-related
+(1) signs, symptoms, and disorders from the DSM-5, 
+(2) questions from questionnaires, 
+(3) cognitive tasks, 
+(4) behaviors,
+(5) cognitive domains,
+(6) measures and sensors,  
+(7) projects and products, and 
+(8) relevant references.
+The database is licensed under the terms of the Creative Commons BY license.
+Current information can be found on the website, https://matter.childmind.org.
+
+================================================================================
+		Behaviors
+================================================================================
+
+"""@en .
+
+mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
+	rdfs:label """Male Audience"""@en ;
+	schema:requiredGender schema:Male .
+
+mhdb:FemaleAudience rdfs:subClassOf schema:PeopleAudience ;
+	rdfs:label """Female Audience"""@en ;
+	schema:requiredGender schema:Female .
+
+m3-lite:DomainOfInterest rdfs:label """m3-lite:DomainOfInterest"""@en ;
+	rdf:type rdf:Class ;
+	rdfs:subClassOf mhdb:DomainType .
+
+mhdb:DomainType rdfs:label """DomainType"""@en ;
+	rdf:type rdf:Class .
+
+mhdb:hasDomainType rdfs:label """hasDomainType"""@en ;
+	rdf:type rdf:Property ;
+	rdfs:domain m3-lite:DomainOfInterest ;
+	rdfs:range mhdb:DomainType .
+
+mhdb:distractability rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """distractability"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:stress rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """stress"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:mood rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """mood"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:emotion rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotion"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:sleep rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sleep"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:anxiety rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """anxiety"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:fear rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """fear"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """attention"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """memory"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:spatial_skill rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """spatial skill"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:executive_function rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """executive function"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:arousal rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """arousal"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:behavior rdf:type m3-lite:DomainOfInterest ;
+	rdf:type mhdb:DomainType ;
+	rdfs:label """behavior"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:sensory_processing rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sensory processing"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:pain rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """pain"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:interest rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """interest"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:facial_expression rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """facial expression"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:language rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """language"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:rhythm rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """rhythm"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:motor_skill rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """motor skill"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:sensory_skill rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sensory skill"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:social_interaction rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """social interaction"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:communication rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """communication"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:learning rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """learning"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:affect rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """affect"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:socioaffective_displays rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """socioaffective displays"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:eating rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """eating"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:hyperactivity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """hyperactivity"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:impulsivity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """impulsivity"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:processing_speed rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """processing speed"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:inhibition rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """inhibition"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:perception rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """perception"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:abstraction rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """abstraction"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:aggression rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """aggression"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:oppositionality rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """oppositionality"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:depression rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """depression"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:psychotic_behavior rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """psychotic behavior"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:addiction rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """addiction"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:trauma rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """trauma"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:distress_tolerance rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """distress tolerance"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:general_impairment rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """general impairment"""@en ;
+	mhdb:hasDomainType mhdb:demographics .
+
+mhdb:atypical_behavior rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """atypical behavior"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:suicidal_ideation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """suicidal ideation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:brooding rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """brooding"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:reflection rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """reflection"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:worry rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """worry"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:empathy rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """empathy"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:temperament rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """temperament"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:irritabilitydisinhibited rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """irritability/disinhibited"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:dissociation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """dissociation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:risk_taking rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """risk taking"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:reward rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """reward"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:estimation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """estimation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:personality_traits rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """personality traits"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:substance_use rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """substance use"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:somatic_complaints rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """somatic complaints"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:tics rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """tics"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:background_information rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """background information"""@en ;
+	mhdb:hasDomainType mhdb:demographics .
+
+mhdb:demographics rdf:type m3-lite:DomainOfInterest ;
+	rdf:type mhdb:DomainType ;
+	rdfs:label """demographics"""@en ;
+	mhdb:hasDomainType mhdb:demographics .
+
+mhdb:family_structure rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """family structure"""@en ;
+	mhdb:hasDomainType mhdb:demographics .
+
+mhdb:cognitive_functioning rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """cognitive functioning"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:sex_and_gender rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sex and gender"""@en ;
+	mhdb:hasDomainType mhdb:demographics .
+
+mhdb:social_status rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """social status"""@en ;
+	mhdb:hasDomainType mhdb:demographics .
+
+mhdb:sexual_behavior rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sexual behavior"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:parenting rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """parenting"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:marital_status rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """marital status"""@en ;
+	mhdb:hasDomainType mhdb:demographics ;
+	rdfs:subClassOf mhdb:social_status .
+
+mhdb:retiredemployed_status rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """retired/employed status"""@en ;
+	mhdb:hasDomainType mhdb:demographics ;
+	rdfs:subClassOf mhdb:social_status .
+
+mhdb:educational_attainment rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """educational attainment"""@en ;
+	mhdb:hasDomainType mhdb:demographics ;
+	rdfs:subClassOf mhdb:social_status .
+
+mhdb:occupational_prestige rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """occupational prestige"""@en ;
+	mhdb:hasDomainType mhdb:demographics ;
+	rdfs:subClassOf mhdb:social_status .
+
+mhdb:calmness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """calmness"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:emotion_recognition rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotion recognition"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:emotion_tracking rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotion tracking"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:emotional_awareness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotional awareness"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:mindfulness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """mindfulness"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:working_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """working memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:goal_management rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """goal management"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:intrinsic_motivation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """intrinsic motivation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:delayed_gratification rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """delayed gratification"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:self_regulation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """self regulation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:concentration rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """concentration"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:spatial_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """spatial attention"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:temporal_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """temporal attention"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:visual_motor_skills rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """visual motor skills"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:visual_spatial_skills rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """visual spatial skills"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill .
+
+mhdb:social_cognition rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """social cognition"""@en ;
+	mhdb:hasDomainType mhdb:social ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:arousal_in_therapy rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """arousal in therapy"""@en ;
+	rdfs:subClassOf mhdb:arousal .
+
+mhdb:stereotypic_behaviours rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """stereotypic behaviours"""@en ;
+	rdfs:subClassOf mhdb:behavior .
+
+mhdb:voice_analysis rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """voice analysis"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:psychotic_relapse rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """psychotic relapse"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:fixated_interest rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """fixated interest"""@en ;
+	rdfs:subClassOf mhdb:interest .
+
+mhdb:affinity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """affinity"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:response_to_name rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """response to name"""@en ;
+	rdfs:subClassOf mhdb:communication .
+
+mhdb:wellbeing rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """wellbeing"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:voice_tone rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """voice tone"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:user_behaviour rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """user behaviour"""@en ;
+	rdfs:subClassOf mhdb:behavior .
+
+mhdb:cognitive_control rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """cognitive control"""@en .
+
+mhdb:cognitive_decayenhancement rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """cognitive decay/enhancement"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:excitement rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """excitement"""@en ;
+	rdfs:subClassOf mhdb:socioaffective_displays ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:Facial_Action_Coding_System_FACS rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """Facial Action Coding System (FACS)"""@en ;
+	rdfs:subClassOf mhdb:facial_expression .
+
+mhdb:face_tracking rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """face tracking"""@en .
+
+mhdb:head_tracking rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """head tracking"""@en .
+
+mhdb:frustration rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """frustration"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:confusion rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """confusion"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:emotional_reaction rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotional reaction"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:fluid_status rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """fluid status"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:bodys_response_to_exercise rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """body's response to exercise"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:seizures rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """seizures"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:sympathetic_nervous_system_arousal rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sympathetic nervous system arousal"""@en ;
+	rdfs:subClassOf mhdb:arousal .
+
+mhdb:vital_signs rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """vital signs"""@en .
+
+mhdb:reciprocity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """reciprocity"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:incipient_social_skills rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """incipient social skills"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:phone_usage_patterns rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """phone usage patterns"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:text_activity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """text activity"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:app_use rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """app use"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:physical_elements_of_speech rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """physical elements of speech"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:silence rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """silence"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:hypomimia rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """hypomimia"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:multimodal_behavioural_sensing rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """multimodal behavioural sensing"""@en ;
+	rdfs:subClassOf mhdb:behavior .
+
+mhdb:voice_pattern rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """voice pattern"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:voice rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """voice"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:affect_measurement rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """affect measurement"""@en ;
+	rdfs:subClassOf mhdb:emotion ;
+	rdfs:subClassOf mhdb:affect .
+
+mhdb:auditory_target_detection rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """auditory target detection"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:behaviometric rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """behaviometric"""@en ;
+	rdfs:subClassOf mhdb:behavior .
+
+mhdb:action_syncronization rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """action syncronization"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:cooperative_goal_setting rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """cooperative goal setting"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:action_prediction rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """action prediction"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:joint_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """joint attention"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:complementary_action rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """complementary action"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:turn-taking rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """turn-taking"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:sharing-teaches_children_to_give_to_others_if_they_want_to_receive_themselves rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sharing - teaches children to give to others if they want to receive themselves."""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:cooperation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """cooperation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:sensory_stimulation_sounds_lights_vibrations rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sensory stimulation (sounds; lights; vibrations)"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:dominance rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """dominance"""@en ;
+	rdfs:subClassOf mhdb:socioaffective_displays .
+
+mhdb:nonaggression rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """nonaggression"""@en ;
+	rdfs:subClassOf mhdb:socioaffective_displays .
+
+mhdb:relaxed_mental_state rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """relaxed mental state"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:skin_conductivity_startle_response rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """skin conductivity startle response"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:thermoregulation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """thermoregulation"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:emotional_activation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotional activation"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:flight_or_fight_mode rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """flight or fight mode"""@en ;
+	rdfs:subClassOf mhdb:stress ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:sympathetic_nervous_system_response rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sympathetic nervous system response"""@en .
+
+mhdb:eating_detection rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """eating detection"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:swallowing_event_recognitiondetection rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """swallowing event recognition/detection"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:chewingbite_event_detection rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """chewing/bite event detection"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:determine_food_hardness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """determine food hardness"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:determine_bolus_size rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """determine bolus size"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:chewing_cycles rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """chewing cycles"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:mastication rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """mastication"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:detect_food_typesfood_classification rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """detect food types/food classification"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:food_intake_amount rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """food intake amount"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:eating_duration rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """eating duration"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:detect_drinking_gestures rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """detect drinking gestures"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:swallowing_sound rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """swallowing sound"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:crunchy_food rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """crunchy food"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:food_volume_estimation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """food volume estimation"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:calorie_estimation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """calorie estimation"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:bite_weight_detection rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """bite weight detection"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:softness_of_the_food rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """softness of the food"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:duifferentiating_chewing_from_non_chewing_events rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """duifferentiating chewing from non chewing events"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:solid_food rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """solid food"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:liquid_food rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """liquid food"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:hand_to_mouth_gesture rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """hand to mouth gesture"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:divided_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """divided attention"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:selective_attention_capacity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """selective attention capacity"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:sustained_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sustained attention"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:selected_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """selected attention"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:orienting_attention_Orienting_involves_selective_allocation_of_attention_to_a_source_of_signals_in_space rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """orienting attention (Orienting involves selective allocation of attention to a source of signals in space);"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:executive_attention_Executive_attention_involves_conflict_resolution_and_control_over_decision-making_error_detection_and_habitual_response_inhibition rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """executive attention (Executive attention involves conflict resolution and control over decision-making, error detection, and habitual response inhibition)"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """alerting attention (Alerting involves a change in mental state as well as in physiological state, and prepares the organism for fast reactions); orienting attention"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:vigilant_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """vigilant attention"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:shifting_and_flexibility_of_attention rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """shifting and flexibility of attention"""@en ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:spatial_working_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """spatial working memory"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:visuospatial_working_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """visuospatial working memory"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:visual_working_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """visual working memory"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill .
+
+mhdb:verbal_working_memory_with_visuospatial_components rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """verbal working memory (with visuospatial components)"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill ;
+	rdfs:subClassOf mhdb:attention .
+
+mhdb:recognition_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """recognition memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:visual_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """visual memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:memory_capacity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """memory capacity"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:visual_short_term_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """visual short term memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:verbal_recognition_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """verbal recognition memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:spatial_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """spatial memory"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:episodic_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """episodic memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:verbal_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """verbal memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:short_term_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """short term memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:auditory_short_term_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """auditory short term memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:short_term_visual_recognition_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """short term visual recognition memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:face_memory rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """face memory"""@en ;
+	rdfs:subClassOf mhdb:memory .
+
+mhdb:spatial_perception rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """spatial perception"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill ;
+	rdfs:subClassOf mhdb:perception .
+
+mhdb:visual_perception rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """visual perception"""@en ;
+	rdfs:subClassOf mhdb:perception .
+
+mhdb:social_perception rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """social perception"""@en ;
+	rdfs:subClassOf mhdb:perception .
+
+mhdb:hand-eye_coordination rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """hand-eye coordination"""@en ;
+	rdfs:subClassOf mhdb:motor_skill .
+
+mhdb:psychomotor_speed rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """psychomotor speed"""@en ;
+	rdfs:subClassOf mhdb:motor_skill .
+
+mhdb:sensorimotor_skill rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sensorimotor skill"""@en ;
+	rdfs:subClassOf mhdb:sensory_skill ;
+	rdfs:subClassOf mhdb:motor_skill .
+
+mhdb:field_of_viewvisual_capacity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """field of view/visual capacity"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:orientation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """orientation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:psychomotor_function rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """psychomotor function"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:relationships rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """relationships"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:mania rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """mania"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:motivation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """motivation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:reward_processing_impairment rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """reward processing impairment"""@en ;
+	rdfs:subClassOf mhdb:reward ;
+	rdfs:subClassOf mhdb:general_impairment .
+
+mhdb:verbal_learning rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """verbal learning"""@en ;
+	rdfs:subClassOf mhdb:learning .
+
+mhdb:social_functioning rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """social functioning"""@en ;
+	rdfs:subClassOf mhdb:social_interaction .
+
+mhdb:cognitive_reapprisal rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """cognitive reapprisal"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:expressive_suppression rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """expressive suppression"""@en .
+
+mhdb:subjective_sleep_quality rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """subjective sleep quality"""@en ;
+	rdfs:subClassOf mhdb:sleep .
+
+mhdb:sleep_latency rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sleep latency"""@en ;
+	rdfs:subClassOf mhdb:sleep .
+
+mhdb:sleep_duration rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sleep duration"""@en ;
+	rdfs:subClassOf mhdb:sleep .
+
+mhdb:habitual_sleep_efficiency rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """habitual sleep efficiency"""@en ;
+	rdfs:subClassOf mhdb:sleep .
+
+mhdb:sleep_disturbance rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sleep disturbance"""@en ;
+	rdfs:subClassOf mhdb:sleep .
+
+mhdb:use_of_sleeping_medication rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """use of sleeping medication"""@en ;
+	rdfs:subClassOf mhdb:sleep .
+
+mhdb:daytime_dysfunction rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """daytime dysfunction"""@en ;
+	rdfs:subClassOf mhdb:sleep .
+
+mhdb:delusion rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """delusion"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:schizotypal_trait rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """schizotypal trait"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:eating_disordered_behavior rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """eating disordered behavior"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:eating_disordered_thought rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """eating disordered thought"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:food_responsiveness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """food responsiveness"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:enjoyment_of_food rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """enjoyment of food"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:emotional_overeating rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotional overeating"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:desire_to_drink rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """desire to drink"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:satiety_responsiveness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """satiety responsiveness"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:slowness_in_eating rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """slowness in eating"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:emotional_undereating rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotional undereating"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:fussiness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """fussiness"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:eating_style rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """eating style"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:cognitive_restraint_of_eating rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """cognitive restraint of eating"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:disinhibition rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """disinhibition"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:hunger rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """hunger"""@en ;
+	rdfs:subClassOf mhdb:eating .
+
+mhdb:effortful_control rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """effortful control"""@en ;
+	rdfs:subClassOf mhdb:personality_traits ;
+	rdfs:subClassOf mhdb:temperament .
+
+mhdb:negative_affect rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """negative affect"""@en ;
+	rdfs:subClassOf mhdb:personality_traits ;
+	rdfs:subClassOf mhdb:temperament .
+
+mhdb:extraversionsurgency rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """extraversion/surgency"""@en ;
+	rdfs:subClassOf mhdb:personality_traits ;
+	rdfs:subClassOf mhdb:temperament .
+
+mhdb:orienting_sensitivity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """orienting sensitivity"""@en ;
+	rdfs:subClassOf mhdb:personality_traits ;
+	rdfs:subClassOf mhdb:temperament .
+
+mhdb:functional_impairment rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """functional impairment"""@en ;
+	rdfs:subClassOf mhdb:general_impairment .
+
+mhdb:thought_problems rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """thought problems"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:memorycognition_problems rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """memory/cognition problems"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:activation_control rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """activation control"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:affiliation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """affiliation"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:shyness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """shyness"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:high-intensity_pleasure rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """high-intensity pleasure"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:inhibitory_control rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """inhibitory control"""@en ;
+	rdfs:subClassOf mhdb:inhibition .
+
+mhdb:premeditation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """premeditation"""@en ;
+	rdfs:subClassOf mhdb:impulsivity .
+
+mhdb:urgency rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """urgency"""@en ;
+	rdfs:subClassOf mhdb:impulsivity .
+
+mhdb:sensation_seeking rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sensation seeking"""@en ;
+	rdfs:subClassOf mhdb:impulsivity .
+
+mhdb:perseverance rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """perseverance"""@en ;
+	rdfs:subClassOf mhdb:impulsivity .
+
+mhdb:negative_intensity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """negative intensity"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:positive_intensity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """positive intensity"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:negative_affectivity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """negative affectivity"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:positive_affectivity rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """positive affectivity"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:unintentional_and_intentional_injuries rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """unintentional and intentional injuries"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:anger_control rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """anger control"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:bullying rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """bullying"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:resiliency rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """resiliency"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:emotional_self_control rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """emotional self control"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:negative_emotionality rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """negative emotionality"""@en ;
+	rdfs:subClassOf mhdb:emotion .
+
+mhdb:avoidant_personality rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """avoidant personality"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:antisocial_personality rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """antisocial personality"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:positive_involvement rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """positive involvement"""@en ;
+	rdfs:subClassOf mhdb:parenting .
+
+mhdb:supervisionmonitoring rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """supervision/monitoring"""@en ;
+	rdfs:subClassOf mhdb:parenting .
+
+mhdb:use_of_consistency_of_positive_discipline rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """use of /consistency of positive discipline"""@en ;
+	rdfs:subClassOf mhdb:parenting .
+
+mhdb:corporal_punishment rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """corporal punishment"""@en ;
+	rdfs:subClassOf mhdb:parenting .
+
+mhdb:motor_clumsiness rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """motor clumsiness"""@en ;
+	rdfs:subClassOf mhdb:motor_skill .
+
+mhdb:restrictive_behaviors rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """restrictive behaviors"""@en ;
+	rdfs:subClassOf mhdb:behavior .
+
+mhdb:repetitive_behaviors rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """repetitive behaviors"""@en ;
+	rdfs:subClassOf mhdb:behavior .
+
+mhdb:spatial_processing rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """spatial processing"""@en ;
+	rdfs:subClassOf mhdb:spatial_skill ;
+	rdfs:subClassOf mhdb:processing_speed .
+
+mhdb:fluency rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """fluency"""@en ;
+	rdfs:subClassOf mhdb:language .
+
+mhdb:planning rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """planning"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:insight rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """insight"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:naming rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """naming"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:sentence_repetition rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """sentence repetition"""@en ;
+	rdfs:subClassOf mhdb:language .
+
+mhdb:verbal_fluency rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """verbal fluency"""@en ;
+	rdfs:subClassOf mhdb:language .
+
+mhdb:response_bias rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """response bias"""@en ;
+	mhdb:hasDomainType mhdb:cognition .
+
+mhdb:suboptimal_performance rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """suboptimal performance"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:resistance_to_change rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """resistance to change"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:speech_articulation rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """speech articulation"""@en ;
+	mhdb:hasDomainType mhdb:physiology .
+
+mhdb:gambling rdf:type m3-lite:DomainOfInterest ;
+	rdfs:label """gambling"""@en ;
+	mhdb:hasDomainType mhdb:behavior .
+
+mhdb:cognition rdf:type mhdb:DomainType ;
+	rdfs:label """cognition"""@en .
+
+mhdb:physiology rdf:type mhdb:DomainType ;
+	rdfs:label """physiology"""@en .
+
+mhdb:social rdf:type mhdb:DomainType ;
+	rdfs:label """social"""@en .
+
+mhdb:miscellaneous rdf:type mhdb:DomainType ;
+	rdfs:label """miscellaneous"""@en .
