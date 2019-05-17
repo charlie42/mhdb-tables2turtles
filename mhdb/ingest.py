@@ -369,6 +369,41 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 if isinstance(objectRDF, str):
                     predicates_list.append(("mhdb:hasResponseType",
                                             check_iri(objectRDF)))
+
+        scale_type = row[1]["scale_type"]
+        discrete_continuous = row[1]["discrete_continuous"]
+        num_options = row[1]["num_options"]
+        index_min = row[1]["index_min_extreme_oo_unclear_na_none"]
+        index_max = row[1]["index_max_extreme_oo_unclear_na_none"]
+        index_dontknow = row[1]["index_dontknow_na"]
+
+        if scale_type not in exclude_list and \
+                isinstance(scale_type, str):
+            predicates_list.append(("mhdb:hasScaleType",
+                                    mhdb_iri(scale_type)))
+        if discrete_continuous not in exclude_list and \
+                isinstance(discrete_continuous, str):
+            predicates_list.append(("mhdb:hasValueType",
+                                    mhdb_iri(discrete_continuous)))
+        if num_options not in exclude_list and not isinstance(num_options, float):
+            predicates_list.append(("mhdb:hasNumberOfOptions",
+                                    '"{0}"^^xsd:nonNegativeInteger'.format(
+                                        num_options)))
+        if index_min not in exclude_list and not isinstance(index_min, float):
+            if index_min not in ['oo', 'n/a']:
+                predicates_list.append(("mhdb:hasExtremeValueForResponseIndex",
+                                        '"{0}"^^xsd:integer'.format(
+                                            index_min)))
+        if index_max not in exclude_list and not isinstance(index_max, float):
+            if index_max not in ['oo', 'n/a']:
+                predicates_list.append(("mhdb:hasExtremeValueForResponseIndex",
+                                        '"{0}"^^xsd:integer'.format(
+                                            index_max)))
+        if index_dontknow not in exclude_list and not isinstance(index_dontknow, float):
+            predicates_list.append(("mhdb:hasDontKnowOrNanForResponseIndex",
+                                    '"{0}"^^xsd:integer'.format(
+                                        index_dontknow)))
+
         for predicates in predicates_list:
             statements = add_if(
                 question_iri,
