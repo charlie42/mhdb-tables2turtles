@@ -2586,6 +2586,9 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
     for row in disorders.iterrows():
 
         disorder_label = row[1]["disorder"]
+        disorder_iri_label = disorder_label
+        predicates_list = []
+        predicates_list.append(("rdf:type", "mhdb:Disorder"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
                 not isinstance(row[1]["equivalentClass"], float):
@@ -2599,22 +2602,25 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                 not isinstance(row[1]["subClassOf_2"], float):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf_2"])))
-        if row[1]["ICD9_code"] not in exclude_list and \
-                row[1]["ICD9_code"] != np.nan:
-            predicates_list.append(("mhdb:hasICD9Code",
-                                    check_iri('ICD9_' + str(row[1]["ICD9_code"]))))
-            ICD9_code = row[1]["ICD9_code"]
-            disorder_label += " ICD9 {0}".format(ICD9_code)
-        if row[1]["ICD10_code"] not in exclude_list and \
-                row[1]["ICD10_code"] != np.nan:
-            predicates_list.append(("mhdb:hasICD10Code",
-                                    check_iri('ICD10_' + str(row[1]["ICD10_code"]))))
-            ICD10_code = row[1]["ICD10_code"]
-            disorder_label += " ICD10 {0}".format(ICD10_code)
         if row[1]["note"] not in exclude_list and \
                 not isinstance(row[1]["note"], float):
             predicates_list.append(("mhdb:hasNote",
                                     language_string(row[1]["note"])))
+
+        if row[1]["ICD9_code"] not in exclude_list and \
+                row[1]["ICD9_code"] != np.nan:
+            ICD9_code = str(row[1]["ICD9_code"])
+            predicates_list.append(("mhdb:hasICD9Code",
+                                    check_iri('ICD9_' + ICD9_code)))
+            disorder_label += "; ICD9:{0}".format(ICD9_code)
+            disorder_iri_label += " ICD9 {0}".format(ICD9_code)
+        if row[1]["ICD10_code"] not in exclude_list and \
+                row[1]["ICD10_code"] != np.nan:
+            ICD10_code = row[1]["ICD10_code"]
+            predicates_list.append(("mhdb:hasICD10Code",
+                                    check_iri('ICD10_' + ICD10_code)))
+            disorder_label += "; ICD10:{0}".format(ICD10_code)
+            disorder_iri_label += " ICD10 {0}".format(ICD10_code)
         if row[1]["index_diagnostic_specifier"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_specifier"]):
             diagnostic_specifier = diagnostic_specifiers[
@@ -2623,7 +2629,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             if isinstance(diagnostic_specifier, str):
                 predicates_list.append(("mhdb:hasDiagnosticSpecifier",
                                         check_iri(diagnostic_specifier)))
-                disorder_label += " specifier {0}".format(diagnostic_specifier)
+                disorder_label += "; specifier: {0}".format(diagnostic_specifier)
+                disorder_iri_label += " specifier {0}".format(diagnostic_specifier)
 
         if row[1]["index_diagnostic_inclusion_criterion"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_inclusion_criterion"]):
@@ -2634,6 +2641,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                 predicates_list.append(("mhdb:hasInclusionCriterion",
                                         check_iri(diagnostic_inclusion_criterion)))
                 disorder_label += \
+                    "; inclusion: {0}".format(diagnostic_inclusion_criterion)
+                disorder_iri_label += \
                     " inclusion {0}".format(diagnostic_inclusion_criterion)
 
         if row[1]["index_diagnostic_inclusion_criterion2"] not in exclude_list and \
@@ -2646,6 +2655,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                                         check_iri(diagnostic_inclusion_criterion2)))
                 disorder_label += \
                     ", {0}".format(diagnostic_inclusion_criterion2)
+                disorder_iri_label += \
+                    " {0}".format(diagnostic_inclusion_criterion2)
 
         if row[1]["index_diagnostic_exclusion_criterion"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_exclusion_criterion"]):
@@ -2656,6 +2667,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                 predicates_list.append(("mhdb:hasExclusionCriterion",
                                         check_iri(diagnostic_exclusion_criterion)))
                 disorder_label += \
+                    "; exclusion: {0}".format(diagnostic_exclusion_criterion)
+                disorder_iri_label += \
                     " exclusion {0}".format(diagnostic_exclusion_criterion)
 
         if row[1]["index_diagnostic_exclusion_criterion2"] not in exclude_list and \
@@ -2668,6 +2681,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                                         check_iri(diagnostic_exclusion_criterion2)))
                 disorder_label += \
                     ", {0}".format(diagnostic_exclusion_criterion2)
+                disorder_iri_label += \
+                    " {0}".format(diagnostic_exclusion_criterion2)
 
         if row[1]["index_severity"] not in exclude_list and \
                 not np.isnan(row[1]["index_severity"]):
@@ -2679,6 +2694,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                 predicates_list.append(("mhdb:hasSeverity",
                                         check_iri(severity)))
                 disorder_label += \
+                    "; severity: {0}".format(severity)
+                disorder_iri_label += \
                     " severity {0}".format(severity)
 
         if row[1]["index_disorder_subsubsubcategory"] not in exclude_list and \
@@ -2786,13 +2803,9 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             predicates_list.append(("mhdb:hasDisorderCategory",
                                     check_iri(disorder_category)))
 
-        disorder_iri = check_iri(disorder_label)
         disorder_label = language_string(disorder_label)
-
-        predicates_list = []
+        disorder_iri = check_iri(disorder_iri_label)
         predicates_list.append(("rdfs:label", disorder_label))
-        predicates_list.append(("rdf:type", "mhdb:Disorder"))
-
         for predicates in predicates_list:
             statements = add_if(
                 disorder_iri,
