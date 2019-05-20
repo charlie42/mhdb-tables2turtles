@@ -2297,7 +2297,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
         if row[1]["Definition"] not in exclude_list and not \
                     isinstance(row[1]["Definition"], float):
             predicates_list.append(("rdfs:comment",
-                                    check_iri(row[1]["Definition"])))
+                                    language_string(row[1]["Definition"])))
         if row[1]["sameAs"] not in exclude_list and not \
                     isinstance(row[1]["sameAs"], float):
             predicates_list.append(("owl:sameAs",
@@ -2582,14 +2582,10 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             )
 
     # disorders worksheet
+    exclude_categories = []
     for row in disorders.iterrows():
 
-        disorder_label = language_string(row[1]["disorder"])
-        disorder_iri = check_iri(row[1]["disorder"])
-
-        predicates_list = []
-        predicates_list.append(("rdfs:label", disorder_label))
-        predicates_list.append(("rdf:type", "mhdb:Disorder"))
+        disorder_label = row[1]["disorder"]
 
         if row[1]["equivalentClass"] not in exclude_list and \
                 not isinstance(row[1]["equivalentClass"], float):
@@ -2603,59 +2599,22 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                 not isinstance(row[1]["subClassOf_2"], float):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf_2"])))
-        # if row[1]["disorder_full_name"] not in exclude_list and \
-        #         not isinstance(row[1]["disorder_full_name"], float):
-        #     predicates_list.append(("",
-        #                             language_string(row[1]["disorder_full_name"])))
         if row[1]["ICD9_code"] not in exclude_list and \
                 row[1]["ICD9_code"] != np.nan:
-            predicates_list.append(("mhdb:hasICD10Code",
+            predicates_list.append(("mhdb:hasICD9Code",
                                     check_iri('ICD9_' + str(row[1]["ICD9_code"]))))
+            ICD9_code = row[1]["ICD9_code"]
+            disorder_label += " ICD9 {0}".format(ICD9_code)
         if row[1]["ICD10_code"] not in exclude_list and \
                 row[1]["ICD10_code"] != np.nan:
             predicates_list.append(("mhdb:hasICD10Code",
                                     check_iri('ICD10_' + str(row[1]["ICD10_code"]))))
+            ICD10_code = row[1]["ICD10_code"]
+            disorder_label += " ICD10 {0}".format(ICD10_code)
         if row[1]["note"] not in exclude_list and \
                 not isinstance(row[1]["note"], float):
             predicates_list.append(("mhdb:hasNote",
                                     language_string(row[1]["note"])))
-
-        if row[1]["index_disorder_category"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_category"]):
-            disorder_category = disorder_categories[
-            disorder_categories["index"] == row[1]["index_disorder_category"]
-            ]["disorder_category"].values[0]
-            if isinstance(disorder_category, str):
-                predicates_list.append(("mhdb:hasDisorderCategory",
-                                        check_iri(disorder_category)))
-
-        if row[1]["index_disorder_subcategory"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_subcategory"]):
-            disorder_subcategory = disorder_subcategories[
-                disorder_subcategories["index"] == int(row[1]["index_disorder_subcategory"])
-            ]["disorder_subcategory"].values[0]
-            if isinstance(disorder_subcategory, str):
-                predicates_list.append(("mhdb:hasDisorderSubcategory",
-                                        check_iri(disorder_subcategory)))
-
-        if row[1]["index_disorder_subsubcategory"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_subsubcategory"]):
-            disorder_subsubcategory = disorder_subsubcategories[
-            disorder_subsubcategories["index"] == int(row[1]["index_disorder_subsubcategory"])
-            ]["disorder_subsubcategory"].values[0]
-            if isinstance(disorder_subsubcategory, str):
-                predicates_list.append(("mhdb:hasDisorderSubsubcategory",
-                                        check_iri(disorder_subsubcategory)))
-
-        if row[1]["index_disorder_subsubsubcategory"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_subsubsubcategory"]):
-            disorder_subsubsubcategory = disorder_subsubsubcategories[
-            disorder_subsubsubcategories["index"] == int(row[1]["index_disorder_subsubsubcategory"])
-            ]["disorder_subsubsubcategory"].values[0]
-            if isinstance(disorder_subsubsubcategory, str):
-                predicates_list.append(("mhdb:hasDisorderSubsubsubcategory",
-                                        check_iri(disorder_subsubsubcategory)))
-
         if row[1]["index_diagnostic_specifier"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_specifier"]):
             diagnostic_specifier = diagnostic_specifiers[
@@ -2664,6 +2623,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             if isinstance(diagnostic_specifier, str):
                 predicates_list.append(("mhdb:hasDiagnosticSpecifier",
                                         check_iri(diagnostic_specifier)))
+                disorder_label += " specifier {0}".format(diagnostic_specifier)
 
         if row[1]["index_diagnostic_inclusion_criterion"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_inclusion_criterion"]):
@@ -2673,6 +2633,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             if isinstance(diagnostic_inclusion_criterion, str):
                 predicates_list.append(("mhdb:hasInclusionCriterion",
                                         check_iri(diagnostic_inclusion_criterion)))
+                disorder_label += \
+                    " inclusion {0}".format(diagnostic_inclusion_criterion)
 
         if row[1]["index_diagnostic_inclusion_criterion2"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_inclusion_criterion2"]):
@@ -2682,6 +2644,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             if isinstance(diagnostic_inclusion_criterion2, str):
                 predicates_list.append(("mhdb:hasInclusionCriterion",
                                         check_iri(diagnostic_inclusion_criterion2)))
+                disorder_label += \
+                    ", {0}".format(diagnostic_inclusion_criterion2)
 
         if row[1]["index_diagnostic_exclusion_criterion"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_exclusion_criterion"]):
@@ -2691,6 +2655,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             if isinstance(diagnostic_exclusion_criterion, str):
                 predicates_list.append(("mhdb:hasExclusionCriterion",
                                         check_iri(diagnostic_exclusion_criterion)))
+                disorder_label += \
+                    " exclusion {0}".format(diagnostic_exclusion_criterion)
 
         if row[1]["index_diagnostic_exclusion_criterion2"] not in exclude_list and \
                 not np.isnan(row[1]["index_diagnostic_exclusion_criterion2"]):
@@ -2700,6 +2666,8 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             if isinstance(diagnostic_exclusion_criterion2, str):
                 predicates_list.append(("mhdb:hasExclusionCriterion",
                                         check_iri(diagnostic_exclusion_criterion2)))
+                disorder_label += \
+                    ", {0}".format(diagnostic_exclusion_criterion2)
 
         if row[1]["index_severity"] not in exclude_list and \
                 not np.isnan(row[1]["index_severity"]):
@@ -2710,6 +2678,120 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
                     isinstance(severity, float):
                 predicates_list.append(("mhdb:hasSeverity",
                                         check_iri(severity)))
+                disorder_label += \
+                    " severity {0}".format(severity)
+
+        if row[1]["index_disorder_subsubsubcategory"] not in exclude_list and \
+                not np.isnan(row[1]["index_disorder_subsubsubcategory"]):
+            disorder_subsubsubcategory = disorder_subsubsubcategories[
+                disorder_subsubsubcategories["index"] ==
+                int(row[1]["index_disorder_subsubsubcategory"])
+            ]["disorder_subsubsubcategory"].values[0]
+            disorder_subsubcategory = disorder_subsubcategories[
+                disorder_subsubcategories["index"] ==
+                int(row[1]["index_disorder_subsubcategory"])
+            ]["disorder_subsubcategory"].values[0]
+            disorder_subcategory = disorder_subcategories[
+                disorder_subcategories["index"] ==
+                int(row[1]["index_disorder_subcategory"])
+            ]["disorder_subcategory"].values[0]
+            disorder_category = disorder_categories[
+                disorder_categories["index"] ==
+                int(row[1]["index_disorder_category"])
+            ]["disorder_category"].values[0]
+            predicates_list.append(("mhdb:hasDisorderCategory",
+                                    check_iri(disorder_subsubsubcategory)))
+            statements = add_if(
+                check_iri(disorder_subsubsubcategory),
+                "rdfs:subClassOf",
+                check_iri(disorder_subsubcategory),
+                statements,
+                exclude_list
+            )
+            if disorder_subsubcategory not in exclude_categories:
+                statements = add_if(
+                    check_iri(disorder_subsubcategory),
+                    "rdfs:subClassOf",
+                    check_iri(disorder_subcategory),
+                    statements,
+                    exclude_list
+                )
+                statements = add_if(
+                    check_iri(disorder_subcategory),
+                    "rdfs:subClassOf",
+                    check_iri(disorder_category),
+                    statements,
+                    exclude_list
+                )
+                exclude_categories.append(disorder_subsubcategory)
+        elif row[1]["index_disorder_subsubcategory"] not in exclude_list and \
+                not np.isnan(row[1]["index_disorder_subsubcategory"]):
+            disorder_subsubcategory = disorder_subsubcategories[
+                disorder_subsubcategories["index"] ==
+                int(row[1]["index_disorder_subsubcategory"])
+            ]["disorder_subsubcategory"].values[0]
+            disorder_subcategory = disorder_subcategories[
+                disorder_subcategories["index"] ==
+                int(row[1]["index_disorder_subcategory"])
+            ]["disorder_subcategory"].values[0]
+            disorder_category = disorder_categories[
+                disorder_categories["index"] ==
+                int(row[1]["index_disorder_category"])
+            ]["disorder_category"].values[0]
+            predicates_list.append(("mhdb:hasDisorderCategory",
+                                    check_iri(disorder_subsubcategory)))
+            statements = add_if(
+                check_iri(disorder_subsubcategory),
+                "rdfs:subClassOf",
+                check_iri(disorder_subcategory),
+                statements,
+                exclude_list
+            )
+            if disorder_subcategory not in exclude_categories:
+                statements = add_if(
+                    check_iri(disorder_subcategory),
+                    "rdfs:subClassOf",
+                    check_iri(disorder_category),
+                    statements,
+                    exclude_list
+                )
+                exclude_categories.append(disorder_subcategory)
+        elif row[1]["index_disorder_subcategory"] not in exclude_list and \
+                not np.isnan(row[1]["index_disorder_subcategory"]):
+            disorder_subcategory = disorder_subcategories[
+                disorder_subcategories["index"] ==
+                int(row[1]["index_disorder_subcategory"])
+            ]["disorder_subcategory"].values[0]
+            disorder_category = disorder_categories[
+                disorder_categories["index"] ==
+                int(row[1]["index_disorder_category"])
+            ]["disorder_category"].values[0]
+            predicates_list.append(("mhdb:hasDisorderCategory",
+                                    check_iri(disorder_subcategory)))
+            if disorder_category not in exclude_categories:
+                statements = add_if(
+                    check_iri(disorder_subcategory),
+                    "rdfs:subClassOf",
+                    check_iri(disorder_category),
+                    statements,
+                    exclude_list
+                )
+                exclude_categories.append(disorder_category)
+        elif row[1]["index_disorder_category"] not in exclude_list and \
+                not np.isnan(row[1]["index_disorder_category"]):
+            disorder_category = disorder_categories[
+                disorder_categories["index"] ==
+                int(row[1]["index_disorder_category"])
+            ]["disorder_category"].values[0]
+            predicates_list.append(("mhdb:hasDisorderCategory",
+                                    check_iri(disorder_category)))
+
+        disorder_iri = check_iri(disorder_label)
+        disorder_label = language_string(disorder_label)
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", disorder_label))
+        predicates_list.append(("rdf:type", "mhdb:Disorder"))
 
         for predicates in predicates_list:
             statements = add_if(
@@ -2760,7 +2842,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
 
         predicates_list = []
         predicates_list.append(("rdfs:label", disorder_subcategory_label))
-        predicates_list.append(("rdf:type", "mhdb:DisorderSubcategory"))
+        predicates_list.append(("rdf:type", "mhdb:DisorderCategory"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
                 not isinstance(row[1]["equivalentClass"], float):
@@ -2788,7 +2870,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
 
         predicates_list = []
         predicates_list.append(("rdfs:label", disorder_subsubcategory_label))
-        predicates_list.append(("rdf:type", "mhdb:DisorderSubsubcategory"))
+        predicates_list.append(("rdf:type", "mhdb:DisorderCategory"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
                 not isinstance(row[1]["equivalentClass"], float):
@@ -2816,7 +2898,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
 
         predicates_list = []
         predicates_list.append(("rdfs:label", disorder_subsubsubcategory_label))
-        predicates_list.append(("rdf:type", "mhdb:DisorderSubsubsubcategory"))
+        predicates_list.append(("rdf:type", "mhdb:DisorderCategory"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
                 not isinstance(row[1]["equivalentClass"], float):
@@ -2837,290 +2919,6 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             )
 
     return statements
-
-# def projects(statements={}):
-#     """
-#     Function to create rdf statements about projects
-#
-#     Parameters
-#     ----------
-#     statements: dictionary
-#         key: string
-#             RDF subject
-#         value: dictionary
-#             key: string
-#                 RDF predicate
-#             value: {string}
-#                 set of RDF objects
-#
-#     Returns
-#     -------
-#     statements: dictionary
-#         key: string
-#             RDF subject
-#         value: dictionary
-#             key: string
-#                 RDF predicate
-#             value: {string}
-#                 set of RDF objects
-#     """
-#
-#     for subject in [
-#         "schema:Book",
-#         "schema:Article"
-#     ]:
-#         statements = add_if(
-#             subject,
-#             "rdfs:subClassOf",
-#             "mhdb:BookOrArticle",
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:CreativeWork"),
-#         ("rdfs:subClassOf", "dcterms:BibliographicResource"),
-#         ("rdfs:label", language_string("Book / Article"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:BookOrArticle",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:CreativeWork"),
-#         ("rdfs:subClassOf", "schema:MedicalTest"),
-#         ("rdfs:label", language_string("Assessment"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:Assessment",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:CreativeWork"),
-#         ("rdfs:subClassOf", "dcterms:InteractiveResource"),
-#         ("rdfs:label", language_string("Virtual Reality"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:VirtualReality",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:CreativeWork"),
-#         ("rdfs:subClassOf", "dcterms:InteractiveResource"),
-#         ("rdfs:label", language_string("Augmented Reality"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:AugmentedReality",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:Book"),
-#         ("rdfs:label", language_string("Resource Guide"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:ResourceGuide",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:Service"),
-#         ("rdfs:subClassOf", "schema:OrganizeAction"),
-#         ("rdfs:label", language_string("Community Initiative"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:CommunityInitiative",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "ssn:Device"),
-#         ("rdfs:comment", language_string(
-#             "A smart electronic device (electronic device with "
-#             "micro-controller(s)) that can be worn on the body as implants or "
-#             "accessories."
-#         )),
-#         ("rdfs:isDefinedBy", check_iri(
-#             "https://en.wikipedia.org/wiki/Wearable_domains"
-#         )),
-#         ("rdfs:label", language_string("Wearable"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:Wearable",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#         for pred in [
-#             ("rdfs:subClassOf", "ssn:Device"),
-#             ("rdfs:label", language_string("Tablet"))
-#         ]:
-#             statements = add_if(
-#                 "mhdb:Tablet",
-#                 pred[0],
-#                 pred[1],
-#                 statements,
-#                 exclude_list
-#             )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:Game"),
-#         ("owl:disjointWith", "schema:VideoGame"),
-#         ("rdfs:label", language_string("Non-Digital Game"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:NonDigitalGame",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "dcterms:Agent"),
-#         ("rdfs:subClassOf", "ssn:Device"),
-#         (
-#                 "dcterms:source",
-#                 check_iri(
-#                     'https://dx.doi.org/10.1109/IEEESTD.2015.7084073'
-#                 )
-#         ),
-#         ("rdfs:label", language_string("Robot")),
-#         (
-#                 "rdfs:comment",
-#                 language_string(
-#                     "An agentive device (Agent and Device in SUMO) in a broad "
-#                     "sense, purposed to act in the physical world in order to "
-#                     "accomplish one or more tasks. In some cases, the actions of a "
-#                     "robot might be subordinated to actions of other agents (Agent "
-#                     "in SUMO), such as software agents (bots) or humans. A robot "
-#                     "is composed of suitable mechanical and electronic parts. "
-#                     "Robots might form social groups, where they interact to "
-#                     "achieve a common goal. A robot (or a group of robots) can "
-#                     "form robotic systems together with special environments "
-#                     "geared to facilitate their work."
-#                 )
-#         )
-#     ]:
-#         statements = add_if(
-#             "mhdb:Robot",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "schema:CreativeWork"),
-#         (
-#                 "dcterms:source",
-#                 check_iri(
-#                     "http://afirm.fpg.unc.edu/social-narratives"
-#                 )
-#         ),
-#         (
-#                 "rdfs:isDefinedBy",
-#                 check_iri(
-#                     "http://afirm.fpg.unc.edu/social-narratives"
-#                 )
-#         ),
-#         (
-#                 "rdfs:comment",
-#                 language_string(
-#                     "Social narratives (SN) describe social situations for "
-#                     "learners by providing relevant cues, explanation of the "
-#                     "feelings and thoughts of others, and descriptions of "
-#                     "appropriate behavior expectations."
-#                 )
-#         ),
-#         ("rdfs:label", language_string("Social Narrative"))
-#     ]:
-#         statements = add_if(
-#             "mhdb:SocialNarrative",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:subClassOf", "mhdb:SocialNarrative"),
-#         ("rdfs:subClassOf", "schema:Game"),
-#         (
-#                 "rdfs:label",
-#                 language_string(
-#                     "Combination of a Social Narrative and Gaming System"
-#                 )
-#         )
-#     ]:
-#         statements = add_if(
-#             "mhdb:SocialNarrativeGamingSystem",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:label", language_string("Competition")),
-#         ("rdfs:subClassOf", "schema:Event")
-#     ]:
-#         statements = add_if(
-#             "mhdb:Competition",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:label", language_string("Science Contest")),
-#         ("rdfs:subClassOf", "mhdb:Competition")
-#     ]:
-#         statements = add_if(
-#             "mhdb:ScienceContest",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     for pred in [
-#         ("rdfs:label", language_string("Massive Open Online Course")),
-#         ("rdfs:subClassOf", "schema:Course")
-#     ]:
-#         statements = add_if(
-#             "mhdb:MOOC",
-#             pred[0],
-#             pred[1],
-#             statements,
-#             exclude_list
-#         )
-#
-#     return statements
 
 
 
