@@ -427,22 +427,51 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
         if response_options not in exclude_list and \
                 isinstance(response_options, str):
+            print(response_options)
             response_options = response_options.strip('-')
-            #response_options = re.findall(r'(?:[^\s,"]|"(?:\\.|[^"])*")+',
-            #from csv import reader                                          response_options)
-            response_sequence = " [ a rdf:Bag ; "
+            response_options = response_options.replace("\n", "")
+            response_options_iri = mhdb_iri(response_options)
+            print(row[1]["index"], ' response options: ', response_options)
+            response_options = re.findall('[-+]?[0-9]+=".*?"', response_options)
+            print(row[1]["index"], ' response options 2: ', response_options)
+            response_sequence = "\n    [ a rdf:Seq ; "
             for iresponse, response in enumerate(response_options):
-                print(row[1]["index"], response)
+                response_index = response.split("=")[0]
                 response = response.split("=")[1]
-                print('rdf:_{0} {1} ;'.format(iresponse + 1, language_string(response)))
-                response_sequence += \
-                    'rdf:_{0} {1} ;'.format(iresponse + 1, language_string(response))
-            response_sequence += " . ]"
+                response = response.strip('"')
+                response = response.strip("'")
+                response_iri = mhdb_iri(response)
+                print(row[1]["index"], response)
 
+                statements = add_if(
+                    response_iri,
+                    "rdf:label",
+                    language_string(response),
+                    statements,
+                    exclude_list
+                )
+
+                if iresponse == len(response_options) - 1:
+                    delim = "."
+                else:
+                    delim = ";"
+                response_sequence += \
+                    '\n      rdf:_{0} {1} {2}'.format(response_index,
+                                                      response_iri,
+                                                      delim)
+            response_sequence += "\n    ]"
+
+            statements = add_if(
+                response_options_iri,
+                "rdfs:value",
+                response_sequence,
+                statements,
+                exclude_list
+            )
             statements = add_if(
                 question_iri,
                 "mhdb:hasResponseOptions",
-                response_sequence,
+                response_options_iri,
                 statements,
                 exclude_list
             )
