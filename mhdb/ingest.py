@@ -19,6 +19,7 @@ except:
     from mhdb.mhdb.write_ttl import check_iri, mhdb_iri, language_string
 import numpy as np
 import pandas as pd
+import re
 
 exclude_list = ['', 'nan', np.nan, 'None', None, []]
 
@@ -427,12 +428,13 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         if response_options not in exclude_list and \
                 isinstance(response_options, str):
             response_options = response_options.strip('-')
-            response_options = response_options.split(',')
-
+            #response_options = re.findall(r'(?:[^\s,"]|"(?:\\.|[^"])*")+',
+            #from csv import reader                                          response_options)
             response_sequence = " [ a rdf:Bag ; "
             for iresponse, response in enumerate(response_options):
+                print(row[1]["index"], response)
                 response = response.split("=")[1]
-                #print('rdf:_{0} {1} ;'.format(iresponse + 1, language_string(response)))
+                print('rdf:_{0} {1} ;'.format(iresponse + 1, language_string(response)))
                 response_sequence += \
                     'rdf:_{0} {1} ;'.format(iresponse + 1, language_string(response))
             response_sequence += " . ]"
