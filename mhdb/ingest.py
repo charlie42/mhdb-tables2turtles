@@ -200,6 +200,8 @@ def ingest_questions(questions_xls, references_xls, statements={}):
     question_properties = questions_xls.parse("Properties")
     questions = questions_xls.parse("questions")
     response_types = questions_xls.parse("response_types")
+    scale_types = questions_xls.parse("scale_types")
+    value_types = questions_xls.parse("value_types")
     references = references_xls.parse("references")
 
     #statements = audience_statements(statements)
@@ -306,59 +308,151 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             )
 
     # questions worksheet
+    qnum = 1
+    old_questionnaires = []
     for row in questions.iterrows():
 
-        source = None
-        if row[1]["index_reference"] not in exclude_list and not \
-                isinstance(row[1]["index_reference"], float):
-            source = references[
-                    references["index"] == row[1]["index_reference"]
-                ]["link"].values[0]
-            if source not in exclude_list and not \
-                    isinstance(source, float):
-                source = check_iri(source)
-            else:
-                source = references[
-                        references["index"] == row[1]["index_reference"]
-                    ]["reference"].values[0]
-                source = check_iri(source)
-        question_label = language_string(row[1]["question"])
-        question_iri = mhdb_iri(row[1]["question"])
+        ref = references[references["index"] ==
+                         row[1]["index_reference"]]["link"].values[0]
+        if ref not in exclude_list and not isinstance(ref, float):
+            questionnaire = ref
+        else:
+            questionnaire = references[references["index"] ==
+                                       row[1]["index_reference"]]["reference"].values[0]
+        if questionnaire not in old_questionnaires:
+            qnum = 1
+            old_questionnaires.append(questionnaire)
+        else:
+            qnum += 1
+
+        question = row[1]["question"]
+        question_label = language_string(question)
+        question_iri = mhdb_iri("{0}_Q{1}".format(questionnaire, qnum))
 
         predicates_list = []
         predicates_list.append(("rdfs:label", question_label))
         predicates_list.append(("rdf:type", "disco:Question"))
         predicates_list.append(("disco:questionText", question_label))
-        predicates_list.append(("dcterms:source", source))
+        predicates_list.append(("dcterms:source", mhdb_iri(questionnaire)))
 
         instructions = row[1]["instructions"]
         group_instructions = row[1]["question_group_instructions"]
         digital_instructions = row[1]["digital_instructions"]
         digital_group_instructions = row[1]["digital_group_instructions"]
         response_options = row[1]["response_options"]
-        indices_response_type = row[1]["indices_response_type"]
 
         if instructions not in exclude_list and \
                 isinstance(instructions, str):
-            predicates_list.append(("mhdb:hasQuestionInstructions",
+            predicates_list.append(("mhdb:hasPaperInstructions",
                                     mhdb_iri(instructions)))
-        if isinstance(group_instructions, str) and \
-                group_instructions.strip() not in exclude_list:
-            predicates_list.append(("mhdb:hasQuestionGroupInstructions",
-                                    mhdb_iri(group_instructions)))
+            statements = add_if(
+                mhdb_iri(instructions),
+                "rdf:type",
+                "mhdb:PaperInstructions",
+                statements,
+                exclude_list
+            )
+            statements = add_if(
+                mhdb_iri(instructions),
+                "rdfs:label",
+                language_string(instructions),
+                statements,
+                exclude_list
+            )
+            if isinstance(group_instructions, str) and \
+                    group_instructions.strip() not in exclude_list:
+                statements = add_if(
+                    mhdb_iri(group_instructions),
+                    "rdf:type",
+                    "mhdb:PaperInstructions",
+                    statements,
+                    exclude_list
+                )
+                statements = add_if(
+                    mhdb_iri(instructions),
+                    "mhdb:hasPaperInstructions",
+                    mhdb_iri(group_instructions),
+                    statements,
+                    exclude_list
+                )
+                statements = add_if(
+                    mhdb_iri(group_instructions),
+                    "rdfs:label",
+                    language_string(group_instructions),
+                    statements,
+                    exclude_list
+                )
         if digital_instructions not in exclude_list and \
                 isinstance(digital_instructions, str):
-            predicates_list.append(("mhdb:hasDigitalQuestionInstructions",
+            predicates_list.append(("mhdb:hasInstructions",
                                     mhdb_iri(digital_instructions)))
-        if digital_group_instructions not in exclude_list and \
-                isinstance(digital_group_instructions, str):
-            predicates_list.append(("mhdb:hasDigitalQuestionGroupInstructions",
-                                    mhdb_iri(digital_group_instructions)))
+            statements = add_if(
+                mhdb_iri(digital_instructions),
+                "rdf:type",
+                "mhdb:Instructions",
+                statements,
+                exclude_list
+            )
+            statements = add_if(
+                mhdb_iri(digital_instructions),
+                "rdfs:label",
+                language_string(digital_instructions),
+                statements,
+                exclude_list
+            )
+            if digital_group_instructions not in exclude_list and \
+                    isinstance(digital_group_instructions, str):
+                statements = add_if(
+                    mhdb_iri(digital_group_instructions),
+                    "rdf:type",
+                    "mhdb:Instructions",
+                    statements,
+                    exclude_list
+                )
+                statements = add_if(
+                    mhdb_iri(digital_instructions),
+                    "mhdb:hasInstructions",
+                    mhdb_iri(digital_group_instructions),
+                    statements,
+                    exclude_list
+                )
+                statements = add_if(
+                    mhdb_iri(digital_group_instructions),
+                    "rdfs:label",
+                    language_string(digital_group_instructions),
+                    statements,
+                    exclude_list
+                )
+
         if response_options not in exclude_list and \
                 isinstance(response_options, str):
             response_options = response_options.strip('-')
-            predicates_list.append(("mhdb:hasResponseOptions",
-                                    mhdb_iri(response_options)))
+            response_options = response_options.split(',')
+
+            response_sequence = " [ a rdf:Bag ; "
+            for iresponse, response in enumerate(response_options):
+                response = response.split("=")[1]
+                #print('rdf:_{0} {1} ;'.format(iresponse + 1, language_string(response)))
+                response_sequence += \
+                    'rdf:_{0} {1} ;'.format(iresponse + 1, language_string(response))
+            response_sequence += " . ]"
+
+            statements = add_if(
+                question_iri,
+                "mhdb:hasResponseOptions",
+                response_sequence,
+                statements,
+                exclude_list
+            )
+
+        indices_response_type = row[1]["indices_response_type"]
+        scale_type = row[1]["scale_type"]
+        discrete_continuous = row[1]["discrete_continuous"]
+        num_options = row[1]["num_options"]
+        index_min = row[1]["index_min_extreme_oo_unclear_na_none"]
+        index_max = row[1]["index_max_extreme_oo_unclear_na_none"]
+        index_dontknow = row[1]["index_dontknow_na"]
+
         if indices_response_type not in exclude_list and \
                 isinstance(indices_response_type, str):
             indices = [np.int(x) for x in
@@ -369,14 +463,6 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 if isinstance(objectRDF, str):
                     predicates_list.append(("mhdb:hasResponseType",
                                             check_iri(objectRDF)))
-
-        scale_type = row[1]["scale_type"]
-        discrete_continuous = row[1]["discrete_continuous"]
-        num_options = row[1]["num_options"]
-        index_min = row[1]["index_min_extreme_oo_unclear_na_none"]
-        index_max = row[1]["index_max_extreme_oo_unclear_na_none"]
-        index_dontknow = row[1]["index_dontknow_na"]
-
         if scale_type not in exclude_list and \
                 isinstance(scale_type, str):
             predicates_list.append(("mhdb:hasScaleType",
@@ -426,6 +512,44 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         for predicates in predicates_list:
             statements = add_if(
                 response_type_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # scale_types worksheet
+    for row in scale_types.iterrows():
+
+        scale_type_label = language_string(row[1]["scale_type"])
+        scale_type_iri = check_iri(row[1]["scale_type"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", scale_type_label))
+        predicates_list.append(("rdf:type", "mhdb:ScaleType"))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                scale_type_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # value_types worksheet
+    for row in value_types.iterrows():
+
+        value_type_label = language_string(row[1]["value_type"])
+        value_type_iri = check_iri(row[1]["value_type"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", value_type_label))
+        predicates_list.append(("rdf:type", "mhdb:ResponseType"))
+
+        for predicates in predicates_list:
+            statements = add_if(
+                value_type_iri,
                 predicates[0],
                 predicates[1],
                 statements,
@@ -2587,6 +2711,7 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
 
         disorder_label = row[1]["disorder"]
         disorder_iri_label = disorder_label
+
         predicates_list = []
         predicates_list.append(("rdf:type", "mhdb:Disorder"))
 

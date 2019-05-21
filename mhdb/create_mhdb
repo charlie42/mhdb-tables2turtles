@@ -56,14 +56,14 @@ if run_all:
     do_dsm5 = 1
     do_references = 1
 else:
-    do_questions = 0
+    do_questions = 1
     do_tasks = 0
     do_projects = 0
     do_behaviors = 0
     do_domains = 0
     do_measures = 0
     do_claims = 0
-    do_dsm5 = 1
+    do_dsm5 = 0
     do_references = 0
 
 def main():
