@@ -327,7 +327,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             qnum += 1
 
         question = row[1]["question"]
-        question_label = language_string(question)
+        question_label = language_string(str(question))
         question_iri = mhdb_iri("{0}_Q{1}".format(questionnaire, qnum))
 
         predicates_list = []
@@ -427,29 +427,32 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
         if response_options not in exclude_list and \
                 isinstance(response_options, str):
-            print(response_options)
             response_options = response_options.strip('-')
             response_options = response_options.replace("\n", "")
             response_options_iri = mhdb_iri(response_options)
-            print(row[1]["index"], ' response options: ', response_options)
-            response_options = re.findall('[-+]?[0-9]+=".*?"', response_options)
-            print(row[1]["index"], ' response options 2: ', response_options)
+            if '"' in response_options:
+                response_options = re.findall('[-+]?[0-9]+=".*?"', response_options)
+            else:
+                response_options = response_options.split(",")
+            #print(row[1]["index"], ' response options: ', response_options)
             response_sequence = "\n    [ a rdf:Seq ; "
             for iresponse, response in enumerate(response_options):
-                response_index = response.split("=")[0]
-                response = response.split("=")[1]
-                response = response.strip('"')
-                response = response.strip("'")
-                response_iri = mhdb_iri(response)
-                print(row[1]["index"], response)
-
-                statements = add_if(
-                    response_iri,
-                    "rdf:label",
-                    language_string(response),
-                    statements,
-                    exclude_list
-                )
+                response_index = response.split("=")[0].strip()
+                response = response.split("=")[1].strip()
+                response = response.strip('"').strip()
+                response = response.strip("'").strip()
+                if response != "":
+                    response_iri = mhdb_iri(response)
+                    #print(row[1]["index"], response)
+                    statements = add_if(
+                        response_iri,
+                        "rdf:label",
+                        language_string(response),
+                        statements,
+                        exclude_list
+                    )
+                else:
+                    response_iri = "mhbd:Empty"
 
                 if iresponse == len(response_options) - 1:
                     delim = "."
