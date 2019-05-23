@@ -755,10 +755,24 @@ def ingest_tasks(tasks_xls, domains_xls, projects_xls, references_xls,
 
         instructions = row[1]["instructions"]
 
-        if isinstance(instructions, str):
-            predicates_list.append(("mhdb:hasTaskInstructions",
+        if instructions not in exclude_list and \
+                isinstance(instructions, str):
+            predicates_list.append(("mhdb:hasInstructions",
                                     mhdb_iri(instructions)))
-
+            statements = add_if(
+                mhdb_iri(instructions),
+                "rdf:type",
+                "mhdb:Instructions",
+                statements,
+                exclude_list
+            )
+            statements = add_if(
+                mhdb_iri(instructions),
+                "rdfs:label",
+                language_string(instructions),
+                statements,
+                exclude_list
+            )
         indices_task_categories = row[1]["indices_task_categories"]
         indices_domain = row[1]["indices_domain"]
         indices_project = row[1]["indices_project"]
