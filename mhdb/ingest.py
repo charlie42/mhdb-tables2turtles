@@ -441,7 +441,13 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 response = response.split("=")[1].strip()
                 response = response.strip('"').strip()
                 response = response.strip("'").strip()
-                if response != "":
+                if response_options_iri == "mhdb:1_All_or_most_of_my_free_time_was_spent_doing_things_that_involve_little_physical_effort2I_sometimes_1-2_times_last_week_did_physical_things_in_my_free_time_eg_played_sports_went_running_swimming_bike_riding_did_aerobics3I_often_3-4_times_last_week_did_physical_things_in_my_free_time4I_quite_often_5-6_times_last_week_did_physical_things_in_my_free_time5I_very_often_7_or_more_times_last_week_did_physical_things_in_my_free_time":
+                    print(row[1]["index"], response)
+                if response in [""]:
+                    response_iri = "mhbd:Empty"
+                else:
+                    #if response == None:
+                    #    response = "None"
                     response_iri = mhdb_iri(response)
                     #print(row[1]["index"], response)
                     statements = add_if(
@@ -451,8 +457,6 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                         statements,
                         exclude_list
                     )
-                else:
-                    response_iri = "mhbd:Empty"
 
                 if iresponse == len(response_options) - 1:
                     delim = "."
