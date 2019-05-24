@@ -34,13 +34,13 @@ Current information can be found on the website, https://matter.childmind.org.
 
 """@en .
 
-mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
-	rdfs:label """Male Audience"""@en ;
-	schema:requiredGender schema:Male .
-
 mhdb:FemaleAudience rdfs:subClassOf schema:PeopleAudience ;
 	rdfs:label """Female Audience"""@en ;
 	schema:requiredGender schema:Female .
+
+mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
+	rdfs:label """Male Audience"""@en ;
+	schema:requiredGender schema:Male .
 
 m3-lite:DomainOfInterest rdfs:label """m3-lite:DomainOfInterest"""@en ;
 	rdf:type rdf:Class ;
@@ -102,8 +102,8 @@ mhdb:arousal rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """arousal"""@en ;
 	mhdb:hasDomainType mhdb:cognition .
 
-mhdb:behavior rdf:type m3-lite:DomainOfInterest ;
-	rdf:type mhdb:DomainType ;
+mhdb:behavior rdf:type mhdb:DomainType ;
+	rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """behavior"""@en ;
 	mhdb:hasDomainType mhdb:cognition .
 
@@ -287,8 +287,8 @@ mhdb:background_information rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """background information"""@en ;
 	mhdb:hasDomainType mhdb:demographics .
 
-mhdb:demographics rdf:type m3-lite:DomainOfInterest ;
-	rdf:type mhdb:DomainType ;
+mhdb:demographics rdf:type mhdb:DomainType ;
+	rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """demographics"""@en ;
 	mhdb:hasDomainType mhdb:demographics .
 
@@ -382,8 +382,8 @@ mhdb:concentration rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:spatial_attention rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """spatial attention"""@en ;
-	rdfs:subClassOf mhdb:spatial_skill ;
-	rdfs:subClassOf mhdb:attention .
+	rdfs:subClassOf mhdb:attention ;
+	rdfs:subClassOf mhdb:spatial_skill .
 
 mhdb:temporal_attention rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """temporal attention"""@en ;
@@ -451,8 +451,8 @@ mhdb:cognitive_decayenhancement rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:excitement rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """excitement"""@en ;
-	rdfs:subClassOf mhdb:socioaffective_displays ;
-	rdfs:subClassOf mhdb:emotion .
+	rdfs:subClassOf mhdb:emotion ;
+	rdfs:subClassOf mhdb:socioaffective_displays .
 
 mhdb:Facial_Action_Coding_System_FACS rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """Facial Action Coding System (FACS)"""@en ;
@@ -614,8 +614,8 @@ mhdb:emotional_activation rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:flight_or_fight_mode rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """flight or fight mode"""@en ;
-	rdfs:subClassOf mhdb:stress ;
-	rdfs:subClassOf mhdb:emotion .
+	rdfs:subClassOf mhdb:emotion ;
+	rdfs:subClassOf mhdb:stress .
 
 mhdb:sympathetic_nervous_system_response rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """sympathetic nervous system response"""@en .
@@ -742,13 +742,13 @@ mhdb:shifting_and_flexibility_of_attention rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:spatial_working_memory rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """spatial working memory"""@en ;
-	rdfs:subClassOf mhdb:spatial_skill ;
-	rdfs:subClassOf mhdb:attention .
+	rdfs:subClassOf mhdb:attention ;
+	rdfs:subClassOf mhdb:spatial_skill .
 
 mhdb:visuospatial_working_memory rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """visuospatial working memory"""@en ;
-	rdfs:subClassOf mhdb:spatial_skill ;
-	rdfs:subClassOf mhdb:attention .
+	rdfs:subClassOf mhdb:attention ;
+	rdfs:subClassOf mhdb:spatial_skill .
 
 mhdb:visual_working_memory rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """visual working memory"""@en ;
@@ -756,8 +756,8 @@ mhdb:visual_working_memory rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:verbal_working_memory_with_visuospatial_components rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """verbal working memory (with visuospatial components)"""@en ;
-	rdfs:subClassOf mhdb:spatial_skill ;
-	rdfs:subClassOf mhdb:attention .
+	rdfs:subClassOf mhdb:attention ;
+	rdfs:subClassOf mhdb:spatial_skill .
 
 mhdb:recognition_memory rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """recognition memory"""@en ;
@@ -781,8 +781,8 @@ mhdb:verbal_recognition_memory rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:spatial_memory rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """spatial memory"""@en ;
-	rdfs:subClassOf mhdb:spatial_skill ;
-	rdfs:subClassOf mhdb:memory .
+	rdfs:subClassOf mhdb:memory ;
+	rdfs:subClassOf mhdb:spatial_skill .
 
 mhdb:episodic_memory rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """episodic memory"""@en ;
@@ -831,8 +831,8 @@ mhdb:psychomotor_speed rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:sensorimotor_skill rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """sensorimotor skill"""@en ;
-	rdfs:subClassOf mhdb:sensory_skill ;
-	rdfs:subClassOf mhdb:motor_skill .
+	rdfs:subClassOf mhdb:motor_skill ;
+	rdfs:subClassOf mhdb:sensory_skill .
 
 mhdb:field_of_viewvisual_capacity rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """field of view/visual capacity"""@en ;
@@ -860,8 +860,8 @@ mhdb:motivation rdf:type m3-lite:DomainOfInterest ;
 
 mhdb:reward_processing_impairment rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """reward processing impairment"""@en ;
-	rdfs:subClassOf mhdb:reward ;
-	rdfs:subClassOf mhdb:general_impairment .
+	rdfs:subClassOf mhdb:general_impairment ;
+	rdfs:subClassOf mhdb:reward .
 
 mhdb:verbal_learning rdf:type m3-lite:DomainOfInterest ;
 	rdfs:label """verbal learning"""@en ;

@@ -36,13 +36,13 @@ Current information can be found on the website, https://matter.childmind.org.
 
 """@en .
 
-mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
-	rdfs:label """Male Audience"""@en ;
-	schema:requiredGender schema:Male .
-
 mhdb:FemaleAudience rdfs:subClassOf schema:PeopleAudience ;
 	rdfs:label """Female Audience"""@en ;
 	schema:requiredGender schema:Female .
+
+mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
+	rdfs:label """Male Audience"""@en ;
+	schema:requiredGender schema:Male .
 
 mhdb:hasAbbreviation rdfs:label """hasAbbreviation"""@en ;
 	rdf:type rdf:Property ;
@@ -189,8 +189,8 @@ mhdb:Heart_Rate_VariabilityHRV rdf:type m3-lite:MeasurementType ;
 mhdb:rate_of_respiration rdf:type m3-lite:MeasurementType ;
 	rdfs:label """rate of respiration"""@en ;
 	rdfs:subClassOf mhdb:movement ;
-	rdfs:subClassOf mhdb:breathingrespiration ;
-	rdfs:subClassOf mhdb:physiological_property .
+	rdfs:subClassOf mhdb:physiological_property ;
+	rdfs:subClassOf mhdb:breathingrespiration .
 
 mhdb:frequency_of_tremors rdf:type m3-lite:MeasurementType ;
 	rdfs:label """frequency of tremors"""@en ;
@@ -211,8 +211,8 @@ mhdb:galvanic_skin_responseGSRskin_conductance rdf:type m3-lite:MeasurementType 
 
 mhdb:brain_electrical_activity rdf:type m3-lite:MeasurementType ;
 	rdfs:label """brain electrical activity"""@en ;
-	rdfs:subClassOf mhdb:activity ;
-	rdfs:subClassOf mhdb:physiological_property .
+	rdfs:subClassOf mhdb:physiological_property ;
+	rdfs:subClassOf mhdb:activity .
 
 mhdb:shaking rdf:type m3-lite:MeasurementType ;
 	rdfs:label """shaking"""@en ;
@@ -301,14 +301,14 @@ mhdb:strain rdf:type m3-lite:MeasurementType ;
 
 mhdb:synchronous_electrical_activity rdf:type m3-lite:MeasurementType ;
 	rdfs:label """synchronous electrical activity"""@en ;
-	rdfs:subClassOf mhdb:activity ;
-	rdfs:subClassOf mhdb:physiological_property .
+	rdfs:subClassOf mhdb:physiological_property ;
+	rdfs:subClassOf mhdb:activity .
 
 mhdb:audio rdf:type m3-lite:MeasurementType ;
 	rdfs:label """audio"""@en ;
 	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:physical_property ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:physical_property .
 
 mhdb:amount_of_speech rdf:type m3-lite:MeasurementType ;
 	rdfs:label """amount of speech"""@en ;
@@ -346,8 +346,8 @@ mhdb:altitude rdf:type m3-lite:MeasurementType ;
 
 mhdb:muscle_activity rdf:type m3-lite:MeasurementType ;
 	rdfs:label """muscle activity"""@en ;
-	rdfs:subClassOf mhdb:activity ;
-	rdfs:subClassOf mhdb:physiological_property .
+	rdfs:subClassOf mhdb:physiological_property ;
+	rdfs:subClassOf mhdb:activity .
 
 mhdb:weight rdf:type m3-lite:MeasurementType ;
 	rdfs:label """weight"""@en ;

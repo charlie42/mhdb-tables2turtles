@@ -141,11 +141,11 @@ mhdb:CMI_Symptom_Checklist-Parent rdfs:label """CMI Symptom Checklist - Parent""
 	rdfs:comment """The Child Mind Institute Symptom Checker is used to assess general psychiatric symptoms of individuals."""@en ;
 	mhdb:takesMinutesToComplete "5"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Child_Mind_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
+	mhdb:usedByStudyOrClinic mhdb:Child_Mind_Institute ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isForInformant mhdb:parent-report ;
 	mhdb:isForAgeGroup mhdb:children .
 
@@ -153,8 +153,8 @@ mhdb:CMI_Symptom_Self_Checklist rdfs:label """CMI Symptom Self Checklist"""@en ;
 	rdf:type dcterms:source ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Child_Mind_Institute ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isForInformant mhdb:self-report .
 
 mhdb:Sutter-Eyberg_School_Behavior_Inventory_Revised rdfs:label """Sutter-Eyberg School Behavior Inventory Revised"""@en ;
@@ -183,12 +183,12 @@ mhdb:The_Conners_ADHD_Rating_Scale_3-Parent_Short_Form rdfs:label """The Conners
 	rdf:type dcterms:source ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:oppositionality ;
-	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
 	mhdb:isAboutDomain mhdb:executive_function ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isForInformant mhdb:parent-report .
 
 mhdb:Child_Behaviour_Checklist_for_ages_15-5 rdfs:label """Child Behaviour Checklist for ages 1.5-5"""@en ;
@@ -204,17 +204,17 @@ mhdb:Child_Behaviour_Checklist_Teachers_Report_Form_for_ages_6-18 rdfs:label """
 	mhdb:takesMinutesToComplete "20"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:substance_use ;
-	mhdb:isAboutDomain mhdb:impulsivity ;
-	mhdb:isAboutDomain mhdb:behavior ;
-	mhdb:isAboutDomain mhdb:psychotic_behavior ;
-	mhdb:isAboutDomain mhdb:anxiety ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isAboutDomain mhdb:social_interaction ;
-	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isForInformant mhdb:teacher-report ;
 	dcterms:isReferencedBy mhdb:Achenbach_T_M_1991_Integrative_Guide_to_the_1991_CBCL4-18_YSR_and_TRF_Profiles_Burlington_VT_University_of_Vermont_Department_of_Psychology .
 
@@ -224,18 +224,18 @@ mhdb:Child_Behavior_Checklist_Age_6-18 rdfs:label """Child Behavior Checklist: A
 	rdfs:comment """The CBCL is a device by which parents or other individuals who know the child well rate a child's problem behaviors and competencies. The CBCL can also be used to measure a child's change in behavior over time or following a treatment. It consists of 118 items related to behavior problems, which are scored on a 3-point scale ranging from not true to often true of the child. There are also 20 social competency items used to obtain parents’ reports of the amount and quality of their child’s participation in sports, hobbies, games, activities, organizations, jobs and chores, friendships, how well the child gets along with others and plays and works by him/herself, and school functioning."""@en ;
 	mhdb:takesMinutesToComplete "20"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:substance_use ;
-	mhdb:isAboutDomain mhdb:behavior ;
-	mhdb:isAboutDomain mhdb:psychotic_behavior ;
-	mhdb:isAboutDomain mhdb:anxiety ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isAboutDomain mhdb:social_interaction ;
-	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isForInformant mhdb:parent-report ;
 	dcterms:isReferencedBy mhdb:Achenbach_T_M_1991_Integrative_Guide_to_the_1991_CBCL4-18_YSR_and_TRF_Profiles_Burlington_VT_University_of_Vermont_Department_of_Psychology .
 
@@ -245,29 +245,29 @@ mhdb:Adult_Self_Report_Age_18-59 rdfs:label """Adult Self Report: Age 18-59"""@e
 	rdfs:comment """The ASR is a self-administered instrument that examines diverse aspects of adaptive functioning and problems."""@en ;
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:oppositionality ;
-	mhdb:isAboutDomain mhdb:mood ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:cognitive_functioning ;
-	mhdb:isAboutDomain mhdb:aggression ;
-	mhdb:isAboutDomain mhdb:substance_use ;
-	mhdb:isAboutDomain mhdb:behavior ;
-	mhdb:isAboutDomain mhdb:attention ;
 	mhdb:isAboutDomain mhdb:avoidant_personality ;
-	mhdb:isAboutDomain mhdb:antisocial_personality ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
-	mhdb:isAboutDomain mhdb:anxiety ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
-	mhdb:isAboutDomain mhdb:psychotic_behavior ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
-	mhdb:isAboutDomain mhdb:somatic_complaints ;
-	mhdb:isAboutDomain mhdb:addiction ;
 	mhdb:isAboutDomain mhdb:executive_function ;
+	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:aggression ;
+	mhdb:isAboutDomain mhdb:somatic_complaints ;
+	mhdb:isAboutDomain mhdb:attention ;
 	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:mood ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:psychotic_behavior ;
+	mhdb:isAboutDomain mhdb:substance_use ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:oppositionality ;
 	mhdb:isAboutDomain mhdb:impulsivity ;
 	mhdb:isAboutDomain mhdb:depression ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:antisocial_personality ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
 	dcterms:isReferencedBy mhdb:Achenbach_T_Rescorla_L_2003_Manual_for_the_ASEBA_Adult_Forms__Profiles_Burlington_VT_University_of_Vermont_Research_Center_for_Children_Youth_and_Families .
@@ -278,26 +278,26 @@ mhdb:Youth_Self_Report rdfs:label """Youth Self Report"""@en ;
 	rdfs:comment """The YSR is a self-administered instrument in which youth (ages 11-18) rate themselves for how true each item is now or has been during the past 6 months, using the same 3-point scale as the CBCL 6-18 and the TRF. YSR also has 14 socially desirable items that most youths endorse about themselves."""@en ;
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:addiction ;
-	mhdb:isAboutDomain mhdb:oppositionality ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:cognitive_functioning ;
-	mhdb:isAboutDomain mhdb:aggression ;
-	mhdb:isAboutDomain mhdb:substance_use ;
-	mhdb:isAboutDomain mhdb:impulsivity ;
-	mhdb:isAboutDomain mhdb:behavior ;
-	mhdb:isAboutDomain mhdb:depression ;
-	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:psychotic_behavior ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:personality_traits ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
-	mhdb:isAboutDomain mhdb:somatic_complaints ;
+	mhdb:isAboutDomain mhdb:psychotic_behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
+	mhdb:isAboutDomain mhdb:cognitive_functioning ;
+	mhdb:isAboutDomain mhdb:substance_use ;
+	mhdb:isAboutDomain mhdb:attention ;
 	mhdb:isAboutDomain mhdb:executive_function ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:aggression ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:mood ;
+	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Achenbach_T_M_1991_Manual_for_the_Youth_Self-Report_and_1991_profile_Burlington_VT_University_of_Vermont_Department_of_Psychiatry .
 
@@ -305,8 +305,8 @@ mhdb:Child_Behaviour_Checklist_Caregiver_and_teacher-15-5 rdfs:label """Child Be
 	rdf:type dcterms:source ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isForInformant mhdb:caregiver-report ;
 	mhdb:isForInformant mhdb:teacher-report ;
+	mhdb:isForInformant mhdb:caregiver-report ;
 	mhdb:isForAgeGroup mhdb:children .
 
 mhdb:Childrens_Yale-Brown_Obsessive_Compulsive_Scale rdfs:label """Children's Yale-Brown Obsessive Compulsive Scale"""@en ;
@@ -316,9 +316,9 @@ mhdb:Childrens_Yale-Brown_Obsessive_Compulsive_Scale rdfs:label """Children's Ya
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Storch_E_A_Larson_M_J_Goodman_W_K_Rasmussen_S_A_Price_L_H__Murphy_T_K_2010 .
 
@@ -349,8 +349,8 @@ mhdb:Becks_Depression_Inventory-2 rdfs:label """Beck's Depression Inventory - 2"
 	rdfs:comment """The BDI-II is a 21-question multiple-choice self-report inventory, one of the most widely used instruments for measuring the severity of depression."""@en ;
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:self-report .
@@ -383,8 +383,8 @@ mhdb:Childrens_Depression_Inventory rdfs:label """Children's Depression Inventor
 	rdfs:comment """The Children’s Depression Inventory is a 27 item, self-report measure of symptoms of depression among children and adolescents. The CDI assesses a range of depressive symptoms, including disturbed mood, impaired hedonic capacity, vegetative functions, self-evaluation, and interpersonal behaviors."""@en ;
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:self-report ;
@@ -411,8 +411,8 @@ mhdb:State_Trait_Anxiety_Inventory rdfs:label """State Trait Anxiety Inventory""
 	rdfs:comment """The STAI is used to measure anxiety in adults. A version is available for children. Helps distinguish feelings of anxiety from depression. The STAI Form clearly differentiates between the temporary condition of “state anxiety” verses the more general and long standing quality of ”trait anxiety.” The STAI has forty questions with a range of four possible responses to each (Likert scale)."""@en ;
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:anxiety ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Spielberger_C_D_Gorsuch_RL_and_Lushene_RE_1970_Manual_for_the_State-Trait_Anxiety_Inventory_Palo_Alto_CA_Consulting_Psychologists_Press .
@@ -448,9 +448,9 @@ mhdb:Affective_Reactivity_Index___Self_Report rdfs:label """Affective Reactivity
 	mhdb:takesMinutesToComplete "5-7"^^xsd:string ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:oppositionality ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isForInformant mhdb:self-report .
 
 mhdb:Strengths_and_Weaknesses_Assessment_of_Normal_Behavior rdfs:label """Strengths and Weaknesses Assessment of Normal Behavior"""@en ;
@@ -458,11 +458,11 @@ mhdb:Strengths_and_Weaknesses_Assessment_of_Normal_Behavior rdfs:label """Streng
 	mhdb:hasAbbreviation mhdb:SWAN ;
 	rdfs:comment """The SWAN ADHD Rating Scale is an instrument that uses observer ratings to help assess attention deficit/hyperactivity disorder (ADHD) and evaluate problem behavior in children and adolescents."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:executive_function ;
 	mhdb:isAboutDomain mhdb:attention ;
+	mhdb:isAboutDomain mhdb:executive_function ;
 	mhdb:isAboutDomain mhdb:cognitive_functioning ;
 	mhdb:isForInformant mhdb:parent-report ;
 	dcterms:isReferencedBy mhdb:Swanson_J_Schuck_S_Mann_M_Carlson_C_Hartman_K_Sergeant_J____McCleary_R_2001_The_SWAN_rating_scale .
@@ -473,8 +473,8 @@ mhdb:Inventory_of_Callous_and_Unemotional_Traits___Parent_Report rdfs:label """I
 	rdfs:comment """The Inventory of Callous-Unemotional Traits (ICUT) is a copyright protected 24-item questionnaire designed to provide a comprehensive assessment of callous and unemotional traits.  These traits have proven to be important for designating a distinct subgroup group of antisocial and aggressive youth. The ICUT has three subscales: Callousness, Uncaring, and Unemotional."""@en ;
 	mhdb:takesMinutesToComplete "10-15"^^xsd:string ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isForInformant mhdb:parent-report ;
 	dcterms:isReferencedBy mhdb:Essau_CA_Sasagawa_S__Frick_PJ_2006_Callous-unemotional_traits_in_a_community_sample_of_adolescents_Assessment_132_454-469 .
@@ -485,11 +485,11 @@ mhdb:Autism_Spectrum_Screening_Questionnaire rdfs:label """Autism Spectrum Scree
 	rdfs:comment """The ASSQ is a 27-item checklist for completion by lay informants when assessing symptoms characteristic of Asperger's Syndrome or high-functioning autism spectrum disorders."""@en ;
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
+	mhdb:isAboutDomain mhdb:restrictive_behaviors ;
 	mhdb:isAboutDomain mhdb:motor_clumsiness ;
 	mhdb:isAboutDomain mhdb:repetitive_behaviors ;
-	mhdb:isAboutDomain mhdb:restrictive_behaviors ;
 	mhdb:isForInformant mhdb:parent-report .
 
 mhdb:Social_Communication_Questionnaire rdfs:label """Social Communication Questionnaire"""@en ;
@@ -558,11 +558,11 @@ mhdb:Alabama_Parenting_Questionnaire__Parent_Report rdfs:label """Alabama Parent
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:supervisionmonitoring ;
 	mhdb:isAboutDomain mhdb:distress_tolerance ;
-	mhdb:isAboutDomain mhdb:corporal_punishment ;
-	mhdb:isAboutDomain mhdb:positive_involvement ;
+	mhdb:isAboutDomain mhdb:supervisionmonitoring ;
 	mhdb:isAboutDomain mhdb:use_of_consistency_of_positive_discipline ;
+	mhdb:isAboutDomain mhdb:positive_involvement ;
+	mhdb:isAboutDomain mhdb:corporal_punishment ;
 	mhdb:isForInformant mhdb:parent-report .
 
 mhdb:Alabama_Parenting_Questionnaire_Self-Report rdfs:label """Alabama Parenting Questionnaire Self-Report"""@en ;
@@ -572,11 +572,11 @@ mhdb:Alabama_Parenting_Questionnaire_Self-Report rdfs:label """Alabama Parenting
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:supervisionmonitoring ;
 	mhdb:isAboutDomain mhdb:distress_tolerance ;
-	mhdb:isAboutDomain mhdb:corporal_punishment ;
-	mhdb:isAboutDomain mhdb:positive_involvement ;
+	mhdb:isAboutDomain mhdb:supervisionmonitoring ;
 	mhdb:isAboutDomain mhdb:use_of_consistency_of_positive_discipline ;
+	mhdb:isAboutDomain mhdb:positive_involvement ;
+	mhdb:isAboutDomain mhdb:corporal_punishment ;
 	mhdb:isForInformant mhdb:self-report .
 
 mhdb:Affective_Reactivity_Index-Parent_Report rdfs:label """Affective Reactivity Index - Parent Report"""@en ;
@@ -586,9 +586,9 @@ mhdb:Affective_Reactivity_Index-Parent_Report rdfs:label """Affective Reactivity
 	mhdb:takesMinutesToComplete "5-7"^^xsd:string ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:oppositionality ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isForInformant mhdb:parent-report .
 
 mhdb:Alcohol_Use_Disorders_Identification_Test rdfs:label """Alcohol Use Disorders Identification Test"""@en ;
@@ -598,31 +598,31 @@ mhdb:Alcohol_Use_Disorders_Identification_Test rdfs:label """Alcohol Use Disorde
 	mhdb:takesMinutesToComplete "5"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report .
 
 mhdb:Barratt_Simplified_Measure_of_Social_Status rdfs:label """Barratt Simplified Measure of Social Status"""@en ;
 	rdf:type dcterms:source ;
 	mhdb:hasAbbreviation mhdb:BSMMS ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network .
+	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute .
 
 mhdb:Conners_ADHD_Rating_Scales-Self_Report_Short_Form rdfs:label """Conners ADHD Rating Scales - Self Report Short Form"""@en ;
 	rdf:type dcterms:source ;
 	rdfs:comment """The Conners ADHD Rating Scale is an instrument that uses self-report ratings to help assess attention deficit/hyperactivity disorder (ADHD) and evaluate problem behavior in children and adolescents."""@en ;
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:cognitive_functioning ;
-	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
 	mhdb:isAboutDomain mhdb:executive_function ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Conners_CK_2001_Conners_Rating_Scales-Revised_North_Tonawanda_NY_Multi-Health_Systems_Inc .
 
@@ -632,15 +632,15 @@ mhdb:Conners_ADHD_Adult_Rating_Scale-Self_Report_Short_Form rdfs:label """Conner
 	rdfs:comment """The Conners Adult ADHD Rating Scale is an instrument that uses self-report ratings to measure the presence and severity of ADHD symptoms."""@en ;
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:cognitive_functioning ;
-	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
 	mhdb:isAboutDomain mhdb:executive_function ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
 	dcterms:isReferencedBy mhdb:Conners_CK_Erhardt_D__Sparrow_E_1999_Conners_Adult_ADHD_Rating_Scales_Toronto_ON_Multi-Health_Systems_Inc .
@@ -652,9 +652,9 @@ mhdb:Childrens_Coping_Strategies_Checklist rdfs:label """Children's Coping Strat
 	mhdb:takesMinutesToComplete "5"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isForInformant mhdb:parent-report ;
 	mhdb:isForAgeGroup mhdb:children .
 
@@ -664,8 +664,8 @@ mhdb:Childrens_Depression_Inventory-Parent_Report rdfs:label """Children’s Dep
 	rdfs:comment """The Children’s Depression Inventory is a 27 item, parent-report measure of symptoms of depression among children and adolescents. The CDI assesses a range of depressive symptoms, including disturbed mood, impaired hedonic capacity, vegetative functions, self-evaluation, and interpersonal behaviors."""@en ;
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:parent-report ;
@@ -708,8 +708,8 @@ mhdb:The_European_School_Survey_Project_on_Alcohol_and_Other_Drugs rdfs:label ""
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Hibell_B_Guttormsson_U_Ahlstrom_S_et_al_2012_The_2011_ESPAD_Report_substance_use_among_students_in_36_European_countries_The_Swedish_Council_for_Information_on_Alcohol_and_Other_Drugs_CAN_Stockholm_Sweden .
 
@@ -725,10 +725,10 @@ mhdb:Fagerstrom_Test_for_Nicotine_Dependence rdfs:label """Fagerstrom Test for N
 	rdfs:comment """The FTND is a self-administered questionnaire that consists of 6 questions, and examines nicotine consumption and intake habits in those that smoke cigarettes. It is used as a screening instrument that assesses nicotine dependence in adults who are currently smokers or have been in the past two years. Level of nicotine dependence is scored on a scale from 0-10, with 0-2: very low dependence and 8-10: very high dependence."""@en ;
 	mhdb:takesMinutesToComplete "5"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Heatherton_TF_Kozlowski_LT_Frecker_RC_Fagerstrom_KO_1991_The_Fagerstrom_Test_for_Nicotine_Dependence_A_revision_of_the_Fagerstrom_Tolerance_Questionnaire_British_Journal_of_Addictions_86_1119-27 .
 
@@ -738,10 +738,10 @@ mhdb:Modified_Fagerstrom_Tolerance_Questionnaire-Adolescents rdfs:label """Modif
 	rdfs:comment """The FTQA is a self-administered questionnaire consists of 7 questions, and is a modified version of the FTND that aims to assess nicotine tolerance in adolescents."""@en ;
 	mhdb:takesMinutesToComplete "5"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Prokhorov_AV_Pallonen_UE_Fava_JL_Ding_L_Niaura_R_1996_Measuring_nicotine_dependence_among_high-risk_adolescent_smokers_Addict_Behav_21_1_117-127 .
 
@@ -752,8 +752,8 @@ mhdb:Internet_Addiction_Test rdfs:label """Internet Addiction Test"""@en ;
 	mhdb:takesMinutesToComplete "5-10"^^xsd:string ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Young_K_S_1998_Internet_addiction_The_emergence_of_a_new_clinical_disorder_CyberPsychology_and_Behavior_13_237-244 .
 
@@ -764,8 +764,8 @@ mhdb:National_Institute_on_Drug_Abuse rdfs:label """National Institute on Drug A
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:httpwwwdrugabusegovsitesdefaultfilespdfnmassistpdf .
 
@@ -821,8 +821,8 @@ mhdb:Parent-Child_Internet_Addiction_Test rdfs:label """Parent-Child Internet Ad
 	mhdb:takesMinutesToComplete "5-10"^^xsd:string ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:parent-report ;
 	dcterms:isReferencedBy mhdb:Young_K_S_1998_Internet_addiction_The_emergence_of_a_new_clinical_disorder_CyberPsychology_and_Behavior_13_237-244 .
 
@@ -834,8 +834,8 @@ mhdb:Peterson_Puberty_Scale rdfs:label """Peterson Puberty Scale"""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
 	mhdb:isAboutDomain mhdb:background_information ;
-	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForInformant mhdb:parent-report ;
+	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Petersen_A_Crockett_L_Richards_M__Boxer_A_1988_A_self-report_measure_of_pubertal_status_Reliability_validity_and_initial_norms_Journal_of_Youth_and_Adolescence_172_117-133 .
 
 mhdb:Parenting_Stress_Index rdfs:label """Parenting Stress Index"""@en ;
@@ -858,8 +858,8 @@ mhdb:Yale_Food_Addiction_Scale rdfs:label """Yale Food Addiction Scale"""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
 	mhdb:isAboutDomain mhdb:eating ;
-	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Gearhardt_AN_Corbin_WR__Brownell_KD_2009_Preliminary_validation_of_the_Yale_Food_Addiction_Scale_Appetite_52_430-436 .
 
@@ -868,10 +868,10 @@ mhdb:Multidimensional_Anxiety_Scale_for_Children_2nd_Edition-Parent_Report rdfs:
 	mhdb:hasAbbreviation mhdb:MASC-2-Parent ;
 	rdfs:comment """The MASC is a normed 39-item self-report questionnaire that assesses anxiety in children and adolescents. It uses four basic scales (physical symptoms, harm avoidance, social anxiety, and separation/panic), one scale measuring total anxiety, and two additional indexes, anxiety disorder and inconsistency. Participants are asked to rate their own behavior on a 4-point scale: 0-Never true about me, 1-Rarely true about me, 2-Sometimes true about me, 3-Often true about me."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:somatic_complaints ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isForInformant mhdb:parent-report ;
 	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:March_J_S_1998_Multi-dimensional_anxiety_scale_for_children_North_Tonawanda_NY_Multi_Health_Systems .
@@ -881,10 +881,10 @@ mhdb:Multidimensional_Anxiety_Scale_for_Children_2nd_Edition-Self_Report rdfs:la
 	mhdb:hasAbbreviation mhdb:MASC-2-Self ;
 	rdfs:comment """The MASC is a normed 39-item self-report questionnaire that assesses anxiety in children and adolescents. It uses four basic scales (physical symptoms, harm avoidance, social anxiety, and separation/panic), one scale measuring total anxiety, and two additional indexes, anxiety disorder and inconsistency. Participants are asked to rate their own behavior on a 4-point scale: 0-Never true about me, 1-Rarely true about me, 2-Sometimes true about me, 3-Often true about me."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:somatic_complaints ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:March_J_S_1998_Multi-dimensional_anxiety_scale_for_children_North_Tonawanda_NY_Multi_Health_Systems .
@@ -917,8 +917,8 @@ mhdb:Childrens_Global_Assessment_Scale rdfs:label """Children's Global Assessmen
 	mhdb:takesMinutesToComplete "5"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:cognitive_functioning ;
 	mhdb:isAboutDomain mhdb:executive_function ;
+	mhdb:isAboutDomain mhdb:cognitive_functioning ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:Shaffer_David_Gould_MS_Brasic_J_Ambrosini_P_Fisher_Prudence_Bird_Hector_Aluwahlia_S_1983_A_childrens_global_assessment_scale_CGAS_Archives_of_General_Psychiatry_40_122831 .
@@ -941,12 +941,12 @@ mhdb:Extended_Strengths_and_Weaknesses_Assessment_of_Normal_Behavior rdfs:label 
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:behavior ;
 	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:parent-report .
 
 mhdb:Food_Frequency_Questionnaire rdfs:label """Food Frequency Questionnaire"""@en ;
@@ -968,8 +968,8 @@ mhdb:Peabody_Picture_Vocabulary_Test_Fourth_Edition rdfs:label """Peabody Pictur
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
 	mhdb:isAboutDomain mhdb:verbal_learning ;
 	mhdb:isAboutDomain mhdb:learning ;
-	mhdb:isForAgeGroup mhdb:children ;
 	mhdb:isForAgeGroup mhdb:adults ;
+	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:Dunn_L_M__Dunn_D_M_2007_PPVT-4_Peabody_picture_vocabulary_test_Pearson_Assessments .
 
 mhdb:PhenX_School_Risk rdfs:label """PhenX School Risk"""@en ;
@@ -978,12 +978,12 @@ mhdb:PhenX_School_Risk rdfs:label """PhenX School Risk"""@en ;
 	mhdb:takesMinutesToComplete "1"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:substance_use ;
-	mhdb:isAboutDomain mhdb:addiction ;
 	mhdb:isAboutDomain mhdb:background_information ;
+	mhdb:isAboutDomain mhdb:addiction ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isForInformant mhdb:self-report ;
-	dcterms:isReferencedBy mhdb:Hemphill_S_A_Heerde_J_A_Herrenkohl_T_I_Patton_G_C_Toumbourou_J_W__Catalano_R_F_2011_Risk_and_protective_factors_for_adolescent_substance_use_in_Washington_State_the_United_States_and_Victoria_Australia_A_longitudinal_study_Journal_of_Adolescent_Health_493_312-320 ;
-	dcterms:isReferencedBy mhdb:Beyers_J_M_Toumbourou_J_W_Catalano_R_F_Arthur_M_W__Hawkins_J_D_2004_A_cross-national_comparison_of_risk_and_protective_factors_for_adolescent_substance_use_the_United_States_and_Australia_Journal_of_Adolescent_Health_351_3-16 .
+	dcterms:isReferencedBy mhdb:Beyers_J_M_Toumbourou_J_W_Catalano_R_F_Arthur_M_W__Hawkins_J_D_2004_A_cross-national_comparison_of_risk_and_protective_factors_for_adolescent_substance_use_the_United_States_and_Australia_Journal_of_Adolescent_Health_351_3-16 ;
+	dcterms:isReferencedBy mhdb:Hemphill_S_A_Heerde_J_A_Herrenkohl_T_I_Patton_G_C_Toumbourou_J_W__Catalano_R_F_2011_Risk_and_protective_factors_for_adolescent_substance_use_in_Washington_State_the_United_States_and_Victoria_Australia_A_longitudinal_study_Journal_of_Adolescent_Health_493_312-320 .
 
 mhdb:PhenX_Neighborhood_Safety rdfs:label """PhenX Neighborhood Safety"""@en ;
 	rdf:type dcterms:source ;
@@ -1001,8 +1001,8 @@ mhdb:Repetitive_Behavior_Scale-Revised rdfs:label """Repetitive Behavior Scale -
 	rdfs:comment """The RBS-R is a 44-item self-report questionnaire that is used to measure the breadth of repetitive behavior in children, adolescents, and adults with Autism Spectrum disorders. The RBS-R provides a quantitative, continuous measure of the full spectrum of repetitive behaviors. The RBS-R consists of six subscales including: Stereotyped Behavior, Self-injurious Behavior, Compulsive Behavior, Routine Behavior, Sameness Behavior, and Restricted Behavior, that have no overlap of item content."""@en ;
 	mhdb:takesMinutesToComplete "15"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isForInformant mhdb:parent-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
 	dcterms:isReferencedBy mhdb:Lam_K_S_L_and_M_G_Aman_2007_The_Repetitive_Behavior_Scale-Revised_independent_validation_in_individuals_with_autism_spectrum_disorders_Journal_of_Autism_and_Developmental_Disorders_375_855-866 .
@@ -1037,17 +1037,17 @@ mhdb:Strengths_and_Difficulties_Questionnaire rdfs:label """Strengths and Diffic
 	mhdb:takesMinutesToComplete "5"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isAboutDomain mhdb:cognitive_functioning ;
-	mhdb:isAboutDomain mhdb:depression ;
-	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:executive_function ;
 	mhdb:isAboutDomain mhdb:attention ;
 	mhdb:isAboutDomain mhdb:social_interaction ;
-	mhdb:isAboutDomain mhdb:executive_function ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:caregiver-report ;
-	dcterms:isReferencedBy mhdb:Goodman_R_1997_The_Strengths_and_Difficulties_Questionnaire_A_Research_Note_Journal_of_Child_Psychology_and_Psychiatry38_581-586 ;
 	dcterms:isReferencedBy mhdb:Goodman_R_1999_The_extended_version_of_the_Strengths_and_Difficulties_Questionnaire_as_a_guide_to_child_psychiatric_caseness_and_consequent_burden_Journal_of_Child_Psychology_and_Psychiatry_40_791-801 ;
+	dcterms:isReferencedBy mhdb:Goodman_R_1997_The_Strengths_and_Difficulties_Questionnaire_A_Research_Note_Journal_of_Child_Psychology_and_Psychiatry38_581-586 ;
 	dcterms:isReferencedBy mhdb:Goodman_et_al_2010_When_to_use_broader_internalising_and_externalising_subscales_instead_of_the_hypothesised_five_subscales_on_the_Strengths_and_Difficulties_Questionnaire_SDQ_data_from_British_parents_teachers_and_children_Journal_of_Abnormal_Child_Psychology_38_1179-1191 .
 
 mhdb:Yale_Global_Tic_Severity_Scale rdfs:label """Yale Global Tic Severity Scale"""@en ;
@@ -1056,11 +1056,11 @@ mhdb:Yale_Global_Tic_Severity_Scale rdfs:label """Yale Global Tic Severity Scale
 	rdfs:comment """The Y-GTSS is a semi-structured clinician rated instrument that assesses the nature of motor and phonic tics, and is administered as part of the KSADS interview, if indicated."""@en ;
 	mhdb:takesMinutesToComplete "10"^^xsd:nonNegativeInteger ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:tics ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Leckman_JF_Riddle_MA_Hardin_MT_Ort_SL_Swartz_KL_Stevenson_J_et_al_1989_The_Yale_Global_Tic_Severity_Scale_Initial_testing_of_a_clinician-rated_scale_of_tic_severity_Journal_of_the_American_Academy_of_Child_and_Adolescent_Psychiatry_28_566573 .
@@ -1097,8 +1097,8 @@ mhdb:Kiddie_Schedule_for_Affective_Disorders_and_Schizophrenia rdfs:label """Kid
 mhdb:Vineland_Adaptive_Behavior_Scale-ParentCaregiver_Rating_Form rdfs:label """Vineland Adaptive Behavior Scale - Parent/Caregiver Rating Form"""@en ;
 	rdf:type dcterms:source ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isForInformant mhdb:caregiver-report ;
-	mhdb:isForInformant mhdb:parent-report .
+	mhdb:isForInformant mhdb:parent-report ;
+	mhdb:isForInformant mhdb:caregiver-report .
 
 mhdb:Pregnancy_and_Birth_Questionnaire rdfs:label """Pregnancy and Birth Questionnaire"""@en ;
 	rdf:type dcterms:source ;
@@ -1111,11 +1111,11 @@ mhdb:Yale-Brown_Obsessive_Compulsive_Scale rdfs:label """Yale-Brown Obsessive Co
 	mhdb:hasAbbreviation mhdb:Y-BOCS ;
 	rdfs:comment """The Y-BOCS is a semi-structured clinician rated instrument to assess the severity of obsessive-compulsive disorder (OCD) symptoms that is administered as part of the KSADS interview, if indicated."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Storch_E_A_Larson_M_J_Goodman_W_K_Rasmussen_S_A_Price_L_H__Murphy_T_K_2010 .
 
@@ -1131,14 +1131,14 @@ mhdb:The_Childrens_behavior_Questionnaire_Very_Short_Form rdfs:label """The Chil
 	rdfs:comment """The CBQ-VSF is a 36-item informant-report questionnaire assessing temperament of children (ages 3 – 8). The questionnaire is designed to capture three broad dimensions: surgency/extraversion, negative affectivity, and effortful control. Informants are asked to rate their child based on how they feel that their child’s reaction is likely to be in a variety of situations. Responses are given on a 7-point scale ranging from 1 (extremely untrue of my child) to 7 (extremely true of my child). The questionnaire is designed to capture three broad dimensions: surgency/extraversion, negative affectivity, and effortful control. Participants are asked to rate how well the items describe their child on a 7-point scale: 1-extremely untrue of my child, 2-quite untrue, 3- slightly untrue, 4-neither true nor untrue, 5-slightly true, 6-quite true, 7-extremely true of my child."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:attention ;
 	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
 	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:anxiety ;
-	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:parent-report ;
 	dcterms:isReferencedBy mhdb:Putnam_S_P__Rothbart_M_K_2006_Development_of_short_and_very_short_forms_of_the_childrens_behavior_questionnaire_Journal_of_Personality_Assessment_871_102-112__Rothbart_M_K_Ahadi_S_A_Hershey_K_L__Fisher_P_2001_Investigations_of_temperament_at_three_to_seven_years_The_childrens_behavior_questionnaire_Child_Development_725_1394-1408 .
 
@@ -1154,15 +1154,15 @@ mhdb:Child_Eating_Behaviour_Questionnaire rdfs:label """Child Eating Behaviour Q
 	rdfs:comment """The CEBQ is a 35-item informant-report questionnaire assessing eating style in children. Eating style is assessed on 8 scales (food responsiveness, enjoyment of food, emotional overeating, desire to drink, satiety responsiveness, slowness in eating, emotional undereating, and fussiness). Informants rate the frequency of their child’s behaviors and experiences on a 5-point scale: 1-never, 2-rarely, 3-sometimes, 4-often, 5-always."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:emotional_overeating ;
+	mhdb:isAboutDomain mhdb:eating ;
+	mhdb:isAboutDomain mhdb:food_responsiveness ;
 	mhdb:isAboutDomain mhdb:desire_to_drink ;
+	mhdb:isAboutDomain mhdb:emotional_overeating ;
+	mhdb:isAboutDomain mhdb:emotional_undereating ;
 	mhdb:isAboutDomain mhdb:slowness_in_eating ;
 	mhdb:isAboutDomain mhdb:fussiness ;
-	mhdb:isAboutDomain mhdb:enjoyment_of_food ;
-	mhdb:isAboutDomain mhdb:food_responsiveness ;
 	mhdb:isAboutDomain mhdb:satiety_responsiveness ;
-	mhdb:isAboutDomain mhdb:eating ;
-	mhdb:isAboutDomain mhdb:emotional_undereating ;
+	mhdb:isAboutDomain mhdb:enjoyment_of_food ;
 	mhdb:isForInformant mhdb:parent-report ;
 	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:Wardle_J_Guthrie_C_A_Sanderson_S__Rapoport_L_2001_Development_of_the_childrens_eating_behaviour_questionnaire_Journal_of_Child_Psychology_and_Psychiatry_4207_963-970 .
@@ -1179,9 +1179,9 @@ mhdb:Eating_Disorder_Examination_Questionnaire rdfs:label """Eating Disorder Exa
 	rdfs:comment """The EDEQ is a 36-item self-report measure that is an adapted version of the Eating Disorder Examination (EDE). The measure is a comprehensive assessment of the specific psychopathology of eating disordered behavior, and asks participants to respond based on the past four weeks (28 days) only. Participants are asked to enter the number of days or times they have exhibited certain eating disordered thoughts or behaviors or asked to rate these on a 7-point scale of frequency in the past month: 0-no days, 1-1 to 5 days, 2-6 to 12 days, 3-13 to 15 days, 4-16 to 22 days, 5-23 to 27 days, 6-every day."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
+	mhdb:isAboutDomain mhdb:eating_disordered_behavior ;
 	mhdb:isAboutDomain mhdb:eating ;
 	mhdb:isAboutDomain mhdb:eating_disordered_thought ;
-	mhdb:isAboutDomain mhdb:eating_disordered_behavior ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adolescents ;
 	mhdb:isForAgeGroup mhdb:adults ;
@@ -1195,8 +1195,8 @@ mhdb:Interpersonal_Reactivity_Index rdfs:label """Interpersonal Reactivity Index
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isForInformant mhdb:self-report ;
-	dcterms:isReferencedBy mhdb:Mark_H_Davis_1980_A_multidimensional_approach_to_individual_difference_in_empathy_JSAS_Catalog_of_Selected_Documents_in_Psychology_10_85 ;
-	dcterms:isReferencedBy mhdb:Davis_M_H_1983_Measuring_individual_differences_in_empathy_Evidence_for_a_multidimensional_approach_Journal_of_Personality_and_Social_Psychology_44_113-126 .
+	dcterms:isReferencedBy mhdb:Davis_M_H_1983_Measuring_individual_differences_in_empathy_Evidence_for_a_multidimensional_approach_Journal_of_Personality_and_Social_Psychology_44_113-126 ;
+	dcterms:isReferencedBy mhdb:Mark_H_Davis_1980_A_multidimensional_approach_to_individual_difference_in_empathy_JSAS_Catalog_of_Selected_Documents_in_Psychology_10_85 .
 
 mhdb:The_21-Item_Peters_et_al_Delusions_Inventory rdfs:label """The 21-Item Peters et al. Delusions Inventory"""@en ;
 	rdf:type dcterms:source ;
@@ -1204,9 +1204,9 @@ mhdb:The_21-Item_Peters_et_al_Delusions_Inventory rdfs:label """The 21-Item Pete
 	rdfs:comment """The PDI-21 is a self-report designed to measure schizotypal traits and symptoms in the general population, using the Present State Examination as a template. The PDI-21 incorporates the multidimensionality of delusions, including measures of distress, preoccupation, and conviction."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isAboutDomain mhdb:psychotic_behavior ;
 	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:atypical_behavior ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Peters_E_R_Joseph_S_A__Garety_P_A_1999_Measurement_of_delusional_ideation_in_the_normal_population_Introducing_the_PDI_peters_et_al_Delusions_inventory_Schizophrenia_Bulletin_253_553-576 .
 
@@ -1216,14 +1216,14 @@ mhdb:Pittsburgh_Sleep_Quality_Index rdfs:label """Pittsburgh Sleep Quality Index
 	rdfs:comment """The PSQI is a 10-item self-report questionnaire that is designed to measure sleep quality in clinical populations, and assess usual sleep habits during the past one-month. This scale generates seven “component” scores: subjective sleep quality, sleep latency, sleep duration, habitual sleep efficiency, sleep disturbances, use of sleeping medication, and daytime dysfunction. Items 1-4 inquire about the amount of sleep and responses are recorded in free-text boxes. Items 5-10 inquire about specific sleep behaviors and quality, which are rated on 4-point scale."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:sleep ;
 	mhdb:isAboutDomain mhdb:use_of_sleeping_medication ;
-	mhdb:isAboutDomain mhdb:subjective_sleep_quality ;
-	mhdb:isAboutDomain mhdb:sleep_disturbance ;
 	mhdb:isAboutDomain mhdb:habitual_sleep_efficiency ;
 	mhdb:isAboutDomain mhdb:sleep_duration ;
-	mhdb:isAboutDomain mhdb:sleep_latency ;
+	mhdb:isAboutDomain mhdb:sleep_disturbance ;
 	mhdb:isAboutDomain mhdb:daytime_dysfunction ;
+	mhdb:isAboutDomain mhdb:sleep ;
+	mhdb:isAboutDomain mhdb:subjective_sleep_quality ;
+	mhdb:isAboutDomain mhdb:sleep_latency ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:BuysseDJ_ReynoldsCF_MonkTH_BermanSR__KupferDJ_1989_The_Pittsburgh_Sleep_Quality_Index_PSQI_A_new_instrument_for_psychiatric_research_and_practice_Psychiatry_Research_282_193-213 .
 
@@ -1233,10 +1233,10 @@ mhdb:Emotional_Regulation_Questionnaire rdfs:label """Emotional Regulation Quest
 	rdfs:comment """The ERQ is a 10-item, self-administered, Likert scale questionnaire for adults that is designed to assess individual differences in the habitual use of two emotion regulation strategies: cognitive reappraisal and expressive suppression. Items are rated on a seven point scale: 1-Strongly Disagree, 4-Neutral, 7-Strongly Agree. The questionnaire provides scores for reappraisal and suppression."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:expressive_suppression ;
-	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:cognitive_reapprisal ;
+	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:mood ;
+	mhdb:isAboutDomain mhdb:expressive_suppression ;
 	mhdb:isForAgeGroup mhdb:adults ;
 	dcterms:isReferencedBy mhdb:Gross_JJ__John_OP_2003_Individual_differences_in_two_emotion_regulation_processes_Implications_for_affect_relationships_and_well-being_Journal_of_Personality_and_Social_Psychology_85_348-362 .
 
@@ -1247,8 +1247,8 @@ mhdb:The_Penn_State_Worry_Questionnaire rdfs:label """The Penn State Worry Quest
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:depression ;
-	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:mood ;
 	dcterms:isReferencedBy mhdb:Meyer_TJ_Miller_ML_Metzger_RL_Borkovec_TD_1990_Development_and_validation_of_the_Penn_State_Worry_Questionnaire_Beh_Research_and_Therapy_28_487-495 .
 
 mhdb:Ruminative_Responses_Scale rdfs:label """Ruminative Responses Scale"""@en ;
@@ -1267,8 +1267,8 @@ mhdb:Short_Imaginal_Process_Inventory rdfs:label """Short Imaginal Process Inven
 	rdfs:comment """The SIPI is a 45-item, self-administered, Likert scale questionnaire designed to measure aspects of daydreaming style and content, mental style, and general inner experience. Items are rated on a five-point scale: 1-Very true or strongly characteristic of me, 2-Moderately true or characteristic of me, 3-Neither particularly characteristic nor uncharacteristic of me, 4-Moderately untrue or uncharacteristic of me, 5-Definitely untrue or strongly uncharacteristic of me."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
 	mhdb:isAboutDomain mhdb:attention ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
 	dcterms:isReferencedBy mhdb:Huba_G_J_Aneshensel_C_S_Singer_J_L_1981_Development_of_scales_for_three_second-order_factors_of_inner_experience_Multivariate_Behav_Res_16_181206 .
 
 mhdb:Ohio_State_University_TBI_Identification_Method_Short_Form rdfs:label """Ohio State University TBI Identification Method Short Form"""@en ;
@@ -1357,22 +1357,22 @@ mhdb:Behavior_Assessment_System_for_Children_Second_Edition_Ages_6-11 rdfs:label
 	rdfs:comment """The BASC-2 (6-11) a 160-item informant-report questionnaire assessing the adaptive and problem behaviors of children (ages 6 – 11) in the community and home setting. It provides scores for the following scales: anger control, bullying, developmental social disorders, emotional self-control, executive functioning, negative emotionality, and resiliency. Informants report on the child’s behavior in the last several months using a 4- point scale: 0-never, 1-sometimes, 2-often, 3-almost always."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:negative_emotionality ;
-	mhdb:isAboutDomain mhdb:anger_control ;
+	mhdb:isAboutDomain mhdb:mood ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isAboutDomain mhdb:atypical_behavior ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:bullying ;
+	mhdb:isAboutDomain mhdb:anger_control ;
+	mhdb:isAboutDomain mhdb:attention ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
 	mhdb:isAboutDomain mhdb:resiliency ;
 	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:aggression ;
-	mhdb:isAboutDomain mhdb:impulsivity ;
 	mhdb:isAboutDomain mhdb:behavior ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:anxiety ;
-	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:negative_emotionality ;
 	mhdb:isAboutDomain mhdb:emotional_self_control ;
+	mhdb:isAboutDomain mhdb:bullying ;
 	mhdb:isForInformant mhdb:parent-report ;
 	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:Reynolds_C_R__Kamphaus_R_W_1992_BASC_Behavior_assessment_system_for_children_Manual_American_Guidance_Service_Incorporated .
@@ -1383,23 +1383,23 @@ mhdb:Behavior_Assessment_System_for_Children_Second_Edition_12-17 rdfs:label """
 	rdfs:comment """The BASC – 2 (12-17) is a 150-item informant-report questionnaire assessing the adaptive and problem behaviors of adolescents (ages 12 – 17) in the community and home setting. It provides scores for the following scales: anger control, bullying, developmental social disorders, emotional self-control, executive functioning, negative emotionality, and resiliency. Informants report on the adolescent’s behavior in the last several months using a 4- point scale: 0-never, 1-sometimes, 2-often, 3-almost always."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:negative_emotionality ;
+	mhdb:isAboutDomain mhdb:mood ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:substance_use ;
 	mhdb:isAboutDomain mhdb:anger_control ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:bullying ;
+	mhdb:isAboutDomain mhdb:attention ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
 	mhdb:isAboutDomain mhdb:resiliency ;
 	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:aggression ;
-	mhdb:isAboutDomain mhdb:substance_use ;
-	mhdb:isAboutDomain mhdb:impulsivity ;
 	mhdb:isAboutDomain mhdb:behavior ;
-	mhdb:isAboutDomain mhdb:anxiety ;
-	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:somatic_complaints ;
+	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:negative_emotionality ;
 	mhdb:isAboutDomain mhdb:emotional_self_control ;
+	mhdb:isAboutDomain mhdb:bullying ;
 	mhdb:isForInformant mhdb:parent-report ;
 	dcterms:isReferencedBy mhdb:Reynolds_C_R__Kamphaus_R_W_1992_BASC_Behavior_assessment_system_for_children_Manual_American_Guidance_Service_Incorporated .
 
@@ -1416,8 +1416,8 @@ mhdb:Perseverative_Thought_Questionnaire rdfs:label """Perseverative Thought Que
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:depression ;
-	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:mood ;
 	dcterms:isReferencedBy mhdb:Ehring_T_Zetsche_U_Weidacker_K_Wahl_K_Schonfeld_S__Ehlers_A_2011_The_Perseverative_Thinking_Questionnaire_PTQ_Validation_of_a_content-independent_measure_of_repetitive_negative_thinking_Journal_of_Behavior_Therapy_and_Experimental_Psychiatry_42_225-232 .
 
 mhdb:Affect_Intensity_Measure rdfs:label """Affect Intensity Measure"""@en ;
@@ -1426,11 +1426,11 @@ mhdb:Affect_Intensity_Measure rdfs:label """Affect Intensity Measure"""@en ;
 	rdfs:comment """The AIM is a self-administered, 40-item, Likert scale questionnaire designed to measure the strength or weakness with which one experiences both positive and negative emotions. The questionnaire provides scores for the following scales: Negative Intensity, Positive Intensity, Negative Affectivity, and Positive Affectivity. Items are rated on a six-point scale: 1-Never, 2-Almost Never, 3-Occasionally, 4-Usually, 5-Almost Always, 6-Always."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:positive_affectivity ;
-	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:positive_intensity ;
 	mhdb:isAboutDomain mhdb:negative_intensity ;
+	mhdb:isAboutDomain mhdb:positive_affectivity ;
+	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isAboutDomain mhdb:negative_affectivity ;
 	dcterms:isReferencedBy mhdb:Larsen_RJ_Diener_E_Emmons_RA_1986_Affect_intensity_and_reactions_to_daily_life_events_Journal_of_Personality_and_Social_Psychology_51_803814 .
 
@@ -1440,17 +1440,17 @@ mhdb:2011_Middle_School_Youth_Risk_Behavior_Survey rdfs:label """2011 Middle Sch
 	rdfs:comment """The YRBS-MS is a 45-item self-report questionnaire developed by the Center for Disease Control and Prevention (CDC), used to measure risky behavior in teens and young adults. The focus of the YRBS is to determine incidence and prevalence of specific behaviors in six areas that contribute to leading causes of morbidity and mortality in adolescents and adults. These six areas include: unintentional and intentional injuries; tobacco use; alcohol and other drug use; sexual behaviors that contribute to unintended pregnancy and STD; dietary behaviors that result in disease; and physical inactivity. Behaviors are rated on a multiple-choice response format."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
-	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
-	mhdb:isAboutDomain mhdb:unintentional_and_intentional_injuries ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:substance_use ;
-	mhdb:isAboutDomain mhdb:impulsivity ;
-	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:eating ;
+	mhdb:isAboutDomain mhdb:substance_use ;
+	mhdb:isAboutDomain mhdb:unintentional_and_intentional_injuries ;
+	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
+	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:self-report ;
-	mhdb:isForAgeGroup mhdb:children ;
 	mhdb:isForAgeGroup mhdb:adolescents ;
+	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:Larsen_RJ_Diener_E_Emmons_RA_1986_Affect_intensity_and_reactions_to_daily_life_events_Journal_of_Personality_and_Social_Psychology_51_803814 .
 
 mhdb:2011_High_School_Youth_Risk_Behavior_Survey rdfs:label """2011 High School Youth Risk Behavior Survey"""@en ;
@@ -1459,13 +1459,13 @@ mhdb:2011_High_School_Youth_Risk_Behavior_Survey rdfs:label """2011 High School 
 	rdfs:comment """The YRBS-HS is a 79-item self-report questionnaire developed by the Center for Disease Control and Prevention (CDC), used to measure risky behavior in teens and young adults. The focus of the YRBS is to determine incidence and prevalence of specific behaviors in six areas that contribute to leading causes of morbidity and mortality in adolescents and adults. These six areas include: unintentional and intentional injuries; tobacco use; alcohol and other drug use; sexual behaviors that contribute to unintended pregnancy and STD; dietary behaviors that result in disease; and physical inactivity. Behaviors are rated on a multiple-choice response format."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
-	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
-	mhdb:isAboutDomain mhdb:unintentional_and_intentional_injuries ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:impulsivity ;
-	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:eating ;
+	mhdb:isAboutDomain mhdb:unintentional_and_intentional_injuries ;
+	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
+	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
+	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adolescents ;
 	dcterms:isReferencedBy mhdb:Methodology_of_the_Youth_Risk_Behavior_Surveillance_System_MMWR_200453RR-12113 .
@@ -1476,17 +1476,17 @@ mhdb:UPPS-P_Impulsive_Behavior_Scale rdfs:label """UPPS-P Impulsive Behavior Sca
 	rdfs:comment """The UPPS-P is a 59-item self-report that assesses five subscales (urgency, premeditation, perseverance, sensation seeking, and positive urgency) that are used to measure five distinct dimensions of impulse behavior in adolescents and adults (ages 12 and older). It is designed to measure impulsivity across dimensions of the Four Factor Model of personality: Premeditation (lack of), Urgency, Sensation Seeking, Perseverance (lack of).  The Scale is not considered a measure of trait impulsivity, rather, the scales reflect distinct personality traits that lead to impulsive-type behavior. Participants are asked to consider acts/incidents during the last 6 months when rating their behavior and attitudes on a 4-point scale, in which 1-Agree strongly, 2-Agree some, 3-Disagree some, 4-Disagree strongly."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
-	mhdb:isAboutDomain mhdb:perseverance ;
-	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
 	mhdb:isAboutDomain mhdb:sensation_seeking ;
+	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
 	mhdb:isAboutDomain mhdb:urgency ;
-	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
 	mhdb:isAboutDomain mhdb:premeditation ;
+	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:perseverance ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
-	dcterms:isReferencedBy mhdb:Whiteside_SP_Lynam_DR_Miller_JD_Reynolds_SK_2005_Validation_of_the_UPPS_impulsive_behaviour_scale_a_four-factor_model_of_impulsivity_European_Journal_of_Personality_19559-574 ;
-	dcterms:isReferencedBy mhdb:Whiteside_S_P_and_D_R_Lynam_2001_The_Five_Factor_Model_and_impulsivity_using_a_structural_model_of_personality_to_understand_impulsivity_Personality_and_Individual_Differences_304_669-689 .
+	dcterms:isReferencedBy mhdb:Whiteside_S_P_and_D_R_Lynam_2001_The_Five_Factor_Model_and_impulsivity_using_a_structural_model_of_personality_to_understand_impulsivity_Personality_and_Individual_Differences_304_669-689 ;
+	dcterms:isReferencedBy mhdb:Whiteside_SP_Lynam_DR_Miller_JD_Reynolds_SK_2005_Validation_of_the_UPPS_impulsive_behaviour_scale_a_four-factor_model_of_impulsivity_European_Journal_of_Personality_19559-574 .
 
 mhdb:University_of_California_at_Los_Angeles_Posttraumatic_Stress_Disorder_Reaction_Index_for_DSM-4_child_version-ages_7-12 rdfs:label """University of California at Los Angeles Posttraumatic Stress Disorder Reaction Index for DSM-4 (child version-ages 7-12):"""@en ;
 	rdf:type dcterms:source ;
@@ -1565,8 +1565,8 @@ mhdb:Domain-Specific_Risk-Taking_Adult_Scale-Risk_Taking_2006 rdfs:label """Doma
 	rdfs:comment """The DOSPERT is a 90-item self-report that assesses risk taking in five content domains: financial decisions (separately for investing versus gambling), health/safety, recreational, ethical, and social decisions. First, participants rate the likelihood that they would engage in domain-specific risky activities on a 7-point scale: 1-Extremely unlikely, 2-Moderately unlikely, 3-Somewhat unlikely, 4-Not sure, 5-Somewhat likely, 6-Moderately likely, 7-Extremely Likely. Next, participants rate the perceived riskiness of these activities on a 7-point scale: 1-Not at all risky, 2-Sligthly risky, 3-Somewhat risky, 4-Moderately risky, 5-Risky, 6-Very risky, 7-Extremely risky. Finally, participants rate the expected benefits of each activity on a 7-point scale: 1-No benefits at all, 4-Moderate benefits, 7-Great benefits."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
 	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
 	dcterms:isReferencedBy mhdb:Blais_AR__Weber_EU_2006_A_Domain-Specific_Risk-Taking_DOSPERT_scale_for_adult_populations_Judgment_and_Decision_Making_1_33-47 .
@@ -1608,16 +1608,16 @@ mhdb:Adult_Temperament_Questionnaire rdfs:label """Adult Temperament Questionnai
 	rdfs:comment """The ATQ short form is a 77-item self-report questionnaire for adults (ages 18 and over) assessing constructs of temperament and personality. The measure includes constructs of effortful control, negative affect, extraversion/surgency, and orienting sensitivity. Participants are asked to rate how well the items describe them on a 7-point scale: 1-extremely untrue, 2-quite untrue, 3-slightly true, 4-neither true or false, 5-slightly true, 6-quite true, 7-extremely true."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:risk_taking ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:personality_traits ;
+	mhdb:isAboutDomain mhdb:attention ;
+	mhdb:isAboutDomain mhdb:social_interaction ;
 	mhdb:isAboutDomain mhdb:alerting_attention_Alerting_involves_a_change_in_mental_state_as_well_as_in_physiological_state_and_prepares_the_organism_for_fast_reactions_orienting_attention ;
-	mhdb:isAboutDomain mhdb:mood ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
 	mhdb:isAboutDomain mhdb:impulsivity ;
+	mhdb:isAboutDomain mhdb:risk_taking ;
 	mhdb:isAboutDomain mhdb:depression ;
 	mhdb:isAboutDomain mhdb:anxiety ;
-	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:personality_traits ;
-	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
 	dcterms:isReferencedBy mhdb:Evans_DE__Rothbart_MK_2007_Development_of_a_model_for_adult_temperament_Journal_of_Research_in_Personality_41_868-888 .
@@ -1628,25 +1628,25 @@ mhdb:Early_Adolescent_Temperament_Questionnaire-Revised_Parent_Report rdfs:label
 	rdfs:comment """The EATQ-R (Parent Report) is a 62-item assessment of temperament and behavior in children and adolescents (ages 9 to 15 years old). The following scales are included: activation control, affiliation, attention, fear, frustration, high-intensity pleasure, inhibitory control, shyness, and aggression and depressive mood. Parents are asked to rate how true the characteristics and behaviors are of their child on a 5-point scale: 1-Almost always untrue, 2-Usually untrue, 3-Sometimes true, sometimes untrue, 4-Usually true, 5-Almost always true."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:shyness ;
-	mhdb:isAboutDomain mhdb:hyperactivity ;
-	mhdb:isAboutDomain mhdb:inhibitory_control ;
-	mhdb:isAboutDomain mhdb:oppositionality ;
 	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:frustration ;
-	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:activation_control ;
-	mhdb:isAboutDomain mhdb:affiliation ;
-	mhdb:isAboutDomain mhdb:high-intensity_pleasure ;
-	mhdb:isAboutDomain mhdb:anxiety ;
 	mhdb:isAboutDomain mhdb:attention ;
-	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:frustration ;
 	mhdb:isAboutDomain mhdb:social_interaction ;
+	mhdb:isAboutDomain mhdb:shyness ;
+	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:isAboutDomain mhdb:hyperactivity ;
+	mhdb:isAboutDomain mhdb:high-intensity_pleasure ;
+	mhdb:isAboutDomain mhdb:aggression ;
+	mhdb:isAboutDomain mhdb:depression ;
+	mhdb:isAboutDomain mhdb:anxiety ;
+	mhdb:isAboutDomain mhdb:inhibitory_control ;
+	mhdb:isAboutDomain mhdb:affiliation ;
 	mhdb:isForInformant mhdb:parent-report ;
 	mhdb:isForAgeGroup mhdb:children ;
 	dcterms:isReferencedBy mhdb:Capaldi_D_M__Rothbart_M_K_1992_Development_and_validation_of_an_early_adolescent_temperament_measure_Journal_of_Early_Adolescence_122_153-173 ;
-	dcterms:isReferencedBy mhdb:Ellis_L_K_2002_Individual_differences_and_adolescent_psychological_development_Unpublished_doctoral_dissertation_University_of_Oregon ;
-	dcterms:isReferencedBy mhdb:Ellis_L_K__Rothbart_M_K_2001_April_Revision_of_the_Early_Adolescent_Temperament_Questionnaire_Poster_presented_at_the_biennial_meeting_of_the_Society_for_Research_in_Child_Development_Minneapolis_MN .
+	dcterms:isReferencedBy mhdb:Ellis_L_K__Rothbart_M_K_2001_April_Revision_of_the_Early_Adolescent_Temperament_Questionnaire_Poster_presented_at_the_biennial_meeting_of_the_Society_for_Research_in_Child_Development_Minneapolis_MN ;
+	dcterms:isReferencedBy mhdb:Ellis_L_K_2002_Individual_differences_and_adolescent_psychological_development_Unpublished_doctoral_dissertation_University_of_Oregon .
 
 mhdb:Older_Adult_Self_Report rdfs:label """Older Adult Self Report"""@en ;
 	rdf:type dcterms:source ;
@@ -1654,18 +1654,18 @@ mhdb:Older_Adult_Self_Report rdfs:label """Older Adult Self Report"""@en ;
 	rdfs:comment """The OASR is a 127-item self-administered instrument designed for older adults (ages 60-90) that examines diverse aspects of adaptive functioning and problems. Participants are asked to review a list of items that describe people, and select the best answer to describe themselves over the past two months on a 3-point scale: 0-Not true, 1-Somewhat or Sometimes True, 2-Very True or Often True. The questionnaire provides scores for the following syndrome scales: anxious/depressed, worries, somatic complaints, functional impairment, memory/cognition problems, thought problems, and irritable/disinhibited. The questionnaire provides scores for the following DSM-oriented scales: depressive problems, anxiety problems, somatic problems, dementia problems, psychotic problems, and antisocial personality problems. Additionally, the questionnaire asks about their use of tobacco, alcohol, and drugs."""@en ;
 	mhdb:hasReferenceType disco:Questionnaire ;
 	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:isAboutDomain mhdb:functional_impairment ;
 	mhdb:isAboutDomain mhdb:atypical_behavior ;
-	mhdb:isAboutDomain mhdb:oppositionality ;
-	mhdb:isAboutDomain mhdb:mood ;
-	mhdb:isAboutDomain mhdb:thought_problems ;
 	mhdb:isAboutDomain mhdb:cognitive_functioning ;
+	mhdb:isAboutDomain mhdb:memorycognition_problems ;
+	mhdb:isAboutDomain mhdb:thought_problems ;
+	mhdb:isAboutDomain mhdb:oppositionality ;
+	mhdb:isAboutDomain mhdb:behavior ;
 	mhdb:isAboutDomain mhdb:aggression ;
 	mhdb:isAboutDomain mhdb:depression ;
-	mhdb:isAboutDomain mhdb:behavior ;
-	mhdb:isAboutDomain mhdb:memorycognition_problems ;
+	mhdb:isAboutDomain mhdb:mood ;
 	mhdb:isAboutDomain mhdb:somatic_complaints ;
 	mhdb:isAboutDomain mhdb:distractability ;
+	mhdb:isAboutDomain mhdb:functional_impairment ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
 	dcterms:isReferencedBy mhdb:Achenbach_T_M_Newhouse_PA__Rescorla_L_A_2004_Manual_for_the_ASEBA_Older_Adult_Forms__Profiles_Burlington_VT_University_of_Vermont_Research_Center_for_Children_Youth__Families .
@@ -1680,14 +1680,14 @@ mhdb:Trauma_Symptom_Checklist_for_Adults rdfs:label """Trauma Symptom Checklist 
 	mhdb:isAboutDomain mhdb:trauma ;
 	mhdb:isForInformant mhdb:self-report ;
 	mhdb:isForAgeGroup mhdb:adults ;
-	dcterms:isReferencedBy mhdb:Briere_J_N__Runtz_M_G_1989_The_Trauma_Symptom_Checklist_TSC-33_early_data_on_a_new_scale_Journal_of_Interpersonal_Violence_4_151-163 ;
-	dcterms:isReferencedBy mhdb:Elliot_D_M__Briere_J_1992_Sexual_abuse_trauma_among_professional_women_Validating_the_Trauma_Symptom_Checklist__40_TSC-40_Child_Abuse__Neglect_16_391-398 .
+	dcterms:isReferencedBy mhdb:Elliot_D_M__Briere_J_1992_Sexual_abuse_trauma_among_professional_women_Validating_the_Trauma_Symptom_Checklist__40_TSC-40_Child_Abuse__Neglect_16_391-398 ;
+	dcterms:isReferencedBy mhdb:Briere_J_N__Runtz_M_G_1989_The_Trauma_Symptom_Checklist_TSC-33_early_data_on_a_new_scale_Journal_of_Interpersonal_Violence_4_151-163 .
 
 mhdb:Demographics rdfs:label """Demographics"""@en ;
 	rdf:type dcterms:source ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
-	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network .
+	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute .
 
 mhdb:Selective_Mutism_Questionnaire rdfs:label """Selective Mutism Questionnaire"""@en ;
 	rdf:type dcterms:source ;
@@ -1712,8 +1712,8 @@ mhdb:Inventory_of_Callous_and_Unemotional_Traits___Youth_Self_Report rdfs:label 
 	rdfs:comment """The Inventory of Callous-Unemotional Traits (ICU) is a 24-item questionnaire designed to provide a comprehensive assessment of callous and unemotional traits.  These traits have proven to be important for designating a distinct subgroup group of antisocial and aggressive youth. The ICU has three subscales:  Callousness, Uncaring, and Unemotional. Adolescent participants are asked to indicate how well each statement describes them on a 4-point scale: 0-Not true at all, 1-Somewhat true, 2-Very true, 3-Definitely true."""@en ;
 	mhdb:takesMinutesToComplete "10-15"^^xsd:string ;
 	mhdb:hasReferenceType disco:Questionnaire ;
-	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:usedByStudyOrClinic mhdb:Healthy_Brain_Network ;
+	mhdb:usedByStudyOrClinic mhdb:Nathan_Kline_Institute ;
 	mhdb:isAboutDomain mhdb:personality_traits ;
 	mhdb:isForInformant mhdb:self-report ;
 	dcterms:isReferencedBy mhdb:Essau_CA_Sasagawa_S__Frick_PJ_2006_Callous-unemotional_traits_in_a_community_sample_of_adolescents_Assessment_132_454-469 .
@@ -1815,8 +1815,8 @@ mhdb:httpieeexploreieeeorgdocument7039196 rdfs:label """<http://ieeexplore.ieee.
 
 mhdb:httpswwwncbinlmnihgovpmcarticlesPMC4775094 rdfs:label """<https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4775094/>"""@en ;
 	rdf:type dcterms:source ;
-	fabio:hasPubMedId mhdb:25677414 ;
 	fabio:hasPubMedId mhdb:4775094 ;
+	fabio:hasPubMedId mhdb:25677414 ;
 	mhdb:hasReferenceType mhdb:research_paper ;
 	mhdb:isAboutDomain mhdb:behavior .
 
@@ -2122,8 +2122,8 @@ mhdb:httpwwwpnasorgcontent982011818 rdfs:label """<http://www.pnas.org/content/9
 	mhdb:hasReferenceType mhdb:research_paper ;
 	mhdb:isAboutDomain mhdb:arousal ;
 	mhdb:isAboutDomain mhdb:emotion ;
-	mhdb:isAboutDomain mhdb:reward ;
-	mhdb:isAboutDomain mhdb:motivation .
+	mhdb:isAboutDomain mhdb:motivation ;
+	mhdb:isAboutDomain mhdb:reward .
 
 mhdb:httpswwwjaacaporgarticleS0890-85670960384-1fulltext rdfs:label """<https://www.jaacap.org/article/S0890-8567(09)60384-1/fulltext>"""@en ;
 	rdf:type dcterms:source ;

@@ -34,13 +34,13 @@ Current information can be found on the website, https://matter.childmind.org.
 
 """@en .
 
-mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
-	rdfs:label """Male Audience"""@en ;
-	schema:requiredGender schema:Male .
-
 mhdb:FemaleAudience rdfs:subClassOf schema:PeopleAudience ;
 	rdfs:label """Female Audience"""@en ;
 	schema:requiredGender schema:Female .
+
+mhdb:MaleAudience rdfs:subClassOf schema:PeopleAudience ;
+	rdfs:label """Male Audience"""@en ;
+	schema:requiredGender schema:Male .
 
 mhdb:Claim rdfs:label """Claim"""@en ;
 	rdf:type rdf:Class .
@@ -51,11 +51,11 @@ mhdb:makesClaimAbout rdfs:label """makesClaimAbout"""@en ;
 
 mhdb:Assessing_eating_behaviour_by_measuring_capacitance_changes_in_the_human_body_resulting_from_muscle_motion rdf:type mhdb:Claim ;
 	rdfs:label """Assessing eating behaviour by measuring capacitance changes in the human body resulting from muscle motion."""@en ;
+	mhdb:makesClaimAbout mhdb:muscle_movement ;
+	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
 	mhdb:makesClaimAbout mhdb:capacitance ;
 	mhdb:makesClaimAbout mhdb:movement ;
-	mhdb:makesClaimAbout mhdb:capacitive_sensorscapacitance_sensors ;
-	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:muscle_movement .
+	mhdb:makesClaimAbout mhdb:capacitive_sensorscapacitance_sensors .
 
 mhdb:For_eating_detection_measuring_capacitive_sensing_by_looking_at_capacitance_changes_in_the_human_body rdf:type mhdb:Claim ;
 	rdfs:label """For eating detection: measuring capacitive sensing by looking at capacitance changes in the human body"""@en ;
@@ -65,18 +65,18 @@ mhdb:For_eating_detection_measuring_capacitive_sensing_by_looking_at_capacitance
 
 mhdb:During_mania_an_increased_rate_volume_and_rhythm_in_speech_can_be_measured rdf:type mhdb:Claim ;
 	rdfs:label """During mania, an increased rate, volume and rhythm in speech can be measured"""@en ;
-	mhdb:makesClaimAbout mhdb:speech_rate ;
 	mhdb:makesClaimAbout mhdb:speech_rhythm ;
 	mhdb:makesClaimAbout mhdb:mania ;
 	mhdb:makesClaimAbout mhdb:speech_volume ;
+	mhdb:makesClaimAbout mhdb:speech_rate ;
 	dcterms:source <https://medicine.umich.edu/dept/prechter-program/bipolar-research/bipolar-disorder-research-projects/priori-longitudinal-voice-patterns-bipolar-disorder> .
 
 mhdb:During_depression_a_decreased_rate_volume_and_rhythm_in_speech_can_be_measured rdf:type mhdb:Claim ;
 	rdfs:label """During depression, a decreased rate, volume and rhythm in speech can be measured"""@en ;
-	mhdb:makesClaimAbout mhdb:speech_rate ;
 	mhdb:makesClaimAbout mhdb:depression ;
 	mhdb:makesClaimAbout mhdb:speech_rhythm ;
 	mhdb:makesClaimAbout mhdb:speech_volume ;
+	mhdb:makesClaimAbout mhdb:speech_rate ;
 	dcterms:source <https://medicine.umich.edu/dept/prechter-program/bipolar-research/bipolar-disorder-research-projects/priori-longitudinal-voice-patterns-bipolar-disorder> .
 
 mhdb:The_travellingmovement_behaviour_can_be_assessed_by_looking_at_descrpitive_features_derived_from_GPS_data_about_geo-locational_movement_patterns_distances_maximum_distance_travelled_between_two_tracked_points_and_number_of_places_visted rdf:type mhdb:Claim ;
@@ -106,43 +106,43 @@ mhdb:Using_various_functions_of_geo-locational_movement_and_phone_use rdf:type m
 
 mhdb:Cognitive_scientists_indicate_that_emotional_states_are_strongly_associated_with_quantifiable_physical_correlates_including_vocal_acoustics rdf:type mhdb:Claim ;
 	rdfs:label """Cognitive scientists indicate that emotional states are strongly associated with quantifiable physical correlates including vocal acoustics"""@en ;
-	mhdb:makesClaimAbout mhdb:speech ;
 	mhdb:makesClaimAbout mhdb:emotion ;
-	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:speech ;
 	mhdb:makesClaimAbout mhdb:vocal_acoustics ;
+	mhdb:makesClaimAbout mhdb:microphone ;
 	mhdb:makesClaimAbout mhdb:sound_sensors .
 
 mhdb:Cognitive_scientists_indicate_that_emotional_states_are_strongly_associated_with_quantifiable_physical_correlates_including_the_movement_of_facial_muscles rdf:type mhdb:Claim ;
 	rdfs:label """Cognitive scientists indicate that emotional states are strongly associated with quantifiable physical correlates including the movement of facial muscles"""@en ;
-	mhdb:makesClaimAbout mhdb:muscle_activity ;
-	mhdb:makesClaimAbout mhdb:emotion .
+	mhdb:makesClaimAbout mhdb:emotion ;
+	mhdb:makesClaimAbout mhdb:muscle_activity .
 
 mhdb:Cognitive_scientists_indicate_that_emotional_states_are_strongly_associated_with_quantifiable_physical_correlates_including_peripheral_nervous_system_activity rdf:type mhdb:Claim ;
 	rdfs:label """Cognitive scientists indicate that emotional states are strongly associated with quantifiable physical correlates including peripheral nervous system activity"""@en ;
-	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal ;
-	mhdb:makesClaimAbout mhdb:emotion .
+	mhdb:makesClaimAbout mhdb:emotion ;
+	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal .
 
 mhdb:Cognitive_scientists_indicate_that_emotional_states_are_strongly_associated_with_quantifiable_physical_correlates_including_language_use rdf:type mhdb:Claim ;
 	rdfs:label """Cognitive scientists indicate that emotional states are strongly associated with quantifiable physical correlates including language use"""@en ;
-	mhdb:makesClaimAbout mhdb:speech ;
-	mhdb:makesClaimAbout mhdb:squeal_count ;
 	mhdb:makesClaimAbout mhdb:emotion ;
-	mhdb:makesClaimAbout mhdb:amount_of_speech ;
+	mhdb:makesClaimAbout mhdb:speech ;
 	mhdb:makesClaimAbout mhdb:word_count ;
-	mhdb:makesClaimAbout mhdb:grunt_count .
+	mhdb:makesClaimAbout mhdb:amount_of_speech ;
+	mhdb:makesClaimAbout mhdb:grunt_count ;
+	mhdb:makesClaimAbout mhdb:squeal_count .
 
 mhdb:Predicting_Latent_Narrative_Mood_using_Audio_and_Physiologic_Data rdf:type mhdb:Claim ;
 	rdfs:label """Predicting Latent Narrative Mood using Audio and Physiologic Data"""@en ;
-	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
-	mhdb:makesClaimAbout mhdb:audio ;
 	mhdb:makesClaimAbout mhdb:electrocardiography_sensor ;
 	mhdb:makesClaimAbout mhdb:speech ;
-	mhdb:makesClaimAbout mhdb:mood ;
-	mhdb:makesClaimAbout mhdb:microphone ;
-	mhdb:makesClaimAbout mhdb:accelerometer ;
 	mhdb:makesClaimAbout mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
+	mhdb:makesClaimAbout mhdb:audio ;
 	mhdb:makesClaimAbout mhdb:cardiac_activity ;
-	mhdb:makesClaimAbout mhdb:gyroscope .
+	mhdb:makesClaimAbout mhdb:gyroscope ;
+	mhdb:makesClaimAbout mhdb:accelerometer ;
+	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
+	mhdb:makesClaimAbout mhdb:mood .
 
 mhdb:Negative_narratives_are_associated_with_increased_movements_measured_by_the_coefficients_of_the_logistic_regression rdf:type mhdb:Claim ;
 	rdfs:label """Negative narratives are associated with increased movements measured by the coefficients of the logistic regression"""@en ;
@@ -152,18 +152,18 @@ mhdb:Negative_narratives_are_associated_with_increased_movements_measured_by_the
 
 mhdb:Negative_narratives_are_associated_with_cardiovascular_activity_measured_by_a_PPG_signal rdf:type mhdb:Claim ;
 	rdfs:label """Negative narratives are associated with cardiovascular activity measured by a PPG signal"""@en ;
-	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
-	mhdb:makesClaimAbout mhdb:Heart_Rate_VariabilityHRV ;
 	mhdb:makesClaimAbout mhdb:heart_rate ;
-	mhdb:makesClaimAbout mhdb:mood ;
 	mhdb:makesClaimAbout mhdb:cardiac_activity ;
-	mhdb:makesClaimAbout mhdb:Blood_Volume_PulseBVP .
+	mhdb:makesClaimAbout mhdb:Blood_Volume_PulseBVP ;
+	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
+	mhdb:makesClaimAbout mhdb:mood ;
+	mhdb:makesClaimAbout mhdb:Heart_Rate_VariabilityHRV .
 
 mhdb:different_emotional_states_are_associated_with_differing_postures_As_reflected_by_the_PPG_sensor_number rdf:type mhdb:Claim ;
 	rdfs:label """different emotional states are associated with differing postures (As reflected by the PPG sensor number)"""@en ;
 	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
-	mhdb:makesClaimAbout mhdb:posture ;
-	mhdb:makesClaimAbout mhdb:emotion .
+	mhdb:makesClaimAbout mhdb:emotion ;
+	mhdb:makesClaimAbout mhdb:posture .
 
 mhdb:Differing_postures_are_reflected_by_PPG rdf:type mhdb:Claim ;
 	rdfs:label """Differing postures are reflected by PPG"""@en ;
@@ -172,8 +172,8 @@ mhdb:Differing_postures_are_reflected_by_PPG rdf:type mhdb:Claim ;
 
 mhdb:A_change_in_the_sympathatic_nervous_system_activation_can_be_inferred_from_the_levels_of_sweat_in_the_eccrine_sweat_glands rdf:type mhdb:Claim ;
 	rdfs:label """A change in the sympathatic nervous system activation can be inferred from the levels of sweat in the eccrine sweat glands"""@en ;
-	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal ;
-	mhdb:makesClaimAbout mhdb:sweat_gland_activity .
+	mhdb:makesClaimAbout mhdb:sweat_gland_activity ;
+	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal .
 
 mhdb:One_possible_way_to_measure_a_childs_ability_to_regulate_his_or_her_emotional_state_is_by_measuring_electrodermal_activity_EDA rdf:type mhdb:Claim ;
 	rdfs:label """One possible way to measure a child’s ability to regulate his or her emotional state is by measuring electrodermal activity (EDA)"""@en ;
@@ -183,26 +183,26 @@ mhdb:One_possible_way_to_measure_a_childs_ability_to_regulate_his_or_her_emotion
 
 mhdb:Measuring_Arousal_During_Therapy_for_Children_with_Autism_and_ADHD_with_electrodermal_activity_EDA rdf:type mhdb:Claim ;
 	rdfs:label """Measuring Arousal During Therapy for Children with Autism and ADHD with electrodermal activity (EDA)"""@en ;
+	mhdb:makesClaimAbout mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
 	mhdb:makesClaimAbout mhdb:arousal_in_therapy ;
-	mhdb:makesClaimAbout mhdb:galvanic_skin_responseGSRskin_conductance ;
-	mhdb:makesClaimAbout mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor .
+	mhdb:makesClaimAbout mhdb:galvanic_skin_responseGSRskin_conductance .
 
 mhdb:Affective_state_can_also_be_inferred_from_the_way_we_interact_with_and_manipulate_objects_Frustration_caused_by_poor_usability_in_a_computer_interface_has_been_shown_to_be_associated_with_an_increase_in_physical_pressure_applied_to_a_pressuresensitive_mouse rdf:type mhdb:Claim ;
 	rdfs:label """Affective state can also be inferred from the way we interact with and manipulate objects. Frustration (caused by poor usability in a computer interface) has been shown to be associated with an increase in physical pressure applied to a pressuresensitive mouse."""@en ;
+	mhdb:makesClaimAbout mhdb:pressure ;
 	mhdb:makesClaimAbout mhdb:frustration ;
-	mhdb:makesClaimAbout mhdb:affect ;
-	mhdb:makesClaimAbout mhdb:pressure .
+	mhdb:makesClaimAbout mhdb:affect .
 
 mhdb:socioaffective_displays_such_as_dominance_excitement_and_nonaggression_are_signalled_by_location_proximity_audio_and_motion_sensors_across_populations rdf:type mhdb:Claim ;
 	rdfs:label """socioaffective displays, such as dominance, excitement, and nonaggression, are signalled by location, proximity, audio and motion sensors across populations"""@en ;
 	mhdb:makesClaimAbout mhdb:global_positioning_system ;
-	mhdb:makesClaimAbout mhdb:proximity_sensor ;
-	mhdb:makesClaimAbout mhdb:microphone ;
 	mhdb:makesClaimAbout mhdb:socioaffective_displays ;
-	mhdb:makesClaimAbout mhdb:excitement ;
+	mhdb:makesClaimAbout mhdb:proximity_sensor ;
 	mhdb:makesClaimAbout mhdb:nonaggression ;
-	mhdb:makesClaimAbout mhdb:dominance ;
-	mhdb:makesClaimAbout mhdb:motion_sensor .
+	mhdb:makesClaimAbout mhdb:excitement ;
+	mhdb:makesClaimAbout mhdb:motion_sensor ;
+	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:dominance .
 
 mhdb:breath_is_measured_via_expansion_and_contraction_of_the_torso rdf:type mhdb:Claim ;
 	rdfs:label """breath is measured via expansion and contraction of the torso"""@en ;
@@ -220,61 +220,61 @@ mhdb:stress_is_monitored_by_analysing_breathing_patterns rdf:type mhdb:Claim ;
 mhdb:Emotional_state_is_determined_by_heart_rate_variability_that_uses_subtle_changes_in_heart_rhythm rdf:type mhdb:Claim ;
 	rdfs:label """Emotional state is determined by \'heart rate variability\' that uses subtle changes in heart rhythm"""@en ;
 	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
-	mhdb:makesClaimAbout mhdb:Heart_Rate_VariabilityHRV ;
 	mhdb:makesClaimAbout mhdb:emotion ;
+	mhdb:makesClaimAbout mhdb:Heart_Rate_VariabilityHRV ;
 	dcterms:source <http://pplkpr.com/> .
 
 mhdb:Cognitiveemtional_states_can_be_classified_using_Algortihms_in_the_Spire_App_that_measure_your_resporatory_patterns_To_do_this_it_senses_the_expansion_and_contraction_of_your_torso_as_you_inhale_and_exhale_A_tense_focused_or_calm_state_of_mind_during_the_day_and_sleep_stages_at_night_is_reflected_by_breathing rdf:type mhdb:Claim ;
 	rdfs:label """Cognitive/emtional states can be classified using Algortihms in the Spire App that measure your resporatory patterns. To do this, it senses the expansion and contraction of your torso as you inhale and exhale. A tense, focused or calm state of mind during the day and sleep stages at night is reflected by breathing."""@en ;
+	mhdb:makesClaimAbout mhdb:expansion ;
 	mhdb:makesClaimAbout mhdb:emotion ;
 	mhdb:makesClaimAbout mhdb:contraction ;
 	mhdb:makesClaimAbout mhdb:calmness ;
-	mhdb:makesClaimAbout mhdb:expansion ;
 	dcterms:source <https://spirehealth.com/pages/stone> .
 
 mhdb:Psychophysiological_arousal_reflects_autonomic_functions_including_parasympathetic_and_sympathetic_nervous_system_activity_and_can_be_measured_by_heart_rate_variability_HRV rdf:type mhdb:Claim ;
 	rdfs:label """Psychophysiological arousal reflects autonomic functions including parasympathetic and sympathetic nervous system activity and can be measured by heart rate variability (HRV)"""@en ;
 	mhdb:makesClaimAbout mhdb:arousal ;
-	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal ;
 	mhdb:makesClaimAbout mhdb:Heart_Rate_VariabilityHRV ;
-	mhdb:makesClaimAbout mhdb:vital_signs .
+	mhdb:makesClaimAbout mhdb:vital_signs ;
+	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal .
 
 mhdb:Relaxed_and_excited_mental_states_are_caused_by_decreased_and_increased_sympathetic_activity_which_lead_to_changes_of_thermal_fluctuations_of_the_face rdf:type mhdb:Claim ;
 	rdfs:label """Relaxed and excited mental states are caused by decreased and increased sympathetic activity which lead to changes of thermal fluctuations of the face"""@en ;
-	mhdb:makesClaimAbout mhdb:relaxed_mental_state ;
 	mhdb:makesClaimAbout mhdb:temperature ;
+	mhdb:makesClaimAbout mhdb:relaxed_mental_state ;
 	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal .
 
 mhdb:One_of_the_most_robust_and_well_studied_physiological_repsonse_is_the_skin_conductivity_startle_response_It_is_caused_by_sympathetic_nervous_system_activation rdf:type mhdb:Claim ;
 	rdfs:label """One of the most robust and well studied physiological repsonse is the skin conductivity startle response. It is caused by sympathetic nervous system activation."""@en ;
-	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal ;
+	mhdb:makesClaimAbout mhdb:skin_conductivity_startle_response ;
 	mhdb:makesClaimAbout mhdb:galvanic_skin_responseGSRskin_conductance ;
-	mhdb:makesClaimAbout mhdb:skin_conductivity_startle_response .
+	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_arousal .
 
 mhdb:It_is_caused_by_sympathetic_nervous_system_activation_which_changes_the_levels_of_sweat_in_the_eccrine_sweat_glands_and_has_been_shown_to_be_linked_to_measures_of_emotion_arousal_and_attention rdf:type mhdb:Claim ;
 	rdfs:label """It is caused by sympathetic nervous system activation, which changes the levels of sweat in the eccrine sweat glands and has been shown to be linked to measures of emotion, arousal, and attention"""@en ;
+	mhdb:makesClaimAbout mhdb:attention ;
+	mhdb:makesClaimAbout mhdb:skin_conductivity_startle_response ;
 	mhdb:makesClaimAbout mhdb:stress ;
 	mhdb:makesClaimAbout mhdb:arousal ;
-	mhdb:makesClaimAbout mhdb:skin_conductivity_startle_response ;
-	mhdb:makesClaimAbout mhdb:galvanic_skin_responseGSRskin_conductance ;
-	mhdb:makesClaimAbout mhdb:attention .
+	mhdb:makesClaimAbout mhdb:galvanic_skin_responseGSRskin_conductance .
 
 mhdb:Emotional_activation_is_associated_with_a_particular_response_of_the_eccrine_sweat_glands_on_the_palms_of_the_hands_and_the_soles_of_the_feet rdf:type mhdb:Claim ;
 	rdfs:label """Emotional activation is associated with a particular response of the eccrine sweat glands on the palms of the hands and the soles of the feet"""@en ;
-	mhdb:makesClaimAbout mhdb:sweat_gland_activity ;
-	mhdb:makesClaimAbout mhdb:emotional_activation .
+	mhdb:makesClaimAbout mhdb:emotional_activation ;
+	mhdb:makesClaimAbout mhdb:sweat_gland_activity .
 
 mhdb:The_eccrine_sweat_glands_on_the_palms_of_the_hands_and_the_soles_of_the_feet_are_only_minimally_responsible_for_thermoregulation rdf:type mhdb:Claim ;
 	rdfs:label """The eccrine sweat glands on the palms of the hands and the soles of the feet are only minimally responsible for thermoregulation"""@en ;
-	mhdb:makesClaimAbout mhdb:thermoregulation ;
+	mhdb:makesClaimAbout mhdb:temperature ;
 	mhdb:makesClaimAbout mhdb:sweat_gland_activity ;
-	mhdb:makesClaimAbout mhdb:temperature .
+	mhdb:makesClaimAbout mhdb:thermoregulation .
 
 mhdb:If_someone_enters_a_flight_or_fight_mode_moisture_collects_under_the_skin_often_leading_to_sweating_as_a_sympathetic_nervous_system_response rdf:type mhdb:Claim ;
 	rdfs:label """If someone enters a “flight or fight” mode, moisture collects under the skin (often leading to sweating) as a sympathetic nervous system response."""@en ;
 	mhdb:makesClaimAbout mhdb:sweat ;
-	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_response ;
 	mhdb:makesClaimAbout mhdb:flight_or_fight_mode ;
+	mhdb:makesClaimAbout mhdb:sympathetic_nervous_system_response ;
 	dcterms:source <https://www.technologyreview.com/s/421316/sensor-detects-emotions-through-the-skin/> .
 
 mhdb:This_rising_moisture_makes_the_skin_more_electrically_conductive_Skin_conductance_sensors_send_a_tiny_electrical_pulse_to_one_point_of_the_skin_and_measure_the_strength_of_that_signal_at_another_point_on_the_skin_to_detect_its_conductivity rdf:type mhdb:Claim ;
@@ -284,84 +284,84 @@ mhdb:This_rising_moisture_makes_the_skin_more_electrically_conductive_Skin_condu
 
 mhdb:Observing_chewing_process_by_identifying_jaw_movements_using_piezoelectric_film_sensors rdf:type mhdb:Claim ;
 	rdfs:label """Observing chewing process by identifying jaw movements using piezoelectric film sensors"""@en ;
-	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
 	mhdb:makesClaimAbout mhdb:piezoelectric_sensor ;
-	mhdb:makesClaimAbout mhdb:movement .
+	mhdb:makesClaimAbout mhdb:movement ;
+	mhdb:makesClaimAbout mhdb:chewingbite_event_detection .
 
 mhdb:Observing_swallowing_process_by_capturing_the_motion_of_the_throats_skin_using_piezoelectric_film_sensors rdf:type mhdb:Claim ;
 	rdfs:label """Observing swallowing process by capturing the motion of the throat's skin using piezoelectric film sensors."""@en ;
-	mhdb:makesClaimAbout mhdb:movement ;
 	mhdb:makesClaimAbout mhdb:piezoelectric_sensor ;
+	mhdb:makesClaimAbout mhdb:movement ;
 	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection .
 
 mhdb:The_EGG_sensor_utilizes_the_motion-induced_variations_of_the_electrical_impedance_as_the_amplitude_andor_phase_change_of_high-frequency_voltage_between_two_electrodes_positioned_on_the_larynx_The_swallowing_frequency_signal_will_then_be_recorded_by_two_electrodes_embedded_in_the_Laryngograph_to_detect_eating_events rdf:type mhdb:Claim ;
 	rdfs:label """The EGG sensor utilizes the motion-induced variations of the electrical impedance, as the amplitude and/or phase change of high-frequency voltage, between two electrodes positioned on the larynx. The swallowing frequency signal will then be recorded by two electrodes embedded in the Laryngograph to detect eating events"""@en ;
 	mhdb:makesClaimAbout mhdb:movement ;
+	mhdb:makesClaimAbout mhdb:electroglottography_sensor ;
 	mhdb:makesClaimAbout mhdb:electricity_flowing_across_the_larynx ;
-	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection ;
-	mhdb:makesClaimAbout mhdb:electroglottography_sensor .
+	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection .
 
 mhdb:Scrutinizing_the_effect_of_food_hardness_bolus_size_chewing_cycles_and_sequence_duration_in_specific_food_types_and_testing_subject_classes_by_employing_an_EMG rdf:type mhdb:Claim ;
 	rdfs:label """Scrutinizing the effect of food hardness, bolus size, chewing cycles and sequence duration in specific food types and testing subject classes by employing an EMG"""@en ;
-	mhdb:makesClaimAbout mhdb:determine_food_hardness ;
+	mhdb:makesClaimAbout mhdb:chewing_cycles ;
 	mhdb:makesClaimAbout mhdb:electromyograph ;
-	mhdb:makesClaimAbout mhdb:determine_bolus_size ;
-	mhdb:makesClaimAbout mhdb:chewing_cycles .
+	mhdb:makesClaimAbout mhdb:determine_food_hardness ;
+	mhdb:makesClaimAbout mhdb:determine_bolus_size .
 
 mhdb:with_the_use_of_the_EMG_took_into_account_mastication_efforts_for_finely-cut_foods rdf:type mhdb:Claim ;
 	rdfs:label """with the use of the EMG, took into account mastication efforts for finely-cut foods"""@en ;
-	mhdb:makesClaimAbout mhdb:mastication ;
-	mhdb:makesClaimAbout mhdb:electromyograph .
+	mhdb:makesClaimAbout mhdb:electromyograph ;
+	mhdb:makesClaimAbout mhdb:mastication .
 
 mhdb:Automatically_tracking_wrist_motion_every_time_the_users_take_a_bite_of_food_from_the_radical_velocity_by_using_the_MEMS_gyroscope rdf:type mhdb:Claim ;
 	rdfs:label """Automatically tracking wrist motion every time the users take a bite of food from the radical velocity by using the MEMS gyroscope"""@en ;
-	mhdb:makesClaimAbout mhdb:eating_detection ;
 	mhdb:makesClaimAbout mhdb:movement ;
-	mhdb:makesClaimAbout mhdb:gyroscope .
+	mhdb:makesClaimAbout mhdb:gyroscope ;
+	mhdb:makesClaimAbout mhdb:eating_detection .
 
 mhdb:Monitoring_eating_process_food_types_and_food_intake_amount_using_a_three-axis_accelerometer_embedded_in_a_smart_watch rdf:type mhdb:Claim ;
 	rdfs:label """Monitoring eating process, food types and food intake amount using a three-axis accelerometer embedded in a smart watch"""@en ;
+	mhdb:makesClaimAbout mhdb:detect_food_typesfood_classification ;
 	mhdb:makesClaimAbout mhdb:eating_detection ;
 	mhdb:makesClaimAbout mhdb:food_intake_amount ;
-	mhdb:makesClaimAbout mhdb:detect_food_typesfood_classification ;
 	mhdb:makesClaimAbout mhdb:three-axis_accelerometer .
 
 mhdb:Proposed_automatic_structure_to_detect_chewing_events_and_eating_duration_with_high_accuracy__using_two_accelerometers_simultaneously_wrist-worn_and_head-mounted_accelerometers_on_such_devices_as_the_Pebble_Watch_and_Google_Glass rdf:type mhdb:Claim ;
 	rdfs:label """Proposed automatic structure to detect chewing events and eating duration with high accuracy  using two accelerometers simultaneously: wrist-worn and head-mounted accelerometers on such devices as the Pebble Watch and Google Glass"""@en ;
 	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
-	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
+	mhdb:makesClaimAbout mhdb:eating_duration ;
 	mhdb:makesClaimAbout mhdb:electroencephalography ;
-	mhdb:makesClaimAbout mhdb:eating_duration .
+	mhdb:makesClaimAbout mhdb:chewingbite_event_detection .
 
 mhdb:Detecting_drinking_and_eating_gestures_and_further_chewing_and_swallowing_sounds_by_employing_four_motion_sensors_at_two_positions_on_each_arm_upper_and_lower rdf:type mhdb:Claim ;
 	rdfs:label """Detecting drinking and eating gestures and further chewing and swallowing sounds by employing four motion sensors at two positions on each arm (upper and lower)"""@en ;
-	mhdb:makesClaimAbout mhdb:eating_detection ;
-	mhdb:makesClaimAbout mhdb:detect_drinking_gestures ;
+	mhdb:makesClaimAbout mhdb:swallowing_sound ;
 	mhdb:makesClaimAbout mhdb:motion_sensor ;
-	mhdb:makesClaimAbout mhdb:swallowing_sound .
+	mhdb:makesClaimAbout mhdb:eating_detection ;
+	mhdb:makesClaimAbout mhdb:detect_drinking_gestures .
 
 mhdb:Detecing_the_intake_of_crunchy_food_by_using_a_three-axis_accelerometer_embedded_in_the_temple_of_glasses rdf:type mhdb:Claim ;
 	rdfs:label """Detecing the intake of crunchy food by using a three-axis accelerometer embedded in the temple of glasses."""@en ;
-	mhdb:makesClaimAbout mhdb:three-axis_accelerometer ;
-	mhdb:makesClaimAbout mhdb:crunchy_food .
+	mhdb:makesClaimAbout mhdb:crunchy_food ;
+	mhdb:makesClaimAbout mhdb:three-axis_accelerometer .
 
 mhdb:Detecting_chewing_frequency_generated_by_the_temporal_muscle_by_exploiting_a_single_axis_accelerometer_embedded_in_flexible_types_of_wearable_objects_glasses_filler_earphone rdf:type mhdb:Claim ;
 	rdfs:label """Detecting chewing frequency generated by the temporal muscle by exploiting a single axis accelerometer embedded in flexible types of wearable objects (glasses, filler, earphone)"""@en ;
-	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:single-axis_accelerometer .
+	mhdb:makesClaimAbout mhdb:single-axis_accelerometer ;
+	mhdb:makesClaimAbout mhdb:chewingbite_event_detection .
 
 mhdb:Bite_detection_with_two_three-axis_accelerometers_and_a_two-axis_gyroscope rdf:type mhdb:Claim ;
 	rdfs:label """Bite detection with two three-axis accelerometers and a two-axis gyroscope"""@en ;
+	mhdb:makesClaimAbout mhdb:gyroscope ;
 	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:three-axis_accelerometer ;
-	mhdb:makesClaimAbout mhdb:gyroscope .
+	mhdb:makesClaimAbout mhdb:three-axis_accelerometer .
 
 mhdb:Detecting_foof_portions_volume_estimation_before_and_after_a_meal_as_well_as_food_classification_thourh_a_developed_dietary_assessment_system_based_on_the_smart_phones_camera rdf:type mhdb:Claim ;
 	rdfs:label """Detecting foof portions (volume estimation before and after a meal), as well as food classification thourh a developed dietary assessment system based on the smart phone’s camera"""@en ;
-	mhdb:makesClaimAbout mhdb:volume ;
 	mhdb:makesClaimAbout mhdb:detect_food_typesfood_classification ;
-	mhdb:makesClaimAbout mhdb:camera ;
-	mhdb:makesClaimAbout mhdb:food_volume_estimation .
+	mhdb:makesClaimAbout mhdb:volume ;
+	mhdb:makesClaimAbout mhdb:food_volume_estimation ;
+	mhdb:makesClaimAbout mhdb:camera .
 
 mhdb:the_eButton-As_the_camera_is_embedded_in_a_minuscule_button_it_is_convenient_enough_to_wear_on_the_chest_for_food_intake_collection rdf:type mhdb:Claim ;
 	rdfs:label """the eButton. - As the camera is embedded in a minuscule button, it is convenient enough to wear on the chest for food intake collection"""@en ;
@@ -370,10 +370,10 @@ mhdb:the_eButton-As_the_camera_is_embedded_in_a_minuscule_button_it_is_convenien
 
 mhdb:Dietary_Data_Recording_System_DDRS_which_is_another_way_for_3D_reconstruction_to_estimate_food_volume_for_a_visual_approach_It_imposes_a_laser_beam_on_the_system_for_generating_a_laser_grid_on_the_food_scene rdf:type mhdb:Claim ;
 	rdfs:label """Dietary Data Recording System (DDRS), which is another way for 3D reconstruction to estimate food volume for a visual approach. It imposes a laser beam on the system for generating a laser grid on the food scene."""@en ;
-	mhdb:makesClaimAbout mhdb:laser ;
 	mhdb:makesClaimAbout mhdb:volume ;
+	mhdb:makesClaimAbout mhdb:food_volume_estimation ;
 	mhdb:makesClaimAbout mhdb:camera ;
-	mhdb:makesClaimAbout mhdb:food_volume_estimation .
+	mhdb:makesClaimAbout mhdb:laser .
 
 mhdb:DietCam-The_system_primarily_focuses_on_calorie_estimation_from_food_portion_for_obesity_prevention_It_also_features_the_segmentation_technique_for_image_processing_and_food_classification_which_is_more_deeply_analyzed rdf:type mhdb:Claim ;
 	rdfs:label """DietCam - The system primarily focuses on calorie estimation from food portion for obesity prevention. It also features the segmentation technique for image processing and food classification, which is more deeply analyzed."""@en ;
@@ -382,98 +382,98 @@ mhdb:DietCam-The_system_primarily_focuses_on_calorie_estimation_from_food_portio
 
 mhdb:Classification_of_food_and_further_expansion_to_chewing_and_bite_weight_recognition_with_specified_vibration-based_detecting_system_using_a_condenser_microphone_embedded_in_an_ear_pad rdf:type mhdb:Claim ;
 	rdfs:label """Classification of food and further expansion to chewing and bite weight recognition with specified vibration-based detecting system using a condenser microphone embedded in an ear pad"""@en ;
-	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:bite_weight_detection ;
 	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:bite_weight_detection .
+	mhdb:makesClaimAbout mhdb:microphone .
 
 mhdb:captured_by_ear_pad_sensors_the_chewing_recognition_procedure_employs_the_chewing_sequences_waveforms_of_sounds_indicating_chewing rdf:type mhdb:Claim ;
 	rdfs:label """captured by ear pad sensors, the chewing recognition procedure employs the chewing sequences, waveforms of sounds indicating chewing"""@en ;
-	mhdb:makesClaimAbout mhdb:microphone ;
-	mhdb:makesClaimAbout mhdb:chewingbite_event_detection .
+	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
+	mhdb:makesClaimAbout mhdb:microphone .
 
 mhdb:differentiating_chewing_events_from_as_well_as_the_softness_of_the_food_from_the_collected_sounds rdf:type mhdb:Claim ;
 	rdfs:label """differentiating chewing events from, as well as the softness of the food from the collected sounds."""@en ;
-	mhdb:makesClaimAbout mhdb:softness_of_the_food ;
-	mhdb:makesClaimAbout mhdb:microphone ;
 	mhdb:makesClaimAbout mhdb:sound ;
+	mhdb:makesClaimAbout mhdb:duifferentiating_chewing_from_non_chewing_events ;
 	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:duifferentiating_chewing_from_non_chewing_events .
+	mhdb:makesClaimAbout mhdb:softness_of_the_food ;
+	mhdb:makesClaimAbout mhdb:microphone .
 
 mhdb:embedded_a_strain_sensor_below_the_outer_ear_to_capture_the_motion_of_the_lower_jaw_caused_by_the_posterior_border_of_the_mandibles_ramus_relative_to_the_temporal_bone rdf:type mhdb:Claim ;
 	rdfs:label """embedded a strain sensor below the outer ear to capture the motion of the lower jaw caused by the posterior border of the mandible’s ramus relative to the temporal bone"""@en ;
-	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
 	mhdb:makesClaimAbout mhdb:movement ;
+	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
 	mhdb:makesClaimAbout mhdb:arousal_in_therapy .
 
 mhdb:Swallowing_detection_is_basically_parallel_to_chewing_detection_since_swallowing_is_the_next_phase_of_chewing_in_mechanical_digestion_The_acoustic_approach_is_also_feasible_for_this_detection rdf:type mhdb:Claim ;
 	rdfs:label """Swallowing detection is basically parallel to chewing detection since swallowing is the next phase of chewing in mechanical digestion. The acoustic approach is also feasible for this detection"""@en ;
+	mhdb:makesClaimAbout mhdb:sound ;
 	mhdb:makesClaimAbout mhdb:microphone ;
-	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection ;
-	mhdb:makesClaimAbout mhdb:sound .
+	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection .
 
 mhdb:proposed_an_SVM_model-based_approach_to_detect_food_intake_period_from_information_extracted_from_the_instantaneous_swallowing_frequency_ISF_signal_and_the_binary_indicators_of_chewing rdf:type mhdb:Claim ;
 	rdfs:label """proposed an SVM model-based approach to detect food intake period from information extracted from the instantaneous swallowing frequency (ISF) signal and the binary indicators of chewing."""@en ;
 	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:sound ;
 	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection ;
-	mhdb:makesClaimAbout mhdb:sound .
+	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection .
 
 mhdb:generated_spectrograms_for_audio_clips_corresponding_to_four_types_of_swallowing_and_chewing_events_sandwich_chewsswallows_water_swallows_and_no_action_and_afterward_applying_feature_extraction_for_distinguishing_those_events rdf:type mhdb:Claim ;
 	rdfs:label """generated spectrograms for audio clips corresponding to four types of swallowing and chewing events (sandwich chews/swallows, water swallows and no action) and afterward applying feature extraction for distinguishing those events."""@en ;
 	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:sound ;
 	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection ;
-	mhdb:makesClaimAbout mhdb:sound .
+	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection .
 
 mhdb:Auto-dietary-It_is_shown_to_have_positive_performance_in_distinguishing_solid_food_and_liquid_food rdf:type mhdb:Claim ;
 	rdfs:label """Auto-dietary - It is shown to have positive performance in distinguishing solid food and liquid food"""@en ;
-	mhdb:makesClaimAbout mhdb:solid_food ;
-	mhdb:makesClaimAbout mhdb:softness_of_the_food ;
-	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:sound ;
 	mhdb:makesClaimAbout mhdb:liquid_food ;
-	mhdb:makesClaimAbout mhdb:sound .
+	mhdb:makesClaimAbout mhdb:softness_of_the_food ;
+	mhdb:makesClaimAbout mhdb:solid_food ;
+	mhdb:makesClaimAbout mhdb:microphone .
 
 mhdb:proposed_a_wearable_device_that_embeds_both_a_camera_and_a_microphone_for_dietary_assessment_In_this_system_the_microphone_is_utilized_to_detect_chewing_or_eating_events_triggering_the_camera_for_food_detection_and_classification_which_leads_to_a_more_simplified_sound_signal_processing_without_a_complicated_denoising_pre-process rdf:type mhdb:Claim ;
 	rdfs:label """proposed a wearable device that embeds both a camera and a microphone for dietary assessment. In this system, the microphone is utilized to detect chewing or eating events, triggering the camera for food detection and classification, which leads to a more simplified sound signal processing without a complicated denoising pre-process."""@en ;
-	mhdb:makesClaimAbout mhdb:eating_detection ;
 	mhdb:makesClaimAbout mhdb:detect_food_typesfood_classification ;
-	mhdb:makesClaimAbout mhdb:camera ;
+	mhdb:makesClaimAbout mhdb:eating_detection ;
 	mhdb:makesClaimAbout mhdb:swallowing_event_recognitiondetection ;
-	mhdb:makesClaimAbout mhdb:microphone .
+	mhdb:makesClaimAbout mhdb:microphone ;
+	mhdb:makesClaimAbout mhdb:camera .
 
 mhdb:it_applies_the_accelerometer_and_gyroscope_as_the_trigger_for_the_camera_process_The_system_consists_of_three_components_smart_phone_smart-watch_and_backend_server_While_the_smart-watch_contains_all_of_the_participating_sensors_camera_accelerometer_and_gyroscope_the_smart_phone_serves_as_the_gateway_between_the_smart_watch_and_the_backend_server_which_is_used_to_store_data_and_to_identify_food_type_from_the_images rdf:type mhdb:Claim ;
 	rdfs:label """it applies the accelerometer and gyroscope as the trigger for the camera process. The system consists of three components: smart phone, smart-watch and backend server. While the smart-watch contains all of the participating sensors (camera, accelerometer and gyroscope), the smart phone serves as the gateway between the smart watch and the backend server. which is used to store data and to identify food type from the images."""@en ;
-	mhdb:makesClaimAbout mhdb:accelerometer ;
 	mhdb:makesClaimAbout mhdb:detect_food_typesfood_classification ;
-	mhdb:makesClaimAbout mhdb:camera ;
-	mhdb:makesClaimAbout mhdb:gyroscope .
+	mhdb:makesClaimAbout mhdb:accelerometer ;
+	mhdb:makesClaimAbout mhdb:gyroscope ;
+	mhdb:makesClaimAbout mhdb:camera .
 
 mhdb:automatic_ingestion_monitor_AIM_The_AIM_consists_of_a_firm_piezoelectric_accelerometer_and_proximity_sensors_to_discern_jaw_movements_body_motion_and_hand-to-mouth_gestures_respectively_during_ingestion rdf:type mhdb:Claim ;
 	rdfs:label """automatic ingestion monitor (AIM). The AIM consists of a firm piezoelectric, accelerometer and proximity sensors to discern jaw movements, body motion and hand-to-mouth gestures, respectively, during ingestion."""@en ;
-	mhdb:makesClaimAbout mhdb:response_to_name ;
-	mhdb:makesClaimAbout mhdb:movement ;
 	mhdb:makesClaimAbout mhdb:proximity_sensor ;
-	mhdb:makesClaimAbout mhdb:accelerometer ;
 	mhdb:makesClaimAbout mhdb:hand_to_mouth_gesture ;
-	mhdb:makesClaimAbout mhdb:piezoelectric_sensor .
+	mhdb:makesClaimAbout mhdb:response_to_name ;
+	mhdb:makesClaimAbout mhdb:piezoelectric_sensor ;
+	mhdb:makesClaimAbout mhdb:movement ;
+	mhdb:makesClaimAbout mhdb:accelerometer .
 
 mhdb:Respiratory_Inductance_Plethysmography_Sensing-this_novel_method_bestows_an_indirect_respiratory_signal_for_eating_detection rdf:type mhdb:Claim ;
 	rdfs:label """Respiratory Inductance Plethysmography Sensing - this novel method bestows an indirect respiratory signal for eating detection."""@en ;
-	mhdb:makesClaimAbout mhdb:eating_detection ;
-	mhdb:makesClaimAbout mhdb:rate_of_respiration .
+	mhdb:makesClaimAbout mhdb:rate_of_respiration ;
+	mhdb:makesClaimAbout mhdb:eating_detection .
 
 mhdb:constructed_an_RIP_belt_shown_in_Figure_4h_containing_a_breathing_signal_sensing_system_that_embeds_swallowing_signatures_in_this_respiratory_signal_for_swallowing_detection rdf:type mhdb:Claim ;
 	rdfs:label """constructed an RIP belt shown in Figure 4h containing a breathing signal sensing system that embeds swallowing signatures in this respiratory signal for swallowing detection."""@en ;
-	mhdb:makesClaimAbout mhdb:chewingbite_event_detection ;
-	mhdb:makesClaimAbout mhdb:rate_of_respiration .
+	mhdb:makesClaimAbout mhdb:rate_of_respiration ;
+	mhdb:makesClaimAbout mhdb:chewingbite_event_detection .
 
 mhdb:Recommendation_of_positive_social_relationshiptracks_and_managing_of_relationships_using_GPS_and_a_heart_rate_wristband_to_monitor_physical_and_emotional_response_to_people_around_you rdf:type mhdb:Claim ;
 	rdfs:label """Recommendation of positive social relationship/tracks and managing of relationships using GPS and a heart rate wristband to monitor physical and emotional response to people around you"""@en ;
-	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
 	mhdb:makesClaimAbout mhdb:global_positioning_system ;
-	mhdb:makesClaimAbout mhdb:relationships ;
 	mhdb:makesClaimAbout mhdb:emotion ;
 	mhdb:makesClaimAbout mhdb:social_interaction ;
+	mhdb:makesClaimAbout mhdb:photoplethysmogram ;
+	mhdb:makesClaimAbout mhdb:relationships ;
 	dcterms:source <http://pplkpr.com/> .
 
 mhdb:motion_of_the_lower_jaw_caused_by_the_posterior_border_of_the_mandibles_ramus_relative_to_the_temporal_bone rdf:type mhdb:Claim ;
@@ -482,7 +482,7 @@ mhdb:motion_of_the_lower_jaw_caused_by_the_posterior_border_of_the_mandibles_ram
 
 mhdb:Subjective_reports_of_chills_were_accompanied_by_changes_in_heart_rate_electromyogram_and_respiration rdf:type mhdb:Claim ;
 	rdfs:label """Subjective reports of chills were accompanied by changes in heart rate, electromyogram, and respiration."""@en ;
-	mhdb:makesClaimAbout mhdb:chills ;
 	mhdb:makesClaimAbout mhdb:heart_rate ;
 	mhdb:makesClaimAbout mhdb:rate_of_respiration ;
-	mhdb:makesClaimAbout mhdb:electromyograph .
+	mhdb:makesClaimAbout mhdb:electromyograph ;
+	mhdb:makesClaimAbout mhdb:chills .
