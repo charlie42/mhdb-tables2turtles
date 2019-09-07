@@ -1,0 +1,688 @@
+,name,condition_text,prop_id,condition_description
+0,congruent,congruent,con_4b1969ec123ec,The color and word names match
+1,incongruent,incongruent,con_4b1969ffa6857,The color and word names conflict with one another
+2,neutral,neutral,con_4b196a106c24a,The word is not a color name
+3,Go trial,Go trial,con_4b44a4d54233a,Trials on which a go stimulus is presented and the subject is expected to respond
+4,Stop trial,Stop trial,con_4b44a4f3505bb,"Trials on which a stop signal is presented at some delay (stop-signal delay) following the go stimulus, and the subject is expected to stop"
+5,Go trials,Go trials,con_4b4a2f2e253fc,Trials on which the stimulus is in the go category
+6,Stop trial,Stop trial,con_4b4a2f46e10c3,Trials on which the stimulus is in the stop category
+7,0-back,0-back,con_4b4a51b665917,A condition requiring stimulus matching but not working memory
+8,3-back,3-back,con_4b4a51d944c3e,A condition requiring memory for stimuli occurring 3 stimuli back
+9,Target,Target,con_4b4a538ded442,The stimulus to be responded to
+10,Nontarget,Nontarget,con_4b4a53b3e6eb5,Any stimulus other than the target
+11,1-back,1-back,con_4b4a54736e57a,A condition requiring memory for stimuli occurring 1 stimuli back
+12,2-back,2-back,con_4b4a5481d9f61,A condition requiring memory for stimuli occurring 2 stimuli back
+13,3-back,3-back,con_4b4a5490ef92f,A condition requiring memory for stimuli occurring 3 stimuli back
+14,no delay,no delay,con_4b4a5f6515553,No delay between initial presentation and probe
+15,delay,delay,con_4b4a5f854160f,Probe presentation follows a delay after initial presentation
+16,Matching,Matching,con_4b65e60a2cd66,The word and picture refer to the same concept
+17,Non-matching,Non-matching,con_4b65e62c517d4,The word and picture refer to different concepts
+18,Segmented blocks,Segmented blocks,con_4b7c0325a84d2,None
+19,Unsegmented blocks,Unsegmented blocks,con_4b7c03351da6c,None
+20,Difficulty Level 1,Difficulty Level 1,con_4b7c041db7971,All three stimulus dimensions must match
+21,Difficulty Level 2,Difficulty Level 2,con_4b7c04350b339,Only two stimulus dimensions must match
+22,Difficulty Level 3,Difficulty Level 3,con_4b7c044e53f9e,Only one stimulus dimension must match
+23,First category,First category,con_4b7c0a332773f,The first category presented in the series
+24,Subsequent categories,Subsequent categories,con_4b7c0aa41ca2a,Categories presented after the first in the series
+25,Perseverative errors,Perseverative errors,con_4b7c101e99f7e,Errors that involve perseveration on the previously acquired set
+26,Nonperseverative errors,Nonperseverative errors,con_4b7c1033c0b2d,Errors that do not involve perseveration on the previously acquired set
+27,Failure to maintain set,Failure to maintain set,con_4b7c108cc5daf,Loss of the correct sorting rule during performance
+28,Congruent,Congruent,con_4b8436b5767e7,Both body and head belong to the same animal
+29,Incongruent,Incongruent,con_4b8436e0716e9,Body and head belong to different types of animals
+30,Switch trial,Switch trial,con_4bd1ebae43d9f,Those trials on which subjects are required to switch from one task to another
+31,Repeat trial,Repeat trial,con_4bd1ebdb08118,Those trials on which subjects are required to repeat the same task that was performed on the previous trial
+32,Words,Words,con_4be6eb857e704,Valid words in the testing language for which the correct response is &#34;Yes&#34;
+33,Pseudowords,Pseudowords,con_4be6ebc7bf079,Pronounceable letter or phoneme strings which do not form a valid word in the testing language.  The correct response is &#34;No&#34;
+34,Consonant letter strings,Consonant letter strings,con_4be6ec0cf3081,In imaging studies (as opposed to purely behavioural expts) strings of consonants are often used as a nonlexical control condition because they do not engage the reading system to the same extent
+35,Fixation,Fixation,con_4be6ec2f7f42c,A &#34;baseline&#34; condition when no letter string stimulus is presented and no response is expected
+36,Successful Stop Trial,Successful Stop Trial,con_4c6b5fd5be8b2,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject successfully withholds their response"
+37,Unsuccessful stop trial,Unsuccessful stop trial,con_4c6b600d4a2c2,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject fails to withhold their response"
+38,delay period distractor task,delay period distractor task,con_4c9974a448553,"an optional task performed during the delay period between target presentation and the response cue; tasks examples : number subtraction, word categorization"
+39,sensory modality,sensory modality,con_4c9975fc2e715,"This task is overwhelmingly performed with visual stimuli with a visual saccade response, however, a haptic version performed blind is described in Park & Holzman 1996."
+40,Successful stop trial,Successful stop trial,con_4ebd400a8721f,Stop trial on which subjects successfully inhibit
+41,Junk trial,Junk trial,con_4ebd3f96a11e3,A go trial on which subject failed to respond or responded incorrectly
+42,Probabilistic classification trials,Probabilistic classification trials,con_4cacf2671647d,Trials on which the subject classifies items
+43,Go trials,Go trials,con_4cacf41107509,Trials on which a go stimulus is presented and the subject is expected to respond
+44,Stop-critical trial,Stop-critical trial,con_4cacf4462f7cf,"Trials on which a stop signal is presented at some delay (stop-signal delay) following the go, and the stimulus is the critical stimulus, meaning that the subject is expected to stop"
+45,Stop-noncritical trial,Stop-noncritical trial,con_4cacf4680a5e0,"Trials on which a stop signal is presented at some delay (stop-signal delay) following the go, and the stimulus is the non-critical stimulus, meaning that the subject is not expected to stop"
+46,Word,Word,con_4d949c72f2589,Pairs of real english words
+47,Pseudoword,Pseudoword,con_4d949c8528903,Pairs of pseudowords
+48,meaningful,meaningful,con_4de53a974622f,actions are common gestures
+49,meaningless,meaningless,con_4de53abc62726,"actions are novel, and have likely not been seen or performed by the participant before"
+50,antisaccade,antisaccade,con_4de55b6707137,eye movements away from the fixation point
+51,prosaccade,prosaccade,con_4de55b77a975e,eye movements toward the fixation point
+52,forward,forward,con_4de56f49c241c,participant repeats a string of digits in the order they were presented
+53,backward,backward,con_4de56f7a1755f,"participant repeats a string of digits in the reverse order, beginning with the last digit presented"
+54,control pump,control pump,con_4ffc9c54be174,The participant pumps a control balloon which has no reward associated with it
+55,explosion,explosion,con_4de5788dbc4bf,the balloon bursts and the participant loses all gains for the trial
+56,short form,short form,con_4de583fcb050b,"27 points, subjects match possible faces to one picture, the last seven questions use pictures different poses"
+57,long form,long form,con_4de584598a7df,"54 points, subjects complete the short form plus an additional nine questions with the pictures using alternate lighting and poses. Each picture has 3 possible matches during this portion"
+58,copying test,copying test,con_4de67164155d6,participants copy pictures or geometric objects
+59,size match,size match,con_4de671af5ac83,participants judge whether two objects presented side-by-side are the same size
+60,length match,length match,con_4de671d131e0a,participants judge whether two objects presented side-by-side are the same length
+61,orientation match,orientation match,con_4de671e759538,participants judge whether two objects presented side-by-side are shown with the same orientation
+62,position of gap match,position of gap match,con_4de6722368540,participants judge whether two objects presented side-by-side have a gap in the same position
+63,overlapping figures test,overlapping figures test,con_4de674d6a83ce,participants are asked to identify all the objects in pictures containing overlapping figures
+64,object decision,object decision,con_4de6758abdd95,participants are shown pictures and asked to identify whether the object could be real or is unreal
+65,minimal feature match,minimal feature match,con_4de677aa1df70,"participants are asked to select a picture that is the same as the original picture, but the saliency of the objectâs most distinctive feature is reduced"
+66,foreshortened view,foreshortened view,con_4de67800c8e2a,"participants are asked to select a picture that is the same as the original picture, but the object&#39;s principle axis is foreshortened"
+67,drawing from memory test,drawing from memory test,con_4de6789784b81,participants draw images varying in complexity from simple shapes to complex objects like faces
+68,picture naming,picture naming,con_4de678e0271fa,participants identify the names for pictures presented. Pictures are generally words used infrequently
+69,immediate recall,immediate recall,con_4de6a278a78fe,"16 words from four categories are presented to the participant, who is then asked to recall as many as possible in 5 consecutive trials"
+70,interference,interference,con_4de6a2be90318,"a list of other words is presented, and the participant is once again asked to recall the initial 16 words"
+71,long recall,long recall,con_4de6a2f38a3dd,"after 20 minutes have passed, the participant is again asked to recall as many words as possible from the original list of 16"
+72,recognition trial,recognition trial,con_4de6a33431179,"some researchers include a recognition trial at the end of the test, in which the participant is shown a list of words and asked which ones were on the original list"
+73,same images,same images,con_4de6ad74bd5ee,"participants view 6 faces in a random order, then are given 3 forced-choice tasks per face they have seen, in which 2 distractor faces are added and the participant must choose which face they have seen before"
+74,novel images,novel images,con_4de6add394f5b,"participants complete a forced-choice task as in the same images condition, but the original 6 faces are now shown in a different way (different lighting, new facial expression, etc.)"
+75,novel images with noise,novel images with noise,con_4de6ae3e22fb0,"the participants complete a novel images forced-choice task, with Gaussian noise added"
+76,ratio,ratio,con_4de6b69d1e52b,"each trial has different ratios of one color to the other, affecting the probability of selecting the right color for the token"
+77,stimulus,stimulus,con_4de6bfac7a76f,"a subject must watch for a stimulus to be presented in the way it was shown to them before the test, then must react by pressing a button"
+78,non-stimulus,non-stimulus,con_4de6bfdf58e8e,"a subject is watching for a stimulus, but some other shape/picture/object is shown"
+79,right hand,right hand,con_4de6c00e51ce0,subjects are instructed to identify a stimulus or set of stimuli by pressing a button with the right hand
+80,left hand,left hand,con_4de6c02033068,subjects are instructed to identify a stimulus or set of stimuli by pressing a button with the left hand
+81,risky option,risky option,con_4de6c5f53e3b1,"a choice that has a low probability of reward, but a higher reward than the non-risky option"
+82,non-risky option,non-risky option,con_4de6c62e9b3ed,"a choice that has a high probability of reward, but the reward is lower than in the risky option"
+83,conditioned stimulus,conditioned stimulus,con_4de6c84f74297,"a stimulus is presented that the subject has no instinctive response to, but the researcher hopes to create an automatic response to by pairing it with the unconditioned stimulus"
+84,unconditioned stimulus,unconditioned stimulus,con_4de6c8bbe652f,"a stimulus that the subject has a natural, instinctive reaction to ( stimuli associated with pain, noise, fear, and reward are often used)"
+85,descending,descending,con_50215d9130bbd,bets start high and decrease over time
+86,meditation,meditation,con_5022e5a2e1b2f,participant performs meditation of a specific subtype
+87,ascending,ascending,con_50215d7c5e1bb,possible bets start low and increase over time
+88,formulating sentences subtest,formulating sentences subtest,con_4de6d03ae6527,participant is asked to use a specific word or phrase correctly in a sentence to describe a picture
+89,recalling sentences subtest,recalling sentences subtest,con_4de6d066cb774,participant is asked to repeat a sentence
+90,sentence structure subtest,sentence structure subtest,con_4de6d0d578e8e,participant responds to sentences of varying difficulty and structure
+91,concepts and directions subtest,concepts and directions subtest,con_4de6d1194328b,participant is asked to follow directions that become increasingly difficult and cover a range of language concepts
+92,word classes subtest,word classes subtest,con_4de6d1650c54a,"participants must identify how words relate to each other (synonyms/antonyms, types, etc.)"
+93,word structure subtest,word structure subtest,con_4de6d27471736,assesses participants understanding of morphology
+94,semantic relationships subtest,semantic relationships subtest,con_4de6d42855b8b,"only administered to children 9 years and older, assesses ability to understand semantic relationships"
+95,sentence assembly subtest,sentence assembly subtest,con_4de6d45dd9ade,"only administered to children 9 years and older, participant is given words or phrases and asked to construct sentences using them"
+96,Stimulation at PT-0.7Â°C,Stimulation at PT-0.7Â°C,con_4e5e7b75a6db4,Heat stimulation at pain threshold minus 0.7Â°C
+97,Stimulation at PT-1.0Â°C,Stimulation at PT-1.0Â°C,con_4e5e7b3e4b895,Heat stimulation at pain threshold minus 1.0Â°C
+98,hider,hider,con_4de7dc695f6f3,the subject hides an object and is encouraged to mislead the experimenter or other participant about where the object is hidden
+99,guesser,guesser,con_4de7dcca3449f,the experimenter or another participant hides an object and clearly tries to decieve the subject about where the object is hidden. In this task the experimenter is trying to ascertain whether the subject has the theory of mind to identify deceptive intent in others.
+100,valid,valid,con_4de7e52cd087d,"a subject is given a syllogism and asked to complete it or, if complete, to judge whether it is logically sound"
+101,invalid,invalid,con_4de7e54b3b6d2,a subject is given an illogical syllogism and asked to judge whether it is logically sound
+102,positive feedback,positive feedback,con_4de91cc95248e,the participant chooses a box containing a prize
+103,negative feedback,negative feedback,con_4de91ce5f25a9,the participant chooses the devil box and loses all previous gains
+104,immediate memory copy,immediate memory copy,con_4de929a6133f6,"in this version of the digit/symbol coding test, participants are shown a list of digits and symbols and immediately asked to write down the symbols that correspond to a list of digits"
+105,general memory copy,general memory copy,con_4de929f983464,"in this version of the digit/symbol coding test, participants are given time to study a list of digits and symbols and, after a period of time, asked to write down the symbols that correspond to a list of digits"
+106,verbal recall (people test),verbal recall (people test),con_4de93d28647c8,participants are shown picures of people with names and occupations (or other information) attached. They are asked to recall the names when prompted with the occupation
+107,visual recognition (doors test),visual recognition (doors test),con_4de93ddadf156,"participants view pictures of doors. They then are presented with groupings of doors, each containing one from the studyied photos and 3 distractors and asked to identify the familiar door"
+108,visual recall (shapes test),visual recall (shapes test),con_4de93e2a139bb,"participants copy line drawings that resemble crosses, then they are asked to redraw the shapes from memory"
+109,verbal recognition (names test),verbal recognition (names test),con_4de93e831be61,"participants view a list of names. They then are presented with groupings of names, each containing one from the studyied list and 3 distractors and asked to identify the familiar name"
+110,congruent,congruent,con_4decfedb911e2,the participant is shown a stimulus flanked by some congruent image (the same letter or number as the stimulus or arrows pointing in the same direction as the target stimulus)
+111,incongruent,incongruent,con_4decff04d5ada,the participant is shown a stimulus flanked by incongruent images (different letters or numbers or arrows pointing in the opposite direction)
+112,emotion detection,emotion detection,con_4ded127194dd6,participants must indicate when the current faces emotion matches the emotion of the face presented n previously
+113,identity detection,identity detection,con_4ded129f8c792,participants must indicate when the current picture is of the same person as presented n previously
+114,rhythm tap,rhythm tap,con_4ded2ba5e3333,"subject must tap a button each time they hear a tone or see a light flash, which is presented in a consistent rhythm. Then, they must continue tapping in this rhythm after the stimulus has ceased"
+115,time tap,time tap,con_4ded2bceed869,subject must tap a button as many times as possible in a period of 10 seconds. Usually repeated trials are administered and an average score is obtained.
+116,emotion manipulation,emotion manipulation,con_4ded4b345f18a,"some words on the list have neutral meaning, while other words have highly emotional content"
+117,category list,category list,con_4ded4b7c48e71,"words on the list, even if organized randomly, come from distinct categories of association so the subject can group them together as a memorization strategy"
+118,Transformation plates,Transformation plates,con_4df11413051f5,plates are designed so that a person with deficient color vision will report a different digit than someone with normal color vision
+119,Vanishing plates,Vanishing plates,con_4df1143e308e6,"plates are designed to that a person with deficient color vision will not see any digits, while people with normal color vision will report some digit"
+120,Hidden Digits plates,Hidden Digits plates,con_4df11498b173f,"plates are designed so that a person with deficient color vision will report seeing a digit, while people with normal color vision will not"
+121,Contamination/Cleaning,Contamination/Cleaning,con_4df2609cea616,questions that assess whether the participant has abnormal standards of cleanliness or abnormal negative feelings associated with uncleanliness
+122,Checking,Checking,con_4df260fd66ed8,"questions that assess whether the participant rechecks things that have been checked before, or checks things after certainty should already have been attained"
+123,Slowness,Slowness,con_4df26137bc517,questions that assess whether the participant takes longer than necessary to perform common tasks
+124,Doubting,Doubting,con_4df261fc3cb2d,questions that assess whether a participant requires an unrealistic amount of perfection or underestimates their ability to adequately perform tasks or make moral decisions
+125,Comprehension,Comprehension,con_4df298c5963fa,"subjects are played music and tested to see if they processed it, remembered it, or had the same auditory experience as others"
+126,Production,Production,con_4df298fddcc24,subjects are asked to play or sing music 
+127,Uncued,Uncued,con_4df8e1f29aef3,The subject is not shown a cue prior to the appearance of the stimulus
+128,Congruent Cue,Congruent Cue,con_4df8e24a62aa3,A cue appears before the target stimulus. This cue is in the same location as the target stimulus (a location cue) or pointing in the direction of the target stimulus (an orientation cue).
+129,Incongruent Cue,Incongruent Cue,con_4df8e2760dd20,"A cue appears before the target stimulus, but in another location or orientation."
+130,Word,Word,con_4df8fae1e5bec,participants are presented with a real word
+131,Morphologically Decomposable Pseudowords,Morphologically Decomposable Pseudowords,con_4df8fb518be8c,participants are presented with pseudowords whose structure contains morphemes that commonly exist in their language
+132,Morphologically Non-decomposable Pseudowords,Morphologically Non-decomposable Pseudowords,con_4df8fb9e02055,participants are presented with pseudowords that do not have morphological structure
+133,Semantically correct,Semantically correct,con_4dfa6ad39ee74,participants view sentences that are semantically correct and would make sense in everday speech (e.g. &#34;Did the visitor that admired the plants leave the wallet in the room?&#34;)
+134,Semantically anomalous,Semantically anomalous,con_4dfa6b1c620a6,"participants view sentences that are semantically incorrect and would not make sense (e.g. &#34;The boys admired the curly, new car of the secretary in the office.&#34;)"
+135,Semantically associated items,Semantically associated items,con_4dfa71f0c9afd,participants view items that have some semantic association (e.g. &#34;car&#34; and &#34;truck&#34;)
+136,Semantically unrelated items,Semantically unrelated items,con_4dfa7237ebfdd,participants view items that have no strong semantic association between them (e.g. &#34;shirt&#34; and &#34;airplane&#34;)
+137,Congruent Cue,Congruent Cue,con_4dfa889b33ab5,"Participants view stimuli that are pointing in the same direction as the visual field they appear in, or participants press a button that resembles the stimulus or visual field (i.e. pressing a right arrow on a keyboard when a right-facing arrow appears, or the stimulus is in the right visual field)"
+138,Incongruent Cue,Incongruent Cue,con_4dfa891db4ac6,"Participants view stimuli that are pointing opposite the visual field they appear in, or the participants press a button that is opposite the stimulus direction or visual field (i.e. pressing a left arrow on a keyboard when a right-facing arrow appears, or when the stimulus is in the right visual field)"
+139,0-back,0-back,con_4dfb9a322be5a,participants are asked to identify the spatial location of the dot in the current picture
+140,1-back,1-back,con_4dfb9a75a2ae8,"participants are asked to identify the spatial location of the dot presented 1 picture previously, or indicate whether the current dot matches the position of the dot in the previous picture"
+141,2-back,2-back,con_4dfb9ab8d6e90,"participants are asked to identify the spatial location of the dot presented 2 pictures previously, or indicate whether the current dot matches the position of the dot in the picture presented 2 previously"
+142,3-back,3-back,con_4dfb9af0983f6,"participants are asked to identify the spatial location of the dot presented 3 pictures previously, or indicate whether the current dot matches the position of the dot in the picture presented 3 previously"
+143,Trait Anxiety ,Trait Anxiety ,con_4dfba87cdac32,this half of the questionnaire evaluates how the participant feels in general
+144,State Anxiety,State Anxiety,con_4dfba8b045f20,this half of the questionnaire evaluates how the participant feels at the moment. This half is more likely to change with re-administration of the questionnaire
+145,congruent,congruent,con_4dfbb16a63016,the word is printed in the color that its name suggests (e.g. &#34;yellow&#34; printed in yellow ink)
+146,incongruent,incongruent,con_4dfbb1aa36fb5,the word is printed in a different color than its name suggests (e.g. &#34;yellow&#34; printed in red ink)
+147,Plausible Sentences,Plausible Sentences,con_4dff8003a65ab,participants view sentences that are grammatically correct and plausible as real sentences
+148,Implausible Snetences,Implausible Snetences,con_4dff8030b7c3b,participants view sentences that are grammatically incorrect and implausible as real sentences
+149,Single Number,Single Number,con_4dffcea98fb12,participants are asked to underline a specific number each time it appears on a printed page with random sequences of numbers
+150,Single Geometric Form,Single Geometric Form,con_4dffcee92f1ed,participants are asked to underline a specific symbol or drawing each time it appears on a printed page with random sequences of geometric forms
+151,Single Nonsense Letter,Single Nonsense Letter,con_4dffd03801231,"participants are asked to underline a single, specific letter each time it appears on a printed page with random sequences of letters"
+152,Gestalt Figure,Gestalt Figure,con_4dffd0991b013,participants are asked to underline a complex figure each time it appears on a page with a random sequences of similarly constructed complex figures
+153,Single Letter,Single Letter,con_4dffd0f56b62b,"participants are asked to underline a single, specific letter each time it appears on a printed page with random sequences of letters. Unlike the nonsense letter subtest, this test utilizes real letters from the alphabet of the participant&#39;s first language"
+154,Single Letter in Syllable Context,Single Letter in Syllable Context,con_4dffd14b5ae1b,participants are asked to underline all syllables containing a specific letter on a page of random sequences of syllables. 
+155,Two Letters,Two Letters,con_4dffd181cb5ac,"participants are asked to underline two different, real letters each time they appear on a printed page with random sequences of letters"
+156,Sequence of Geometric Forms,Sequence of Geometric Forms,con_4dffd1dbec2a2,"a page is filled with different orders of four geometric shapes. The participant is asked to underline the symbols when they occur in a specific order (e.g. triangle, then cross, then crescent, then circle)"
+157,Four-Letter Nonsense Syllable (Unpronounceable),Four-Letter Nonsense Syllable (Unpronounceable),con_4dffd2399e9c1,"a page is filled with random collections of syllables containing no vowels, and must underline a specific nonsense syllable (e.g. fsbm) each time it appears"
+158,Four-Letter Nonsense Syllable (Pronounceable),Four-Letter Nonsense Syllable (Pronounceable),con_4dffd28018603,"a page is filled with random collections of syllables containing vowels, and must underline a specific nonsense syllable (e.g. funp) each time it appears"
+159,Four-Letter Word,Four-Letter Word,con_4dffd2bac7de2,participants are asked to underline a specific four-letter word each time it appears on a page filled with random sequences of other four-letter words made up of the same letters as the target word
+160,Unspaced Four-Letter Word,Unspaced Four-Letter Word,con_4dffd3273ef33,"participants are asked to underline a specific four-letter word each time it appears on a page filled with random sequences of other four-letter words made up of the same letters as the target word. Unlike the Four-Letter Word subtest, this subtest does not include spaces in between the four-letter words"
+161,Single Number (Second Time),Single Number (Second Time),con_4dffd35b0ffab,"participants repeat the first subtest, but search for a different number this time"
+162,Congruent Cue,Congruent Cue,con_4e010aebbbc24,"a visual cue appears in the same place as the target will appear, but slightly early"
+163,Incongruent Cue,Incongruent Cue,con_4e010b0c96ff9,"a visual cue appears before the target does, but in a different location"
+164,RMW,RMW,con_4e0112e7d3937,participant is shown words and asked to later identify which ones have been seen before
+165,RMF,RMF,con_4e011301aec43,participant is shown faces and asked to later identify which ones have been seen before
+166,Matrix Reasoning,Matrix Reasoning,con_4e011a8762bf1,assesses the fluid intelligence of the participant
+167,Block Design,Block Design,con_4e011aded69ae,assesses spatial abilities of participants
+168,Similarities,Similarities,con_4e011afe30329,assesses semantic knowledge and verbal ability of the participant
+169,Vocabulary,Vocabulary,con_4e011b28ce9da,assesses the vocabulary and lexical knowledge of the participant
+170,Information,Information,con_4e0125dc5b957,the participant is asked questions to measure general knowledge
+171,Digit Span,Digit Span,con_4e01261c45bc4,the participant is given a set of digits to repeat either forward or backward. The set grows each time until the participant can no longer correctly recall all the digits in order
+172,Vocabulary,Vocabulary,con_4e01263d51a65,the participant is asked to define 35 words
+173,Arithmetic,Arithmetic,con_4e012662da0cf,the participant is asked to solve 14 story problems with mental arithmetic
+174,Comprehension,Comprehension,con_4e01268a18d60,the participant is asked 16 questions about social awareness
+175,Similarities,Similarities,con_4e0126b9ec375,the participant is asked to say how seemingly dissibmilar items might be similar
+176,Picture Completion,Picture Completion,con_4e0126dc12ff6,the participant is asked to identify the vital missing detail in 20 pictures
+177,Picture Arrangement,Picture Arrangement,con_4e012702f073f,the participant is given 10 sets of pictures and must arrange each set into a logical sequence
+178,Block Design,Block Design,con_4e012722ee912,the participant mut assemble blocks to match pictures of designs
+179,Digit Symbol,Digit Symbol,con_4e01278c5e3b9,the participant use a key - which pairs each number with a symbol - to identify which digit matches the symbols they are presented with
+180,Object Assembly,Object Assembly,con_4e0127abdddd2,the participant completes puzzles
+181,Vocabulary,Vocabulary,con_4e012e2269b4c,the participant is asked to define words
+182,Information,Information,con_4e012e64945d9,the participant is asked questions to measure general knowledge
+183,Logical Memory,Logical Memory,con_4e012f7ba03d0,participants must recall or recognize elements from a short story
+184,Verbal Paired Associates,Verbal Paired Associates,con_4e012fc0a6afb,participants must recall or recognize a word when prompted by an unrelated word that was paired with it during the presentation of word pairs
+185,Designs,Designs,con_4e01302681ad2,participants must recall visual details and spatial locations of designs
+186,Visual Reproduction,Visual Reproduction,con_4e01306ba8bb6,participants view a picture and reproduce it after it has been taken away
+187,Spatial Addition,Spatial Addition,con_4e013090c4ac2,participants manipulate visuospatial information in their working memory
+188,Symbol Span,Symbol Span,con_4e0130c9799c6,"participants must recall sequences of symbols, increasing in size with each correct completion"
+189,perceptual identification,perceptual identification,con_4e02368e6d12e,a word is presented extremely briefly (and often tachistoscopically) on a computer screen and the participant is asked to say the word aloud when they see it
+190,lexical decision,lexical decision,con_4e0236b24758c,a string of letters is presented and the participant is asked to identify whether the letters form a word or not
+191,latency identification,latency identification,con_4e023b95e4eb1,"words are presented that the participant is asked to read, but some words are very common and others are used infrequently"
+192,primed identification,primed identification,con_4e023c2ae3a10,"participants are shown words that are semantically or structurally similar to the target word before the target word, which they are asked to read, appears"
+193,Trait Affect,Trait Affect,con_4e02713a4577a,how the participant would answer questions in general
+194,State Affect,State Affect,con_4e027155c0175,"how the participant would answer questions at the moment, or over the past few days"
+195,Early Blind,Early Blind,con_4e038e680b751,subjects who have been blind since birth or before the acquisition of developed language and/or reading skills
+196,Late Blind,Late Blind,con_4e038e90bd1f9,subjects who lost their sight after acquiring the ability to read non-braille text
+197,Initiation,Initiation,con_4e08ed6a4cedb,"participants were instructed to complete a series of 15 sentences (e.g., He posted the letter without a â¦.) using the contextually predicted word (STAMP)"
+198,Inhibition,Inhibition,con_4e08ed9422d1a,"participants were instructed to complete a series of 15 sentences (e.g., He posted the letter without a â¦.) using totally unconnected words (e.g. BANANA)"
+199,0-back,0-back,con_4e08f52d8230f,participant is shown or read a list of letters and then asked to identify the last letter given
+200,1-back,1-back,con_4e08f54b8a1f9,participant is shown or read a list of letters and then asked to identify the letter given 1 letter previously
+201,2-back,2-back,con_4e08f563a4600,participant is shown or read a list of letters and then asked to identify the letter given 2 letters previously
+202,3-back,3-back,con_4e08f5a26750f,"participant is shown or read a list of letters and then asked to identify the letter given 3 letters previously, or asked if the current letter matches the letter given 3 letters back"
+203,cue onset asynchrony ,cue onset asynchrony ,con_4e31e4ff71bc3,"different onset lags between the two cues (e.g., the auditory onset is 50ms after visual onset)"
+204,cue onset asynchrony,cue onset asynchrony,con_4e31e8204d888,"different onset lags between the two cues (e.g., the auditory onset is 50ms after visual onset)"
+205,neutral,neutral,con_4e4170453dfb1,"the stimulus is a non-color word or nonword (e.g., &#34;house&#34; or &#34;XXXX&#34; printed in red ink&#34;)"
+206,verum acupuncture,verum acupuncture,con_4e495acbd916c,needles placed according to guidelines usually derived from traditional Chinese practice
+207,sham acupuncture,sham acupuncture,con_4e495af163b9a,needles placed at locations not corresponding to guidelines
+208,No-switch trials,No-switch trials,con_4e495e56dd1bc,trials that are preceeded by trials of the same type
+209,Switch trials,Switch trials,con_4e495e6ea76b0,trials that are preceeded by trials of the other task type
+210,Common animals,Common animals,con_4e49604f16ce1,"Animals that are frequent and commonly known (e.g., horse)"
+211,Rare animals,Rare animals,con_4e49606e91d44,"Animals that are not commonly encountered or known (e.g., egret)"
+212,Congruent,Congruent,con_4e49694dc6d46,flanker items indicate same response as target
+213,Incongruent,Incongruent,con_4e49695f7fb24,flanker items indicate opposite response as target
+214,Neutral,Neutral,con_4e4969740c6a5,flanker items do not indicate either response
+215,Cue: none,Cue: none,con_4e4969c33c594,no cue precedes trial
+216,Cue: double,Cue: double,con_4e4969eae9080,cue precedes trial but provides no information about the location of the upcoming stimulus
+217,Cue: spatial,Cue: spatial,con_4e496a10647ec,cue precedes trial and can predict location of upcoming stimulus 
+218,Target,Target,con_4e496f2729d3f,An &#34;X&#34; that is preceded by an &#34;A&#34;
+219,Distractors,Distractors,con_4e496f4abd731,All other items (including the &#34;A&#34; and any &#34;X&#34; not preceded by an &#34;A&#34;
+220,Baseline,Baseline,con_4e551ea3799e5,Stimulation at skin temperature
+221,Heat Stimulation,Heat Stimulation,con_4e551f0136d17,Stimulation at a temperature above pain threshold
+222,Body ownership,Body ownership,con_4e5bbcf7e689a,Synchronous paintbrush stroking of the occluded hand and the rubber hand elicits the illusion of the rubber hand being part of oneâs body.
+223,No body ownership,No body ownership,con_4e5bbda6f11ff,Asynchronous paintbrush stroking of the occluded hand and the rubber hand. 
+224,Noxious stimulation,Noxious stimulation,con_4e5d07e8aa85f,Painful stimuli (e.g. sharp tips) are delivered to the skin
+225,Non-noxious stimulation,Non-noxious stimulation,con_4e5d0827085a2,Non-painful stimuli (e.g. blunt tips) are delivered to the skin
+226,Stimulation at PT+0.7Â°C,Stimulation at PT+0.7Â°C,con_4e5e7bb11d3b2,Heat stimulation at pain threshold plus 0.7Â°C
+227,Stimulation at PT+1.3Â°C,Stimulation at PT+1.3Â°C,con_4e5e7bef29b14,Heat stimulation at pain threshold plus 1.3Â°C
+228,Baseline,Baseline,con_4e5e7c35246cc,"Rest, stimulation at skin temperature"
+229,Baseline,Baseline,con_4e5fcdd5bc764,Stimulation with indifferent temperature â not warm and not cold (around skin temperature)
+230,Warm,Warm,con_4e5fce1e14d37,"Stimulation with warm, but not painful, temperature"
+231,Cool,Cool,con_4e5fce7f45ec7,"Stimulation with cold, but not painful, temperature"
+232,Heat pain,Heat pain,con_4e5fced0a43a0,Stimulation with painful heat stimulus
+233,Cold pain ,Cold pain ,con_4e5fcf1a7fb30,Stimulation with painful cold stimulus
+234,Thermal grill ,Thermal grill ,con_4e5fcf4da0d3e,Stimulation with thermal grill
+235,No Pain,No Pain,con_4e6112c1b51c1,"Not painful thermal (hot/cold), electrical, chemical or mechanical stimulation"
+236,Pain,Pain,con_4e6112fc0a8c4,"Painful thermal (hot/cold), electrical, chemical or mechanical stimulation"
+237,No Pain,No Pain,con_4e6121f28cb21,"Not painful thermal (hot/cold), electrical, or mechanical stimulation"
+238,Pain,Pain,con_4e6122135c5e3,"Painful thermal (hot/cold), electrical, or mechanical stimulation"
+239,Noxious Cold ,Noxious Cold ,con_4e664d8cc1085,A noxious cold stimulus is applied to the skin
+240,Innocuous Cool ,Innocuous Cool ,con_4e664dde482aa,An innocuous cool stimulus is applied to the skin
+241,Neutral ,Neutral ,con_4e664e057e8b3,A neutral thermal stimulus is applied to the skin
+242,Painful,Painful,con_4e68e0ec9397f,Application of a painful electric stimulus
+243,Non-Painful ,Non-Painful ,con_4e68e1280bb1b,Application of a non-painful electric stimulus
+244,Baseline,Baseline,con_4e68e14867ee2,Rest
+245,Capsaicin-Evoked Pain ,Capsaicin-Evoked Pain ,con_4e6a2f906c4ec,Intradermal injection of capsaicin
+246,Rest,Rest,con_4e6a2fa945aff,"Rest, no stimulation"
+247,Baseline,Baseline,con_4e6a345e36b25,Stimulation at skin temperature
+248,Heat Stimulation,Heat Stimulation,con_4e6a34c8e3614,Heat stimulus above pain threshold
+249,Cold Task ,Cold Task ,con_4e6a453d055e8,Application of cold but not painful water
+250,Pain Task ,Pain Task ,con_4e6a45b172df5,Application of painful cold water
+251,Baseline,Baseline,con_4e6a45d9eae6d,No application of water
+252,Match trials,Match trials,con_4e8a0f0c33eb1,Trials on which the same shape is presented twice
+253,Mismatch trials,Mismatch trials,con_4e8a0f2605595,Trials on which different objects are presented
+254,Deterministic classification trials,Deterministic classification trials,con_4ebc64ff11a11,trials on which the subject classifies items
+255,blocks of both probabilistic classification trials and deterministic classification trials,blocks of both probabilistic classification trials and deterministic classification trials,con_4ebc684fbf0dd,trials on which the subject classifies items
+256,tone counting trials,tone counting trials,con_4ebc6aeadbf81,trials on which a subject listens and rembers that a tone was presented
+257,classification learning trials,classification learning trials,con_4ebc7658154a6,trials on which the subject classifies items
+258,classification learning trials,classification learning trials,con_4ebc98faf2729,trials on which the subject classifies items while also listening for a specific tone and keeps count of how many times it occurs
+259,tone-counting probe,tone-counting probe,con_4ebc9926b5598,probe for the number of times that the relevant tone was presented
+260,Gamble judgment,Gamble judgment,con_4ebd3eeacf977,Judgment of whether to accept or reject a particular gamble
+261,feedback,feedback,con_4ebd3c8329fd8,presentation of feedback following response
+262,Classification trials: Probabilistic,Classification trials: Probabilistic,con_4ebd3d3ded757,Classification on items learned with probabilistic feedback
+263,Classification trials: Deterministic,Classification trials: Deterministic,con_4ebd3d74160ea,Classification on items learned with deterministic feedback
+264,Failed stop trial,Failed stop trial,con_4ebd40282d26c,Trial on which subject fails to successfully inhibit
+265,Junk trial,Junk trial,con_4ebd4046e2ef7,Go trial on which subject fails to respond or responds incorrectly
+266,Go trials - critical,Go trials - critical,con_4ebd4179ce36d,Go trial on which the response corresponds to the one that should be inhibited on stop trials
+267,Go trials - noncritical,Go trials - noncritical,con_4ebd419090a49,Go trial on which the response corresponds to the one that should not be inhibited on stop trials
+268,Failed stop trial - critical,Failed stop trial - critical,con_4ebd41c62e086,"Trials on which a stop signal was presented and the response was the critical one (i.e., the one that should be inhibited)"
+269,Failed stop trial - noncritical,Failed stop trial - noncritical,con_4ebd41ebc1bbc,"Trials on which a stop signal was presented and the response was the noncritical one (i.e., the one that should not be inhibited)"
+270,Probe,Probe,con_4ebd4262dc8f7,Presentation of a probe regarding the number of tones counted in the block
+271,Probe,Probe,con_4ebd43333ae4d,Probe asking which of two numbers is higher
+272,Classification trials: Single task learning,Classification trials: Single task learning,con_4ebd43e58784f,Classification on items learned under single task conditions
+273,Classification trials: Dual task learning,Classification trials: Dual task learning,con_4ebd43fca537f,Classification on items learned under dual task conditions
+274,Junk trial,Junk trial,con_4ebd44252ef5e,Trials on which subject did not respond or made an error
+275,EE-Abstract-Novel,EE-Abstract-Novel,con_4ebd44f6ce988,Novel abstract English word
+276,EE-Abstract-Repeat,EE-Abstract-Repeat,con_4ebd457616acf,Repeated abstract English word (first seen in English)
+277,Probabilistic classification trials: Positive feedback,Probabilistic classification trials: Positive feedback,con_4ebd45f01543f,Trials on which subject classifies item and receives positive feedback
+278,Probabilistic classification trials: Negative feedback,Probabilistic classification trials: Negative feedback,con_4ebd45fd32ef6,Trials on which subject classifies item and receives negative feedback
+279,Probabilistic reversal learning trials: Positive feedback,Probabilistic reversal learning trials: Positive feedback,con_4ebd46789f909,Trials on which subject classifies item under reversal conditions and receives positive feedback
+280,Probabilistic reversal learning trials: Negative feedback,Probabilistic reversal learning trials: Negative feedback,con_4ebd469d8a3c9,Trials on which subject classifies item under reversal conditions and receives negative feedback
+281,House,House,con_4ebd47cf0dfed,Images of houses
+282,Scrambled,Scrambled,con_4ebd47de279d1,Scrambled images
+283,Words,Words,con_4ebd4851b94e8,Real words
+284,Consonant strings,Consonant strings,con_4ebd485d8c036,Consonant strings
+285,Objects,Objects,con_4ebd488f5a316,Images of various visual objects
+286,feedback,feedback,con_4ebd4cf1e5218,presentation of feedback following response
+287,EE-Concrete-Novel,EE-Concrete-Novel,con_4ebd50a63e4fd,Novel concrete English word
+288,ES-Abstract-Novel,ES-Abstract-Novel,con_4ebd51abcad7e,Novel abstract English word
+289,ES-Concrete-Novel,ES-Concrete-Novel,con_4ebd5208da2ca,Novel concrete English word
+290,SE-Abstract-Novel,SE-Abstract-Novel,con_4ebd524b68628,Novel abstract Spanish word
+291,SE-Concrete-Novel,SE-Concrete-Novel,con_4ebd527776c01,Novel concrete Spanish word
+292,SS-Abstract-Novel,SS-Abstract-Novel,con_4ebd529e6b0db,Novel abstract Spanish word
+293,SS-Concrete-Novel,SS-Concrete-Novel,con_4ebd52c09f52f,Novel concrete Spanish word
+294,Congruent Correct,Congruent Correct,con_4ebd59c1122ae,Participants respond correctly to a congruent cue
+295,Congruent Incorrect,Congruent Incorrect,con_4ebd59ee5e939,Participants respond incorrectly to a congruent cue
+296,Incongruent Correct,Incongruent Correct,con_4ebd5a0be306a,Participants respond correctly to a incongruent cue
+297,Incongruent incorrect,Incongruent incorrect,con_4ebd5a24bee02,Participants respond incorrectly to a incongruent cue
+298,Cat,Cat,con_4ebd5aadbbcc9,Images of cats
+299,Shoe,Shoe,con_4ebd5abb4cf5a,images of shoes
+300,Bottle,Bottle,con_4ebd5ac6c401f,images of bottles
+301,Scissors,Scissors,con_4ebd5ae179420,Images of scissors
+302,Chair,Chair,con_4ebd5af004f7e,Images of chairs
+303,Face,Face,con_4ebd5afbab5b2,Images of faces
+304,EE-Concrete-Repeat,EE-Concrete-Repeat,con_4ebd5c919bc58,Repeated concrete English word (first seen in English)
+305,ES-Abstract-Repeat,ES-Abstract-Repeat,con_4ebd5d114a4ec,Repeated abstract Spanish word (first seen in English)
+306,Junk single-task items,Junk single-task items,con_4ebd69416a180,Single task items on which the subject did not respond or made an error
+307,Junk dual-task items,Junk dual-task items,con_4ebd697931d91,Dual task items on which the subject did not respond or made an error
+308,ES-Concrete-Repeat,ES-Concrete-Repeat,con_4ebd6c63c9327,Repeated concrete Spanish word (first seen in English) 
+309,SE-Abstract-Repeat,SE-Abstract-Repeat,con_4ebd6ca71ac1f,Repeated abstract English word (first seen in Spanish)
+310,SE-Concrete-Repeat,SE-Concrete-Repeat,con_4ebd6d2831524,Repeated concrete English word (first seen in Spanish)
+311,SS-Abstract-Repeat,SS-Abstract-Repeat,con_4ebd6dbecfcad,Repeated abstract Spanish word (first seen in Spanish)
+312,SS-Concrete-Repeat,SS-Concrete-Repeat,con_4ebd6de3528c0,Repeated abstract Spanish word (first seen in Spanish)
+313,Congruent Correct,Congruent Correct,con_4ebd8d721c4dc,the participant is shown a stimulus flanked by some congruent image (the same letter or number as the stimulus or arrows pointing in the same direction as the target stimulus) and makes a correct response
+314,Congruent Incorrect,Congruent Incorrect,con_4ebd8ded947c1,the participant is shown a stimulus flanked by some congruent image (the same letter or number as the stimulus or arrows pointing in the same direction as the target stimulus) and makes an incorrect response
+315,Incongruent Correct,Incongruent Correct,con_4ebd8e0b9844c,the participant is shown a stimulus flanked by incongruent images (different letters or numbers or arrows pointing in the opposite direction) and makes a correct response
+316,Incongruent Incorrect,Incongruent Incorrect,con_4ebd8e2098713,the participant is shown a stimulus flanked by incongruent images (different letters or numbers or arrows pointing in the opposite direction) and makes an incorrect response
+317,Go trials - critical,Go trials - critical,con_4edcf376a11cb,Go trial on which the response corresponds to the one that should be inhibited on stop trials
+318,Go trials - noncritical,Go trials - noncritical,con_4edcf39c3717e,Go trial on which the response corresponds to the one that should not be inhibited on stop trials
+319,Successful stop,Successful stop,con_4edcf3d070d1c,Stop trial on which subjects successfully inhibit
+320,Failed stop trial - critical,Failed stop trial - critical,con_4edcf401c4af4,"Trials on which a stop signal was presented and the response was the critical one (i.e., the one that should be inhibited)"
+321,Failed stop trial - noncritical,Failed stop trial - noncritical,con_4edcf41fb3c07,"Trials on which a stop signal was presented and the response was the noncritical one (i.e., the one that should not be inhibited)"
+322,Junk trial,Junk trial,con_4edcf52c2e669,Go trial on which subject fails to respond or responds incorrectly
+323,correct recall,correct recall,con_4f4182c4c2814,None
+324,pump,pump,con_4ffc9bb00438e,The participant chooses to pump the balloon
+325,cash-out,cash-out,con_4ffc9be8c0792,The participant decides to stop pumping and put current earnings into the bank.
+326,in-phase,in-phase,con_50047c8de6910,movement is consistent between hands
+327,out-of-phase,out-of-phase,con_50047c958d589,movement is different between hands
+328,invariant,invariant,con_50049a5650899,distractor stimuli locations repeated across blocks within a session
+329,variable,variable,con_50049a912aa4e,distractor stimuli locations generated anew for each block within a session
+330,congruent,congruent,con_50049f59bd0fb,None
+331,incongruent,incongruent,con_50049f664e93b,None
+332,neutral,neutral,con_50049f6d1e831,None
+333,consistent,consistent,con_5005c166b72f1,number is in a circle whose color follows the pattern specified
+334,inconsistent,inconsistent,con_5005c17b31d31,number is in a circle whose color does not follow the pattern specified
+335,part 1,part 1,con_5005c1fa09530,participant is to make pencil line connections in numerical order between 25 encircled numbers which are randomly arranged; odd numbers are in pink and even numbers are in yellow
+336,part 2,part 2,con_5005c260d8671,"all numbers 1-25 are shown twice, once in pink and once in yellow; participant is to connect in sequential order and to alternate between colors, ignoring circled numbers out of pattern"
+337,synonymous,synonymous,con_500707ba5da67,word played in unattended channel is synonymous with that being played concurrently in attended channel
+338,associated,associated,con_500707e2b72c6,word played in unattended channel is related to but not synonymous with that being played concurrently in attended channel
+339,unassociated,unassociated,con_500708152c906,word being played in unattended channel is entirely unrelated to that being played concurrently in attended channel
+340,identical,identical,con_50070cba6b797,second number is identical to the first
+341,false alarm,false alarm,con_50070cd634c82,"second number is similar to the first in composition and order, but one digit is different"
+342,different,different,con_50070cea20c7b,second number is dissimilar from first
+343,false alarm,false alarm,con_50070f0e8bf1e,"second number is similar to the first in composition and order, but one digit is different"
+344,identical,identical,con_50070ef8a9847,second number is identical to the first
+345,different,different,con_50070f1e1f5b9,second number is dissimilar from first
+346,short,short,con_50071245a130e,delay of 5 seconds
+347,long,long,con_5007125352caa,delay of 60 seconds
+348,one cue,one cue,con_5007126a901e8,one dot-shaped cue appears at a time
+349,two cues,two cues,con_50071276b50c8,two dot-shaped cues appear at a time
+350,standard,standard,con_50071a37b1d5d,participants are shown an 8.5&#34;x11&#34; sheet of paper with a 15cm x 10cm array of numbers and are instructed to cross out specific numbers
+351,distraction,distraction,con_50071a8868d23,like standard except that participants are to ignore numbers being read aloud at a rate of 1/s through earphones while completing the task
+352,valid,valid,con_5007214ea57b0,probe is preceded by specified cue
+353,invalid,invalid,con_50072163abcd6,probe is preceded by non-specified cue
+354,control,control,con_5007230227b63,each task performed individually
+355,dual,dual,con_5007231499001,tasks performed simultaneously
+356,experimental,experimental,con_500ed40dee3f2,a distractor from the prime trial is the target in the test trial
+357,control,control,con_500ed43a992dc,neither targets nor distractors are repeated across trials
+358,1 syllable,1 syllable,con_500edb7bb2eba,None
+359,2 syllables,2 syllables,con_500edb831bf11,None
+360,3 syllables,3 syllables,con_500edb89d30bb,None
+361,4 syllables,4 syllables,con_500edba4a9d54,None
+362,Arabic,Arabic,con_500f1c07cfd4d,numberals are represented in the Arabic system
+363,verbal,verbal,con_500f1c258ac99,numerals are represented as words 
+364,wordlike,wordlike,con_500f2884d0343,nonwords more closely resemble real words
+365,less wordlike,less wordlike,con_500f28a8b2663,nonwords less closely resemble real words
+366,congruent,congruent,con_5016d64fde9f0,name matches drawing
+367,incongruent,incongruent,con_5016d65d3d127,name does not match drawing
+368,time-based,time-based,con_5016ec35ef530,remembering to perform task in specified intervals
+369,event-based,event-based,con_5016ec5405d68,remembering to perform task after a specified event
+370,high importance,high importance,con_5016ec67d0741,task described as more important than alternative task
+371,low importance,low importance,con_5016ecccbb23a,task described as less important than alternative task
+372,normal,normal,con_5016ed2c51295,participant is only given prospective memory tasks
+373,demanding,demanding,con_5016ed5b9d173,participant performs prospective memory task and a competing task (e.g. listening for a digit named in an auditory stream)
+374,related,related,con_50183cc26e109,prime is related to target
+375,unrelated,unrelated,con_50183cd33de35,prime is unrelated to target
+376,identical,identical,con_50183ce33eec5,prime is identical to target
+377,unprimed,unprimed,con_50183e7dbc0ec,only target is presented
+378,target infrequent,target infrequent,con_501859fc9af83,"the first half of the test, in which the target:nontarget ratio is 1:3.5"
+379,target frequent,target frequent,con_50185a2f8cbc5,"the second half of the test, in which the target:nontarget ratio is 3.5:1"
+380,amnesic,amnesic,con_502014153aa0b,participants have severely impaired declarative memory
+381,walker,walker,con_50203ad19317b,points of light move at a rate and in a direction generated by an algorithm approximating human walking
+382,scrambled walker,scrambled walker,con_50203b19cc8ea,"point of light mirror the direction and speed of walker points, but their x or y coordinates are randomly shifted"
+383,control,control,con_5022f1292501d,participant performs engages in an analogous activity
+384,positive reinforcement,positive reinforcement,con_50240f36c3eb2,behavior is followed by grant of a rewarding stimulus
+385,negative reinforcement,negative reinforcement,con_50240f820328f,behavior is followed by removal of an aversive stimulus
+386,positive punishment,positive punishment,con_50240fc4ca92e,behavior is followed by grant of an aversive stimulus
+387,negative punishment,negative punishment,con_50240fdd1ff57,behavior is followed by removal of a rewarding stimulus
+388,N (neutral),N (neutral),con_50242136e2a98,no aversive stimulus presented
+389,P (predictable),P (predictable),con_5024215793bcc,aversive stimulus only presented after a specific cue
+390,U (unpredictable),U (unpredictable),con_5024217433505,aversive stimulus presented without relationship to cue
+391,cued,cued,con_50242249c5047,"segment within a given trial (either N, P, or U) during which cue is present"
+392,uncued,uncued,con_502422595ada7,"segment within a given trial (either N, P, or U) during which cue is absent"
+393,subitizing,subitizing,con_50295964c90b4,"the number of items to be counted is below a threshold above which participants must actively count, typically less than 4"
+394,counting,counting,con_502959925374c,"the number of items is past a certain threshold beyond which participants must actively count, typically >4"
+395,low load,low load,con_50295b35edd59,items to be counted are appraised for one feature (e.g. color or arrangement)
+396,high load,high load,con_50295b3ccdd3d,items to be counted are appraised for more than one feature (e.g. color and arrangement)
+397,method of limits,method of limits,con_502985c73076c,None
+398,staircase method,staircase method,con_502985cece499,None
+399,random,random,con_502a99f58d5d3,some proportion of dots is moving in a particular motion while the rest move randomly
+400,,None,con_502a9a6a70396,dots other than those in target array move in a specific direction
+401,operation span,operation span,con_504ca95bcec8c,Presentation of mathematical verification followed by word
+402,sleep deprived,sleep deprived,con_50b55df0387fb,the subjects have not had adequate sleep for one or more nights
+403,controls,controls,con_50b55e45ba1cb,the subjects get adequate sleep or have not undergone neurobehavioral change
+404,congruent,congruent,con_50b66686e34f2,the associations are congruent with the participant&#39;s beliefs (i.e. negative words are associated with obesity when the participant has an implicit bias against the obese)
+405,incongruent,incongruent,con_50b666a40f0c3,the associations are incongruent with the participant&#39;s beliefs (i.e. positive words are associated with obesity when the participant has an implicit bias against the obese)
+406,threat-congruent,threat-congruent,con_50df0bc1ce0ae,trials where a threat stimulus appears in the same spatial location as a probe
+407,threat-incongruent,threat-incongruent,con_50df0bed9919f,trial where a threat appears on the opposite spatial hemi-field as a probe
+408,reward-congruent,reward-congruent,con_50df0c0a20ea1,trials where a positive-valence stimulus appears in the same sptial location as a probe
+409,reward-incongruent,reward-incongruent,con_50df0c24926ec,trials where a positive stimulus appears on the opposite spatial hemi-field as a probe
+410,neutral,neutral,con_50df0c3a6aa52,trials where a probe follows two identical neutral stimuli
+411,Valid HC-Hit Cue,Valid HC-Hit Cue,con_50df0eb2562c4,valid cue where following object was a subsequent high confidence hit
+412,Valid HC-Hit Obj,Valid HC-Hit Obj,con_50df0ed536d9d,object that was a subsequent high confidence hit and that followed a valid cue
+413,Valid LC-Hit Cue,Valid LC-Hit Cue,con_50df0eeeee5b6,valid cue where following object was a subsequent low confidence hit
+414,Valid LC-Hit Obj,Valid LC-Hit Obj,con_50df0f098f736,object that was a subsequent low confidence hit and that followed a valid cue
+415,Valid Miss Cue,Valid Miss Cue,con_50df0f215cb96,valid cue where following object was a subsequent miss
+416,Valid Miss Obj,Valid Miss Obj,con_50df0f36c245d,object that was a subsequent miss and that followed a valid cue
+417,Invalid HC-Hit Cue,Invalid HC-Hit Cue,con_50df0f4e0b601,invalid cue where following object was a subsequent high confidence hit
+418,Invalid HC-Hit Obj,Invalid HC-Hit Obj,con_50df0f64eaf31,object that was a subsequent high confidence hit and that followed an invalid cue
+419,Invalid LC-Hit Cue,Invalid LC-Hit Cue,con_50df0f7c63c57,invalid cue where following object was a subsequent low confidence hit
+420,Invalid LC-Hit Obj,Invalid LC-Hit Obj,con_50df0f9232e1f,object that was a subsequent low confidence hit and that followed an invalid cue
+421,Invalid Miss Cue,Invalid Miss Cue,con_50df0fa9cc5ad,invalid cue where following object was a subsequent miss
+422,Invalid Miss Obj,Invalid Miss Obj,con_50df0fbf22cb6,object that was a subsequent miss and that followed an invalid cue
+423,Valid Other Obj Cue,Valid Other Obj Cue,con_50df0fe14a329,valid cue where following stimulus was an untested or no response object
+424,Valid Other Obj,Valid Other Obj,con_50df0ff82e373,stimulus that was an untested or no response object and that followed a valid cue
+425,Valid Other Greeble Cue,Valid Other Greeble Cue,con_50df10153b7bf,valid cue where following stimulus was an untested or no response greeble
+426,Valid Other Greeble,Valid Other Greeble,con_50df102bc3458,stimulus that was an untested or no response greeble and that followed a valid cue
+427,Invalid Other Greeble Cue,Invalid Other Greeble Cue,con_50df10401ea84,invalid cue where following stimulus was an untested or no response greeble
+428,Invalid Other Greeble,Invalid Other Greeble,con_50df10598b840,stimulus that was an untested or no response greeble and that followed a invalid cue
+429,Look Neutral Cue,Look Neutral Cue,con_50df74ef610eb,participant views a cue that signals to look at a neutral image
+430,Look Negative Cue,Look Negative Cue,con_50df751810f05,participant views a cue that signals to look at an aversive image
+431,Reappraise Negative Cue,Reappraise Negative Cue,con_50df756e1d33c,participant looks at a cue that signals to reappraise an aversive image
+432,look Neutral Stimulus,look Neutral Stimulus,con_50df7707af0bb,participant views a neutral image
+433,Look Negative Stimulus,Look Negative Stimulus,con_50df7733cfb90,participant views an aversive image
+434,Reappraise Negative Stimulus,Reappraise Negative Stimulus,con_50df77948b9ad,participant reappraises the emotional value of an aversive image so the emotional impact is less negative
+435,Look Neutral Rating,Look Neutral Rating,con_50df78c4dd566,participants rate their negative affect after a neutral stimulus
+436,Look Negative Rating,Look Negative Rating,con_50df792ceb48a,participants rate their negative affect after an aversive stimulus
+437,Reappraise Negative Rating,Reappraise Negative Rating,con_50df797fd16fc,participants rate their negative affect after they were asked to reappraise an aversive image
+438,Look Neutral Anticipation,Look Neutral Anticipation,con_50df7da4c458d,anticipation trial that involves viewing a neutral cue without a neutral stimulus following the cue
+439,Look Negative Anticipation,Look Negative Anticipation,con_50df7dc9acea8,anticipation trial that involves viewing a negative cue without a aversive stimulus following the cue
+440,Reappraise Negative Anticipation,Reappraise Negative Anticipation,con_50df7e2f7195c,anticipation trial that involves viewing a reappraisal cue without the aversive image appearing after the cue
+441,control,control,con_50eb0a8e319e8,No background noise is heard; only the voice the participant is asked to repeat is audible.
+442,word in noise,word in noise,con_50eb0acb0b7d8,"Noise, such as other voices conversing, is heard in the background, and the participant must discriminate the voice."
+443,age,age,con_50eb0eb594ef3,this task is often administered at multiple time points to determine improvement
+444,Single dimension,Single dimension,con_50eb12042553f,"participants must match pictures based on one dimension (color, shape, type, size)"
+445,Switch dimensions,Switch dimensions,con_50eb123d568c0,"participants must match pictures based on one dimension (color, shape, type, size), then switch to another. This may be repeated multiple times in one trial. "
+446,1-List,1-List,con_50eb176d80cd0,participants repeat items according to only one dimension
+447,2-List,2-List,con_50eb17830016a,participants repeat items according to two dimensions
+448,left hand,left hand,con_50eb4dabf217b,participant uses only the left hand to place and remove pegs
+449,right hand,right hand,con_50eb4dbe3ac59,participant uses only the right hand to place and remove pegs
+450,left hand,left hand,con_50eb52b61eb0c,participant uses only the left hand to squeeze dynamometer
+451,right hand,right hand,con_50eb52c6989fd,participant uses only the right hand to squeeze dynamometer
+452,eyes open on solid surface,eyes open on solid surface,con_50eb55490a80d,None
+453,eyes closed on a solid surface,eyes closed on a solid surface,con_50eb55559d7fc,None
+454,eyes open on a foam surface,eyes open on a foam surface,con_50eb55639098e,None
+455,eyes closed on a foam surface,eyes closed on a foam surface,con_50eb556ec4c57,None
+456,eyes open in tandem stance on a solid surface,eyes open in tandem stance on a solid surface,con_50eb558569fa5,None
+457,right ear,right ear,con_50f37535cf238,None
+458,left ear,left ear,con_50f3753fcc0b8,None
+459,still,still,con_50f3818945a77,participant does not move their head or body during the task
+460,suppression,suppression,con_50f582ae00bbe,the subject must produce irrelevant speech during maintenance
+461,control,control,con_50f582c38ea5f,the subject must maintain information without production)
+462,control,control,con_50f7373e452f1,the participant completes the task in what they would consider their normal state (naive to alterations by the experimenters)
+463,subjective state,subjective state,con_50f7379834a1c,"the participant completes the task after an alteration to their subjective state has been made by the researchers (drug administered, a specific emotion elicited, etc.)"
+464,fixed win,fixed win,con_50f73d738249e, subject is awarded 100 points for a correct decision regardless of the number of boxes opened
+465,decreasing win,decreasing win,con_50f73d891f5be,number of points that can be won for a correct decision starts at 250 and decreases by 10 points for every box touched
+466,false belief story,false belief story,con_50f8708de32a9,participants listen to a false belief story
+467,false belief question,false belief question,con_50f870b8eb8cc,participants answer a question about the false belief story
+468,false belief picture story,false belief picture story,con_50f8712146b18,participants look at a physical representation of a false belief story
+469,false belief picture question,false belief picture question,con_50f871f68ae7a,participants answer a question about a picture of a false belief story
+470,Immediate,Immediate,con_50f9997f676f2,Participant is shown list immediately after learning target words
+471,Delayed,Delayed,con_50f999958552e,Participant is shown list 20 minutes after learning target words
+472,forward,forward,con_5106ef0dbbd61,the subject is given a set of numbers and asked to repeat them in the order given.
+473,backward,backward,con_5106ef2710e26,the subject is given a set of numbers and asked to repeat them in the opposite of the order given.
+474,sequencing,sequencing,con_5106ef40748b3,the subject is given a set of numbers and asked to list them in ascending order from smallest to largest.
+475,line criterion rule,line criterion rule,con_512e7df3f05ad,size of criterion line used for classifying stimuli
+476,size of line,size of line,con_512e7ed7dffc2,size of line stimulus presented on each trial
+477,line trial,line trial,con_512e7f07caf9d,trials with responses
+478,criterion rule,criterion rule,con_512e803a93e35,size of dot matrix(number of dots in dot matrix) used for classifying stimuli
+479,number of dots,number of dots,con_512e80b39668f,number of dots in dot matrix presented on each trial
+480,response time,response time,con_512e80e2a1e29,response time to dot stimuli
+481,trial,trial,con_512e816e6aa77,trials with responses
+482,Rating - Parametric,Rating - Parametric,con_5176d7e488bb9,Parametric modulation by rating
+483,dot criterion rule,dot criterion rule,con_512e8f483ae6a,size of dot matrix(number of dots in dot matrix) used for classifying stimuli
+484,number of dots,number of dots,con_512e8f98ce8e7,number of dots in dot matrix presented on each trial
+485,Rating,Rating,con_5176d7bee856e,Rating of affect across all conditions
+486,dot trial,dot trial,con_512e8fccc0954,trials with responses
+487,correct trial,correct trial,con_512e904eb351d,correct responses on line and dot stimuli trials
+488,error trial,error trial,con_512e906c50035,error trials on line and dot stimuli trials
+489,nontarget,nontarget,con_51537e91130e4,playing Space Fortress
+490,target,target,con_51537e897f2e7,simultaneously playing Space Fortress and performing an oddball task
+491,accept,accept,con_514a09160dc6c,trials accepted
+492,reject,reject,con_514a092211043,trials rejected
+493,change,change,con_51549090cc831,the second array contains a different item than the original
+494,no change,no change,con_515490a7787af,the second array is identical to the original
+495,Target,Target,con_5154969d504f7,the dot pattern matches the pattern that the subject is told to respond to
+496,Non-target,Non-target,con_515496b2797ae,the dot pattern differs from the intended target pattern
+497,Mirror-Switch,Mirror-Switch,con_5176cff54add4,Mirror-reversed trials preceded by a plain text trial
+498,Mirror-Repeat,Mirror-Repeat,con_5176d0097cac2,Mirror-reversed trials preceded by a mirror-reversed trial
+499,Plain-Switch,Plain-Switch,con_5176d01c424d9,Plain-text trials preceded by a mirror-reversed trial
+500,Plain-Repeat,Plain-Repeat,con_5176d02ddd1b0,Plain-text trials preceded by a plain-text trial
+501,Easy trials,Easy trials,con_5176d87fe1c3b,Trials in which the difference in value between options is large
+502,Hard trials,Hard trials,con_5176d88d48168,Trials in which the difference in value between options is small
+503,Easy - parametric,Easy - parametric,con_5176d8b1e4bf2,Parametric modulation by distance from indifference
+504,Hard - parametric,Hard - parametric,con_5176d8bb1aa49,Parametric modulation by distance from indifference
+505,line trial response time,line trial response time,con_5181f0ebe7145,response time for line trials
+506,dot trial response time,dot trial response time,con_5181f1086cf68,response time for dot trials
+507,measure of difficulty,measure of difficulty,con_5181f12f2e43a,where a higher number means greater difficulty
+508,pumps_fixed,pumps_fixed,con_5181f47468c45,average activity across all pumps with fixed duration and without parametric modulation
+509,pumps_demean,pumps_demean,con_5181f4b083b11,parametrically modulated activity by the demeaned number of pumps (linearly increasing) within each trial and with fixed duration
+510,pumps_fixed_real_RT,pumps_fixed_real_RT,con_5181f4e07430c,average activity across all pumps with duration of pumps set to actual RT of each pump
+511,cash_fixed,cash_fixed,con_5181f506e4391,average activity across all pumps on cash-out events with fixed duration and without parametric modulation
+512,cash_demean,cash_demean,con_5181f53313a76,parametrically modulated activity by the demeaned number of pumps on cash-out events (linearly increasing) within each trial and with fixed duration
+513,cash_fixed_real_RT,cash_fixed_real_RT,con_5181f559c92c9,average activity across all pumps on cash-out event with duration of pumps set to actual RT of each pump
+514,explode_fixed,explode_fixed,con_5181f5808ea93,average activity across all pumps on explosion events with fixed duration and without parametric modulation
+515,explode_demean,explode_demean,con_5181f5a480b56,parametrically modulated activity by the demeaned number of pumps on explosion events (linearly increasing) within each trial and with fixed duration
+516,control_pumps_fixed,control_pumps_fixed,con_5181f5ce21189,average activity across all pumps on control balloons with fixed duration and without parametric modulation
+517,control_pumps_demean,control_pumps_demean,con_5181f5f6e6f8b,parametrically modulated activity by the demeaned number of pumps on control balloons (linearly increasing) within each trial and with fixed duration
+518,control_pumps_fixed_real_RT,control_pumps_fixed_real_RT,con_5181f624a380b,average activity across all pumps on control balloon with duration of pumps set to actual RT of each pump
+519,probabilistic classification trials,probabilistic classification trials,con_5181f6ea8c76f,None
+520,deterministic classification trials,deterministic classification trials,con_5181f702d67cd,None
+521,parametric gain,parametric gain,con_5181f7678014f,None
+522,parametric loss,parametric loss,con_5181f7727d7e4,None
+523,distance from indifference,distance from indifference,con_5181f78292b39,None
+524,Go trial,Go trial,con_5181f83b8e5d0,Trials on which a go stimulus is presented and the subject is expected to respond
+525,Stop trial,Stop trial,con_5181f83b8e70e,"Trials on which a stop signal is presented at some delay (stop-signal delay) following the go stimulus, and the subject is expected to stop"
+526,Successful Stop Trial,Successful Stop Trial,con_5181f83b8e7c1,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject successfully withholds their response"
+527,Unsuccessful stop trial,Unsuccessful stop trial,con_5181f83b8e875,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject fails to withhold their response"
+528,Junk trial,Junk trial,con_5181f83b8e920,A go trial on which subject failed to respond or responded incorrectly
+529,Go trial,Go trial,con_5181f863d4de3,Trials on which a go stimulus is presented and the subject is expected to respond
+530,Stop trial,Stop trial,con_5181f863d4ecc,"Trials on which a stop signal is presented at some delay (stop-signal delay) following the go stimulus, and the subject is expected to stop"
+531,Successful Stop Trial,Successful Stop Trial,con_5181f863d4f88,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject successfully withholds their response"
+532,Unsuccessful stop trial,Unsuccessful stop trial,con_5181f863d5046,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject fails to withhold their response"
+533,Junk trial,Junk trial,con_5181f863d50f9,A go trial on which subject failed to respond or responded incorrectly
+534,correct classification of dual-task items,correct classification of dual-task items,con_5181fa1e66a37,None
+535,positive feedback,positive feedback,con_5181faac8b631,trials when subject received positive feedback
+536,negative feedback,negative feedback,con_5181fac688ec9,trials when subject received negative feedback
+537,classification learning trials,classification learning trials,con_5181fb7c1b32b,trials on which the subject classifies items
+538,Probe,Probe,con_5181fb7c1b42a,Probe asking which of two numbers is higher
+539,positive feedback,positive feedback,con_5181fb7c1b4c2,trials when subject received positive feedback
+540,negative feedback,negative feedback,con_5181fb7c1b543,trials when subject received negative feedback
+541,words,words,con_5181fc76c54d1,None
+542,consonant strings,consonant strings,con_5181fc87a2444,None
+543,task,task,con_518c28192f54f,None
+544,successful stop - critical,successful stop - critical,con_518c2b07f10de,trials when subjects successfully completed a stop - critical trial
+545,Cue: central,Cue: central,con_52df9fcd93042,cue precedes trial but no provides information about the location of the upcoming stimulus
+546,Repetition,Repetition,con_5346920ceb308,Repetition of words
+547,Generation,Generation,con_534692923de0a,Covert generation of verbs
+548,Finger,Finger,con_5346930c6e0be,Tap index finger in response to a picture of a finger
+549,Foot,Foot,con_5346931aab88a,Flex foot in response to picture of a foot
+550,Lips,Lips,con_5346932bab789,Purse lips in response to picture of lips
+551,Landmark,Landmark,con_534693b9b6973,Decide whether a line is crossed in the middle
+552,Detection,Detection,con_534693c651f43,Decide whether a line is crossed at all
+553,0-back faces,0-back faces,con_550b515f779fa,blocked
+554,0-back places,0-back places,con_550b516d4cacf,blocked
+555,0-back tools,0-back tools,con_550b517bd07c4,blocked
+556,0-back body parts,0-back body parts,con_550b51862472e,blocked
+557,2-back faces,2-back faces,con_550b51949b7df,blocked
+558,2-back places,2-back places,con_550b519cf0ebb,blocked
+559,2-back tools,2-back tools,con_550b51a7c499c,blocked
+560,2-back body parts,2-back body parts,con_550b51b041eed,blocked
+561,0-back correct trials,0-back correct trials,con_550b524533150,event-related
+562,0-back error trials,0-back error trials,con_550b52534532d,event-related
+563,0-back no response trials,0-back no response trials,con_550b525f91901,event-related
+564,2-back correct trials,2-back correct trials,con_550b526c7b603,event-related
+565,2-back error trials,2-back error trials,con_550b52788b465,event-related
+566,2-back no response trials,2-back no response trials,con_550b52861724b,event-related
+567,Left finger blocks,Left finger blocks,con_550b540d2ea96,None
+568,Right finger blocks,Right finger blocks,con_550b541683b30,None
+569,Left toe blocks,Left toe blocks,con_550b54243df8f,None
+570,Right toe blocks,Right toe blocks,con_550b542d7ef14,None
+571,tongue movement,tongue movement,con_550b54361e652,None
+572,Story,Story,con_550b54ed648e2,blocked
+573,Math,Math,con_550b54f4089d5,blocked
+574,Random Interaction,Random Interaction,con_550b558b93b30,None
+575,Mental Interaction,Mental Interaction,con_550b55940dfa4,None
+576,Relational Processing,Relational Processing,con_550b5a7eee88c,blocked
+577,Matching,Matching,con_550b5a86cc730,blocked
+578,Face,Face,con_550b5b2140faf,blocked
+579,Shape,Shape,con_550b5b287394c,blocked
+580,Mostly reward blocks,Mostly reward blocks,con_550b5c41f3442,blocked
+581,Mostly loss blocks,Mostly loss blocks,con_550b5c4d74cd7,blocked
+582,Reward trials,Reward trials,con_550b5c5ad13b9,event-related
+583,Loss trials,Loss trials,con_550b5c65129b1,event-related
+584,Neutral trials,Neutral trials,con_550b5c6fa8e76,event-related
+585,Go trial,Go trial,con_553fcbbea3d1c,Trials on which a go stimulus is presented and the subject is expected to respond
+586,Stop trial,Stop trial,con_553fcbbea4b0b,"Trials on which a stop signal is presented at some delay (stop-signal delay) following the go stimulus, and the subject is expected to stop"
+587,Successful Stop Trial,Successful Stop Trial,con_553fcbbea4d58,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject successfully withholds their response"
+588,Unsuccessful stop trial,Unsuccessful stop trial,con_553fcbbea5161,"A trial on which a stop signal is presented at a delay following the go stimulus, and the subject fails to withhold their response"
+589,Junk trial,Junk trial,con_553fcbbea52f9,A go trial on which subject failed to respond or responded incorrectly
+590,scrambled,scrambled,con_554139e235534,None
+591,letter string,letter string,con_554139eabf26c,None
+592,congruent,congruent,con_5542841f5334d,The color and word names match
+593,incongruent,incongruent,con_5542841f53e65,The color and word names conflict with one another
+594,neutral,neutral,con_5542841f55944,The word is not a color name
+595,face 1-back,face 1-back,con_558c32659a3e1,None
+596,face 2-back,face 2-back,con_558c326d31452,None
+597,scene 1-back,scene 1-back,con_558c3278dc907,None
+598,scene 2-back,scene 2-back,con_558c328005b4a,None
+599,Chinese character 1-back,Chinese character 1-back,con_558c328cddf52,None
+600,Chinese character 2-back,Chinese character 2-back,con_558c329653a9a,None
+601,go trials,go trials,con_558c336b97854,None
+602,successful stop trials,successful stop trials,con_558c3373920d1,None
+603,unsuccessful stop trials,unsuccessful stop trials,con_558c337e24f06,None
+604,motion cohrence,motion cohrence,con_558c33984dbd5,a parametric manipulation of dot motion coherence
+605,faces,faces,con_558c3434cf9dc,None
+606,body parts,body parts,con_558c343b8a62a,None
+607,limbs,limbs,con_558c344ab86d5,None
+608,houses,houses,con_558c3451526fb,None
+609,places,places,con_558c3456a3302,None
+610,cars,cars,con_558c345b994ef,None
+611,guitars,guitars,con_558c34620c6c0,None
+612,words,words,con_558c3468b0cb5,None
+613,numbers,numbers,con_558c3471d9a1c,None
+614,response,response,con_558c34808ccf8,events on which the subject made a target detection response
+615,Sentences,Sentences,con_558c35b971df5,None
+616,Nonwords,Nonwords,con_558c35c07b63e,None
+617,Response,Response,con_558c35cd4855e,Subject responds to the probe
+618,HE food choice period,HE food choice period,con_55c688e795c06,Visual presentation of high energy food stimulus
+619,LE food choice period,LE food choice period,con_55c6890d5a187,Visual presentation of low energy food stimulus
+620,antisaccade,antisaccade,con_565a2e7bd6c76,eye movements away from the fixation point
+621,prosaccade,prosaccade,con_565a2e7be494e,eye movements toward the fixation point
+622,regulate up,regulate up,con_565a31faa889e,None
+623,regulate down,regulate down,con_565a31faa8b7e,None
+624,Recent Positive,Recent Positive,con_566749b60c7c0,a member of the current trial training set and the preceding trial training set
+625,Recent Negative,Recent Negative,con_566749d614267,a member of the preceding trial training set but not the current trial training set
+626,Non-recent Positive,Non-recent Positive,con_56674a0e9d637,a member of the current trial training set but not the preceding trial training set
+627,Non-recent Negative,Non-recent Negative,con_56674a4005561,not a member of the current trial training set or the preceding trial training set
+628,Positive probe,Positive probe,con_56674c945d1ff,a letter that was in the memory set
+629,Negative probe,Negative probe,con_56674ca497dc6,a letter that was in the forget set
+630,Neutral probe,Neutral probe,con_56674cecc7de8,a letter that was not in the training set
+631,High-persistance (HP) environment,High-persistance (HP) environment,con_56674ea4ed756,"delays were drawn uniformly from the values 5, 10, 15, 20, 25, 30, 35, 40."
+632,Low-persistance (LP) environment,Low-persistance (LP) environment,con_56674ed5a5a79,"delays were set to 90 s with probability of 0.5, and otherwise drawn uniformly from the values 5, 10, 15 and 20s."
+633,Risk-Taking(RT),Risk-Taking(RT),con_5696acdba7dea,risk taking behavior
+634,Risk-Perceptions(RP),Risk-Perceptions(RP),con_5696acfd4fb4a,perceptions of risk
+635,Expected-Benefits(EB),Expected-Benefits(EB),con_5696ad24bf739,expected value and risk
+636,Finite Horizon,Finite Horizon,con_5696b19e94c9c,"small, fixed number of trials"
+637,Infinite Horizon,Infinite Horizon,con_5696b1b2083cd,unknown number of trials
+638,neutral,neutral,con_5696b640f3072,the position of the target digit is in the same position as the required hand response
+639,interference,interference,con_5696b66af3856,the position of the target digit is in the opposite position as the required hand response
+640,word reading,word reading,con_5696cded9ff2c,word reading score
+641,math calculation,math calculation,con_5696ce09649e2,math calculation score
+642,task A,task A,con_573624842b8cc,"The intention to perform task A is maintained during the delay 
+phase."
+643,task B,task B,con_573624908dd7e," The intention to perform task B is maintained during the delay 
+phase. "
+644,delay intention,delay intention,con_5736249fbd4e9, An intention is maintained during the delay phase. 
+645,no delay intention,no delay intention,con_573624acd7db1,No intention is maintained during the delay phase.
+646,Verbal recall Trial 3,Verbal recall Trial 3,con_5796146ecd955,The final round of immediate verbal recall
+647,Verbal recall delayed,Verbal recall delayed,con_579614a548c1f,Verbal recall after a delay of 10-15 minutes
+648,Visual recall trial 3,Visual recall trial 3,con_579614c186687,The final round of immediate visual recall
+649,Visual recall delayed,Visual recall delayed,con_579614d8e9c66,Visual recall after a delay of 10-15 minutes
+650,reverse role active,reverse role active,con_579643c7a8e63,reverse role errors for active voice sentences
+651,reverse role passive,reverse role passive,con_579643ddcaf30,reverse role errors for passive voice sentences
+652,lexical active,lexical active,con_579643ee71405,lexical errors for active voice sentences
+653,lexical passive,lexical passive,con_579643ff3cc11,lexical errors for passive voice sentences
+654,Visuspatial / Executive,Visuspatial / Executive,con_57964d06a7eff,"Alternating Trail Making, cube copying and clock drawing"
+655,Naming,Naming,con_57964da8a71f0,Verbal naming of line drawings of three animals
+656,Memory,Memory,con_57964dbfc42a6,Memorisation of five spoken words (not scored)
+657,Attention,Attention,con_57964e18ab6dd,"Forward and backward digit list repetition, vigilance (1-back) and serial 7s"
+658,Language,Language,con_57964e387e505,Sentence repetition and letter fluency
+659,Abstraction,Abstraction,con_57964e5816aa9,Category naming
+660,Delayed recall,Delayed recall,con_57964e783c81c,Recall of the five words learned earlier
+661,Orientation,Orientation,con_57964e8d8af88,"Date, month, year, day, place and city"
+662,one-step command,one-step command,con_5798ccf7ef929,None
+663,two-step command,two-step command,con_5798cd003e9c1,None
+664,three-step command,three-step command,con_5798cd0763c98,None
+665,four-step command,four-step command,con_5798cd14446ef,None
+666,five-step command,five-step command,con_5798cd1c60b32,None
+667,Moral dilemma,Moral dilemma,con_57ebe67799487,Presentation of moral dilemma vignette
+668,Control,Control,con_57ebe6857b051,Presentation of non-normal vignette
+669,rest,rest,con_57ebe69fdce6f,resting baseline
+670,BELIEF,BELIEF,con_5845ae50c90f8,stories describing false beliefs
+671,PHOTO,PHOTO,con_5845ae7a151ae,stories describing outdated (i.e. false) photographs and maps
+672,BIO,BIO,con_58a5d3341afb2,Biological motion
+673,SCRAM,SCRAM,con_58a5d341205d5,Scrambled motion
+674,Stories on intentional social norm violations,Stories on intentional social norm violations,con_58c80ce8852f9,None
+675,Stories on unintentional social norm violations,Stories on unintentional social norm violations,con_58c80cf6892fe,None
+676,Neutral social stories,Neutral social stories,con_58c80cff79ecd,None
+677,past events,past events,con_59ed241532991,"A set of details (e.g., person, place, object) from participants&#39; own autobiographical memories is presented on a screen and participants are asked to recall a past event in as much detail as possible"
+678,future events,future events,con_59ed24533aa21,"A set of details (e.g., person, place, object) that has been recombined from details of participants&#39; autobiographical memories is presented on a screen and participants are asked to imagine a novel future event in as much detail as possible"
+679,"CS- trial: 0% chance of aversive reinforcer, regardless of response",,con_PT07mIpde9ayt,
+680,"CS+ trial: aversive reinforcer administered [on 80% of trials], if no  avoidance response made",,con_Vy4e1x3SzIekH,
+681,"GS trial: 0% chance of aversive reinforcer, regardless of response",,con_DzqO65o0FRLb3,
+682,Decision,,con_9w7FbLYnIlNWZ,
+683,Food image viewing,,con_j5Vu7JR7tM4RV,
+684,Non-food image viewing,,con_VuCuA0qAoSPkA,

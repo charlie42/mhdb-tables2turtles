@@ -1,0 +1,78 @@
+,name,id_task,prop_id,uri,description
+0,STOP-IT,tsk_4a57abb949e1a,imp_50f43fe2e7df6,http://www.psy.vanderbilt.edu/faculty/logan/#stopit,Free implementation of stop signal task for Windows
+1,Python stop signal task,tsk_4a57abb949e1a,imp_50f488855ab40,http://www.poldracklab.org/software/tasks/,Free implementations of stop signal task for multiple platforms
+2,Implementation Name Placeholder,trm_50df0b8e9dfa6,imp_517bf438b92ff,http://Interpretazioni,"TR rapido stimolo minaccioso congruente.
+TR lungo stimolo minaccioso incongrunte.
+Attenzione sostenuta stimoli minaccioso (maggiori richieste cognitive) difficoltÃ  di disingaggio. "
+3,Implementation Name Placeholder,trm_4c40d10cd776e,imp_520d32a05fec0,http://www.psychology.gatech.edu/renglelab/english-tasks.html,"Implementation of automated OSPAN and several other working memory tasks, for E-Prime, MEL, and Inquisit."
+4,Implementation Name Placeholder,tsk_4a57abb949e0c,imp_541be4ffa7ab6,http://www.millisecond.com/download/library/Sternberg/,Inquisit version
+5,Implementation Name Placeholder,tsk_4a57abb949a93,imp_541be5ba7501b,http://www.millisecond.com/download/library/GoNoGo/,Inquisit version. Cued Go/No-Go Task as described in Fillmore et. al. (2006)
+6,Implementation Name Placeholder,trm_4da6304c9aa23,imp_541be601c706e,http://www.millisecond.com/download/library/ANT/,Inquisit 4 version. Adults and children versions.
+7,Implementation Name Placeholder,trm_53c4465b0466f,imp_54f4be1b8f192,http://bobspunt.com/whyhow-localizer/,"The Why/How Localizer Task is a robust, efficient, and standardized task for investigating social cognition. Participants answer attributional (why) and factual (how) questions about facial expressions (face) and hand actions (hand) shown in naturalistic photographs."
+8,Implementation Name Placeholder,trm_553e85265f51e,imp_553e855350abd,http://www.unicog.org/pm/pmwiki.php/Site/FunctionalLocalizer,E-Prime in various languages
+9,Implementation Name Placeholder,trm_5585c83d15fad,imp_5585c8bd6876a,http://www.sleep.pitt.edu/content.asp?id=1484&subid=2316,"PSQI article, scoring, and instrument"
+10,Implementation Name Placeholder,trm_558c35979a284,imp_558c35a892a36,http://web.mit.edu/evelina9/www/funcloc/funcloc_localizers.html,Federenko lab language localizers
+11,Implementation Name Placeholder,tsk_4a57abb949bcd,imp_55c902919aca0,https://github.com/nialllally/nback_dprime,matlab with cogent toolbox
+12,Implementation Name Placeholder,trm_4f2457a8b0bc8,imp_55c90319a8522,https://github.com/tmalsburg/py-span-task,"This is a general working memory task for may OS, not necessarily the exact task detailed in the description, but relevant for verbal working memory"
+13,Implementation Name Placeholder,trm_552174863d51e,imp_55c903515706a,https://github.com/bnicenboim/py-ran-task,The script is basically an adapation (or hack) of a Python program created by Titus Von der Malsburg (originally for the operation span task). Py-RAN-Task can be used for testing the Rapid Automatized Naming task on a computer with Python (and tkSnack for recording the audio).
+14,Implementation Name Placeholder,trm_4da6304c9aa23,imp_5602b42b498de,https://www.sacklerinstitute.org/cornell/assays_and_tools/ant/jin.fan/ant/ANTdownload.html,Original task. e-prime / java / online / short versions for adults and children.
+15,Implementation Name Placeholder,tsk_4a57abb949e27,imp_5602b65427676,http://www.millisecond.com/download/library/Stroop/,Inquisit v.3/v.4
+16,Implementation Name Placeholder,trm_5696d061adfb5,imp_5696e9fce6074,http://www.wpspublish.com/store/p/3098/wide-range-achievement-test-4-wrat4,"The fourth edition of this classic test measures the basic academic skillsâreading, spelling, and mathematical computationânecessary for effective learning, communication, and thinking. This version features an entirely new subtest, Sentence Comprehension, to enhance the scope of the test and to meet the need for a measure of reading comprehension."
+17,Implementation Name Placeholder,tsk_4a57abb949d32,imp_5796469eedd13,http://www.pearsonclinical.co.uk/Psychology/AdultCognitionNeuropsychologyandLanguage/AdultLanguage/PyramidsandPalmTrees/PyramidsandPalmTrees.aspx,"Assess semantic access from words and pictures. Determine the degree to which a subject can access meaning from pictures and words.
+Author(s): David Howard & Karalyn Patterson
+Publication Year: 1992
+ISBN: 9780749133641"
+18,Implementation Name Placeholder,tsk_4a57abb949e44,imp_579649381985f,http://www.adni-info.org/Scientists/WorksheetPackets.html,"The DSST was used in the ADNI 1 Cognitive Assessments, which can be downloaded from the link."
+19,Implementation Name Placeholder,trm_57964b8a66aed,imp_57964c5b5c470,http://www.mocatest.org,This website is run by the authors of the MoCA and distributes scoresheets and instructions for the test.
+20,Implementation Name Placeholder,trm_5798c6a933abc,imp_5798c7469f8f2,http://dx.doi.org/10.1176/ajp.141.11.1356,"Written word recognition as part of the ADAScog. Instructions are given as follows:
+&#34;The patient reads aloud 12 high imagery words. These words are then randomly mixed with 12 words the patient has not seen. The patient indicates whether or not the word was shown previously. Then two more trials of reading the original words and recognition are given. The score equals the mean number of incorrect responses for three trials (maxi- mum= 12).&#34;"
+21,Implementation Name Placeholder,trm_5798cb6027f28,imp_5798ccd1bd5cc,http://dx.doi.org/10.1176/ajp.141.11.1356,"Following commands is part of the ADAScog. Instructions are summarised as follows:
+&#34;Receptive speech is assessed also on the patientâs ability to carry out one- to five-step commands.
+1. Make a fist.
+2. Point to the ceiling, then to the floor.
+3. Put the pencil on top of the card, then put it back.
+4. Put the watch on the other side of the pencil and turn over the card.
+5. Tap each shoulder twice with two fingers, keeping your eyes shut.&#34;"
+22,Implementation Name Placeholder,trm_5798d0fbe2bd1,imp_5798d1314c63d,http://dx.doi.org/10.1176/ajp.141.11.1356,Ideational praxis is part of the ADAScog
+23,Implementation Name Placeholder,trm_5798d2693915d,imp_5798d28d3a0c0,http://www.mocatest.org/,Clock drawing is part of the MoCA test.
+24,Implementation Name Placeholder,trm_5798d7ba0197d,imp_5798d7f1c61b3,http://www.mocatest.org/,Orientation is part of the MoCA test
+25,Implementation Name Placeholder,trm_5798d7ba0197d,imp_5798d804036d8,http://dx.doi.org/10.1176/ajp.141.11.1356,Orientation is part of the ADAScog
+26,Implementation Name Placeholder,trm_57ebe6583f52d,imp_57ebe7080561b,https://github.com/OpenCogLabRepository/moral-dilemma,PsychoPy implementation of the Harrison 2008 Moral Dilemma task.
+27,Implementation Name Placeholder,trm_5667488d52ccc,imp_59a2ea5095197,http://www.millisecond.com/download/library/anglingrisktask/,Inquisit
+28,Inquisit,,imp_EQvPlPzTMkrZj,http://www.millisecond.com/download/library/errorawarenesstask/,The Inquisit Lab/Inquisit Web implementation of the EAT
+29,Cognition Lab - ANT,,imp_AiUlSQPSHDvPt,https://cognitionlab.com/portfolio/attentional-network-task/gallery/library/,Web-based Configurable Test Paradigm
+30,Cognition Lab - TMT,,imp_8Px1ZKa1Vg99k,https://cognitionlab.com/portfolio/trail-making-task/gallery/library/,Configurable web-based test paradigm
+31,Cognition Lab - TOH,,imp_WTpj0kxzCx9p7,https://cognitionlab.com/portfolio/tower-of-hanoi/gallery/library/,Configurable web-based test paradigm
+32,Cognition Lab - FLT,,imp_D7wxTSRW340Yv,https://cognitionlab.com/portfolio/flanker-task/gallery/library/,Configurable web-based test paradigm
+33,Cognition Lab - VAS,,imp_pafxZ6Y3qSlkh,https://cognitionlab.com/portfolio/vas/gallery/library/,Configurable web-based test paradigm
+34,Cognition Lab - NBT,,imp_1wIeFhtRizlKc,https://cognitionlab.com/portfolio/nback/gallery/library/,Configurable web-based test paradigm
+35,Cognition Lab - WLT,,imp_jrTJ0OSJS5MLd,https://cognitionlab.com/portfolio/wlist/gallery/library/,Configurable web-based test paradigm with English and German word pool
+36,Cognition Lab - SST,,imp_51WBLZkGdsWRu,https://cognitionlab.com/portfolio/stopgo/gallery/library/,Configurable web-based CRT paradigm with adjustable threshold and characteristic of stop signal
+37,Cognition Lab - STRP,,imp_cw4c71O5vrKMP,https://cognitionlab.com/portfolio/color-naming-task-stroop/gallery/library/,Configurable web-based test paradigm
+38,Cognition Lab - MLI,,imp_Q7VkTp7W0KIg7,https://cognitionlab.com/portfolio/line-length-estimation-mueller-lyer/gallery/library/,Configurable web-based test paradigm
+39,Cognition Lab - LMS,,imp_IaujhLWUuNkiU,https://cognitionlab.com/portfolio/location-memory-span/gallery/library/,Configurable web-based test paradigm with original or reverse recall of spatial sequence
+40,Cognition Lab - DMS,,imp_d4d4QP9yJD4mv,https://cognitionlab.com/portfolio/digit-memory-span/gallery/library/,Configurable web-based test paradigm with original or reverse recall
+41,Cognition Lab - WL,,imp_VqTMPmfE4j4hg,https://cognitionlab.com/portfolio/wlist/gallery/library/,"Configurable web-based test paradigm with presentation, recall, and recognition blocks generated from English or German word pool"
+42,Cognition Lab - MVT,,imp_BIAHu7Vc4KFez,https://cognitionlab.com/portfolio/maze/gallery/library/,"Configurable web-based test paradigm presenting a moving marker in a grid. Signal is defined as the marker moving in the same direction twice. This  task has adjustable signal probability, event rate, and trail visualization to change working memory demands"
+43,Cognition Lab - CST,,imp_LW8WACANpcPQI,https://cognitionlab.com/portfolio/card-sorting-test/gallery/library/,Configurable web-based test paradigm with adjustable number and length of series of using same rule
+44,Cognition Lab - SRTT,,imp_AARm9CZlg8cQt,https://cognitionlab.com/portfolio/serial-reaction-time-task/gallery/library/,Configurable web-based test paradigm with adjustable length of repeating sequence and number of trials
+45,Cognition Lab  - NPR,,imp_KgnfCtJRzA4Lw,https://cognitionlab.com/portfolio/negative-priming/gallery/library/,"Configurable web-based test paradigm with the digits 1,2,3,4 and adjustable focus (global,local)  and transitions between target and distractor to study negative priming effects"
+46,Cognition Lab - NPR,,imp_1IojdJoLC55bN,https://cognitionlab.com/portfolio/negative-priming/gallery/library/,"Configurable web-based test paradigm with the digits 1,2,3,4 and adjustable focus (global,local)  and transitions between target and distractor to study negative priming effects"
+47,Cognition Lab - SAT,,imp_MIXLZAPT8pJr3,https://cognitionlab.com/portfolio/serial-addition-task/gallery/library/,"Configurable web-based test paradigm with visual or auditory stimulus presentation adjustable task mode (self-paced, fixed interval, adaptive) and digit range (single, double digit)"
+48,Cognition Lab - SDS,,imp_UIXCjHxd79Ctl,https://cognitionlab.com/portfolio/digit-symbol-substitution/gallery/library/,Configurable web-based test paradigm with 9:9 of 8:4 stimulus to key mapping
+49,Cognition Lab  - SDS,,imp_QZogr46FaWXO7,https://cognitionlab.com/portfolio/digit-symbol-substitution/gallery/library/,Configurable web-based test paradigm to map symbols to digits. Each digit is assigned to key
+50,Cognition Lab - VS,,imp_yS2FMSBxcuj9Y,https://cognitionlab.com/portfolio/visual-search/gallery/library/,"Configurable web-based test paradigm with search of 'T' in {I,Z} or 'T' in {I,N}, or arrow among triangle to induce parallel and sequential search mode due to global/local feature discrimination between visual target and distractors"
+51,Cognition Lab - TSW,,imp_jEa0PmhhZKpXO,https://cognitionlab.com/portfolio/task-switching/gallery/library/,Configurable web-based test paradigm switching between for odd/even and less/greater 5 judgment as single (blocked) or alternating task
+52,Cognition Lab - SMF,,imp_yyembxheDItEu,https://cognitionlab.com/portfolio/sternbergs-memory-search-fixed-set/gallery/library/,Configurable web-based test paradigm with adjustable set size and block length
+53,Cognition Lab  - SMF,,imp_ExMATMmedfBmH,https://cognitionlab.com/portfolio/sternbergs-memory-search-fixed-set/gallery/library/,Configurable web-based test paradigm with adjustable set size and length of recognition block
+54,Cognition Lab - SEF,,imp_CmuGe84ZVOGJl,https://cognitionlab.com/portfolio/simon-effect/gallery/library/,Configurable web-based test paradigm with two colors and left/center/right stimulus locations
+55,Cognition Lab - SPT,,imp_KaVnbpxTU2zq2,https://cognitionlab.com/portfolio/spatial-attention-task/gallery/library/,Configurable web-based test paradigm with adjustable endogenous or exogenous spatial cue for left/right stimulus position
+56,Cognition Lab - PLM,,imp_TDNH71bpssR7z,https://cognitionlab.com/portfolio/letter-match/gallery/library/,Configurable web-based test paradigm with adjustable block design for blocked or mixed treatment conditions
+57,Cognition Lab - SRT,,imp_ynmRuniUvkDUQ,https://cognitionlab.com/portfolio/sustained-readiness-task/gallery/library/,Configurable web-based test paradigm with adjustable characteristics of random inter-stimulus interval and block length
+58,Cognition Lab - DND,,imp_IV4K9lWAxvfc8,https://cognitionlab.com/portfolio/donders-response-types/gallery/library/,"Configurable web-based task paradigm with instruction for Donders type A,B, and C response types based on identical stimulus material"
+59,Cognition Lab - MRT,,imp_kz7eTWA7MZbpJ,https://cognitionlab.com/portfolio/mental-rotation/gallery/library/,Configurable web-based task paradigm that presents regular or flipped letters or digits in adjustable angles of rotation
+60,Cognition Lab - HPL,,imp_8zmAkcXiq50hU,https://cognitionlab.com/portfolio/hidden-path-learning/gallery/library/,Configurable web-based task paradigm that presents a grid of an adjustable size and generates a random path of adjustable length to be discovered by the subject.
+61,Cognition Lab - UST,,imp_duslsScTL4e8L,https://cognitionlab.com/portfolio/unstable-tracking/gallery/library/,Configurable web-based task paradigm which asks subject to keep a marker in the center of the screen. The instability of the marker is adjustable or adaptive simulating flight characteristics of an unstable airplane.
+62,Cognition Lab - UST,,imp_Oaw29VNzSOxQN,https://cognitionlab.com/portfolio/unstable-tracking/gallery/library/,Configurable web-based task paradigm presenting a memory or choice reaction task in combination with a compensatory tracking task.
+63,Cognition Lab - RTR,,imp_MWAdapa78XkqK,https://cognitionlab.com/portfolio/road-tracking/gallery/library/,"Configurable web-based task paradigm which asks subjects to follow a simulated road with adjustable difficulty of the road, optional turbulence (side wind), and preview window"
+64,Cognition Lab - TAP,,imp_JQOQtPFXz9QGB,https://cognitionlab.com/portfolio/tapping/gallery/library/,Configurabe web-based task paradigm adjustable in length

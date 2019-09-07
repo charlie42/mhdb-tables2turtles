@@ -1,0 +1,969 @@
+,name,alias,concept_class,prop_id,definition_text
+0,abductive reasoning,,ctp_C3,trm_4a3fd79d096be,The process of adopting an explanatory hypothesis; inferring the cause A as a possible explanation for the consequence B 
+1,abstract analogy,,ctp_C3,trm_4a3fd79d096e3,high-level analogy that retains general information relevant to many specific instances
+2,abstract knowledge,,ctp_C3,trm_4a3fd79d096f0,Knowledge that is general and not tied to a specific instance.
+3,acoustic coding,,ctp_C1,trm_4a3fd79d096fc,a type of short term memory coding that represents the acoustic properties of the signal
+4,acoustic encoding,,ctp_C1,trm_4a3fd79d09707,the processing and encoding of auditory input for storage and later retrieval.
+5,acoustic phonetic processing,,ctp_C6,trm_4a3fd79d09713,"the cognitive ability to discriminate items on the basis of contrasts in sonorance, manner, place, or voicing in auditory stimuli.
+"
+6,acoustic processing,,ctp_C1,trm_4a3fd79d0971e,"the extraction of information from signals propagated undersea, in the atmosphere, or in the solid earth in the presence of acoustic noise."
+7,action,,ctp_C7,trm_4a3fd79d09735,"the bringing about of an alteration by force or through a natural agency; expression by means of attitude, voice, and gesture; a function of the body or one of its parts; an act of will; a thing done; the accomplishment of a thing usually over a period of time, in stages, or with the possibility of repetition."
+8,activation,,,trm_4a3fd79d09741,the relative engagement of a particular mental representation compared to other representations
+9,activation level,,,trm_4a3fd79d0974d,quantity or amount of activation
+10,adaptation,,ctp_C5,trm_4a3fd79d09758,adjustment to environmental conditions; adjustment of a sense organ to the intensity or quality of stimulation; modification of an organism or its parts that makes it more fit for existence under the conditions of its environment. 
+11,adaptive control,,ctp_C7,trm_4a3fd79d09764,modifying the control law used by a controller to cope with the fact that the parameters of the system being controlled are slowly time-varying or uncertain.
+12,affect perception,,ctp_C1,trm_4a3fd79d09770,"The ability to understand a facial, vocal, or gestural behavior that serves as an indicator of emotion."
+13,affect recognition,,ctp_C8,trm_4a3fd79d0977b,The ability to understand a physical expression that serves as an indicator of emotion.
+14,altruism,selflessness,ctp_C10,trm_4a3fd79d097b4,helping others in the absence of an immediately obvious reward.
+15,altruistic motivation,,ctp_C10,trm_4a3fd79d097bf,A desire or need to help others driven by selflessness.
+16,alveolar,,ctp_C6,trm_4a3fd79d097cb,speech sound articulated with the tip of the tongue touching or near the teethridge.
+17,amodal representation,,,trm_4a3fd79d097d6,The way the brain codes multiple inputs such as words and pictures to integrate and create a larger conceptual idea; independent of a particular modality
+18,analog representation,,,trm_4a3fd79d097e2,a value or variable in analog form.
+19,analogical encoding,,,trm_4a3fd79d097ed,the structural comparison of a familiar with a novel situation
+20,analogical inference,,,trm_4a3fd79d097f9,"is the ability to reason by permitting the extension of knowledge of a target domain by virtue of its similarity to a base domain. The general procedure for analogical inference involves copying structure from the base to the target in which missing information is generated, and substitutions are made for items for which analogical correspondences have already been found.
+"
+21,analogical problem solving,,ctp_C3,trm_4a3fd79d09804,using principles or concepts from a well-understood situation to solve problems in a new domain or area
+22,analogical reasoning,,ctp_C3,trm_4a3fd79d09810,"a method of processing information that compares the similarities between new and understood concepts, then uses those similarities to gain understanding of the new concept; a form of inductive reasoning."
+23,analogical transfer,,ctp_C3,trm_4a3fd79d0981b,The transfer of knowledge from one situation to another by finding a set of one-to-one correspondences between aspects of one body of information and aspects of another.
+24,analogy,,,trm_4a3fd79d09827,inference that if two or more things agree with one another in some respects they will probably agree in others; resemblance in some particulars between things otherwise unlike; correspondence between the members of pairs or sets of linguistic forms that serves as a basis for the creation of another form; correspondence in function between anatomical parts of different structure and origin.
+25,anchoring,,ctp_C3,trm_4a3fd79d09833,"a cognitive bias that describes the common human tendency to rely too heavily, or &#34;anchor,&#34; on one trait or piece of information when making decisions."
+26,anticipation,"intuition, foreknowledge, prescience, foresight, prediction, imaginative speculation",,trm_4a3fd79d09849,"prior expectation of an event or occurrence, sometimes accompanied by an emotional reaction"
+27,apparent motion,apparent movement,ctp_C1,trm_4a3fd79d09855,The illusory perception that movement is occurring in one or more static images.
+28,apperception,,,trm_4a3fd79d0986c,the process by which new experience is assimilated to and transformed by the residuum of past experience of an individual to form a new whole.
+29,appetitive motivation,,ctp_C10,trm_4a3fd79d09877,behavior directed toward goals that are usually associated with positive hedonic processes.  
+30,arousal,,,trm_4a3fd79d09883,Disambiguation
+31,articulation,,ctp_C6,trm_4a3fd79d0988f,the act of vocally producing an utterance or expression
+32,articulatory planning,,ctp_C6,trm_4a3fd79d0989a,The action of coordinating complex tongue and mouth movements in order to produce sound. 
+33,articulatory rehearsal,,ctp_C5,trm_4a3fd79d098a6,the process of subvocally repeating material that is to be stored in memory.  
+34,assimilation,,,trm_4a3fd79d098b2,the process of receiving new facts or of responding to new situations in conformity with what is already available to consciousness.
+35,association,,,trm_4a3fd79d098bd,"the process of forming mental connections or bonds between sensations, ideas, or memories."
+36,association learning,,ctp_C5,trm_4a3fd79d098c9,learning process in which two or more items or concepts become associated with each other; often used in relation to learned stimulus-response associations
+37,attachment,,ctp_C9,trm_4a3fd79d098e0,a social connection between individuals
+38,attended channel,,,trm_4a3fd79d098eb,"the particular input, out of two or more, that is consciously perceived due to attention.  "
+39,attended stimulus,,,trm_4a3fd79d098f7,the specific object in the environment on which attention is focused.
+40,attention,,ctp_C2,trm_4a3fd79d09902,"used to describe any number of cognitive processes, organized as top-down or bottom-up, goal-directed or stimulus-driven, and more, but generally reflecting an interplay between cognitive and sensory systems."
+41,attention capacity,,ctp_C2,trm_4a3fd79d0990e,refers to the extent that one can allocate their processing resources.
+42,attentional effort,,ctp_C2,trm_4a3fd79d09919,"a motivated activation of attention systems in order to stabilize or recover attentional performance in response to the detection of errors and reward loss or, more generally, deteriorating attentional performance; amount of attentional resources needed for a particular situation; engagement of attentional resources"
+43,attentional resources,,ctp_C2,trm_4a3fd79d09925,amount of available attentional capacity
+44,attentional state,,ctp_C2,trm_4a3fd79d09930,"referring to amount of attentional resources being engaged;  a relaxed attentional state requires little attentional effort, whereas an alert, focused attentional state requires more"
+45,attitude,,,trm_4a3fd79d09947,a mental position with regard to a fact or state
+46,audiovisual perception,,ctp_C1,trm_4a3fd79d09953,"a single unified awareness derived from the integration of auditory and visual sensory processes when a audiovisual stimulus is present. 
+
+"
+47,audition,auditory,ctp_C1,trm_4a3fd79d0995e,the sense or act of hearing.
+48,auditory attention,,ctp_C2,trm_4a3fd79d09a10,"is the cognitive process of selectively concentrating on one auditory stream in the environment while ignoring others.
+"
+49,auditory coding,,,trm_4a3fd79d09a3d,"processing and encoding of sound, words, and all other auditory input for storage and later retrieval. According to Baddeley, processing of auditory information is aided by the concept of the phonological loop, which allows input within our echoic memory."
+50,auditory encoding,,ctp_C5,trm_4a3fd79d09a49,the process of storing auditory information in memory.  
+51,auditory feedback,,,trm_4a3fd79d09a55,"is provided by auditory stimulation in response to specific behavior. The feedback may be used to amend subsequent behavior, cognition, perception or performance.
+"
+52,auditory grouping,,ctp_C1,trm_4a3fd79d09a61,joining disparate sounds together into one percept; assessing which acoustic streams belong together
+53,auditory imagery,,,trm_4a3fd79d09a6c,the subjective experience of hearing in the absence of auditory stimulation.
+54,auditory learning,,ctp_C5,trm_4a3fd79d09a78,learning of auditorily presented information
+55,auditory lexical access,,ctp_C6,trm_4a3fd79d09a84,"The process by which the basic sound-meaning connections of language, i.e., lexical entries, are activated.
+"
+56,auditory localization,,ctp_C1,trm_4a3fd79d09a8f,a listener&#39;s ability to identify the location or origin of a detected sound.
+57,auditory masking,,ctp_C1,trm_4a3fd79d09a9b,the perception of one sound is affected by the presence of another sound; presenting a sound to interfere with or terminate a target sound
+58,auditory memory,,ctp_C5,trm_4a3fd79d09aa7,the cognitive capacity of storing and retrieving information related to sound.
+59,auditory perception,,ctp_C1,trm_4a3fd79d09ab2,"The ability to identify, interpret, and attach meaning to sound."
+60,auditory scene,,ctp_C1,trm_4a3fd79d09abe,auditory scene analysis is the process by which the human auditory system organizes sound into perceptually meaningful elements.
+61,auditory scene analysis,,,trm_4a3fd79d09aca,the process by which the human auditory system organizes sound into perceptually meaningful elements.
+62,auditory sentence comprehension,,ctp_C6,trm_4a3fd79d09ad5,ability to combine auditory words into a meaningful sentence unit. 
+63,auditory stream segregation,,ctp_C1,trm_4a3fd79d09ae1,the perceptual grouping of sounds to form coherent representations of objects in the acoustic scene; a fundamental aspect of hearing and speech perception.
+64,auditory word comprehension,,ctp_C6,trm_4a3fd79d09aed,ability to parse acoustic signals into meaningful words
+65,auditory word recognition,,ctp_C6,trm_4a3fd79d09af8,ability to recognize acoustically presented words
+66,auditory working memory,,ctp_C5,trm_4a3fd79d09b04,Working memory for auditory information
+67,autobiographical memory,,ctp_C5,trm_4a3fd79d09b10,"a memory system consisting of episodes recollected from an individualâs life, based on a combination of episodic (personal experiences and specific objects, people and events experienced at particular time and place) and semantic (general knowledge and facts about the world) memory."
+68,autobiographical recall,,,trm_4a3fd79d09b1c,"episodes recollected from an individualâs life, based on a combination of episodic (personal experiences and specific objects, people and events experienced at particular time and place) and semantic (general knowledge and facts about the world) memory. "
+69,automaticity,,ctp_C5,trm_4a3fd79d09b28,behavior performed without intention
+70,availability heuristic,,ctp_C3,trm_4a3fd79d09b33,A heuristic in which people predict the frequency of classes or the probability of events based on the ease with which relevant instances come to mind. 
+71,aversive learning,,ctp_C5,trm_4a3fd79d09b3f,behavior modification using an adverse stimulus in response to the inappropriate or undesirable behavior.
+72,backward chaining,,ctp_C3,trm_4a3fd79d09b62,"an inference method used in automated theorem provers, proof assistants and other artificial intelligence applications.  Backward chaining starts with a list of goals (or a hypothesis) and works backwards from the consequent to the antecedent to see if there is data available that will support any of these consequents."
+73,behavioral inhibition,,,trm_4a3fd79d09b79,Disambiguation
+74,belief,,,trm_4a3fd79d09b85,a state or habit of mind in which trust or confidence is placed in some person or thing; conviction of the truth of some statement or the reality of some being or phenomenon especially when based on examination of evidence.
+75,binocular convergence,,ctp_C1,trm_4a3fd79d09b9c,"when you look at an object that is closer than approximately 25 feet, your eyes must converge on the object to perceive it as a single object clearly in focus.&#34; "
+76,binocular disparity,,ctp_C1,trm_4a3fd79d09bb3,"the difference in image location of an object seen by the left and right eyes, resulting from the eyes&#39; horizontal separation. The brain uses binocular disparity to extract depth information from the two-dimensional retinal images  in stereopsis."
+77,binocular vision,,ctp_C1,trm_4a3fd79d09bbf,"is vision in which both eyes are used together.  Having two eyes confers at least four advantages over having one. First, it gives a creature a spare eye in case one is damaged. Second, it gives a wider field of view.  Third, it gives binocular summation in which the ability to detect faint objects is enhanced.  Fourth it can give stereopsis in which parallax provided by the two eyes&#39; different positions on the head give precise depth perception.  Such binocular vision is usually accompanied by singleness of vision or binocular fusion, in which a single image is seen despite each eye&#39;s having its own image of any object.  Other phenomena of binocular vision include utrocular discrimination, eye dominance, allelotropia, and binocular rivalry."
+78,bitterness,,ctp_C1,trm_4a3fd79d09bcb,"being or inducing the one of the four basic taste sensations that is peculiarly acrid, astringent, or disagreeable; marked by intensity or severity; marked by cynicism and rancor; intensely unpleasant especially in coldness or rawness; expressive of severe pain, grief, or regret."
+79,body orientation,,,trm_4a3fd79d09be2,perception of the orientation of the body overall relative to other objects in the environment
+80,capacity limitation,,ctp_C2,trm_4a3fd79d09bee,a limitation on the capacity to process information
+81,case based reasoning,,ctp_C3,trm_4a3fd79d09bf9,the process of solving new problems based on the solutions of similar past problems.
+82,categorical clustering,,ctp_C5,trm_4a3fd79d09c05,the clustering of recalled items based on category membership
+83,categorical knowledge,,ctp_C3,trm_4a3fd79d09c11,"knowledge about different attributes and uses of an object that allows it to be placed in a group of objects with similar attributes and uses.
+"
+84,categorical perception,,ctp_C1,trm_4a3fd79d09c1c,A form of perception in which the individual perceives a categorical distinction rather than a continuous scale of a varying perceptual feature.  
+85,categorization,,ctp_C3,trm_4a3fd79d09c28,The assignment of a stimulus to one of a set of categories
+86,category based induction,,ctp_C3,trm_4a3fd79d09c34,requires that information about one set of categories is used to infer something about another category. A set of premises establishes that one or more categories possess a certain property.  The premises are followed by an assertion (the conclusion) that a target category also possesses that property. 
+87,category learning,,ctp_C5,trm_4a3fd79d09c3f,"is a strategy which requires a learner to compare and contrast groups or categories that contain concept-relevant features with groups or categories that do not contain concept-relevant features.
+"
+88,causal inference,,ctp_C3,trm_4a3fd79d09c5b,The process of inferring that one state/object/event causes the occurrence of another state/object/event.
+89,central attention,,ctp_C2,trm_4a3fd79d09c69,is the cognitive process that allows one to focus on the most important and relevant train of thought that needs to be attended to in a specific situation.
+90,centration,,,trm_4a3fd79d09c74,the tendency to focus on one aspect of a situation and neglect others.
+91,chemonociception,,ctp_C1,trm_4a3fd79d09c80,perception of stimulation by noxious chemical agents
+92,chromatic contrast,,ctp_C1,trm_4a3fd79d09c97,"When a small patch is surrounded by a color field, the patch appears to be tinted in the opponent color of the surrounding field."
+93,chunk,,ctp_C5,trm_4a3fd79d09ca3,Structure in memory that is used as a unit of knowledge representation. Also refers to the process of learning by which these units are acquired.
+94,chunking,,ctp_C4,trm_4a3fd79d09cae,"The process of recoding information by splitting or reorganizing it into smaller parts. 
+Actually: combining several smaller items into a larger &#34;group&#34; item, i.e.: 3 separate &#34;incoming aircraft&#34; considered as &#34;3 incoming aircraft&#34;. Significantly reduces the working memory space used. Likely concept model for computer programming data-forms that list pointers to numerous specific data. Larger classes of concepts include: Learning and Memory, Attention, Action (Planning), Executive Control."
+95,cognitive development,,,trm_4a3fd79d09d35,"the construction of thought processes, including remembering, problem solving, and decision-making, from childhood through adolescence to adulthood."
+96,cognitive dissonance,,,trm_4a3fd79d09d41,The mental state in which a person holds multiple conflicting ideas simultaneously
+97,cognitive effort,mental effort,,trm_4a3fd79d09d4d,Consciously or intentionally engaging cognitive resources in order to achieve a particular end.
+98,cognitive heuristic,,ctp_C3,trm_4a3fd79d09d58,"are simple, efficient rules, hard-coded by evolutionary processes or learned, which have been proposed to explain how people make decisions, come to judgments, and solve problems, typically when facing complex problems or incomplete information. These rules work well under most circumstances, but in certain cases lead to systematic errors or cognitive biases."
+99,cognitive load,"cognitive effort, processing capacity",ctp_C4,trm_4a3fd79d09d64,"The amount of demand placed on working memory, typically expressed along some continuum and within a theoretical maximum."
+100,cognitive map,,,trm_4a3fd79d09d70,"a type of mental processing composed of a series of psychological transformations by which an individual can acquire, code, store, recall, and decode information about the relative locations and attributes of phenomena in their everyday or metaphorical spatial environment."
+101,color perception,,ctp_C1,trm_4a3fd79d09d93,The process of distinguishing objects based on the wavelengths of the light they reflect or emit.
+102,communication,,ctp_C9,trm_4a3fd79d09d9e,"a process by which information is exchanged between individuals through a common system of symbols, signs, or behavior."
+103,competition,,,trm_4a3fd79d09daa,the act or process of competing; active demand by two or more organisms or kinds of organisms for some environmental resource in short supply; a contest between rivals.
+104,concept,,,trm_4a3fd79d09db6,"a cognitive unit of meaningâan abstract  idea or a mental symbol  sometimes defined as a &#34;unit of knowledge,&#34; built from other units which act as a concept&#39;s characteristics."
+105,concept learning,,ctp_C5,trm_4a3fd79d09dc1,"Concept learning, also known as category learning and concept attainment, is largely based on the works of the cognitive psychologist Jerome Bruner. Bruner, Goodnow, & Austin (1967) defined concept attainment (or concept learning) as &#34;the search for and listing of attributes that can be used to distinguish exemplars from non exemplars of various categories.&#34; More simply put, concepts are the mental categories that help us classify objects, events, or ideas and each object, event, or idea has a set of common relevant features. Thus, concept learning is a strategy which requires a learner to compare and contrast groups or categories that contain concept-relevant features with groups or categories that do not contain concept-relevant features.
+"
+106,conceptual category,,ctp_C5,trm_4a3fd79d09dcd,"a way of organizing information, generally derived from experience; they can be part of a hierarchy, as in a taxonomy, or without, as in an alphabet."
+107,conceptual coherence,,,trm_4a3fd79d09dd9,combining a set concepts to make sense of a situation or set of situations.
+108,conceptual planning,,ctp_C6,trm_4a3fd79d09de4,"in linguistics, a flexible process of preparation pertaining to grammatical structure of clauses, occurring both before and during production thereof"
+109,conceptual skill,,,trm_4a3fd79d09df0,"is the ability to form concepts about abstract and complex ideas such as communication, language, time, and money, for example."
+110,conceptualization,,,trm_4a3fd79d09dfc,to form a concept of; to interpret.
+111,conditional reasoning,,ctp_C3,trm_4a3fd79d09e07,"the reasoner must draw a conclusion based on a conditional, or âifâ¦then,â proposition."
+112,conflict detection,,ctp_C1,trm_4a3fd79d09e13,"arises in the presence of concurrently active, mutually exclusive representations"
+113,conjunction search,,ctp_C2,trm_4a3fd79d09e1e,"the process of searching for a target that is not defined by any single unique visual feature, but by a combination of two or more features."
+114,connotation,,ctp_C6,trm_4a3fd79d09e2a,the suggesting of a meaning by a word apart from the thing it explicitly names or describes; something suggested by a word or thing; the signification of something; an essential property or group of properties of a thing named by a term in logic.
+115,consciousness,awareness,,trm_4a3fd79d09e35,"the quality or state of being aware especially of something within oneself; the state or fact of being conscious of an external object, state, or fact; the state of being characterized by sensation, emotion, volition, and thought; the totality of conscious states of an individual; the normal state of conscious life,(regained consciousness); the upper level of mental life of which the person is aware as contrasted with unconscious processes.
+"
+116,constancy,,,trm_4a3fd79d09e58,steadfastness of mind under duress; a state of being constant or unchanging.
+117,constituent structure,,,trm_4a3fd79d09e64,"is an analysis, often in the form of a schematic representation, of the constituents of a construction, such as a sentence.
+"
+118,context,,,trm_4a3fd79d09e6f,"A set of interrelated conditions in which something exists or occurs (e.g., a style of language in a particular passage, activity of a given regions given sensory input)."
+119,context dependent,,ctp_C5,trm_4a3fd79d09e7b,"is a class of memory that refers to improved recall of specific episodes or information when the context present at encoding and retrieval are the same.
+"
+120,context memory,,ctp_C5,trm_4a3fd79d09e87,refers to improved recall of specific episodes or information when the context present at encoding and retrieval are similar.
+121,contextual knowledge,,,trm_4a3fd79d09e93,"information, and/or skills that have particular meaning because of the conditions that form part of their description. "
+122,contingency learning,,ctp_C5,trm_4a3fd79d09e9e,Learning of the contingencies between different events
+123,contrastive stress,,,trm_4a3fd79d09eaa,No definition submitted yet
+124,conventionality,,,trm_4a3fd79d09eb6,"the quality, fact, or condition of being conventional; conventional behavior or act; a conventional form, usage, or rule. "
+125,convergent thinking,,,trm_4a3fd79d09ece,"analytical, usually deductive, thinking in which ideas are examined for their logical validity or in which a set of rules is followed."
+126,conversation,,ctp_C6,trm_4a3fd79d09eda,"An exchange of sentiments, observations, opinions, or ideas."
+127,conversational skill,,ctp_C9,trm_4a3fd79d09ee6,"Ability to engage in appropriate communication of sentiments, observations, opinions, or ideas through dialogue."
+128,conversational speech,,ctp_C6,trm_4a3fd79d09ef0,"is interactive, more-or-less spontaneous, communication between two or more conversants. Interactivity occurs because contributions to a conversation are response reactions to what has previously been said. Spontaneity occurs because a conversation must proceed, to some extent, and in some way, unpredictably."
+129,conversational structure,,ctp_C6,trm_4a3fd79d09efb,"is the organization of interactive, more-or-less spontaneous, communication between two or more conversants.
+"
+130,coordination,,,trm_4a3fd79d09f07,"is the act of coordinating, making different people or things work together for a goal or effect.  "
+131,coproduction,,,trm_4a3fd79d09f12,No definition submitted yet
+132,coreference,,ctp_C6,trm_4a3fd79d09f1e,a relationship between two words or phrases in which both refer to the same person or thing and one stands as a linguistic antecedent of the other.
+133,creative cognition,,,trm_4a3fd79d09f2a,"involves two types of processes: generative processes and exploratory processes. 
+
+Generative processes are those that most of us think about when we think of creativity. They are the processes by which creative concepts are first born. These processes are highly visible in extreme acts of creativity, but they are also evident in ordinary, everyday cognition.  Examples (from Ward et al.(cited below)) include memory retrieval, association formation among information retrieved from memory, combinations of structures retrieved from memory, the synthesis of new structures, the transformation of retrieved structures into &#34;new forms,&#34; analogical transfer between domains, and &#34;categorical reduction,&#34; which involves reducing existing structures to &#34;more primitive constituents&#34;.  
+
+Exploratory processes are the processes used to explore the structures produced by generative processes. Examples of exploratory processes (given by Ward, et al.) include searching retrieved structures for &#34;novel attributes,&#34; searching for &#34;metaphorical implications,&#34; searching for possible functions, &#34;the evaluation of structures from different perspectives or within different contexts,&#34; interpretation of structures from the perspective of the problem(s) to be solved, and &#34;the search for various practical or conceptual limitations that are suggested by the structures.&#34;
+"
+134,creative problem solving,,ctp_C3,trm_4a3fd79d09f36,the mental process of independently creating a solution to a problem without learned assistance.
+135,creative thinking,,,trm_4a3fd79d09f42,"the intellectually disciplined process of actively and skillfully conceptualizing, applying, analyzing, synthesizing, and/or evaluating information gathered from, or generated by, observation, experience, reflection, reasoning, or communication, as a guide to belief and action (Scriven & Paul, 1992)."
+136,critical period,,,trm_4a3fd79d09f4d,"a limited time in which an event can occur, usually to result in some kind of transformation; in developmental psychology and developmental biology, it is a time in the early stages of an organism&#39;s life during which it displays a heightened sensitivity to certain environmental stimuli, and develops in particular ways due to experiences at this time."
+137,crosstalk,,,trm_4a3fd79d09f59,interference by information presented via multiple channels
+138,crystallized intelligence,,ctp_C3,trm_4a3fd79d09f64,the ability to utilize previously acquired knowledge and experience.
+139,cue dependent forgetting,,ctp_C5,trm_4a3fd79d09f70,is the failure to recall a memory due to missing stimuli or cues that were present at the time the memory was encoded.
+140,cue validity,,ctp_C2,trm_4a3fd79d09f7c,the conditional probability that an object falls in a particular category given a particular feature or cue.
+141,cueing,,,trm_4a3fd79d09f87,to give/present a stimulus that prompts a reaction.
+142,dative shift,,ctp_C6,trm_4a3fd79d0a006,"a grammatical process by which an oblique  argument of a verb, usually one functioning as a recipient or a benefactive (roles often expressed by datives), is placed in the same grammatical role as a patient, increasing the valency of the verb and forming a clause with two objects."
+143,decay of activation,,ctp_C5,trm_4a3fd79d0a021,"An explanation for why spreading activation, in network-based models of knowledge representation, peters out as a function of the distance between nodes."
+144,deception,,ctp_C9,trm_4a3fd79d0a02c,"an act to propagate beliefs that are not true, or not the whole truth (as in half-truths or omission)."
+145,decision making,,ctp_C3,trm_4a3fd79d0a038,The deliberate selection of a single alternative amongst multiple alternatives. 
+146,declarative knowledge,,ctp_C5,trm_4a3fd79d0a044,Knowledge that is descriptive and includes knowing &#34;that&#34; rather than knowing &#34;how&#34; (can be expressed in declarative sentences).
+147,declarative memory,,ctp_C5,trm_4a3fd79d0a04f,"Memory for facts, and that can be intentionally articulated in some manner."
+148,declarative rule,,ctp_C5,trm_4a3fd79d0a05b,"A criterion for which one possesses declarative knowledge. Contrasts with an implicit or non-declarative rule, which one might follow but not represent as a rule or even be aware that they are following."
+149,deductive inference,,ctp_C3,trm_4a3fd79d0a066,"A type of inference in which the conclusion always follows from the stated premises.If the premises are true, then the conclusion is valid."
+150,deductive reasoning,,ctp_C3,trm_4a3fd79d0a072,"is reasoning which constructs or evaluates deductive arguments. Deductive arguments are attempts to show that a conclusion necessarily follows from a set of premises or hypotheses.
+"
+151,deep processing,,ctp_C5,trm_4a3fd79d0a07e,Evaluating a piece of information in terms of meaning or associations to other concepts as opposed to surface or incidental characteristics.
+152,deep structure,,ctp_C6,trm_4a3fd79d0a08a,"The essential meaning of a sentence, without regard to the grammatical features (surface structure) of the sentence that are needed to express it in words."
+153,depth cue,,ctp_C1,trm_4a3fd79d0a095,"Depth perception arises from a variety of depth cues. These are typically classified into binocular cues that require input from both eyes and monocular cues that require the input from just one eye.  Binocular cues include stereopsis, yielding depth from binocular vision through exploitation of parallax. Monocular cues include size: distant objects subtend smaller visual angles than near objects.  A third class of cues requires synthetic integration of binocular and monocular cues."
+154,depth perception,,ctp_C1,trm_4a3fd79d0a0a1,Ability to perceive the visual world in three dimensions.
+155,desire,,ctp_C10,trm_4a3fd79d0a0ad,"to long or hope for, exhibit or feel desire for; to express a wish for."
+156,diphthong,,ctp_C6,trm_4a3fd79d0a0dc,a gliding monosyllabic speech sound (as the vowel combination at the end of toy) that starts at or near the articulatory position for one vowel and moves to or toward the position of another.
+157,dispositions,,,trm_4a3fd79d0a0e7,Tendency to act in a particular manner given a certain set of antecedents. 
+158,distraction,,ctp_C2,trm_4a3fd79d0a0f3,Any event that interrupts a mental process.
+159,distributed coding,,ctp_C5,trm_4a3fd79d0a0ff,A type of coding in which the information that constitutes a concept (or mental representation) is spread amongst a number of constituent representations.
+160,divergent thinking,,ctp_C3,trm_4a3fd79d0a10a,a thought process or method used to generate creative ideas by exploring many possible solutions.
+161,divided attention,,ctp_C2,trm_4a3fd79d0a116,A state in which the focus of attention is spread across more than one object or event.
+162,dream,,,trm_4a3fd79d0a12d,"a succession of thoughts, images, sounds or emotions which the mind experiences during sleep."
+163,efficiency,,,trm_4a3fd79d0a145,"effective operation as measured by a comparison of production with cost (as in energy, time, money, or cortical activity)"
+164,effort,,,trm_4a3fd79d0a151,Consciously or intentionally engaging resources in order to achieve a particular end.
+165,effortful processing,,,trm_4a3fd79d0a15c,learning or storing (encoding) that requires attention and effort.
+166,egocentric,,,trm_4a3fd79d0a168,"A frame of reference centered around the self. In perception, a first-person frame of reference."
+167,elaborative processing,,,trm_4a3fd79d0a173,Processing in which semantic associations or relations between words/concepts are generated or elaborated on.
+168,emotion,,ctp_C8,trm_4a3fd79d0a17f,a complex of psychological phenomena that involve some degree of arousal and valence (positive/negative)
+169,emotional decision making,,ctp_C8,trm_4a3fd79d0a18b,The use of affective information as information in a decision making process or as a basis for making a decision. Hot cognition.
+170,emotional expression,,ctp_C8,trm_4a3fd79d0a196,observable verbal and nonverbal behavior that communicates emotion with or without self-awareness.
+171,emotional intelligence,,ctp_C8,trm_4a3fd79d0a1a2,"the capacity, skill or ability to identify, assess, and manage the emotions of one&#39;s self, of others, and of groups."
+172,emotional memory,,ctp_C5,trm_4a3fd79d0a1ae,Emotional memory is the storage and recall of events and details that are couple with the physiological response that was present when the event occurred.  
+173,emotional mimicry,,ctp_C8,trm_4a3fd79d0a1b9,"is the ability of a person to imitate, copy, and experience the physical and emotional characteristics of another persons emotion.  "
+174,emotional suppression,,ctp_C8,trm_4a3fd79d0a1d1,A process to reduce or inhibit the impact of an emotion on ones current conscious state or behavior.
+175,episodic learning,,ctp_C5,trm_4a3fd79d0a1e8,a change in behavior that occurs as a result of an event; episodic learning is so named because events are recorded into episodic memory.
+176,episodic memory,,ctp_C5,trm_4a3fd79d0a1f4,"memory of autobiographical events (times, places, associated emotions, and other contextual knowledge) that can be explicitly stated."
+177,error detection,,ctp_C4,trm_4a3fd79d0a20c,Processes that identify when an error has been made.
+178,error signal,,,trm_4a3fd79d0a218,"An event following error detection, in which a sign is relayed notifying the advent of an error."
+179,error trapping,,,trm_4a3fd79d0a223,procedures that detect and correct errors before the errors cause further confusion.
+180,excitation,,ctp_C8,trm_4a3fd79d0a22f,a state of increased emotional arousal
+181,expertise,,ctp_C5,trm_4a3fd79d0a25e,Having a highly cultivated level of skill in a particular domain. Occurs after prolonged experience in a domain.
+182,explicit knowledge,,,trm_4a3fd79d0a269,Knowledge that can be articulated or expressed intentionally.
+183,explicit learning,,ctp_C5,trm_4a3fd79d0a275,Acquisition of skills and/or knowledge actively and with awareness. Typically such learning is accompanied by meta-awareness - individuals can explain how they acquired the skill/knowledge.
+184,explicit memory,,ctp_C5,trm_4a3fd79d0a281,"the conscious, intentional recollection of previous experiences and information."
+185,extrinsic motivation,,ctp_C10,trm_4a3fd79d0a28c,"motivated by external factors, as opposed to the internal drivers of intrinsic motivation. Extrinsic motivation drives one to do things for tangible rewards or pressures."
+186,face perception,,ctp_C1,trm_4a3fd79d0a300,The processes by which faces are identified as such.
+187,face recognition,,ctp_C5,trm_4a3fd79d0a30c,The process of determining whether a face is the same as another face that has been previously encountered.
+188,facial expression,,ctp_C8,trm_4a3fd79d0a318,"Movements and positions of the facial muscles that can be used as a form of nonverbal communication, particularly in conveying emotional states."
+189,false memory,,ctp_C5,trm_4a3fd79d0a323,a memory that refers to an event that did not actually occur
+190,feature extraction,,ctp_C1,trm_4a3fd79d0a32f,Processes by which relevant aspects of a data stream are separated from irrelevant aspects.
+191,feedback processing,feedback,,trm_4a3fd79d0a33b,"Evaluative or corrective information about an action, event, or process delivered to the original or controlling source, often with the intent of modifying future actions."
+192,filtering,,,trm_4a3fd79d0a352,a device or process that removes from a signal some unwanted component or feature.
+193,fixation,,ctp_C2,trm_4a3fd79d0a35e,Maintaining gaze or attention on some object or event. (Experimental design) A trial period in which a participant is instructed to direct attention toward a visual stimulus (often a cross).
+194,fixed action patterns,,,trm_4a3fd79d0a36a,an instinctive  behavioral  sequence that is indivisible and runs to completion.
+195,fluid intelligence,fluid reasoning,ctp_C3,trm_4a3fd79d0a375,"a factor of general intelligence originally identified by Raymond Cattell; Cattell defined fluid intelligence as &#34;â¦the ability to perceive relationships independent of previous specific practice or instruction concerning those relationships.&#34; Fluid intelligence is the ability to think and reason abstractly and solve problems. This ability is considered independent of learning, experience, and education."
+196,focus,,ctp_C2,trm_4a3fd79d0a381,The center of attention or concentration. 
+197,focused attention,,ctp_C2,trm_4a3fd79d0a38d,"the ability to respond discretely to specific visual, auditory or tactile stimuli."
+198,form perception,,ctp_C1,trm_4a3fd79d0a398,"the sensory discrimination of a pattern, shape or outline."
+199,functional fixedness,,ctp_C3,trm_4a3fd79d0a3a4,a cognitive bias that limits a person to using an object only in the way it is traditionally used.
+200,gaze,,,trm_4a3fd79d0a3d2,The act of fixating the eyes onto a location.  
+201,generalization,,ctp_C5,trm_4a3fd79d0a3ea,The act of transferring knowledge learned from one event to a novel event that is similar in some respect.
+202,generic knowledge,,ctp_C3,trm_4a3fd79d0a3f6,Generic knowledge is knowledge that is applicable not just to a single entity but to a class of entities. 
+203,gestalt,,ctp_C1,trm_4a3fd79d0a402,"a collection of physical, biological, psychological or symbolic entities that creates a unified concept, configuration or pattern which is greater than the sum of its parts (of a character, personality, or being)."
+204,goal,,ctp_C4,trm_4a3fd79d0a419,The desired end-point of behavior(s).
+205,goal formation,,ctp_C4,trm_4a3fd79d0a425,The processes that create and maintain representations of goal states.
+206,goal maintenance,,ctp_C4,trm_4a3fd79d0a431,The maintenance of information regarding task goals in working memory.
+207,goal management,,ctp_C4,trm_4a3fd79d0a43c,"consists of the process of recognizing or inferring goals, abandoning no longer relevant goals, identifying and resolving conflicts among goals, and prioritizing goals consistently for optimal success."
+208,goal state,,ctp_C4,trm_4a3fd79d0a448,A point reached when goal directed behavior has successfully concluded. 
+209,gustatory learning,,ctp_C5,trm_4a3fd79d0a460,The formation of a knowledge representation that contains information about gustatory percepts.
+210,gustatory memory,,ctp_C5,trm_4a3fd79d0a46b,the cognitive capacity of storing and retrieving information related to taste.  
+211,gustatory perception,,ctp_C1,trm_4a3fd79d0a477,The processes involved with representing gustatory sensations as such.
+212,habit,,ctp_C5,trm_4a3fd79d0a483,An acquired pattern of behavior that often occurs automatically and is reliably triggered by some event or stimulus.
+213,habit learning,,ctp_C5,trm_4a3fd79d0a48e,The process of acquiring a habit
+214,habit memory,,ctp_C5,trm_4a3fd79d0a49a,"the memory representation of a learned habit, generally thought to be represented as a stimulus-response association"
+215,hallucination,,,trm_4a3fd79d0a4a6,"in the broadest sense of the word, is a perception in the absence of a stimulus. In a stricter sense, hallucinations are defined as perceptions in a conscious and awake state in the absence of external stimuli which have qualities of real perception, in that they are vivid, substantial, and located in external objective space.
+
+"
+216,hedonism,,,trm_4a3fd79d0a4b2,"a school which argues that pleasure is the only intrinsic good, often used as a justification for evaluating actions in terms of how much pleasure and how little pain (i.e. suffering) they produce."
+217,heuristic search,,ctp_C3,trm_4a3fd79d0a4be,"refers to experience-based techniques for problem solving, learning, and discovery. Heuristic methods are used to speed up the process of finding a good enough solution, where an exhaustive search is impractical. Examples of this method include using a &#34;rule of thumb&#34;, an educated guess, an intuitive judgment, or common sense.  In more precise terms, heuristics are strategies using readily accessible, though loosely applicable, information to control problem solving in human beings and machines"
+218,hill climbing,,ctp_C3,trm_4a3fd79d0a4c9,"A fast but sometimes unreliable optimization method.  When searching for the minimum/maximum value of a function a random step is taken; if the value improves it replaces the current value, then another random step is taken."
+219,humiliation,,ctp_C8,trm_4a3fd79d0a4e1,to reduce to a lower position in one&#39;s own eyes or others&#39; eyes.
+220,humor,,ctp_C8,trm_4a3fd79d0a4ed,the tendency of particular cognitive experiences to provoke laughter  and provide amusement.
+221,iconic memory,,ctp_C5,trm_4a3fd79d0a4f9,"very brief sensory memory of some visual stimuli, that occur in the form of mental pictures."
+222,imageability,,,trm_4a3fd79d0a504,is a property of a word or concept reflecting how easy or difficult it is to visually or acoustically imagine.  
+223,imagery,,,trm_4a3fd79d0a510,"an experience that, on most occasions, significantly resembles the experience of perceiving some object, event, or scene, but occurs when the relevant object, event, or scene is not actually present to the senses."
+224,implicit knowledge,,,trm_4a3fd79d0a51c,knowledge that is kept in a personâs mind without necessarily being expressed in words and is often acted on instinctively.
+225,implicit learning,,,trm_4a3fd79d0a527,None
+226,implicit memory,,ctp_C5,trm_4a3fd79d0a533,"Type of memory in which experiences increases performance of task without one&#39;s conscious awareness of these previous experiences. This type of memory applies to habit learning, skills, conditioning."
+227,imprinting,,,trm_4a3fd79d0a53f,a rapid learning process that takes place early in the life of a social animal and establishes a behavior pattern (as recognition of and attraction to its own kind or a substitute).
+228,inattention,,ctp_C2,trm_4a3fd79d0a54b,The failure to process an external stimulus (often refers to sensory stimuli).
+229,incidental learning,,ctp_C5,trm_4a3fd79d0a556,"Learning without explicit knowledge of doing so, but occurring through interaction with the environment (e.g., by observation/copying of behavior or response to reinforcement)."
+230,incubation,,ctp_C3,trm_4a3fd79d0a562,the process of thinking about a problem subconsciously while being involved in other activities
+231,indignation,,ctp_C8,trm_4a3fd79d0a56e,"anger aroused by something unjust, unworthy, or mean."
+232,induction,inductive reasoning,,trm_4a3fd79d0a579,"reaching a conclusion from a set of premises that could, but do not necessarily, lead to it"
+233,inductive reasoning,inductive inference,ctp_C3,trm_4a3fd79d0a590,"reasoning from a specific case or cases and deriving a general rule, drawing inferences from observations in order to make generalizations.
+"
+234,inference,,ctp_C3,trm_4a3fd79d0a5ed,"the act of passing from one proposition, statement, or judgment considered as true to another whose truth is believed to follow from that of the former; the act of passing from statistical sample data to generalizations (as of the value of population parameters) usually with calculated degrees of certainty."
+235,inhibition,,ctp_C4,trm_4a3fd79d0a613,The process by which a response or thought is suppressed.
+236,inhibition of return,,ctp_C4,trm_4a3fd79d0a61f,"the phenomenon in which the speed and accuracy with which an object is detected are first briefly enhanced (for perhaps 100-300 milliseconds) after the object is attended, and then detection speed and accuracy are impaired (for perhaps 500-3000 milliseconds)."
+237,insight,,ctp_C3,trm_4a3fd79d0a62b,"In problem solving, the moment at which an underlying relation between cause and effect is discovered/identified."
+238,instinct,,,trm_4a3fd79d0a637,"a natural or inherent aptitude, impulse, or capacity; a largely inheritable and unalterable tendency of an organism to make a complex and specific response to environmental stimuli without involving reason, behavior that is mediated by reactions below the conscious level."
+239,instrumental conditioning,"instrumental learning, operant conditioning",ctp_C5,trm_4a3fd79d0a642,a learning process in which the consequences of an action are used to modify aspects of that action thereafter; these aspects include form and frequency (including the likelihood of reoccurrence at all).
+240,instrumental learning,,ctp_C5,trm_4a3fd79d0a64e,learning based on reward; a form of learning that takes place as a direct consequence of a reward or pleasant outcome for the learner.
+241,integration,,,trm_4a3fd79d0a65a,coordination of mental processes into a normal effective personality or with the individual&#39;s environment
+242,intelligence,,ctp_C3,trm_4a3fd79d0a666,the ability to learn or understand or to deal with new or trying situations; the skilled use of reason; the ability to apply knowledge to manipulate one&#39;s environment or to think abstractly as measured by objective criteria
+243,intention,,,trm_4a3fd79d0a67d,an act or instance of determining mentally upon some action or result; meaning or significance.
+244,intentional forgetting,,ctp_C5,trm_4a3fd79d0a689,the purposeful forgetting of information that is no longer needed.
+245,intentional learning,,ctp_C5,trm_4a3fd79d0a695,learning that is motivated  with intention and is usually goal directed.
+246,intentionality,,,trm_4a3fd79d0a6a1,"the state of having or being formed by an intention; (philosophy) the property of being about or directed toward a subject, as inherent in conscious states, beliefs, or creations of the mind, such as sentences or books. "
+247,interference,,,trm_4a3fd79d0a6ad,the disturbing effect of new information on the other information with which it is inconsistent
+248,intermediate-term memory,ITM,ctp_C5,trm_4a3fd79d0a6b9,a specialized term referring for information about a current task.
+249,internal speech,,ctp_C6,trm_4a3fd79d0a6c5,"also known as inner voice, internal speech, or verbal stream of consciousness is thinking in words. It also refers to the semi-constant internal monologue one has with oneself at a conscious or semi-conscious level.
+
+"
+250,interrogative,,ctp_C6,trm_4a3fd79d0a6d0,"of, pertaining to, or conveying a question."
+251,intonation,,ctp_C6,trm_4a3fd79d0a6dc,"the ability to play or sing notes in tune; manner of utterance, specifically the rise and fall in pitch of the voice in speech."
+252,intrinsic motivation,,ctp_C10,trm_4a3fd79d0a6e8,a highly desired form of incentive that stems from a person&#39;s internal desire for self-satisfaction or pleasure in performing the task itself.
+253,introspection,,,trm_4a3fd79d0a6f4,"the self-observation and reporting of conscious inner thoughts, desires  and sensations. It is a conscious mental and usually purposive process relying on thinking, reasoning, and examining one&#39;s own thoughts, feelings."
+254,involuntary attention,,ctp_C2,trm_4a3fd79d0a700,"results when the conscious mind changes focus to sudden changes in the environment (big sound, intensity of light, unique situation etc.).  The person is not prepared for the attention and the attention is not under control of the individual.  The persons attention is less concerned with motives, interests, and needs and the stimulus is usually more important than any functional factors."
+255,irony,,,trm_4a3fd79d0a70b,"a situation, literary technique, or rhetorical device, in which there is an incongruity or discordance that goes strikingly beyond the most simple and evident meaning of words or actions."
+256,judgment,,ctp_C3,trm_4a3fd79d0a723,"the process of forming an opinion or evaluation by discerning and comparing, or an opinion or estimate so formed"
+257,kinaesthetic representation,kinesthetic representation,,trm_4a3fd79d0a72e,"is a representation of sensory inputs from muscles, tendons, and joints (e.g.,the joint angles used to reach a point in space).
+
+"
+258,kinesthesia,kinaesthesia,ctp_C1,trm_4a3fd79d0a73a,"a sense mediated by receptors located in muscles, tendons, and joints and stimulated by bodily movements and tensions. "
+259,knowledge,,ctp_C5,trm_4a3fd79d0a746,information acquired and represented by a person through experience or education
+260,language,,ctp_C6,trm_4a3fd79d0a769,"The mental ability to encode and decode information, and translate this information into verbal, acoustic and visual representations, according to a set of rules that are common across a population."
+261,language comprehension,,ctp_C6,trm_4a3fd79d0a775,"The ability to understand communication from others, such as speech, written text, gestures, or sign language."
+262,language learning,,ctp_C6,trm_4a3fd79d0a781,"the process by which humans acquire the capacity to perceive, produce and use words to understand and communicate, this capacity involves the picking up of diverse capacities including syntax, phonetics, and an extensive vocabulary, the language might be vocal as with speech or manual as in sign."
+263,language production,,ctp_C6,trm_4a3fd79d0a78d,"is translating a concept or set of ideas into spoken, signed or written form"
+264,learning,,ctp_C5,trm_4a3fd79d0a7bb,The process of acquiring new skills/knowledge/information 
+265,lemma,,ctp_C6,trm_4a3fd79d0a7c7,"an abstract form of a word before any phonological assignment, arising early in speech production"
+266,lexical encoding,,ctp_C6,trm_4a3fd79d0a7d4,"converting vocabulary, words, or morphemes of a language into a code.
+"
+267,lexical retrieval,,ctp_C6,trm_4a3fd79d0a7e0,retrieval of a lexical entry
+268,lexicon,vocabulary,ctp_C6,trm_4a3fd79d0a7ec,"The vocabulary of a language, including its words and expressions."
+269,linguistic competence,,ctp_C6,trm_4a3fd79d0a7f8,"a speaker&#39;s implicit, internalized knowledge of the rules of their language."
+270,listening,,,trm_4a3fd79d0a803,"to pay attention to sound; to hear something with thoughtful attention, give consideration; to be alert to catch an expected sound."
+271,logic,,ctp_C3,trm_4a3fd79d0a80f,a science that deals with the principles and criteria of validity of inference and demonstration; the science of the formal principles of reasoning.
+272,logical reasoning,,ctp_C3,trm_4a3fd79d0a81b,"The strategy when  one uses deduction, induction, or abduction to evaluate preconditions and rules to determnie a conclusion.  "
+273,long-term memory,LTM,ctp_C5,trm_4a3fd79d0a833,"a system for permanently storing, managing, and retrieving information for later use, items of information stored as long-term memory may be available for a lifetime."
+274,loss aversion,,ctp_C3,trm_4a3fd79d0a83f,The tendency of individuals to be more sensitive to the possibility of losing objects or money than they are to the possibility of gaining the same objects or amounts of money.
+275,lying,,ctp_C9,trm_4a3fd79d0a84a,the expression of a falsehood
+276,mathematical reasoning,,ctp_C3,trm_4a3fd79d0a862,Reasoning about mathematical objects
+277,meaning,,ctp_C6,trm_4a3fd79d0a86e,the connotation of a word or phrase
+278,mechanical reasoning,,ctp_C3,trm_4a3fd79d0a87a,Reasoning about mechanical objects or functions
+279,melody,tune,ctp_C1,trm_4a3fd79d0a886,a linear succession of musical tones which is perceived as a single entity.
+280,memory,,ctp_C5,trm_4a3fd79d0a891,"The ability of an organism to use past events to inform/influence current actions
+"
+281,mental arithmetic,,ctp_C3,trm_4a3fd79d0a8ed,"mathematical calculations done mentally, without writing them down."
+282,mental imagery,,ctp_C1,trm_4a3fd79d0a8fc,"is an experience that, on most occasions, significantly resembles the experience of perceiving (through any of the senses) of some object, event, or scene, but occurs when the relevant object, event, or scene is not actually present to the senses."
+283,mental representation,,,trm_4a3fd79d0a908,a presentation to the mind in the form of an idea or image.
+284,mental rotation,,ctp_C1,trm_4a3fd79d0a914,Ability to rotate an object in one&#39;s mind; ability to make perceptual judgments on a new spatial configuration of an object.
+285,metacognition,,,trm_4a3fd79d0a920,awareness or analysis of one&#39;s own learning or thinking processes.
+286,metacognitive skill,,ctp_C5,trm_4a3fd79d0a92b,"a learners&#39; automatic awareness of their own knowledge and their ability to understand, control, and manipulate their own cognitive processes.
+"
+287,metaphor,,ctp_C6,trm_4a3fd79d0a937,a figure of speech in which a word or phrase literally denoting one kind of object or idea is used in place of another to suggest a likeness or analogy between them.
+288,misattribution,,,trm_4a3fd79d0a943,attributing an event to something with which it has no connection or association.
+289,monitoring,,ctp_C4,trm_4a3fd79d0a94f,the act of checking for particular kinds of information
+290,mood,,ctp_C8,trm_4a3fd79d0a95a,a conscious state of mind or predominant emotion.
+291,motor control,,ctp_C7,trm_4a3fd79d0a972,The function of supervising motor activities
+292,motor learning,,ctp_C5,trm_4a3fd79d0a995,"the process of improving motor skills, the smoothness and accuracy of movements."
+293,motor planning,movement planning,ctp_C7,trm_4a3fd79d0a9a1,"the conception of a future motoric action
+"
+294,motor program,,ctp_C7,trm_4a3fd79d0a9ad,abstract representation of a movement
+295,motor sequence learning,,ctp_C5,trm_4a3fd79d0a9b9,The acquisition of knowledge regarding sequences of motor action
+296,movement,,ctp_C7,trm_4a3fd79d0a9c4,change of place or position or posture
+297,naming,,ctp_C6,trm_4a3fd79d0a9dc,the expression of the name of an object
+298,narrative,,ctp_C6,trm_4a3fd79d0a9e8,"a story that is created in a constructive format (as a work of writing, speech, poetry, prose, pictures, song, motion pictures, video games, theater or dance) that describes a sequence of fictional or non-fictional events."
+299,navigation,,ctp_C1,trm_4a3fd79d0aa00,The process of controlling the movement of a body/entity/vehicle through space from one point to another.
+300,nociception,,ctp_C1,trm_4a3fd79d0aa0c,the processes of encoding and processing noxious stimuli.
+301,nondeclarative knowledge,,,trm_4a3fd79d0aa23,The nonconscious or implicit ability to express and practice learned information.
+302,nondeclarative memory,,ctp_C5,trm_4a3fd79d0aa2f,"Memory acquired through experience and which can not be consciously articulated (such as by recall or recognition). This type of memory includes priming, conditioning, skill-acquisition, and habits."
+303,novelty detection,,,trm_4a3fd79d0aa47,the identification of new or unknown information
+304,object categorization,,,trm_4a3fd79d0aa5e,the assignment of an object to a particular category
+305,object centered representation,,,trm_4a3fd79d0aa6a,"In an object-centered representation, the position of the subparts of an object are encoded with respect to a set of axes and an origin centered on the object. Several physiological and neuropsychological results support the existence of such representations in humans and monkeys. An explicit representation would involve neurons with invariant response properties in object-centered coordinates.
+"
+306,object detection,,ctp_C1,trm_4a3fd79d0aa76,"deals with detecting instances of semantic objects of a certain class (such as humans, buildings, cars, etc.)."
+307,object manipulation,,ctp_C7,trm_4a3fd79d0aa8d,"is a form of dexterity play or performance in which one or more artists physically interact with props such as balls, hoops, rings, poi, staff, devil sticks, or clubs. Object manipulation can be considered an advanced combinatorial form of sports, dance, and games."
+308,object perception,,ctp_C1,trm_4a3fd79d0aaa4,"The process of transforming basic visual sensory input (such as contrast, edge, motion, color etc) into a more abstract and semantically identifiable whole."
+309,object recognition,object identification,ctp_C1,trm_4a3fd79d0aab0,"is the ability to perceive an objectâs physical properties (such as shape, colour and texture) and apply semantic attributes to the object, which includes the understanding of its use, previous experience with the object and how it relates to others.
+"
+310,olfaction,,ctp_C1,trm_4a3fd79d0aabc,the sense of smell; the act or process of smelling.
+311,olfactory perception,,ctp_C1,trm_4a3fd79d0aac8,the sensation that results when olfactory receptors in the nose are stimulated by particular chemicals in gaseous form. 
+312,orthographic lexicon,,ctp_C6,trm_4a3fd79d0aad4,A set of representations of orthographic information
+313,parsing,,ctp_C6,trm_4a3fd79d0ab42,to resolve (as a sentence) into component parts of speech and describe them grammatically
+314,passive attention,,ctp_C2,trm_4a3fd79d0ab4d,"refers to the involuntary process directed by external events that stand out from their environment, such as a bright flash, a strong odor, or a sudden loud noise.
+"
+315,past tense,,ctp_C6,trm_4a3fd79d0ab59,refers to a form of a verb that indicates that the action already has occurred 
+316,pattern recognition,,ctp_C1,trm_4a3fd79d0ab65,The process of identifying a meaningful pattern in raw data.
+317,pavlovian conditioning,"classical conditioning, respondent conditioning",ctp_C5,trm_4a3fd79d0ab70,"a form of learning in which a stimulus (designated the &#34;conditional stimulus&#34; or CS and being one without inherent significance) is paired with an unconditional stimulus or US, so named because it is biologically significant (e.g. food, sex, drug, pain), until the participant responds to the former in a way that conveys its association of the two. Importantly, participant response may be different between the US and its paired CS."
+318,perception,,ctp_C1,trm_4a3fd79d0ab7c,the conscious experience or mental registration of a sensory stimulus
+319,perceptual binding,,ctp_C1,trm_4a3fd79d0ab88,"is the cognitive ability to couple characteristics between items that one is perceiving.  This can be illustrated by the one observing a blue square and a yellow circle.  Through the neural mechanisms of perceptual binding, one can ensure that the sensing of blue is coupled to that of a square shape and that of yellow is coupled to that of a circle.
+"
+320,perceptual categorization,,ctp_C1,trm_4a3fd79d0ab93,"A selective system that can have no a priori information about the particular stimuli that might be encountered in its environment, other than boundary conditions implicit in the construction of its recognizing elements. Perceptual categorization, according to this view, does not involve the &#34;reading in&#34; of readily available information about the stimulus category; rather, it involves the utilization of multiple cues in degenerate, overlapping sets and under the influence of context.  
+"
+321,perceptual fluency,,ctp_C1,trm_4a3fd79d0ab9f,"is the ease at which the brain can process information.
+"
+322,perceptual identification,,ctp_C1,trm_4a3fd79d0abaa,"has two different processing stages.  The first stage yields a state of of perceptual information about the stimulus presented.  The second stage is the processing of attained perceptual information in a response. 
+"
+323,perceptual learning,,ctp_C5,trm_4a3fd79d0abb6,"long lasting improvement in performing perceptual  (visual, auditory, tactile, olfactory or taste) tasks as a function of experience."
+324,perceptual similarity,,ctp_C1,trm_4a3fd79d0abc1,"Perceptual similarity is the subjective similarity between two stimuli as perceived by the observer. Thus, object A may be rated as more similar to object B than to object C despite a greater difference in some physical metric (such as height or width) between objects A and C than between objects A and B. This may differ across modalities: for example, two objects may be rated as more similar when seen than when touched. However, the physical, objective similarity between the two objects remains the same regardless of which modality is used to explore them."
+325,perceptual skill,,ctp_C1,trm_4a3fd79d0abcd,The ability to observe and understand the events surrounding an individual.
+326,performance monitoring,,ctp_C4,trm_4a3fd79d0ac30,the online evaluation of one&#39;s performance on a task
+327,phonation,,ctp_C6,trm_4a3fd79d0ac4a,process by which the vocal folds produce certain sounds through quasi-periodic vibration; any oscillatory state of any part of the larynx that modifies the airstream.
+328,phonological buffer,,ctp_C6,trm_4a3fd79d0ac61,"a passive storage device that is part of the articulatory rehearsal loop; serves as a part of the mechanisms ordinarily needed for hearing.  In rehearsal, the buffer is loaded by means of subvocalization."
+329,phonological code,,,trm_4a3fd79d0ac7a,A representation of information using phonological features
+330,phonological encoding,,ctp_C6,trm_4a3fd79d0ac87,"involves retrieval of segmental and supra-segmental information and the generation of a syllabified phonological word, and the computation of the phonetic form of the intended utterance, referred to as phonetic encoding.
+
+"
+331,phonological retrieval,,ctp_C6,trm_4a3fd79d0ac93,The retrieval of phonological representations based on other cues
+332,phonological working memory,,ctp_C4,trm_4a3fd79d0ac9e,The process of maintaining sound information online for a limited amount of time.
+333,planning,,ctp_C4,trm_4a3fd79d0acc1,"formulation, evaluation and selection of a sequence of actions to achieve a desired goal."
+334,pragmatic inference,,ctp_C3,trm_4a3fd79d0ad12,"Inferences are made when a person (or machine) goes beyond available evidence to form a conclusion. A pragmatic inference (also known as an inductive inference) is one which is likely to be true because of the state of the world. Unlike deductive inferences, pragmatic (inductive) inferences do yield conclusions that increase the semantic information over and above that found in the initial premises. "
+335,pragmatic knowledge,,,trm_4a3fd79d0ad1d,"is how individuals communicate meaning and how they produce contextually appropriate utterances, sentences, or texts.  Pragmatic knowledge includes sociolinguistic and functional knowledge.  "
+336,pragmatic reasoning,,ctp_C3,trm_4a3fd79d0ad29,"Pragmatic reasoning is defined as the process of finding the intended meaning(s) of the given, and it is suggested that this amounts to the process of inferring the appropriate context(s) in which to interpret the given."
+337,preattentive processing,,ctp_C2,trm_4a3fd79d0ad41,background activity that necessarily precedes conscious mental activity; major purpose is the preparation of sensory input for use in focal-attentive processes including encoding of the basic properties of sensory input.
+338,preconscious perception,,ctp_C1,trm_4a3fd79d0ad4c,"is the subthreshold process of visual perception. 
+
+"
+339,prejudice,,,trm_4a3fd79d0ad64,"preconceived judgment or opinion; an adverse opinion or leaning formed without just grounds or before sufficient knowledge; an irrational attitude of hostility directed against an individual, a group, a race, or their supposed characteristics."
+340,primary memory,,ctp_C5,trm_4a3fd79d0ad94,the temporary maintenance system for conscious processing of information.
+341,proactive interference,,ctp_C5,trm_4a3fd79d0adab,"the forgetting of information due to interference from the traces of events or learning that occurred prior to the materials to be remembered; occurs when in any given context, past memories inhibit an individualâs full potential to retain new memories."
+342,problem solving,,ctp_C3,trm_4a3fd79d0adb7,"Broadly, the mental processes involved in finding a solution to a problem."
+343,procedural knowledge,,ctp_C5,trm_4a3fd79d0adc3,Knowledge exercised in the performance of a task/activity. Its acquisition or structure is often unavailable to the actor.
+344,procedural learning,,ctp_C5,trm_4a3fd79d0adcf,The acquisition of a skill or ability through practice which is not accessible to verbalization or conscious awareness.
+345,procedural memory,,,trm_4a3fd79d0addc,memory for how to do things; procedural memories are automatically retrieved and utilized for the execution of the step-by-step procedures involved in both cognitive and motor skills.
+346,procedural rule,,,trm_4a3fd79d0ade8,No definition submitted yet
+347,processing capacity,,,trm_4a3fd79d0adf4,No definition submitted yet
+348,processing stage,,,trm_4a3fd79d0ae00,A subset of mental operations that are confined some feature space of information within a stream and/or hierarchy of mental operations.
+349,pronunciation,,ctp_C6,trm_4a3fd79d0ae17,"the way a word or a language is spoken, or the manner in which someone utters a word."
+350,proper noun,,ctp_C6,trm_4a3fd79d0ae2b,"A subject that usually indicates a particular person, place, or object."
+351,proprioception,,ctp_C1,trm_4a3fd79d0ae3d,the sense of the relative position of neighboring parts of the body.
+352,prosodic stress,,ctp_C6,trm_4a3fd79d0ae58,the stress and intonation patterns of an utterance. 
+353,prosody,,ctp_C6,trm_4a3fd79d0ae64,"the rhythm, stress, and intonation of speech."
+354,prospective memory,,ctp_C5,trm_4a3fd79d0ae70,remembering to perform an intended action...prospective memory is self-initiated and does not operate directly on external stimuli.
+355,prospective planning,,,trm_4a3fd79d0ae7b,No definition submitted yet
+356,prototype,,ctp_C5,trm_4a3fd79d0ae87,"A most common, standard or basic mental representation of some category."
+357,quantitative skill,,,trm_4a3fd79d0aeaa,"the ability to to use mathematical concepts to solve problems.  
+"
+358,reading,,ctp_C6,trm_4a3fd79d0aeb6,Decoding symbols to derive their meaning.
+359,reasoning,,ctp_C3,trm_4a3fd79d0aec1,drawing of inferences or conclusions through the use of reason.
+360,regret,,ctp_C8,trm_4a3fd79d0aecd,"an emotional response to remembrance of a past state, condition, or experience that one wishes had been different"
+361,relational learning,,ctp_C5,trm_4a3fd79d0aed8,"learning to differentiate among stimuli on the basis of relational properties (e.g., the larger of two stimuli) rather than absolute properties (e.g., the stimulus that has a given size)."
+362,remote memory,,ctp_C5,trm_4a3fd79d0aee4,memory for events of long ago as opposed to recent events.
+363,repressed memory,,ctp_C5,trm_4a3fd79d0aeef,A memory (often traumatic) that is unavailable for recall.
+364,resource limit,,ctp_C4,trm_4a3fd79d0af4c,"the maximum amount of cognitive resources that can be allocated to various, often competing tasks"
+365,resource sharing,,ctp_C9,trm_4a3fd79d0af5a,"is a unique characteristic of humans and several primates that involve sharing resources such as food, shelter, etc., as a collective risk-reduction against variability in resource supply.
+"
+366,response inhibition,motor inhibition,ctp_C4,trm_4a3fd79d0af66,Suppression of actions that are inappropriate in a given context and that interfere with goal-driven behavior.
+367,response selection,"action selection, motor execution",ctp_C7,trm_4a3fd79d0af71,The selection of one action from a limited set of possible actions.
+368,retention,,ctp_C5,trm_4a3fd79d0af7d,"a preservation of the aftereffects of experience and learning that makes recall or recognition possible.
+Persistence of learned behavior or experience during a period when it is not being performed o r practiced.
+Retention is the second stage of memory after encoding and before retrival"
+369,retrieval,,ctp_C5,trm_4a3fd79d0af94,"The process of accessing information from memory or other storage devices; the possibility of recovery, restoration, or rectification.
+Retrieval is the third stage of memory after encoding and retention."
+370,retrieval cue,,ctp_C5,trm_4a3fd79d0afa0,An event or experience that facilitates retrieval of information from long-term memory because of its association to that information.
+371,retroactive interference,retroactive inhibition,ctp_C5,trm_4a3fd79d0afab,impeded retrieval and performance of previously learnt information due to newly acquired and practiced information.
+372,rhythm,,ctp_C1,trm_4a3fd79d0afc3,"Movement marked by the regulated succession of strong and weak elements, or of opposite or different conditions.  While rhythm most commonly applies to sound, such as music and spoken language, it may also refer to visual presentation, as timed movement through space."
+373,risk,,ctp_C3,trm_4a3fd79d0afcf,"Formally and mathematically speaking, the minimal definition of risk is what (Rothschild and Stiglitz, 1970) call a mean-preserving increase in dispersion. A typical example is a gamble offering $400 or $600 based on the outcome of a coin flip (i.e. with equal probability (50%)); this is less risky as compared to a similar gamble offering $200 or $800 [again depending on the outcome of a coin flip]. Notice here that the mean outcome (or âexpected valueâ) remains the same for both gambles.
+
+Thus risk can increase by keeping both the probabilities and the expected value the same. 
+
+There are other approaches to risk that are less mathematically stringent but have higher ecological validity. For instance increasing the probability of a (positive outcome) is associated with a reduced perception of risk. Notice though now that the expected value (or the mean outcome) also increases. So, it is difficult in that case to disentangle the two metrics.
+
+Many times  the term risk is associated with the probability of a negative outcome, or what is formally called downside risk. This idea is mostly due to the way actuarial science and insurance companies (which are more interested in the negative aspects of risk) use the term. For instance, the statement, ânow we increase the risk,â might be translated as taking more perilous actions, but formally, this is not the case. The point of risk is that the opportunity also increases (âupsideâ risk). Thus, a situation that is riskier can be attractive, especially if the agent focuses on the positive outcomes.
+
+Another approach is the so-called âmoment-basedâ approach. Here, one is interested in the second or higher moments of a distribution, roughly corresponding to variance, skewness and kurtosis. Skewness is of particular interest because it seems that risk-seeking persons (gamblers) can be attracted by positively skewed outcomes. Bets that offer a small probability of a high outcome are  attractive to gamblers (Garrett and Sobel, 1999).
+
+Overall, risk is not a unitary concept and should be very carefully defined.
+
+Note that the term risk as used here should be distinguished from the way the term is used in sentences such as &#34;risk of developing Parkinson&#39;s disease&#34;. An epidemiologist could help on the definition in that context.
+
+Input by other contributors:
+the probability or likelihood that an event will occur; possibility of loss or injury; someone or something that creates or suggests a hazard; the chance that an investment will lose value."
+374,route knowledge,,,trm_4a3fd79d0afda,is represented as a series of directions to follow to get from one place to another.
+375,routine,,,trm_4a3fd79d0afe6,a regular course of procedure; habitual or mechanical performance of an established procedure; a reiterated speech or formula; a sequence of computer instructions for performing a particular task.
+376,rule,,,trm_4a3fd79d0aff2,a method for performing a psychological operation
+377,rule learning,,ctp_C5,trm_4a3fd79d0affd,"process in which a participant gradually acquires knowledge about a fixed but unstated standard that defines, for example, the acceptability of a response or membership of category"
+378,sadness,,ctp_C8,trm_4a3fd79d0b014,"an emotion  characterized by feelings of unhappiness, disadvantage, loss, and helplessness."
+379,salience,,,trm_4a3fd79d0b020,a parameter of a stimulus that indexes its effectiveness.
+380,schema,,ctp_C3,trm_4a3fd79d0b02c,a structured representation that includes a particular organized way of perceiving and responding to a complex situation or set of stimuli.
+381,search,,ctp_C2,trm_4a3fd79d0b037,"to look into or over carefully or thoroughly in an effort to find or discover something; to look through or explore by inspecting possible places of concealment or investigating suspicious circumstances; to look at as if to discover or penetrate intention or nature; to uncover, find, or come to know by inquiry or scrutiny."
+382,selective attention,"controlled attention, directed attention",ctp_C2,trm_4a3fd79d0b043,"When multiple external sensory inputs are present, the process of dedicating cognitive and perceptual resources to one type/set of input and attenuating receptiveness to other inputs."
+383,self monitoring,,ctp_C4,trm_4a3fd79d0b05e,monitoring of one&#39;s own behavior.
+384,semantic category,,ctp_C6,trm_4a3fd79d0b06b,"is a grouping of vocabulary within a language, organizing words which are interrelated and define each other in various ways. Also referred to as a semantic field.
+
+"
+385,semantic knowledge,,ctp_C6,trm_4a3fd79d0b077,"long-established knowledge about objects, facts, and word meanings."
+386,semantic memory,,ctp_C6,trm_4a3fd79d0b083,"refers to one&#39;s conceptual knowledge and includes the meanings of words, factual information about the world, and other information not related to specific events or episodes"
+387,semantic working memory,,ctp_C4,trm_4a3fd79d0b08f,Working memory for meaning
+388,sensory memory,sensory-information store; sensory register,ctp_C5,trm_4a3fd79d0b09a,"brief storage of sensory information in each of the senses, which temporarily holds material (e.g., a perceptual experience) for recoding into another memory (such as short-term memory) or for comprehension."
+389,sequence learning,,ctp_C5,trm_4a3fd79d0b0a6,learning of a sequence of items or responses in the precise order of their presentation.
+390,serial learning,,ctp_C5,trm_4a3fd79d0b0b1,The process of acquiring information in sequence and following an order that must be preserved at recall.
+391,serial processing,"intermittent processing, sequential processing",,trm_4a3fd79d0b0bd,information processing in which only one sequence of processing operations is carried on at a time.
+392,serial search,,ctp_C2,trm_4a3fd79d0b0c8,The process of identifying a target within a set of candidate elements by testing the identity of each element against the identity of the sought after target one at a time.
+393,shallow processing,,,trm_4a3fd79d0b0df,"a mode of thinking in which one pays attention only to appearances and other superficial aspects of the material, typically leading to poor memory retention."
+394,shame,,ctp_C8,trm_4a3fd79d0b0eb,"a painful emotion caused by consciousness of guilt, shortcoming, or impropriety; a condition of humiliating disgrace or disrepute; something that brings censure or reproach."
+395,short-term memory,STM,ctp_C5,trm_4a3fd79d0b0f7,"A limited-capacity and short-lasting representation of information in the mind. The duration of short-term memory is on the order of seconds, while its capacity is on the order of 4 to 9 independent items."
+396,skepticism,,,trm_4a3fd79d0b10e,an attitude of doubt or a disposition to incredulity either in general or toward a particular object.
+397,skill,,ctp_C5,trm_4a3fd79d0b11a," Proficiency, facility, or dexterity that is acquired or developed through training or experience."
+398,skill acquisition,skill learning,ctp_C5,trm_4a3fd79d0b125,The process of learning to perform a task or set of tasks with increasing facility. Typically implies the formation of procedural (as distinct from semantic or episodic) memories.
+399,Gestalt grouping,,,trm_4fb3f4d58aeb0,"the ways in which elements are perceived to be grouped together, most often described for auditory and visual perception, but may also be a factor for other modalities"
+400,social cognition,,ctp_C9,trm_4a3fd79d0b13d,"the encoding, storage, retrieval, and processing, in the brain, of information relating to conspecifics, or members of the same species."
+401,social context,,ctp_C9,trm_4a3fd79d0b148,the identical or similar social positions and social roles as a whole that influence the individuals of a group.
+402,social intelligence,,ctp_C9,trm_4a3fd79d0b154,the ability to function successfully in interpersonal situations.
+403,somatosensation,somatosensory perception,ctp_C1,trm_4a3fd79d0b160,"the components of the central and peripheral nervous systems that receive and interpret sensory information from organs in the joints, ligaments, muscles, and skin. This system processes information about the length, degree of stretch, tension, and contraction of muscles; pain; temperature; pressure; and joint position."
+404,source memory,,ctp_C5,trm_4a3fd79d0b18f,"the episodic source from which a specific item was acquired (e.g., from a person, a book, or television (Schacter, Kaszniak, Kihlstrom, & Valdiserri, 1991, p. 559)."
+405,source monitoring,,ctp_C5,trm_4a3fd79d0b19b,The process of identifying the the source or context at acquisition of information that has been stored in memory.
+406,spatial ability,,ctp_C1,trm_4a3fd79d0b1a6,"skill in perceiving the visual world, transforming and modifying initial perceptions, and mentally recreating spatial aspects of one&#39;s visual experience without the relevant stimuli."
+407,spatial attention,,ctp_C2,trm_4a3fd79d0b1b2,"The allocation or prioritization of mental resources based on spatial coordinates (with respect to the body, head etc)."
+408,spatial cognition,,,trm_4a3fd79d0b1bd,"the acquisition, organization, utilization, and revision of knowledge about spatial environments."
+409,spatial memory,,ctp_C5,trm_4a3fd79d0b1d5,the part of memory  responsible for recording information about one&#39;s environment and its spatial orientation.
+410,spatial working memory,,ctp_C2,trm_4a3fd79d0b1e0,The ability to maintain online information that relates to space. This process has limited capacity and its contents are not stored permanently.
+411,speech perception,,ctp_C6,trm_4a3fd79d0b1f7,"the process by which the sounds of language are heard, interpreted and understood. "
+412,speech processing,,ctp_C6,trm_4a3fd79d0b238,the processing of speech signals
+413,speech production,,ctp_C6,trm_4a3fd79d0b247,"is the process by which spoken words are selected to be produced, have their phonetics formulated and then finally are articulated by the motor system in the vocal apparatus. Speech production can be spontaneous such as when a person creates the words of a conversation, reaction such as when they name a picture or read aloud a written word, or a vocal imitation such as in speech repetition.  Speech production is not the same as language production since language can also be produced manually by signs.
+"
+414,spreading activation,,,trm_4a3fd79d0b26d,"a method for searching associative networks, neural networks, or semantic networks; the search process is initiated by labeling a set of source nodes (e.g. concepts in a semantic network) with weights or &#34;activation&#34; and then iteratively propagating or &#34;spreading&#34; that activation out to other nodes linked to the source nodes."
+415,stereopsis,,ctp_C1,trm_4a3fd79d0b279,the process in visual perception leading to the sensation of depth from the two slightly different projections of the world onto the retinas of the two eyes.
+416,stereotypes,,ctp_C9,trm_4a3fd79d0b285,"something conforming to a fixed or general pattern; a standardized mental picture that is held in common by members of a group and that represents an oversimplified opinion, prejudiced attitude, or uncritical judgment."
+417,strategy,,,trm_4a3fd79d0b29c,A plan of action designed to achieve a particular goal.
+418,stress,,ctp_C8,trm_4a3fd79d0b2a8,"refers to the consequence of the failure of an organism â human or animal â to respond appropriately to emotional or physical threats, whether actual or imagined.
+"
+419,sublexical route,,ctp_C6,trm_4a3fd79d0b2b4,"is a theoretical component of Coltheart&#39;s dual-route reading model that refers to using spelling-to-sound correspondences to convert a written word (i.e. orthography) into a spoken word (i.e. phonology).  In other words, it is the route by which letters are linked to their sounds and the sounds are assembled into a whole word pronunciation.  It complements the lexical route where the whole word is recognized and linked to its sound."
+420,subliminal perception,,ctp_C1,trm_4a3fd79d0b2bf,"a visual or auditory message that is allegedly perceived psychologically, but not consciously;
+occurs when a stimulus is too weak to be perceived yet a person is influenced by it.
+"
+421,supervisory attentional system,,ctp_C4,trm_4a3fd79d0b2fa,"a loosely defined collection of brain processes that are responsible for planning, cognitive flexibility, abstract thinking, rule acquisition, initiating appropriate actions and inhibiting inappropriate actions, and selecting relevant sensory information."
+422,surprise,,ctp_C8,trm_4a3fd79d0b306,a brief emotional state that is the result of experiencing an unexpected relevant event.
+423,sustained attention,,ctp_C2,trm_4a3fd79d0b311,the ability to maintain a consistent behavioral response during continuous and repetitive activity.
+424,syntactic parsing,,ctp_C6,trm_4a3fd79d0b340,"the way that human beings, rather than computers, analyze a sentence or phrase (in spoken language or text) in terms of grammatical constituents, identifying the parts of speech, syntactic relations, etc."
+425,syntactic processing,,ctp_C6,trm_4a3fd79d0b34b,processing of the structural and grammatical aspects of language
+426,syntax,,ctp_C6,trm_4a3fd79d0b357,"the way in which linguistic elements (as words) are put together to form constituents (as phrases or clauses); a connected or orderly system, harmonious arrangement of parts or elements."
+427,taste aversion,,ctp_C8,trm_4a3fd79d0b363,"occurs when the taste of a certain food is associated with symptoms caused by a toxic, spoiled, or poisonous substance;  generally caused after ingestion of the food causes nausea, sickness, or vomiting. The ability to develop a taste aversion is considered an adaptive trait or survival mechanism that trains the body to avoid poisonous substances (e.g., poisonous berries) before they can cause harm."
+428,text comprehension,,ctp_C6,trm_4a3fd79d0b37a,Intentional thinking during which meaning is constructed through interactions between text and reader.
+429,text processing,,ctp_C6,trm_4a3fd79d0b386,The handling of alphabetic characters
+430,theory of mind,mentalizing,ctp_C9,trm_4a3fd79d0b392,"the ability for a person to connect emotional states to themselves and others and understand that other people may have different  beliefs, desires, or intentions from one&#39;s self.  It is intimately connected with the development of a person&#39;s ability to analyze and interpret the intentions of others."
+431,thermosensation,,ctp_C1,trm_4a3fd79d0b39d,the sensory perception of thermal stimuli.
+432,top down processing,,ctp_C4,trm_4a3fd79d0b3cb,"perceptions formed by starting with the larger concept or idea, then working down to the finer details of that concept or idea."
+433,traumatic memory,,ctp_C5,trm_4a3fd79d0b3ef,"A type of memory results from trauma experience, such as a natural disaster or violent events."
+434,uncertainty,,ctp_C3,trm_4a3fd79d0b3fa,the lack of knowledge regarding the likelihood of potential outcomes
+435,unconscious process,,ctp_C2,trm_4a3fd79d0b406,a mental process that you are not directly aware of.
+436,utility,,ctp_C3,trm_4a3fd79d0b412,a measure of the subjective worth of an outcome.
+437,valence,,ctp_C8,trm_4a3fd79d0b429,"the degree of attractiveness an individual, activity, or thing possesses as a behavioral goal."
+438,verbal fluency,,ctp_C6,trm_4a3fd79d0b44c,the ability to rapidly access your mental vocabulary while talking or writing.
+439,verbal memory,,ctp_C5,trm_4a3fd79d0b457,Recall based on spoken words.
+440,optical illusion,visual illusion,,trm_4fb2c38960950,A phenomenon in which what is visually perceived does not reflect the nature of the objective stimulus.
+441,visual attention,,ctp_C2,trm_4a3fd79d0b46f,"two-stage process in which attention is distributed uniformly over the external visual scene and processing of information is performed in parallel, attention is then concentrated to a specific area of the visual scene (i.e. it is focused), and processing is performed in a serial fashion."
+442,visual buffer,,ctp_C1,trm_4a3fd79d0b47b,a short-term memory store for visual information
+443,visual imagery,,,trm_4a3fd79d0b487,"an experience that, on most occasions, significantly resembles the experience of perceiving some object, event, or scene, but occurs when the relevant object, event, or scene is not actually present to the senses.
+"
+444,visual masking,masking,ctp_C1,trm_4a3fd79d0b492,the reduction or elimination of the visibility of a brief a target stimulus by the presentation of a second stimulus (the mask) contiguous in space and/or time
+445,visual memory,,ctp_C5,trm_4a3fd79d0b49e,a part of memory  preserving some characteristics of our senses pertaining to visual experience.
+446,visual object recognition,,ctp_C1,trm_4a3fd79d0b4a9,is the process of identifying an object based on its visual attributes
+447,visual perception,,ctp_C1,trm_4a3fd79d0b4b5,"Visual perception is the ability to interpret the surrounding environment by processing information that is contained in visible light. The resulting perception is also known as eyesight, sight, or vision."
+448,visual representation,,ctp_C1,trm_4a3fd79d0b4c1,An internal representation of visual information
+449,visual search,,ctp_C2,trm_4a3fd79d0b4cd,"orienting for targets in an array or a natural scene, through both covert and overt shifts in attention; this is different from the visual search task in that it refers to a general phenomenon and not to a paradigm."
+450,visual working memory,,ctp_C2,trm_4a3fd79d0b4d8,The ability to maintain visual information online for a limited time interval (~ 4 sec). This information is not stored permanently.
+451,visuospatial sketch pad,,ctp_C4,trm_4a3fd79d0b507,"The cognitive construct and mental process of temporarily storing visual and spatial information for online use in operations of working memory (c.f., Alan Baddeley) . "
+452,wisdom,,,trm_4a3fd79d0b530,accumulated philosophic or scientific learning.
+453,word comprehension,,ctp_C6,trm_4a3fd79d0b548,the ability to understand the meaning of words.
+454,word generation,word production,ctp_C6,trm_4a3fd79d0b55f,The cognitive process of producing words on ones own term instead of extracting them from an outside source.  
+455,word order,,ctp_C6,trm_4a3fd79d0b56b,is the sequence of the syntactic constituents of a language.
+456,word pronunciation,,ctp_C6,trm_4a3fd79d0b583,"is the act or result of producing the sounds of speech, including articulation, stress, and intonation, often with reference to some standard of correctness or acceptability."
+457,word recognition,,ctp_C6,trm_4a3fd79d0b58f,the ability of a reader to recognize words correctly and virtually effortlessly.
+458,word repetition,overt repetition,ctp_C6,trm_4a3fd79d0b59b,Overt pronounciation of auditorily presented words
+459,working memory,,ctp_C4,trm_4a3fd79d0b5a7,"active maintenance and flexible updating of goal/task relevant information (items, goals, strategies, etc.) in a form that resists interference but has limited capacity. These representations may involve flexible binding of representations, may be characterized by the absence of external support for the internally maintained representations, and are frequently temporary due to ongoing interference
+"
+460,action initiation,,ctp_C7,trm_4a3fd79d0b5c0,the facilitation or initiation of an act
+461,attention shift,,ctp_C2,trm_4a3fd79d0b5d7,The change that occurs when information that is currently active in the mind is replaced by other information. The information content is typically sensory in nature.
+462,attention span,,ctp_C2,trm_4a3fd79d0b5e3,Amount of time or space that an individual can dedicate to particular task or content without becoming distracted.
+463,attentional focusing,,ctp_C2,trm_4a3fd79d0b5ef,The ability to focus attention on cues in the environment that are relevant to the task in hand; can also include suppression of distracting stimuli
+464,attention shifting,,ctp_C2,trm_4a3fd79d0b5fb,The process by which information that is currently relevant in the mind is replaced by other information. This information is typically sensory in nature but may also be semantic.
+465,set shifting,"mental set shifting, task set reconfiguration",ctp_C4,trm_4a3fd79d0b607,disengagement of an irrelevant task set and subsequent engagement of a relevant task set despite interference and/or priming
+466,task switching,,ctp_C4,trm_4a3fd79d0b613,"The process of switching from one task or goal to another, depending on the context or instructions, that is, the process of switching between task sets."
+467,decision,,ctp_C3,trm_4a3fd79d0b61f,"The outcome of a process during which a choice is made, usually between several possible options"
+468,framing,,ctp_C3,trm_4a3fd79d0b636,"Framing is a method of biasing opinions- a framing effect occurs when the description of information, such as a speaker presenting an issue, has an emphasis on a subset of potentially <br />
+relevant considerations and causes individuals to focus on these considerations when constructing their opinions."
+469,risk aversion,,,trm_4a3fd79d0b642,None
+470,risk seeking,,ctp_C3,trm_4a3fd79d0b64e,"The willingness of an individual to choose an option with a less-than-certain probability of reward over an option with a certain reward of equal or higher expected value. 
+
+BEHAVIORAL PHENOMENA"
+471,emotion perception,,ctp_C8,trm_4a3fd79d0b65a,The process involving understanding feelings with different valences of oneself or of others
+472,emotion recognition,,ctp_C8,trm_4a3fd79d0b665,The process of assigning an emotion to one of the discrete categories of emotion available in a particular culture.
+473,emotional bonding,,ctp_C9,trm_4a3fd79d0b671,"A process of bringing people together based on mutually shared emotions.
+"
+474,empathy,,ctp_C8,trm_4a3fd79d0b67d,"The act of understanding, being aware of, being sensitive to, and or experiencing the feelings, thoughts, and experience of another. "
+475,fear,acute threat,ctp_C8,trm_4a3fd79d0b689,"A state of high negative emotional arousal triggered by an impending threat (real or imaginary) and generally associated with the flight or fight response. Fear is the activation of the brainâs defensive motivational system to promote behaviors that protect the organism from perceived danger. Normal fear involves a pattern of adaptive responses to conditioned or unconditioned threat stimuli (exteroceptive or interoceptive). Fear can involve internal representations and cognitive processing, and can be modulated by a variety of factors."
+476,frustration,,ctp_C8,trm_4a3fd79d0b695,a deep chronic sense or state of insecurity and dissatisfaction arising from unresolved problems or unfulfilled needs.
+477,grief,,ctp_C8,trm_4a3fd79d0b6a1,deep and poignant distress caused by or as if by bereavement.
+478,happiness,,ctp_C8,trm_4a3fd79d0b6ad,"a state of mind or feeling characterized by contentment, love, satisfaction, pleasure, or joy."
+479,discourse,,ctp_C6,trm_4a3fd79d0b6c5,"the capacity of orderly thought or procedure, verbal interchange of ideas; formal and orderly and usually extended expression of thought on a subject, connected speech or writing, linguistic unit larger than a sentence."
+480,discourse comprehension,,ctp_C6,trm_4a3fd79d0b6d1,Discourse comprehension is the act of interpreting a written or spoken message by integrating the incoming information into the memory or knowledge structures of the interpreter.
+481,discourse knowledge,,ctp_C6,trm_4a3fd79d0b6dd,"knowledge regarding discourse
+"
+482,discourse planning,,ctp_C6,trm_4a3fd79d0b6e9,"the formulation of structures, patterns, mental representations, and processes that constitute the written and spoken unit of connected speech or writing longer than a sentence.
+"
+483,discourse processing,,ctp_C6,trm_4a3fd79d0b6f5,"is the cognitive process that investigates the structures, patterns, mental representations, and processes that underlie the written and spoken unit of connected speech or writing longer than a sentence.
+
+"
+484,discourse production,,ctp_C6,trm_4a3fd79d0b701,"the formation of a spoken unit of connected speech or writing longer than a sentence.
+"
+485,grammatical encoding,,ctp_C6,trm_4a3fd79d0b756,"the selection of semantically appropriate lexical items and the generation of a syntactic frame or surface form.
+
+"
+486,grapheme,,ctp_C6,trm_4a3fd79d0b76e,a unit (as a letter or digraph) of a writing system; the set of units of a writing system (as letters and letter combinations) that represent a phoneme.
+487,graphemic buffer,,ctp_C6,trm_4a3fd79d0b779,a component dedicated to the temporary storage of abstract orthographic representations prior to their format-specific expression in spelling and/or reading.
+488,illocutionary force,,ctp_C6,trm_4a3fd79d0b7b5,a speaker&#39;s intention in delivering an utterance.
+489,language acquisition,,ctp_C6,trm_4a3fd79d0b7f4,"the process by which humans acquire the capacity to perceive, produce and use words to understand and communicate."
+490,language processing,,ctp_C6,trm_4a3fd79d0b802,the way human beings process speech or writing and understand it as language.
+491,lexical access,,ctp_C6,trm_4a3fd79d0b80f,"the process by which contact is made with the lexicon on the basis of an initial acoustic-phonetic or phonological representation of some portion of the speech input, the result of lexical success is a cohort of potential word candidates which are compatible with this initial analysis."
+492,lexical ambiguity,,ctp_C6,trm_4a3fd79d0b81b,the presence of two or more possible meanings within a single word.
+493,lexical processing,,ctp_C6,trm_4a3fd79d0b826,"A general term referring to the processing of single words, typically in the context of visual or auditory word recognition."
+494,morphological processing,,ctp_C6,trm_4a3fd79d0b832,"is how the brain registers the patterns of word formation in a particular language, including inflection, derivation, and composition. "
+495,morphology,,ctp_C6,trm_4a3fd79d0b83e,the structure and content of word forms
+496,orthography,,ctp_C6,trm_4a3fd79d0b84a,"the representation of the sounds of a language by written or printed symbols; a part of language study that deals with letters and spelling.
+"
+497,phonetics,,ctp_C6,trm_4a3fd79d0b862,the system of speech sounds of a language or group of languages; the study and systematic classification of the sounds made in spoken utterance.
+498,semantic processing,,ctp_C6,trm_4a3fd79d0b87a,"refers to the cognitive processing of the meanings of a stimulus
+"
+499,sentence comprehension,,ctp_C6,trm_4a3fd79d0b892,"takes place whenever a reader or listener processes a language utterance, either in isolation or in the context of a conversation or a text."
+500,sentence processing,,ctp_C6,trm_4a3fd79d0b89e,"takes place whenever a reader or listener cognitively processes a language utterance, either in isolation or in the context of a conversation or a text.
+"
+501,sentence production,,ctp_C6,trm_4a3fd79d0b8aa,The creation and/or utterance of a sentence
+502,active recall,,ctp_C5,trm_4a3fd79d0b8b5,"a principle of efficient learning, which claims the need to actively stimulate memory during the learning process."
+503,active retrieval,,ctp_C5,trm_4a3fd79d0b8c1,"Effortful (volitional) attempt to consciously recollect a memory; often required when retrieval cannot be automatically driven by stimuli.
+"
+504,consolidation,,ctp_C5,trm_4a3fd79d0b8cd,the process by which a representation becomes stabilized
+505,elaborative rehearsal,,ctp_C5,trm_4a3fd79d0b8d9,a type of rehearsal proposed by Craik and Lockhart (1972) in their Levels of Processing model of memory. Elaborative rehearsal involves deep semantic processing of a to-be-remembered item resulting in the production of durable memories.
+506,encoding,memory encoding,ctp_C5,trm_4a3fd79d0b8e5,The process of creating a new memory trace.
+507,episodic buffer,,ctp_C5,trm_4a3fd79d0b8f0,A theoretical construct that is part of Alan Baddeley&#39;s working memory model and the object of which is to integrate information across sensory domains and communicate with long term memory in the service of working memory. 
+508,familiarity,,ctp_C5,trm_4a3fd79d0b8fc,"A quality of memory that is associated with a feeling of knowing that an event has previously occurred, but often not including enough contextual or episodic details sufficient for claiming actual remembering of the event."
+509,forgetting,,ctp_C5,trm_4a3fd79d0b908,The loss of or inability to retrieve a memory.
+510,memory acquisition,,ctp_C5,trm_4a3fd79d0b914,"is the process of storage and retrieval of new information in memory.
+"
+511,memory consolidation,,,trm_4a3fd79d0b920,a category of processes that stabilize a memory trace after the initial acquisition. 
+512,memory decay,,,trm_4a3fd79d0b92c,the loss of memory over time.
+513,memory storage,,ctp_C5,trm_4a3fd79d0b938,The representation of information in the brain in a form that enables potential retrieval at a later time.
+514,memory trace,,,trm_4a3fd79d0b943,"A residual, and often decayed, neural representation of previous knowledge or experience."
+515,metamemory,,ctp_C4,trm_4a3fd79d0b94f,"subjective awareness of and knowledge about memory, and strategies for its effective access and application; includes: awareness of memory contents, different and appropriate memory strategies for particular tasks, and how to use a given memory strategy most effectively."
+516,recall,,ctp_C5,trm_4a3fd79d0b95b,"The process of retrieving previously stored information, done without the aid of external cues."
+517,recognition,,ctp_C5,trm_4a3fd79d0b967,assigning a detected stimulus into a category (not necessarily task defined)
+518,reconsolidation,,ctp_C5,trm_4a3fd79d0b972,"the process of previously consolidated memories being recalled and actively consolidated, it is a distinct process that serves to maintain, strengthen and modify memories that are already stored in the long-term memory."
+519,acuity,,ctp_C1,trm_4a3fd79d0b98a,accuracy of perception. 
+520,echolocation,,ctp_C1,trm_4a3fd79d0b996,"the general method of locating objects by determining the time for an echo to return and the direction from which it returns, used by some animals"
+521,edge detection,,ctp_C1,trm_4a3fd79d0b9a1,"a fundamental tool in image processing and computer vision, particularly in the areas of feature detection and feature extraction, which aim at identifying points in a digital image at which the image brightness changes sharply or more formally has discontinuities."
+522,feature detection,,ctp_C1,trm_4a3fd79d0b9ad,"a process of recognizing specific aspects of a stimulus, such as lines, edges, angle, or movement. "
+523,figure ground reversal,,ctp_C1,trm_4a3fd79d0b9d1,"Occurs in certain visual illusions (e.g., Vases and Faces or &#34;Rubin&#39;s Vase&#34;) in which there are multiple valid figure-ground segmentations that can be selected depending on an observer&#39;s interpretation."
+524,figure ground segregation,,ctp_C1,trm_4a3fd79d0b9dd,Discriminating objects from their surroundings by the visual system.
+525,gustation processing,gustation,ctp_C1,trm_4a3fd79d0b9e9,Form of chemoreception that facilitates taste perception.
+526,memory retrieval,,ctp_C5,trm_4a3fd79d0ba01,the process of accessing a stored memory
+527,active maintenance,,ctp_C4,trm_4a3fd79d0ba0d,The maintenance of information in working memory through active (volitional) rather than passive means
+528,articulatory loop,phonological loop,ctp_C5,trm_4a3fd79d0ba19,"one of the subsystems postulated in Alan Baddeleyâs multicomponent model of WORKING MEMORY, specialized for the temporary storage of verbal information.  It consists of a phonological store and an articulatory rehearsal process. The phonological store can hold speech-based information, subject to a rapid decay. The articulatory rehearsal process can refresh the decaying representation by reading it off and feeding it back to the store. It also serves to convert visually presented information (such as written words) into phonological codes and register them into the phonological store. "
+529,central executive,,ctp_C4,trm_4a3fd79d0ba25,"Theoretical &#39;top-down&#39; cognitive system responsible for the management of executive functions including planning, working memory, attention, problem solving, reasoning, inhibition, multi-tasking, and the initiation and monitoring of actions."
+530,maintenance,,ctp_C4,trm_4a3fd79d0ba30,The process of keeping information in active and immediately accessible state.
+531,manipulation,,ctp_C4,trm_4a3fd79d0ba3c,performance of operations upon information held in working memory
+532,phonological loop,,ctp_C5,trm_4a3fd79d0ba48,deals with sound or phonological information and consists of two parts: a short-term phonological store with auditory  memory traces that are subject to rapid decay and an articulatory rehearsal component that can revive the memory traces. 
+533,rehearsal,,ctp_C5,trm_4a3fd79d0ba54,The repetition of information in an attempt to maintain it longer in memory.
+534,rehearsal loop,,ctp_C5,trm_4a3fd79d0ba60,"or phonological loop, also called the phonetic loop or the articulatory loop, is the part of working memory that rehearses verbal information. It consists of two parts: a short-term phonological store with auditory memory traces that are subject to rapid decay and an articulatory rehearsal component that can revive the memory traces.The first component is a phonological memory store which can hold traces of acoustic or speech based material. Material in this short term store lasts about two seconds unless it is maintained through the use of the second subcomponent, articulatory subvocal rehearsal. Prevention of articulatory rehearsal results in very rapid forgetting (a process known as decay). "
+535,working memory retrieval,,ctp_C4,trm_4a3fd79d0ba6c,The process of accessing information that is maintained in working memory; the sub-process by which the contents of working memory are accessed.
+536,working memory storage,,ctp_C4,trm_4a3fd79d0ba77,The maintenance of information of working memory; a sub-component of working memory that allows for contents of working memory to be retained.
+537,test term,,,trm_4a7b128b8b2d0,None
+538,cognitive control,"executive control, executive function",ctp_C4,trm_4aae62e4ad209,The top-down modulation of cognitive processes based on higher-order representations such as goals or plans.
+539,echoic memory,,ctp_C5,trm_4b185801de7a1,refers to the phenomenon in which there is a brief mental echo that continues to sound after an auditory stimulus has been heard.
+540,reward processing,"reinforcement, reward",ctp_C5,trm_4b6525253c63f,A positive return for performance of a specific behavior.
+541,pain,,ctp_C8,trm_4b65259eeee34,An unpleasant sensory and emotional experience associated with actual or potential tissue damage.
+542,joint attention,mutual knowledge,ctp_C2,trm_4b75ed06c917d,the process of alerting one person to a stimulus through nonverbal cues such as finger pointing or gazing. It is one of the first signs of the development of a theory of mind in babies and serves as an important step to later language and social development.
+543,behavioral inhibition (cognitive),,ctp_C4,trm_4b7c270940f9d,"Often used as a synonym of &#34;response inhibition&#34; to describe the inhibition of actions.
+"
+544,behavioral inhibition (temperament),,,trm_4b7c27094a093,A temperamental characteristic described by shyness and social anxiety.
+545,central coherence,,,trm_4b82c75498408,"a person&#39;s ability to understand things in context, frequently described as a deficit in literature on autism"
+546,interference resolution,interference control,ctp_C4,trm_4c3e04d656f06,The process of selecting information with regard to its relevance to an ongoing task and suppressing the processing of irrelevant information.
+547,updating,,ctp_C4,trm_4c3e05903e4bb,The revision or refreshing of information that is maintained in working memory
+548,task set,,ctp_C4,trm_4c3e0646a2408,The set of rules and/or stimulus-response mappings that define how a task should be performed.
+549,subconscious,,,trm_4d21e9a7dd8ca,"Subconscious is any neural activity which has the potential to be conscious, but at the moment is processed below the level of consciousness.
+
+In contrast to unconscious information processing, subconscious processing contains meaning (semantic information).
+
+Intuition is a good example for subconscious information processing. In other words, intuition means thinking below the level of consciousness whereby only the output enters the stream of consciousness.
+
+from Peter Walla"
+550,semantic information,semantic knowledge,,trm_4d2201d530697,"information that is not tied to any specific object, event, domain, or application. It includes general factual information about the world (as in an encyclopedia) and oneself."
+551,paraphasia,,ctp_C6,trm_4d7fa1a3e2a10,"generally refers to errors in naming. Collectively, this term is applied to any unintended error of word or sound choice.
+"
+552,phonemic paraphasia,,ctp_C6,trm_4d7fa1ee2f870,"is the production of unintended sounds or syllables in the utterance of partially recognizable word, e.g., âpakerâ for âpaper.â
+"
+553,neologism,,ctp_C6,trm_4d7fa2df05f23,"is the production of nonsense word or words, usually without recognition of errors, e.g., âtableâ becomes âtilto.â
+
+"
+554,metacomprehension,,,trm_4d7fc763cf777,"refers to the learners&#39; ability to monitor the degree to which they understand information being communicated to them, to recognize failures to comprehend, and to employ repair strategies when failures are identified.
+"
+555,conceptual metaphor,,,trm_4d920c905d465,"In cognitive linguistics, metaphor is defined as understanding one conceptual domain in terms of another conceptual domain; for example, using one person&#39;s life experience to understand a different person&#39;s experience. A conceptual domain can be any coherent organization of experience.
+
+"
+556,body representation,,,trm_4e5505361f160,A mental representation of one&#39;s own body
+557,delusion,,,trm_4fa3afaeef512,A belief held despite appreciable external evidence to the contrary.
+558,deliberation,consideration,ctp_C3,trm_4fa28299dbddd,"the process of judging the merits of multiple options, which may then be followed by choice."
+559,thought,,,trm_4fa295124a375,"Subjectively salient cognitive processing, at least part of which may be reportable."
+560,multisensory integration,,ctp_C1,trm_4e31ced566649,The process by which unisensory signals are combined to form a new product. It is operationally defined as a multisensory response (neural or behavioral) that is significantly different from the responses evoked by the modality-specific component stimuli
+561,crossmodal,cross-modal,,trm_4e31d2241319f,A complex of two or more modality-specific [unimodal] stimuli
+562,unisensory,,ctp_C1,trm_4e31d365bc7e2,Describes any sensory process associated with a single sensory modality 
+563,multisensory,,ctp_C1,trm_4e31d3ba7d25b,a process associated with multiple sensory modalities 
+564,synchrony perception,,ctp_C1,trm_4e31e6dca01ca,"the process of perceiving whether or not the crossmodal cues (e.g., audio and visual) to an event (e.g., audiovisual speech) are in temporal synchrony with each other."
+565,tactile working memory,,ctp_C5,trm_4e416f1373936,working memory for tactile information
+566,interoceptive representation,,,trm_4e5506161998c,A representation of the internal state of the body
+567,sense of ownership,,,trm_4e5badf095692,The feeling that something is part of one self.
+568,sense of body ownership,,,trm_4e5faabfe8ce3,The feeling that something is part of one&#39;s own body.
+569,pain sensitization ,,ctp_C8,trm_4e61264db33d4,A painful stimulus is perceived more painful over the time course of stimulation.
+570,pain habituation,pain adaptation,ctp_C8,trm_4e6127bd91be9,A painful stimulus is perceived less painful over the time course of stimulation.
+571,priming,,ctp_C5,trm_4e89aebaa311d,Priming is the effect of prior exposure to a somehow (e.g. perceptually or semantically) related stimulus on the response to a subsequent stimulus. This effect may be positive and facilitatory (e.g. naming of an object is typically faster when that object has already been recently named) or negative and detrimental (e.g. slower response to a previously ignored stimulus).
+572,expectancy,"expectation, reward prediction error",ctp_C10,trm_4ebfe9a465449,"A belief about something in the future. Sometimes requires explicit, conscious awareness, distinct from unconscious, conditioning-based learning."
+573,self control,"Self-regulation, willpower, ego strength, self-discipline",ctp_C4,trm_4ee8facd77dfc,"The effortful control of behaviors, thoughts, or emotions with the aim of increasing the likelihood of attaining long-term over short-term outcomes."
+574,embodied cognition,,,trm_4f33e65d0daac,a theory emphasizing the essentiality of the body&#39;s interaction with the environment to cognition
+575,resource,,,trm_4f3a72a028d90,"any aspect of cognition having bounded availability, eg. memory, attention"
+576,curiosity,inquisitiveness,ctp_C10,trm_4f3bdeedcc99d,"wanting knowledge or understanding, often of a novel or unfamiliar entity  "
+577,visual awareness,,,trm_4ff36d79c26c6,"the subjective experience of seeing, emerging about 200ms after the onset of a visual stimulus; it is contrasted with unconscious visual perception"
+578,imagination,"envisagement, representation, mental conception",,trm_4f4511e519b53,forming mental images or concepts of what is not actually present to the senses 
+579,addiction,dependency,,trm_4fafd1626bf2b,"A phenomenon sometimes conflated and sometimes contrasted with dependency, in which a person has transitioned from liking a rewarding substance or behavior to requiring it."
+580,self talk,,,trm_4f4672db34a46,"overt verbalisation of thoughts for the purpose of self motivation, problem solving, reasoning, learning or stress management; a behavior commonly witnessed in sports-people during moments of performance pressure "
+581,worldview,perspective,,trm_4f46753b8be4f,"overarching subjective account of environmental (ie. that in which an agent is situated) characteristics and functions, applicable across local and global spatiotemporal scales; a framework of ego-centric ideas and beliefs that serves to guide decision making and action, and to generate, sustain, and apply knowledge. "
+582,inattentional blindness,perceptual blindness,,trm_4fe3861edc919,a phenomenon in which people fail to see an unexpected stimulus
+583,interoception,,,trm_4fe39e4388409,"perception of stimuli inside the body, e.g. hunger, thirst, pain"
+584,extinction,,,trm_4fe8edc62f613,"the phenomenon by which a response to a conditional stimulus presented in absence of the unconditional stimulus diminishes over time; rather than a forgetting, it is generally believed to be a new learning."
+585,difference threshold,"just noticeable difference, JND",,trm_4fe9fae4321e7,the smallest detectable difference between two stimuli
+586,binocular depth cue,,,trm_4fea04a02ce37,a cue that provides depth information about a scene when it is viewed with both eyes
+587,color constancy,,,trm_4fea09fac5316,"the ability to assign stable colors despite variation in light, i.e. identifying that a given box is orange irrespective of the spectral composition or intensity of the light illuminating it"
+588,feature search,,,trm_4fea18ec76bc9,search for a target according to a single feature (e.g. color)
+589,attentional blink,AB,ctp_C2,trm_4fea1aeaa7b17,a phenomenon in which the participant is unable to detect a second salient visual stimulus if presented at the same spatial location within 200-500 milliseconds after the first
+590,change blindness,,,trm_4fea238758d33,"the inability to detect changes to an object or a scene even if large, repeatedly made, or anticipated; it can even occur when the subject is fixated on the item being changed."
+591,motion aftereffect,,,trm_4fea25630ffb5,the illusion of movement in a stationary object after prolonged viewing of a moving object
+592,overt attention,,,trm_4feb3f8c551cb,directing a sense organ at a stimulus source
+593,covert attention,,,trm_4feb3ffa1ab51,the act of focusing on one of several sensory stimuli
+594,unconscious perception,,,trm_4feb44e5ae25b,"the process of perceiving a stimulus without being conscious of having seen it, measurable by electrophysiological response at the time and by recognition testing later"
+595,autonoesis,autonoetic consciousness,,trm_4ff1fc04e22e8,"consciousness of self consistent over time, both in imagining the future and recalling the past; consciousness of subjectivity"
+596,psychological refractory period,PRP,,trm_4ffca95528c88,"the phenomenon by which people are unable to make more than one conscious decision (and, by extension, unable to complete more than one task) within a few hundred milliseconds"
+597,noesis,noetic consciousness,,trm_4ffdc96dc85b7,a consciousness characterized by knowing or familiarity without self-reference (contrast with autonoesis)
+598,impulsivity,impulsiveness,,trm_50070dce14554,the tendency to act without adequately assessing context
+599,binocular rivalry,,,trm_500d8626d0770,"competition between the eyes for control of perception, particularly evident when different stimuli are presented to each eye"
+600,cone of confusion,,,trm_500d8839c2877,a region around the head for which neither interaural time differences (ITDs) nor interaural loudness differences (ILDs) in a sound are not great enough for a person to localize the sound source
+601,vection,,,trm_500d8aef38f2c,the illusion of movement in a stationary person caused by moving visual cues
+602,visual acuity,,,trm_500d8bcf5f29a,a measure of the finest resolution perceivable by the eyes
+603,visual angle,,,trm_500d8c8fcc520,"the angle a viewed object subtends at the eye, usually stated in degrees of arc, and is a function of the size of the object and its distance from the eye"
+604,domain specificity,,,trm_5021684cba96c,"the idea in cognitive science that the mind is divided according to the content of information being processed into specialized, possibly evolved, modules"
+605,global precedence,,,trm_5021873f37abc,"the idea that, all else held equal, global features are perceived earlier than are local features of a given stimulus"
+606,anxiety,,ctp_C8,trm_5022ef7599294,"An aversive psychophysiological state characterized by fear, worry, or concern associated with current or impending threat often elicited by general and specific interoceptive or exteroceptive cues."
+607,spontaneous recovery,recovery,ctp_C5,trm_5024002a85b1f,"recovery of a conditioned response following extinction, simply as a function of time"
+608,reinstatement,,,trm_502403240a2a2,"following extinction, conditioned response returns after exposure to unconditional stimulus (US) alone"
+609,blindsight,blind sight,,trm_5029515e29f7f,"unconscious visual perception, i.e. a phenomenon in which people can detect, discriminate between, and respond to visual stimuli without being consciously aware of them"
+610,feature integration,,,trm_502954662d63e,how different features of a percept are bound into a conscious whole
+611,transduction,,,trm_50297454e516b,in which information from stimuli is transduced into signals to the brain
+612,phototransduction,,,trm_5029751d118c4,in which energy from visual stimuli is transduced into a signal in the retina to the brain
+613,border ownership,,,trm_502ab8dd991bf,the determination of a local feature (i.e. a contrast edge or line) and the object to which it belongs
+614,multistable perception,,,trm_502abeab4e1d8,"conflicting sensory input results in spontaneous, sometimes controllable, experiences thereof"
+615,visual orientation,,,trm_502ad54c11389,use of visual stimulus information in perceiving orientation thereof or of the self
+616,lateral masking,,,trm_502bdc6bdaa2b,"perceptual phenomenon in which one stimulus attenuates signals generated by another, adjacent, stimulus presented simultaneously"
+617,crowding,,,trm_502c139d5ed78,target stimulus is made harder to identify when surrounded by similar non-target stimuli
+618,lexeme,,,trm_502c343d20523,the phonological form of a given lexical item being retrieved
+619,trait anxiety,,,trm_50aff037c389f,"a hyper-responsive system for threat detection, differentiated from state anxiety in duration and cause"
+620,strength,,,trm_50eb5469ba37a,Strength refers to a muscle&#39;s ability to generate force against physical objects.
+621,balance,,,trm_50eb56a7867db,"Balance allows humans to be able to orient the body in space, maintain an upright posture under static and dynamic conditions, and move without falling, by adjusting motoric control"
+622,locomotion,,,trm_50eb692db57eb,"Locomotion is the act of moving the body from one place to another. It requires input from the brain, spinal cord, peripheral nerves, muscular power and joint and cardiovascular health.  "
+623,vestibular control,,,trm_50f382d7abdff,"The vestibular system transduces and processes angular and linear acceleration and deceleration of the head, enabling postural balance, locomotor control, and gaze stabilization, particularly during head movement. The vestibular system is an integral component of our sensory experience and sensory-motor function. Healthy peripheral and central vestibular anatomy is essential for functionally relevant gaze stability during head motion and postural control."
+624,life satisfaction,,,trm_50f3c0af04e37,"Oneâs cognitive evaluation of life experiences; this measure is concerned with whether people like their lives or not. Life satisfaction includes both general (e.g., my life is going well) and domain-specific (e.g., I am satisfied with my family life) aspects. "
+625,attentional bias,Attention bias,,trm_510059e54b2cf,Attentional bias refers to the tendency for a particular class of stimuli to capture attention. The term is most typically used to refer to biases related to emotional content in bottom-up-capture attention tasks. 
+626,reception of facial communication,,ctp_C9,trm_5154a9f45903f,"The capacity to perceive someoneâs emotional state non-verbally based on facial expressions. Examples include affect recognition, facial recognition and characterization."
+627,productive facial communication,,,trm_5154aa9735134,"The capacity to convey oneâs emotional state non-verbally via facial expressions, including eye contact, expressive reciprocation, and gaze following."
+628,Reception of non-facial communication,,,trm_5154b049c279f,"The capacity to perceive social and emotional information based on modalities other than facial expression, including non-verbal gestures, affective prosody, distress calling, cooing, etc."
+629,Production of non-facial communication,,,trm_5154b23a3156a,"The capacity to express social and emotional information based on modalities other than facial expression, including non-verbal gestures, affective prosody, distress calling, cooing, etc."
+630,agency,,,trm_5154b2f947fe9,"The ability to recognize oneâs self as the agent of oneâs actions and thoughts, including the recognition of oneâs own body/body parts."
+631,self knowledge,,,trm_5154b39a3193d,"The ability to make judgments about oneâs current cognitive or emotional internal states, traits, and/or abilities."
+632,animacy perception,,ctp_C1,trm_5159beaf80413,"The ability to appropriately perceive that another entity is an agent (i.e., has a face, interacts contingently, and exhibits biological motion)."
+633,action perception,,,trm_5159c00c3dac3,The ability to perceive the purpose of an action being performed by an animate entity.
+634,understanding mental states,,,trm_5159c0a633cda,"The ability to make judgments and/or attributions about the mental state of other animate entities that allows one to predict or interpret their behaviors. Mental state refers to intentions, beliefs, desires, and emotions."
+635,circadian rhythm,,,trm_5159c382bd8d4,"Endogenous, self-sustaining oscillations that organize the timing of biological systems to optimize physiology, behavior, and health. Circadian rhythms are synchronized by recurring environmental cues and attempt to anticipate the external environment. They also modulate homeostasis within the brain and other systems, tissues, and organs. "
+636,sleep,,,trm_5159c70d0e98e,"Sleep and wakefulness are endogenous, recurring, behavioral states that reflect coordinated changes in the dynamic functional organization of the brain and that optimize physiology, behavior, and health. Homeostatic and circadian processes regulate the propensity for wakefulness and sleep. Sleep is a reversible state, characterized by postural recumbence, behavioral quiescence, and reduced responsiveness. It involves predictable cycling of non-rapid eye movement (NREM) and rapid eye movement (REM). It is affected by experiences during wakefulness, and has restorative and transformative effects that optimize neurobehavioral functions during wakefulness."
+637,loss,,,trm_5159c80c1dd24,"A state of deprivation of a motivationally significant con-specific, object, or situation. Loss may be social or non-social and may include permanent or sustained loss of shelter, behavioral control, status, loved ones, or relationships. The response to loss may be episodic (e.g., grief) or sustained."
+638,defensive aggression,,,trm_5159c885a7314,A response elicited by a real or perceived threat that leads to a pattern of behaviors directed at terminating the threat.
+639,offensive aggression,proactive aggression,,trm_5159c8a5d3d13,A response elicited by competition over resource acquisition or other positive consequences. This form of aggression often arises from differences in social status and dominance.
+640,reward valuation,,,trm_5159c94667677,"Processes by which the probability and benefits of a prospective outcome are computed and calibrated by reference to external information, social context (e.g., group input, counterfactual comparisons), and/or prior experience. This calibration is influenced by pre-existing biases, learning, memory, stimulus characteristics, and deprivation states. Reward valuation may involve the assignment of incentive salience to stimuli."
+641,effort valuation,willingness to work,,trm_5159c971bf444,Processes by which the cost(s) of obtaining an outcome is computed; tendency to overcome response costs to obtain a reinforcer.
+642,reward learning,,,trm_5159cb12a0f92,"A process by which organisms acquire information about stimuli, actions, and contexts that predict positive outcomes, and by which behavior is modified when a novel reward occurs or outcomes are better than expected. Reward learning is a type of reinforcement learning, and similar processes may be involved in learning related to negative reinforcement."
+643,semantic network,ontology,ctp_C6,trm_51838baad343e,Set of concepts and relations
+644,cognitive training,,,trm_51a6905a3f021,Targeted exercises designed to help improve mental capacities.
+645,emotion regulation,,,trm_51a690a7492eb,"The ability to have control over and change emotional responses, such as feelings and behaviors associated with them. "
+646,neuroplasticity,,,trm_51a690eeadcb7,The brain&#39;s ability to change in structure and function through experience.
+647,restricted behavior,"repetitive behavior, stereotyped behavior",,trm_52068e5bd9aa1,"A restricted behavior is a stereotyped pattern of behavior, activity, or interest. Examples include preoccupation with an object, activity, or topic, and this preoccupation is abnormal in intensity or focus.  Individuals with restricted behaviors may find it challenging to break away from habit or routine."
+648,social motivation,,,trm_52090251db8c8,An individual&#39;s tendency to seek out direct contact with another person or a group of people.
+649,irritability,"anger, agitation, moodiness, testy, grumpy, short tempered",,trm_523c7afe39f78,"The quality or state of being agitated, testy, grumpy, moody, or having a short temper."
+650,lethargy,"slow, socially withdrawn",,trm_523c7ba79c2f1,"a lack of energy or enthusiasm.  In a social context, this means being socially withdrawn."
+651,hyperactivity,"restlessness, movement, non-compliance",,trm_523c7c13bc55f,"a condition characterized by excessive restlessness and movement, and commonly non-compliance"
+652,Inappropriate speech,,,trm_523c7c886b614,"dialogue, either to oneself or others, that is not appropriate or suitable to the current situation"
+653,internalizing,"worry, anxiety, negativity, depression",,trm_523ca7e778c50,"focusing negative energy on the self, often through holding back emotion, often leading to less than ideal emotional states (worry, anxiety, negativity and depression).  These states are frequently present in autistic children."
+654,externalizing,attribution bias,,trm_523ca883711cc,attributing cause to factors outside of the self
+655,conduct disorder,"callous, antisocial, unemotional",,trm_523e00f356226,"Lacking regard for others and callous, unemotional.  Characterized by repetitive and persistent pattern of behavior in which the basic rights of others or major age-appropriate norms are violated."
+656,antisocial personality,"hermit, introvert",,trm_523e024c14df9,"avoiding the company of other people, unsociable, sometimes to the extent of injuring others or the interests of society in general"
+657,defiance,"disobedient, oppositional",,trm_523e034f9e69a,"bold resistance to an opposing force, power, or authority, expressed through behavior and attitude"
+658,obsession,,,trm_523e0419ec219,"compulsive preoccupation with a fixed idea or an unwanted feeling or emotion, often accompanied by symptoms of anxiety"
+659,social phobia,embarrassment,,trm_523e053844495,having a fear so strong of being judged by others and of being embarrassed that it significantly gets in the way of everyday life
+660,rigidity,,,trm_523e0a4b443dc,unable to stray from a particular pattern of behavior or thought
+661,agreeableness,"kind, sympathetic, cooperative, warm",,trm_523f5ee64102c,"Agreeableness is a personality trait manifesting itself in individual behavioral characteristics that are perceived as kind, sympathetic, cooperative, warm and considerate.
+
+http://en.wikipedia.org/wiki/Agreeableness"
+662,openness,"imaginative, open, curious",,trm_523f5f918cb2c,"Openness to experience is one of the domains which are used to describe human personality in the Five Factor Model. Openness involves active imagination, aesthetic sensitivity, attentiveness to inner feelings, preference for variety, and intellectual curiosity.
+
+http://en.wikipedia.org/wiki/Openness_to_experience"
+663,psychosis,,,trm_52405de6b7a63,A kind of disordered thinking for which thought and emotions are so impaired that contact is lost with external reality.
+664,paranoia,delusional,,trm_52405e33adafa,"a mental condition characterized by delusions of persecution, unwarranted jealousy, or exaggerated self-importance, typically elaborated into an organized system. It may be an aspect of chronic personality disorder, of drug abuse, or of a serious condition such as schizophrenia in which the person loses touch with reality."
+665,phonological awareness,,,trm_5240fddc2e43e,"Explicit awareness of the abstract units that compose spoken words, including syllables, onset and rime units, and individual phonemes."
+666,guilt,remorse,,trm_52583d9f2ad98,"a cognitive or an emotional experience that occurs when a person realizes or believes (whether it is true or not) that he or she has compromised his or her own standards of conduct or has violated a moral standard, and bears significant responsibility for that violation."
+667,anhedonia,,,trm_52583dceb345e,lack of interest
+668,appetite,hunger,,trm_52583e083c9ab,the desire to eat food
+669,fatigue,tiredness,,trm_52583e52d5e7a,"a feeling of weariness, tiredness, or lack of energy"
+670,suicidal ideation,"suicidal, suicidal thoughts",,trm_52583e8a46ded,thoughts about or an unusual preoccupation with suicide
+671,perfectionism,,,trm_525c58f9aabae,"a personality trait characterized by a person&#39;s striving for flawlessness and setting excessively high performance standards, accompanied by overly critical self-evaluations and concerns regarding others&#39; evaluations."
+672,eating,"appetite, food preference",,trm_525d8b8908809,An individual&#39;s preferences for food or general appetite.
+673,sensory defensiveness,sensitivity,,trm_525d8cd1c9cc3,a condition defined as having &#34;a tendency to react negatively or with alarm to sensory input which is generally considered harmless or non-irritating&#34; to neurotypical people.&#34;
+674,sensitivity to change,"flexibility, tolerance",,trm_525d8e198e0da,an individual&#39;s ability to withstand changes in his or her environment or situation.
+675,noise sensitivity,auditory sensitivity,,trm_525d8f3ed78a2,having a tendency to react negatively or with alarm to noise input which is generally considered harmless or non-irritating to neurotypical individuals.
+676,loneliness,"isolation, solitary, alone",,trm_529d0d62290de,"loneliness is a complex and unpleasant emotional response to isolation or lack of companionship.
+
+http://en.wikipedia.org/wiki/Loneliness"
+677,phonological processing,,,trm_52b5f1ef4f9cc,"Refers to the use of phonological information (i.e., the sound of one&#39;s language) in processing written and oral language."
+678,conflict adaptation effect,"conflict adaptation, trial-to-trial conflict effect",,trm_5358ede949107,"The congruency effect after incongruent trials is reduced when compared with congruent trials. It is a trial-to-trial effect. Originally reported by Gratton, Coles, and Donchin (1992; as refered by van Steenbergen, 2010; Psychological Science). Thus:
+(iI-iC) "
+679,sentence recognition ,,,trm_568427366401c,assigning a detected sentence into a category (not necessarily task defined)
+680,goal selection,,,trm_5519b5f181edd,None
+681,discrimination,,ctp_C1,trm_5519b7525d7a2,Responding differently to stimuli that differ in some aspect
+682,stimulus detection,,ctp_C1,trm_5519b80525e89,It is the ability to discern between information-bearing patterns and random patterns that distract from the information
+683,visual localization,,ctp_C1,trm_5519b92bde7dc,"Localization of visually perceived objects relative to other visually perceived objects (either simultaneously or successively) or relative to a visual norm, or by absolute identification.
+"
+684,perceptual priming,,,trm_5519ba1746e95,is based on the form of the stimulus and is enhanced by the match between the early and later stimuli.
+685,spatial localization,,,trm_5519bb7767d98,it is the reference of a visual sensation to a definite locality in space
+686,Limited Capacity,,,trm_551f0f822d95e,None
+687,interference control,,,trm_551f11bb8f6a8,Protection from self-directed responses that result from disruption by competing events and responses.
+688,exogenous attention,stimulus-driven attention,,trm_56006cb5a61ac,ADD DEFINITION HERE
+689,object-based attention,,ctp_C2,trm_552185f5cda66,"refers to the relationship between an âobjectâ representation and a personâs visually stimulated, selective attention"
+690,localization,,ctp_C1,trm_5521a0512df9a,write definition here
+691,conceptual priming,,,trm_5521a2aa5b127,"Conceptual priming is based on the meaning of a stimulus and is enhanced by semantic tasks. For example, table, will show priming effects on chair, because table and chair belong to the same category."
+692,positive priming,,,trm_5521a3da10349,refers to increased speed of processing of priming caused by simply experiencing the stimulus
+693,repetition priming,,,trm_5521a45a397a6,refers to the finding that an initial presentation of a stimulus influences the way in which an individual will respond to that stimulus when it is presented at a later time.
+694,semantic priming,,,trm_5521a51034353,"is where we process stimuli better depending on what comes first.
+"
+695,associative priming,,,trm_5521a5f310604,"In associative priming, the target is a word that has a high probability of appearing with the prime, and is &#34;associated&#34; with it but not necessarily related in semantic features. "
+696,response priming,,,trm_5521a663cd89c,A special form of the visuomotor priming effect in which prime and target are presented in quick succession.
+697,kindness priming,,,trm_5521a6bc4db33,is a specific form of priming that occurs when a subject experiences an act of kindness and subsequently experiences a lower threshold of activation when subsequently encountering positive stimuli.
+698,negative priming,,,trm_5521a7a1376ed,is a kind of priming in which the speed of processing is slower than unprimed levels. It is caused by experiencing the stimulus and then ignoring it
+699,feature-based attention,,,trm_5524572b66764,direct limited processing resources on those sensory inputs that are most relevant for the task at hand
+700,punishment processing,"punish, negative feedback, punishment",,trm_5534111a8bc96,"the authoritative imposition of an undesirable or unpleasant outcome upon a group or individual, in response to a particular action or behaviour that is deemed unacceptable or threatening to some norm (from Wikipedia.org)"
+701,shape recognition,,,trm_553967f006b70,the ability to perceive a shape
+702,relational comparison,relational matching,,trm_555cfb890d721,Comparison of two stimuli based on a relational feature
+703,animacy decision,,ctp_C3,trm_557b471bc6cd8,decision about whether a stimulus exhibits animacy
+704,auditory tone detection,"sound detection, tone detection",ctp_C1,trm_557b474e2b578,determining the presence of an auditory stimulus such as a sound or tone
+705,auditory tone discrimination,"tone discrimination, sound discrimination",ctp_C1,trm_557b476527a27,It is the ability to perceive and respond to differences among auditory stimuli
+706,body maintenance,,ctp_C5,trm_557b477b4a15f,keeping information about the body in active and immediately accessible state.
+707,color recognition,,ctp_C1,trm_557b478ce1c24,assigning a detected color stimulus into a category (not necessarily task defined)
+708,decision certainty,,ctp_C3,trm_557b47abe9a34,the confidence of knowledge regarding the likelihood of an outcome.
+709,economic value processing,,,trm_557b4817db34d,"the process of comparing, at an idiosyncratic level, the economic value of two or more options."
+710,emotional face recognition,,ctp_C1,trm_557b482a7c62b,The process of determining whether an emotional face is the same as another face that has been previously encountered.
+711,emotional reappraisal,,,trm_557b4844ca14d,ADD DEFINITION HERE
+712,emotional self-evaluation,,,trm_557b4855a12b4,ADD DEFINITION HERE
+713,Dyslexia,reading impairment,,trm_55e1b08e5b06c,"Dyslexia is a reading impairment. There are currently 17 known types of dyslexia, each resulting from a different component of the reading process, each with different error types and different characteristics. Dyslexia can result from brain damage after reading has been acquired (acquired dyslexia), or can be present from birth (developmental dyslexia)."
+714,feature comparison,,ctp_C3,trm_557b4891e9265,Comparison of stimuli based on a shared feature.
+715,loss anticipation,,,trm_557b48a224b95,"prior expectation of the occurrence of a loss, sometimes accompanied by an emotional reaction"
+716,motion detection,,ctp_C1,trm_557b48aeb7d58,to determine the presence of motion.
+717,implicit learning,,,trm_565bce2791089,the acquisition of knowledge in an incidental manner without awareness. 
+718,negative emotion,,ctp_C8,trm_557b48d40d3cf,ADD DEFINITION HERE
+719,negative feedback processing,,,trm_557b48e337218,Evaluating a piece of information that has externally ascribed negative salience in terms of meaning or associations to other concepts as opposed to surface or incidental characteristics.
+720,numerical scale judgment,,ctp_C3,trm_557b48f22ba99,ADD DEFINITION HERE
+721,object maintenance,,ctp_C5,trm_557b4904ee26d,The process of keeping object information in active and immediately accessible state.
+722,oddball detection,"outlier detection, anomaly detection",,trm_557b491318742,detecting patterns in a given data set that do not conform to an established normal behavior.
+723,pattern maintenance,,ctp_C5,trm_557b49206928b,The process of keeping pattern information in active and immediately accessible state.
+724,place maintenance,scene maintenance,ctp_C5,trm_557b493133416,keeping information about a scene or place in active and immediately accessible state.
+725,positive feedback processing,,,trm_557b493e4203a,Evaluating a piece of information that has externally ascribed positive value in terms of meaning or associations to other concepts as opposed to surface or incidental characteristics.
+726,potential monetary loss,,,trm_557b494ca540d,A potential negative return in the form of money for performance of a specific behavior. 
+727,potential monetary reward,potential cash reward,,trm_557b495cdde57,A potential positive return in the form of money for performance of a specific behavior.
+728,proactive control,,ctp_C4,trm_557b49851e991,Top down modulation of cognitive processes in anticipation of future goals or task demands. Often involves reaction time slowing
+729,reinforcement learning,,ctp_C5,trm_557b4993a0fdd,the modification of the value placed on potential stimulus/action combinations based on the outcomes associated with those actions in the past
+730,resistance to distractor inference,,ctp_C4,trm_557b499fac085,ADD DEFINITION HERE
+731,response conflict,,ctp_C4,trm_557b49ad14adf,The coactivation of competing response alternatives
+732,response execution,action execution,ctp_C7,trm_557b4a7315f1b,"Performance of an action in accordance with task demands, enacting a specific overt behavior"
+733,reward anticipation,,,trm_557b4a81a4a17,"prior expectation of the occurrence of a reward, sometimes accompanied by an emotional reaction "
+734,risk processing,"danger processing, threat processing",ctp_C3,trm_557b4a913f8cc,the extraction of information about the potential or current risk associated with a stimulus
+735,selective control,,ctp_C4,trm_557b4aa070c10,Top-down modulation of specific response output or of specific stimuli in the environment. 
+736,semantic categorization,,,trm_557b4ab076338,The assignment of a semantic stimulus to one of a set of categories.
+737,spatial selective attention,,ctp_C2,trm_557b4abe521af,The process of dedicating cognitive and perceptual resources to one or more spatial inputs and attenuating receptiveness to other inputs. 
+738,string maintenance,consonant maintenance,ctp_C5,trm_557b4acdee820,"The process of keeping string (e.g., consonant)  information in active and immediately accessible state."
+739,task difficulty,,ctp_C10,trm_557b4add1837e,the perceived effort required to complete some mental or physical activity
+740,tool maintenance,,ctp_C5,trm_557b4aeaeb744,keeping information about a tool in active and immediately accessible state.
+741,visual body recognition,,,trm_557b4af7cc1cb,"assigning a detected visual body into a category, not necessarily task defined"
+742,visual color discrimination,,ctp_C1,trm_557b4b05ae470,the identification of differences in color amongst visual stimuli
+743,visual face recognition,,,trm_557b4b154e0d9,"assigning a detected visual face into a category, not necessarily task defined"
+744,visual form discrimination,,ctp_C1,trm_557b4b27dfd5e,the identification of differences among visual forms.
+745,visual form recognition,,ctp_C1,trm_557b4b3a6a34d,"assigning a detected visual form into a category, not necessarily task defined"
+746,visual number recognition,,,trm_557b4b47d994a,assigning a visually detected number stimulus into a category (not necessarily task defined)
+747,visual object detection,,,trm_557b4b56de455,"visual detection of instances of objects of a certain class (such as humans, buildings, cars, etc.)."
+748,visual pattern recognition,,,trm_557b4b652cbec,The process of identifying a meaningful pattern in visual stimuli.
+749,visual recognition,,,trm_557b4b7176394,assigning a visually detected stimulus into a category (not necessarily task defined)
+750,visual place recognition,,ctp_C5,trm_557b4b7e68727,"assigning a detected visual place or scene into a category, not necessarily task defined"
+751,visual tool recognition,,,trm_557b4b8cd05ca,"assigning a detected visual tool into a category, not necessarily task defined"
+752,visual word recognition,,ctp_C6,trm_557b4b9ccdc4a,the ability to read (and understand) written words
+753,word maintenance,,ctp_C5,trm_557b4bb7cf05b,The process of keeping word information in active and immediately accessible state.
+754,intertemporal choice,,,trm_558c73324a6ca,"the study of how people make choices about what and how much to do at various points in time, when choices at one time influence the possibilities available at other points in time.
+
+https://en.wikipedia.org/?title=Intertemporal_choice"
+755,subjective value judgment,,ctp_C3,trm_558c736199abd,"the process of comparing, at an idiosyncratic level, the relatively desirability of two or more options or the internal idiosyncratic value represented internally for such a judgement "
+756,phonological comparison,,,trm_558c73b3663a6,write definition here
+757,visual pseudoword recognition,,ctp_C6,trm_558c73f3c8c6f,the reading of written letter strings that follow the phonotactic rules of the written language
+758,phonological assembly,,,trm_558c74156b7ee,WRITE DEFINITION HERE
+759,visual letter recognition,,,trm_558c7439832d9,assigning a visually detected letter stimulus into a category (not necessarily task defined)
+760,overt naming,,,trm_558c74b165bb1,write definition here
+761,arithmetic processing,,,trm_558c7ae1eaf86,numerical calculations or derivation of numbers in response to an input with discrete or continuous salience.
+762,auditory sentence recognition,,,trm_558c7b14c076e,assigning an detected sound stimulus in the form of a sentence into a category (not necessarily task defined)
+763,right hand response execution,,,trm_558c7b337080f,Performance of an action with the right hand in accordance with task demands.
+764,visual sentence recognition,,,trm_558c7b5228ed4,assigning a visually detected sentence stimulus into a category (not necessarily task defined)
+765,left hand response execution,,,trm_558c7b707f606,Performance of an action with the left hand in accordance with task demands.
+766,facial happiness recognition,,,trm_5595bd2b92003,The process of assigning the emotion of happiness  to a stimulus.
+767,facial age recognition,,,trm_5595bd6c61d78,The process of assigning an age  to a stimulus based on evaluation of a face.
+768,facial attractiveness recognition,,,trm_5595bd89d77c6,The process of evaluating the physical aesthetic of a face.
+769,facial trustworthiness recognition,,,trm_5595bda0c5dc3,The process of evaluating the degree of trust based on the features or holistic representation of a face.
+770,facial recognition,,,trm_5595bde6b2e95,identifying the existence of a face
+771,social inference,,ctp_C3,trm_5595be14a57c5,write definition here
+772,visual object maintenance,,,trm_559f0986182cc,The process of keeping object information in active and immediately accessible state.
+773,subjective food value,"self-reported food pleasantness, self-reported food liking",ctp_C3,trm_559f09a5cdca9,"Subjective food value is used as term to indicate a food&#39;s worth, based on an individuals&#39; current desires and needs (e.g., hunger). Subjective food value assessment is an intermediate  step during food decision making. "
+774,response bias,,,trm_559f0a129c136,"A behavioral phenomena for which a participant in an experiment is biased to respond in a particular way.
+
+** Concepts in the Cognitive Atlas that are more behavioral in nature should be tagged as &#34;behavioral phenomena&#34;"
+775,monetary reward prediction error,,ctp_C3,trm_559f0a5b4cd36,the difference between expected and received monetary reward
+776,tone recognition,,,trm_55b6b8b8e7870,assigning a detected tone stimulus into a category (not necessarily task defined)
+777,auditory arithmetic processing,,,trm_55b6b8e291dba,numerical calculations or derivation of numbers in response to an auditory input with discrete or continuous salience.
+778,right finger response execution,,,trm_55b6b910b4b23,Performance of an action using the right finger in accordance with task demands.
+779,left finger response execution,,,trm_55b6b92c1fd76,Performance of an action using the left finger in accordance with task demands.
+780,right toe response execution,,,trm_55b6b952c1b4c,Performance of an action using the right toe in accordance with task demands.
+781,left toe response execution,,,trm_55b6b96e77df6,Performance of an action using the left toe in accordance with task demands.
+782,tongue response execution,,,trm_55b6b98b88f45,Performance of an action using the tongue in accordance with task demands.
+783,working memory updating,,ctp_C5,trm_55b6b9a666604,WRITE DEFINITION HERE
+784,working memory maintenance,,ctp_C4,trm_55b6b9d7c9435,the active retention of information in a short-term memory store
+785,high energy density food recognition,,,trm_55c298bbe56d5,"When a (familiar) food is encountered, an estimation of energy content and expected satiation is made based on an individual&#39;s earlier experiences and nutritional knowledge. "
+786,story comprehension,,,trm_55c6f58e77fbe,WRITE DEFINITION HERE
+787,face maintenance,,,trm_55c6f87595b39,WRITE DEFINITION HERE
+788,Surface dyslexia,,,trm_55e1b27f5655e,"surface dyslexia is a reading impairment, which can be acquired or developmental. It results from a deficit in the lexical route for word reading. As a result, the reader needs to rely on the sublexical for reading, reading by converting each letter or group of letters (grapheme) to a sound (phoneme). Surface dyslexia is characterised by slow reading (because reading via grapheme-to-phoneme conversion is slower than reading via the lexical route); it is also characterised by incorrect reading aloud of irregular words (such as talk, sure, none, and comb). "
+789,detection,,ctp_C1,trm_55ce70b20186b,to determine the presence of a stimulus
+790,risk aversion,,,trm_55ce71c47f37b,"when exposed to uncertainty, behavior that attempts to reduce that uncertainty. 
+
+BEHAVIORAL PHENOMENA"
+791,confidence judgment,,ctp_C3,trm_55ef153d47bc0,Assessing the confidence or certainty of a decision
+792,visual string recognition,,ctp_C6,trm_55ef1fd2bc418,the ability to read (and understand) written strings of letters that do not follow the phonotactic rules of the language (which distinguishes it from visual word/pseudoword recognition)
+793,auditory tone perception,"sound perception, tone perception",ctp_C1,trm_55ef273a77a86,the registration of an auditory tone
+794,vocal response execution,,,trm_55ef3ba010121,"performance of an action in accordance with task demands, enacting a vocal behavior "
+795,auditory recognition,,,trm_55ef687f48a9d,assigning a detected sound stimulus into a category (not necessarily task defined)
+796,numerical comparison,,ctp_C3,trm_5678a999f1c19,Mental comparison of numerical quantities
+797,decision uncertainty,,,trm_56798223b43b8,None
+798,decision under uncertainty,decision under ambiguity,ctp_C3,trm_567982752ff4a,A decision in which the likelihood of possible outcomes is unknown or uncertain.
+799,context representation,,ctp_C3,trm_56798c5f25b0c,The representation of features other than the primary stimulus that are relevant to a decision
+800,emotional enhancement,,,trm_5679b0e9d8c20,"A process to increase or enhance the impact of an emotion on ones current conscious state or behavior.
+"
+801,Motor Praxis,"Mpraxis, Mouse Practice",,trm_56a2a4dbdf127,"A measure of sensorimotor ability. Also, it was designed to familiarize the participant with the computer mouse used during most of the WebCNP tasks. During the MPraxis, the participant needs to move the computer mouse cursor over an ever-shrinking green box and click on it once each time it appears on a different location on the test-page. If participants canât complete the MPraxis, it is likely they wonât be able to complete any other WebCNP task."
+802,processing speed,"speed, mental speed, cognitive speed",,trm_58575b0d3c548,The general speed with which mental computations are performed. 
+803,sound perception,,,trm_586fd9dcd78e5,Perception of (any kind of) sound.
+804,voice perception,,,trm_586fda1743344,Perception of a voice sound.
+805,social norm processing,,,trm_58c80b824c51b,"Thinking about and making judgments on social norms, which are widely shared beliefs on appropriate behavior in a social situation, i.e. in a situation where others are present.
+Note that several other definitions of &#39;social norms&#39; exist, for example in the context of economic decision games."
+806,Chronesthesia,Mental time travel,,trm_59cd0184eb2bf,Chronesthesia is defined as a hypothetical ability that allows humans to be constantly aware of the past and the future.
+807,arousal (emotion),,ctp_C8,trm_59d184d09066b,The intensity of an emotion (as distinguished in the circumplex model from its valence)
+808,arousal (physical),,,trm_59d184d0980bf,Activation of physiological arousal systems involving the autonomic nervous system
+809,episodic future thinking,,,trm_5a2852438fa35,"The capacity to imagine or simulate experiences that might occur in one's personal future 
+
+(from Benoit, R.G., Schacter, D.L., & Szpunar, K.K. (2017). Episodic Future Thinking: Mechanisms and Functions. Current opinion in behavioral sciences, 17, 41-50)"
+810,prospection,,,trm_5a285375c6a43,"the ability to represent what might happen in the future 
+
+(from Szpunar, K.K., Spreng, R.N., & Schacter, D.L. (2014). A taxonomy of prospection: introducing an organizational framework for future-oriented cognition. Proceedings of the National Academy of Sciences of the United States of America, 111 52, 18414-21)"
+811,episodic simulation,,,trm_5a285423171d9," the construction of a detailed mental representation of a specific autobiographical future event
+
+(from Szpunar, K.K., Spreng, R.N., & Schacter, D.L. (2014). A taxonomy of prospection: introducing an organizational framework for future-oriented cognition. Proceedings of the National Academy of Sciences of the United States of America, 111 52, 18414-21)"
+812,episodic prediction,,,trm_5a285482e89c2,"the estimation of the likelihood of, and/or oneâs reaction to a specific autobiographical future event
+
+(from Szpunar, K.K., Spreng, R.N., & Schacter, D.L. (2014). A taxonomy of prospection: introducing an organizational framework for future-oriented cognition. Proceedings of the National Academy of Sciences of the United States of America, 111 52, 18414-21)"
+813,episodic intention,,,trm_5a28604b01314,"the mental act of setting a goal in relation to a specific autobiographical future event
+
+(from Szpunar, K.K., Spreng, R.N., & Schacter, D.L. (2014). A taxonomy of prospection: introducing an organizational framework for future-oriented cognition. Proceedings of the National Academy of Sciences of the United States of America, 111 52, 18414-21)"
+814,episodic planning,,,trm_5a2860fa6b59e,"the identification and organization of steps needed to arrive at a specific autobiographical future event or outcome
+
+(from Szpunar, K.K., Spreng, R.N., & Schacter, D.L. (2014). A taxonomy of prospection: introducing an organizational framework for future-oriented cognition. Proceedings of the National Academy of Sciences of the United States of America, 111 52, 18414-21)"
+815,meter,,,trm_P4qxFaMb6wiZ1,a regular pattern of strong and weak beats
+816,Naturalistic Biological Motion,,,trm_zECbJhkrvMYDQ,Viewing dynamic scenes of biological motion (i.e. a movie of hands tying knots or a hand hammering a nail)
+817,dynamic visual perception,,,trm_VeGoH5wNnyl4Q,"Passive viewing of dynamic scenes (i.e. videos of landscapes, nature, or any movie)"
+818,Naturalistic Scenes,,,trm_EibcrcPYJ86gd,"Passive viewing of naturalistic scenes (i.e. movies of landscapes and nature, cartoons, etc)"
+819,central fixation,,,trm_Ilz9RmdieE56K,Fixation on a central point
+820,Food cue reactivity,,,trm_BOD29Hs9qySTD,"Brain response to food cues minus the response to non-food cues (often visual, but could also be olfactory) or an appropriate control cue (e.g. a a small amount of a tasteless control solution)."
+821,Self evaluation,,,trm_jpDjcHLNr8Hko,participants evaluate how well several short trait descriptions fit the self.
+822,saccadic eye movement,,,trm_aFgzEYVgvyimF,"quick, simultaneous movement of both eyes between two or more phases of fixation in the same direction (from https://en.wikipedia.org/wiki/Saccade)"
+823,self-reference effect,,,trm_vK5imljyKMUAL,memory retrieval of encoded information in reference to the self
+824,motivational salience,,,trm_GfkAJLeHghfmp,attention that propels an individual's behavior
+825,incentive salience,,,trm_QehTtEcwPuRtK,attention that confers desire to a rewarding stimulus
+826,aversive salience,,,trm_om88i12KUeI1R,attention that confers avoidance behavior to an unpleasant stimulus
+827,numerosity,,,trm_Vn5ZVrIz7GedN,non-symbolic number sense of percepts
+828,numerical cognition,,,trm_LDtOOxfCrEImf,"set of cognitive processes pertaining to the assimilation, ascription and manipulation of numerical information"
+829,imagined pain,,,trm_LWGVPX20JubrD,"psychological-induced pain, i.e. pain in the absence of  unpleasant stimulus"
+830,imagined physical pain,,,trm_MIl7ueSc43aen,bodily pain caused by ideation of physical suffering
+831,imagined emotional pain,,,trm_AGb7jCLHtJ1sj,emotional pain caused by ideation of emotional distress
+832,temporal cognition,,,trm_NLuhZFq5jY7Cq,set of cognitive processes that enable experiencing the flow of time and processing the temporal characteristics of real world phenomena
+833,time perception,,,trm_KcaEi0Mc9grrz,"subjective experience, or sense, of time, which is measured by someone's own perception of the duration of the indefinite and unfolding of events."
+834,time orientation,,,trm_xMOwdL0Y58qYJ,"cognitive process that provides a framework for organizing events in temporal categories of past, present and future"
+835,cardinal-direction judgment,,,trm_M4nBW4V1iS71l,assessment of the cardinal direction of a percept with respect to a reference
+836,visual scene perception,,,trm_wrOXIUJWEWEYf,"Perceiving visual input — typically of a real-world scene — that contains multiple elements in a spatial layout (e.g., may have multiple objects and object relations, with a foreground and a background)."
+837,response alternatives,,,trm_OMciWXS7bNM11,The process of responding to a choice of stimuli that changes on every trial.
