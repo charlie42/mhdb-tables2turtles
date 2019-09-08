@@ -1,11 +1,11 @@
-,name,class_id
-0,Perception,ctp_C1
-1,Attention,ctp_C2
-2,Reasoning and Decision Making,ctp_C3
-3,Executive/Cognitive Control,ctp_C4
-4,Learning and Memory,ctp_C5
-5,Language,ctp_C6
-6,Action,ctp_C7
-7,Emotion,ctp_C8
-8,Social Function,ctp_C9
-9,Motivation,ctp_C10
+,node_id,name,class_id
+0,29799,Perception,ctp_C1
+1,29800,Attention,ctp_C2
+2,29801,Reasoning and Decision Making,ctp_C3
+3,29802,Executive/Cognitive Control,ctp_C4
+4,29803,Learning and Memory,ctp_C5
+5,29804,Language,ctp_C6
+6,29805,Action,ctp_C7
+7,29806,Emotion,ctp_C8
+8,29807,Social Function,ctp_C9
+9,29808,Motivation,ctp_C10

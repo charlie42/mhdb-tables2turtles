@@ -1,235 +1,235 @@
-,name
-0,
-1,% &#34;good&#34; doors chosen
-2,% of cards picked from advantageous decks
-3,0-8 = no handicap
-4,10-22 = mild to moderate handicap
-5,24-40 = significant handicap
-6,accuracy
-7,accuracy (number or percentage of correct identifications)
-8,accuracy at detecting Kanizsa shapes
-9,accuracy of guesses
-10,accuracy of judging direction
-11,accuracy of production
-12,accuracy of pronunciation
-13,accuracy of recognition
-14,accuracy of source identification
-15,acuracy
-16,angle of arm or finger
-17,angle of offset
-18,apples earned
-19,areas of activation
-20,arousal ratings
-21,attention vigilance
-22,Auditory Memory Index
-23,autonomous
-24,average across multiple trials
-25,average number of pumps
-26,Behavioral Regulation Index
-27,binocular acuity
-28,block span (pattern length)
-29,BOLD activity
-30,BOLD response
-31,brain activation
-32,category A errors (participant fails to suppress predicted word)
-33,category B errors (participant responds with a word semantically related to the predicted word)
-34,Choice
-35,Choice (yes or no)
-36,Cognitive Function Composite Score
-37,commission errors
-38,completion time
-39,computed score (500-2500)
-40,congruency cost
-41,content (% emotional words)
-42,Continuous ratings on a visual analogue scale
-43,correct answers
-44,correct conclusions
-45,correct judgements
-46,Crystallized Cognition Composite Score
-47,dB signal-to-noise ratio
-48,degrees of  movement
-49,degrees of eye movement
-50,Delayed Memory Index
-51,deliberation time
-52,discounting (tendency to discount the real value of the future option)
-53,dismissing
-54,distance between actual location and participant&#39;s response
-55,dominant hand force minus non-dominant hand force
-56,"d`-context, the difference between the z-transformed probability of correct hits on valid trials and the z-transformed probability of false alarms on invalid trials"
-57,earnings from choices
-58,EEG activity
-59,effort (strength of activation)
-60,EMG
-61,ERP (event-related potential)
-62,ERP components
-63,ERP: P2
-64,ERP: P3
-65,errors
-66,examiner evaluation of gesturing
-67,expected value
-68,eye movements
-69,facial electromyographic readings
-70,Fluid Cognition Composite Score
-71,fMRI signal
-72,form
-73,frequency
-74,frequency of saccades
-75,Full Scale IQ
-76,Full-scale IQ
-77,gains
-78,Global Executive Composite
-79,heart rate
-80,hemifield errors
-81,highest difficulty level completed without error
-82,Immediate Memory Index
-83,kinematics
-84,length of sequence
-85,length of time breath is held
-86,listening comprehension (number of correct responses to comprehension questions)
-87,listening span (number of last words recalled)
-88,maximum voluntary contraction
-89,mean blood flow velocity
-90,Mean response time to recognize and trace out hidden figures
-91,Mean response time to recognize hidden figure
-92,MEPs (motor evoked potentials)
-93,Metacognition Index
-94,meters per second
-95,misinformation (behaviors that lead the guesser to another location)
-96,money earned
-97,N2pc
-98,non-dominant hand time minus dominant hand time
-99,nonperservative errors
-100,number correct in 60 seconds
-101,number of appropriate words
-102,number of attempts
-103,number of backward moves
-104,number of correct features
-105,number of correct items
-106,number of correct responses
-107,number of correct symbols
-108,number of digits
-109,number of errors (number of stimuli pointed to twice or more)
-110,number of moves
-111,number of patterns identified
-112,number of plates read correctly
-113,number of problems solved
-114,number of risky choices
-115,Number of trials
-116,number of trials completed
-117,number of trials taken to correctly identify new pattern
-118,number of words generated
-119,number or percentage of games won
-120,number or percentage of words remembered
-121,o	Continuous ratings on a visual analogue scale
-122,o	Difference between initial sensation of temperature and sensation at the end of the stimulation
-123,object occlusion (behaviors the subject uses to deceive)
-124,omission errors
-125,optimal choices
-126,optotype size
-127,orbital PFC activation
-128,orientation
-129,Overall Score
-130,pain ratings
-131,Pain ratings on a visual analogue scale
-132,percent correct
-133,percentage false alarms
-134,percentage of CR to CS
-135,Percentage of trials
-136,percentage of UR to US
-137,Performance IQ
-138,perservative errors
-139,perseverative errors
-140,"physiological measures (heart rate, skin conductance, regional cerebral blood flow, blood pressure, etc.)"
-141,pitch span
-142,post- minus pre-intervention
-143,precision (distance apart at which subject perceives each stimulus separately)
-144,preoccupied
-145,pressure/grip
-146,production error type
-147,proportion of correct responses
-148,proportion of synchronous responses
-149,Proportion optimal responses
-150,Proprioceptive drift
-151,proximity to target
-152,"Pure Tone Average (PTA): the average of the 1, 2 and 4 kHz frequencies"
-153,rate of acquisition of conditioned responding
-154,rate of responding
-155,"ratings (e.g., detail, difficulty)"
-156,raw score
-157,reaction time
-158,reaction time per trial
-159,reading accuracy
-160,reading comprehension
-161,reading fluency
-162,reading rate
-163,reading span (number of words recalled)
-164,recognition accuracy
-165,redundancy or randomness of responses
-166,reported perceptual switching
-167,response frequency
-168,response time
-169,response time (as indicator of construction time)
-170,response time (latency)
-171,response time to questions about objects/scenes
-172,response to CS
-173,risk-averse behavior
-174,risk-seeking behavior
-175,saccade direction
-176,saccade latency
-177,saccade reaction time
-178,score
-179,score (accuracy)
-180,"score (mazes are worth 2-5 points, depending on their complexity. points are subtracted from the score when errors are made)"
-181,score (number correct minus false alarms)
-182,score (number of pathological responses)
-183,Score on Ownership Illusion Questionnaire
-184,self-awareness
-185,semi-logarithmic normative score
-186,size
-187,size of sentence set
-188,skin conductance
-189,speed
-190,standard deviation
-191,standard deviation of number of correct responses
-192,startle response
-193,Stop Signal Reaction Time
-194,strength of activation
-195,strength of dominance
-196,strength of response
-197,subject rating of level of sensation
-198,subject&#39;s emotional rating
-199,subject&#39;s physical representation of imagined object
-200,Subjective Acupuncture Sensation Scale ratings
-201,Subjective ratings
-202,Subjective ratings on a numerical scale or on a visual analogue scale
-203,subjective ratings on a visual analogue scale
-204,suboptimal choices
-205,sum of items using the left hand
-206,sum of items using the right hand
-207,"sum of score for 40 questions (on a Likert scale, rating of 1=not at all, 4=very much)"
-208,sum of scores (on a Likert scale)
-209,"sum of scores on all six questions (0â2 = very low dependence, 3â4 = low dependence, 5 = medium dependence, 6â7 = high dependence, and 8â10 = very high dependence)"
-210,sum of words recalled on multiple trials
-211,switch cost
-212,T-score
-213,tap interval
-214,tap interval divided by target/modeled interval
-215,taps per 10s trial
-216,theta score
-217,Threat
-218,time
-219,time spent observing novel objects
-220,time to complete
-221,time to complete task
-222,tone span
-223,type of encoding task
-224,unresolved
-225,Vector (accuracy x response time)
-226,ventral frontostriatal brain activation
-227,Verbal IQ
-228,Visual Memory Index
-229,Visual Working Memory Index
-230,volume of liquid drunk
-231,volume or composition of urine
-232,weight of food eaten
-233,z-score
+,node_id,name
+0,30083,
+1,30084,% &#34;good&#34; doors chosen
+2,30085,% of cards picked from advantageous decks
+3,30086,0-8 = no handicap
+4,30087,10-22 = mild to moderate handicap
+5,30088,24-40 = significant handicap
+6,30089,accuracy
+7,30090,accuracy (number or percentage of correct identifications)
+8,30091,accuracy at detecting Kanizsa shapes
+9,30092,accuracy of guesses
+10,30093,accuracy of judging direction
+11,30094,accuracy of production
+12,30095,accuracy of pronunciation
+13,30096,accuracy of recognition
+14,30097,accuracy of source identification
+15,30098,acuracy
+16,30099,angle of arm or finger
+17,30100,angle of offset
+18,30101,apples earned
+19,30102,areas of activation
+20,30103,arousal ratings
+21,30104,attention vigilance
+22,30105,Auditory Memory Index
+23,30106,autonomous
+24,30107,average across multiple trials
+25,30108,average number of pumps
+26,30109,Behavioral Regulation Index
+27,30110,binocular acuity
+28,30111,block span (pattern length)
+29,30112,BOLD activity
+30,30113,BOLD response
+31,30114,brain activation
+32,30115,category A errors (participant fails to suppress predicted word)
+33,30116,category B errors (participant responds with a word semantically related to the predicted word)
+34,30117,Choice
+35,30118,Choice (yes or no)
+36,30119,Cognitive Function Composite Score
+37,30120,commission errors
+38,30121,completion time
+39,30122,computed score (500-2500)
+40,30123,congruency cost
+41,30124,content (% emotional words)
+42,30125,Continuous ratings on a visual analogue scale
+43,30126,correct answers
+44,30127,correct conclusions
+45,30128,correct judgements
+46,30129,Crystallized Cognition Composite Score
+47,30130,dB signal-to-noise ratio
+48,30131,degrees of  movement
+49,30132,degrees of eye movement
+50,30133,Delayed Memory Index
+51,30134,deliberation time
+52,30135,discounting (tendency to discount the real value of the future option)
+53,30136,dismissing
+54,30137,distance between actual location and participant&#39;s response
+55,30138,dominant hand force minus non-dominant hand force
+56,30139,"d`-context, the difference between the z-transformed probability of correct hits on valid trials and the z-transformed probability of false alarms on invalid trials"
+57,30140,earnings from choices
+58,30141,EEG activity
+59,30142,effort (strength of activation)
+60,30143,EMG
+61,30144,ERP (event-related potential)
+62,30145,ERP components
+63,30146,ERP: P2
+64,30147,ERP: P3
+65,30148,errors
+66,30149,examiner evaluation of gesturing
+67,30150,expected value
+68,30151,eye movements
+69,30152,facial electromyographic readings
+70,30153,Fluid Cognition Composite Score
+71,30154,fMRI signal
+72,30155,form
+73,30156,frequency
+74,30157,frequency of saccades
+75,30158,Full Scale IQ
+76,30159,Full-scale IQ
+77,30160,gains
+78,30161,Global Executive Composite
+79,30162,heart rate
+80,30163,hemifield errors
+81,30164,highest difficulty level completed without error
+82,30165,Immediate Memory Index
+83,30166,kinematics
+84,30167,length of sequence
+85,30168,length of time breath is held
+86,30169,listening comprehension (number of correct responses to comprehension questions)
+87,30170,listening span (number of last words recalled)
+88,30171,maximum voluntary contraction
+89,30172,mean blood flow velocity
+90,30173,Mean response time to recognize and trace out hidden figures
+91,30174,Mean response time to recognize hidden figure
+92,30175,MEPs (motor evoked potentials)
+93,30176,Metacognition Index
+94,30177,meters per second
+95,30178,misinformation (behaviors that lead the guesser to another location)
+96,30179,money earned
+97,30180,N2pc
+98,30181,non-dominant hand time minus dominant hand time
+99,30182,nonperservative errors
+100,30183,number correct in 60 seconds
+101,30184,number of appropriate words
+102,30185,number of attempts
+103,30186,number of backward moves
+104,30187,number of correct features
+105,30188,number of correct items
+106,30189,number of correct responses
+107,30190,number of correct symbols
+108,30191,number of digits
+109,30192,number of errors (number of stimuli pointed to twice or more)
+110,30193,number of moves
+111,30194,number of patterns identified
+112,30195,number of plates read correctly
+113,30196,number of problems solved
+114,30197,number of risky choices
+115,30198,Number of trials
+116,30199,number of trials completed
+117,30200,number of trials taken to correctly identify new pattern
+118,30201,number of words generated
+119,30202,number or percentage of games won
+120,30203,number or percentage of words remembered
+121,30204,o	Continuous ratings on a visual analogue scale
+122,30205,o	Difference between initial sensation of temperature and sensation at the end of the stimulation
+123,30206,object occlusion (behaviors the subject uses to deceive)
+124,30207,omission errors
+125,30208,optimal choices
+126,30209,optotype size
+127,30210,orbital PFC activation
+128,30211,orientation
+129,30212,Overall Score
+130,30213,pain ratings
+131,30214,Pain ratings on a visual analogue scale
+132,30215,percent correct
+133,30216,percentage false alarms
+134,30217,percentage of CR to CS
+135,30218,Percentage of trials
+136,30219,percentage of UR to US
+137,30220,Performance IQ
+138,30221,perservative errors
+139,30222,perseverative errors
+140,30223,"physiological measures (heart rate, skin conductance, regional cerebral blood flow, blood pressure, etc.)"
+141,30224,pitch span
+142,30225,post- minus pre-intervention
+143,30226,precision (distance apart at which subject perceives each stimulus separately)
+144,30227,preoccupied
+145,30228,pressure/grip
+146,30229,production error type
+147,30230,proportion of correct responses
+148,30231,proportion of synchronous responses
+149,30232,Proportion optimal responses
+150,30233,Proprioceptive drift
+151,30234,proximity to target
+152,30235,"Pure Tone Average (PTA): the average of the 1, 2 and 4 kHz frequencies"
+153,30236,rate of acquisition of conditioned responding
+154,30237,rate of responding
+155,30238,"ratings (e.g., detail, difficulty)"
+156,30239,raw score
+157,30240,reaction time
+158,30241,reaction time per trial
+159,30242,reading accuracy
+160,30243,reading comprehension
+161,30244,reading fluency
+162,30245,reading rate
+163,30246,reading span (number of words recalled)
+164,30247,recognition accuracy
+165,30248,redundancy or randomness of responses
+166,30249,reported perceptual switching
+167,30250,response frequency
+168,30251,response time
+169,30252,response time (as indicator of construction time)
+170,30253,response time (latency)
+171,30254,response time to questions about objects/scenes
+172,30255,response to CS
+173,30256,risk-averse behavior
+174,30257,risk-seeking behavior
+175,30258,saccade direction
+176,30259,saccade latency
+177,30260,saccade reaction time
+178,30261,score
+179,30262,score (accuracy)
+180,30263,"score (mazes are worth 2-5 points, depending on their complexity. points are subtracted from the score when errors are made)"
+181,30264,score (number correct minus false alarms)
+182,30265,score (number of pathological responses)
+183,30266,Score on Ownership Illusion Questionnaire
+184,30267,self-awareness
+185,30268,semi-logarithmic normative score
+186,30269,size
+187,30270,size of sentence set
+188,30271,skin conductance
+189,30272,speed
+190,30273,standard deviation
+191,30274,standard deviation of number of correct responses
+192,30275,startle response
+193,30276,Stop Signal Reaction Time
+194,30277,strength of activation
+195,30278,strength of dominance
+196,30279,strength of response
+197,30280,subject rating of level of sensation
+198,30281,subject&#39;s emotional rating
+199,30282,subject&#39;s physical representation of imagined object
+200,30283,Subjective Acupuncture Sensation Scale ratings
+201,30284,Subjective ratings
+202,30285,Subjective ratings on a numerical scale or on a visual analogue scale
+203,30286,subjective ratings on a visual analogue scale
+204,30287,suboptimal choices
+205,30288,sum of items using the left hand
+206,30289,sum of items using the right hand
+207,30290,"sum of score for 40 questions (on a Likert scale, rating of 1=not at all, 4=very much)"
+208,30291,sum of scores (on a Likert scale)
+209,30292,"sum of scores on all six questions (0â2 = very low dependence, 3â4 = low dependence, 5 = medium dependence, 6â7 = high dependence, and 8â10 = very high dependence)"
+210,30293,sum of words recalled on multiple trials
+211,30294,switch cost
+212,30295,T-score
+213,30296,tap interval
+214,30297,tap interval divided by target/modeled interval
+215,30298,taps per 10s trial
+216,30299,theta score
+217,30300,Threat
+218,30301,time
+219,30302,time spent observing novel objects
+220,30303,time to complete
+221,30304,time to complete task
+222,30305,tone span
+223,30306,type of encoding task
+224,30307,unresolved
+225,30308,Vector (accuracy x response time)
+226,30309,ventral frontostriatal brain activation
+227,30310,Verbal IQ
+228,30311,Visual Memory Index
+229,30312,Visual Working Memory Index
+230,30313,volume of liquid drunk
+231,30314,volume or composition of urine
+232,30315,weight of food eaten
+233,30316,z-score
