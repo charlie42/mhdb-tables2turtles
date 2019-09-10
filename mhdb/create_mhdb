@@ -192,7 +192,7 @@ Current information can be found on the website, https://matter.childmind.org.
 
     if do_groups:
         groups_statements = ingest_groups(groups_xls, behaviors_xls, references_xls,
-                                      statements={})
+                                          statements={})
         groups_turtle = turtle_from_dict(groups_statements)
     else:
         groups_statements = []

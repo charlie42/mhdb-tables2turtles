@@ -20,6 +20,7 @@ except:
 import numpy as np
 import pandas as pd
 import re
+import math
 
 exclude_list = ['', 'nan', np.nan, 'None', None, []]
 
@@ -2411,6 +2412,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
     ... }).split("\\n\\t")[0])
     #mhdb:despair rdfs:label "despair"@en ;
     """
+    import math
 
     dsm_classes = dsm5_xls.parse("Classes")
     dsm_properties = dsm5_xls.parse("Properties")
@@ -2439,13 +2441,13 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "rdf:Class"))
 
         source = None
-        if row[1]["DefinitionReference_index"] not in exclude_list and not \
-                isinstance(row[1]["DefinitionReference_index"], float):
+        if row[1]["DefinitionReference_index"] not in exclude_list and \
+            not math.isnan(row[1]["DefinitionReference_index"]):
             index_source = references[
                     references["index"] == row[1]["DefinitionReference_index"]
                 ]["indices_link"].values[0]
-            if index_source not in exclude_list and not \
-                    isinstance(index_source, float):
+            if index_source not in exclude_list and \
+                not math.isnan(index_source):
                 source = references[references["index"] ==
                                     index_source]["link"].values[0]
                 source = check_iri(source)
@@ -2457,24 +2459,24 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             #predicates_list.append(("dcterms:source", source))
             predicates_list.append(("rdfs:isDefinedBy", source))
 
-        if row[1]["Definition"] not in exclude_list and not \
-                    isinstance(row[1]["Definition"], float):
+        if row[1]["Definition"] not in exclude_list and \
+            isinstance(row[1]["Definition"], str):
             predicates_list.append(("rdfs:comment",
                                     language_string(row[1]["Definition"])))
-        if row[1]["sameAs"] not in exclude_list and not \
-                    isinstance(row[1]["sameAs"], float):
+        if row[1]["sameAs"] not in exclude_list and \
+            isinstance(row[1]["Definition"], str):
             predicates_list.append(("owl:sameAs",
                                     check_iri(row[1]["sameAs"])))
-        if row[1]["equivalentClass"] not in exclude_list and not \
-                    isinstance(row[1]["equivalentClass"], float):
+        if row[1]["equivalentClass"] not in exclude_list and \
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list and not \
-                    isinstance(row[1]["equivalentClass_2"], float):
+        if row[1]["equivalentClass_2"] not in exclude_list and \
+            isinstance(row[1]["equivalentClass_2"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass_2"])))
-        if row[1]["subClassOf"] not in exclude_list and not \
-                    isinstance(row[1]["subClassOf"], float):
+        if row[1]["subClassOf"] not in exclude_list and \
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
@@ -2496,32 +2498,28 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdfs:label", dsm_property_label))
         predicates_list.append(("rdf:type", "rdf:Property"))
 
-        if row[1]["propertyDomain"] not in exclude_list and not \
-                    isinstance(row[1]["propertyDomain"], float):
+        if row[1]["propertyDomain"] not in exclude_list and \
+            isinstance(row[1]["propertyDomain"], str):
             predicates_list.append(("rdfs:domain",
                                     check_iri(row[1]["propertyDomain"])))
-        if row[1]["propertyRange"] not in exclude_list and not \
-                    isinstance(row[1]["propertyRange"], float):
+        if row[1]["propertyRange"] not in exclude_list and \
+            isinstance(row[1]["propertyRange"], str):
             predicates_list.append(("rdfs:range",
                                     check_iri(row[1]["propertyRange"])))
-        # if row[1]["Definition"] not in exclude_list and not \
-        #                     isinstance(index_source, float):
-        #     predicates_list.append(("rdfs:comment",
-        #                             check_iri(row[1]["Definition"])))
-        if row[1]["sameAs"] not in exclude_list and not \
-                    isinstance(row[1]["sameAs"], float):
+        if row[1]["sameAs"] not in exclude_list and \
+            isinstance(row[1]["sameAs"], str):
             predicates_list.append(("owl:sameAs",
                                     check_iri(row[1]["sameAs"])))
-        if row[1]["equivalentProperty"] not in exclude_list and not \
-                    isinstance(row[1]["equivalentProperty"], float):
+        if row[1]["equivalentProperty"] not in exclude_list and \
+            isinstance(row[1]["equivalentProperty"], str):
             predicates_list.append(("rdfs:equivalentProperty",
                                     check_iri(row[1]["equivalentProperty"])))
-        if row[1]["subPropertyOf"] not in exclude_list and not \
-                    isinstance(row[1]["subPropertyOf"], float):
+        if row[1]["subPropertyOf"] not in exclude_list and \
+            isinstance(row[1]["subPropertyOf"], str):
             predicates_list.append(("rdfs:subPropertyOf",
                                     check_iri(row[1]["subPropertyOf"])))
-        if row[1]["health-lifesci_codingSystem"] not in exclude_list and not \
-                    isinstance(row[1]["health-lifesci_codingSystem"], float):
+        if row[1]["health-lifesci_codingSystem"] not in exclude_list and \
+            isinstance(row[1]["health-lifesci_codingSystem"], str):
             predicates_list.append(("health-lifesci:codingSystem",
                                     check_iri(row[1]["health-lifesci_codingSystem"])))
         for predicates in predicates_list:
@@ -2547,13 +2545,13 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
 
         # reference
         source = None
-        if row[1]["index_reference"] not in exclude_list and not \
-                isinstance(row[1]["index_reference"], float):
+        if row[1]["index_reference"] not in exclude_list and \
+            not math.isnan(row[1]["index_reference"]):
             source = references[
                     references["index"] == row[1]["index_reference"]
                 ]["link"].values[0]
-            if source not in exclude_list and not \
-                    isinstance(source, float):
+            if source not in exclude_list and \
+                isinstance(source, str):
                 source = check_iri(source)
             else:
                 source = references[
@@ -2570,12 +2568,10 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("dcterms:source", source))
 
         # specific to females/males?
-        if row[1]["index_gender"] not in exclude_list and not \
-                isinstance(row[1]["index_gender"], float):
-            index_gender = np.int(row[1]["index_gender"])
-            print("index: " + str(row[1]["index_gender"]))
+        import math
+        if row[1]["index_gender"] not in exclude_list and \
+            not math.isnan(row[1]["index_gender"]):
             if np.int(row[1]["index_gender"]) == 1:  # female
-                print(index_gender)
                 predicates_list.append(
                     ("schema:audience", "mhdb:FemaleAudience"))
                 predicates_list.append(
@@ -2589,13 +2585,13 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         # indices for disorders
         indices_disorder = row[1]["indices_disorder"]
         if indices_disorder not in exclude_list and \
-                not isinstance(indices_disorder, float):
+            not math.isnan(indices_disorder):
             if isinstance(indices_disorder, str):
-                indices = [np.int(x) for x in
+                indices_disorder = [np.int(x) for x in
                            indices_disorder.strip().split(',') if len(x) > 0]
             elif isinstance(indices_disorder, int):
-                indices = [indices_disorder]
-            for index in indices:
+                indices_disorder = [indices_disorder]
+            for index in indices_disorder:
                 disorder = disorders[disorders["index"] == index
                                     ]["disorder"].values[0]
                 if isinstance(disorder, str):
@@ -2612,16 +2608,13 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         # Is the sign/symptom a subclass of other another sign/symptom?
         indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
         if indices_sign_or_symptom not in exclude_list and \
-                not isinstance(indices_sign_or_symptom, float):
+            not math.isnan(indices_sign_or_symptom):
             if isinstance(indices_sign_or_symptom, str):
-                indices = [np.int(x) for x in
+                indices_sign_or_symptom = [np.int(x) for x in
                            indices_sign_or_symptom.strip().split(',') if len(x) > 0]
             elif isinstance(indices_sign_or_symptom, int):
-                indices = [indices_sign_or_symptom]
-            for index in indices:
-                print('index: ' + str(index))
-                print('str: ' + str(sign_or_symptoms["index"]))
-                print(sign_or_symptoms[sign_or_symptoms["index"] == index]["sign_or_symptom"].values)
+                indices_sign_or_symptom = [indices_sign_or_symptom]
+            for index in indices_sign_or_symptom:
                 super_sign = sign_or_symptoms[sign_or_symptoms["index"] == index
                                              ]["sign_or_symptom"].values[0]
                 if isinstance(super_sign, str):
@@ -2648,16 +2641,13 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
 
         indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
         if indices_sign_or_symptom not in exclude_list and \
-                not isinstance(indices_sign_or_symptom, float):
+            not math.isnan(indices_sign_or_symptom):
             if isinstance(indices_sign_or_symptom, str):
-                indices = [np.int(x) for x in
+                indices_sign_or_symptom = [np.int(x) for x in
                            indices_sign_or_symptom.strip().split(',') if len(x) > 0]
             elif isinstance(indices_sign_or_symptom, int):
-                indices = [indices_sign_or_symptom]
-            for index in indices:
-                print('index: ' + str(index))
-                print('str: ' + str(sign_or_symptoms["index"] == index))
-                print(sign_or_symptoms[sign_or_symptoms["index"] == index]["sign_or_symptom"].values)
+                indices_sign_or_symptom = [indices_sign_or_symptom]
+            for index in indices_sign_or_symptom:
                 objectRDF = sign_or_symptoms[sign_or_symptoms["index"] ==
                                              index]["sign_or_symptom"].values[0]
                 if isinstance(objectRDF, str):
@@ -2683,12 +2673,12 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdfs:label", severity_label))
         predicates_list.append(("rdf:type", "mhdb:DisorderSeverity"))
 
-        if row[1]["equivalentClass"] not in exclude_list and not \
-                    isinstance(row[1]["equivalentClass"], float):
+        if row[1]["equivalentClass"] not in exclude_list and \
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["subClassOf"] not in exclude_list and not \
-                    isinstance(row[1]["subClassOf"], float):
+        if row[1]["subClassOf"] not in exclude_list and \
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
@@ -2710,12 +2700,12 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdfs:label", diagnostic_specifier_label))
         predicates_list.append(("rdf:type", "mhdb:DiagnosticSpecifier"))
 
-        if row[1]["equivalentClass"] not in exclude_list and not \
-                    isinstance(row[1]["equivalentClass"], float):
+        if row[1]["equivalentClass"] not in exclude_list and \
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["subClassOf"] not in exclude_list and not \
-                    isinstance(row[1]["subClassOf"], float):
+        if row[1]["subClassOf"] not in exclude_list and \
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
@@ -2737,16 +2727,16 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdfs:label", diagnostic_criterion_label))
         predicates_list.append(("rdf:type", "mhdb:DiagnosticCriterion"))
 
-        if row[1]["equivalentClass"] not in exclude_list and not \
-                    isinstance(row[1]["equivalentClass"], float):
+        if row[1]["equivalentClass"] not in exclude_list and \
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list and not \
-                    isinstance(row[1]["equivalentClass_2"], float):
+        if row[1]["equivalentClass_2"] not in exclude_list and \
+            isinstance(row[1]["equivalentClass_2"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass_2"])))
-        if row[1]["subClassOf"] not in exclude_list and not \
-                    isinstance(row[1]["subClassOf"], float):
+        if row[1]["subClassOf"] not in exclude_list and \
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
@@ -2769,38 +2759,38 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:Disorder"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
-                not isinstance(row[1]["equivalentClass"], float):
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
         if row[1]["subClassOf"] not in exclude_list and \
-                not isinstance(row[1]["subClassOf"], float):
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         if row[1]["subClassOf_2"] not in exclude_list and \
-                not isinstance(row[1]["subClassOf_2"], float):
+            isinstance(row[1]["subClassOf_2"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf_2"])))
         if row[1]["note"] not in exclude_list and \
-                not isinstance(row[1]["note"], float):
+            isinstance(row[1]["note"], str):
             predicates_list.append(("mhdb:hasNote",
                                     language_string(row[1]["note"])))
 
         if row[1]["ICD9_code"] not in exclude_list and \
-                row[1]["ICD9_code"] != np.nan:
+            not math.isnan(row[1]["ICD9_code"]):
             ICD9_code = str(row[1]["ICD9_code"])
             predicates_list.append(("mhdb:hasICD9Code",
                                     check_iri('ICD9_' + ICD9_code)))
             disorder_label += "; ICD9:{0}".format(ICD9_code)
             disorder_iri_label += " ICD9 {0}".format(ICD9_code)
         if row[1]["ICD10_code"] not in exclude_list and \
-                row[1]["ICD10_code"] != np.nan:
+            not math.isnan(row[1]["ICD10_code"]):
             ICD10_code = row[1]["ICD10_code"]
             predicates_list.append(("mhdb:hasICD10Code",
                                     check_iri('ICD10_' + ICD10_code)))
             disorder_label += "; ICD10:{0}".format(ICD10_code)
             disorder_iri_label += " ICD10 {0}".format(ICD10_code)
         if row[1]["index_diagnostic_specifier"] not in exclude_list and \
-                not np.isnan(row[1]["index_diagnostic_specifier"]):
+            not math.isnan(row[1]["index_diagnostic_specifier"]):
             diagnostic_specifier = diagnostic_specifiers[
             diagnostic_specifiers["index"] == int(row[1]["index_diagnostic_specifier"])
             ]["diagnostic_specifier"].values[0]
@@ -2811,7 +2801,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                 disorder_iri_label += " specifier {0}".format(diagnostic_specifier)
 
         if row[1]["index_diagnostic_inclusion_criterion"] not in exclude_list and \
-                not np.isnan(row[1]["index_diagnostic_inclusion_criterion"]):
+            not math.isnan(row[1]["index_diagnostic_inclusion_criterion"]):
             diagnostic_inclusion_criterion = diagnostic_criteria[
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_inclusion_criterion"])
             ]["diagnostic_criterion"].values[0]
@@ -2824,7 +2814,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                     " inclusion {0}".format(diagnostic_inclusion_criterion)
 
         if row[1]["index_diagnostic_inclusion_criterion2"] not in exclude_list and \
-                not np.isnan(row[1]["index_diagnostic_inclusion_criterion2"]):
+            not math.isnan(row[1]["index_diagnostic_inclusion_criterion2"]):
             diagnostic_inclusion_criterion2 = diagnostic_criteria[
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_inclusion_criterion2"])
             ]["diagnostic_criterion"].values[0]
@@ -2837,7 +2827,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                     " {0}".format(diagnostic_inclusion_criterion2)
 
         if row[1]["index_diagnostic_exclusion_criterion"] not in exclude_list and \
-                not np.isnan(row[1]["index_diagnostic_exclusion_criterion"]):
+            not math.isnan(row[1]["index_diagnostic_exclusion_criterion"]):
             diagnostic_exclusion_criterion = diagnostic_criteria[
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_exclusion_criterion"])
             ]["diagnostic_criterion"].values[0]
@@ -2850,7 +2840,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                     " exclusion {0}".format(diagnostic_exclusion_criterion)
 
         if row[1]["index_diagnostic_exclusion_criterion2"] not in exclude_list and \
-                not np.isnan(row[1]["index_diagnostic_exclusion_criterion2"]):
+            not math.isnan(row[1]["index_diagnostic_exclusion_criterion2"]):
             diagnostic_exclusion_criterion2 = diagnostic_criteria[
             diagnostic_criteria["index"] == int(row[1]["index_diagnostic_exclusion_criterion2"])
             ]["diagnostic_criterion"].values[0]
@@ -2863,7 +2853,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                     " {0}".format(diagnostic_exclusion_criterion2)
 
         if row[1]["index_severity"] not in exclude_list and \
-                not np.isnan(row[1]["index_severity"]):
+            not math.isnan(row[1]["index_severity"]):
             severity = severities[
             severities["index"] == int(row[1]["index_severity"])
             ]["severity"].values[0]
@@ -2877,7 +2867,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                     " severity {0}".format(severity)
 
         if row[1]["index_disorder_subsubsubcategory"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_subsubsubcategory"]):
+            not math.isnan(row[1]["index_disorder_subsubsubcategory"]):
             disorder_subsubsubcategory = disorder_subsubsubcategories[
                 disorder_subsubsubcategories["index"] ==
                 int(row[1]["index_disorder_subsubsubcategory"])
@@ -2920,7 +2910,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                 )
                 exclude_categories.append(disorder_subsubcategory)
         elif row[1]["index_disorder_subsubcategory"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_subsubcategory"]):
+            not math.isnan(row[1]["index_disorder_subsubcategory"]):
             disorder_subsubcategory = disorder_subsubcategories[
                 disorder_subsubcategories["index"] ==
                 int(row[1]["index_disorder_subsubcategory"])
@@ -2952,14 +2942,12 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                 )
                 exclude_categories.append(disorder_subcategory)
         elif row[1]["index_disorder_subcategory"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_subcategory"]):
+            not math.isnan(row[1]["index_disorder_subcategory"]):
             disorder_subcategory = disorder_subcategories[
-                disorder_subcategories["index"] ==
-                int(row[1]["index_disorder_subcategory"])
+                disorder_subcategories["index"] == int(row[1]["index_disorder_subcategory"])
             ]["disorder_subcategory"].values[0]
             disorder_category = disorder_categories[
-                disorder_categories["index"] ==
-                int(row[1]["index_disorder_category"])
+                disorder_categories["index"] == int(row[1]["index_disorder_category"])
             ]["disorder_category"].values[0]
             predicates_list.append(("mhdb:hasDisorderCategory",
                                     check_iri(disorder_subcategory)))
@@ -2973,10 +2961,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                 )
                 exclude_categories.append(disorder_category)
         elif row[1]["index_disorder_category"] not in exclude_list and \
-                not np.isnan(row[1]["index_disorder_category"]):
+            not math.isnan(row[1]["index_disorder_category"]):
             disorder_category = disorder_categories[
-                disorder_categories["index"] ==
-                int(row[1]["index_disorder_category"])
+                disorder_categories["index"] == int(row[1]["index_disorder_category"])
             ]["disorder_category"].values[0]
             predicates_list.append(("mhdb:hasDisorderCategory",
                                     check_iri(disorder_category)))
@@ -3004,15 +2991,15 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:DisorderCategory"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
-                not isinstance(row[1]["equivalentClass"], float):
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
         if row[1]["equivalentClass_2"] not in exclude_list and \
-                not isinstance(row[1]["equivalentClass_2"], float):
+            isinstance(row[1]["equivalentClass_2"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass_2"])))
         if row[1]["subClassOf"] not in exclude_list and \
-                not isinstance(row[1]["subClassOf"], float):
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
 
@@ -3036,11 +3023,11 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:DisorderCategory"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
-                not isinstance(row[1]["equivalentClass"], float):
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
         if row[1]["subClassOf"] not in exclude_list and \
-                not isinstance(row[1]["subClassOf"], float):
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
 
@@ -3064,11 +3051,11 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:DisorderCategory"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
-                not isinstance(row[1]["equivalentClass"], float):
+                isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
         if row[1]["subClassOf"] not in exclude_list and \
-                not isinstance(row[1]["subClassOf"], float):
+                isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
 
@@ -3092,11 +3079,11 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:DisorderCategory"))
 
         if row[1]["equivalentClass"] not in exclude_list and \
-                not isinstance(row[1]["equivalentClass"], float):
+            isinstance(row[1]["equivalentClass"], str):
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
         if row[1]["subClassOf"] not in exclude_list and \
-                not isinstance(row[1]["subClassOf"], float):
+            isinstance(row[1]["subClassOf"], str):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
 
