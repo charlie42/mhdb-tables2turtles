@@ -2348,15 +2348,13 @@ def ingest_references(references_xls, domains_xls, statements={}):
     return statements
 
 
-def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
+def ingest_dsm5(dsm5_xls, references_xls, statements={}):
     """
     Function to ingest dsm5 spreadsheet
 
     Parameters
     ----------
     dsm5_xls: pandas ExcelFile
-
-    behaviors_xls: pandas ExcelFile
 
     references_xls: pandas ExcelFile
 
@@ -2395,23 +2393,17 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
     ...         'data/dsm5.xlsx',
     ...         "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
     ...     )
-    ...     behaviorsFILE = download_google_sheet(
-    ...         'data/behaviors.xlsx',
-    ...         "1OHtVRqRXvCUuhyavcLSBU9YkiEJfThFKrXHmcg4627M"
-    ...     )
     ...     referencesFILE = download_google_sheet(
     ...         'data/references.xlsx',
     ...         "1KDZhoz9CgHBVclhoOKBgDegUA9Vczui5wj61sXMgh34"
     ...     )
     ... except:
     ...     dsm5FILE = 'data/dsm5.xlsx'
-    ...     behaviorsFILE = 'data/behaviors.xlsx'
     ...     referencesFILE = 'data/references.xlsx'
     >>> dsm5_xls = pd.ExcelFile(dsm5FILE)
     >>> behaviors_xls = pd.ExcelFile(behaviorsFILE)
     >>> references_xls = pd.ExcelFile(referencesFILE)
-    >>> statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
-    ...     statements={})
+    >>> statements = ingest_dsm5(dsm5_xls, references_xls, statements={})
     >>> print(turtle_from_dict({
     ...     statement: statements[
     ...         statement
@@ -2433,7 +2425,6 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
     diagnostic_specifiers = dsm5_xls.parse("diagnostic_specifiers")
     diagnostic_criteria = dsm5_xls.parse("diagnostic_criteria")
     references = references_xls.parse("references")
-    behaviors = behaviors_xls.parse("behaviors")
 
     statements = audience_statements(statements)
 
@@ -2545,14 +2536,16 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
     # sign_or_symptoms worksheet
     for row in sign_or_symptoms.iterrows():
 
-        index_sign_or_symptom = row[1]["index_sign_or_symptom_index"]
-        if index_sign_or_symptom == 1:
+        # sign or symptom?
+        sign_or_symptom_number = np.int(row[1]["sign_or_symptom_number"])
+        if sign_or_symptom_number == 1:
             sign_or_symptom = "health-lifesci:MedicalSign"
-        elif index_sign_or_symptom == 2:
+        elif sign_or_symptom_number == 2:
             sign_or_symptom = "health-lifesci:MedicalSymptom"
         else:
             sign_or_symptom = "health-lifesci:MedicalSignOrSymptom"
 
+        # reference
         source = None
         if row[1]["index_reference"] not in exclude_list and not \
                 isinstance(row[1]["index_reference"], float):
@@ -2576,54 +2569,63 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", sign_or_symptom))
         predicates_list.append(("dcterms:source", source))
 
-        # male/female
-        for row2 in behaviors.iterrows():
-            indices_sign_or_symptom = row2[1]["indices_sign_or_symptom"]
-            if indices_sign_or_symptom not in exclude_list and \
-                    isinstance(indices_sign_or_symptom, str):
-                indices_sign_or_symptom = [np.int(x) for x in
-                    indices_sign_or_symptom.strip().split(',') if len(x)>0]
-                for index_sign in indices_sign_or_symptom:
-                    if index_sign == row[1]["index"]:
-                        if row2[1]["index_gender"] not in exclude_list and \
-                            not np.isnan(row2[1]["index_gender"]):
-                            gender_index = np.int(row2[1]["index_gender"])
-                            if gender_index == 2:  # male
-                                predicates_list.append(
-                                    ("schema:audience", "mhdb:MaleAudience"))
-                                predicates_list.append(
-                                    ("schema:epidemiology", "mhdb:MaleAudience"))
-                            elif gender_index == 3:  # female
-                                predicates_list.append(
-                                    ("schema:audience", "mhdb:FemaleAudience"))
-                                predicates_list.append(
-                                    ("schema:epidemiology", "mhdb:FemaleAudience"))
-                        break
+        # specific to females/males?
+        if row[1]["index_gender"] not in exclude_list and not \
+                isinstance(row[1]["index_gender"], float):
+            index_gender = np.int(row[1]["index_gender"])
+            print("index: " + str(row[1]["index_gender"]))
+            if np.int(row[1]["index_gender"]) == 1:  # female
+                print(index_gender)
+                predicates_list.append(
+                    ("schema:audience", "mhdb:FemaleAudience"))
+                predicates_list.append(
+                    ("schema:epidemiology", "mhdb:FemaleAudience"))
+            elif np.int(row[1]["index_gender"]) == 2:  # male
+                predicates_list.append(
+                    ("schema:audience", "mhdb:MaleAudience"))
+                predicates_list.append(
+                    ("schema:epidemiology", "mhdb:MaleAudience"))
 
+        # indices for disorders
         indices_disorder = row[1]["indices_disorder"]
-        if indices_disorder not in exclude_list:
-            if not isinstance(indices_disorder, list):
-                indices_disorder = [indices_disorder]
-            for index in indices_disorder:
-                disorder = disorders[disorders["index"] == index]["disorder"].values[0]
+        if indices_disorder not in exclude_list and \
+                not isinstance(indices_disorder, float):
+            if isinstance(indices_disorder, str):
+                indices = [np.int(x) for x in
+                           indices_disorder.strip().split(',') if len(x) > 0]
+            elif isinstance(indices_disorder, int):
+                indices = [indices_disorder]
+            for index in indices:
+                disorder = disorders[disorders["index"] == index
+                                    ]["disorder"].values[0]
                 if isinstance(disorder, str):
-                    if index_sign_or_symptom == 1:
+                    if sign_or_symptom_number == 1:
                         predicates_list.append(("mhdb:isMedicalSignOf",
                                                 check_iri(disorder)))
-                    elif index_sign_or_symptom == 2:
+                    elif sign_or_symptom_number == 2:
                         predicates_list.append(("mhdb:isMedicalSymptomOf",
                                                 check_iri(disorder)))
                     else:
                         predicates_list.append(("mhdb:isMedicalSignOrSymptomOf",
                                                 check_iri(disorder)))
 
-        index_super_sign = row[1]["sign_or_symptom_index"]
-        if index_super_sign not in exclude_list and not np.isnan(index_super_sign):
-            super_sign = sign_or_symptoms[sign_or_symptoms["index"] ==
-                                          np.int(index_super_sign)
-            ]["sign_or_symptom"].values[0]
-            if isinstance(super_sign, str):
-                predicates_list.append(("rdfs:subClassOf",
+        # Is the sign/symptom a subclass of other another sign/symptom?
+        indices_sign_or_symptom = row[1]["indices_sign_or_symptom"]
+        if indices_sign_or_symptom not in exclude_list and \
+                not isinstance(indices_sign_or_symptom, float):
+            if isinstance(indices_sign_or_symptom, str):
+                indices = [np.int(x) for x in
+                           indices_sign_or_symptom.strip().split(',') if len(x) > 0]
+            elif isinstance(indices_sign_or_symptom, int):
+                indices = [indices_sign_or_symptom]
+            for index in indices:
+                print('index: ' + str(index))
+                print('str: ' + str(sign_or_symptoms["index"]))
+                print(sign_or_symptoms[sign_or_symptoms["index"] == index]["sign_or_symptom"].values)
+                super_sign = sign_or_symptoms[sign_or_symptoms["index"] == index
+                                             ]["sign_or_symptom"].values[0]
+                if isinstance(super_sign, str):
+                    predicates_list.append(("rdfs:subClassOf",
                                             check_iri(super_sign)))
         for predicates in predicates_list:
             statements = add_if(
@@ -2653,8 +2655,11 @@ def ingest_dsm5(dsm5_xls, behaviors_xls, references_xls, statements={}):
             elif isinstance(indices_sign_or_symptom, int):
                 indices = [indices_sign_or_symptom]
             for index in indices:
+                print('index: ' + str(index))
+                print('str: ' + str(sign_or_symptoms["index"] == index))
+                print(sign_or_symptoms[sign_or_symptoms["index"] == index]["sign_or_symptom"].values)
                 objectRDF = sign_or_symptoms[sign_or_symptoms["index"] ==
-                                           index]["sign_or_symptom"].values[0]
+                                             index]["sign_or_symptom"].values[0]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("mhdb:isExampleOf",
                                             check_iri(objectRDF)))

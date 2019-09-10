@@ -44,7 +44,7 @@ except:
 import numpy as np
 import pandas as pd
 
-run_all = 1
+run_all = 0
 if run_all:
     do_questions = 1
     do_tasks = 1
@@ -53,17 +53,19 @@ if run_all:
     do_domains = 1
     do_measures = 1
     do_claims = 1
+    do_groups = 1
     do_dsm5 = 1
     do_references = 1
 else:
-    do_questions = 1
+    do_questions = 0
     do_tasks = 0
     do_projects = 0
     do_behaviors = 0
     do_domains = 0
     do_measures = 0
     do_claims = 0
-    do_dsm5 = 0
+    do_groups = 0
+    do_dsm5 = 1
     do_references = 0
 
 def main():
@@ -121,6 +123,13 @@ def main():
     except:
         projectsFILE = 'data/projects.xlsx'
     try:
+        groupsFILE = download_google_sheet(
+            'data/groups.xlsx',
+            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
+        )
+    except:
+        groupsFILE = 'data/groups.xlsx'
+    try:
         dsm5FILE = download_google_sheet(
             'data/dsm5.xlsx',
             "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
@@ -136,6 +145,7 @@ def main():
         referencesFILE = 'data/references.xlsx'
 
     base_uri = "http://www.purl.org/mentalhealth"
+    groups_outfile = os.path.join('../output', 'groups.ttl')
     dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
     questions_outfile = os.path.join('../output', 'questions.ttl')
     tasks_outfile = os.path.join('../output', 'tasks.ttl')
@@ -149,6 +159,7 @@ def main():
     # --------------------------------------------------------------------------
     # Import spreadsheets
     # --------------------------------------------------------------------------
+    groups_xls = pd.ExcelFile(groupsFILE)
     dsm5_xls = pd.ExcelFile(dsm5FILE)
     questions_xls = pd.ExcelFile(questionsFILE)
     tasks_xls = pd.ExcelFile(tasksFILE)
@@ -179,9 +190,16 @@ The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 """.format(ddashes)
 
-    if do_dsm5:
-        dsm5_statements = ingest_dsm5(dsm5_xls, behaviors_xls, references_xls,
+    if do_groups:
+        groups_statements = ingest_groups(groups_xls, behaviors_xls, references_xls,
                                       statements={})
+        groups_turtle = turtle_from_dict(groups_statements)
+    else:
+        groups_statements = []
+        groups_turtle = []
+
+    if do_dsm5:
+        dsm5_statements = ingest_dsm5(dsm5_xls, references_xls, statements={})
         dsm5_turtle = turtle_from_dict(dsm5_statements)
     else:
         dsm5_statements = []
@@ -254,7 +272,8 @@ Current information can be found on the website, https://matter.childmind.org.
     # --------------------------------------------------------------------------
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
-    outputs_list = [[dsm5_statements, dsm5_outfile, dsm5_turtle],
+    outputs_list = [[groups_statements, groups_outfile, groups_turtle],
+                    [dsm5_statements, dsm5_outfile, dsm5_turtle],
                     [questions_statements, questions_outfile, questions_turtle],
                     [tasks_statements, tasks_outfile, tasks_turtle],
                     [references_statements, references_outfile, references_turtle],
