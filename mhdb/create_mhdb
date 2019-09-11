@@ -59,13 +59,13 @@ if run_all:
 else:
     do_questions = 0
     do_tasks = 0
-    do_projects = 0
+    do_projects = 1
     do_behaviors = 0
     do_domains = 0
-    do_measures = 0
+    do_measures = 0 #1
     do_claims = 0
     do_groups = 0
-    do_dsm5 = 1
+    do_dsm5 = 0 #1
     do_references = 0
 
 def main():
@@ -125,7 +125,7 @@ def main():
     try:
         groupsFILE = download_google_sheet(
             'data/groups.xlsx',
-            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
+            "1ndq4_OR2ZGPP7m2kZpW1beyQNwqzHu3xVqdNF-7SIsI"
         )
     except:
         groupsFILE = 'data/groups.xlsx'
@@ -222,8 +222,9 @@ Current information can be found on the website, https://matter.childmind.org.
         tasks_turtle = []
 
     if do_projects:
-        projects_statements = ingest_projects(projects_xls, domains_xls,
-                                              measures_xls, statements={})
+        projects_statements = ingest_projects(projects_xls, groups_xls,
+                                              domains_xls, measures_xls,
+                                              references_xls, statements={})
         projects_turtle = turtle_from_dict(projects_statements)
     else:
         projects_statements = []
