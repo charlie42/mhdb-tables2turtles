@@ -71,15 +71,15 @@ else:
     do_references = 0
     do_claims = 0
 
-do_measures = 0 #1
-do_dsm5 = 0 #1
-do_projects = 0 #1
+do_measures = 0
+do_questions = 0
+do_dsm5 = 0
+do_projects = 1
 
-do_questions = 1 #
+do_references = 0
 do_groups = 0
-do_references = 0 #
-do_tasks = 0 # skip
-do_states = 0 # skip
+do_tasks = 0
+do_states = 0
 
 do_behaviors = 0 # skip
 do_claims = 0 # skip
@@ -270,8 +270,7 @@ Current information can be found on the website, https://matter.childmind.org.
         projects_turtle = []
 
     if do_groups:
-        groups_statements = ingest_groups(groups_xls, behaviors_xls, references_xls,
-                                          statements={})
+        groups_statements = ingest_groups(groups_xls, statements={})
         groups_turtle = turtle_from_dict(groups_statements)
     else:
         groups_statements = []

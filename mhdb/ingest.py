@@ -26,34 +26,19 @@ emptyValue = 'EmptyValue'
 exclude_list = [emptyValue, '', [], 'NaN', 'NAN', 'nan', np.nan, None]
 
 
-def add_if(subject, predicate, object, statements={},
-           exclude_list=exclude_list):
+def add_to_statements(subject, predicate, object, statements={},
+                      exclude_list=exclude_list):
     """
-    Function to add an object and predicate to a dictionary, checking for that
-    predicate first.
+    Function to add predicate and object to a dictionary, after checking predicate.
 
     Parameters
     ----------
     subject: string
-        Turtle-formatted IRI
-
     predicate: string
-        Turtle-formatted IRI
-
     object: string
-        Turtle-formatted IRI
-
     statements: dictionary
-        key: string
-            RDF subject
-        value: dictionary
-            key: string
-                RDF predicate
-            value: {string}
-                set of RDF objects
-
     exclude_list: list
-        do not add statements if they contain any of these
+        do not add statement if it contains any of these
 
     Return
     ------
@@ -68,101 +53,115 @@ def add_if(subject, predicate, object, statements={},
 
     Example
     -------
-    >>> print(add_if(":goose", ":chases", ":it"))
+    >>> print(add_to_statements(":goose", ":chases", ":it"))
     {':goose': {':chases': {':it'}}}
     """
+    from mhdb.write_ttl import check_iri
+
     if subject not in exclude_list and \
-            predicate not in exclude_list and \
-            object not in exclude_list:
+        predicate not in exclude_list and \
+        object not in exclude_list:
 
         subject.strip()
         predicate.strip()
         object.strip()
 
-        if subject not in statements:
-            statements[subject] = {}
-        if predicate not in statements[subject]:
-            statements[subject][predicate] = {
-                object
+        subject_iri = check_iri(subject)
+        predicate_iri = check_iri(predicate)
+        object_iri = check_iri(object)
+
+        if subject_iri not in statements:
+            statements[subject_iri] = {}
+        if predicate_iri not in statements[subject_iri]:
+            statements[subject_iri][predicate_iri] = {
+                object_iri
             }
         else:
-            statements[subject][predicate].add(
-                object
+            statements[subject_iri][predicate_iri].add(
+                object_iri
             )
 
     return statements
 
 
-def audience_statements(statements={}):
+def add_to_predicate_list(predicate, object, predicates_list=[],
+                          exclude_list=exclude_list):
     """
-    Function to generate PeopleAudience subClasses.
+    Function to:
+    (1) add object and predicate to a dictionary, after checking predicate
+    (2) add predicate and object to a list
 
-    Parameter
-    ---------
-    statements: dictionary
-        key: string
-            RDF subject
-        value: dictionary
-            key: string
-                RDF predicate
-            value: {string}
-                set of RDF objects
+    Parameters
+    ----------
+    predicate: string
+    object: string
+    predicates_list: list
+    exclude_list: list
 
-    Returns
-    -------
-    statements: dictionary
-        key: string
-            RDF subject
-        value: dictionary
-            key: string
-                RDF predicate
-            value: {string}
-                set of RDF objects
+    Return
+    ------
+    predicates_list: list
 
     Example
     -------
-    >>> print(
-    ...     audience_statements()["mhdb:MaleAudience"]["rdfs:subClassOf"]
-    ... )
-    {'schema:PeopleAudience'}
+    >>> print(add_to_predicate_list(":wasChasedBy", ":goose"))
+    [(':goose', ':wasChasedBy')]
     """
-    for gendered_audience in {
-        "Male",
-        "Female"
-    }:
-        gendered_iri = check_iri(
-            "".join([
-                    gendered_audience,
-                    "Audience"
-            ])
-        )
-        schema_gender = "schema:{0}".format(
-            gendered_audience
-        )
-        g_statements = {
-            "rdfs:subClassOf": {
-                "schema:PeopleAudience"
-            },
-            "rdfs:label": {
-                 language_string(
-                    " ".join([
-                            gendered_audience,
-                            "Audience"
-                    ])
-                )
-            },
-            "schema:requiredGender": {
-                schema_gender
-            }
-        }
-        if gendered_iri not in statements:
-            statements[gendered_iri] = g_statements
-        else:
-            statements[gendered_iri] = {
-                **statements[gendered_iri],
-                **g_statements
-            }
-    return statements
+    from mhdb.write_ttl import check_iri
+
+    if predicate not in exclude_list and object not in exclude_list:
+
+        predicate_iri = check_iri(predicate)
+        object_iri = check_iri(object)
+
+        predicates_list.append((predicate_iri, object_iri))
+
+    return predicates_list
+
+
+def add_statements(subject, predicate, object, statements={},
+                   predicate2="", object2="", predicates_list=[],
+                   exclude_list=exclude_list):
+    """
+    Function to add a subject and predicate to a list.
+
+    Parameters
+    ----------
+    subject: string
+    predicate: string
+    object: string
+    statements: dictionary
+    predicate2: string
+    object2: string
+    predicates_list: list
+    exclude_list: list
+        do not add statement if it contains any of these
+
+    Return
+    ------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+    predicates_list: list
+
+    Example
+    -------
+    >>> print(add_statements(":goose", ":chases", ":it", statements={}, predicate2=":wasChasedBy", object2=":goose"))
+    ({':goose': {':chases': {':it'}}}, [(':goose', ':wasChasedBy')])
+    """
+    from mhdb.write_ttl import check_iri
+
+    statements = add_to_statements(subject, predicate, object, statements,
+                                   exclude_list)
+    predicates_list = add_to_predicate_list(predicate2, object2,
+                                            predicates_list, exclude_list)
+
+    return statements, predicates_list
 
 
 def ingest_states(states_xls, references_xls, statements={}):
@@ -249,7 +248,7 @@ def ingest_states(states_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 state_class_iri,
                 predicates[0],
                 predicates[1],
@@ -286,7 +285,7 @@ def ingest_states(states_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subPropertyOf",
                                     check_iri(row[1]["subPropertyOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 state_property_iri,
                 predicates[0],
                 predicates[1],
@@ -326,7 +325,7 @@ def ingest_states(states_xls, references_xls, statements={}):
                                             check_iri(objectRDF)))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 state_iri,
                 predicates[0],
                 predicates[1],
@@ -345,7 +344,7 @@ def ingest_states(states_xls, references_xls, statements={}):
         predicates_list.append(("rdfs:label", state_type_label))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 state_type_iri,
                 predicates[0],
                 predicates[1],
@@ -440,7 +439,7 @@ def ingest_measures(measures_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 measure_class_iri,
                 predicates[0],
                 predicates[1],
@@ -477,7 +476,7 @@ def ingest_measures(measures_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subPropertyOf",
                                     check_iri(row[1]["subPropertyOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 measure_property_iri,
                 predicates[0],
                 predicates[1],
@@ -510,7 +509,7 @@ def ingest_measures(measures_xls, references_xls, statements={}):
                     predicates_list.append(("ssn:observes",
                                             check_iri(objectRDF)))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 sensor_iri,
                 predicates[0],
                 predicates[1],
@@ -540,7 +539,7 @@ def ingest_measures(measures_xls, references_xls, statements={}):
                                             check_iri(objectRDF)))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 measure_iri,
                 predicates[0],
                 predicates[1],
@@ -644,7 +643,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 task_class_iri,
                 predicates[0],
                 predicates[1],
@@ -682,7 +681,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
             predicates_list.append(("rdfs:subPropertyOf",
                                     check_iri(row[1]["subPropertyOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 task_property_iri,
                 predicates[0],
                 predicates[1],
@@ -705,14 +704,14 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         if instructions not in exclude_list:
             predicates_list.append(("mhdb:hasInstructions",
                                     mhdb_iri(instructions)))
-            statements = add_if(
+            statements = add_to_statements(
                 mhdb_iri(instructions),
                 "rdf:type",
                 "mhdb:Instructions",
                 statements,
                 exclude_list
             )
-            statements = add_if(
+            statements = add_to_statements(
                 mhdb_iri(instructions),
                 "rdfs:label",
                 language_string(instructions),
@@ -755,7 +754,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
                                             check_iri(objectRDF)))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 task_iri,
                 predicates[0],
                 predicates[1],
@@ -785,7 +784,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         #                                     check_iri(objectRDF)))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 task_category_iri,
                 predicates[0],
                 predicates[1],
@@ -884,7 +883,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 question_class_iri,
                 predicates[0],
                 predicates[1],
@@ -918,7 +917,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subPropertyOf",
                                     check_iri(row[1]["subPropertyOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 question_property_iri,
                 predicates[0],
                 predicates[1],
@@ -963,14 +962,14 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         if instructions not in exclude_list:
             predicates_list.append(("mhdb:hasPaperInstructions",
                                     mhdb_iri(instructions)))
-            statements = add_if(
+            statements = add_to_statements(
                 mhdb_iri(instructions),
                 "rdf:type",
                 "mhdb:PaperInstructions",
                 statements,
                 exclude_list
             )
-            statements = add_if(
+            statements = add_to_statements(
                 mhdb_iri(instructions),
                 "rdfs:label",
                 language_string(instructions),
@@ -978,21 +977,21 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 exclude_list
             )
             if group_instructions.strip() not in exclude_list:
-                statements = add_if(
+                statements = add_to_statements(
                     mhdb_iri(group_instructions),
                     "rdf:type",
                     "mhdb:PaperInstructions",
                     statements,
                     exclude_list
                 )
-                statements = add_if(
+                statements = add_to_statements(
                     mhdb_iri(instructions),
                     "mhdb:hasPaperInstructions",
                     mhdb_iri(group_instructions),
                     statements,
                     exclude_list
                 )
-                statements = add_if(
+                statements = add_to_statements(
                     mhdb_iri(group_instructions),
                     "rdfs:label",
                     language_string(group_instructions),
@@ -1002,14 +1001,14 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         if digital_instructions not in exclude_list:
             predicates_list.append(("mhdb:hasInstructions",
                                     mhdb_iri(digital_instructions)))
-            statements = add_if(
+            statements = add_to_statements(
                 mhdb_iri(digital_instructions),
                 "rdf:type",
                 "mhdb:Instructions",
                 statements,
                 exclude_list
             )
-            statements = add_if(
+            statements = add_to_statements(
                 mhdb_iri(digital_instructions),
                 "rdfs:label",
                 language_string(digital_instructions),
@@ -1017,21 +1016,21 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 exclude_list
             )
             if digital_group_instructions not in exclude_list:
-                statements = add_if(
+                statements = add_to_statements(
                     mhdb_iri(digital_group_instructions),
                     "rdf:type",
                     "mhdb:Instructions",
                     statements,
                     exclude_list
                 )
-                statements = add_if(
+                statements = add_to_statements(
                     mhdb_iri(digital_instructions),
                     "mhdb:hasInstructions",
                     mhdb_iri(digital_group_instructions),
                     statements,
                     exclude_list
                 )
-                statements = add_if(
+                statements = add_to_statements(
                     mhdb_iri(digital_group_instructions),
                     "rdfs:label",
                     language_string(digital_group_instructions),
@@ -1059,7 +1058,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 else:
                     #print(row[1]["index"], response)
                     response_iri = mhdb_iri(response)
-                    statements = add_if(
+                    statements = add_to_statements(
                         response_iri,
                         "rdf:label",
                         language_string(response),
@@ -1077,14 +1076,14 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                                                       delim)
             response_sequence += "\n    ]"
 
-            statements = add_if(
+            statements = add_to_statements(
                 response_options_iri,
                 "rdfs:value",
                 response_sequence,
                 statements,
                 exclude_list
             )
-            statements = add_if(
+            statements = add_to_statements(
                 question_iri,
                 "mhdb:hasResponseOptions",
                 response_options_iri,
@@ -1145,7 +1144,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                                         index_dontknow)))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 question_iri,
                 predicates[0],
                 predicates[1],
@@ -1164,7 +1163,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:ResponseType"))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 response_type_iri,
                 predicates[0],
                 predicates[1],
@@ -1183,7 +1182,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:ScaleType"))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 scale_type_iri,
                 predicates[0],
                 predicates[1],
@@ -1202,7 +1201,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         predicates_list.append(("rdf:type", "mhdb:ResponseType"))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 value_type_iri,
                 predicates[0],
                 predicates[1],
@@ -1344,7 +1343,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 dsm_class_iri,
                 predicates[0],
                 predicates[1],
@@ -1381,7 +1380,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             predicates_list.append(("health-lifesci:codingSystem",
                                     check_iri(row[1]["health-lifesci_codingSystem"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 dsm_property_iri,
                 predicates[0],
                 predicates[1],
@@ -1474,7 +1473,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                     predicates_list.append(("rdfs:subClassOf",
                                             check_iri(super_sign)))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 symptom_iri,
                 predicates[0],
                 predicates[1],
@@ -1507,7 +1506,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                                             check_iri(objectRDF)))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 example_symptom_iri,
                 predicates[0],
                 predicates[1],
@@ -1532,7 +1531,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 severity_iri,
                 predicates[0],
                 predicates[1],
@@ -1557,7 +1556,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 diagnostic_specifier_iri,
                 predicates[0],
                 predicates[1],
@@ -1585,7 +1584,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 diagnostic_criterion_iri,
                 predicates[0],
                 predicates[1],
@@ -1717,7 +1716,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             ]["disorder_category"].values[0]
             predicates_list.append(("mhdb:hasDisorderCategory",
                                     check_iri(disorder_subsubsubcategory)))
-            statements = add_if(
+            statements = add_to_statements(
                 check_iri(disorder_subsubsubcategory),
                 "rdfs:subClassOf",
                 check_iri(disorder_subsubcategory),
@@ -1725,14 +1724,14 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                 exclude_list
             )
             if disorder_subsubcategory not in exclude_categories:
-                statements = add_if(
+                statements = add_to_statements(
                     check_iri(disorder_subsubcategory),
                     "rdfs:subClassOf",
                     check_iri(disorder_subcategory),
                     statements,
                     exclude_list
                 )
-                statements = add_if(
+                statements = add_to_statements(
                     check_iri(disorder_subcategory),
                     "rdfs:subClassOf",
                     check_iri(disorder_category),
@@ -1755,7 +1754,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             ]["disorder_category"].values[0]
             predicates_list.append(("mhdb:hasDisorderCategory",
                                     check_iri(disorder_subsubcategory)))
-            statements = add_if(
+            statements = add_to_statements(
                 check_iri(disorder_subsubcategory),
                 "rdfs:subClassOf",
                 check_iri(disorder_subcategory),
@@ -1763,7 +1762,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                 exclude_list
             )
             if disorder_subcategory not in exclude_categories:
-                statements = add_if(
+                statements = add_to_statements(
                     check_iri(disorder_subcategory),
                     "rdfs:subClassOf",
                     check_iri(disorder_category),
@@ -1781,7 +1780,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
             predicates_list.append(("mhdb:hasDisorderCategory",
                                     check_iri(disorder_subcategory)))
             if disorder_category not in exclude_categories:
-                statements = add_if(
+                statements = add_to_statements(
                     check_iri(disorder_subcategory),
                     "rdfs:subClassOf",
                     check_iri(disorder_category),
@@ -1800,7 +1799,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         disorder_iri = check_iri(disorder_iri_label)
         predicates_list.append(("rdfs:label", disorder_label))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 disorder_iri,
                 predicates[0],
                 predicates[1],
@@ -1829,7 +1828,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                                     check_iri(row[1]["subClassOf"])))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 disorder_category_iri,
                 predicates[0],
                 predicates[1],
@@ -1855,7 +1854,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                                     check_iri(row[1]["subClassOf"])))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 disorder_subcategory_iri,
                 predicates[0],
                 predicates[1],
@@ -1881,7 +1880,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                                     check_iri(row[1]["subClassOf"])))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 disorder_subsubcategory_iri,
                 predicates[0],
                 predicates[1],
@@ -1907,7 +1906,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                                     check_iri(row[1]["subClassOf"])))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 disorder_subsubsubcategory_iri,
                 predicates[0],
                 predicates[1],
@@ -2015,7 +2014,7 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 project_class_iri,
                 predicates[0],
                 predicates[1],
@@ -2052,7 +2051,7 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
             predicates_list.append(("rdfs:subPropertyOf",
                                     check_iri(row[1]["subPropertyOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 project_property_iri,
                 predicates[0],
                 predicates[1],
@@ -2065,15 +2064,19 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
 
         project_iri = check_iri(row[1]["project"])
         project_label = language_string(row[1]["project"])
-        project_link = check_iri(row[1]["link"])
 
         predicates_list = []
         predicates_list.append(("rdf:type", "foaf:Project"))
         predicates_list.append(("rdfs:label", project_label))
-        predicates_list.append(("schema:WebSite", project_link))
         if isinstance(row[1]["description"], str):
+            add_to_predicate_list(row[1]["link"], "gleif:hasWebSite",
+                                  predicates_list, exclude_list)
             predicates_list.append(("rdfs:comment",
                                     language_string(row[1]["description"])))
+
+        statements, predicates_list = add_statements(
+            row[1]["link"], "rdf:type", "schema.org:WebSite", statements,
+            "gleif:hasWebSite", row[1]["link"], predicates_list, exclude_list)
 
         #indices_state = row[1]["indices_state"]
         indices_project_type = row[1]["indices_project_type"]
@@ -2111,9 +2114,9 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
                                         index]["project_type"].values[0]
                 project_type_iri = project_types[project_types["index"] ==
                                         index]["IRI"].values[0]
-                if isinstance(project_type_iri, float):
+                if project_type_iri in exclude_list:
                     project_type_iri = project_type_label
-                if isinstance(project_type_iri, str):
+                if project_type_iri not in exclude_list:
                     predicates_list.append(("mhdb:hasProjectType",
                                             check_iri(project_type_iri)))
         if indices_group not in exclude_list:
@@ -2121,29 +2124,28 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
                        indices_group.strip().split(',') if len(x)>0]
             for index in indices:
                 objectRDF = groups[groups["index"] == index]["group"].values[0]
-                if isinstance(objectRDF, str):
+                if objectRDF not in exclude_list:
                     predicates_list.append(("mhdb:hasOrganization",
                                             check_iri(objectRDF)))
         if indices_sensor not in exclude_list:
             indices = [np.int(x) for x in
                        indices_sensor.strip().split(',') if len(x)>0]
             for index in indices:
-                objectRDF = sensors[sensors["index"]  ==
-                                        index]["sensor"].values[0]
-                if isinstance(objectRDF, str):
+                objectRDF = sensors[sensors["index"] == index]["sensor"].values[0]
+                if objectRDF not in exclude_list:
                     predicates_list.append(("mhdb:hasSensor",
                                             check_iri(objectRDF)))
         if indices_measure not in exclude_list:
             indices = [np.int(x) for x in
                        indices_measure.strip().split(',') if len(x)>0]
             for index in indices:
-                objectRDF = measures[measures["index"]  ==
-                                        index]["measure"].values[0]
-                if isinstance(objectRDF, str):
+                objectRDF = measures[measures["index"] ==
+                                     index]["measure"].values[0]
+                if objectRDF not in exclude_list:
                     predicates_list.append(("ssn:observes",
                                             check_iri(objectRDF)))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 project_iri,
                 predicates[0],
                 predicates[1],
@@ -2170,11 +2172,11 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
             for index in indices:
                 objectRDF = project_types[project_types["index"]  ==
                                           index]["project_type"].values[0]
-                if isinstance(objectRDF, str):
+                if objectRDF not in exclude_list:
                     predicates_list.append(("rdfs:subClassOf",
                                             check_iri(objectRDF)))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 project_type_iri,
                 predicates[0],
                 predicates[1],
@@ -2182,34 +2184,272 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
                 exclude_list
             )
 
-    # groups worksheet
-    # for row in people.iterrows():
-    #
-    #     person_iri = check_iri(row[1]["person"])
-    #     person_label = language_string(row[1]["person"])
-    #     predicates_list = []
-    #     predicates_list.append(("rdf:type", "org:organization"))
-    #     predicates_list.append(("rdfs:label", person_label))
-    #     if row[1]["link"] not in exclude_list:
-    #         predicates_list.append(("schema:WebSite",
-    #                                 check_iri(row[1]["link"])))
-    #     if row[1]["affiliate"] not in exclude_list:
-    #         predicates_list.append(("org:hasMember",
-    #                                 check_iri(row[1]["affiliate"])))
-    #     if row[1]["location"] not in exclude_list:
-    #         predicates_list.append(("frapo:hasLocation",
-    #                                 mhdb_iri(row[1]["location"])))
-    #     for predicates in predicates_list:
-    #         statements = add_if(
-    #             person_iri,
-    #             predicates[0],
-    #             predicates[1],
-    #             statements,
-    #             exclude_list
-    #         )
-
     return statements
 
+
+def ingest_groups(groups_xls, statements={}):
+    """
+    Function to ingest groups spreadsheet
+
+    Parameters
+    ----------
+    groups_xls: pandas ExcelFile
+
+    statements:  dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Returns
+    -------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Example
+    -------
+    """
+
+    # load worksheets as pandas dataframes
+    group_classes = groups_xls.parse("Classes")
+    group_properties = groups_xls.parse("Properties")
+    groups = groups_xls.parse("groups")
+    roles = groups_xls.parse("roles")
+    age_groups = age_groups_xls.parse("age_groups")
+    genders = genders_xls.parse("genders")
+    medications = medications_xls.parse("medications")
+    treatments = treatments_xls.parse("treatments")
+    licenses = licenses_xls.parse("references")
+
+    # fill NANs with emptyValue
+    group_classes = group_classes.fillna(emptyValue)
+    group_properties = group_properties.fillna(emptyValue)
+    groups = groups.fillna(emptyValue)
+    roles = roles.fillna(emptyValue)
+    age_groups = age_groups.fillna(emptyValue)
+    genders = genders.fillna(emptyValue)
+    medications = medications.fillna(emptyValue)
+    licenses = licenses.fillna(emptyValue)
+
+    statements = audience_statements(statements)
+
+    # Classes worksheet
+    for row in group_classes.iterrows():
+
+        group_class_label = language_string(row[1]["ClassName"])
+        group_class_iri = check_iri(row[1]["ClassName"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", group_class_label))
+        predicates_list.append(("rdf:type", "rdf:Class"))
+
+        if row[1]["DefinitionReference_index"] not in exclude_list:
+            source = references[references["index"] ==
+                np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
+            if source not in exclude_list:
+                source = check_iri(source)
+                #predicates_list.append(("dcterms:source", source))
+                predicates_list.append(("rdfs:isDefinedBy", source))
+
+        if row[1]["Definition"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    check_iri(row[1]["Definition"])))
+        if row[1]["sameAs"] not in exclude_list:
+            predicates_list.append(("owl:sameAs",
+                                    check_iri(row[1]["sameAs"])))
+        if row[1]["equivalentClass"] not in exclude_list:
+            predicates_list.append(("rdfs:equivalentClass",
+                                    check_iri(row[1]["equivalentClass"])))
+        if row[1]["equivalentClass_2"] not in exclude_list:
+            predicates_list.append(("rdfs:equivalentClass",
+                                    check_iri(row[1]["equivalentClass_2"])))
+        if row[1]["subClassOf"] not in exclude_list:
+            predicates_list.append(("rdfs:subClassOf",
+                                    check_iri(row[1]["subClassOf"])))
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                group_class_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # Properties worksheet
+    for row in group_properties.iterrows():
+
+        group_property_label = language_string(row[1]["property"])
+        group_property_iri = check_iri(row[1]["property"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", group_property_label))
+        predicates_list.append(("rdf:type", "rdf:Property"))
+
+        if row[1]["propertyDomain"] not in exclude_list:
+            predicates_list.append(("rdfs:state",
+                                    check_iri(row[1]["propertyDomain"])))
+        if row[1]["propertyRange"] not in exclude_list:
+            predicates_list.append(("rdfs:range",
+                                    check_iri(row[1]["propertyRange"])))
+        # if row[1]["Definition"] not in exclude_list:
+        #     predicates_list.append(("rdfs:comment",
+        #                             check_iri(row[1]["Definition"])))
+        if row[1]["sameAs"] not in exclude_list:
+            predicates_list.append(("owl:sameAs",
+                                    check_iri(row[1]["sameAs"])))
+        if row[1]["equivalentProperty"] not in exclude_list:
+            predicates_list.append(("rdfs:equivalentProperty",
+                                    check_iri(row[1]["equivalentProperty"])))
+        if row[1]["subPropertyOf"] not in exclude_list:
+            predicates_list.append(("rdfs:subPropertyOf",
+                                    check_iri(row[1]["subPropertyOf"])))
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                group_property_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # groups worksheet
+    for row in groups.iterrows():
+
+        group_iri = check_iri(row[1]["group"])
+        group_label = language_string(row[1]["group"])
+        group_link = check_iri(row[1]["link"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "org:organization"))
+        predicates_list.append(("rdfs:label", group_label))
+        predicates_list, statements = add_website(group_link,
+                            predicates_list, statements, exclude_list)
+
+        if row[1]["abbreviation"] not in exclude_list:
+            abbreviation_iri = check_iri(row[1]["abbreviation"])
+            statements = add_to_statements(abbreviation_iri, "rdf:type",
+                                "mhdb:Abbreviation", exclude_list)
+            predicates_list.append(("mhdb:hasAbbreviation", abbreviation_iri))
+        if row[1]["organization"] not in exclude_list:
+            organization_iri = check_iri(row[1]["organization"])
+            statements = add_to_statements(organization_iri, "rdf:type",
+                                "schema:Organization", exclude_list)
+            predicates_list.append(("dcterms:isPartOf", organization_iri))
+        if row[1]["member"] not in exclude_list:
+            member_iri = check_iri(row[1]["member"])
+            statements = add_to_statements(member_iri, "rdf:type",
+                                "org:member", exclude_list)
+            predicates_list.append(("org:hasMember", member_iri))
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                group_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # roles worksheet
+    for row in roles.iterrows():
+        if row[1]["IRI"] not in exclude_list:
+            role_iri = check_iri(row[1]["IRI"])
+        else:
+            role_iri = check_iri(row[1]["role"])
+        statements = add_to_statements(role_iri, "rdf:type", "mhdb:Role", exclude_list)
+        statements = add_to_statements(role_iri, "rdfs:label",
+                            language_string(row[1]["role"]), exclude_list)
+
+    # age_groups worksheet
+    for row in age_groups.iterrows():
+        if row[1]["IRI"] not in exclude_list:
+            age_group_iri = check_iri(row[1]["IRI"])
+        else:
+            age_group_iri = check_iri(row[1]["age_group"])
+        statements = add_to_statements(age_group_iri, "rdf:type",
+                            "mhdb:AgeGroup", exclude_list)
+        statements = add_to_statements(age_group_iri, "rdfs:label",
+                            language_string(row[1]["age_group"]), exclude_list)
+
+    # genders worksheet
+    for row in genders.iterrows():
+        if row[1]["IRI"] not in exclude_list:
+            gender_iri = check_iri(row[1]["IRI"])
+        else:
+            gender_iri = check_iri(row[1]["gender"])
+        statements = add_to_statements(gender_iri, "rdf:type", "mhdb:Gender", exclude_list)
+        statements = add_to_statements(gender_iri, "rdfs:label",
+                            language_string(row[1]["gender"]), exclude_list)
+
+    # medications worksheet
+    for row in medications.iterrows():
+        if row[1]["IRI"] not in exclude_list:
+            medication_iri = check_iri(row[1]["IRI"])
+        else:
+            medication_iri = check_iri(row[1]["medication"])
+        statements = add_to_statements(medication_iri, "rdf:type",
+                            "mhdb:Medication", exclude_list)
+        statements = add_to_statements(medication_iri, "rdfs:label",
+                            language_string(row[1]["medication"]), exclude_list)
+
+    # treatments worksheet
+    for row in treatments.iterrows():
+        if row[1]["IRI"] not in exclude_list:
+            treatment_iri = check_iri(row[1]["IRI"])
+        else:
+            treatment_iri = check_iri(row[1]["treatment"])
+        statements = add_to_statements(treatment_iri, "rdf:type",
+                            "mhdb:Treatment", exclude_list)
+        statements = add_to_statements(treatment_iri, "rdfs:label",
+                            language_string(row[1]["treatment"]), exclude_list)
+
+    # licenses worksheet
+    for row in licenses.iterrows():
+
+        license_label = language_string(row[1]["license"])
+        license_link = check_iri(row[1]["link"])
+        if row[1]["IRI"] not in exclude_list:
+            license_iri = check_iri(row[1]["IRI"])
+        else:
+            license_iri = check_iri(row[1]["license"])
+
+        predicates_list = []
+        predicates_list.append(("rdf:type", "mhdb:License", exclude_list))
+        predicates_list.append(("rdfs:label", license_label))
+        predicates_list, statements = add_website(license_link,
+                            predicates_list, statements, exclude_list)
+
+        if row[1]["abbreviation"] not in exclude_list:
+            abbreviation_iri = check_iri(row[1]["abbreviation"])
+            statements = add_to_statements(abbreviation_iri, "rdf:type",
+                                "mhdb:Abbreviation", exclude_list)
+            predicates_list.append(("mhdb:hasAbbreviation", abbreviation_iri))
+        if row[1]["description"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["description"])))
+        if row[1]["member"] not in exclude_list:
+            member_iri = check_iri(row[1]["member"])
+            statements = add_to_statements(member_iri, "rdf:type",
+                                "org:member", exclude_list)
+            predicates_list.append(("org:hasMember", member_iri))
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                license_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    return statements
 
 def ingest_references(references_xls, states_xls, statements={}):
     """
@@ -2253,7 +2493,7 @@ def ingest_references(references_xls, states_xls, statements={}):
     groups = groups_xls.parse("groups")
     age_groups = groups_xls.parse("age_groups")
     roles = groups_xls.parse("roles")
-    states = states_xls.parse("states")
+    #states = states_xls.parse("states")
 
     # fill NANs with emptyValue
     reference_classes = reference_classes.fillna(emptyValue)
@@ -2263,7 +2503,7 @@ def ingest_references(references_xls, states_xls, statements={}):
     groups = groups.fillna(emptyValue)
     age_groups = age_groups.fillna(emptyValue)
     roles = roles.fillna(emptyValue)
-    states = states.fillna(emptyValue)
+    #states = states.fillna(emptyValue)
 
     #statements = audience_statements(statements)
 
@@ -2301,7 +2541,7 @@ def ingest_references(references_xls, states_xls, statements={}):
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 reference_class_iri,
                 predicates[0],
                 predicates[1],
@@ -2338,7 +2578,7 @@ def ingest_references(references_xls, states_xls, statements={}):
             predicates_list.append(("rdfs:subPropertyOf",
                                     check_iri(row[1]["subPropertyOf"])))
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 reference_property_iri,
                 predicates[0],
                 predicates[1],
@@ -2380,18 +2620,6 @@ def ingest_references(references_xls, states_xls, statements={}):
                                     language_string(description)))
         if link not in exclude_list:
             predicates_list.append(("schema:WebSite", check_iri(link)))
-        # if number_of_questions not in exclude_list:
-        #     predicates_list.append(("mhdb:hasNumberOfQuestions",
-        #             language_string(number_of_questions)))
-        # if minutes_to_complete not in exclude_list:
-        #     predicates_list.append(("mhdb:takesMinutesToComplete",
-        #             language_string(minutes_to_complete)))
-        # if age_min not in exclude_list:
-        #     predicates_list.append(("schema:requiredMinAge",
-        #             language_string(age_min)))
-        # if age_max not in exclude_list:
-        #     predicates_list.append(("schema:requiredMaxAge",
-        #             language_string(age_max)))
         if number_of_questions not in exclude_list:
             if "-" in number_of_questions:
                 predicates_list.append(("mhdb:hasNumberOfQuestions",
@@ -2422,15 +2650,30 @@ def ingest_references(references_xls, states_xls, statements={}):
                     '"{0}"^^xsd:nonNegativeInteger'.format(age_max)))
 
         indices_reference_type = row[1]["indices_reference_type"]
-        indices_study_or_clinic = row[1]["indices_study_or_clinic"]
-        indices_state = row[1]["indices_state"]
-        indices_informants = row[1]["indices_informants"]
+        indices_group = row[1]["indices_group"]
+        #indices_state = row[1]["indices_state"]
+        indices_role = row[1]["indices_role"]
         indices_age_group = row[1]["indices_age_group"]
         indices_cited_references = row[1]["indices_cited_references"]
-        # Access from other spreadsheets (e.g., projects->people->references)
-        #indices_people = row[1]["indices_people"]
-        #indices_sensor = row[1]["indices_sensor"]
-        #indices_measure = row[1]["indices_measure"]
+
+        node_id
+        name
+        prop_id
+        citation_type
+        citation_source
+        citation_authors
+        citation_pubdate
+        citation_comment
+        citation_desc
+        index_disorder
+        index_disorder_category
+        index_license
+        gender_indices
+        comorbidities
+        comorbidity_indices
+        medication_indices
+        treatment_indices
+        topics
 
         if indices_reference_type not in exclude_list:
             if isinstance(indices_reference_type, str):
@@ -2444,31 +2687,31 @@ def ingest_references(references_xls, states_xls, statements={}):
                 if isinstance(objectRDF, str):
                     predicates_list.append(("mhdb:hasReferenceType",
                                             check_iri(objectRDF)))
-        if indices_study_or_clinic not in exclude_list:
-            if isinstance(indices_study_or_clinic, str):
+        if indices_group not in exclude_list:
+            if isinstance(indices_group, str):
                 indices = [np.int(x) for x in
-                           indices_study_or_clinic.strip().split(',') if len(x)>0]
-            elif isinstance(indices_study_or_clinic, float):
-                indices = [np.int(indices_study_or_clinic)]
+                           indices_group.strip().split(',') if len(x)>0]
+            elif isinstance(indices_group, float):
+                indices = [np.int(indices_group)]
             for index in indices:
-                objectRDF = studies_or_clinics[
-                    studies_or_clinics["index"] == index]["study_or_clinic"].values[0]
+                objectRDF = groups[
+                    groups["index"] == index]["group"].values[0]
                 if isinstance(objectRDF, str):
-                    predicates_list.append(("mhdb:usedByStudyOrClinic",
+                    predicates_list.append(("mhdb:usedByGroup",
                                             check_iri(objectRDF)))
-        if indices_state not in exclude_list:
+        # if indices_state not in exclude_list:
+        #     indices = [np.int(x) for x in
+        #                indices_state.strip().split(',') if len(x)>0]
+        #     for index in indices:
+        #         objectRDF = states[states["index"] == index]["state"].values[0]
+        #         if isinstance(objectRDF, str):
+        #             predicates_list.append(("mhdb:isAboutDomain",
+        #                                     check_iri(objectRDF)))
+        if indices_role not in exclude_list:
             indices = [np.int(x) for x in
-                       indices_state.strip().split(',') if len(x)>0]
+                       indices_role.strip().split(',') if len(x)>0]
             for index in indices:
-                objectRDF = states[states["index"] == index]["state"].values[0]
-                if isinstance(objectRDF, str):
-                    predicates_list.append(("mhdb:isAboutDomain",
-                                            check_iri(objectRDF)))
-        if indices_informants not in exclude_list:
-            indices = [np.int(x) for x in
-                       indices_informants.strip().split(',') if len(x)>0]
-            for index in indices:
-                objectRDF = informants[informants["index"] == index]["informant"].values[0]
+                objectRDF = roles[roles["index"] == index]["role"].values[0]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("mhdb:isForInformant",
                                             check_iri(objectRDF)))
@@ -2496,7 +2739,7 @@ def ingest_references(references_xls, states_xls, statements={}):
                 predicates_list.append(("dcterms:isReferencedBy", ref_source))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 source,
                 predicates[0],
                 predicates[1],
@@ -2524,7 +2767,7 @@ def ingest_references(references_xls, states_xls, statements={}):
                                     check_iri(row[1]["subClassOf"])))
 
         for predicates in predicates_list:
-            statements = add_if(
+            statements = add_to_statements(
                 reference_type_iri,
                 predicates[0],
                 predicates[1],
@@ -2625,7 +2868,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #             predicates_list.append(("rdfs:subClassOf",
 #                                     check_iri(row[1]["subClassOf"])))
 #         for predicates in predicates_list:
-#             statements = add_if(
+#             statements = add_to_statements(
 #                 behavior_class_iri,
 #                 predicates[0],
 #                 predicates[1],
@@ -2662,7 +2905,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #             predicates_list.append(("rdfs:subPropertyOf",
 #                                     check_iri(row[1]["subPropertyOf"])))
 #         for predicates in predicates_list:
-#             statements = add_if(
+#             statements = add_to_statements(
 #                 behavior_property_iri,
 #                 predicates[0],
 #                 predicates[1],
@@ -2709,7 +2952,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #                     predicates_list.append(("mhdb:relatedToMedicalSignOrSymptom",
 #                                             check_iri(objectRDF)))
 #         for predicates in predicates_list:
-#             statements = add_if(
+#             statements = add_to_statements(
 #                 behavior_iri,
 #                 predicates[0],
 #                 predicates[1],
@@ -2728,7 +2971,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #         predicates_list.append(("rdfs:label", question_prepost_label))
 #
 #         for predicates in predicates_list:
-#             statements = add_if(
+#             statements = add_to_statements(
 #                 question_prepost_iri,
 #                 predicates[0],
 #                 predicates[1],
@@ -2834,7 +3077,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #             predicates_list.append(("rdfs:subClassOf",
 #                                     check_iri(row[1]["subClassOf"])))
 #         for predicates in predicates_list:
-#             statements = add_if(
+#             statements = add_to_statements(
 #                 claim_class_iri,
 #                 predicates[0],
 #                 predicates[1],
@@ -2877,7 +3120,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #             predicates_list.append(("rdfs:subPropertyOf",
 #                                     check_iri(row[1]["subPropertyOf"])))
 #         for predicates in predicates_list:
-#             statements = add_if(
+#             statements = add_to_statements(
 #                 claim_property_iri,
 #                 predicates[0],
 #                 predicates[1],
@@ -2949,7 +3192,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #                                     check_iri(row[1]["link"])))
 #
 #         for predicates in predicates_list:
-#             statements = add_if(
+#             statements = add_to_statements(
 #                 claim_iri,
 #                 predicates[0],
 #                 predicates[1],
