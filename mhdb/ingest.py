@@ -1093,9 +1093,10 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             )
 
         indices_response_type = row[1]["indices_response_type"]
-        scale_type = row[1]["scale_type"]
-        discrete_continuous = row[1]["discrete_continuous"]
+        index_scale_type = row[1]["scale_type"]
+        index_value_type = row[1]["value_type"]
         num_options = row[1]["num_options"]
+        index_neutral = row[1]["index_neutral"]
         index_min = row[1]["index_min_extreme_oo_unclear_na_none"]
         index_max = row[1]["index_max_extreme_oo_unclear_na_none"]
         index_dontknow = row[1]["index_dontknow_na"]
@@ -1109,16 +1110,25 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 if isinstance(objectRDF, str):
                     predicates_list.append(("mhdb:hasResponseType",
                                             check_iri(objectRDF)))
-        if scale_type not in exclude_list:
+        if index_scale_type not in exclude_list:
+            scale_type = scale_types[scale_types["index"] ==
+                                     index_scale_type]["scale_type"].values[0]
             predicates_list.append(("mhdb:hasScaleType",
                                     mhdb_iri(scale_type)))
-        if discrete_continuous not in exclude_list:
+        if index_value_type not in exclude_list:
+            value_type = value_types[value_types["index"] ==
+                                     index_value_type]["value_type"].values[0]
             predicates_list.append(("mhdb:hasValueType",
-                                    mhdb_iri(discrete_continuous)))
+                                    mhdb_iri(value_type)))
         if num_options not in exclude_list:
             predicates_list.append(("mhdb:hasNumberOfOptions",
                                     '"{0}"^^xsd:nonNegativeInteger'.format(
                                         num_options)))
+        if index_neutral not in exclude_list:
+            if index_neutral not in ['oo', 'n/a']:
+                predicates_list.append(("mhdb:hasNeutralValueForResponseIndex",
+                                        '"{0}"^^xsd:integer'.format(
+                                            index_neutral)))
         if index_min not in exclude_list:
             if index_min not in ['oo', 'n/a']:
                 predicates_list.append(("mhdb:hasExtremeValueForResponseIndex",

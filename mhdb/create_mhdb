@@ -73,13 +73,13 @@ else:
 
 do_measures = 0 #1
 do_dsm5 = 0 #1
-do_projects = 1 #1
+do_projects = 0 #1
 
-do_tasks = 0 # skip
-do_states = 0 # skip
-do_questions = 0 #
+do_questions = 1 #
 do_groups = 0
 do_references = 0 #
+do_tasks = 0 # skip
+do_states = 0 # skip
 
 do_behaviors = 0 # skip
 do_claims = 0 # skip
