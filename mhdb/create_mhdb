@@ -3,15 +3,18 @@
 This program converts specific mental health spreadsheet workbooks to RDF
 text documents.
 
-This mental health database interrelates information about mental health-related
-(1) signs, symptoms, and disorders from the DSM-5,
-(2) questions from questionnaires,
-(3) cognitive tasks,
-(4) behaviors,
-(5) cognitive categories,
-(6) measures and sensors,
-(7) projects and products, and
-(8) relevant references.
+This mental health database interrelates information about mental health-related:
+  - Mental states
+  - Behaviors related to mental health
+  - Measures and sensors for measuring mental states and behaviors
+  - Tasks for measuring cognition [cognitiveatlas.org and elsewhere]
+  - Questions from (primarily mental health) questionnaires
+  - Signs, symptoms, and mental disorders [DSM-5 and ICD-10]
+  - Projects and products related to mental health
+  - Groups involved in the above
+  - Relevant references
+    - Scientific articles
+    - Articles and practical guides for parents and therapists [Child Mind Institute]
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 
@@ -46,35 +49,54 @@ import pandas as pd
 
 run_all = 0
 if run_all:
-    do_questions = 1
-    do_tasks = 1
-    do_projects = 1
+    do_states = 1
     do_behaviors = 0
-    do_categories = 1
     do_measures = 1
-    do_groups = 1
+    do_tasks = 1
+    do_questions = 1
     do_dsm5 = 1
+    do_projects = 1
+    do_groups = 1
     do_references = 1
     do_claims = 0
 else:
-    do_dsm5 = 1 #1
-    do_projects = 1 #1
-    do_measures = 1 #1
-    do_references = 0 #
-    do_questions = 0 #
+    do_states = 0
+    do_behaviors = 0
+    do_measures = 0
+    do_tasks = 0
+    do_questions = 0
+    do_dsm5 = 0
+    do_projects = 0
     do_groups = 0
+    do_references = 0
+    do_claims = 0
 
-    do_tasks = 0 # skip
-    do_categories = 0 # skip
+do_measures = 0 #1
+do_dsm5 = 0 #1
+do_projects = 1 #1
 
-    do_behaviors = 0 # skip
-    do_claims = 0 # skip
+do_tasks = 0 # skip
+do_states = 0 # skip
+do_questions = 0 #
+do_groups = 0
+do_references = 0 #
+
+do_behaviors = 0 # skip
+do_claims = 0 # skip
+
 
 def main():
     # ------------------------------------------------------------------------------
     # Try to get latest spreadsheets
     # Except use local copies
     # ------------------------------------------------------------------------------
+    try:
+        statesFILE = download_google_sheet(
+            'data/states.xlsx',
+            "11OkIWLwZYi9xkpuFODAKXQZHEFeMvYCQ8BTfIBKm0Z8"
+        )
+    except:
+        statesFILE = 'data/states.xlsx'
     try:
         behaviorsFILE = download_google_sheet(
             'data/behaviors.xlsx',
@@ -83,13 +105,6 @@ def main():
     except:
         behaviorsFILE = 'data/behaviors.xlsx'
     try:
-        categoriesFILE = download_google_sheet(
-            'data/categories.xlsx',
-            "11OkIWLwZYi9xkpuFODAKXQZHEFeMvYCQ8BTfIBKm0Z8"
-        )
-    except:
-        categoriesFILE = 'data/categories.xlsx'
-    try:
         measuresFILE = download_google_sheet(
             'data/measures.xlsx',
             "1ELaw79zmtmjmrg3J7slyoP-HXdfQRWa1Aqnbp50cmj8"
@@ -97,12 +112,12 @@ def main():
     except:
         measuresFILE = 'data/measures.xlsx'
     try:
-        claimsFILE = download_google_sheet(
-            'data/claims.xlsx',
-            "1XaOcztrjtoh2Jf5c5FrxNNvbAriNnvSD9YYzgOpv474"
+        tasksFILE = download_google_sheet(
+            'data/tasks.xlsx',
+            "1jTeq7whH8y2MkhLpMFh52y5FOMDxKCantPTrkD48zuQ"
         )
     except:
-        claimsFILE = 'data/claims.xlsx'
+        tasksFILE = 'data/tasks.xlsx'
     try:
         questionsFILE = download_google_sheet(
             'data/questions.xlsx',
@@ -111,12 +126,12 @@ def main():
     except:
         questionsFILE = 'data/questions.xlsx'
     try:
-        tasksFILE = download_google_sheet(
-            'data/tasks.xlsx',
-            "1jTeq7whH8y2MkhLpMFh52y5FOMDxKCantPTrkD48zuQ"
+        dsm5FILE = download_google_sheet(
+            'data/dsm5.xlsx',
+            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
         )
     except:
-        tasksFILE = 'data/tasks.xlsx'
+        dsm5FILE = 'data/dsm5.xlsx'
     try:
         projectsFILE = download_google_sheet(
             'data/projects.xlsx',
@@ -132,45 +147,48 @@ def main():
     except:
         groupsFILE = 'data/groups.xlsx'
     try:
-        dsm5FILE = download_google_sheet(
-            'data/dsm5.xlsx',
-            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
-        )
-    except:
-        dsm5FILE = 'data/dsm5.xlsx'
-    try:
         referencesFILE = download_google_sheet(
             'data/references.xlsx',
             "1KDZhoz9CgHBVclhoOKBgDegUA9Vczui5wj61sXMgh34"
         )
     except:
         referencesFILE = 'data/references.xlsx'
+    try:
+        claimsFILE = download_google_sheet(
+            'data/claims.xlsx',
+            "1XaOcztrjtoh2Jf5c5FrxNNvbAriNnvSD9YYzgOpv474"
+        )
+    except:
+        claimsFILE = 'data/claims.xlsx'
 
     base_uri = "http://www.purl.org/mentalhealth"
-    groups_outfile = os.path.join('../output', 'groups.ttl')
-    dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
-    questions_outfile = os.path.join('../output', 'questions.ttl')
-    tasks_outfile = os.path.join('../output', 'tasks.ttl')
-    projects_outfile = os.path.join('../output', 'projects.ttl')
-    behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
-    categories_outfile = os.path.join('../output', 'categories.ttl')
+
+    states_outfile = os.path.join('../output', 'states.ttl')
     measures_outfile = os.path.join('../output', 'measures.ttl')
-    claims_outfile = os.path.join('../output', 'claims.ttl')
+    tasks_outfile = os.path.join('../output', 'tasks.ttl')
+    questions_outfile = os.path.join('../output', 'questions.ttl')
+    dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
+    projects_outfile = os.path.join('../output', 'projects.ttl')
+    groups_outfile = os.path.join('../output', 'groups.ttl')
     references_outfile = os.path.join('../output', 'references.ttl')
+
+    behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
+    claims_outfile = os.path.join('../output', 'claims.ttl')
 
     # --------------------------------------------------------------------------
     # Import spreadsheets
     # --------------------------------------------------------------------------
-    groups_xls = pd.ExcelFile(groupsFILE)
-    dsm5_xls = pd.ExcelFile(dsm5FILE)
-    questions_xls = pd.ExcelFile(questionsFILE)
-    tasks_xls = pd.ExcelFile(tasksFILE)
-    projects_xls = pd.ExcelFile(projectsFILE)
+    states_xls = pd.ExcelFile(statesFILE)
     behaviors_xls = pd.ExcelFile(behaviorsFILE)
-    categories_xls = pd.ExcelFile(categoriesFILE)
     measures_xls = pd.ExcelFile(measuresFILE)
-    claims_xls = pd.ExcelFile(claimsFILE)
+    tasks_xls = pd.ExcelFile(tasksFILE)
+    questions_xls = pd.ExcelFile(questionsFILE)
+    dsm5_xls = pd.ExcelFile(dsm5FILE)
+    projects_xls = pd.ExcelFile(projectsFILE)
+    groups_xls = pd.ExcelFile(groupsFILE)
     references_xls = pd.ExcelFile(referencesFILE)
+    claims_xls = pd.ExcelFile(claimsFILE)
+
     X = ['', 'nan', np.nan, 'None', None, []]
 
     # --------------------------------------------------------------------------
@@ -179,58 +197,29 @@ def main():
     label = "mental health database"
     ddashes = "================================================================================"
     comment="""\n\n{0}\n\t\tMental Health Database (MHDB)\n{0}
-This mental health database interrelates information about mental health-related
-(1) signs, symptoms, and disorders from the DSM-5, 
-(2) questions from questionnaires, 
-(3) cognitive tasks, 
-(4) behaviors,
-(5) cognitive categories,
-(6) measures and sensors,  
-(7) projects and products, and 
-(8) relevant references.
+This mental health database interrelates information about mental health-related:
+  - Mental states
+  - Behaviors related to mental health
+  - Measures and sensors for measuring mental states and behaviors
+  - Tasks for measuring cognition [cognitiveatlas.org and elsewhere]
+  - Questions from (primarily mental health) questionnaires
+  - Signs, symptoms, and mental disorders [DSM-5 and ICD-10]
+  - Projects and products related to mental health
+  - Groups involved in the above
+  - Relevant references
+    - Scientific articles
+    - Articles and practical guides for parents and therapists [Child Mind Institute]
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 """.format(ddashes)
 
-    if do_groups:
-        groups_statements = ingest_groups(groups_xls, behaviors_xls, references_xls,
+    if do_states:
+        states_statements = ingest_states(states_xls, references_xls,
                                           statements={})
-        groups_turtle = turtle_from_dict(groups_statements)
+        states_turtle = turtle_from_dict(states_statements)
     else:
-        groups_statements = []
-        groups_turtle = []
-
-    if do_dsm5:
-        dsm5_statements = ingest_dsm5(dsm5_xls, references_xls, statements={})
-        dsm5_turtle = turtle_from_dict(dsm5_statements)
-    else:
-        dsm5_statements = []
-        dsm5_turtle = []
-
-    if do_questions:
-        questions_statements = ingest_questions(questions_xls,
-            references_xls, statements={})
-        questions_turtle = turtle_from_dict(questions_statements)
-    else:
-        questions_statements = []
-        questions_turtle = []
-
-    if do_tasks:
-        tasks_statements = ingest_tasks(tasks_xls, categories_xls, projects_xls,
-                                        references_xls, statements={})
-        tasks_turtle = turtle_from_dict(tasks_statements)
-    else:
-        tasks_statements = []
-        tasks_turtle = []
-
-    if do_projects:
-        projects_statements = ingest_projects(projects_xls, groups_xls,
-                                              categories_xls, measures_xls,
-                                              references_xls, statements={})
-        projects_turtle = turtle_from_dict(projects_statements)
-    else:
-        projects_statements = []
-        projects_turtle = []
+        states_statements = []
+        states_turtle = []
 
     if do_behaviors:
         behaviors_statements = ingest_behaviors(behaviors_xls, references_xls,
@@ -240,14 +229,6 @@ Current information can be found on the website, https://matter.childmind.org.
         behaviors_statements = []
         behaviors_turtle = []
 
-    if do_categories:
-        categories_statements = ingest_categories(categories_xls, references_xls,
-                                            statements={})
-        categories_turtle = turtle_from_dict(categories_statements)
-    else:
-        categories_statements = []
-        categories_turtle = []
-
     if do_measures:
         measures_statements = ingest_measures(measures_xls, references_xls,
                                               statements={})
@@ -256,34 +237,75 @@ Current information can be found on the website, https://matter.childmind.org.
         measures_statements = []
         measures_turtle = []
 
-    if do_claims:
-        claims_statements = ingest_claims(claims_xls, categories_xls, measures_xls,
-                                          references_xls, statements={})
-        claims_turtle = turtle_from_dict(claims_statements)
+    if do_tasks:
+        tasks_statements = ingest_tasks(tasks_xls, states_xls, projects_xls,
+                                        references_xls, statements={})
+        tasks_turtle = turtle_from_dict(tasks_statements)
     else:
-        claims_statements = []
-        claims_turtle = []
+        tasks_statements = []
+        tasks_turtle = []
+
+    if do_questions:
+        questions_statements = ingest_questions(questions_xls,
+            references_xls, statements={})
+        questions_turtle = turtle_from_dict(questions_statements)
+    else:
+        questions_statements = []
+        questions_turtle = []
+
+    if do_dsm5:
+        dsm5_statements = ingest_dsm5(dsm5_xls, references_xls, statements={})
+        dsm5_turtle = turtle_from_dict(dsm5_statements)
+    else:
+        dsm5_statements = []
+        dsm5_turtle = []
+
+    if do_projects:
+        projects_statements = ingest_projects(projects_xls, groups_xls,
+                                              states_xls, measures_xls,
+                                              references_xls, statements={})
+        projects_turtle = turtle_from_dict(projects_statements)
+    else:
+        projects_statements = []
+        projects_turtle = []
+
+    if do_groups:
+        groups_statements = ingest_groups(groups_xls, behaviors_xls, references_xls,
+                                          statements={})
+        groups_turtle = turtle_from_dict(groups_statements)
+    else:
+        groups_statements = []
+        groups_turtle = []
 
     if do_references:
-        references_statements = ingest_references(references_xls, categories_xls,
+        references_statements = ingest_references(references_xls, states_xls,
                                                   statements={})
         references_turtle = turtle_from_dict(references_statements)
     else:
         references_statements = []
         references_turtle = []
 
+    if do_claims:
+        claims_statements = ingest_claims(claims_xls, states_xls, measures_xls,
+                                          references_xls, statements={})
+        claims_turtle = turtle_from_dict(claims_statements)
+    else:
+        claims_statements = []
+        claims_turtle = []
+
+
     # --------------------------------------------------------------------------
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
-    outputs_list = [[groups_statements, groups_outfile, groups_turtle],
-                    [dsm5_statements, dsm5_outfile, dsm5_turtle],
-                    [questions_statements, questions_outfile, questions_turtle],
+    outputs_list = [[states_statements, states_outfile, states_turtle],
+                    [behaviors_statements, behaviors_outfile, behaviors_turtle],
+                    [measures_statements, measures_outfile, measures_turtle],
                     [tasks_statements, tasks_outfile, tasks_turtle],
+                    [questions_statements, questions_outfile, questions_turtle],
+                    [dsm5_statements, dsm5_outfile, dsm5_turtle],
                     [references_statements, references_outfile, references_turtle],
                     [projects_statements, projects_outfile, projects_turtle],
-                    [behaviors_statements, behaviors_outfile, behaviors_turtle],
-                    [categories_statements, categories_outfile, categories_turtle],
-                    [measures_statements, measures_outfile, measures_turtle],
+                    [groups_statements, groups_outfile, groups_turtle],
                     [claims_statements, claims_outfile, claims_turtle]]
 
     for ioutput, output_list in enumerate(outputs_list):
@@ -319,62 +341,19 @@ Current information can be found on the website, https://matter.childmind.org.
                 'ontologies'
             ).iterrows() if row[1]["Prefix"] in import_prefixes]
 
+
             if ioutput == 0:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "dsm5"),
+                    "{0}/{1}".format(base_uri, "states"),
                     version,
-                    "{0} — {1}".format(label, "DSM-5 supplement"),
+                    "{0} — {1}".format(label, "Categories of mental phenomena"),
                     "\n".join([
                         comment,
-                        "{0}\n\t\tDSM-5 signs and symptoms\n{0}\n\n".format(ddashes)
+                        "{0}\n\t\tCategories of mental phenomena\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 1:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "questions"),
-                    version,
-                    "{0} — {1}".format(label, "Questions"),
-                    "\n".join([
-                        comment,
-                        "{0}\n\t\tQuestions from questionnaires\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 2:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "tasks"),
-                    version,
-                    "{0} — {1}".format(label, "Tasks"),
-                    "\n".join([
-                        comment,
-                        "{0}\n\t\tCognitive tasks\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 3:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "references"),
-                    version,
-                    "{0} — {1}".format(label, "References"),
-                    "\n".join([
-                        comment,
-                        "{0}\n\t\tReferences\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 4:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "projects"),
-                    version,
-                    "{0} — {1}".format(label, "Projects"),
-                    "\n".join([
-                        comment,
-                        "{0}\n\t\tProjects\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 5:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "behaviors"),
                     version,
@@ -385,29 +364,84 @@ Current information can be found on the website, https://matter.childmind.org.
                     ]),
                     prefixes=prefixes
                 )
-            if ioutput == 6:
+            if ioutput == 2:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "categories"),
+                    "{0}/{1}".format(base_uri, "measures"),
                     version,
-                    "{0} — {1}".format(label, "Categories"),
+                    "{0} — {1}".format(label, "Measures related to cognition, emotion, behavior, and physiology"),
                     "\n".join([
                         comment,
-                        "{0}\n\t\tCategories\n{0}\n\n".format(ddashes)
+                        "{0}\n\t\tMeasures related to cognition, emotion, behavior, and physiology\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 3:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "tasks"),
+                    version,
+                    "{0} — {1}".format(label, "Tasks to observe cognition, emotion, and behaviors"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tTasks to observe cognition, emotion, and behaviors\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 4:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "questions"),
+                    version,
+                    "{0} — {1}".format(label, "Questions from (primarily mental health) questionnaires"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tQuestions from (primarily mental health) questionnaires\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 5:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "dsm5"),
+                    version,
+                    "{0} — {1}".format(label, "DSM-5 signs and symptoms"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tDSM-5 signs and symptoms\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 6:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "projects"),
+                    version,
+                    "{0} — {1}".format(label, "Projects"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tProjects\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 7:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "measures"),
+                    "{0}/{1}".format(base_uri, "groups"),
                     version,
-                    "{0} — {1}".format(label, "Measures"),
+                    "{0} — {1}".format(label, "Groups and roles"),
                     "\n".join([
                         comment,
-                        "{0}\n\t\tMeasures\n{0}\n\n".format(ddashes)
+                        "{0}\n\t\tGroups and roles\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 8:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "references"),
+                    version,
+                    "{0} — {1}".format(label, "References"),
+                    "\n".join([
+                        comment,
+                        "{0}\n\t\tReferences\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 9:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "claims"),
                     version,
