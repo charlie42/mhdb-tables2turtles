@@ -149,7 +149,7 @@ def ingest_states(states_xls, references_xls, statements={}):
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -338,7 +338,7 @@ def ingest_measures(measures_xls, references_xls, statements={}):
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -550,7 +550,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -801,7 +801,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -888,7 +888,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         predicates_list.append(("rdfs:label", question_label))
         predicates_list.append(("rdf:type", "disco:Question"))
         predicates_list.append(("disco:questionText", question_label))
-        predicates_list.append(("dcterms:source", mhdb_iri(questionnaire)))
+        predicates_list.append(("dcterms:isReferencedBy", mhdb_iri(questionnaire)))
 
         instructions = row[1]["instructions"]
         group_instructions = row[1]["question_group_instructions"]
@@ -1249,7 +1249,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -1345,7 +1345,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list = []
         predicates_list.append(("rdfs:label", symptom_label))
         predicates_list.append(("rdf:type", sign_or_symptom))
-        predicates_list.append(("dcterms:source", source))
+        predicates_list.append(("dcterms:isReferencedBy", source))
 
         # specific to females/males?
         import math
@@ -1918,7 +1918,7 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -2015,7 +2015,7 @@ def ingest_projects(projects_xls, groups_xls, states_xls, measures_xls,
                     source = references[references["index"] ==
                                         index]["reference"].values[0]
                     source = check_iri(source)
-            predicates_list.append(("dcterms:source", source))
+            predicates_list.append(("dcterms:isReferencedBy", source))
 
         # if indices_state not in exclude_list:
         #     indices = [np.int(x) for x in
@@ -2175,7 +2175,7 @@ def ingest_groups(groups_xls, statements={}):
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -2282,7 +2282,7 @@ def ingest_groups(groups_xls, statements={}):
         else:
             role_iri = check_iri(row[1]["role"])
         statements = add_to_statements(role_iri, "rdf:type",
-                                       "schema.org:Audience",
+                                       "schema:Audience",
                                        statements, exclude_list)
         statements = add_to_statements(role_iri, "rdfs:label",
                             language_string(row[1]["role"]),
@@ -2439,7 +2439,7 @@ def ingest_references(references_xls, states_xls, statements={}):
                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
             if source not in exclude_list:
                 source = check_iri(source)
-                #predicates_list.append(("dcterms:source", source))
+                #predicates_list.append(("dcterms:isReferencedBy", source))
                 predicates_list.append(("rdfs:isDefinedBy", source))
 
         if row[1]["Definition"] not in exclude_list:
@@ -2515,7 +2515,7 @@ def ingest_references(references_xls, states_xls, statements={}):
         predicates_list = []
         predicates_list.append(("rdfs:label",
                                 language_string(row[1]["reference"])))
-        predicates_list.append(("rdf:type", "dcterms:source"))
+        predicates_list.append(("rdf:type", "dcterms:BibliographicResource"))
 
         PubMedID = row[1]["PubMedID"]
         abbreviation = row[1]["abbreviation"]
@@ -2536,7 +2536,7 @@ def ingest_references(references_xls, states_xls, statements={}):
             predicates_list.append(("rdfs:comment",
                                     language_string(description)))
         if link not in exclude_list:
-            predicates_list.append(("schema:WebSite", check_iri(link)))
+            predicates_list.append(("foaf:homepage", check_iri(link)))
         if number_of_questions not in exclude_list:
             if "-" in number_of_questions:
                 predicates_list.append(("mhdb:hasNumberOfQuestions",
@@ -2601,7 +2601,7 @@ def ingest_references(references_xls, states_xls, statements={}):
             for index in indices:
                 objectRDF = reference_types[
                     reference_types["index"] == index]["reference_type"].values[0]
-                if isinstance(objectRDF, str):
+                if objectRDF not in exclude_list:
                     predicates_list.append(("mhdb:hasReferenceType",
                                             check_iri(objectRDF)))
         if indices_group not in exclude_list:
@@ -2613,7 +2613,7 @@ def ingest_references(references_xls, states_xls, statements={}):
             for index in indices:
                 objectRDF = groups[
                     groups["index"] == index]["group"].values[0]
-                if isinstance(objectRDF, str):
+                if objectRDF not in exclude_list:
                     predicates_list.append(("mhdb:usedByGroup",
                                             check_iri(objectRDF)))
         # if indices_state not in exclude_list:
@@ -2621,7 +2621,7 @@ def ingest_references(references_xls, states_xls, statements={}):
         #                indices_state.strip().split(',') if len(x)>0]
         #     for index in indices:
         #         objectRDF = states[states["index"] == index]["state"].values[0]
-        #         if isinstance(objectRDF, str):
+        #         if objectRDF not in exclude_list:
         #             predicates_list.append(("mhdb:isAboutDomain",
         #                                     check_iri(objectRDF)))
         if indices_role not in exclude_list:
@@ -2671,7 +2671,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 
         if row[1]["IRI"] not in exclude_list:
             reference_type_iri = check_iri(row[1]["IRI"])
-        elif row[1]["reference_type"] not in exclude_list:
+        else:
             reference_type_iri = check_iri(row[1]["reference_type"])
 
         predicates_list = []
@@ -2691,8 +2691,6 @@ def ingest_references(references_xls, states_xls, statements={}):
                 statements,
                 exclude_list
             )
-
-    #statements = projects(statements=statements)
 
     return statements
 
@@ -2766,7 +2764,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #                 np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
 #             if source not in exclude_list:
 #                 source = check_iri(source)
-#                 #predicates_list.append(("dcterms:source", source))
+#                 #predicates_list.append(("dcterms:isReferencedBy", source))
 #                 predicates_list.append(("rdfs:isDefinedBy", source))
 #
 #         if row[1]["Definition"] not in exclude_list:
@@ -2970,7 +2968,7 @@ def ingest_references(references_xls, states_xls, statements={}):
 #                 "link"].values[0]
 #             if source not in exclude_list:
 #                 source = check_iri(source)
-#                 # predicates_list.append(("dcterms:source", source))
+#                 # predicates_list.append(("dcterms:isReferencedBy", source))
 #                 predicates_list.append(("rdfs:isDefinedBy", source))
 #
 #         if row[1]["Definition"] not in exclude_list and not \
@@ -3100,12 +3098,12 @@ def ingest_references(references_xls, states_xls, statements={}):
 #                 objectRDF = references[references["index"] ==
 #                                        index]["reference"].values[0]
 #                 if isinstance(objectRDF, str):
-#                     predicates_list.append(("dcterms:source",
+#                     predicates_list.append(("dcterms:isReferencedBy",
 #                                             check_iri(objectRDF)))
 #
 #         if isinstance(row[1]["link"], str) and \
 #                 row[1]["link"] not in exclude_list:
-#             predicates_list.append(("dcterms:source",
+#             predicates_list.append(("dcterms:isReferencedBy",
 #                                     check_iri(row[1]["link"])))
 #
 #         for predicates in predicates_list:

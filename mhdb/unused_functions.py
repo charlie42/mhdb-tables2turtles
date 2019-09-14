@@ -738,7 +738,7 @@ def structure_to_keep(files, prefixes=None):
                 else:
                     sourced = False
                     for predicate in row_dict[subject]:
-                        if predicate[0] == "dcterms:source":
+                        if predicate[0] == "dcterms:isReferencedBy":
                             sourced = True
                     if sourced:
                         dicts[0][subject] = row_dict[subject]
