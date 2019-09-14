@@ -84,86 +84,6 @@ def add_to_statements(subject, predicate, object, statements={},
     return statements
 
 
-def add_to_predicate_list(predicate, object, predicates_list=[],
-                          exclude_list=exclude_list):
-    """
-    Function to:
-    (1) add object and predicate to a dictionary, after checking predicate
-    (2) add predicate and object to a list
-
-    Parameters
-    ----------
-    predicate: string
-    object: string
-    predicates_list: list
-    exclude_list: list
-
-    Return
-    ------
-    predicates_list: list
-
-    Example
-    -------
-    >>> print(add_to_predicate_list(":wasChasedBy", ":goose"))
-    [(':goose', ':wasChasedBy')]
-    """
-    from mhdb.write_ttl import check_iri
-
-    if predicate not in exclude_list and object not in exclude_list:
-
-        predicate_iri = check_iri(predicate)
-        object_iri = check_iri(object)
-
-        predicates_list.append((predicate_iri, object_iri))
-
-    return predicates_list
-
-
-def add_statements(subject, predicate, object, statements={},
-                   predicate2="", object2="", predicates_list=[],
-                   exclude_list=exclude_list):
-    """
-    Function to add a subject and predicate to a list.
-
-    Parameters
-    ----------
-    subject: string
-    predicate: string
-    object: string
-    statements: dictionary
-    predicate2: string
-    object2: string
-    predicates_list: list
-    exclude_list: list
-        do not add statement if it contains any of these
-
-    Return
-    ------
-    statements: dictionary
-        key: string
-            RDF subject
-        value: dictionary
-            key: string
-                RDF predicate
-            value: {string}
-                set of RDF objects
-    predicates_list: list
-
-    Example
-    -------
-    >>> print(add_statements(":goose", ":chases", ":it", statements={}, predicate2=":wasChasedBy", object2=":goose"))
-    ({':goose': {':chases': {':it'}}}, [(':goose', ':wasChasedBy')])
-    """
-    from mhdb.write_ttl import check_iri
-
-    statements = add_to_statements(subject, predicate, object, statements,
-                                   exclude_list)
-    predicates_list = add_to_predicate_list(predicate2, object2,
-                                            predicates_list, exclude_list)
-
-    return statements, predicates_list
-
-
 def ingest_states(states_xls, references_xls, statements={}):
     """
     Function to ingest states spreadsheet
@@ -589,8 +509,13 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     # load worksheets as pandas dataframes
     task_classes = tasks_xls.parse("Classes")
     task_properties = tasks_xls.parse("Properties")
-    implementations = tasks_xls.parse("implementations")
     task_categories = tasks_xls.parse("tasks")
+    implementations = tasks_xls.parse("implementations")
+    indicators = tasks_xls.parse("indicators")
+    contrasts = tasks_xls.parse("contrasts")
+    conditions = tasks_xls.parse("conditions")
+    assertions = tasks_xls.parse("assertions")
+    relationships = tasks_xls.parse("relationships")
     #states = states_xls.parse("states")
     projects = projects_xls.parse("projects")
     references = references_xls.parse("references")
@@ -598,8 +523,12 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     # fill NANs with emptyValue
     task_classes = task_classes.fillna(emptyValue)
     task_properties = task_properties.fillna(emptyValue)
-    implementations = implementations.fillna(emptyValue)
     task_categories = task_categories.fillna(emptyValue)
+    indicators = indicators.fillna(emptyValue)
+    contrasts = contrasts.fillna(emptyValue)
+    conditions = conditions.fillna(emptyValue)
+    assertions = assertions.fillna(emptyValue)
+    relationships = relationships.fillna(emptyValue)
     #states = states.fillna(emptyValue)
     projects = projects.fillna(emptyValue)
     references = references.fillna(emptyValue)
@@ -697,27 +626,39 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         predicates_list.append(("rdf:type", "demcare:Task"))
 
         instructions = row[1]["instructions"]
-
         if instructions not in exclude_list:
-            predicates_list.append(("mhdb:hasInstructions",
+            predicates_list.append(("mhdb:hasTaskInstructions",
                                     mhdb_iri(instructions)))
             statements = add_to_statements(
-                mhdb_iri(instructions),
-                "rdf:type",
-                "mhdb:Instructions",
-                statements,
-                exclude_list
-            )
+                mhdb_iri(instructions), "rdf:type", "mhdb:TaskInstructions",
+                statements, exclude_list)
             statements = add_to_statements(
-                mhdb_iri(instructions),
-                "rdfs:label",
-                language_string(instructions),
-                statements,
-                exclude_list
-            )
-        indices_task_categories = row[1]["indices_task_categories"]
-        indices_state = row[1]["indices_state"]
+                mhdb_iri(instructions), "rdfs:label", language_string(instructions),
+                statements, exclude_list)
+
+        if row[1]["description"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["description"])))
+        if row[1]["link"] not in exclude_list:
+            predicates_list.append(("foaf:homepage", row[1]["link"]))
+
+        #indices_state = row[1]["indices_state"]
         indices_project = row[1]["indices_project"]
+        #indices_project_type
+        indices_task_categories = row[1]["indices_task"]
+
+        cognitiveatlas_node_id = row[1]["cognitiveatlas_node_id"]
+        if cognitiveatlas_node_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+                                    cognitiveatlas_node_id))
+        cognitiveatlas_task_id = row[1]["cognitiveatlas_task_id"]
+        if cognitiveatlas_id_task not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasTaskID",
+                                    cognitiveatlas_task_id))
+        cognitiveatlas_prop_id = row[1]["cognitiveatlas_prop_id"]
+        if cognitiveatlas_prop_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+                                    cognitiveatlas_prop_id))
 
         if indices_task_categories not in exclude_list:
             if isinstance(indices_task_categories, int):
@@ -727,7 +668,6 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
                            indices_task_categories.strip().split(',')
                            if len(x)>0]
             for index in indices:
-                print(index)
                 objectRDF = task_categories[task_categories["index"] ==
                                   index]["task_category"].values[0]
                 if objectRDF not in exclude_list:
