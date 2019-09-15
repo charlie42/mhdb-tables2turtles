@@ -8,13 +8,16 @@ This mental health database interrelates information about mental health-related
   - Behaviors related to mental health
   - Measures and sensors for measuring mental states and behaviors
   - Tasks for measuring cognition [cognitiveatlas.org and elsewhere]
-  - Questions from (primarily mental health) questionnaires
+  - Questions from mental health questionnaires
   - Signs, symptoms, and mental disorders [DSM-5 and ICD-10]
-  - Projects and products related to mental health
-  - Groups involved in the above
-  - Relevant references
-    - Scientific articles
+  - Projects and groups related to mental health
+  - References
     - Articles and practical guides for parents and therapists [Child Mind Institute]
+    - Mental health questionnaires
+    - Scientific articles
+    - Licenses
+    - Therapies and medications
+
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 
@@ -56,32 +59,18 @@ if run_all:
     do_questions = 1
     do_dsm5 = 1
     do_projects = 1
-    do_groups = 1
     do_references = 1
     do_claims = 0
 else:
     do_states = 0
     do_behaviors = 0
-    do_measures = 0
+    do_measures = 1
     do_tasks = 0
-    do_questions = 0
-    do_dsm5 = 0
-    do_projects = 0
-    do_groups = 0
-    do_references = 0
+    do_questions = 1
+    do_dsm5 = 1
+    do_projects = 1
+    do_references = 1
     do_claims = 0
-
-do_references = 1
-do_tasks = 0
-do_states = 0
-
-do_dsm5 = 0
-do_questions = 0
-do_measures = 0
-do_projects = 0
-do_groups = 0
-do_behaviors = 0 # skip
-do_claims = 0 # skip
 
 
 def main():
@@ -139,13 +128,6 @@ def main():
     except:
         projectsFILE = 'data/projects.xlsx'
     try:
-        groupsFILE = download_google_sheet(
-            'data/groups.xlsx',
-            "1ndq4_OR2ZGPP7m2kZpW1beyQNwqzHu3xVqdNF-7SIsI"
-        )
-    except:
-        groupsFILE = 'data/groups.xlsx'
-    try:
         referencesFILE = download_google_sheet(
             'data/references.xlsx',
             "1KDZhoz9CgHBVclhoOKBgDegUA9Vczui5wj61sXMgh34"
@@ -168,7 +150,6 @@ def main():
     questions_outfile = os.path.join('../output', 'questions.ttl')
     dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
     projects_outfile = os.path.join('../output', 'projects.ttl')
-    groups_outfile = os.path.join('../output', 'groups.ttl')
     references_outfile = os.path.join('../output', 'references.ttl')
 
     behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
@@ -184,7 +165,6 @@ def main():
     questions_xls = pd.ExcelFile(questionsFILE)
     dsm5_xls = pd.ExcelFile(dsm5FILE)
     projects_xls = pd.ExcelFile(projectsFILE)
-    groups_xls = pd.ExcelFile(groupsFILE)
     references_xls = pd.ExcelFile(referencesFILE)
     claims_xls = pd.ExcelFile(claimsFILE)
 
@@ -201,13 +181,15 @@ This mental health database interrelates information about mental health-related
   - Behaviors related to mental health
   - Measures and sensors for measuring mental states and behaviors
   - Tasks for measuring cognition [cognitiveatlas.org and elsewhere]
-  - Questions from (primarily mental health) questionnaires
+  - Questions from mental health questionnaires
   - Signs, symptoms, and mental disorders [DSM-5 and ICD-10]
-  - Projects and products related to mental health
-  - Groups involved in the above
-  - Relevant references
-    - Scientific articles
+  - Projects and groups related to mental health
+  - References
     - Articles and practical guides for parents and therapists [Child Mind Institute]
+    - Mental health questionnaires
+    - Scientific articles
+    - Licenses
+    - Therapies and medications
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 """.format(ddashes)
@@ -260,7 +242,7 @@ Current information can be found on the website, https://matter.childmind.org.
         dsm5_turtle = []
 
     if do_projects:
-        projects_statements = ingest_projects(projects_xls, groups_xls,
+        projects_statements = ingest_projects(projects_xls,
                                               states_xls, measures_xls,
                                               references_xls, statements={})
         projects_turtle = turtle_from_dict(projects_statements)
@@ -268,15 +250,9 @@ Current information can be found on the website, https://matter.childmind.org.
         projects_statements = []
         projects_turtle = []
 
-    if do_groups:
-        groups_statements = ingest_groups(groups_xls, statements={})
-        groups_turtle = turtle_from_dict(groups_statements)
-    else:
-        groups_statements = []
-        groups_turtle = []
-
     if do_references:
         references_statements = ingest_references(references_xls, states_xls,
+                                                  projects_xls, dsm5_xls,
                                                   statements={})
         references_turtle = turtle_from_dict(references_statements)
     else:
@@ -303,7 +279,6 @@ Current information can be found on the website, https://matter.childmind.org.
                     [dsm5_statements, dsm5_outfile, dsm5_turtle],
                     [references_statements, references_outfile, references_turtle],
                     [projects_statements, projects_outfile, projects_turtle],
-                    [groups_statements, groups_outfile, groups_turtle],
                     [claims_statements, claims_outfile, claims_turtle]]
 
     for ioutput, output_list in enumerate(outputs_list):
@@ -419,17 +394,6 @@ Current information can be found on the website, https://matter.childmind.org.
                 )
             if ioutput == 7:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "groups"),
-                    version,
-                    "{0} — {1}".format(label, "Groups and roles"),
-                    "\n".join([
-                        comment,
-                        "{0}\n\t\tGroups and roles\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 8:
-                header_string = write_header(
                     "{0}/{1}".format(base_uri, "references"),
                     version,
                     "{0} — {1}".format(label, "References"),
@@ -439,7 +403,7 @@ Current information can be found on the website, https://matter.childmind.org.
                     ]),
                     prefixes=prefixes
                 )
-            if ioutput == 9:
+            if ioutput == 8:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "claims"),
                     version,
