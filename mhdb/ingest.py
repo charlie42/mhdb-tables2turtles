@@ -509,7 +509,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     # load worksheets as pandas dataframes
     task_classes = tasks_xls.parse("Classes")
     task_properties = tasks_xls.parse("Properties")
-    task_categories = tasks_xls.parse("tasks")
+    tasks = tasks_xls.parse("tasks")
     implementations = tasks_xls.parse("implementations")
     indicators = tasks_xls.parse("indicators")
     contrasts = tasks_xls.parse("contrasts")
@@ -523,7 +523,8 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     # fill NANs with emptyValue
     task_classes = task_classes.fillna(emptyValue)
     task_properties = task_properties.fillna(emptyValue)
-    task_categories = task_categories.fillna(emptyValue)
+    tasks = tasks.fillna(emptyValue)
+    implementations = implementations.fillna(emptyValue)
     indicators = indicators.fillna(emptyValue)
     contrasts = contrasts.fillna(emptyValue)
     conditions = conditions.fillna(emptyValue)
@@ -532,8 +533,6 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     #states = states.fillna(emptyValue)
     projects = projects.fillna(emptyValue)
     references = references.fillna(emptyValue)
-
-    #statements = audience_statements(statements)
 
     # Classes worksheet
     for row in task_classes.iterrows():
@@ -616,7 +615,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
             )
 
     # tasks worksheet
-    for row in implementations.iterrows():
+    for row in tasks.iterrows():
 
         task_label = language_string(row[1]["task"])
         task_iri = check_iri(row[1]["task"])
@@ -625,55 +624,16 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         predicates_list.append(("rdfs:label", task_label))
         predicates_list.append(("rdf:type", "demcare:Task"))
 
-        instructions = row[1]["instructions"]
-        if instructions not in exclude_list:
-            predicates_list.append(("mhdb:hasTaskInstructions",
-                                    mhdb_iri(instructions)))
-            statements = add_to_statements(
-                mhdb_iri(instructions), "rdf:type", "mhdb:TaskInstructions",
-                statements, exclude_list)
-            statements = add_to_statements(
-                mhdb_iri(instructions), "rdfs:label", language_string(instructions),
-                statements, exclude_list)
-
         if row[1]["description"] not in exclude_list:
             predicates_list.append(("rdfs:comment",
                                     language_string(row[1]["description"])))
-        if row[1]["link"] not in exclude_list:
-            predicates_list.append(("foaf:homepage", row[1]["link"]))
+        if row[1]["aliases"] not in exclude_list:
+            aliases = row[1]["aliases"].split(',')
+            for alias in aliases:
+                predicates_list.append(("rdfs:label", language_string(alias)))
 
-        #indices_state = row[1]["indices_state"]
-        indices_project = row[1]["indices_project"]
-        #indices_project_type
-        indices_task_categories = row[1]["indices_task"]
-
-        cognitiveatlas_node_id = row[1]["cognitiveatlas_node_id"]
-        if cognitiveatlas_node_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    cognitiveatlas_node_id))
-        cognitiveatlas_task_id = row[1]["cognitiveatlas_task_id"]
-        if cognitiveatlas_id_task not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasTaskID",
-                                    cognitiveatlas_task_id))
-        cognitiveatlas_prop_id = row[1]["cognitiveatlas_prop_id"]
-        if cognitiveatlas_prop_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    cognitiveatlas_prop_id))
-
-        if indices_task_categories not in exclude_list:
-            if isinstance(indices_task_categories, int):
-                indices = [indices_task_categories]
-            else:
-                indices = [np.int(x) for x in
-                           indices_task_categories.strip().split(',')
-                           if len(x)>0]
-            for index in indices:
-                objectRDF = task_categories[task_categories["index"] ==
-                                  index]["task_category"].values[0]
-                if objectRDF not in exclude_list:
-                    predicates_list.append(("rdfs:subClassOf",
-                                            check_iri(objectRDF.strip())))
-        # if isinstance(indices_state, str):
+        # indices_state = row[1]["indices_state"]
+        # if indices_state not in exclude_list:
         #     indices = [np.int(x) for x in indices_state.strip().split(',') if len(x)>0]
         #     for index in indices:
         #         objectRDF = states[states["index"] ==
@@ -681,15 +641,16 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         #         if isinstance(objectRDF, str):
         #             predicates_list.append(("mhdb:assessesDomain",
         #                                     check_iri(objectRDF)))
-        if isinstance(indices_project, str):
-            indices = [np.int(x) for x in indices_project.strip().split(',') if len(x)>0]
-            for index in indices:
-                objectRDF = projects[projects["index"] ==
-                                     index]["project"].values[0]
-                if isinstance(objectRDF, str):
-                    predicates_list.append(("mhdb:hasProject",
-                                            check_iri(objectRDF)))
 
+        # Cognitive Atlas-specific columns
+        cogatlas_node_id = row[1]["cogatlas_node_id"]
+        if cogatlas_node_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+                                    str(cogatlas_node_id)))
+        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        if cogatlas_prop_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+                                    str(cogatlas_prop_id)))
         for predicates in predicates_list:
             statements = add_to_statements(
                 task_iri,
@@ -699,35 +660,325 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
                 exclude_list
             )
 
-    # task_categories worksheet
-    for row in task_categories.iterrows():
+    # implementations worksheet
+    for row in implementations.iterrows():
 
-        task_category_label = language_string(row[1]["task_category\n"])
-        task_category_iri = check_iri(row[1]["task_category\n"])
+        implementation_label = language_string(row[1]["implementation"])
+        implementation_iri = check_iri(row[1]["implementation"])
 
         predicates_list = []
-        predicates_list.append(("rdfs:label", task_category_label))
+        predicates_list.append(("rdfs:label", implementation_label))
         predicates_list.append(("rdf:type", "demcare:Task"))
+        if row[1]["description"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["description"])))
+        if row[1]["link"] not in exclude_list:
+            predicates_list.append(("doap:homepage", row[1]["link"]))
 
-        # indices_state = row[1]["indices_state"]
-        # if isinstance(indices_state, str):
+        # indices to other worksheets
+        indices_task = row[1]["indices_task"]
+        indices_project = row[1]["indices_project"]
+        #indices_state = row[1]["indices_state"]
+        if indices_task not in exclude_list:
+            indices = [np.int(x) for x in indices_task.strip().split(',')
+                       if len(x)>0]
+            for index in indices:
+                objectRDF = tasks[tasks["index"] == index]["task"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("rdfs:subClassOf",
+                                            check_iri(objectRDF)))
+        if indices_project not in exclude_list:
+            indices = [np.int(x) for x in indices_project.strip().split(',')
+                       if len(x)>0]
+            for index in indices:
+                objectRDF = projects[projects["index"] ==
+                                     index]["project"].values[0]
+                if isinstance(objectRDF, str):
+                    predicates_list.append(("mhdb:hasProject",
+                                            check_iri(objectRDF)))
+        # if indices_state not in exclude_list:
         #     indices = [np.int(x) for x in indices_state.strip().split(',')
         #                if len(x)>0]
         #     for index in indices:
         #         objectRDF = states[states["index"] ==
-        #                             index]["state"].values[0]
+        #                            index]["state"].values[0]
         #         if isinstance(objectRDF, str):
-        #             predicates_list.append(("mhdb:assessesDomain",
+        #             predicates_list.append(("mhdb:???",
         #                                     check_iri(objectRDF)))
+
+        # Cognitive Atlas-specific columns
+        cogatlas_node_id = row[1]["cogatlas_node_id"]
+        if cogatlas_node_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+                                    str(cogatlas_node_id)))
+        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        if cogatlas_prop_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+                                    str(cogatlas_prop_id)))
+        cogatlas_task_id = row[1]["cogatlas_task_id"]
+        if cogatlas_task_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasTaskID",
+                                    str(cogatlas_task_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
-                task_category_iri,
+                implementation_iri,
                 predicates[0],
                 predicates[1],
                 statements,
                 exclude_list
             )
+
+    # indicators worksheet
+    for row in indicators.iterrows():
+
+        indicator_label = language_string(row[1]["indicator"])
+        indicator_iri = check_iri(row[1]["indicator"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", indicator_label))
+        predicates_list.append(("rdf:type", "mhdb:Indicator"))
+
+        # Cognitive Atlas-specific columns
+        cogatlas_node_id = row[1]["cogatlas_node_id"]
+        if cogatlas_node_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+                                    str(cogatlas_node_id)))
+
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                indicator_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # contrasts worksheet
+    for row in contrasts.iterrows():
+
+        contrast_label = language_string(row[1]["contrast"])
+        contrast_iri = check_iri(row[1]["contrast"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", contrast_label))
+        predicates_list.append(("rdf:type", "mhdb:Contrast"))
+
+        # Cognitive Atlas-specific columns
+        cogatlas_node_id = row[1]["cogatlas_node_id"]
+        if cogatlas_node_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+                                    str(cogatlas_node_id)))
+        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        if cogatlas_prop_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+                                    str(cogatlas_prop_id)))
+
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                contrast_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # conditions worksheet
+    for row in conditions.iterrows():
+
+        condition_label = language_string(row[1]["condition"])
+        condition_iri = check_iri(row[1]["condition"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", condition_label))
+        predicates_list.append(("rdf:type", "mhdb:Condition"))
+        if row[1]["description"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["description"])))
+
+        # Cognitive Atlas-specific columns
+        cogatlas_node_id = row[1]["cogatlas_node_id"]
+        if cogatlas_node_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+                                    str(cogatlas_node_id)))
+        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        if cogatlas_prop_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+                                    str(cogatlas_prop_id)))
+
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                condition_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # assertions worksheet
+    for row in assertions.iterrows():
+
+        assertion_label = language_string(row[1]["assertion"])
+        assertion_iri = check_iri(row[1]["assertion"])
+
+        predicates_list = []
+        predicates_list.append(("rdfs:label", assertion_label))
+        predicates_list.append(("rdf:type", "mhdb:Assertion"))
+
+        # Cognitive Atlas-specific columns
+        cogatlas_node_id = row[1]["cogatlas_node_id"]
+        if cogatlas_node_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+                                    str(cogatlas_node_id)))
+        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        if cogatlas_prop_id not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+                                    str(cogatlas_prop_id)))
+        confidence_level = row[1]["confidence_level"]
+        if confidence_level not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasConfidenceLevel",
+                                    str(confidence_level)))
+        subject_def = row[1]["subject_def"]
+        if subject_def not in exclude_list:
+            predicates_list.append(("mhdb:hasCognitiveAtlasSubjectDef",
+                                    subject_def))
+
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                assertion_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # relationships worksheet
+    for row in relationships.iterrows():
+
+      cogatlas_reln_type = str(row[1]["cogatlas_reln_type"])
+      cogatlas_startNode = int(row[1]["cogatlas_startNode"])
+      cogatlas_endNode = int(row[1]["cogatlas_endNode"])
+        # cogatlas_reln_id = row[1]["cogatlas_reln_id"]
+        # cogatlas_reln_prop_id = row[1]["cogatlas_reln_prop_id"]
+        # cogatlas_reln_contrast_id = row[1]["cogatlas_reln_contrast_id"]
+        # cogatlas_reln_task_id = row[1]["cogatlas_reln_task_id"]
+        # cogatlas_reln_disorder = row[1]["cogatlas_reln_disorder"]
+
+      if cogatlas_endNode == 23655:
+        subject = ""
+        object = ""
+
+        # tasks worksheet
+        index_subj = tasks[tasks['cogatlas_node_id'] == cogatlas_startNode].index
+        if not index_subj.empty and index_subj not in exclude_list:
+            if tasks[tasks['index'] == index_subj[0]]["task"].values not in exclude_list and \
+                    np.any(tasks[tasks['index'] == index_subj[0]]["task"].values):
+                subject = tasks[tasks['index'] == index_subj[0]]["task"].values[0]
+        index_obj = tasks[tasks['cogatlas_node_id'] == cogatlas_endNode].index
+        if not index_obj.empty and index_obj not in exclude_list:
+            if tasks[tasks['index'] == index_obj[0]]["task"].values not in exclude_list and \
+                    np.any(tasks[tasks['index'] == index_obj[0]]["task"].values):
+                object = tasks[tasks['index'] == index_obj[0]]["task"].values[0]
+
+        # implementations worksheet
+        if subject in exclude_list:
+            index_subj = implementations[implementations['cogatlas_node_id'] == cogatlas_startNode].index
+            if not index_subj.empty and index_subj not in exclude_list:
+                print(
+                    implementations[implementations['index'] == index_subj[0]][
+                        "implementation"].values)
+                if implementations[implementations['index'] == index_subj[0]]["implementation"].values not in exclude_list and \
+                        np.any(implementations[implementations['index'] == index_subj[0]]["implementation"].values):
+                    subject = implementations[implementations['index'] == index_subj[0]]["implementation"].values[0]
+        if object in exclude_list:
+            index_obj = implementations[implementations['cogatlas_node_id'] == cogatlas_endNode].index
+            if not index_obj.empty and index_obj not in exclude_list:
+                print((
+                    implementations[implementations['index'] == index_obj[0]][
+                        "implementation"].values))
+                if implementations[implementations['index'] == index_obj[0]]["implementation"].values not in exclude_list and \
+                        np.any(implementations[implementations['index'] == index_obj[0]]["implementation"].values):
+                    object = implementations[implementations['index'] == index_obj[0]]["implementation"].values[0]
+
+        # indicators worksheet
+        if subject in exclude_list:
+            index_subj = indicators[indicators['cogatlas_node_id'] == cogatlas_startNode].index
+            if not index_subj.empty and index_subj not in exclude_list:
+                if indicators[indicators['index'] == index_subj[0]]["indicator"].values not in exclude_list and \
+                    np.any(indicators[indicators['index'] == index_subj[0]]["indicator"].values):
+                    subject = indicators[indicators['index'] == index_subj[0]]["indicator"].values[0]
+        if object in exclude_list:
+            index_obj = indicators[indicators['cogatlas_node_id'] == cogatlas_endNode].index
+            if not index_obj.empty and index_obj not in exclude_list:
+                if indicators[indicators['index'] == index_obj[0]]["indicator"].values not in exclude_list and \
+                    np.any(indicators[indicators['index'] == index_obj[0]]["indicator"].values):
+                    object = indicators[indicators['index'] == index_obj[0]]["indicator"].values[0]
+
+        # contrasts worksheet
+        if subject in exclude_list:
+            index_subj = contrasts[contrasts['cogatlas_node_id'] == cogatlas_startNode].index
+            if not index_subj.empty and index_subj not in exclude_list:
+                if contrasts[contrasts['index'] == index_subj[0]]["contrast"].values not in exclude_list and \
+                    np.any(contrasts[contrasts['index'] == index_subj[0]]["contrast"].values):
+                    subject = contrasts[contrasts['index'] == index_subj[0]]["contrast"].values[0]
+        if object in exclude_list:
+            index_obj = contrasts[contrasts['cogatlas_node_id'] == cogatlas_endNode].index
+            if not index_obj.empty and index_obj not in exclude_list:
+                if contrasts[contrasts['index'] == index_obj[0]]["contrast"].values not in exclude_list and \
+                    np.any(contrasts[contrasts['index'] == index_obj[0]]["contrast"].values):
+                    object = contrasts[contrasts['index'] == index_obj[0]]["contrast"].values[0]
+
+        # conditions worksheet
+        if subject in exclude_list:
+            index_subj = conditions[conditions['cogatlas_node_id'] == cogatlas_startNode].index
+            if not index_subj.empty and index_subj not in exclude_list:
+                if conditions[conditions['index'] == index_subj[0]]["condition"].values not in exclude_list and \
+                    np.any(conditions[conditions['index'] == index_subj[0]]["condition"].values):
+                    subject = conditions[conditions['index'] == index_subj[0]]["condition"].values[0]
+        if object in exclude_list:
+            index_obj = conditions[conditions['cogatlas_node_id'] == cogatlas_endNode].index
+            if not index_obj.empty and index_obj not in exclude_list:
+                if conditions[conditions['index'] == index_obj[0]]["condition"].values not in exclude_list and \
+                    np.any(conditions[conditions['index'] == index_obj[0]]["condition"].values):
+                    object = conditions[conditions['index'] == index_obj[0]]["condition"].values[0]
+
+        # assertions worksheet
+        if subject in exclude_list:
+            index_subj = assertions[assertions['cogatlas_node_id'] == cogatlas_startNode].index
+            if not index_subj.empty and index_subj not in exclude_list:
+                if assertions[assertions['index'] == index_subj[0]]["assertion"].values not in exclude_list and \
+                    np.any(assertions[assertions['index'] == index_subj[0]]["assertion"].values):
+                    subject = assertions[assertions['index'] == index_subj[0]]["assertion"].values[0]
+        if object in exclude_list:
+            index_obj = assertions[assertions['cogatlas_node_id'] == cogatlas_endNode].index
+            if not index_obj.empty and index_obj not in exclude_list:
+                if assertions[assertions['index'] == index_obj[0]]["assertion"].values not in exclude_list and \
+                    np.any(assertions[assertions['index'] == index_obj[0]]["assertion"].values):
+                    object = assertions[assertions['index'] == index_obj[0]]["assertion"].values[0]
+
+        if subject not in exclude_list and object not in exclude_list and not subject == object:
+
+            if cogatlas_reln_type == "HASCONDITION":
+                cogatlas_reln_type = "hasPossibleCondition"
+            if cogatlas_reln_type == "HASCONTRAST":
+                cogatlas_reln_type = "hasPossibleContrast"
+            if cogatlas_reln_type == "HASIMPLEMENTATION":
+                cogatlas_reln_type = "hasImplementation"
+            if cogatlas_reln_type == "HASINDICATOR":
+                cogatlas_reln_type = "hasIndicator"
+            if cogatlas_reln_type == "KINDOF":
+                cogatlas_reln_type = "hasImplementation"
+            if cogatlas_reln_type == "PARTOF":
+                cogatlas_reln_type = "partOf"
+            if cogatlas_reln_type == "PREDICATE":
+                cogatlas_reln_type = "hasPredicate"
+            if cogatlas_reln_type == "PREDICATE_DEF":
+                cogatlas_reln_type = "hasPredicateDefinition"
+            if cogatlas_reln_type == "SUBJECT":
+                cogatlas_reln_type = "hasSubject"
+
+            print('"{0}" {1} "{2}"'.format(subject, cogatlas_reln_type, object))
+            print('{0} {1} {2}'.format(cogatlas_startNode, cogatlas_reln_type, cogatlas_endNode))
 
     return statements
 
@@ -1988,19 +2239,21 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
         project_label = language_string(row[1]["project"])
 
         predicates_list = []
-        predicates_list.append(("rdf:type", "foaf:Project"))
+        predicates_list.append(("rdf:type", "doap:Project"))
         predicates_list.append(("rdfs:label", project_label))
         if row[1]["description"] not in exclude_list:
             predicates_list.append(("rdfs:comment",
                                     language_string(row[1]["description"])))
         if row[1]["link"] not in exclude_list:
-            predicates_list.append(("foaf:homepage", row[1]["link"]))
+            predicates_list.append(("doap:homepage", row[1]["link"]))
 
         #indices_state = row[1]["indices_state"]
         indices_project_type = row[1]["indices_project_type"]
         indices_group = row[1]["indices_group"]
         indices_sensor = row[1]["indices_sensor"]
         indices_measure = row[1]["indices_measure"]
+
+        # doap:license
 
         # reference
         if row[1]["indices_reference"] not in exclude_list:
@@ -2036,7 +2289,7 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
                 if project_type_iri in exclude_list:
                     project_type_iri = project_type_label
                 if project_type_iri not in exclude_list:
-                    predicates_list.append(("rdf:type",
+                    predicates_list.append(("doap:category",
                                             check_iri(project_type_iri)))
 
         if row[1]["indices_reference"] not in exclude_list:
@@ -2057,7 +2310,8 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
             for index in indices:
                 objectRDF = groups[groups["index"] == index]["group"].values[0]
                 if objectRDF not in exclude_list:
-                    predicates_list.append(("foaf:maker", check_iri(objectRDF)))
+                    predicates_list.append(("doap:maintainer",
+                                            check_iri(objectRDF)))
         if indices_sensor not in exclude_list:
             indices = [np.int(x) for x in
                        indices_sensor.strip().split(',') if len(x)>0]
@@ -2088,7 +2342,7 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
     for row in project_types.iterrows():
 
         predicates_list = []
-        predicates_list.append(("rdf:type", "foaf:Project"))
+        predicates_list.append(("rdf:type", "doap:Project"))
         predicates_list.append(("rdfs:label",
                                 language_string(row[1]["project_type"])))
         if row[1]["IRI"] not in exclude_list:

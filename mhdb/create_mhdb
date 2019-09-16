@@ -64,12 +64,12 @@ if run_all:
 else:
     do_states = 0
     do_behaviors = 0
-    do_measures = 1
-    do_tasks = 0
-    do_questions = 1
-    do_dsm5 = 1
-    do_projects = 1
-    do_references = 1
+    do_measures = 0
+    do_tasks = 1
+    do_questions = 0
+    do_dsm5 = 0
+    do_projects = 0
+    do_references = 0
     do_claims = 0
 
 
