@@ -516,7 +516,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     conditions = tasks_xls.parse("conditions")
     assertions = tasks_xls.parse("assertions")
     relationships = tasks_xls.parse("relationships")
-    #states = states_xls.parse("states")
+    states = states_xls.parse("states")
     projects = projects_xls.parse("projects")
     references = references_xls.parse("references")
 
@@ -530,7 +530,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     conditions = conditions.fillna(emptyValue)
     assertions = assertions.fillna(emptyValue)
     relationships = relationships.fillna(emptyValue)
-    #states = states.fillna(emptyValue)
+    states = states.fillna(emptyValue)
     projects = projects.fillna(emptyValue)
     references = references.fillna(emptyValue)
 
@@ -855,130 +855,136 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
     # relationships worksheet
     for row in relationships.iterrows():
 
-      cogatlas_reln_type = str(row[1]["cogatlas_reln_type"])
-      cogatlas_startNode = int(row[1]["cogatlas_startNode"])
-      cogatlas_endNode = int(row[1]["cogatlas_endNode"])
+        cogatlas_reln_type = str(row[1]["cogatlas_reln_type"])
+        cogatlas_startNode = int(row[1]["cogatlas_startNode"])
+        cogatlas_endNode = int(row[1]["cogatlas_endNode"])
         # cogatlas_reln_id = row[1]["cogatlas_reln_id"]
         # cogatlas_reln_prop_id = row[1]["cogatlas_reln_prop_id"]
         # cogatlas_reln_contrast_id = row[1]["cogatlas_reln_contrast_id"]
         # cogatlas_reln_task_id = row[1]["cogatlas_reln_task_id"]
         # cogatlas_reln_disorder = row[1]["cogatlas_reln_disorder"]
 
-      if cogatlas_endNode == 23655:
         subject = ""
         object = ""
 
         # tasks worksheet
-        index_subj = tasks[tasks['cogatlas_node_id'] == cogatlas_startNode].index
-        if not index_subj.empty and index_subj not in exclude_list:
-            if tasks[tasks['index'] == index_subj[0]]["task"].values not in exclude_list and \
-                    np.any(tasks[tasks['index'] == index_subj[0]]["task"].values):
-                subject = tasks[tasks['index'] == index_subj[0]]["task"].values[0]
-        index_obj = tasks[tasks['cogatlas_node_id'] == cogatlas_endNode].index
-        if not index_obj.empty and index_obj not in exclude_list:
-            if tasks[tasks['index'] == index_obj[0]]["task"].values not in exclude_list and \
-                    np.any(tasks[tasks['index'] == index_obj[0]]["task"].values):
-                object = tasks[tasks['index'] == index_obj[0]]["task"].values[0]
+        if subject in exclude_list:
+            subject_task = tasks[tasks['cogatlas_node_id'] == cogatlas_startNode]["task"]
+            if not subject_task.empty:
+                subject = tasks[tasks['cogatlas_node_id'] == cogatlas_startNode]["task"].values[0]
+        if object in exclude_list:
+            object_task = tasks[tasks['cogatlas_node_id'] == cogatlas_endNode]["task"]
+            if not object_task.empty:
+                object = tasks[tasks['cogatlas_node_id'] == cogatlas_endNode]["task"].values[0]
 
         # implementations worksheet
         if subject in exclude_list:
-            index_subj = implementations[implementations['cogatlas_node_id'] == cogatlas_startNode].index
-            if not index_subj.empty and index_subj not in exclude_list:
-                print(
-                    implementations[implementations['index'] == index_subj[0]][
-                        "implementation"].values)
-                if implementations[implementations['index'] == index_subj[0]]["implementation"].values not in exclude_list and \
-                        np.any(implementations[implementations['index'] == index_subj[0]]["implementation"].values):
-                    subject = implementations[implementations['index'] == index_subj[0]]["implementation"].values[0]
+            subject_implementation = implementations[implementations['cogatlas_node_id'] == cogatlas_startNode]["implementation"]
+            if not subject_implementation.empty:
+                subject = implementations[implementations['cogatlas_node_id'] == cogatlas_startNode]["implementation"].values[0]
         if object in exclude_list:
-            index_obj = implementations[implementations['cogatlas_node_id'] == cogatlas_endNode].index
-            if not index_obj.empty and index_obj not in exclude_list:
-                print((
-                    implementations[implementations['index'] == index_obj[0]][
-                        "implementation"].values))
-                if implementations[implementations['index'] == index_obj[0]]["implementation"].values not in exclude_list and \
-                        np.any(implementations[implementations['index'] == index_obj[0]]["implementation"].values):
-                    object = implementations[implementations['index'] == index_obj[0]]["implementation"].values[0]
+            object_implementation = implementations[implementations['cogatlas_node_id'] == cogatlas_endNode]["implementation"]
+            if not object_implementation.empty:
+                object = implementations[implementations['cogatlas_node_id'] == cogatlas_endNode]["implementation"].values[0]
 
         # indicators worksheet
         if subject in exclude_list:
-            index_subj = indicators[indicators['cogatlas_node_id'] == cogatlas_startNode].index
-            if not index_subj.empty and index_subj not in exclude_list:
-                if indicators[indicators['index'] == index_subj[0]]["indicator"].values not in exclude_list and \
-                    np.any(indicators[indicators['index'] == index_subj[0]]["indicator"].values):
-                    subject = indicators[indicators['index'] == index_subj[0]]["indicator"].values[0]
+            subject_indicator = indicators[indicators['cogatlas_node_id'] == cogatlas_startNode]["indicator"]
+            if not subject_indicator.empty:
+                subject = indicators[indicators['cogatlas_node_id'] == cogatlas_startNode]["indicator"].values[0]
         if object in exclude_list:
-            index_obj = indicators[indicators['cogatlas_node_id'] == cogatlas_endNode].index
-            if not index_obj.empty and index_obj not in exclude_list:
-                if indicators[indicators['index'] == index_obj[0]]["indicator"].values not in exclude_list and \
-                    np.any(indicators[indicators['index'] == index_obj[0]]["indicator"].values):
-                    object = indicators[indicators['index'] == index_obj[0]]["indicator"].values[0]
+            object_indicator = indicators[indicators['cogatlas_node_id'] == cogatlas_endNode]["indicator"]
+            if not object_indicator.empty:
+                object = indicators[indicators['cogatlas_node_id'] == cogatlas_endNode]["indicator"].values[0]
 
         # contrasts worksheet
         if subject in exclude_list:
-            index_subj = contrasts[contrasts['cogatlas_node_id'] == cogatlas_startNode].index
-            if not index_subj.empty and index_subj not in exclude_list:
-                if contrasts[contrasts['index'] == index_subj[0]]["contrast"].values not in exclude_list and \
-                    np.any(contrasts[contrasts['index'] == index_subj[0]]["contrast"].values):
-                    subject = contrasts[contrasts['index'] == index_subj[0]]["contrast"].values[0]
+            subject_contrast = contrasts[contrasts['cogatlas_node_id'] == cogatlas_startNode]["contrast"]
+            if not subject_contrast.empty:
+                subject = contrasts[contrasts['cogatlas_node_id'] == cogatlas_startNode]["contrast"].values[0]
         if object in exclude_list:
-            index_obj = contrasts[contrasts['cogatlas_node_id'] == cogatlas_endNode].index
-            if not index_obj.empty and index_obj not in exclude_list:
-                if contrasts[contrasts['index'] == index_obj[0]]["contrast"].values not in exclude_list and \
-                    np.any(contrasts[contrasts['index'] == index_obj[0]]["contrast"].values):
-                    object = contrasts[contrasts['index'] == index_obj[0]]["contrast"].values[0]
+            object_contrast = contrasts[contrasts['cogatlas_node_id'] == cogatlas_endNode]["contrast"]
+            if not object_contrast.empty:
+                object = contrasts[contrasts['cogatlas_node_id'] == cogatlas_endNode]["contrast"].values[0]
 
         # conditions worksheet
         if subject in exclude_list:
-            index_subj = conditions[conditions['cogatlas_node_id'] == cogatlas_startNode].index
-            if not index_subj.empty and index_subj not in exclude_list:
-                if conditions[conditions['index'] == index_subj[0]]["condition"].values not in exclude_list and \
-                    np.any(conditions[conditions['index'] == index_subj[0]]["condition"].values):
-                    subject = conditions[conditions['index'] == index_subj[0]]["condition"].values[0]
+            subject_condition = conditions[conditions['cogatlas_node_id'] == cogatlas_startNode]["condition"]
+            if not subject_condition.empty:
+                subject = conditions[conditions['cogatlas_node_id'] == cogatlas_startNode]["condition"].values[0]
         if object in exclude_list:
-            index_obj = conditions[conditions['cogatlas_node_id'] == cogatlas_endNode].index
-            if not index_obj.empty and index_obj not in exclude_list:
-                if conditions[conditions['index'] == index_obj[0]]["condition"].values not in exclude_list and \
-                    np.any(conditions[conditions['index'] == index_obj[0]]["condition"].values):
-                    object = conditions[conditions['index'] == index_obj[0]]["condition"].values[0]
+            object_condition = conditions[conditions['cogatlas_node_id'] == cogatlas_endNode]["condition"]
+            if not object_condition.empty:
+                object = conditions[conditions['cogatlas_node_id'] == cogatlas_endNode]["condition"].values[0]
 
         # assertions worksheet
         if subject in exclude_list:
-            index_subj = assertions[assertions['cogatlas_node_id'] == cogatlas_startNode].index
-            if not index_subj.empty and index_subj not in exclude_list:
-                if assertions[assertions['index'] == index_subj[0]]["assertion"].values not in exclude_list and \
-                    np.any(assertions[assertions['index'] == index_subj[0]]["assertion"].values):
-                    subject = assertions[assertions['index'] == index_subj[0]]["assertion"].values[0]
+            subject_assertion = assertions[assertions['cogatlas_node_id'] == cogatlas_startNode]["assertion"]
+            if not subject_assertion.empty:
+                subject = assertions[assertions['cogatlas_node_id'] == cogatlas_startNode]["assertion"].values[0]
         if object in exclude_list:
-            index_obj = assertions[assertions['cogatlas_node_id'] == cogatlas_endNode].index
-            if not index_obj.empty and index_obj not in exclude_list:
-                if assertions[assertions['index'] == index_obj[0]]["assertion"].values not in exclude_list and \
-                    np.any(assertions[assertions['index'] == index_obj[0]]["assertion"].values):
-                    object = assertions[assertions['index'] == index_obj[0]]["assertion"].values[0]
+            object_assertion = assertions[assertions['cogatlas_node_id'] == cogatlas_endNode]["assertion"]
+            if not object_assertion.empty:
+                object = assertions[assertions['cogatlas_node_id'] == cogatlas_endNode]["assertion"].values[0]
+
+        # states worksheet
+        if subject in exclude_list:
+            subject_state = states[states['cogatlas_node_id'] == cogatlas_startNode]["state"]
+            if not subject_state.empty:
+                subject = states[states['cogatlas_node_id'] == cogatlas_startNode]["state"].values[0]
+        if object in exclude_list:
+            object_state = states[states['cogatlas_node_id'] == cogatlas_endNode]["state"]
+            if not object_state.empty:
+                object = states[states['cogatlas_node_id'] == cogatlas_endNode]["state"].values[0]
+
+        # references spreadsheet
+        if subject in exclude_list:
+            subject_reference = references[references['cogatlas_node_id'] == cogatlas_startNode]["title"]
+            if not subject_reference.empty:
+                subject = references[references['cogatlas_node_id'] == cogatlas_startNode]["title"].values[0]
+        if object in exclude_list:
+            object_reference = references[references['cogatlas_node_id'] == cogatlas_endNode]["title"]
+            if not object_reference.empty:
+                object = references[references['cogatlas_node_id'] == cogatlas_endNode]["title"].values[0]
 
         if subject not in exclude_list and object not in exclude_list and not subject == object:
 
+            if cogatlas_reln_type == "ASSERTS":
+                cogatlas_reln_type = "mhdb:asserts"
+            if cogatlas_reln_type == "HASCITATION":
+                cogatlas_reln_type = "mhdb:hasCitation"
+            if cogatlas_reln_type == "CLASSIFIEDUNDER":
+                cogatlas_reln_type = "mhdb:classifiedUnder"
             if cogatlas_reln_type == "HASCONDITION":
-                cogatlas_reln_type = "hasPossibleCondition"
+                cogatlas_reln_type = "mhdb:hasPossibleCondition"
             if cogatlas_reln_type == "HASCONTRAST":
-                cogatlas_reln_type = "hasPossibleContrast"
+                cogatlas_reln_type = "mhdb:hasPossibleContrast"
+            if cogatlas_reln_type == "HASDIFFERENCE":
+                cogatlas_reln_type = "mhdb:hasDifference"
             if cogatlas_reln_type == "HASIMPLEMENTATION":
-                cogatlas_reln_type = "hasImplementation"
+                cogatlas_reln_type = "mhdb:hasImplementation"
             if cogatlas_reln_type == "HASINDICATOR":
-                cogatlas_reln_type = "hasIndicator"
+                cogatlas_reln_type = "mhdb:hasIndicator"
+            if cogatlas_reln_type == "ISA":
+                cogatlas_reln_type = "mhdb:isA"
             if cogatlas_reln_type == "KINDOF":
-                cogatlas_reln_type = "hasImplementation"
+                cogatlas_reln_type = "mhdb:kindOf"
+            if cogatlas_reln_type == "MEASUREDBY":
+                cogatlas_reln_type = "mhdb:measuredBy"
             if cogatlas_reln_type == "PARTOF":
-                cogatlas_reln_type = "partOf"
+                cogatlas_reln_type = "mhdb:partOf"
             if cogatlas_reln_type == "PREDICATE":
-                cogatlas_reln_type = "hasPredicate"
+                cogatlas_reln_type = "mhdb:hasPredicate"
             if cogatlas_reln_type == "PREDICATE_DEF":
-                cogatlas_reln_type = "hasPredicateDefinition"
+                cogatlas_reln_type = "mhdb:hasPredicateDefinition"
             if cogatlas_reln_type == "SUBJECT":
-                cogatlas_reln_type = "hasSubject"
+                cogatlas_reln_type = "mhdb:hasSubject"
 
-            print('"{0}" {1} "{2}"'.format(subject, cogatlas_reln_type, object))
-            print('{0} {1} {2}'.format(cogatlas_startNode, cogatlas_reln_type, cogatlas_endNode))
+            statements = add_to_statements(check_iri(subject),
+                                           cogatlas_reln_type,
+                                           check_iri(object),
+                                           statements, exclude_list)
+            #print('"{0}", {1}, "{2}"'.format(subject, cogatlas_reln_type, object))
 
     return statements
 
