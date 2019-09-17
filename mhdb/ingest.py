@@ -20,7 +20,6 @@ except:
 import numpy as np
 import pandas as pd
 import re
-import math
 
 emptyValue = 'EmptyValue'
 exclude_list = [emptyValue, '', [], 'NaN', 'NAN', 'nan', np.nan, None]
@@ -56,17 +55,12 @@ def add_to_statements(subject, predicate, object, statements={},
     >>> print(add_to_statements(":goose", ":chases", ":it"))
     {':goose': {':chases': {':it'}}}
     """
-    from mhdb.write_ttl import check_iri
-
     if subject not in exclude_list and \
         predicate not in exclude_list and \
         object not in exclude_list:
         subject.strip()
         predicate.strip()
         object.strip()
-        # subject_iri = check_iri(subject)
-        # predicate_iri = check_iri(predicate)
-        # object_iri = check_iri(object)
 
         if subject not in statements:
             statements[subject] = {}
@@ -412,7 +406,7 @@ def ingest_measures(measures_xls, references_xls, statements={}):
 
         if row[1]["abbreviation"] not in exclude_list:
             predicates_list.append(("dbpedia-owl:abbreviation",
-                                    row[1]["abbreviation"]))
+                                    check_iri(row[1]["abbreviation"])))
 
         indices_measure = row[1]["indices_measure"]
         if indices_measure not in exclude_list:
@@ -641,14 +635,14 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         #                                     check_iri(objectRDF)))
 
         # Cognitive Atlas-specific columns
-        cogatlas_node_id = row[1]["cogatlas_node_id"]
+        cogatlas_node_id = check_iri(row[1]["cogatlas_node_id"])
         if cogatlas_node_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    str(cogatlas_node_id)))
-        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+                                    cogatlas_node_id))
+        cogatlas_prop_id = check_iri(row[1]["cogatlas_prop_id"])
         if cogatlas_prop_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    str(cogatlas_prop_id)))
+                                    cogatlas_prop_id))
         for predicates in predicates_list:
             statements = add_to_statements(
                 task_iri,
@@ -708,15 +702,15 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         cogatlas_node_id = row[1]["cogatlas_node_id"]
         if cogatlas_node_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    str(cogatlas_node_id)))
+                                    check_iri(cogatlas_node_id)))
         cogatlas_prop_id = row[1]["cogatlas_prop_id"]
         if cogatlas_prop_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    str(cogatlas_prop_id)))
+                                    check_iri(cogatlas_prop_id)))
         cogatlas_task_id = row[1]["cogatlas_task_id"]
         if cogatlas_task_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasTaskID",
-                                    str(cogatlas_task_id)))
+                                    check_iri(cogatlas_task_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -741,7 +735,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         cogatlas_node_id = row[1]["cogatlas_node_id"]
         if cogatlas_node_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    str(cogatlas_node_id)))
+                                    check_iri(cogatlas_node_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -766,11 +760,11 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         cogatlas_node_id = row[1]["cogatlas_node_id"]
         if cogatlas_node_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    str(cogatlas_node_id)))
+                                    check_iri(cogatlas_node_id)))
         cogatlas_prop_id = row[1]["cogatlas_prop_id"]
         if cogatlas_prop_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    str(cogatlas_prop_id)))
+                                    check_iri(cogatlas_prop_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -798,11 +792,11 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         cogatlas_node_id = row[1]["cogatlas_node_id"]
         if cogatlas_node_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    str(cogatlas_node_id)))
+                                    check_iri(cogatlas_node_id)))
         cogatlas_prop_id = row[1]["cogatlas_prop_id"]
         if cogatlas_prop_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    str(cogatlas_prop_id)))
+                                    check_iri(cogatlas_prop_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -827,19 +821,19 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         cogatlas_node_id = row[1]["cogatlas_node_id"]
         if cogatlas_node_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    str(cogatlas_node_id)))
+                                    check_iri(cogatlas_node_id)))
         cogatlas_prop_id = row[1]["cogatlas_prop_id"]
         if cogatlas_prop_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    str(cogatlas_prop_id)))
+                                    check_iri(cogatlas_prop_id)))
         confidence_level = row[1]["confidence_level"]
         if confidence_level not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasConfidenceLevel",
-                                    str(confidence_level)))
+                                    check_iri(confidence_level)))
         subject_def = row[1]["subject_def"]
         if subject_def not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasSubjectDef",
-                                    subject_def))
+                                    language_string(subject_def)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -1136,7 +1130,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             qnum += 1
 
         question = row[1]["question"]
-        question_label = language_string(str(question))
+        question_label = language_string(question)
         question_iri = mhdb_iri("{0}_Q{1}".format(questionnaire, qnum))
 
         predicates_list = []
@@ -1153,16 +1147,16 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
         if instructions not in exclude_list:
             predicates_list.append(("mhdb:hasPaperInstructions",
-                                    mhdb_iri(instructions)))
+                                    check_iri(instructions)))
             statements = add_to_statements(
-                mhdb_iri(instructions),
+                check_iri(instructions),
                 "rdf:type",
                 "mhdb:PaperInstructions",
                 statements,
                 exclude_list
             )
             statements = add_to_statements(
-                mhdb_iri(instructions),
+                check_iri(instructions),
                 "rdfs:label",
                 language_string(instructions),
                 statements,
@@ -1170,21 +1164,21 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             )
             if group_instructions.strip() not in exclude_list:
                 statements = add_to_statements(
-                    mhdb_iri(group_instructions),
+                    check_iri(group_instructions),
                     "rdf:type",
                     "mhdb:PaperInstructions",
                     statements,
                     exclude_list
                 )
                 statements = add_to_statements(
-                    mhdb_iri(instructions),
+                    check_iri(instructions),
                     "mhdb:hasPaperInstructions",
-                    mhdb_iri(group_instructions),
+                    check_iri(group_instructions),
                     statements,
                     exclude_list
                 )
                 statements = add_to_statements(
-                    mhdb_iri(group_instructions),
+                    check_iri(group_instructions),
                     "rdfs:label",
                     language_string(group_instructions),
                     statements,
@@ -1192,16 +1186,16 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 )
         if digital_instructions not in exclude_list:
             predicates_list.append(("mhdb:hasInstructions",
-                                    mhdb_iri(digital_instructions)))
+                                    check_iri(digital_instructions)))
             statements = add_to_statements(
-                mhdb_iri(digital_instructions),
+                check_iri(digital_instructions),
                 "rdf:type",
                 "mhdb:Instructions",
                 statements,
                 exclude_list
             )
             statements = add_to_statements(
-                mhdb_iri(digital_instructions),
+                check_iri(digital_instructions),
                 "rdfs:label",
                 language_string(digital_instructions),
                 statements,
@@ -1209,21 +1203,21 @@ def ingest_questions(questions_xls, references_xls, statements={}):
             )
             if digital_group_instructions not in exclude_list:
                 statements = add_to_statements(
-                    mhdb_iri(digital_group_instructions),
+                    check_iri(digital_group_instructions),
                     "rdf:type",
                     "mhdb:Instructions",
                     statements,
                     exclude_list
                 )
                 statements = add_to_statements(
-                    mhdb_iri(digital_instructions),
+                    check_iri(digital_instructions),
                     "mhdb:hasInstructions",
-                    mhdb_iri(digital_group_instructions),
+                    check_iri(digital_group_instructions),
                     statements,
                     exclude_list
                 )
                 statements = add_to_statements(
-                    mhdb_iri(digital_group_instructions),
+                    check_iri(digital_group_instructions),
                     "rdfs:label",
                     language_string(digital_group_instructions),
                     statements,
@@ -1233,7 +1227,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         if response_options not in exclude_list:
             response_options = response_options.strip('-')
             response_options = response_options.replace("\n", "")
-            response_options_iri = mhdb_iri(response_options)
+            response_options_iri = check_iri(response_options)
             if '"' in response_options:
                 response_options = re.findall('[-+]?[0-9]+=".*?"', response_options)
             else:
@@ -1249,7 +1243,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                     response_iri = "mhdb:Empty"
                 else:
                     #print(row[1]["index"], response)
-                    response_iri = mhdb_iri(response)
+                    response_iri = check_iri(response)
                     statements = add_to_statements(
                         response_iri,
                         "rdf:label",
@@ -1308,7 +1302,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 scale_type_iri = mhdb_iri(scale_types[scale_types["index"] ==
                                           index_scale_type]["scale_type"].values[0])
             if scale_type_iri not in exclude_list:
-                predicates_list.append(("mhdb:hasScaleType", scale_type_iri))
+                predicates_list.append(("mhdb:hasScaleType", check_iri(scale_type_iri)))
 
         if index_value_type not in exclude_list:
             value_type_iri = value_types[value_types["index"] ==
@@ -1317,7 +1311,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
                 value_type_iri = mhdb_iri(value_types[value_types["index"] ==
                                           index_value_type]["value_type"].values[0])
             if value_type_iri not in exclude_list:
-                predicates_list.append(("mhdb:hasValueType", value_type_iri))
+                predicates_list.append(("mhdb:hasValueType", check_iri(value_type_iri)))
 
         if num_options not in exclude_list:
             predicates_list.append(("mhdb:hasNumberOfOptions",
@@ -1354,9 +1348,9 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
     # response_types worksheet
     for row in response_types.iterrows():
-        response_type_iri = row[1]["IRI"]
+        response_type_iri = check_iri(row[1]["IRI"])
         if response_type_iri in exclude_list:
-            response_type_iri = mhdb_iri(row[1]["response_type"])
+            response_type_iri = check_iri(row[1]["response_type"])
             response_type_label = language_string(row[1]["response_type"])
             statements = add_to_statements(
                 response_type_iri, "rdfs:label", response_type_label,
@@ -1367,12 +1361,12 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
     # scale_types worksheet
     for row in scale_types.iterrows():
-        scale_type_iri = row[1]["IRI"]
+        scale_type_iri = check_iri(row[1]["IRI"])
         if scale_type_iri in exclude_list:
-            scale_type_iri = mhdb_iri(row[1]["scale_type"])
+            scale_type_iri = check_iri(row[1]["scale_type"])
             scale_type_label = language_string(row[1]["scale_type"])
             statements = add_to_statements(
-                scale_type_iri, "rdfs:label", scale_type_label,
+                scale_type_iri, "rdfs:label", check_iri(scale_type_label),
                 statements, exclude_list)
             statements = add_to_statements(
                 scale_type_iri, "rdf:type", "mhdb:ScaleType",
@@ -1380,9 +1374,9 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
     # value_types worksheet
     for row in value_types.iterrows():
-        value_type_iri = row[1]["IRI"]
+        value_type_iri = check_iri(row[1]["IRI"])
         if value_type_iri in exclude_list:
-            value_type_iri = mhdb_iri(row[1]["value_type"])
+            value_type_iri = check_iri(row[1]["value_type"])
             value_type_label = language_string(row[1]["value_type"])
             statements = add_to_statements(
                 value_type_iri, "rdfs:label", value_type_label,
@@ -1587,12 +1581,12 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
                     references["index"] == row[1]["index_reference"]
                 ]["link"].values[0]
             if source not in exclude_list:
-                source = check_iri(source)
+                source_iri = check_iri(source)
             else:
                 source = references[
                         references["index"] == row[1]["index_reference"]
                     ]["reference"].values[0]
-                source = check_iri(source)
+                source_iri = check_iri(source)
 
         symptom_label = language_string(row[1]["sign_or_symptom"])
         symptom_iri = check_iri(row[1]["sign_or_symptom"])
@@ -1600,7 +1594,7 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         predicates_list = []
         predicates_list.append(("rdfs:label", symptom_label))
         predicates_list.append(("rdf:type", sign_or_symptom))
-        predicates_list.append(("dcterms:isReferencedBy", source))
+        predicates_list.append(("dcterms:isReferencedBy", source_iri))
 
         # specific to females/males?
         if row[1]["index_gender"] not in exclude_list:
@@ -2266,12 +2260,12 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
             for index in indices:
                 source = references[references["index"] == index]["link"].values[0]
                 if source not in exclude_list:
-                    source = check_iri(source)
+                    source_iri = check_iri(source)
                 else:
                     source = references[references["index"] ==
                                         index]["reference"].values[0]
-                    source = check_iri(source)
-            predicates_list.append(("dcterms:isReferencedBy", source))
+                    source_iri = check_iri(source)
+            predicates_list.append(("dcterms:isReferencedBy", source_iri))
 
         # if indices_state not in exclude_list:
         #     indices = [np.int(x) for x in
@@ -2374,18 +2368,18 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
             predicates_list.append(("foaf:homepage", check_iri(row[1]["link"])))
         if row[1]["abbreviation"] not in exclude_list:
             predicates_list.append(("dbpedia-owl:abbreviation",
-                                    row[1]["abbreviation"]))
+                                    check_iri(row[1]["abbreviation"])))
         if row[1]["organization"] not in exclude_list:
             organization_iri = check_iri(row[1]["organization"])
             statements = add_to_statements(organization_iri, "rdf:type",
                                 "org:organization", statements, exclude_list)
             statements = add_to_statements(organization_iri, "rdfs:label",
-                                row[1]["organization"], statements, exclude_list)
+                                check_iri(row[1]["organization"], statements, exclude_list))
             predicates_list.append(("dcterms:isPartOf", organization_iri))
         if row[1]["member"] not in exclude_list:
             member_iri = check_iri(row[1]["member"])
-            statements = add_to_statements(member_iri, "rdf:type",
-                                "foaf:Person", statements, exclude_list)
+            statements = add_to_statements(member_iri, "rdf:type", "foaf:Person",
+                                           statements, exclude_list)
             predicates_list.append(("org:hasMember", member_iri))
 
         for predicates in predicates_list:
@@ -2570,7 +2564,7 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
         if description not in exclude_list:
             predicates_list.append(("rdfs:comment", language_string(description)))
         if abbreviation not in exclude_list:
-            predicates_list.append(("dbpedia-owl:abbreviation", abbreviation))
+            predicates_list.append(("dbpedia-owl:abbreviation", check_iri(abbreviation)))
 
         # specific to females/males?
         index_gender = row[1]["index_gender"]
@@ -2764,10 +2758,10 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
         cogatlas_prop_id = row[1]["cogatlas_prop_id"]
         if cogatlas_node_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    "cognitiveatlas_node_id_" + str(cogatlas_node_id)))
+                                    "cognitiveatlas_node_id_" + check_iri(cogatlas_node_id)))
         if cogatlas_prop_id not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    "cognitiveatlas_prop_id_" + str(cogatlas_prop_id)))
+                                    "cognitiveatlas_prop_id_" + check_iri(cogatlas_prop_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -2822,7 +2816,7 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
 
         if row[1]["abbreviation"] not in exclude_list:
             predicates_list.append(("dbpedia-owl:abbreviation",
-                                    row[1]["abbreviation"]))
+                                    check_iri(row[1]["abbreviation"])))
         if row[1]["description"] not in exclude_list:
             predicates_list.append(("rdfs:comment",
                                     language_string(row[1]["description"])))
