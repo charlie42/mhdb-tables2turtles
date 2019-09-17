@@ -25,46 +25,6 @@ except:
 import numpy as np
 
 
-def check_iri(
-    iri,
-    prefixes={("mhdb", "http://www.purl.org/mentalhealth#")},
-    alert_unknown=False):
-    """
-    Function to format IRIs by type
-    eg, <iri> or prefix:iri
-    Parameters
-    ---------
-    iri: string
-
-    prefixes: set of 2-or-3-tuples
-
-    alert_unknown: Boolean
-
-    Returns
-    -------
-    iri: string
-    """
-    iri = str(iri).strip()
-    prefix_strings = {"","_"} if not prefixes else {
-        "",
-        "_",
-        *[prefix[0] for prefix in prefixes]
-    }
-    if ":" in iri and ": " not in iri:
-        if iri.endswith(":"):
-            return(check_iri(iri[:-1], prefixes))
-        elif iri.split(":")[0] in prefix_strings:
-            return(iri)
-        elif ":/" in iri:
-            return("<{0}>".format(iri))
-        if alert_unknown:
-            print("unknown prefix: {0}".format(iri.split(":")[0]))
-        return iri.strip()
-    else:
-        from mhdb.write_ttl import mhdb_iri
-        return mhdb_iri(iri)
-
-
 def language_string(s, lang="en"):
     """
     Function to encode a literal as being in a specific language.
@@ -100,6 +60,47 @@ def language_string(s, lang="en"):
             lang
         )
     )
+
+
+def check_iri(
+    iri,
+    prefixes={("mhdb", "http://www.purl.org/mentalhealth#")},
+    alert_unknown=False):
+    """
+    Function to format IRIs by type
+    eg, <iri> or prefix:iri
+    Parameters
+    ---------
+    iri: string
+
+    prefixes: set of 2-or-3-tuples
+
+    alert_unknown: Boolean
+
+    Returns
+    -------
+    iri: string
+    """
+    iri = str(iri).strip()
+    prefix_strings = {"","_"} if not prefixes else {
+        "",
+        "_",
+        *[prefix[0] for prefix in prefixes]
+    }
+    if ":" in iri and ": " not in iri:
+        if iri.endswith(":"):
+            return(check_iri(iri[:-1], prefixes))
+        elif iri.split(":")[0] in prefix_strings:
+            return(iri)
+        elif ":/" in iri and \
+            not iri.startswith('<') and not iri.endswith('>'):
+            return("<{0}>".format(iri))
+        if alert_unknown:
+            print("unknown prefix: {0}".format(iri.split(":")[0]))
+        return iri.strip()
+    else:
+        from mhdb.write_ttl import mhdb_iri
+        return mhdb_iri(iri)
 
 
 def mhdb_iri(label):

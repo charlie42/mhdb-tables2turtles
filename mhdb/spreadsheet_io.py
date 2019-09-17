@@ -14,6 +14,7 @@ import os
 import pandas as pd
 import urllib
 
+
 def convert_string_to_label(input_string):
     """
     Remove all non-alphanumeric characters from a string.
@@ -123,7 +124,7 @@ def download_google_sheet(filepath, docid):
         'https://docs.google.com/spreadsheets/d/',
         '/export?format=xlsx'
         ), filepath)
-    return(filepath)
+    return filepath
 
 
 def return_none_for_nan(input_value):
@@ -195,7 +196,7 @@ def return_float(input_number):
 
 def return_string(input_string, replace=[], replace_with=[]):
     """
-    Return a stripped string.
+    Return a stripped string with optional character replacements.
 
     Parameters
     ----------
@@ -214,12 +215,12 @@ def return_string(input_string, replace=[], replace_with=[]):
     """
 
     if input_string:
-        input_string = "<{0}>".format(
-            input_string
-            ) if (
-            "://" in input_string and
-            not input_string.startswith("<")
-            ) else input_string
+        # input_string = "<{0}>".format(
+        #     input_string
+        #     ) if (
+        #     "://" in input_string and
+        #     not input_string.startswith("<")
+        #     ) else input_string
         if not isinstance(input_string, str):
             input_string = str(input_string)
         output_string = input_string.replace(

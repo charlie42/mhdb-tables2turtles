@@ -52,7 +52,7 @@ import pandas as pd
 
 run_all = 0
 if run_all:
-    do_states = 1
+    do_states = 0
     do_behaviors = 0 # SKIP
     do_measures = 1
     do_tasks = 1
@@ -65,11 +65,11 @@ else:
     do_states = 0
     do_behaviors = 0 # SKIP
     do_measures = 0
-    do_tasks = 1
+    do_tasks = 0
     do_questions = 0
     do_dsm5 = 0
     do_projects = 0
-    do_references = 0
+    do_references = 1
     do_claims = 0 # SKIP
 
 
@@ -277,8 +277,8 @@ Current information can be found on the website, https://matter.childmind.org.
                     [tasks_statements, tasks_outfile, tasks_turtle],
                     [questions_statements, questions_outfile, questions_turtle],
                     [dsm5_statements, dsm5_outfile, dsm5_turtle],
-                    [references_statements, references_outfile, references_turtle],
                     [projects_statements, projects_outfile, projects_turtle],
+                    [references_statements, references_outfile, references_turtle],
                     [claims_statements, claims_outfile, claims_turtle]]
 
     for ioutput, output_list in enumerate(outputs_list):
