@@ -15,94 +15,6 @@ import pandas as pd
 import urllib
 
 
-def convert_string_to_label(input_string):
-    """
-    Remove all non-alphanumeric characters from a string.
-
-    Parameters
-    ----------
-    input_string : string
-        input string
-
-    Returns
-    -------
-    output_string : string
-        output string
-
-    """
-
-    if input_string and isinstance(input_string, str):
-        #input_string = input_string.lower()
-        input_string = input_string.strip()
-        input_string = input_string.replace(" ", "_")
-        input_string = input_string.replace("_-_", "-")
-        keep_chars = ('-', '_')
-        output_string = "".join(c for c in str(input_string) if c.isalnum()
-                                or c in keep_chars).rstrip()
-        return output_string
-    else:
-        raise Exception('"{0}" is not a string!'.format(input_string))
-
-# def create_uri(base_uri, label):
-#     """
-#     Create a safe URI.
-#
-#     Parameters
-#     ----------
-#     base_uri : string
-#         base URI
-#     label : string
-#         input string
-#
-#     Returns
-#     -------
-#     output_uri : string
-#         output URI
-#
-#     """
-#     from mhdb.spreadsheet_io import convert_string_to_label
-#
-#     label_safe = convert_string_to_label(label)
-#     output_uri = base_uri + "#" + label_safe
-#
-#     return output_uri
-#
-#
-# def write_triple(subject_string, predicate_string, object_string,
-#                  third_literal=False):
-#     """
-#     Write a triple from three URIs.
-#
-#     Parameters
-#     ----------
-#     subject_string : string
-#         subject URI
-#     predicate_string : string
-#         predicate URI or in ['a', 'rdf:type']
-#     object_string : string
-#         object URI or literal
-#     third_literal : Boolean
-#         is the object_string a literal?
-#
-#     Returns
-#     -------
-#     output_triple : string
-#         output triple
-#
-#     """
-#
-#     if predicate_string not in ['a', 'rdf:type']:
-#         predicate_string = "<0>".format(predicate_string)
-#     if not third_literal:
-#         object_string = "<0>".format(object_string)
-#
-#     output_triple = "<{0}> {1} {2}".format(subject_string,
-#                                            predicate_string,
-#                                            object_string)
-#
-#     return output_triple
-
-
 def download_google_sheet(filepath, docid):
     """
     Download latest version of a Google Sheet
@@ -215,12 +127,6 @@ def return_string(input_string, replace=[], replace_with=[]):
     """
 
     if input_string:
-        # input_string = "<{0}>".format(
-        #     input_string
-        #     ) if (
-        #     "://" in input_string and
-        #     not input_string.startswith("<")
-        #     ) else input_string
         if not isinstance(input_string, str):
             input_string = str(input_string)
         output_string = input_string.replace(
@@ -241,6 +147,38 @@ def return_string(input_string, replace=[], replace_with=[]):
             return output_string
     else:
         return ""
+
+
+def convert_string_to_label(input_string):
+    """
+    Remove all non-alphanumeric characters from a string.
+
+    Parameters
+    ----------
+    input_string : string
+        input string
+
+    Returns
+    -------
+    output_string : string
+        output string
+
+    """
+
+    if input_string and isinstance(input_string, str):
+        input_string = return_string(input_string,
+                                     replace=['"', '\n'],
+                                     replace_with=['', ''])
+        #input_string = input_string.lower()
+        input_string = input_string.strip()
+        input_string = input_string.replace(" ", "_")
+        input_string = input_string.replace("_-_", "-")
+        keep_chars = ('-', '_')
+        output_string = "".join(c for c in str(input_string) if c.isalnum()
+                                or c in keep_chars).rstrip()
+        return output_string
+    else:
+        raise Exception('"{0}" is not a string!'.format(input_string))
 
 
 def create_label(input_string):
@@ -498,3 +436,62 @@ def trysplit(x, delimiter):
         return(x.split(delimiter))
     else:
         return(x)
+
+# def create_uri(base_uri, label):
+#     """
+#     Create a safe URI.
+#
+#     Parameters
+#     ----------
+#     base_uri : string
+#         base URI
+#     label : string
+#         input string
+#
+#     Returns
+#     -------
+#     output_uri : string
+#         output URI
+#
+#     """
+#     from mhdb.spreadsheet_io import convert_string_to_label
+#
+#     label_safe = convert_string_to_label(label)
+#     output_uri = base_uri + "#" + label_safe
+#
+#     return output_uri
+#
+#
+# def write_triple(subject_string, predicate_string, object_string,
+#                  third_literal=False):
+#     """
+#     Write a triple from three URIs.
+#
+#     Parameters
+#     ----------
+#     subject_string : string
+#         subject URI
+#     predicate_string : string
+#         predicate URI or in ['a', 'rdf:type']
+#     object_string : string
+#         object URI or literal
+#     third_literal : Boolean
+#         is the object_string a literal?
+#
+#     Returns
+#     -------
+#     output_triple : string
+#         output triple
+#
+#     """
+#
+#     if predicate_string not in ['a', 'rdf:type']:
+#         predicate_string = "<0>".format(predicate_string)
+#     if not third_literal:
+#         object_string = "<0>".format(object_string)
+#
+#     output_triple = "<{0}> {1} {2}".format(subject_string,
+#                                            predicate_string,
+#                                            object_string)
+#
+#     return output_triple

@@ -89,12 +89,12 @@ def check_iri(
     }
     if ":" in iri and ": " not in iri:
         if iri.endswith(":"):
-            return(check_iri(iri[:-1], prefixes))
+            return check_iri(iri[:-1], prefixes)
         elif iri.split(":")[0] in prefix_strings:
-            return(iri)
+            return iri
         elif ":/" in iri and \
             not iri.startswith('<') and not iri.endswith('>'):
-            return("<{0}>".format(iri))
+            return "<{0}>".format(convert_string_to_label(iri))
         if alert_unknown:
             print("unknown prefix: {0}".format(iri.split(":")[0]))
         return iri.strip()
@@ -229,7 +229,7 @@ def write_about_statement(subject, predicate, object, predicates):
     """
     return(
         write_ttl(
-            "_:{0}".format(convert_string_to_label("_".join([
+            "_:{0}".format(create_label("_".join([
                 subject,
                 predicate,
                 object

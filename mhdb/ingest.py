@@ -1147,82 +1147,86 @@ def ingest_questions(questions_xls, references_xls, statements={}):
 
         if instructions not in exclude_list:
             predicates_list.append(("mhdb:hasPaperInstructions",
-                                    check_iri(instructions)))
-            statements = add_to_statements(
-                check_iri(instructions),
-                "rdf:type",
-                "mhdb:PaperInstructions",
-                statements,
-                exclude_list
-            )
-            statements = add_to_statements(
-                check_iri(instructions),
-                "rdfs:label",
-                language_string(instructions),
-                statements,
-                exclude_list
-            )
+                                    language_string(instructions)))
+            # statements = add_to_statements(
+            #     check_iri(instructions),
+            #     "rdf:type",
+            #     "mhdb:PaperInstructions",
+            #     statements,
+            #     exclude_list
+            # )
+            # statements = add_to_statements(
+            #     check_iri(instructions),
+            #     "rdfs:label",
+            #     language_string(instructions),
+            #     statements,
+            #     exclude_list
+            # )
             if group_instructions.strip() not in exclude_list:
-                statements = add_to_statements(
-                    check_iri(group_instructions),
-                    "rdf:type",
-                    "mhdb:PaperInstructions",
-                    statements,
-                    exclude_list
-                )
-                statements = add_to_statements(
-                    check_iri(instructions),
-                    "mhdb:hasPaperInstructions",
-                    check_iri(group_instructions),
-                    statements,
-                    exclude_list
-                )
-                statements = add_to_statements(
-                    check_iri(group_instructions),
-                    "rdfs:label",
-                    language_string(group_instructions),
-                    statements,
-                    exclude_list
-                )
+                predicates_list.append(("mhdb:hasGroupInstructions",
+                                        language_string(group_instructions)))
+                # statements = add_to_statements(
+                #     check_iri(group_instructions),
+                #     "rdf:type",
+                #     "mhdb:PaperInstructions",
+                #     statements,
+                #     exclude_list
+                # )
+                # statements = add_to_statements(
+                #     check_iri(instructions),
+                #     "mhdb:hasPaperInstructions",
+                #     check_iri(group_instructions),
+                #     statements,
+                #     exclude_list
+                # )
+                # statements = add_to_statements(
+                #     check_iri(group_instructions),
+                #     "rdfs:label",
+                #     language_string(group_instructions),
+                #     statements,
+                #     exclude_list
+                # )
         if digital_instructions not in exclude_list:
             predicates_list.append(("mhdb:hasInstructions",
-                                    check_iri(digital_instructions)))
-            statements = add_to_statements(
-                check_iri(digital_instructions),
-                "rdf:type",
-                "mhdb:Instructions",
-                statements,
-                exclude_list
-            )
-            statements = add_to_statements(
-                check_iri(digital_instructions),
-                "rdfs:label",
-                language_string(digital_instructions),
-                statements,
-                exclude_list
-            )
+                                    language_string(digital_instructions)))
+            # statements = add_to_statements(
+            #     check_iri(digital_instructions),
+            #     "rdf:type",
+            #     "mhdb:Instructions",
+            #     statements,
+            #     exclude_list
+            # )
+            # statements = add_to_statements(
+            #     check_iri(digital_instructions),
+            #     "rdfs:label",
+            #     language_string(digital_instructions),
+            #     statements,
+            #     exclude_list
+            # )
             if digital_group_instructions not in exclude_list:
-                statements = add_to_statements(
-                    check_iri(digital_group_instructions),
-                    "rdf:type",
-                    "mhdb:Instructions",
-                    statements,
-                    exclude_list
-                )
-                statements = add_to_statements(
-                    check_iri(digital_instructions),
-                    "mhdb:hasInstructions",
-                    check_iri(digital_group_instructions),
-                    statements,
-                    exclude_list
-                )
-                statements = add_to_statements(
-                    check_iri(digital_group_instructions),
-                    "rdfs:label",
-                    language_string(digital_group_instructions),
-                    statements,
-                    exclude_list
-                )
+                predicates_list.append(("mhdb:hasDigitalGroupInstructions",
+                                        language_string(digital_group_instructions)))
+                # statements = add_to_statements(
+                #     check_iri(digital_group_instructions),
+                #     "rdf:type",
+                #     "mhdb:Instructions",
+                #     statements,
+                #     exclude_list
+                # )
+                # statements = add_to_statements(
+                #     check_iri(digital_instructions),
+                #     "mhdb:hasInstructions",
+                #     check_iri(digital_group_instructions),
+                #     statements,
+                #     exclude_list
+                # )
+                # statements = add_to_statements(
+                #     check_iri(digital_group_instructions),
+                #     "rdfs:label",
+                #     language_string(digital_group_instructions),
+                #     statements,
+                #     exclude_list
+                # )
 
         if response_options not in exclude_list:
             response_options = response_options.strip('-')
