@@ -634,14 +634,14 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         #             predicates_list.append(("mhdb:assessesDomain",
         #                                     check_iri(objectRDF)))
 
-        # Cognitive Atlas-specific columns
-        cogatlas_node_id = check_iri(row[1]["cogatlas_node_id"])
-        if cogatlas_node_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    cogatlas_node_id))
-        cogatlas_prop_id = check_iri(row[1]["cogatlas_prop_id"])
-        if cogatlas_prop_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+        # # Cognitive Atlas-specific columns
+        # cogatlas_node_id = check_iri(row[1]["cogatlas_node_id"])
+        # if cogatlas_node_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+        #                             cogatlas_node_id))
+        # cogatlas_prop_id = check_iri(row[1]["cogatlas_prop_id"])
+        # if cogatlas_prop_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
                                     cogatlas_prop_id))
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -698,19 +698,19 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         #             predicates_list.append(("mhdb:???",
         #                                     check_iri(objectRDF)))
 
-        # Cognitive Atlas-specific columns
-        cogatlas_node_id = row[1]["cogatlas_node_id"]
-        if cogatlas_node_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    check_iri(cogatlas_node_id)))
-        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
-        if cogatlas_prop_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    check_iri(cogatlas_prop_id)))
-        cogatlas_task_id = row[1]["cogatlas_task_id"]
-        if cogatlas_task_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasTaskID",
-                                    check_iri(cogatlas_task_id)))
+        # # Cognitive Atlas-specific columns
+        # cogatlas_node_id = row[1]["cogatlas_node_id"]
+        # if cogatlas_node_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+        #                             check_iri(cogatlas_node_id)))
+        # cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        # if cogatlas_prop_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+        #                             check_iri(cogatlas_prop_id)))
+        # cogatlas_task_id = row[1]["cogatlas_task_id"]
+        # if cogatlas_task_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasTaskID",
+        #                             check_iri(cogatlas_task_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -731,11 +731,11 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         predicates_list.append(("rdfs:label", indicator_label))
         predicates_list.append(("a", "mhdb:Indicator"))
 
-        # Cognitive Atlas-specific columns
-        cogatlas_node_id = row[1]["cogatlas_node_id"]
-        if cogatlas_node_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    check_iri(cogatlas_node_id)))
+        # # Cognitive Atlas-specific columns
+        # cogatlas_node_id = row[1]["cogatlas_node_id"]
+        # if cogatlas_node_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+        #                             check_iri(cogatlas_node_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -756,15 +756,15 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         predicates_list.append(("rdfs:label", contrast_label))
         predicates_list.append(("a", "mhdb:Contrast"))
 
-        # Cognitive Atlas-specific columns
-        cogatlas_node_id = row[1]["cogatlas_node_id"]
-        if cogatlas_node_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    check_iri(cogatlas_node_id)))
-        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
-        if cogatlas_prop_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    check_iri(cogatlas_prop_id)))
+        # # Cognitive Atlas-specific columns
+        # cogatlas_node_id = row[1]["cogatlas_node_id"]
+        # if cogatlas_node_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+        #                             check_iri(cogatlas_node_id)))
+        # cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        # if cogatlas_prop_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+        #                             check_iri(cogatlas_prop_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -788,15 +788,15 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
             predicates_list.append(("rdfs:comment",
                                     language_string(row[1]["description"])))
 
-        # Cognitive Atlas-specific columns
-        cogatlas_node_id = row[1]["cogatlas_node_id"]
-        if cogatlas_node_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    check_iri(cogatlas_node_id)))
-        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
-        if cogatlas_prop_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    check_iri(cogatlas_prop_id)))
+        # # Cognitive Atlas-specific columns
+        # cogatlas_node_id = row[1]["cogatlas_node_id"]
+        # if cogatlas_node_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+        #                             check_iri(cogatlas_node_id)))
+        # cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        # if cogatlas_prop_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+        #                             check_iri(cogatlas_prop_id)))
 
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -817,19 +817,19 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         predicates_list.append(("rdfs:label", assertion_label))
         predicates_list.append(("a", "mhdb:Assertion"))
 
-        # Cognitive Atlas-specific columns
-        cogatlas_node_id = row[1]["cogatlas_node_id"]
-        if cogatlas_node_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
-                                    check_iri(cogatlas_node_id)))
-        cogatlas_prop_id = row[1]["cogatlas_prop_id"]
-        if cogatlas_prop_id not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    check_iri(cogatlas_prop_id)))
-        confidence_level = row[1]["confidence_level"]
-        if confidence_level not in exclude_list:
-            predicates_list.append(("mhdb:hasCognitiveAtlasConfidenceLevel",
-                                    check_iri(confidence_level)))
+        # # Cognitive Atlas-specific columns
+        # cogatlas_node_id = row[1]["cogatlas_node_id"]
+        # if cogatlas_node_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasNodeID",
+        #                             check_iri(cogatlas_node_id)))
+        # cogatlas_prop_id = row[1]["cogatlas_prop_id"]
+        # if cogatlas_prop_id not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
+        #                             check_iri(cogatlas_prop_id)))
+        # confidence_level = row[1]["confidence_level"]
+        # if confidence_level not in exclude_list:
+        #     predicates_list.append(("mhdb:hasCognitiveAtlasConfidenceLevel",
+        #                             check_iri(confidence_level)))
         subject_def = row[1]["subject_def"]
         if subject_def not in exclude_list:
             predicates_list.append(("mhdb:hasCognitiveAtlasSubjectDef",
@@ -2714,15 +2714,16 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
             indices = [np.int(x) for x in
                        indices_cited_references.strip().split(',') if len(x)>0]
             for index in indices:
-                ref_source = references[
-                    references["index"] == index]["link"].values[0]
-                if isinstance(ref_source, float):
-                    ref_source = references[
+                # cited reference IRI
+                title_cited = references[
+                    references["index"] == index]["reference"].values
+                if title_cited not in exclude_list:
+                    title_cited = references[
                         references["index"] == index]["reference"].values[0]
-                    ref_source = check_iri(ref_source)
+                    title_cited = check_iri(title_cited)
                 else:
-                    ref_source = check_iri(ref_source)
-                predicates_list.append(("dcterms:isReferencedBy", ref_source))
+                    break
+                predicates_list.append(("dcterms:isReferencedBy", title_cited))
         if index_license not in exclude_list:
             objectRDF = references[licenses["index"] ==
                                    index_license]["license"].values[0]
