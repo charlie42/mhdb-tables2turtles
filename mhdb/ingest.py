@@ -2578,9 +2578,11 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
 
         predicates_list = []
 
-        # reference IRI
+        # require title
         title = row[1]["reference"]
         if title not in exclude_list:
+
+            # reference IRI
             reference_iri = check_iri(title)
             predicates_list.append(("rdfs:label", language_string(title)))
             predicates_list.append(("dcterms:title", language_string(title)))
@@ -2720,9 +2722,7 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
                         title_cited = references[
                             references["index"] == index]["reference"].values[0]
                         title_cited = check_iri(title_cited)
-                    else:
-                        break
-                    predicates_list.append(("dcterms:isReferencedBy", title_cited))
+                        predicates_list.append(("dcterms:isReferencedBy", title_cited))
             if index_license not in exclude_list:
                 objectRDF = references[licenses["index"] ==
                                        index_license]["license"].values[0]
