@@ -50,7 +50,7 @@ except:
 import numpy as np
 import pandas as pd
 
-run_all = 1
+run_all = 0
 if run_all:
     do_states = 0
     do_behaviors = 0 # SKIP
@@ -65,11 +65,11 @@ else:
     do_states = 0
     do_behaviors = 0 # SKIP
     do_measures = 0
-    do_tasks = 1
+    do_tasks = 0
     do_questions = 0
-    do_dsm5 = 1
+    do_dsm5 = 0
     do_projects = 0
-    do_references = 0
+    do_references = 1
     do_claims = 0 # SKIP
 
 

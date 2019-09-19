@@ -2614,11 +2614,11 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
                         ("schema:epidemiology", "schema:Male"))
 
             # research article-specific columns
-            authors = row[1]["authors"]
+            # authors = row[1]["authors"]
             pubdate = row[1]["pubdate"]
             PubMedID = row[1]["PubMedID"]
-            if authors not in exclude_list:
-                predicates_list.append(("bibo:authorList", check_iri(authors)))
+            # if authors not in exclude_list:
+            #     predicates_list.append(("bibo:authorList", check_iri(authors)))
             if pubdate not in exclude_list:
                 predicates_list.append(("npg:publicationDate", check_iri(pubdate)))
                 # npg:publicationYear
