@@ -642,7 +642,7 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         # cogatlas_prop_id = check_iri(row[1]["cogatlas_prop_id"])
         # if cogatlas_prop_id not in exclude_list:
         #     predicates_list.append(("mhdb:hasCognitiveAtlasPropID",
-                                    cogatlas_prop_id))
+        #                             cogatlas_prop_id))
         for predicates in predicates_list:
             statements = add_to_statements(
                 task_iri,
