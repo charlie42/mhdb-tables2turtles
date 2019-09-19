@@ -81,6 +81,8 @@ def check_iri(
     -------
     iri: string
     """
+    from mhdb.write_ttl import mhdb_iri
+
     iri = str(iri).strip()
     prefix_strings = {"","_"} if not prefixes else {
         "",
@@ -95,17 +97,18 @@ def check_iri(
         elif ":/" in iri and \
             not iri.startswith('<') and not iri.endswith('>'):
             return "<{0}>".format(convert_string_to_label(iri))
+        else:
+            return mhdb_iri(iri)
         if alert_unknown:
             print("unknown prefix: {0}".format(iri.split(":")[0]))
         return iri.strip()
     else:
-        from mhdb.write_ttl import mhdb_iri
         return mhdb_iri(iri)
 
 
 def mhdb_iri(label):
     """
-    Function to prepend "mhdb:" to label or string
+    Function to prepend "mhdb:" to converted label
 
     Parameter
     ---------
@@ -118,6 +121,24 @@ def mhdb_iri(label):
     return(":".join([
         "mhdb",
         convert_string_to_label(label)
+    ]))
+
+
+def mhdb_iri_simple(label):
+    """
+    Function to prepend "mhdb:" to string
+
+    Parameter
+    ---------
+    label: string
+
+    Returns
+    -------
+    iri: string
+    """
+    return(":".join([
+        "mhdb",
+        label
     ]))
 
 
