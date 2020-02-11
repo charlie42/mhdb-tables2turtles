@@ -4,11 +4,10 @@ This script contains specific functions to interpret a specific set of
 spreadsheets
 
 Authors:
+    - Arno Klein, 2019-2020 (arno@childmind.org)  http://binarybottle.com
     - Jon Clucas, 2017–2018 (jon.clucas@childmind.org)
-    - Anirudh Krishnakumar, 2017–2018
-    - Arno Klein, 2019 (arno@childmind.org)  http://binarybottle.com
 
-Copyright 2019, Child Mind Institute (http://childmind.org), Apache v2.0 License
+Copyright 2020, Child Mind Institute (http://childmind.org), Apache v2.0 License
 
 """
 try:
@@ -153,9 +152,9 @@ def ingest_states(states_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     mhdb_iri_simple(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass_2"])))
+                                    mhdb_iri_simple(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     mhdb_iri_simple(row[1]["subClassOf"])))
@@ -302,105 +301,105 @@ def ingest_measures(measures_xls, references_xls, statements={}):
     """
 
     # load worksheets as pandas dataframes
-    measure_classes = measures_xls.parse("Classes")
-    measure_properties = measures_xls.parse("Properties")
+    #measure_classes = measures_xls.parse("Classes")
+    #measure_properties = measures_xls.parse("Properties")
     sensors = measures_xls.parse("sensors")
     measures = measures_xls.parse("measures")
     references = references_xls.parse("references")
 
     # fill NANs with emptyValue
-    measure_classes = measure_classes.fillna(emptyValue)
-    measure_properties = measure_properties.fillna(emptyValue)
+    #measure_classes = measure_classes.fillna(emptyValue)
+    #measure_properties = measure_properties.fillna(emptyValue)
     sensors = sensors.fillna(emptyValue)
     measures = measures.fillna(emptyValue)
     references = references.fillna(emptyValue)
 
-    # Classes worksheet
-    for row in measure_classes.iterrows():
-
-        measure_class_label = language_string(row[1]["ClassName"])
-        measure_class_iri = mhdb_iri_simple(row[1]["ClassName"])
-
-        predicates_list = []
-        predicates_list.append(("rdfs:label", measure_class_label))
-        predicates_list.append(("a", "rdf:Class"))
-
-        if row[1]["DefinitionReference_index"] not in exclude_list:
-            source = references[references["index"] ==
-                np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
-            if source not in exclude_list:
-                source = check_iri(source)
-                #predicates_list.append(("dcterms:isReferencedBy", source))
-                predicates_list.append(("rdfs:isDefinedBy", source))
-
-        if row[1]["Definition"] not in exclude_list:
-            predicates_list.append(("rdfs:comment",
-                                    check_iri(row[1]["Definition"])))
-        if row[1]["sameAs"] not in exclude_list:
-            predicates_list.append(("owl:sameAs",
-                                    mhdb_iri_simple(row[1]["sameAs"])))
-        if row[1]["equivalentClass"] not in exclude_list:
-            predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
-            predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass_2"])))
-        if row[1]["subClassOf"] not in exclude_list:
-            predicates_list.append(("rdfs:subClassOf",
-                                    mhdb_iri_simple(row[1]["subClassOf"])))
-        for predicates in predicates_list:
-            statements = add_to_statements(
-                measure_class_iri,
-                predicates[0],
-                predicates[1],
-                statements,
-                exclude_list
-            )
-
-    # Properties worksheet
-    for row in measure_properties.iterrows():
-
-        measure_property_label = language_string(row[1]["property"])
-        measure_property_iri = mhdb_iri_simple(row[1]["property"])
-
-        predicates_list = []
-        predicates_list.append(("rdfs:label", measure_property_label))
-        predicates_list.append(("a", "rdf:Property"))
-
-        if row[1]["propertyDomain"] not in exclude_list:
-            predicates_list.append(("rdfs:domain",
-                                    mhdb_iri_simple(row[1]["propertyDomain"])))
-        if row[1]["propertyRange"] not in exclude_list:
-            predicates_list.append(("rdfs:range",
-                                    mhdb_iri_simple(row[1]["propertyRange"])))
-        if row[1]["DefinitionReference_index"] not in exclude_list:
-            source = references[references["index"] ==
-                np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
-            if source not in exclude_list:
-                source = check_iri(source)
-                #predicates_list.append(("dcterms:isReferencedBy", source))
-                predicates_list.append(("rdfs:isDefinedBy", source))
-
-        if row[1]["Definition"] not in exclude_list:
-            predicates_list.append(("rdfs:comment",
-                                    check_iri(row[1]["Definition"])))
-        if row[1]["sameAs"] not in exclude_list:
-            predicates_list.append(("owl:sameAs",
-                                    mhdb_iri_simple(row[1]["sameAs"])))
-        if row[1]["equivalentProperty"] not in exclude_list:
-            predicates_list.append(("rdfs:equivalentProperty",
-                                    mhdb_iri_simple(row[1]["equivalentProperty"])))
-        if row[1]["subPropertyOf"] not in exclude_list:
-            predicates_list.append(("rdfs:subPropertyOf",
-                                    mhdb_iri_simple(row[1]["subPropertyOf"])))
-        for predicates in predicates_list:
-            statements = add_to_statements(
-                measure_property_iri,
-                predicates[0],
-                predicates[1],
-                statements,
-                exclude_list
-            )
+    # # Classes worksheet
+    # for row in measure_classes.iterrows():
+    #
+    #     measure_class_label = language_string(row[1]["ClassName"])
+    #     measure_class_iri = mhdb_iri_simple(row[1]["ClassName"])
+    #
+    #     predicates_list = []
+    #     predicates_list.append(("rdfs:label", measure_class_label))
+    #     predicates_list.append(("a", "rdf:Class"))
+    #
+    #     if row[1]["DefinitionReference_index"] not in exclude_list:
+    #         source = references[references["index"] ==
+    #             np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
+    #         if source not in exclude_list:
+    #             source = check_iri(source)
+    #             #predicates_list.append(("dcterms:isReferencedBy", source))
+    #             predicates_list.append(("rdfs:isDefinedBy", source))
+    #
+    #     if row[1]["Definition"] not in exclude_list:
+    #         predicates_list.append(("rdfs:comment",
+    #                                 check_iri(row[1]["Definition"])))
+    #     if row[1]["sameAs"] not in exclude_list:
+    #         predicates_list.append(("owl:sameAs",
+    #                                 mhdb_iri_simple(row[1]["sameAs"])))
+    #     if row[1]["equivalentClass"] not in exclude_list:
+    #         predicates_list.append(("rdfs:equivalentClass",
+    #                                 mhdb_iri_simple(row[1]["equivalentClass"])))
+    #     if row[1]["equivalentClass2"] not in exclude_list:
+    #         predicates_list.append(("rdfs:equivalentClass",
+    #                                 mhdb_iri_simple(row[1]["equivalentClass2"])))
+    #     if row[1]["subClassOf"] not in exclude_list:
+    #         predicates_list.append(("rdfs:subClassOf",
+    #                                 mhdb_iri_simple(row[1]["subClassOf"])))
+    #     for predicates in predicates_list:
+    #         statements = add_to_statements(
+    #             measure_class_iri,
+    #             predicates[0],
+    #             predicates[1],
+    #             statements,
+    #             exclude_list
+    #         )
+    #
+    # # Properties worksheet
+    # for row in measure_properties.iterrows():
+    #
+    #     measure_property_label = language_string(row[1]["property"])
+    #     measure_property_iri = mhdb_iri_simple(row[1]["property"])
+    #
+    #     predicates_list = []
+    #     predicates_list.append(("rdfs:label", measure_property_label))
+    #     predicates_list.append(("a", "rdf:Property"))
+    #
+    #     if row[1]["propertyDomain"] not in exclude_list:
+    #         predicates_list.append(("rdfs:domain",
+    #                                 mhdb_iri_simple(row[1]["propertyDomain"])))
+    #     if row[1]["propertyRange"] not in exclude_list:
+    #         predicates_list.append(("rdfs:range",
+    #                                 mhdb_iri_simple(row[1]["propertyRange"])))
+    #     if row[1]["DefinitionReference_index"] not in exclude_list:
+    #         source = references[references["index"] ==
+    #             np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
+    #         if source not in exclude_list:
+    #             source = check_iri(source)
+    #             #predicates_list.append(("dcterms:isReferencedBy", source))
+    #             predicates_list.append(("rdfs:isDefinedBy", source))
+    #
+    #     if row[1]["Definition"] not in exclude_list:
+    #         predicates_list.append(("rdfs:comment",
+    #                                 check_iri(row[1]["Definition"])))
+    #     if row[1]["sameAs"] not in exclude_list:
+    #         predicates_list.append(("owl:sameAs",
+    #                                 mhdb_iri_simple(row[1]["sameAs"])))
+    #     if row[1]["equivalentProperty"] not in exclude_list:
+    #         predicates_list.append(("rdfs:equivalentProperty",
+    #                                 mhdb_iri_simple(row[1]["equivalentProperty"])))
+    #     if row[1]["subPropertyOf"] not in exclude_list:
+    #         predicates_list.append(("rdfs:subPropertyOf",
+    #                                 mhdb_iri_simple(row[1]["subPropertyOf"])))
+    #     for predicates in predicates_list:
+    #         statements = add_to_statements(
+    #             measure_property_iri,
+    #             predicates[0],
+    #             predicates[1],
+    #             statements,
+    #             exclude_list
+    #         )
 
     # sensors worksheet
     for row in sensors.iterrows():
@@ -423,7 +422,7 @@ def ingest_measures(measures_xls, references_xls, statements={}):
             for index in indices:
                 objectRDF = measures.measure[measures["index"] == index]
                 if isinstance(objectRDF, str):
-                    predicates_list.append(("ssn:observes",
+                    predicates_list.append(("m3-lite:hasMeasurementType",
                                             check_iri(objectRDF)))
         for predicates in predicates_list:
             statements = add_to_statements(
@@ -561,9 +560,9 @@ def ingest_tasks(tasks_xls, states_xls, projects_xls, references_xls,
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     mhdb_iri_simple(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass_2"])))
+                                    mhdb_iri_simple(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     mhdb_iri_simple(row[1]["subClassOf"])))
@@ -1079,9 +1078,9 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     mhdb_iri_simple(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass_2"])))
+                                    mhdb_iri_simple(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     mhdb_iri_simple(row[1]["subClassOf"])))
@@ -1144,6 +1143,7 @@ def ingest_questions(questions_xls, references_xls, statements={}):
     old_questionnaires = []
     for row in questions.iterrows():
 
+        print(row[1]["index_reference"])
         ref = references[references["index"] ==
                          row[1]["index_reference"]]["link"].values[0]
         if ref not in exclude_list:
@@ -1167,91 +1167,91 @@ def ingest_questions(questions_xls, references_xls, statements={}):
         predicates_list.append(("disco:questionText", question_label))
         predicates_list.append(("dcterms:isReferencedBy", check_iri(questionnaire)))
 
-        instructions = row[1]["instructions"]
-        group_instructions = row[1]["question_group_instructions"]
+        paper_instructions_preamble = row[1]["paper_instructions_preamble"]
+        paper_instructions = row[1]["paper_instructions"]
+        digital_instructions_preamble = row[1]["digital_instructions_preamble"]
         digital_instructions = row[1]["digital_instructions"]
-        digital_group_instructions = row[1]["digital_group_instructions"]
         response_options = row[1]["response_options"]
 
-        if instructions not in exclude_list:
-            predicates_list.append(("mhdb:hasPaperInstructions",
-                                    language_string(instructions)))
+        if paper_instructions_preamble not in exclude_list:
+            predicates_list.append(("mhdb:hasPaperInstructionsPreamble",
+                                    language_string(paper_instructions_preamble)))
             # statements = add_to_statements(
-            #     check_iri(instructions),
+            #     check_iri(paper_instructions_preamble),
             #     "a",
             #     "mhdb:PaperInstructions",
             #     statements,
             #     exclude_list
             # )
             # statements = add_to_statements(
-            #     check_iri(instructions),
+            #     check_iri(paper_instructions_preamble),
             #     "rdfs:label",
-            #     language_string(instructions),
+            #     language_string(paper_instructions_preamble),
             #     statements,
             #     exclude_list
             # )
-            if group_instructions.strip() not in exclude_list:
-                predicates_list.append(("mhdb:hasPaperGroupInstructions",
-                                        language_string(group_instructions)))
+            if paper_instructions.strip() not in exclude_list:
+                predicates_list.append(("mhdb:hasPaperInstructions",
+                                        language_string(paper_instructions)))
                 # statements = add_to_statements(
-                #     check_iri(group_instructions),
+                #     check_iri(paper_instructions),
                 #     "a",
                 #     "mhdb:PaperInstructions",
                 #     statements,
                 #     exclude_list
                 # )
                 # statements = add_to_statements(
-                #     check_iri(instructions),
+                #     check_iri(paper_instructions_preamble),
                 #     "mhdb:hasPaperInstructions",
-                #     check_iri(group_instructions),
+                #     check_iri(paper_instructions),
                 #     statements,
                 #     exclude_list
                 # )
                 # statements = add_to_statements(
-                #     check_iri(group_instructions),
+                #     check_iri(paper_instructions),
                 #     "rdfs:label",
-                #     language_string(group_instructions),
+                #     language_string(paper_instructions),
                 #     statements,
                 #     exclude_list
                 # )
-        if digital_instructions not in exclude_list:
-            predicates_list.append(("mhdb:hasInstructions",
-                                    language_string(digital_instructions)))
+        if digital_instructions_preamble not in exclude_list:
+            predicates_list.append(("mhdb:hasInstructionsPreamble",
+                                    language_string(digital_instructions_preamble)))
             # statements = add_to_statements(
-            #     check_iri(digital_instructions),
+            #     check_iri(digital_instructions_preamble),
             #     "a",
             #     "mhdb:Instructions",
             #     statements,
             #     exclude_list
             # )
             # statements = add_to_statements(
-            #     check_iri(digital_instructions),
+            #     check_iri(digital_instructions_preamble),
             #     "rdfs:label",
-            #     language_string(digital_instructions),
+            #     language_string(digital_instructions_preamble),
             #     statements,
             #     exclude_list
             # )
-            if digital_group_instructions not in exclude_list:
-                predicates_list.append(("mhdb:hasGroupInstructions",
-                                        language_string(digital_group_instructions)))
+            if digital_instructions not in exclude_list:
+                predicates_list.append(("mhdb:hasInstructions",
+                                        language_string(digital_instructions)))
                 # statements = add_to_statements(
-                #     check_iri(digital_group_instructions),
+                #     check_iri(digital_instructions),
                 #     "a",
                 #     "mhdb:Instructions",
                 #     statements,
                 #     exclude_list
                 # )
                 # statements = add_to_statements(
-                #     check_iri(digital_instructions),
+                #     check_iri(digital_instructions_preamble),
                 #     "mhdb:hasInstructions",
-                #     check_iri(digital_group_instructions),
+                #     check_iri(digital_instructions),
                 #     statements,
                 #     exclude_list
                 # )
                 # statements = add_to_statements(
-                #     check_iri(digital_group_instructions),
+                #     check_iri(digital_instructions),
                 #     "rdfs:label",
-                #     language_string(digital_group_instructions),
+                #     language_string(digital_instructions),
                 #     statements,
                 #     exclude_list
                 # )
@@ -1570,9 +1570,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     mhdb_iri_simple(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass_2"])))
+                                    mhdb_iri_simple(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     mhdb_iri_simple(row[1]["subClassOf"])))
@@ -1820,9 +1820,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    check_iri(row[1]["equivalentClass_2"])))
+                                    check_iri(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
@@ -1851,9 +1851,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
-        if row[1]["subClassOf_2"] not in exclude_list:
+        if row[1]["subClassOf2"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
-                                    check_iri(row[1]["subClassOf_2"])))
+                                    check_iri(row[1]["subClassOf2"])))
         if row[1]["IRI_ICD10"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["IRI_ICD10"])))
@@ -2066,9 +2066,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    check_iri(row[1]["equivalentClass_2"])))
+                                    check_iri(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
@@ -2095,9 +2095,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    check_iri(row[1]["equivalentClass_2"])))
+                                    check_iri(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
@@ -2124,9 +2124,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    check_iri(row[1]["equivalentClass_2"])))
+                                    check_iri(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
@@ -2153,9 +2153,9 @@ def ingest_dsm5(dsm5_xls, references_xls, statements={}):
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     check_iri(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    check_iri(row[1]["equivalentClass_2"])))
+                                    check_iri(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     check_iri(row[1]["subClassOf"])))
@@ -2212,8 +2212,8 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
     """
 
     # load worksheets as pandas dataframes
-    project_classes = projects_xls.parse("Classes")
-    project_properties = projects_xls.parse("Properties")
+    #project_classes = projects_xls.parse("Classes")
+    #project_properties = projects_xls.parse("Properties")
     projects = projects_xls.parse("projects")
     project_types = projects_xls.parse("project_types")
     groups = projects_xls.parse("groups")
@@ -2223,8 +2223,8 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
     references = references_xls.parse("references")
 
     # fill NANs with emptyValue
-    project_classes = project_classes.fillna(emptyValue)
-    project_properties = project_properties.fillna(emptyValue)
+    #project_classes = project_classes.fillna(emptyValue)
+    #project_properties = project_properties.fillna(emptyValue)
     projects = projects.fillna(emptyValue)
     project_types = project_types.fillna(emptyValue)
     groups = groups.fillna(emptyValue)
@@ -2233,92 +2233,92 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
     #states = states.fillna(emptyValue)
     references = references.fillna(emptyValue)
 
-    # Classes worksheet
-    for row in project_classes.iterrows():
-
-        project_class_label = language_string(row[1]["ClassName"])
-        project_class_iri = mhdb_iri_simple(row[1]["ClassName"])
-
-        predicates_list = []
-        predicates_list.append(("rdfs:label", project_class_label))
-        predicates_list.append(("a", "rdf:Class"))
-
-        if row[1]["DefinitionReference_index"] not in exclude_list:
-            source = references[references["index"] ==
-                np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
-            if source not in exclude_list:
-                source = check_iri(source)
-                #predicates_list.append(("dcterms:isReferencedBy", source))
-                predicates_list.append(("rdfs:isDefinedBy", source))
-
-        if row[1]["Definition"] not in exclude_list:
-            predicates_list.append(("rdfs:comment",
-                                    check_iri(row[1]["Definition"])))
-        if row[1]["sameAs"] not in exclude_list:
-            predicates_list.append(("owl:sameAs",
-                                    mhdb_iri_simple(row[1]["sameAs"])))
-        if row[1]["equivalentClass"] not in exclude_list:
-            predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
-            predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass_2"])))
-        if row[1]["subClassOf"] not in exclude_list:
-            predicates_list.append(("rdfs:subClassOf",
-                                    mhdb_iri_simple(row[1]["subClassOf"])))
-        for predicates in predicates_list:
-            statements = add_to_statements(
-                project_class_iri,
-                predicates[0],
-                predicates[1],
-                statements,
-                exclude_list
-            )
-
-    # Properties worksheet
-    for row in project_properties.iterrows():
-
-        project_property_label = language_string(row[1]["property"])
-        project_property_iri = mhdb_iri_simple(row[1]["property"])
-
-        predicates_list = []
-        predicates_list.append(("rdfs:label", project_property_label))
-        predicates_list.append(("a", "rdf:Property"))
-
-        if row[1]["propertyDomain"] not in exclude_list:
-            predicates_list.append(("rdfs:domain",
-                                    mhdb_iri_simple(row[1]["propertyDomain"])))
-        if row[1]["propertyRange"] not in exclude_list:
-            predicates_list.append(("rdfs:range",
-                                    mhdb_iri_simple(row[1]["propertyRange"])))
-        if row[1]["DefinitionReference_index"] not in exclude_list:
-            source = references[references["index"] ==
-                np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
-            if source not in exclude_list:
-                source = check_iri(source)
-                #predicates_list.append(("dcterms:isReferencedBy", source))
-                predicates_list.append(("rdfs:isDefinedBy", source))
-
-        if row[1]["Definition"] not in exclude_list:
-            predicates_list.append(("rdfs:comment",
-                                    check_iri(row[1]["Definition"])))
-        if row[1]["sameAs"] not in exclude_list:
-            predicates_list.append(("owl:sameAs",
-                                    mhdb_iri_simple(row[1]["sameAs"])))
-        if row[1]["equivalentProperty"] not in exclude_list:
-            predicates_list.append(("rdfs:equivalentProperty",
-                                    mhdb_iri_simple(row[1]["equivalentProperty"])))
-        if row[1]["subPropertyOf"] not in exclude_list:
-            predicates_list.append(("rdfs:subPropertyOf",
-                                    mhdb_iri_simple(row[1]["subPropertyOf"])))
-        for predicates in predicates_list:
-            statements = add_to_statements(
-                project_property_iri,
-                predicates[0],
-                predicates[1],
-                statements,
-                exclude_list
-            )
+    # # Classes worksheet
+    # for row in project_classes.iterrows():
+    #
+    #     project_class_label = language_string(row[1]["ClassName"])
+    #     project_class_iri = mhdb_iri_simple(row[1]["ClassName"])
+    #
+    #     predicates_list = []
+    #     predicates_list.append(("rdfs:label", project_class_label))
+    #     predicates_list.append(("a", "rdf:Class"))
+    #
+    #     if row[1]["DefinitionReference_index"] not in exclude_list:
+    #         source = references[references["index"] ==
+    #             np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
+    #         if source not in exclude_list:
+    #             source = check_iri(source)
+    #             #predicates_list.append(("dcterms:isReferencedBy", source))
+    #             predicates_list.append(("rdfs:isDefinedBy", source))
+    #
+    #     if row[1]["Definition"] not in exclude_list:
+    #         predicates_list.append(("rdfs:comment",
+    #                                 check_iri(row[1]["Definition"])))
+    #     if row[1]["sameAs"] not in exclude_list:
+    #         predicates_list.append(("owl:sameAs",
+    #                                 mhdb_iri_simple(row[1]["sameAs"])))
+    #     if row[1]["equivalentClass"] not in exclude_list:
+    #         predicates_list.append(("rdfs:equivalentClass",
+    #                                 mhdb_iri_simple(row[1]["equivalentClass"])))
+    #     if row[1]["equivalentClass2"] not in exclude_list:
+    #         predicates_list.append(("rdfs:equivalentClass",
+    #                                 mhdb_iri_simple(row[1]["equivalentClass2"])))
+    #     if row[1]["subClassOf"] not in exclude_list:
+    #         predicates_list.append(("rdfs:subClassOf",
+    #                                 mhdb_iri_simple(row[1]["subClassOf"])))
+    #     for predicates in predicates_list:
+    #         statements = add_to_statements(
+    #             project_class_iri,
+    #             predicates[0],
+    #             predicates[1],
+    #             statements,
+    #             exclude_list
+    #         )
+    #
+    # # Properties worksheet
+    # for row in project_properties.iterrows():
+    #
+    #     project_property_label = language_string(row[1]["property"])
+    #     project_property_iri = mhdb_iri_simple(row[1]["property"])
+    #
+    #     predicates_list = []
+    #     predicates_list.append(("rdfs:label", project_property_label))
+    #     predicates_list.append(("a", "rdf:Property"))
+    #
+    #     if row[1]["propertyDomain"] not in exclude_list:
+    #         predicates_list.append(("rdfs:domain",
+    #                                 mhdb_iri_simple(row[1]["propertyDomain"])))
+    #     if row[1]["propertyRange"] not in exclude_list:
+    #         predicates_list.append(("rdfs:range",
+    #                                 mhdb_iri_simple(row[1]["propertyRange"])))
+    #     if row[1]["DefinitionReference_index"] not in exclude_list:
+    #         source = references[references["index"] ==
+    #             np.int(row[1]["DefinitionReference_index"])]["link"].values[0]
+    #         if source not in exclude_list:
+    #             source = check_iri(source)
+    #             #predicates_list.append(("dcterms:isReferencedBy", source))
+    #             predicates_list.append(("rdfs:isDefinedBy", source))
+    #
+    #     if row[1]["Definition"] not in exclude_list:
+    #         predicates_list.append(("rdfs:comment",
+    #                                 check_iri(row[1]["Definition"])))
+    #     if row[1]["sameAs"] not in exclude_list:
+    #         predicates_list.append(("owl:sameAs",
+    #                                 mhdb_iri_simple(row[1]["sameAs"])))
+    #     if row[1]["equivalentProperty"] not in exclude_list:
+    #         predicates_list.append(("rdfs:equivalentProperty",
+    #                                 mhdb_iri_simple(row[1]["equivalentProperty"])))
+    #     if row[1]["subPropertyOf"] not in exclude_list:
+    #         predicates_list.append(("rdfs:subPropertyOf",
+    #                                 mhdb_iri_simple(row[1]["subPropertyOf"])))
+    #     for predicates in predicates_list:
+    #         statements = add_to_statements(
+    #             project_property_iri,
+    #             predicates[0],
+    #             predicates[1],
+    #             statements,
+    #             exclude_list
+    #         )
 
     # projects worksheet
     for row in projects.iterrows():
@@ -2340,8 +2340,6 @@ def ingest_projects(projects_xls, states_xls, measures_xls,
         indices_group = row[1]["indices_group"]
         indices_sensor = row[1]["indices_sensor"]
         indices_measure = row[1]["indices_measure"]
-
-        # doap:license
 
         # reference
         if row[1]["indices_reference"] not in exclude_list:
@@ -2602,9 +2600,9 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
         if row[1]["equivalentClass"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
                                     mhdb_iri_simple(row[1]["equivalentClass"])))
-        if row[1]["equivalentClass_2"] not in exclude_list:
+        if row[1]["equivalentClass2"] not in exclude_list:
             predicates_list.append(("rdfs:equivalentClass",
-                                    mhdb_iri_simple(row[1]["equivalentClass_2"])))
+                                    mhdb_iri_simple(row[1]["equivalentClass2"])))
         if row[1]["subClassOf"] not in exclude_list:
             predicates_list.append(("rdfs:subClassOf",
                                     mhdb_iri_simple(row[1]["subClassOf"])))
@@ -3046,9 +3044,9 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
             indices_reference_type = row[1]["indices_reference_type"]
             indices_respondent = row[1]["indices_respondent"]
             indices_subject = row[1]["indices_subject"]
-            #indices_cited_references = row[1]["indices_cited_references"]
+            indices_cited_references = row[1]["indices_cited_references"]
             index_license = row[1]["index_license"]
-            #indices_language = row[1]["indices_language"]
+            indices_language = row[1]["indices_language"]
             if indices_reference_type not in exclude_list:
                 if isinstance(indices_reference_type, str):
                     indices = [np.int(x) for x in
@@ -3202,7 +3200,7 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
             license_iri = license_link
 
         predicates_list = []
-        predicates_list.append(("a", "cc:License", exclude_list))
+        #predicates_list.append(("a", "cc:License", exclude_list))
         predicates_list.append(("rdfs:label", license_label))
 
         if row[1]["abbreviation"] not in exclude_list:
@@ -3353,9 +3351,9 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
 #         if row[1]["equivalentClass"] not in exclude_list:
 #             predicates_list.append(("rdfs:equivalentClass",
 #                                     mhdb_iri_simple(row[1]["equivalentClass"])))
-#         if row[1]["equivalentClass_2"] not in exclude_list:
+#         if row[1]["equivalentClass2"] not in exclude_list:
 #             predicates_list.append(("rdfs:equivalentClass",
-#                                     mhdb_iri_simple(row[1]["equivalentClass_2"])))
+#                                     mhdb_iri_simple(row[1]["equivalentClass2"])))
 #         if row[1]["subClassOf"] not in exclude_list:
 #             predicates_list.append(("rdfs:subClassOf",
 #                                     mhdb_iri_simple(row[1]["subClassOf"])))
@@ -3560,10 +3558,10 @@ def ingest_references(references_xls, states_xls, projects_xls, dsm5_xls,
 #                     isinstance(row[1]["equivalentClass"], float):
 #             predicates_list.append(("rdfs:equivalentClass",
 #                                     check_iri(row[1]["equivalentClass"])))
-#         if row[1]["equivalentClass_2"] not in exclude_list and not \
-#                     isinstance(row[1]["equivalentClass_2"], float):
+#         if row[1]["equivalentClass2"] not in exclude_list and not \
+#                     isinstance(row[1]["equivalentClass2"], float):
 #             predicates_list.append(("rdfs:equivalentClass",
-#                                     check_iri(row[1]["equivalentClass_2"])))
+#                                     check_iri(row[1]["equivalentClass2"])))
 #         if row[1]["subClassOf"] not in exclude_list and not \
 #                     isinstance(row[1]["subClassOf"], float):
 #             predicates_list.append(("rdfs:subClassOf",

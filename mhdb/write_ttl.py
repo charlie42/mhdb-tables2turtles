@@ -3,10 +3,10 @@
 This program contains generic functions to build a Turtle (Terse RDF Triple Language) document.
 
 Authors:
-    - Arno Klein, 2017        (arno@childmind.org)  http://binarybottle.com
-    - Jon Clucas, 2017 – 2018 (jon.clucas@childmind.org)
+    - Arno Klein, 2017-2020 (arno@childmind.org)  http://binarybottle.com
+    - Jon Clucas, 2017–2018 (jon.clucas@childmind.org)
 
-Copyright 2018, Child Mind Institute (http://childmind.org), Apache v2.0 License
+Copyright 2020, Child Mind Institute (http://childmind.org), Apache v2.0 License
 
 """
 import os
@@ -266,7 +266,8 @@ def write_about_statement(subject, predicate, object, predicates):
     )
 
 
-def write_header(base_uri, version, label, comment, prefixes, imports=False):
+def write_header(base_uri, base_prefix, version, label, comment, prefixes,
+                 imports=False):
     """
     Print out the beginning of an RDF text file.
 
@@ -274,6 +275,8 @@ def write_header(base_uri, version, label, comment, prefixes, imports=False):
     ----------
     base_uri : string
         base URI
+    base_prefix : string
+        base prefix
     version : string
         version
     label : string
@@ -296,18 +299,9 @@ def write_header(base_uri, version, label, comment, prefixes, imports=False):
         owl header
     """
 
-    header = write_header_prefixes(
-        [
-            (
-                "",
-                "{0}#".format(base_uri)
-            ),
-            *prefixes
-        ],
-        imports
-    )
+    header = write_header_prefixes(base_uri, base_prefix, prefixes, imports)
 
-    header = """{4}<{0}> rdf:type owl:Ontology ;
+    header = """{4}<{0}> a owl:Ontology ;
     owl:versionIRI <{0}/{1}> ;
     owl:versionInfo "{1}"^^rdfs:Literal ;
     rdfs:label "{2}"^^rdfs:Literal ;
@@ -318,13 +312,16 @@ def write_header(base_uri, version, label, comment, prefixes, imports=False):
     return header
 
 
-def write_header_prefixes(prefixes, imports=False):
+def write_header_prefixes(base_uri, base_prefix, prefixes, imports=False):
     """
-    Write turtle-formatted header prefix string for given list of (prefix,
-    iri) tuples.
+    Write turtle-formatted header prefix string for list of (prefix, iri) tuples.
 
     Parameter
     ---------
+    base_uri : string
+        base URI
+    base_prefix : string
+        base prefix
     prefixes: list of 2 or 3-tuples
         each tuple is
             [0] a prefix string
@@ -338,49 +335,34 @@ def write_header_prefixes(prefixes, imports=False):
     -------
     header_prefix: string
     """
+
     header_prefix = ""
+
     for prefix in prefixes:
-        header_prefix = """{0}@prefix {1}: <{2}> .\n""".format(
+        header_prefix="""{0}@prefix {1}: <{2}> .\n""".format(
             header_prefix,
             prefix[0],
             prefix[1]
         )
-    header_prefix = """{0}@base <{1}> .\n""".format(
-        header_prefix,
-        prefixes[0][1][:-1]
+
+    header_prefix = """{0}\n@base <{1}> .\n""".format(
+        header_prefix, base_uri
     )
+
     if imports:
         header_prefix = """{0}\n<> owl:imports {1} .\n\n""".format(
             header_prefix,
-            " ,\n\t".join([
-                "{0}".format(
-                    check_iri(
-                        prefix[1]
+            " ,\n\t".join(
+                [check_iri(prefix[1])
+                    if ((len(prefix) < 3) or (isinstance(prefix[2], float))
+                    ) else check_iri(prefix[2]) for prefix in prefixes if (
+                         (prefix[0] not in [base_prefix]) and
+                         (prefix[1] not in [base_uri])
                     )
-                ) if (
-                    (
-                        len(prefix) < 3
-                    ) or (
-                        isinstance(
-                            prefix[2],
-                            float
-                        )
-                    )
-                ) else check_iri(
-                    prefix[2]
-                ) for prefix in prefixes if (
-                    (
-                        prefix[0] not in [
-                            "mhdb"
-                        ]
-                    ) and (
-                        prefix[1] not in [
-                            "http://www.purl.org/mentalhealth#"
-                        ]
-                    )
-                )
-            ])
+                ]
+            )
         )
+
     return header_prefix
 
 

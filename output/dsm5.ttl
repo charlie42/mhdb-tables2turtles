@@ -1,23 +1,21 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix : <http://www.purl.org/mentalhealth/dsm5#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix health-lifesci: <http://health-lifesci.schema.org/> .
 @prefix schema: <http://schema.org/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix mhdb: <http://www.purl.org/mentalhealth#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@base <http://www.purl.org/mentalhealth/dsm5> .
-<http://www.purl.org/mentalhealth/dsm5> rdf:type owl:Ontology ;
-    owl:versionIRI <http://www.purl.org/mentalhealth/dsm5/0.3.0> ;
+
+@base <http://www.purl.org/mentalhealth/dsm5#> .
+<http://www.purl.org/mentalhealth/dsm5#> a owl:Ontology ;
+    owl:versionIRI <http://www.purl.org/mentalhealth/dsm5#/0.3.0> ;
     owl:versionInfo "0.3.0"^^rdfs:Literal ;
-    rdfs:label "mental health database — DSM-5 signs and symptoms"^^rdfs:Literal ;
+    rdfs:label "MHDB — Signs and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)"^^rdfs:Literal ;
     rdfs:comment """
 
 ================================================================================
 		Mental Health Database (MHDB)
 ================================================================================
-This mental health database interrelates information about mental health-related:
+This graph database contains information about mental health-related:
   - Mental states
   - Behaviors related to mental health
   - Measures and sensors for measuring mental states and behaviors
@@ -35,7 +33,7 @@ The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 
 ================================================================================
-		DSM-5 signs and symptoms
+		Signs and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)
 ================================================================================
 
 """@en .
@@ -130,18 +128,6 @@ mhdb:isMedicalSignOrSymptomOf rdfs:label """isMedicalSignOrSymptomOf"""@en ;
 mhdb:isExampleOf rdfs:label """isExampleOf"""@en ;
 	a rdf:Property .
 
-mhdb:hasMentalDisorder rdfs:label """hasMentalDisorder"""@en ;
-	a rdf:Property .
-
-mhdb:hasDisorder rdfs:label """hasDisorder"""@en ;
-	a rdf:Property .
-
-mhdb:hasDiagnosticCriterion rdfs:label """hasDiagnosticCriterion"""@en ;
-	a rdf:Property .
-
-mhdb:hasSignOrSymptom rdfs:label """hasSignOrSymptom"""@en ;
-	a rdf:Property .
-
 mhdb:Deficits_in_social-emotional_reciprocity rdfs:label """Deficits in social-emotional reciprocity"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
@@ -150,8 +136,8 @@ mhdb:Deficits_in_social-emotional_reciprocity rdfs:label """Deficits in social-e
 
 mhdb:Deficits_in_nonverbal_communicative_behaviors_used_for_social_interaction rdfs:label """Deficits in nonverbal communicative behaviors used for social interaction"""@en ;
 	a health-lifesci:MedicalSymptom ;
-	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	dcterms:isReferencedBy <httpsdeptswashingtonedudbpedsScreening20ToolsDSM-5ASDGuidelinesFeb2013pdf> ;
+	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
 	rdfs:subClassOf mhdb:Persistent_deficits_in_social_communication_and_social_interaction .
 
@@ -175,19 +161,19 @@ mhdb:Insistence_on_sameness_inflexible_adherence_to_routines_or_ritualized_patte
 
 mhdb:Highly_restricted_fixated_interests_that_are_abnormal_in_intensity_or_focus rdfs:label """Highly restricted, fixated interests that are abnormal in intensity or focus"""@en ;
 	a health-lifesci:MedicalSymptom ;
-	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	dcterms:isReferencedBy <httpsdeptswashingtonedudbpedsScreening20ToolsDSM-5ASDGuidelinesFeb2013pdf> ;
+	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
-	rdfs:subClassOf mhdb:Excessive_adherence_to_routines_ritualized_patterns_of_verbal_or_nonverbal_behavior_or_excessive_resistance_to_change ;
-	rdfs:subClassOf mhdb:Restricted_repetitive_patterns_of_behavior_interests_or_activities .
+	rdfs:subClassOf mhdb:Restricted_repetitive_patterns_of_behavior_interests_or_activities ;
+	rdfs:subClassOf mhdb:Excessive_adherence_to_routines_ritualized_patterns_of_verbal_or_nonverbal_behavior_or_excessive_resistance_to_change .
 
 mhdb:Hyper-_or_hyporeactivity_to_sensory_input_or_unusual_interest_in_sensory_aspects_of_the_environment rdfs:label """Hyper- or hyporeactivity to sensory input or unusual interest in sensory aspects of the environment"""@en ;
 	a health-lifesci:MedicalSymptom ;
-	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	dcterms:isReferencedBy <httpsdeptswashingtonedudbpedsScreening20ToolsDSM-5ASDGuidelinesFeb2013pdf> ;
+	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
-	rdfs:subClassOf mhdb:Highly_restricted_fixated_interests_that_are_abnormal_in_intensity_or_focus ;
-	rdfs:subClassOf mhdb:Restricted_repetitive_patterns_of_behavior_interests_or_activities .
+	rdfs:subClassOf mhdb:Restricted_repetitive_patterns_of_behavior_interests_or_activities ;
+	rdfs:subClassOf mhdb:Highly_restricted_fixated_interests_that_are_abnormal_in_intensity_or_focus .
 
 mhdb:Often_fails_to_give_close_attention_to_details_or_makes_careless_mistakes_in_schoolwork_at_work_or_during_other_activities rdfs:label """Often fails to give close attention to details or makes careless mistakes in schoolwork, at work, or during other activities"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -295,8 +281,8 @@ mhdb:Obsessions rdfs:label """Obsessions"""@en ;
 
 mhdb:Compulsions rdfs:label """Compulsions"""@en ;
 	a health-lifesci:MedicalSymptom ;
-	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	dcterms:isReferencedBy <httpsdeptswashingtonedudbpedsScreening20ToolsDSM-5ASDGuidelinesFeb2013pdf> ;
+	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Autism_Spectrum_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Obsessive-Compulsive_Disorder ;
 	rdfs:subClassOf mhdb:Ritualized_Patterns_of_verbal_and_nonverbal_Behavior .
@@ -408,8 +394,8 @@ mhdb:Palpitations_pounding_heart_or_accelerated_heart_rate rdfs:label """Palpita
 mhdb:Sweating rdfs:label """Sweating"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Other_Hallucinogen_Intoxication ;
 	mhdb:isMedicalSignOf mhdb:Panic_Disorder ;
+	mhdb:isMedicalSignOf mhdb:Other_Hallucinogen_Intoxication ;
 	rdfs:subClassOf mhdb:Recurrent_unexpected_panic_attacks_A_panic_attack_is_an_abrupt_surge_of_intense_fear_or_intense_discomfort_that_reaches_a_peak_within_minutes .
 
 mhdb:Trembling_or_shaking rdfs:label """Trembling or shaking"""@en ;
@@ -860,31 +846,31 @@ mhdb:Severe_recurrent_temper_outbursts_manifested_behaviorally rdfs:label """Sev
 mhdb:Depressed_mood rdfs:label """Depressed mood"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Persistent_Depressive_Disorder_Dysthymia ;
 	mhdb:isMedicalSymptomOf mhdb:Cannabis_Withdrawal ;
 	mhdb:isMedicalSymptomOf mhdb:Tobacco_Withdrawal ;
-	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_tobacco ;
-	rdfs:subClassOf mhdb:Culture-specific_symptoms_like_tinnitus .
+	mhdb:isMedicalSymptomOf mhdb:Persistent_Depressive_Disorder_Dysthymia ;
+	rdfs:subClassOf mhdb:Culture-specific_symptoms_like_tinnitus ;
+	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_tobacco .
 
 mhdb:Depressed_mood_as_indicated_by_observation_made_by_others rdfs:label """Depressed mood as indicated by observation made by others"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Persistent_Depressive_Disorder_Dysthymia ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Persistent_Depressive_Disorder_Dysthymia ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Insomnia_or_hypersomnia rdfs:label """Insomnia or hypersomnia"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Stimulant_Withdrawal ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Persistent_Depressive_Disorder_Dysthymia ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Stimulant_Withdrawal ;
-	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
-	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_stimulants ;
-	rdfs:subClassOf mhdb:Major_depressive_episode .
+	rdfs:subClassOf mhdb:Major_depressive_episode ;
+	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_stimulants .
 
 mhdb:Low_energy_or_fatigue rdfs:label """Low energy or fatigue"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -1027,8 +1013,8 @@ mhdb:A_persistent_social_and_emotional_disturbance rdfs:label """A persistent so
 mhdb:The_child_has_experienced_a_pattern_of_extremes_of_insufficient_care rdfs:label """The child has experienced a pattern of extremes of insufficient care"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Disinhibited_Social_Engagement_Disorder .
+	mhdb:isMedicalSymptomOf mhdb:Disinhibited_Social_Engagement_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder .
 
 mhdb:A_pattern_of_behavior_in_which_a_child_actively_approaches_and_interacts_with_unfamiliar_adults rdfs:label """A pattern of behavior in which a child actively approaches and interacts with unfamiliar adults"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -1122,8 +1108,8 @@ mhdb:An_altered_sense_of_the_reality_of_ones_surroundings_or_oneself rdfs:label 
 mhdb:Inability_to_remember_an_important_aspect_of_the_traumatic_events rdfs:label """Inability to remember an important aspect of the traumatic event(s)"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
 	mhdb:isMedicalSymptomOf mhdb:Acute_Stress_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
 	rdfs:subClassOf mhdb:Negative_alterations_in_cognitions_and_mood_associated_with_the_traumatic_events .
 
 mhdb:Disruption_of_identity_characterized_by_two_or_more_distinct_personality_states_which_may_be_described_in_some_cultures_as_an_experience_of_possession rdfs:label """Disruption of identity characterized by two or more distinct personality states, which may be described in some cultures as an experience of possession"""@en ;
@@ -1623,8 +1609,8 @@ mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that
 mhdb:Slurred_speech rdfs:label """Slurred speech"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Inhalant_Intoxication ;
 	mhdb:isMedicalSignOf mhdb:Alcohol_Intoxication ;
+	mhdb:isMedicalSignOf mhdb:Inhalant_Intoxication ;
 	mhdb:isMedicalSignOf mhdb:Opioid_Intoxication ;
 	mhdb:isMedicalSignOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Intoxication ;
 	rdfs:subClassOf mhdb:Pupillary_constriction_or_pupillary_dilation_due_to_anoxia_from_severe_overdose .
@@ -1641,23 +1627,23 @@ mhdb:Incoordination rdfs:label """Incoordination"""@en ;
 mhdb:Unsteady_gait rdfs:label """Unsteady gait"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Inhalant_Intoxication ;
 	mhdb:isMedicalSignOf mhdb:Alcohol_Intoxication ;
+	mhdb:isMedicalSignOf mhdb:Inhalant_Intoxication ;
 	mhdb:isMedicalSignOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Intoxication .
 
 mhdb:Nystagmus rdfs:label """Nystagmus"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Inhalant_Intoxication ;
 	mhdb:isMedicalSignOf mhdb:Alcohol_Intoxication ;
+	mhdb:isMedicalSignOf mhdb:Inhalant_Intoxication ;
 	mhdb:isMedicalSymptomOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Intoxication .
 
 mhdb:Impairment_in_attention_or_memory rdfs:label """Impairment in attention or memory"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Opioid_Intoxication ;
 	mhdb:isMedicalSymptomOf mhdb:Alcohol_Intoxication ;
+	mhdb:isMedicalSymptomOf mhdb:Opioid_Intoxication ;
 	rdfs:subClassOf mhdb:Pupillary_constriction_or_pupillary_dilation_due_to_anoxia_from_severe_overdose .
 
 mhdb:Stupor_or_coma rdfs:label """Stupor or coma"""@en ;
@@ -1676,11 +1662,11 @@ mhdb:Recent_consumption_of_caffeine_typically_a_high_dose_well_in_excess_of_250_
 mhdb:Restlessness rdfs:label """Restlessness"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Tobacco_Withdrawal ;
-	mhdb:isMedicalSymptomOf mhdb:Cannabis_Withdrawal ;
 	mhdb:isMedicalSymptomOf mhdb:Caffeine_Intoxication ;
-	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_tobacco ;
-	rdfs:subClassOf mhdb:Culture-specific_symptoms_like_tinnitus .
+	mhdb:isMedicalSymptomOf mhdb:Cannabis_Withdrawal ;
+	mhdb:isMedicalSymptomOf mhdb:Tobacco_Withdrawal ;
+	rdfs:subClassOf mhdb:Culture-specific_symptoms_like_tinnitus ;
+	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_tobacco .
 
 mhdb:Nervousness rdfs:label """Nervousness"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -1695,13 +1681,13 @@ mhdb:Excitement rdfs:label """Excitement"""@en ;
 mhdb:Insomnia rdfs:label """Insomnia"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Tobacco_Withdrawal ;
-	mhdb:isMedicalSymptomOf mhdb:Caffeine_Intoxication ;
 	mhdb:isMedicalSymptomOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Withdrawal ;
+	mhdb:isMedicalSymptomOf mhdb:Caffeine_Intoxication ;
+	mhdb:isMedicalSymptomOf mhdb:Tobacco_Withdrawal ;
 	mhdb:isMedicalSymptomOf mhdb:Opioid_Withdrawal ;
 	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_sedatives_hypnotics_or_anxiolytics ;
-	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_tobacco ;
-	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_opioids .
+	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_opioids ;
+	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_tobacco .
 
 mhdb:Flushed_face rdfs:label """Flushed face"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -1790,9 +1776,9 @@ mhdb:Anxiety rdfs:label """Anxiety"""@en ;
 mhdb:Increased_appetite rdfs:label """Increased appetite"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
+	mhdb:isMedicalSymptomOf mhdb:Cannabis_Intoxication ;
 	mhdb:isMedicalSymptomOf mhdb:Tobacco_Withdrawal ;
 	mhdb:isMedicalSymptomOf mhdb:Stimulant_Withdrawal ;
-	mhdb:isMedicalSymptomOf mhdb:Cannabis_Intoxication ;
 	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_stimulants ;
 	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_tobacco .
 
@@ -2477,22 +2463,22 @@ mhdb:Episodes_of_unexplained_irritability_sadness_or_fearfulness rdfs:label """E
 mhdb:Social_neglect_or_deprivation_in_the_form_of_persistent_lack_of_having_basic_emotional_needs_for_comfort_stimulation_and_affection_met_by_caregiving_adults rdfs:label """Social neglect or deprivation in the form of persistent lack of having basic emotional needs for comfort, stimulation, and affection met by caregiving adults"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Disinhibited_Social_Engagement_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder ;
 	rdfs:subClassOf mhdb:The_child_has_experienced_a_pattern_of_extremes_of_insufficient_care .
 
 mhdb:Repeated_changes_of_primary_caregivers_that_limit_opportunities_to_form_stable_attachments rdfs:label """Repeated changes of primary caregivers that limit opportunities to form stable attachments"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Disinhibited_Social_Engagement_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder ;
 	rdfs:subClassOf mhdb:The_child_has_experienced_a_pattern_of_extremes_of_insufficient_care .
 
 mhdb:Rearing_in_unusual_settings_that_severely_limit_opportunities_to_form_selective_attachments rdfs:label """Rearing in unusual settings that severely limit opportunities to form selective attachments"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Disinhibited_Social_Engagement_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Reactive_Attachment_Disorder ;
 	rdfs:subClassOf mhdb:The_child_has_experienced_a_pattern_of_extremes_of_insufficient_care .
 
 mhdb:Reduced_or_absent_reticence_in_approaching_and_interacting_with_unfamiliar_adults rdfs:label """Reduced or absent reticence in approaching and interacting with unfamiliar adults"""@en ;
@@ -2524,24 +2510,24 @@ mhdb:Directly_experiencing_the_traumatic_events rdfs:label """Directly experienc
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
 	mhdb:isMedicalSymptomOf mhdb:Acute_Stress_Disorder ;
-	rdfs:subClassOf mhdb:Exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence ;
-	rdfs:subClassOf mhdb:In_children_6_years_and_younger_exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence .
+	rdfs:subClassOf mhdb:In_children_6_years_and_younger_exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence ;
+	rdfs:subClassOf mhdb:Exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence .
 
 mhdb:Witnessing_in_person_the_events_as_it_occurred_to_others rdfs:label """Witnessing, in person, the event(s) as it occurred to others"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
 	mhdb:isMedicalSymptomOf mhdb:Acute_Stress_Disorder ;
-	rdfs:subClassOf mhdb:Exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence ;
-	rdfs:subClassOf mhdb:In_children_6_years_and_younger_exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence .
+	rdfs:subClassOf mhdb:In_children_6_years_and_younger_exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence ;
+	rdfs:subClassOf mhdb:Exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence .
 
 mhdb:Learning_that_the_traumatic_events_occurred_to_a_close_family_member_or_close_friend rdfs:label """Learning that the traumatic event(s) occurred to a close family member or close friend"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Posttraumatic_Stress_Disorder_includes_Posttraumatic_Stress_Disorder_for_Children_6_Years_and_Younger ;
 	mhdb:isMedicalSymptomOf mhdb:Acute_Stress_Disorder ;
-	rdfs:subClassOf mhdb:Exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence ;
-	rdfs:subClassOf mhdb:In_children_6_years_and_younger_exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence .
+	rdfs:subClassOf mhdb:In_children_6_years_and_younger_exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence ;
+	rdfs:subClassOf mhdb:Exposure_to_actual_or_threatened_death_serious_injury_or_sexual_violence .
 
 mhdb:Experiencing_repeated_or_extreme_exposure_to_aversive_details_of_the_traumatic_events rdfs:label """Experiencing repeated or extreme exposure to aversive details of the traumatic event(s)"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -3023,16 +3009,16 @@ mhdb:Tolerance_as_defined_by_a_need_for_markedly_increased_amounts_of_cannabis_t
 mhdb:Tolerance_as_defined_by_a_markedly_diminished_effect_with_continued_use_of_the_same_amount_of_cannabis rdfs:label """Tolerance, as defined by a markedly diminished effect with continued use of the same amount of cannabis."""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Use_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Cannabis_Use_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Opioid_Use_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Stimulant_Use_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Use_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Other_or_Unknown_Substance_Use_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Cannabis_Use_Disorder ;
-	rdfs:subClassOf mhdb:A_pattern_of_amphetamine-type_substance_cocaine_or_other_stimulant_use_leading_to_clinically_significant_impairment_or_distress ;
-	rdfs:subClassOf mhdb:A_problematic_pattern_of_use_of_an_intoxicating_substance_not_able_to_be_classified_within_the_alcohol_caffeine_cannabis_hallucinogen_phencyclidine_and_others_inhalant_opioid_sedative_hypnotic_or_anxiolytic_substance_or_tobacco_categories_and_leading_to_clinically_significant_impairment_or_distress ;
-	rdfs:subClassOf mhdb:A_problematic_pattern_of_cannabis_use_leading_to_clinically_significant_impairment_or_distress ;
 	rdfs:subClassOf mhdb:A_problematic_pattern_of_sedative_hypnotic_or_anxiolytic_use_leading_to_clinically_significant_impairment_or_distress ;
-	rdfs:subClassOf mhdb:A_problematic_pattern_of_opioid_use_leading_to_clinically_significant_impairment_or_distress .
+	rdfs:subClassOf mhdb:A_problematic_pattern_of_use_of_an_intoxicating_substance_not_able_to_be_classified_within_the_alcohol_caffeine_cannabis_hallucinogen_phencyclidine_and_others_inhalant_opioid_sedative_hypnotic_or_anxiolytic_substance_or_tobacco_categories_and_leading_to_clinically_significant_impairment_or_distress ;
+	rdfs:subClassOf mhdb:A_pattern_of_amphetamine-type_substance_cocaine_or_other_stimulant_use_leading_to_clinically_significant_impairment_or_distress ;
+	rdfs:subClassOf mhdb:A_problematic_pattern_of_opioid_use_leading_to_clinically_significant_impairment_or_distress ;
+	rdfs:subClassOf mhdb:A_problematic_pattern_of_cannabis_use_leading_to_clinically_significant_impairment_or_distress .
 
 mhdb:Withdrawal_as_manifested_by_cannabis_or_a_closely_related_substance_is_taken_to_relieve_or_avoid_withdrawal_symptoms rdfs:label """Withdrawal, as manifested by cannabis (or a closely related substance) is taken to relieve or avoid withdrawal symptoms"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -3048,12 +3034,12 @@ mhdb:Recent_use_of_cannabis rdfs:label """Recent use of cannabis"""@en ;
 mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes rdfs:label """Clinically significant problematic behavioral or psychological changes"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
+	mhdb:isMedicalSymptomOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Intoxication ;
 	mhdb:isMedicalSymptomOf mhdb:Other_Hallucinogen_Intoxication ;
-	mhdb:isMedicalSymptomOf mhdb:Stimulant_Intoxication ;
 	mhdb:isMedicalSymptomOf mhdb:Opioid_Intoxication ;
-	mhdb:isMedicalSymptomOf mhdb:Cannabis_Intoxication ;
 	mhdb:isMedicalSymptomOf mhdb:Inhalant_Intoxication ;
-	mhdb:isMedicalSymptomOf mhdb:Sedative_Hypnotic_or_Anxiolytic_Intoxication .
+	mhdb:isMedicalSymptomOf mhdb:Cannabis_Intoxication ;
+	mhdb:isMedicalSymptomOf mhdb:Stimulant_Intoxication .
 
 mhdb:Conjunctival_injection rdfs:label """Conjunctival injection"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -3068,8 +3054,8 @@ mhdb:Dry_mouth rdfs:label """Dry mouth"""@en ;
 mhdb:Tachycardia rdfs:label """Tachycardia"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Other_Hallucinogen_Intoxication ;
-	mhdb:isMedicalSignOf mhdb:Cannabis_Intoxication .
+	mhdb:isMedicalSignOf mhdb:Cannabis_Intoxication ;
+	mhdb:isMedicalSignOf mhdb:Other_Hallucinogen_Intoxication .
 
 mhdb:Cessation_of_cannabis_use_that_has_been_heavy_and_prolonged rdfs:label """Cessation of cannabis use that has been heavy and prolonged"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -3214,8 +3200,8 @@ mhdb:Recurrent_hallucinogen_use_in_situations_in_which_it_is_physically_hazardou
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Inhalant_Use_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Other_Hallucinogen_Use_Disorder ;
-	rdfs:subClassOf mhdb:A_problematic_pattern_of_hallucinogen_other_than_phencyclidine_use_leading_to_clinically_significant_impairment_or_distress ;
-	rdfs:subClassOf mhdb:A_problematic_pattern_of_use_of_a_hydrocarbon-based_inhalant_substance_leading_to_clinically_significant_impairment_or_distress .
+	rdfs:subClassOf mhdb:A_problematic_pattern_of_use_of_a_hydrocarbon-based_inhalant_substance_leading_to_clinically_significant_impairment_or_distress ;
+	rdfs:subClassOf mhdb:A_problematic_pattern_of_hallucinogen_other_than_phencyclidine_use_leading_to_clinically_significant_impairment_or_distress .
 
 mhdb:Hallucinogen_use_is_continued_despite_knowledge_of_having_a_persistent_or_recurrent_physical_or_psychological_problem_that_is_likely_to_have_been_caused_or_exacerbated_by_the_hallucinogen rdfs:label """Hallucinogen use is continued despite knowledge of having a persistent or recurrent physical or psychological problem that is likely to have been caused or exacerbated by the hallucinogen"""@en ;
 	a health-lifesci:MedicalSymptom ;
@@ -3298,8 +3284,8 @@ mhdb:Perceptual_changes_occurring_in_a_state_of_full_wakefulness_and_alertness r
 mhdb:Pupillary_dilation rdfs:label """Pupillary dilation"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Stimulant_Intoxication ;
-	mhdb:isMedicalSignOf mhdb:Other_Hallucinogen_Intoxication .
+	mhdb:isMedicalSignOf mhdb:Other_Hallucinogen_Intoxication ;
+	mhdb:isMedicalSignOf mhdb:Stimulant_Intoxication .
 
 mhdb:Palpitations rdfs:label """Palpitations"""@en ;
 	a health-lifesci:MedicalSign ;
@@ -3833,8 +3819,8 @@ mhdb:Administration_of_an_opioid_antagonist_after_a_period_of_opioid_use rdfs:la
 mhdb:Dysphoric_mood rdfs:label """Dysphoric mood"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Opioid_Withdrawal ;
 	mhdb:isMedicalSymptomOf mhdb:Stimulant_Withdrawal ;
+	mhdb:isMedicalSymptomOf mhdb:Opioid_Withdrawal ;
 	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_stimulants ;
 	rdfs:subClassOf mhdb:Withdrawal_as_manifested_by_the_characteristic_withdrawal_syndrome_for_opioids .
 
@@ -3940,215 +3926,215 @@ mhdb:Inflated_self-esteem_or_grandiosity rdfs:label """Inflated self-esteem or g
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:Decreased_need_for_sleep rdfs:label """Decreased need for sleep"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:More_talkative_than_usual_or_pressure_to_keep_talking rdfs:label """More talkative than usual or pressure to keep talking"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:Flight_of_ideas_or_subjective_experience_that_thoughts_are_racing rdfs:label """Flight of ideas or subjective experience that thoughts are racing"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:Distractibility_ie_attention_too_easily_drawn_to_unimportant_or_irrelevant_external_stimuli_as_reported_or_observed rdfs:label """Distractibility (i.e., attention too easily drawn to unimportant or irrelevant external stimuli), as reported or observed"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:Increase_in_goal-directed_activity_either_socially_at_work_or_school_or_sexually rdfs:label """Increase in goal-directed activity (either socially, at work or school, or sexually)"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:Increase_in_psychomotor_agitation_ie_purposeless_non-goal-directed_activity rdfs:label """Increase in psychomotor agitation (i.e., purposeless non-goal-directed activity)."""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:Excessive_involvement_in_activities_that_have_a_high_potential_for_painful_consequences rdfs:label """Excessive involvement in activities that have a high potential for painful consequences"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
-	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity ;
-	rdfs:subClassOf mhdb:Hypomanic_episode .
+	rdfs:subClassOf mhdb:Hypomanic_episode ;
+	rdfs:subClassOf mhdb:Noticeable_change_from_usual_behavior_during_the_period_of_mood_disturbance_and_increased_energy_or_activity .
 
 mhdb:Depressed_mood_as_indicated_by_subjective_report rdfs:label """Depressed mood as indicated by subjective report"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
-	mhdb:isMedicalSymptomOf mhdb:Persistent_Depressive_Disorder_Dysthymia ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Persistent_Depressive_Disorder_Dysthymia ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Irritable_mood_in_children_or_adolescents rdfs:label """Irritable mood in children or adolescents"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Markedly_diminished_interest_or_pleasure_in_all_or_almost_all_activities_as_indicated_by_subjective_account rdfs:label """Markedly diminished interest or pleasure in all, or almost all, activities as indicated by subjective account"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Markedly_diminished_interest_or_pleasure_in_all_or_almost_all_activities_as_indicated_by_observation rdfs:label """Markedly diminished interest or pleasure in all, or almost all, activities as indicated by observation"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Weight_loss rdfs:label """Weight loss"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSignOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSignOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSignOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Weight_gain rdfs:label """Weight gain"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSignOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSignOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSignOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Decrease_or_increase_in_appetite rdfs:label """Decrease or increase in appetite"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:failure_to_make_expected_weight_gain rdfs:label """failure to make expected weight gain"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Psychomotor_agitation_or_retardation_observable_by_others_not_merely_subjective_feelings_of_restlessness_or_being_slowed_down rdfs:label """Psychomotor agitation or retardation (observable by others; not merely subjective feelings of restlessness or being slowed down)"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Fatigue_or_loss_of_energy rdfs:label """Fatigue or loss of energy"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Feelings_of_worthlessness rdfs:label """Feelings of worthlessness"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Feelings_of_inappropriate_guilt_which_may_be_delusional rdfs:label """Feelings of inappropriate guilt (which may be delusional)"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Diminished_ability_to_think_or_concentrate_by_subjective_account rdfs:label """Diminished ability to think or concentrate by subjective account"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Indecisiveness_by_subjective_account rdfs:label """Indecisiveness, by subjective account"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Diminished_ability_to_think_or_concentrate_as_observed_by_others rdfs:label """Diminished ability to think or concentrate as observed by others"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Indecisiveness_as_observed_by_others rdfs:label """Indecisiveness, as observed by others"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Recurrent_thoughts_of_death_not_just_fear_of_dying rdfs:label """Recurrent thoughts of death (not just fear of dying)"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Recurrent_suicidal_ideation_with_a_suicide_attempt rdfs:label """Recurrent suicidal ideation with a suicide attempt"""@en ;
 	a health-lifesci:MedicalSign ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSignOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSignOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSignOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSignOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
 mhdb:Recurrent_suicidal_ideation_with_a_specific_plan_for_committing_suicide rdfs:label """Recurrent suicidal ideation with a specific plan for committing suicide"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
@@ -4349,8 +4335,8 @@ mhdb:Major_depressive_episode rdfs:label """Major depressive episode"""@en ;
 mhdb:Recurrent_suicidal_ideation_without_a_specific_plan rdfs:label """Recurrent suicidal ideation without a specific plan"""@en ;
 	a health-lifesci:MedicalSymptom ;
 	dcterms:isReferencedBy <httpdsmpsychiatryonlineorgdoibook101176appibooks9780890425596> ;
-	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Major_Depressive_Disorder ;
+	mhdb:isMedicalSymptomOf mhdb:Bipolar_I_Disorder ;
 	mhdb:isMedicalSymptomOf mhdb:Bipolar_II_Disorder ;
 	rdfs:subClassOf mhdb:Major_depressive_episode .
 
@@ -5110,8 +5096,8 @@ mhdb:persistent_and_exaggerated_negative_beliefs_or_expectations_about_oneself_o
 	mhdb:isExampleOf mhdb:Persistent_and_exaggerated_negative_beliefs_or_expectations_about_oneself_others_or_the_world .
 
 mhdb:negative_emotional_states_like_fear_horror_anger_guilt_or_shame rdfs:label """negative emotional states like fear, horror, anger, guilt, or shame"""@en ;
-	mhdb:isExampleOf mhdb:Substantially_increased_frequency_of_negative_emotional_states ;
-	mhdb:isExampleOf mhdb:Persistent_negative_emotional_state .
+	mhdb:isExampleOf mhdb:Persistent_negative_emotional_state ;
+	mhdb:isExampleOf mhdb:Substantially_increased_frequency_of_negative_emotional_states .
 
 mhdb:inability_to_experience__happiness_satisfaction_or_loving_feelings rdfs:label """inability to experience  happiness, satisfaction, or loving feelings"""@en ;
 	mhdb:isExampleOf mhdb:Persistent_inability_to_experience_positive_emotions .
@@ -5163,8 +5149,8 @@ mhdb:autonomic_hyperactivity_like_sweating_or_pulse_rate_greater_than_100_bpm rd
 	mhdb:isExampleOf mhdb:Autonomic_hyperactivity .
 
 mhdb:clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_substance_use_like_inappropriate_sexual_or_aggressive_behavior_mood_lability_impaired_judgment rdfs:label """clinically significant problematic behavioral or psychological changes that developed during, or shortly after, substance use like inappropriate sexual or aggressive behavior, mood lability, impaired judgment"""@en ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_alcohol_ingestion ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes .
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes ;
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_developed_during_or_shortly_after_alcohol_ingestion .
 
 mhdb:persistent_difficulties_in_the_use_of_language_across_modalities_ie_spoken_written_sign_language_or_other rdfs:label """persistent difficulties in the use of language across modalities (i.e., spoken, written, sign language, or other)"""@en ;
 	mhdb:isExampleOf mhdb:Persistent_difficulties_in_the_acquisition_and_use_of_language_across_modalities_ie_spoken_written_sign_language_or_other_due_to_deficits_in_comprehension_or_production .
@@ -5212,20 +5198,20 @@ mhdb:marked_fear_or_anxiety_about_being_in_enclosed_places_like_shops_theaters_c
 	mhdb:isExampleOf mhdb:Marked_fear_or_anxiety_about_being_in_enclosed_places .
 
 mhdb:clinically_significant_problematic_behavioral_or_psychological_changes_like_impaired_motor_coordination_euphoria_anxiety_sensation_of_slowed_time_impaired_judgment_social_withdrawal_that_developed_during_or_shortly_after_substance_use rdfs:label """clinically significant problematic behavioral or psychological changes like impaired motor coordination, euphoria, anxiety, sensation of slowed time, impaired judgment, social withdrawal that developed during, or shortly after, substance use"""@en ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_are_attributable_to_the_effect_of_the_substance_on_the_central_nervous_system .
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes_that_are_attributable_to_the_effect_of_the_substance_on_the_central_nervous_system ;
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes .
 
 mhdb:sleep_difficulty_like_insomnia_disturbing_dreams_develop_within_approximately_1_week_after_cessation_of_cannabis_use_that_has_been_heavy_and_prolonged_ie_usually_daily_or_almost_daily_use_over_a_period_of_at_least_a_few_months rdfs:label """sleep difficulty like insomnia, disturbing dreams develop within approximately 1 week after cessation of cannabis use that has been heavy and prolonged (i.e., usually daily or almost daily use over a period of at least a few months)"""@en ;
 	mhdb:isExampleOf mhdb:Sleep_difficulty .
 
 mhdb:repeated_absences_from_work_or_poor_work_performance_related_to_the_substances_use_substance-related_absences_suspensions_or_expulsions_from_school_neglect_of_children_or_household rdfs:label """repeated absences from work or poor work performance related to the substance's use; substance-related absences, suspensions, or expulsions from school; neglect of children or household"""@en ;
 	mhdb:isExampleOf mhdb:Recurrent_hallucinogen_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home ;
-	mhdb:isExampleOf mhdb:Recurrent_phencyclidine_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home ;
-	mhdb:isExampleOf mhdb:Recurrent_inhalant_substance_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home .
+	mhdb:isExampleOf mhdb:Recurrent_inhalant_substance_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home ;
+	mhdb:isExampleOf mhdb:Recurrent_phencyclidine_use_resulting_in_a_failure_to_fulfill_major_role_obligations_at_work_school_or_home .
 
 mhdb:having_arguments_with_a_spouse_about_consequences_of_intoxication_physical_fights rdfs:label """having arguments with a spouse about consequences of intoxication; physical fights"""@en ;
-	mhdb:isExampleOf mhdb:Continued_hallucinogen_use_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine ;
 	mhdb:isExampleOf mhdb:Continued_use_of_inhalant_substances_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine ;
+	mhdb:isExampleOf mhdb:Continued_hallucinogen_use_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine ;
 	mhdb:isExampleOf mhdb:Continued_phencyclidine_use_despite_having_persistent_or_recurrent_social_or_interpersonal_problems_caused_or_exacerbated_by_the_effects_of_the_phencyclidine .
 
 mhdb:driving_an_automobile_or_operating_a_machine_when_impaired_by_a_substance rdfs:label """driving an automobile or operating a machine when impaired by a substance"""@en ;
@@ -5233,8 +5219,8 @@ mhdb:driving_an_automobile_or_operating_a_machine_when_impaired_by_a_substance r
 	mhdb:isExampleOf mhdb:Recurrent_hallucinogen_use_in_situations_in_which_it_is_physically_hazardous .
 
 mhdb:belligerence_assaultiveness_impulsiveness_unpredictability_psychomotor_agitation_impaired_judgment rdfs:label """belligerence, assaultiveness, impulsiveness, unpredictability, psychomotor agitation, impaired judgment"""@en ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_changes_that_developed_during_or_shortly_after_phencyclidine_use ;
-	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes .
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes ;
+	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_changes_that_developed_during_or_shortly_after_phencyclidine_use .
 
 mhdb:haveexperience_clinically_significant_problematic_behavioral_or_psychological_changes_like_marked_anxiety_or_depression_ideas_of_reference_fear_of_losing_ones_mind_paranoid_ideation_impaired_judgment rdfs:label """have/experience clinically significant problematic behavioral or psychological changes like marked anxiety or depression, ideas of reference, fear of “losing one’s mind,” paranoid ideation, impaired judgment"""@en ;
 	mhdb:isExampleOf mhdb:Clinically_significant_problematic_behavioral_or_psychological_changes .
@@ -5704,8 +5690,8 @@ mhdb:depressed_mood rdfs:label """depressed mood"""@en ;
 
 mhdb:anxiety rdfs:label """anxiety"""@en ;
 	a mhdb:DiagnosticCriterion ;
-	rdfs:equivalentClass mhdb:SNOMEDCT48694002 ;
-	rdfs:equivalentClass mhdb:SYMP0000412 .
+	rdfs:equivalentClass mhdb:SYMP0000412 ;
+	rdfs:equivalentClass mhdb:SNOMEDCT48694002 .
 
 mhdb:mixed_anxiety_and_depressed_mood rdfs:label """mixed anxiety and depressed mood"""@en ;
 	a mhdb:DiagnosticCriterion .
@@ -5803,8 +5789,8 @@ mhdb:Global_Developmental_Delay_ICD9_3158_ICD10_F88 a mhdb:Disorder ;
 	rdfs:label """Global Developmental Delay; ICD9:315.8; ICD10:F88"""@en .
 
 mhdb:Unspecified_Intellectual_Disability_Intellectual_Developmental_Disorder_ICD9_319_ICD10_F79 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Intellectual_Disability ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Intellectual_Disability ;
 	mhdb:hasICD9Code mhdb:ICD9_319 ;
 	mhdb:hasICD10Code mhdb:ICD10_F79 ;
 	rdfs:label """Unspecified Intellectual Disability (Intellectual Developmental Disorder); ICD9:319; ICD10:F79"""@en .
@@ -5835,8 +5821,8 @@ mhdb:Social_Pragmatic_Communication_Disorder_ICD9_31539_ICD10_F8089 a mhdb:Disor
 	rdfs:label """Social (Pragmatic) Communication Disorder; ICD9:315.39; ICD10:F80.89"""@en .
 
 mhdb:Unspecified_Communication_Disorder_ICD9_3079_ICD10_F809 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Communication_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Communication_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_3079 ;
 	mhdb:hasICD10Code mhdb:ICD10_F809 ;
 	rdfs:label """Unspecified Communication Disorder; ICD9:307.9; ICD10:F80.9"""@en .
@@ -5884,9 +5870,9 @@ mhdb:Other_Specified_Attention-DeficitHyperactivity_Disorder_ICD9_31401_ICD10_F9
 	rdfs:label """Other Specified Attention-Deficit/Hyperactivity Disorder; ICD9:314.01; ICD10:F90.8"""@en .
 
 mhdb:Unspecified_Attention-DeficitHyperactivity_Disorder_ICD9_31401_ICD10_F909 a mhdb:Disorder ;
+	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
 	rdfs:subClassOf mhdb:Attention_DeficitHyperactivity_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT406506008 ;
-	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
 	mhdb:hasICD9Code mhdb:ICD9_31401 ;
 	mhdb:hasICD10Code mhdb:ICD10_F909 ;
 	rdfs:label """Unspecified Attention-Deficit/Hyperactivity Disorder; ICD9:314.01; ICD10:F90.9"""@en .
@@ -5974,8 +5960,8 @@ mhdb:Other_Specified_Neurodevelopmental_Disorder_ICD9_3158_ICD10_F88 a mhdb:Diso
 	rdfs:label """Other Specified Neurodevelopmental Disorder; ICD9:315.8; ICD10:F88"""@en .
 
 mhdb:Unspecified_Neurodevelopmental_Disorder_ICD9_3159_ICD10_F89 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Other_Neurodevelopmental_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Other_Neurodevelopmental_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_3159 ;
 	mhdb:hasICD10Code mhdb:ICD10_F89 ;
 	rdfs:label """Unspecified Neurodevelopmental Disorder; ICD9:315.9; ICD10:F89"""@en .
@@ -6949,9 +6935,9 @@ mhdb:Adjustment_Disorders_ICD9_3092_ICD10_F4322_inclusion_anxiety a mhdb:Disorde
 	rdfs:label """Adjustment Disorders; ICD9:309.2; ICD10:F43.22; inclusion: anxiety"""@en .
 
 mhdb:Adjustment_Disorders_ICD9_30928_ICD10_F4323_inclusion_mixed_anxiety_and_depressed_mood a mhdb:Disorder ;
-	rdfs:subClassOf <httpbioportalbioontologyorgontologiesSNOMEDCTpclassesconceptid47372000> ;
 	rdfs:subClassOf mhdb:SNOMEDCT57194009 ;
 	rdfs:subClassOf mhdb:Trauma-_or_Stressor-Related_Disorder ;
+	rdfs:subClassOf <httpbioportalbioontologyorgontologiesSNOMEDCTpclassesconceptid47372000> ;
 	mhdb:hasICD9Code mhdb:ICD9_30928 ;
 	mhdb:hasICD10Code mhdb:ICD10_F4323 ;
 	mhdb:hasInclusionCriterion mhdb:mixed_anxiety_and_depressed_mood ;
@@ -6975,8 +6961,8 @@ mhdb:Adjustment_Disorders_ICD9_3094_ICD10_F4325_inclusion_mixed_disturbance_of_e
 
 mhdb:Adjustment_Disorders_ICD9_3099_ICD10_F4320_specifier_unspecified a mhdb:Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
-	rdfs:subClassOf mhdb:Trauma-_or_Stressor-Related_Disorder ;
 	rdfs:subClassOf <httpbioportalbioontologyorgontologiesSNOMEDCTpclassesconceptidhttp3A2F2Fpurlbioontologyorg2Fontology2FSNOMEDCT2F17226007> ;
+	rdfs:subClassOf mhdb:Trauma-_or_Stressor-Related_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_3099 ;
 	mhdb:hasICD10Code mhdb:ICD10_F4320 ;
 	mhdb:hasDiagnosticSpecifier mhdb:unspecified ;
@@ -7205,8 +7191,8 @@ mhdb:Other_Specified_Feeding_or_Eating_Disorder_ICD9_30759_ICD10_F508 a mhdb:Dis
 	rdfs:label """Other Specified Feeding or Eating Disorder; ICD9:307.59; ICD10:F50.8"""@en .
 
 mhdb:Unspecified_Feeding_or_Eating_Disorder_ICD9_30750_ICD10_F509 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Feeding_or_Eating_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Feeding_or_Eating_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT72366004 ;
 	mhdb:hasICD9Code mhdb:ICD9_30750 ;
 	mhdb:hasICD10Code mhdb:ICD10_F509 ;
@@ -7408,8 +7394,8 @@ mhdb:Circadian_Rhythm_Sleep-Wake_Disorder_ICD9_30745_ICD10_G4723_specifier_irreg
 	rdfs:label """Circadian Rhythm Sleep-Wake Disorder; ICD9:307.45; ICD10:G47.23; specifier: irregular sleep-wake type"""@en .
 
 mhdb:Circadian_Rhythm_Sleep-Wake_Disorder_ICD9_30745_ICD10_G4724_specifier_non-24-hour_sleep-wake_type a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Breathing-Related_Sleep_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT3745000 ;
+	rdfs:subClassOf mhdb:Breathing-Related_Sleep_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_30745 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4724 ;
 	mhdb:hasDiagnosticSpecifier mhdb:non-24-hour_sleep-wake_type ;
@@ -7424,9 +7410,9 @@ mhdb:Circadian_Rhythm_Sleep-Wake_Disorder_ICD9_30745_ICD10_G4726_specifier_shift
 	rdfs:label """Circadian Rhythm Sleep-Wake Disorder; ICD9:307.45; ICD10:G47.26; specifier: shift work type"""@en .
 
 mhdb:Circadian_Rhythm_Sleep-Wake_Disorder_ICD9_30745_ICD10_G4720_specifier_unspecified_type a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Breathing-Related_Sleep_Disorder ;
-	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
 	rdfs:subClassOf mhdb:SNOMEDCT3745000 ;
+	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Breathing-Related_Sleep_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_30745 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4720 ;
 	mhdb:hasDiagnosticSpecifier mhdb:unspecified_type ;
@@ -7529,8 +7515,8 @@ mhdb:Other_Specified_Insomnia_Disorder_ICD9_78052_ICD10_G4709 a mhdb:Disorder ;
 	rdfs:label """Other Specified Insomnia Disorder; ICD9:780.52; ICD10:G47.09"""@en .
 
 mhdb:Unspecified_Insomnia_Disorder_ICD9_78052_ICD10_G4700 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Parasomnia ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Parasomnia ;
 	mhdb:hasICD9Code mhdb:ICD9_78052 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4700 ;
 	rdfs:label """Unspecified Insomnia Disorder; ICD9:780.52; ICD10:G47.00"""@en .
@@ -7542,8 +7528,8 @@ mhdb:Other_Specified_Hypersomnolence_Disorder_ICD9_78054_ICD10_G4719 a mhdb:Diso
 	rdfs:label """Other Specified Hypersomnolence Disorder; ICD9:780.54; ICD10:G47.19"""@en .
 
 mhdb:Unspecified_Hypersomnolence_Disorder_ICD9_78054_ICD10_G4710 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Parasomnia ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Parasomnia ;
 	mhdb:hasICD9Code mhdb:ICD9_78054 ;
 	mhdb:hasICD10Code mhdb:ICD10_G4710 ;
 	rdfs:label """Unspecified Hypersomnolence Disorder; ICD9:780.54; ICD10:G47.10"""@en .
@@ -7555,8 +7541,8 @@ mhdb:Other_Specified_Sleep-Wake_Disorder_ICD9_78059_ICD10_G478 a mhdb:Disorder ;
 	rdfs:label """Other Specified Sleep-Wake Disorder; ICD9:780.59; ICD10:G47.8"""@en .
 
 mhdb:Unspecified_Sleep-Wake_Disorder_ICD9_78059_ICD10_G479 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Parasomnia ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Parasomnia ;
 	mhdb:hasICD9Code mhdb:ICD9_78059 ;
 	mhdb:hasICD10Code mhdb:ICD10_G479 ;
 	rdfs:label """Unspecified Sleep-Wake Disorder; ICD9:780.59; ICD10:G47.9"""@en .
@@ -7829,8 +7815,8 @@ mhdb:Unspecified_Sexual_Dysfunction_ICD9_30270_ICD10_F529 a mhdb:Disorder ;
 mhdb:Gender_Dysphoria a mhdb:Disorder ;
 	rdfs:subClassOf mhdb:Gender_Dysphoria ;
 	rdfs:label """Gender Dysphoria"""@en ;
-	rdfs:equivalentClass mhdb:OMIT0001245 ;
-	rdfs:equivalentClass mhdb:MESHD000068116 .
+	rdfs:equivalentClass mhdb:MESHD000068116 ;
+	rdfs:equivalentClass mhdb:OMIT0001245 .
 
 mhdb:Gender_Dysphoria_ICD9_3026_ICD10_F642_specifier_in_children a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_3026 ;
@@ -7893,8 +7879,8 @@ mhdb:Conduct_Disorder_ICD9_31232_ICD10_F912_specifier_adolescent-onset_type a mh
 	rdfs:label """Conduct Disorder; ICD9:312.32; ICD10:F91.2; specifier: adolescent-onset type"""@en .
 
 mhdb:Conduct_Disorder_ICD9_31289_ICD10_F919_specifier_unspecified_onset a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:SNOMEDCT430909002 ;
 	rdfs:subClassOf mhdb:Disruptive_Impulse-Control_or_Conduct_Disorder ;
+	rdfs:subClassOf mhdb:SNOMEDCT430909002 ;
 	mhdb:hasICD9Code mhdb:ICD9_31289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F919 ;
 	mhdb:hasDiagnosticSpecifier mhdb:unspecified_onset ;
@@ -7903,8 +7889,8 @@ mhdb:Conduct_Disorder_ICD9_31289_ICD10_F919_specifier_unspecified_onset a mhdb:D
 mhdb:Antisocial_Personality_Disorder_ICD9_3017_ICD10_F602 a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_3017 ;
 	mhdb:hasICD10Code mhdb:ICD10_F602 ;
-	rdfs:subClassOf mhdb:Cluster_B_Personality_Disorder ;
 	rdfs:subClassOf mhdb:Disruptive_Impulse-Control_or_Conduct_Disorder ;
+	rdfs:subClassOf mhdb:Cluster_B_Personality_Disorder ;
 	rdfs:label """Antisocial Personality Disorder; ICD9:301.7; ICD10:F60.2"""@en .
 
 mhdb:Pyromania_ICD9_31233_ICD10_F631 a mhdb:Disorder ;
@@ -7932,8 +7918,8 @@ mhdb:Unspecified_Disruptive_Impulse-Control_and_Conduct_Disorder_ICD9_3129_ICD10
 	mhdb:hasICD10Code mhdb:ICD10_F919 ;
 	rdfs:label """Unspecified Disruptive, Impulse-Control, and Conduct Disorder; ICD9:312.9; ICD10:F91.9"""@en .
 
-mhdb:Alcohol-Related_Disorder rdfs:subClassOf mhdb:Substance-Related_Disorder ;
-	rdfs:subClassOf mhdb:SNOMEDCT87858002 ;
+mhdb:Alcohol-Related_Disorder rdfs:subClassOf mhdb:SNOMEDCT87858002 ;
+	rdfs:subClassOf mhdb:Substance-Related_Disorder ;
 	rdfs:label """Alcohol-Related Disorder"""@en ;
 	a mhdb:Disorder .
 
@@ -8128,8 +8114,8 @@ mhdb:Cannabis_Intoxication_ICD9_29289_ICD10_F12929_exclusion_perceptual_disturba
 mhdb:Cannabis_Intoxication_ICD9_29289_ICD10_F12122_inclusion_use_disordersymptoms_of_use_disorder_perceptual_disturbance_severity_mild a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F12122 ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:mild ;
 	rdfs:subClassOf mhdb:Caffeine-Related_Disorder ;
 	rdfs:label """Cannabis Intoxication; ICD9:292.89; ICD10:F12.122; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: mild"""@en .
@@ -8137,8 +8123,8 @@ mhdb:Cannabis_Intoxication_ICD9_29289_ICD10_F12122_inclusion_use_disordersymptom
 mhdb:Cannabis_Intoxication_ICD9_29289_ICD10_F12222_inclusion_use_disordersymptoms_of_use_disorder_perceptual_disturbance_severity_moderate a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F12222 ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:moderate ;
 	rdfs:subClassOf mhdb:Caffeine-Related_Disorder ;
 	rdfs:label """Cannabis Intoxication; ICD9:292.89; ICD10:F12.222; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: moderate"""@en .
@@ -8146,8 +8132,8 @@ mhdb:Cannabis_Intoxication_ICD9_29289_ICD10_F12222_inclusion_use_disordersymptom
 mhdb:Cannabis_Intoxication_ICD9_29289_ICD10_F12222_inclusion_use_disordersymptoms_of_use_disorder_perceptual_disturbance_severity_severe a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F12222 ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:severe ;
 	rdfs:subClassOf mhdb:Caffeine-Related_Disorder ;
 	rdfs:label """Cannabis Intoxication; ICD9:292.89; ICD10:F12.222; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: severe"""@en .
@@ -8326,15 +8312,15 @@ mhdb:Other_Hallucinogen-Induced_Disorder a mhdb:Disorder ;
 	rdfs:label """Other Hallucinogen-Induced Disorder"""@en .
 
 mhdb:Unspecified_Phencyclidine-Related_Disorder_ICD9_2929_ICD10_F1699 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Hallucinogen-Related_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Hallucinogen-Related_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_2929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1699 ;
 	rdfs:label """Unspecified Phencyclidine-Related Disorder; ICD9:292.9; ICD10:F16.99"""@en .
 
 mhdb:Unspecified_Hallucinogen-Related_Disorder_ICD9_2929_ICD10_F1699 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Hallucinogen-Related_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Hallucinogen-Related_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_2929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1699 ;
 	rdfs:label """Unspecified Hallucinogen-Related Disorder; ICD9:292.9; ICD10:F16.99"""@en .
@@ -8487,24 +8473,24 @@ mhdb:Opioid_Intoxication_ICD9_29289_ICD10_F11229_inclusion_use_disordersymptoms_
 mhdb:Opioid_Intoxication_ICD9_29289_ICD10_F11929_exclusion_use_disordersymptoms_of_use_disorder_perceptual_disturbance a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F11929 ;
-	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
 	rdfs:subClassOf mhdb:Opioid-Related_Disorder ;
 	rdfs:label """Opioid Intoxication; ICD9:292.89; ICD10:F11.929; exclusion: use disorder/symptoms of use disorder, perceptual disturbance"""@en .
 
 mhdb:Opioid_Intoxication_ICD9_29289_ICD10_F11122_inclusion_use_disordersymptoms_of_use_disorder_perceptual_disturbance a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F11122 ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	rdfs:subClassOf mhdb:Opioid-Related_Disorder ;
 	rdfs:label """Opioid Intoxication; ICD9:292.89; ICD10:F11.122; inclusion: use disorder/symptoms of use disorder, perceptual disturbance"""@en .
 
 mhdb:Opioid_Intoxication_ICD9_29289_ICD10_F11222_inclusion_use_disordersymptoms_of_use_disorder_perceptual_disturbance a mhdb:Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F11222 ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	rdfs:subClassOf mhdb:Opioid-Related_Disorder ;
 	rdfs:label """Opioid Intoxication; ICD9:292.89; ICD10:F11.222; inclusion: use disorder/symptoms of use disorder, perceptual disturbance"""@en .
 
@@ -8627,8 +8613,8 @@ mhdb:Other_Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder a mhdb:Disorder ;
 	rdfs:label """Other Sedative-, Hypnotic-, or Anxiolytic-Related Disorder"""@en .
 
 mhdb:Unspecified_Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder_ICD9_2929_ICD10_F1399 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Sedative-_Hypnotic-_or_Anxiolytic-Related_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_2929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1399 ;
 	rdfs:label """Unspecified Sedative-, Hypnotic-, or Anxiolytic-Related Disorder; ICD9:292.9; ICD10:F13.99"""@en .
@@ -8786,8 +8772,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F15929_specifier_amphetamine-type_s
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F15929 ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine-type_substance ;
-	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:severe ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F15.929; specifier: amphetamine-type substance; exclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: severe"""@en .
@@ -8832,8 +8818,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F14929_specifier_cocaine_exclusion_
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F14929 ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
-	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasExclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasExclusionCriterion mhdb:perceptual_disturbance ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F14.929; specifier: cocaine; exclusion: use disorder/symptoms of use disorder, perceptual disturbance"""@en .
 
@@ -8841,8 +8827,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F15122_specifier_amphetamine-type_s
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F15122 ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine-type_substance ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:mild ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F15.122; specifier: amphetamine-type substance; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: mild"""@en .
@@ -8851,8 +8837,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F15222_specifier_amphetamine-type_s
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F15222 ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine-type_substance ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:moderate ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F15.222; specifier: amphetamine-type substance; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: moderate"""@en .
@@ -8861,8 +8847,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F15222_specifier_amphetamine-type_s
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F15222 ;
 	mhdb:hasDiagnosticSpecifier mhdb:amphetamine-type_substance ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:severe ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F15.222; specifier: amphetamine-type substance; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: severe"""@en .
@@ -8880,8 +8866,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F14122_specifier_cocaine_inclusion_
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F14122 ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:mild ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F14.122; specifier: cocaine; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: mild"""@en .
@@ -8890,8 +8876,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F14222_specifier_cocaine_inclusion_
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F14222 ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:moderate ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F14.222; specifier: cocaine; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: moderate"""@en .
@@ -8900,8 +8886,8 @@ mhdb:Stimulant_Intoxication_ICD9_29289_ICD10_F14222_specifier_cocaine_inclusion_
 	mhdb:hasICD9Code mhdb:ICD9_29289 ;
 	mhdb:hasICD10Code mhdb:ICD10_F14222 ;
 	mhdb:hasDiagnosticSpecifier mhdb:cocaine ;
-	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasInclusionCriterion mhdb:use_disordersymptoms_of_use_disorder ;
+	mhdb:hasInclusionCriterion mhdb:perceptual_disturbance ;
 	mhdb:hasSeverity mhdb:severe ;
 	rdfs:subClassOf mhdb:Stimulant-Related_Disorder ;
 	rdfs:label """Stimulant Intoxication; ICD9:292.89; ICD10:F14.222; specifier: cocaine; inclusion: use disorder/symptoms of use disorder, perceptual disturbance; severity: severe"""@en .
@@ -9091,8 +9077,8 @@ mhdb:Other_or_Unknown_Substance-Induced_Disorder a mhdb:Disorder ;
 	rdfs:label """Other (or Unknown) Substance-Induced Disorder"""@en .
 
 mhdb:Unspecified_Other_or_Unknown_Substance-Related_Disorder_ICD9_2929_ICD10_F1999 a mhdb:Disorder ;
-	rdfs:subClassOf mhdb:Other_or_Unknown_Substance-Related_Disorder ;
 	rdfs:subClassOf mhdb:SNOMEDCT10003008 ;
+	rdfs:subClassOf mhdb:Other_or_Unknown_Substance-Related_Disorder ;
 	mhdb:hasICD9Code mhdb:ICD9_2929 ;
 	mhdb:hasICD10Code mhdb:ICD10_F1999 ;
 	rdfs:label """Unspecified Other (or Unknown) Substance-Related Disorder; ICD9:292.9; ICD10:F19.99"""@en .
@@ -11202,13 +11188,13 @@ mhdb:Borderline_Intellectual_Functioning_ICD9_V6289_ICD10_R4183 a mhdb:Disorder 
 
 mhdb:Neurodevelopmental_Disorder rdfs:label """Neurodevelopmental Disorder"""@en ;
 	a mhdb:Disorder ;
-	rdfs:equivalentClass mhdb:MESHD065886 ;
-	rdfs:equivalentClass mhdb:OMIT0028783 .
+	rdfs:equivalentClass mhdb:OMIT0028783 ;
+	rdfs:equivalentClass mhdb:MESHD065886 .
 
 mhdb:Schizophrenia_Spectrum_and_Other_Psychotic_Disorders rdfs:label """Schizophrenia Spectrum and Other Psychotic Disorders"""@en ;
 	a mhdb:Disorder ;
-	rdfs:equivalentClass mhdb:OMIT0019927 ;
-	rdfs:equivalentClass mhdb:MESHD019967 .
+	rdfs:equivalentClass mhdb:MESHD019967 ;
+	rdfs:equivalentClass mhdb:OMIT0019927 .
 
 mhdb:Bipolar_or_Related_Disorder rdfs:label """Bipolar or Related Disorder"""@en ;
 	a mhdb:Disorder ;

@@ -1,25 +1,24 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix : <http://www.purl.org/mentalhealth/projects#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix mhdb: <http://www.purl.org/mentalhealth#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dbpedia-owl: <http://dbpedia.org/ontology> .
+@prefix doap: <ulinc.com/ns/doap#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/spec/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn> .
-@prefix foaf: <http://xmlns.com/foaf/spec/> .
-@prefix doap: <ulinc.com/ns/doap#> .
-@base <http://www.purl.org/mentalhealth/projects> .
-<http://www.purl.org/mentalhealth/projects> rdf:type owl:Ontology ;
-    owl:versionIRI <http://www.purl.org/mentalhealth/projects/0.3.0> ;
+
+@base <http://www.purl.org/mentalhealth/projects#> .
+<http://www.purl.org/mentalhealth/projects#> a owl:Ontology ;
+    owl:versionIRI <http://www.purl.org/mentalhealth/projects#/0.3.0> ;
     owl:versionInfo "0.3.0"^^rdfs:Literal ;
-    rdfs:label "mental health database — Projects"^^rdfs:Literal ;
+    rdfs:label "MHDB — Projects related to mental health"^^rdfs:Literal ;
     rdfs:comment """
 
 ================================================================================
 		Mental Health Database (MHDB)
 ================================================================================
-This mental health database interrelates information about mental health-related:
+This graph database contains information about mental health-related:
   - Mental states
   - Behaviors related to mental health
   - Measures and sensors for measuring mental states and behaviors
@@ -37,7 +36,7 @@ The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
 
 ================================================================================
-		Projects
+		Projects related to mental health
 ================================================================================
 
 """@en .
@@ -48,7 +47,7 @@ mhdb:pplkpr a doap:Project ;
 	doap:category mhdb:wearable ;
 	ssn:hasSubSystem mhdb:photoplethysmogram ;
 	ssn:hasSubSystem mhdb:global_positioning_system ;
-	ssn:observes mhdb:Heart_Rate_VariabilityHRV .
+	ssn:observes mhdb:heart_rate_variability_HRV .
 
 mhdb:Spire a doap:Project ;
 	rdfs:label """Spire"""@en ;
@@ -56,8 +55,8 @@ mhdb:Spire a doap:Project ;
 	dcterms:isReferencedBy <httpsieeexploreieeeorgdocument8438678> ;
 	doap:category mhdb:wearable ;
 	doap:maintainer mhdb:Calming_Technology_Lab ;
-	ssn:hasSubSystem mhdb:single-axis_accelerometer ;
 	ssn:hasSubSystem mhdb:force_sensor ;
+	ssn:hasSubSystem mhdb:single-axis_accelerometer ;
 	ssn:observes mhdb:rate_of_respiration .
 
 mhdb:AccuBite a doap:Project ;
@@ -95,11 +94,11 @@ mhdb:E4 a doap:Project ;
 	doap:maintainer mhdb:Affective_Computing_Group_MIT_Media_Lab ;
 	ssn:hasSubSystem mhdb:photoplethysmogram ;
 	ssn:hasSubSystem mhdb:accelerometer ;
-	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
 	ssn:hasSubSystem mhdb:infrared_thermopile ;
-	ssn:observes mhdb:galvanic_skin_responseGSRskin_conductance ;
-	ssn:observes mhdb:Heart_Rate_VariabilityHRV ;
-	ssn:observes mhdb:temperature .
+	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
+	ssn:observes mhdb:galvanic_skin_response_GSR_skin_conductance ;
+	ssn:observes mhdb:temperature ;
+	ssn:observes mhdb:heart_rate_variability_HRV .
 
 mhdb:MoXomPath a doap:Project ;
 	rdfs:label """MoXo/mPath"""@en ;
@@ -108,7 +107,7 @@ mhdb:MoXomPath a doap:Project ;
 	doap:category mhdb:wearable ;
 	doap:maintainer mhdb:mPath ;
 	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
-	ssn:observes mhdb:galvanic_skin_responseGSRskin_conductance .
+	ssn:observes mhdb:galvanic_skin_response_GSR_skin_conductance .
 
 mhdb:Muse a doap:Project ;
 	rdfs:label """Muse"""@en ;
@@ -128,12 +127,12 @@ mhdb:NightWare a doap:Project ;
 	rdfs:label """NightWare"""@en ;
 	doap:homepage <httpsnight-warecom> ;
 	doap:category mhdb:wearable ;
-	ssn:hasSubSystem mhdb:motion_sensor ;
 	ssn:hasSubSystem mhdb:accelerometer ;
+	ssn:hasSubSystem mhdb:motion_sensor ;
 	ssn:hasSubSystem mhdb:vibration_sensor ;
-	ssn:observes mhdb:heart_rate ;
 	ssn:observes mhdb:shaking ;
-	ssn:observes mhdb:frequency_of_tremors .
+	ssn:observes mhdb:frequency_of_tremors ;
+	ssn:observes mhdb:heart_rate .
 
 mhdb:Priori a doap:Project ;
 	rdfs:label """Priori"""@en ;
@@ -142,10 +141,10 @@ mhdb:Priori a doap:Project ;
 	doap:category mhdb:app ;
 	doap:maintainer mhdb:Heinz_C_Prechter_Bipolar_Research_Program ;
 	ssn:hasSubSystem mhdb:microphone ;
-	ssn:observes mhdb:speech_pitch ;
 	ssn:observes mhdb:speech_volume ;
-	ssn:observes mhdb:amount_of_speech ;
+	ssn:observes mhdb:speech_pitch ;
 	ssn:observes mhdb:speech_rhythm ;
+	ssn:observes mhdb:amount_of_speech ;
 	ssn:observes mhdb:speech_rate .
 
 mhdb:Emotion_AI a doap:Project ;
@@ -154,8 +153,8 @@ mhdb:Emotion_AI a doap:Project ;
 	doap:category mhdb:schemaSoftwareApplication ;
 	doap:maintainer mhdb:Affectiva ;
 	ssn:hasSubSystem mhdb:optical_sensor ;
-	ssn:observes mhdb:photo ;
 	ssn:observes mhdb:face_tracking ;
+	ssn:observes mhdb:photo ;
 	ssn:observes mhdb:video .
 
 mhdb:Companion a doap:Project ;
@@ -163,10 +162,10 @@ mhdb:Companion a doap:Project ;
 	doap:homepage <httpscompanionappio> ;
 	doap:category mhdb:app ;
 	ssn:hasSubSystem mhdb:camera ;
-	ssn:observes mhdb:photo ;
-	ssn:observes mhdb:movement ;
 	ssn:observes mhdb:face_tracking ;
-	ssn:observes mhdb:video .
+	ssn:observes mhdb:photo ;
+	ssn:observes mhdb:video ;
+	ssn:observes mhdb:movement .
 
 mhdb:Compression_clothing_for_autismSensory_Processing_Disorder a doap:Project ;
 	rdfs:label """Compression clothing for autism/Sensory Processing Disorder"""@en ;
@@ -176,8 +175,8 @@ mhdb:Compression_clothing_for_autismSensory_Processing_Disorder a doap:Project ;
 	doap:maintainer mhdb:Wearable_Technology_Lab ;
 	ssn:hasSubSystem mhdb:pressure_sensor ;
 	ssn:hasSubSystem mhdb:spring_actuator ;
-	ssn:observes mhdb:photo ;
 	ssn:observes mhdb:pressure ;
+	ssn:observes mhdb:photo ;
 	ssn:observes mhdb:video .
 
 mhdb:Thync a doap:Project ;
@@ -210,7 +209,7 @@ mhdb:Q_Sensor a doap:Project ;
 	doap:category mhdb:wearable ;
 	doap:maintainer mhdb:Affectiva ;
 	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
-	ssn:observes mhdb:galvanic_skin_responseGSRskin_conductance .
+	ssn:observes mhdb:galvanic_skin_response_GSR_skin_conductance .
 
 mhdb:Emotion_as_a_service a doap:Project ;
 	rdfs:label """Emotion as a service"""@en ;
@@ -219,10 +218,10 @@ mhdb:Emotion_as_a_service a doap:Project ;
 	doap:maintainer mhdb:Affectiva ;
 	ssn:hasSubSystem mhdb:optical_sensor ;
 	ssn:hasSubSystem mhdb:camera ;
-	ssn:observes mhdb:photo ;
-	ssn:observes mhdb:head_tracking ;
 	ssn:observes mhdb:face_tracking ;
-	ssn:observes mhdb:video .
+	ssn:observes mhdb:photo ;
+	ssn:observes mhdb:video ;
+	ssn:observes mhdb:head_tracking .
 
 mhdb:In_Lab_Biometric_Solution a doap:Project ;
 	rdfs:label """In Lab Biometric Solution"""@en ;
@@ -276,8 +275,8 @@ mhdb:HarimataAutomated_Therapy_Monitoring_for_Children_with_Developmental_Disord
 	dcterms:isReferencedBy <httpswwwncbinlmnihgovpubmed27553971> ;
 	doap:category mhdb:game ;
 	doap:maintainer mhdb:Harimata ;
-	ssn:hasSubSystem mhdb:accelerometer ;
 	ssn:hasSubSystem mhdb:touchscreen ;
+	ssn:hasSubSystem mhdb:accelerometer ;
 	ssn:hasSubSystem mhdb:gyroscope .
 
 mhdb:Lena a doap:Project ;
@@ -285,16 +284,16 @@ mhdb:Lena a doap:Project ;
 	doap:homepage <httpswwwlenaorg> ;
 	doap:category mhdb:wearable ;
 	ssn:hasSubSystem mhdb:microphone ;
-	ssn:observes mhdb:squeal_count ;
+	ssn:observes mhdb:grunt_count ;
 	ssn:observes mhdb:word_count ;
-	ssn:observes mhdb:grunt_count .
+	ssn:observes mhdb:squeal_count .
 
 mhdb:Melomind a doap:Project ;
 	rdfs:label """Melomind"""@en ;
 	doap:homepage <httpwwwmybraintechcom> ;
 	doap:category mhdb:wearable ;
-	ssn:hasSubSystem mhdb:electroencephalography ;
 	ssn:hasSubSystem mhdb:microphone ;
+	ssn:hasSubSystem mhdb:electroencephalography ;
 	ssn:observes mhdb:brain_electrical_activity .
 
 mhdb:Purple_Robot a doap:Project ;
@@ -331,8 +330,8 @@ mhdb:Medasense a doap:Project ;
 	doap:category mhdb:wearable ;
 	ssn:hasSubSystem mhdb:photoplethysmogram ;
 	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
-	ssn:observes mhdb:galvanic_skin_responseGSRskin_conductance ;
-	ssn:observes mhdb:Heart_Rate_VariabilityHRV .
+	ssn:observes mhdb:galvanic_skin_response_GSR_skin_conductance ;
+	ssn:observes mhdb:heart_rate_variability_HRV .
 
 mhdb:Myndlift a doap:Project ;
 	rdfs:label """Myndlift"""@en ;
@@ -358,7 +357,7 @@ mhdb:Pip a doap:Project ;
 	doap:homepage <httpsthepipcomen-us> ;
 	doap:category mhdb:wearable ;
 	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
-	ssn:observes mhdb:galvanic_skin_responseGSRskin_conductance .
+	ssn:observes mhdb:galvanic_skin_response_GSR_skin_conductance .
 
 mhdb:Wearsens_necklace a doap:Project ;
 	rdfs:label """Wearsens necklace"""@en ;
@@ -387,8 +386,8 @@ mhdb:ADHD_assessment_system_using_Virtual_Reality a doap:Project ;
 	doap:homepage <httpictuscedupubsAn20innovative20ADHD20assessment20system20using20virtual20realitypdf> ;
 	dcterms:isReferencedBy <httpictuscedupubsAn20innovative20ADHD20assessment20system20using20virtual20realitypdf> ;
 	doap:category mhdb:virtual_reality ;
-	doap:maintainer mhdb:Institute_for_Creative_Technologies ;
-	doap:maintainer mhdb:Department_of_Computer_Science__Information_Engineering .
+	doap:maintainer mhdb:Department_of_Computer_Science__Information_Engineering ;
+	doap:maintainer mhdb:Institute_for_Creative_Technologies .
 
 mhdb:reVIVEDisrupt_Hackathon a doap:Project ;
 	rdfs:label """reVIVE/Disrupt Hackathon"""@en ;
@@ -460,18 +459,18 @@ mhdb:Stress_Sense a doap:Project ;
 	doap:maintainer mhdb:People_Aware_Computing_Group ;
 	ssn:hasSubSystem mhdb:microphone ;
 	ssn:observes mhdb:speech_frequency ;
-	ssn:observes mhdb:jitter ;
+	ssn:observes mhdb:amplitude ;
 	ssn:observes mhdb:speech_rate ;
-	ssn:observes mhdb:amplitude .
+	ssn:observes mhdb:jitter .
 
 mhdb:BeWell a doap:Project ;
 	rdfs:label """BeWell"""@en ;
 	dcterms:isReferencedBy <httppaccscornelledupubsPervasiveHealth_BeWellpdf> ;
 	doap:category mhdb:app ;
 	doap:maintainer mhdb:People_Aware_Computing_Group ;
+	ssn:hasSubSystem mhdb:microphone ;
 	ssn:hasSubSystem mhdb:accelerometer ;
-	ssn:hasSubSystem mhdb:global_positioning_system ;
-	ssn:hasSubSystem mhdb:microphone .
+	ssn:hasSubSystem mhdb:global_positioning_system .
 
 mhdb:An_objective_measure_of_hyperactivity_aspects_with_compressed_webcam_video a doap:Project ;
 	rdfs:label """An objective measure of hyperactivity aspects with compressed webcam video"""@en ;
@@ -508,8 +507,8 @@ mhdb:Nimble_patchBiostamp_technologies a doap:Project ;
 	dcterms:isReferencedBy <httpswwwncbinlmnihgovpubmed30635244> ;
 	doap:category mhdb:wearable ;
 	doap:maintainer mhdb:MC10_Inc_Lexington_MA_USA ;
-	ssn:hasSubSystem mhdb:electromyograph ;
 	ssn:hasSubSystem mhdb:accelerometer ;
+	ssn:hasSubSystem mhdb:electromyograph ;
 	ssn:observes mhdb:muscle_activity ;
 	ssn:observes mhdb:movement .
 
@@ -518,9 +517,9 @@ mhdb:Sigueme_Technology-based_intervention_for_low-functioning_autism_to_train_s
 	rdfs:comment """SIGUEME enhances the development of the perceptive and cognitive visual processes, and the associations of real objects to their representations. It also supports and reinforces the implementation of communication systems such as the Picture Exchange Communication System (PECS). The personalization obtained with its editor tool allows creating a version of SIGUEME per user, with adapted content to his/her interests and immediately environment."""@en ;
 	dcterms:isReferencedBy <httpswwwncbinlmnihgovpubmed28327383> ;
 	doap:category mhdb:schemaSoftwareApplication ;
-	doap:maintainer mhdb:Mind_Brain_and_Behaviour_Research_Centre ;
+	doap:maintainer mhdb:Special_Education_School_Fundacion_Purisima_Concepcion_Granada_Spain ;
 	doap:maintainer mhdb:Research_Centre_for_Information_and_Communications_Technologies ;
-	doap:maintainer mhdb:Special_Education_School_Fundacion_Purisima_Concepcion_Granada_Spain .
+	doap:maintainer mhdb:Mind_Brain_and_Behaviour_Research_Centre .
 
 mhdb:Tiger_face_autism_apps a doap:Project ;
 	rdfs:label """Tiger face autism apps"""@en ;
@@ -569,8 +568,8 @@ mhdb:Walden_monitoring a doap:Project ;
 	rdfs:label """Walden monitoring"""@en ;
 	rdfs:comment """Walden Monitor is a combination wearable and Tablet PC based system that combines two existing paper-based data-collection instruments: the Child Behavior Observation System (CBOS) and the Pla-Chek (pronounced PLAY-check). CBOS and the Pla-Chek are used to record largely the same data in two different ways. The Pla-Chek is a paper spreadsheet used to record behavioral variables in the inclusive classrooms at the special school we studied. Each calendar quarter, research assistants enter the classroom for ten consecutive days and observe a particular child with autism. The research assistant mentally counts a ten-second interval, then records positive or negative results for twelve variables such as proximity to an adult (within 3 feet) or an adult interacting with the target child. The research assistant repeats this process twenty times. These data are also gathered using CBOS, in which a research assistant enters the classroom with a handheld video camera and records the child for five minutes. Another researcher watches the video and codes the variables on a spreadsheet similar to Pla-Chek. The teacher tabulates the data and includes it in written reports"""@en ;
 	doap:homepage <httpsautismccgatecheduprojectshtm> ;
-	doap:category mhdb:wearable ;
 	doap:category mhdb:tablet ;
+	doap:category mhdb:wearable ;
 	doap:maintainer mhdb:College_of_Computing .
 
 mhdb:The_Shape_project_working_with_school_communities_to_create_digital_stories_about_embedding_technology_use_in_classrooms a doap:Project ;
@@ -733,8 +732,8 @@ mhdb:Happy_Geese_Games a doap:Project ;
 	rdfs:label """Happy Geese Games"""@en ;
 	rdfs:comment """Presentation of Appically’s approach to develop well-thought apps for people with ASD or to adapt any generic app for them. The methodology consists in analyzing the neurotypical app, simplify it, add features one step at a time, add extra learning features, add extra features to address other specific issues related to ASD, etc."""@en ;
 	doap:homepage <httpwwwhappygeesecomindexphpeng> ;
-	doap:category mhdb:game ;
-	doap:category mhdb:app .
+	doap:category mhdb:app ;
+	doap:category mhdb:game .
 
 mhdb:ABC_Autismo a doap:Project ;
 	rdfs:label """ABC Autismo"""@en ;
@@ -915,9 +914,9 @@ mhdb:Video_games_help_autistic_students_in_classrooms-news_feature a doap:Projec
 	rdfs:label """Video games help autistic students in classrooms - news feature"""@en ;
 	rdfs:comment """Smartphone videos could help diagnose autism earlier - Diagnosing autism remotely, from videos taken with a parent’s smartphone"""@en ;
 	doap:homepage <httpusatoday30usatodaycomnewshealthstory2012-05-31video-games-autism-students553194521> ;
-	doap:category mhdb:virtual_reality ;
-	doap:category mhdb:schemaVideoObject ;
 	doap:category mhdb:student_project ;
+	doap:category mhdb:schemaVideoObject ;
+	doap:category mhdb:virtual_reality ;
 	ssn:hasSubSystem mhdb:Kinect .
 
 mhdb:The_NODA_system_Naturalistic_Observation_Diagnosis_Assessment-smartphone_videos_to_diagnose_autism a doap:Project ;
@@ -934,8 +933,8 @@ mhdb:Empower_Me_augmented-reality_system_for_autism-Brain_Power_GOOGLE_GLASS_pro
 	rdfs:label """“Empower Me” augmented-reality system for autism - Brain Power GOOGLE GLASS program"""@en ;
 	rdfs:comment """The child or adult wears light, computerized glasses and sees and hears special feedback geared to the situation. For instance, digital coaching on facial expressions of emotions, when to look at people, feedback on the user’s own state of stress or anxiety, and much more. Empower Me gives an augmented-reality experience, which our tests show autistic users LOVE. Meanwhile, they get points and rewards for learning the social-emotional as well as cognitive skills they want."""@en ;
 	doap:homepage <httpwwwbrain-powercom> ;
-	doap:category mhdb:wearable ;
-	doap:category mhdb:augmented_reality .
+	doap:category mhdb:augmented_reality ;
+	doap:category mhdb:wearable .
 
 mhdb:Exceptional_minds a doap:Project ;
 	rdfs:label """Exceptional minds"""@en ;
@@ -1048,8 +1047,8 @@ mhdb:Autism_Hackathon_idea-Virtual_Interactive_practice a doap:Project ;
 	rdfs:label """Autism Hackathon idea - Virtual Interactive practice"""@en ;
 	rdfs:comment """ViP (Virtual Interactive Practice), built an app that will guide autistic people through various social scenarios using Kinect. Because of Kinect, this app is a game-based, fun approach for autistic users to learn social and nonverbal communication skills in situations like a job interview."""@en ;
 	doap:homepage <httpwwwcnetcomnewshacking-for-autism-apps-to-help-everyone-on-the-spectrum> ;
-	doap:category mhdb:hackathon ;
 	doap:category mhdb:app ;
+	doap:category mhdb:hackathon ;
 	ssn:hasSubSystem mhdb:Kinect .
 
 mhdb:The_Biohug_vest-HUGS_FOR_AUTISM a doap:Project ;
@@ -1124,9 +1123,9 @@ mhdb:Angel_sense a doap:Project ;
 	rdfs:comment """The AngelSense device is a small tracker that can be attached anywhere on a child’s clothing — preferably in an out-of-the-way place, such as a front pocket or on a belt, where the child is less likely to notice it, and thus less likely to try to remove it."""@en ;
 	doap:homepage <httpswwwangelsensecom> ;
 	doap:category mhdb:wearable ;
+	ssn:hasSubSystem mhdb:microphone ;
 	ssn:hasSubSystem mhdb:camera ;
-	ssn:hasSubSystem mhdb:global_positioning_system ;
-	ssn:hasSubSystem mhdb:microphone .
+	ssn:hasSubSystem mhdb:global_positioning_system .
 
 mhdb:CARRY-Autism_Cooperation_Station a doap:Project ;
 	rdfs:label """CARRY! - Autism Cooperation Station"""@en ;
@@ -1200,8 +1199,8 @@ mhdb:Autism_Hackathon_idea-audeo a doap:Project ;
 	rdfs:label """Autism Hackathon idea - audeo"""@en ;
 	rdfs:comment """Audeo helps people on the autism spectrum learn about emotional context within a conversation through visual cues. Audeo displays images related to the conversation and reading material to help the user understand what emotions they should be aware of and their context in the conversation."""@en ;
 	doap:homepage <httpwwwcnetcomnewshacking-for-autism-apps-to-help-everyone-on-the-spectrum> ;
-	doap:category mhdb:hackathon ;
 	doap:category mhdb:app ;
+	doap:category mhdb:hackathon ;
 	ssn:observes mhdb:word_count ;
 	ssn:observes mhdb:synchronous_electrical_activity .
 
@@ -1209,8 +1208,8 @@ mhdb:Autism_Hackathon_idea-mindflower a doap:Project ;
 	rdfs:label """Autism Hackathon idea - mindflower"""@en ;
 	rdfs:comment """MindFlower, built by health-hacker K Thomas Picard and Melanie Swan, is a marketplace where employers can hire adults/adolescents on the autism spectrum to complete detail-oriented tasks in manageable parts."""@en ;
 	doap:homepage <httpwwwcnetcomnewshacking-for-autism-apps-to-help-everyone-on-the-spectrum> ;
-	doap:category mhdb:hackathon ;
 	doap:category mhdb:schemaWebSite ;
+	doap:category mhdb:hackathon ;
 	ssn:observes mhdb:word_count ;
 	ssn:observes mhdb:synchronous_electrical_activity .
 
@@ -1285,8 +1284,8 @@ mhdb:Holli-Google_Glass_app_as_a_social-skills_coach_for_children_with_autism_sp
 	rdfs:label """Holli - Google Glass app as a social-skills coach for children with autism spectrum disorder (ASD)"""@en ;
 	doap:homepage <httpwwwibbmeutorontocanewsgoogle-glass-app-helps-autistic-children-social-interactions> ;
 	dcterms:isReferencedBy <httpjournalfrontiersinorgarticle103389frobt201700031full> ;
-	doap:category mhdb:wearable ;
 	doap:category mhdb:app ;
+	doap:category mhdb:wearable ;
 	doap:maintainer mhdb:Institute_of_Biomaterials__Biomedical_Engineering ;
 	doap:maintainer mhdb:Autism_Research_Centre .
 
@@ -1296,11 +1295,11 @@ mhdb:samsung_simband a doap:Project ;
 	dcterms:isReferencedBy <httpsgroupscsailmiteduslspublications2017TukaAlHanai_aaai-17pdf> ;
 	doap:category mhdb:wearable ;
 	ssn:hasSubSystem mhdb:microphone ;
-	ssn:hasSubSystem mhdb:accelerometer ;
 	ssn:hasSubSystem mhdb:photoplethysmogram ;
-	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor ;
 	ssn:hasSubSystem mhdb:gyroscope ;
-	ssn:hasSubSystem mhdb:electrocardiography_sensor .
+	ssn:hasSubSystem mhdb:electrocardiography_sensor ;
+	ssn:hasSubSystem mhdb:accelerometer ;
+	ssn:hasSubSystem mhdb:electrodermal_activity_sensorgalvanic_skin_response_sensor .
 
 mhdb:Personalized_Real-Time_Intervention_for_Motivation_Enhancement_PRIME_app_for_schizophrenia a doap:Project ;
 	rdfs:label """Personalized Real-Time Intervention for Motivation Enhancement (PRIME) app for schizophrenia"""@en ;
@@ -1354,8 +1353,8 @@ mhdb:Social_Cognition_Perception_Executive_Functions a doap:Project ;
 	doap:category mhdb:schemaSoftwareApplication ;
 	doap:maintainer mhdb:Social_Cognition_Perception_and_Executive_functions .
 
-mhdb:Cambridge_Cognition a foaf:Group ;
-	a doap:Project ;
+mhdb:Cambridge_Cognition a doap:Project ;
+	a foaf:Group ;
 	rdfs:label """Cambridge Cognition"""@en ;
 	doap:homepage <httpwwwcambridgecognitioncomcantabcognitive-tests> ;
 	doap:category mhdb:schemaSoftwareApplication ;
@@ -1440,13 +1439,13 @@ mhdb:app a doap:Project ;
 
 mhdb:virtual_reality a doap:Project ;
 	rdfs:label """virtual reality"""@en ;
-	rdfs:subClassOf mhdb:software ;
-	rdfs:subClassOf mhdb:media .
+	rdfs:subClassOf mhdb:media ;
+	rdfs:subClassOf mhdb:software .
 
 mhdb:schemaWebSite a doap:Project ;
 	rdfs:label """website"""@en ;
-	rdfs:subClassOf mhdb:software ;
-	rdfs:subClassOf mhdb:media .
+	rdfs:subClassOf mhdb:media ;
+	rdfs:subClassOf mhdb:software .
 
 mhdb:schemaAudioObject a doap:Project ;
 	rdfs:label """audio"""@en ;
@@ -1461,8 +1460,8 @@ mhdb:community_initiative a doap:Project ;
 
 mhdb:augmented_reality a doap:Project ;
 	rdfs:label """augmented reality"""@en ;
-	rdfs:subClassOf mhdb:software ;
-	rdfs:subClassOf mhdb:media .
+	rdfs:subClassOf mhdb:media ;
+	rdfs:subClassOf mhdb:software .
 
 mhdb:robot a doap:Project ;
 	rdfs:label """robot"""@en .
@@ -2198,10 +2197,10 @@ mhdb:Child_Study_Center a foaf:Group ;
 	rdfs:label """Child Study Center"""@en ;
 	dcterms:isPartOf mhdb:Yale_University ;
 	dcterms:isPartOf mhdb:NYU_Langone ;
-	foaf:homepage <httpchildstudycenteryaleedu> ;
 	foaf:homepage <httpsmednyueduchild-adolescent-psychiatryhome> ;
-	org:hasMember mhdb:Helen_L_Egger ;
-	org:hasMember mhdb:Denis_G_Sukhodolsky .
+	foaf:homepage <httpchildstudycenteryaleedu> ;
+	org:hasMember mhdb:Denis_G_Sukhodolsky ;
+	org:hasMember mhdb:Helen_L_Egger .
 
 mhdb:National_Central_University_Taiwan a org:organization ;
 	rdfs:label """National Central University, Taiwan"""@en .
@@ -2226,8 +2225,8 @@ mhdb:Randall_Hill_Jr a foaf:Person ;
 
 mhdb:Institute_for_Creative_Technologies a foaf:Group ;
 	rdfs:label """Institute for Creative Technologies"""@en ;
-	dcterms:isPartOf mhdb:University_of_Southern_California ;
 	dcterms:isPartOf mhdb:USC ;
+	dcterms:isPartOf mhdb:University_of_Southern_California ;
 	foaf:homepage <httpictuscedupeopleresearch-leads> ;
 	foaf:homepage <httpictusceduprofilealbert-skip-rizzo> ;
 	org:hasMember mhdb:Randall_Hill_Jr ;
@@ -2561,11 +2560,11 @@ mhdb:Roger_Newman-Norlund a foaf:Person ;
 
 mhdb:Department_of_Psychology a foaf:Group ;
 	rdfs:label """Department of Psychology"""@en ;
-	dcterms:isPartOf mhdb:University_of_South_Carolina ;
 	dcterms:isPartOf mhdb:University_of_Chester ;
+	dcterms:isPartOf mhdb:University_of_South_Carolina ;
 	foaf:homepage <httpsscedustudycolleges_schoolsartsandsciencesour-peoplefaculty-staffnewman-norlund_rogerphp> ;
-	org:hasMember mhdb:Carl_Sutton ;
-	org:hasMember mhdb:Roger_Newman-Norlund .
+	org:hasMember mhdb:Roger_Newman-Norlund ;
+	org:hasMember mhdb:Carl_Sutton .
 
 mhdb:Duke_University a org:organization ;
 	rdfs:label """Duke University"""@en .
@@ -2964,8 +2963,8 @@ mhdb:TA_Mohanprakash a foaf:Person ;
 
 mhdb:Department_of_Computer_Science_and_Engineering a foaf:Group ;
 	rdfs:label """Department of Computer Science and Engineering"""@en ;
-	dcterms:isPartOf mhdb:University_at_Buffalo_Buffalo_NY ;
 	dcterms:isPartOf mhdb:Panimalar_Institute_of_Technology_Chennai_India ;
+	dcterms:isPartOf mhdb:University_at_Buffalo_Buffalo_NY ;
 	foaf:homepage <httpwwwacsubuffaloedutrivu> ;
 	foaf:homepage <httpwwwpitacincsehtml> ;
 	org:hasMember mhdb:Tri_Vu ;

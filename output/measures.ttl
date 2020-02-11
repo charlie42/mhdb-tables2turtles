@@ -1,22 +1,21 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix : <http://www.purl.org/mentalhealth/measures#> .
-@prefix mhdb: <http://www.purl.org/mentalhealth#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix dbpedia-owl: <http://dbpedia.org/ontology> .
 @prefix m3-lite: <http://purl.org/iot/vocab/m3-lite> .
 @prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn> .
-@base <http://www.purl.org/mentalhealth/measures> .
-<http://www.purl.org/mentalhealth/measures> rdf:type owl:Ontology ;
-    owl:versionIRI <http://www.purl.org/mentalhealth/measures/0.3.0> ;
+
+@base <http://www.purl.org/mentalhealth/measures#> .
+<http://www.purl.org/mentalhealth/measures#> a owl:Ontology ;
+    owl:versionIRI <http://www.purl.org/mentalhealth/measures#/0.3.0> ;
     owl:versionInfo "0.3.0"^^rdfs:Literal ;
-    rdfs:label "mental health database — Measures related to cognition, emotion, behavior, and physiology"^^rdfs:Literal ;
+    rdfs:label "MHDB — Measures related to cognition, emotion, behavior, and physiology"^^rdfs:Literal ;
     rdfs:comment """
 
 ================================================================================
 		Mental Health Database (MHDB)
 ================================================================================
-This mental health database interrelates information about mental health-related:
+This graph database contains information about mental health-related:
   - Mental states
   - Behaviors related to mental health
   - Measures and sensors for measuring mental states and behaviors
@@ -162,8 +161,8 @@ mhdb:RGB_color_VGA_video_camera a ssn:SensingDevice ;
 mhdb:multi-array_microphone a ssn:SensingDevice ;
 	rdfs:label """multi-array microphone"""@en .
 
-mhdb:Blood_Volume_PulseBVP a m3-lite:MeasurementType ;
-	rdfs:label """Blood Volume Pulse/BVP"""@en ;
+mhdb:blood_volume_pulse_BVP a m3-lite:MeasurementType ;
+	rdfs:label """blood volume pulse (BVP)"""@en ;
 	rdfs:subClassOf mhdb:physiological_property ;
 	rdfs:subClassOf mhdb:cardiac_activity .
 
@@ -172,8 +171,8 @@ mhdb:heart_rate a m3-lite:MeasurementType ;
 	rdfs:subClassOf mhdb:physiological_property ;
 	rdfs:subClassOf mhdb:cardiac_activity .
 
-mhdb:Heart_Rate_VariabilityHRV a m3-lite:MeasurementType ;
-	rdfs:label """Heart Rate Variability/HRV"""@en ;
+mhdb:heart_rate_variability_HRV a m3-lite:MeasurementType ;
+	rdfs:label """heart rate variability (HRV)"""@en ;
 	rdfs:subClassOf mhdb:physiological_property ;
 	rdfs:subClassOf mhdb:cardiac_activity .
 
@@ -184,36 +183,36 @@ mhdb:rate_of_respiration a m3-lite:MeasurementType ;
 
 mhdb:frequency_of_tremors a m3-lite:MeasurementType ;
 	rdfs:label """frequency of tremors"""@en ;
-	rdfs:subClassOf mhdb:movement ;
-	rdfs:subClassOf mhdb:physiological_response .
+	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:movement .
 
 mhdb:sweat_volume a m3-lite:MeasurementType ;
 	rdfs:label """sweat volume"""@en ;
 	rdfs:subClassOf mhdb:physiological_property ;
-	rdfs:subClassOf mhdb:sweat ;
-	rdfs:subClassOf mhdb:physiological_response .
+	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:sweat .
 
 mhdb:electrolytes a m3-lite:MeasurementType ;
 	rdfs:label """electrolytes"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
-	rdfs:subClassOf mhdb:physiological_property .
-
-mhdb:galvanic_skin_responseGSRskin_conductance a m3-lite:MeasurementType ;
-	rdfs:label """galvanic skin response/GSR/skin conductance"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:physiological_property ;
-	rdfs:subClassOf mhdb:physiological_response .
+	rdfs:subClassOf mhdb:electricity .
+
+mhdb:galvanic_skin_response_GSR_skin_conductance a m3-lite:MeasurementType ;
+	rdfs:label """galvanic skin response (GSR) skin conductance"""@en ;
+	rdfs:subClassOf mhdb:physiological_property ;
+	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:electricity .
 
 mhdb:brain_electrical_activity a m3-lite:MeasurementType ;
 	rdfs:label """brain electrical activity"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:physiological_property ;
+	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:activity .
 
 mhdb:shaking a m3-lite:MeasurementType ;
 	rdfs:label """shaking"""@en ;
-	rdfs:subClassOf mhdb:movement ;
-	rdfs:subClassOf mhdb:physiological_response .
+	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:movement .
 
 mhdb:speech_rate a m3-lite:MeasurementType ;
 	rdfs:label """speech rate"""@en ;
@@ -225,33 +224,33 @@ mhdb:speech_frequency a m3-lite:MeasurementType ;
 
 mhdb:speech_prosody a m3-lite:MeasurementType ;
 	rdfs:label """speech prosody"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:speech_jitter a m3-lite:MeasurementType ;
 	rdfs:label """speech jitter"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:speech_shimmer a m3-lite:MeasurementType ;
 	rdfs:label """speech shimmer"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:speech_pitch a m3-lite:MeasurementType ;
 	rdfs:label """speech pitch"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:speech_volume a m3-lite:MeasurementType ;
 	rdfs:label """speech volume"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:speech_rhythm a m3-lite:MeasurementType ;
 	rdfs:label """speech rhythm"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:light a m3-lite:MeasurementType ;
 	rdfs:label """light"""@en ;
@@ -273,13 +272,13 @@ mhdb:shimmer a m3-lite:MeasurementType ;
 
 mhdb:amplitude a m3-lite:MeasurementType ;
 	rdfs:label """amplitude"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:pitch a m3-lite:MeasurementType ;
 	rdfs:label """pitch"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:temperature a m3-lite:MeasurementType ;
 	rdfs:label """temperature"""@en ;
@@ -287,13 +286,13 @@ mhdb:temperature a m3-lite:MeasurementType ;
 
 mhdb:speech_stress a m3-lite:MeasurementType ;
 	rdfs:label """speech stress"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:speech_intonation a m3-lite:MeasurementType ;
 	rdfs:label """speech intonation"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:force a m3-lite:MeasurementType ;
 	rdfs:label """force"""@en ;
@@ -311,14 +310,14 @@ mhdb:strain a m3-lite:MeasurementType ;
 
 mhdb:synchronous_electrical_activity a m3-lite:MeasurementType ;
 	rdfs:label """synchronous electrical activity"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:physiological_property ;
+	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:activity .
 
 mhdb:audio a m3-lite:MeasurementType ;
 	rdfs:label """audio"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:amount_of_speech a m3-lite:MeasurementType ;
 	rdfs:label """amount of speech"""@en ;
@@ -356,9 +355,9 @@ mhdb:altitude a m3-lite:MeasurementType ;
 
 mhdb:muscle_activity a m3-lite:MeasurementType ;
 	rdfs:label """muscle activity"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:physiological_property ;
 	rdfs:subClassOf mhdb:movement ;
+	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:activity .
 
 mhdb:weight a m3-lite:MeasurementType ;
@@ -393,14 +392,14 @@ mhdb:tears a m3-lite:MeasurementType ;
 mhdb:pulse a m3-lite:MeasurementType ;
 	rdfs:label """pulse"""@en ;
 	rdfs:subClassOf mhdb:physiological_property ;
-	rdfs:subClassOf mhdb:cardiac_activity ;
-	rdfs:subClassOf mhdb:activity .
+	rdfs:subClassOf mhdb:activity ;
+	rdfs:subClassOf mhdb:cardiac_activity .
 
 mhdb:electricity_flowing_across_the_larynx a m3-lite:MeasurementType ;
 	rdfs:label """electricity flowing across the larynx"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
+	rdfs:subClassOf mhdb:physiological_property ;
 	rdfs:subClassOf mhdb:speech ;
-	rdfs:subClassOf mhdb:physiological_property .
+	rdfs:subClassOf mhdb:electricity .
 
 mhdb:distance a m3-lite:MeasurementType ;
 	rdfs:label """distance"""@en ;
@@ -418,9 +417,9 @@ mhdb:blood-oxygen_saturation_level a m3-lite:MeasurementType ;
 
 mhdb:sweat_gland_activity a m3-lite:MeasurementType ;
 	rdfs:label """sweat gland activity"""@en ;
+	rdfs:subClassOf mhdb:activity ;
 	rdfs:subClassOf mhdb:physiological_response ;
-	rdfs:subClassOf mhdb:sweat ;
-	rdfs:subClassOf mhdb:activity .
+	rdfs:subClassOf mhdb:sweat .
 
 mhdb:expansion a m3-lite:MeasurementType ;
 	rdfs:label """expansion"""@en ;
@@ -436,30 +435,30 @@ mhdb:capacitance a m3-lite:MeasurementType ;
 
 mhdb:electricity a m3-lite:MeasurementType ;
 	rdfs:label """electricity"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:physiological_property ;
-	rdfs:subClassOf mhdb:physiological_response .
+	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:electricity .
 
 mhdb:muscle_movement a m3-lite:MeasurementType ;
 	rdfs:label """muscle movement"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:movement ;
 	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:activity .
 
 mhdb:volume a m3-lite:MeasurementType ;
 	rdfs:label """volume"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:laser a m3-lite:MeasurementType ;
 	rdfs:label """laser"""@en .
 
 mhdb:gastric_activity a m3-lite:MeasurementType ;
 	rdfs:label """gastric activity"""@en ;
-	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:physiological_property ;
 	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:electricity ;
 	rdfs:subClassOf mhdb:activity .
 
 mhdb:photo a m3-lite:MeasurementType ;
@@ -478,29 +477,29 @@ mhdb:blood_pressure a m3-lite:MeasurementType ;
 mhdb:chills a m3-lite:MeasurementType ;
 	rdfs:label """chills"""@en ;
 	rdfs:subClassOf mhdb:physiological_property ;
-	rdfs:subClassOf mhdb:movement ;
-	rdfs:subClassOf mhdb:physiological_response .
+	rdfs:subClassOf mhdb:physiological_response ;
+	rdfs:subClassOf mhdb:movement .
 
 mhdb:Facial_Action_Coding_System_FACS__facial_expression a m3-lite:MeasurementType ;
 	rdfs:label """Facial Action Coding System (FACS) / facial expression"""@en ;
+	rdfs:subClassOf mhdb:activity ;
 	rdfs:subClassOf mhdb:movement ;
-	rdfs:subClassOf mhdb:physical_property ;
-	rdfs:subClassOf mhdb:activity .
+	rdfs:subClassOf mhdb:physical_property .
 
 mhdb:tone_of_voice a m3-lite:MeasurementType ;
 	rdfs:label """tone of voice"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:voice a m3-lite:MeasurementType ;
 	rdfs:label """voice"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:voice_patterns a m3-lite:MeasurementType ;
 	rdfs:label """voice patterns"""@en ;
-	rdfs:subClassOf mhdb:vocal_acoustics ;
-	rdfs:subClassOf mhdb:speech .
+	rdfs:subClassOf mhdb:speech ;
+	rdfs:subClassOf mhdb:vocal_acoustics .
 
 mhdb:face_tracking a m3-lite:MeasurementType ;
 	rdfs:label """face tracking"""@en ;

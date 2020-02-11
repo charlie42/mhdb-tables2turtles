@@ -1,9 +1,24 @@
 #!/usr/bin/env python
 """
 This program converts specific mental health spreadsheet workbooks to RDF
-text documents.
+text documents. See header_comment below for more information.
 
-This mental health database interrelates information about mental health-related:
+The database is licensed under the terms of the Creative Commons BY license.
+Current information can be found on the website, https://matter.childmind.org.
+
+Authors:
+    - Arno Klein, 2017-2020 (arno@childmind.org)  http://binarybottle.com
+    - Jon Clucas, 2017–2018 (jon.clucas@childmind.org)
+
+Copyright 2020, Child Mind Institute MATTER Lab (https://matter.childmind.org),
+Apache v2.0 License
+
+"""
+
+
+ddashes = "================================================================================"
+header_comment="""\n\n{0}\n\t\tMental Health Database (MHDB)\n{0}
+This graph database contains information about mental health-related:
   - Mental states
   - Behaviors related to mental health
   - Measures and sensors for measuring mental states and behaviors
@@ -17,18 +32,11 @@ This mental health database interrelates information about mental health-related
     - Scientific articles
     - Licenses
     - Therapies and medications
-
 The database is licensed under the terms of the Creative Commons BY license.
 Current information can be found on the website, https://matter.childmind.org.
+""".format(ddashes)
 
-Authors:
-    - Arno Klein, 2017-2019 (arno@childmind.org)  http://binarybottle.com
-    - Jon Clucas, 2017–2018 (jon.clucas@childmind.org)
 
-Copyright 2019, Child Mind Institute MATTER Lab (https://matter.childmind.org),
-Apache v2.0 License
-
-"""
 import os
 import sys
 mhdb_path = os.path.abspath(os.getcwd())
@@ -66,7 +74,7 @@ else:
     do_behaviors = 0 # SKIP
     do_measures = 0
     do_tasks = 0
-    do_questions = 0
+    do_questions = 0 #1
     do_dsm5 = 0
     do_projects = 0
     do_references = 1
@@ -142,58 +150,33 @@ def main():
     except:
         claimsFILE = 'data/claims.xlsx'
 
-    base_uri = "http://www.purl.org/mentalhealth"
-
-    states_outfile = os.path.join('../output', 'states.ttl')
-    measures_outfile = os.path.join('../output', 'measures.ttl')
-    tasks_outfile = os.path.join('../output', 'tasks.ttl')
-    questions_outfile = os.path.join('../output', 'questions.ttl')
-    dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
-    projects_outfile = os.path.join('../output', 'projects.ttl')
-    references_outfile = os.path.join('../output', 'references.ttl')
-
-    behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
-    claims_outfile = os.path.join('../output', 'claims.ttl')
 
     # --------------------------------------------------------------------------
     # Import spreadsheets
     # --------------------------------------------------------------------------
     states_xls = pd.ExcelFile(statesFILE)
+    states_outfile = os.path.join('../output', 'states.ttl')
     behaviors_xls = pd.ExcelFile(behaviorsFILE)
+    behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
     measures_xls = pd.ExcelFile(measuresFILE)
+    measures_outfile = os.path.join('../output', 'measures.ttl')
     tasks_xls = pd.ExcelFile(tasksFILE)
+    tasks_outfile = os.path.join('../output', 'tasks.ttl')
     questions_xls = pd.ExcelFile(questionsFILE)
+    questions_outfile = os.path.join('../output', 'questions.ttl')
     dsm5_xls = pd.ExcelFile(dsm5FILE)
+    dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
     projects_xls = pd.ExcelFile(projectsFILE)
+    projects_outfile = os.path.join('../output', 'projects.ttl')
+    references_outfile = os.path.join('../output', 'references.ttl')
     references_xls = pd.ExcelFile(referencesFILE)
     claims_xls = pd.ExcelFile(claimsFILE)
+    claims_outfile = os.path.join('../output', 'claims.ttl')
 
-    X = ['', 'nan', np.nan, 'None', None, []]
 
     # --------------------------------------------------------------------------
     # Create output RDF
     # --------------------------------------------------------------------------
-    label = "mental health database"
-    ddashes = "================================================================================"
-    comment="""\n\n{0}\n\t\tMental Health Database (MHDB)\n{0}
-This mental health database interrelates information about mental health-related:
-  - Mental states
-  - Behaviors related to mental health
-  - Measures and sensors for measuring mental states and behaviors
-  - Tasks for measuring cognition [cognitiveatlas.org and elsewhere]
-  - Questions from mental health questionnaires
-  - Signs, symptoms, and mental disorders [DSM-5 and ICD-10]
-  - Projects and groups related to mental health
-  - References
-    - Articles and practical guides for parents and therapists [Child Mind Institute]
-    - Mental health questionnaires
-    - Scientific articles
-    - Licenses
-    - Therapies and medications
-The database is licensed under the terms of the Creative Commons BY license.
-Current information can be found on the website, https://matter.childmind.org.
-""".format(ddashes)
-
     if do_states:
         states_statements = ingest_states(states_xls, references_xls,
                                           statements={})
@@ -271,6 +254,11 @@ Current information can be found on the website, https://matter.childmind.org.
     # --------------------------------------------------------------------------
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
+    label = "MHDB"
+    base_uri = "http://www.purl.org/mentalhealth"
+    base_prefix = "mhdb"
+    X = ['', 'nan', np.nan, 'None', None, []]
+
     outputs_list = [[states_statements, states_outfile, states_turtle],
                     [behaviors_statements, behaviors_outfile, behaviors_turtle],
                     [measures_statements, measures_outfile, measures_turtle],
@@ -312,114 +300,116 @@ Current information can be found on the website, https://matter.childmind.org.
                 row[1]["ImportURI"]
             ) for row in references_xls.parse(
                 'ontologies'
-            ).iterrows() if row[1]["Prefix"] in import_prefixes]
+            ).iterrows() if row[1]["Prefix"] in import_prefixes and
+                            row[1]["Prefix"] not in ["mhdb"]]
 
-
+            header_string = ""
             if ioutput == 0:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "states"),
+                    "{0}/{1}".format(base_uri, "states#"), base_prefix,
                     version,
                     "{0} — {1}".format(label, "Categories of mental phenomena"),
                     "\n".join([
-                        comment,
+                        header_comment,
                         "{0}\n\t\tCategories of mental phenomena\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 1:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "behaviors"),
+                    "{0}/{1}".format(base_uri, "behaviors#"), base_prefix,
                     version,
                     "{0} — {1}".format(label, "Behaviors"),
                     "\n".join([
-                        comment,
+                        header_comment,
                         "{0}\n\t\tBehaviors\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 2:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "measures"),
+                    "{0}/{1}".format(base_uri, "measures#"), base_prefix,
                     version,
                     "{0} — {1}".format(label, "Measures related to cognition, emotion, behavior, and physiology"),
                     "\n".join([
-                        comment,
+                        header_comment,
                         "{0}\n\t\tMeasures related to cognition, emotion, behavior, and physiology\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 3:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "tasks"),
+                    "{0}/{1}".format(base_uri, "tasks#"), base_prefix,
                     version,
                     "{0} — {1}".format(label, "Tasks to observe cognition, emotion, and behaviors"),
                     "\n".join([
-                        comment,
+                        header_comment,
                         "{0}\n\t\tTasks to observe cognition, emotion, and behaviors\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 4:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "questions"),
+                    "{0}/{1}".format(base_uri, "questions#"), base_prefix,
                     version,
                     "{0} — {1}".format(label, "Questions from (primarily mental health) questionnaires"),
                     "\n".join([
-                        comment,
+                        header_comment,
                         "{0}\n\t\tQuestions from (primarily mental health) questionnaires\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 5:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "dsm5"),
+                    "{0}/{1}".format(base_uri, "dsm5#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "DSM-5 signs and symptoms"),
+                    "{0} — {1}".format(label, "Signs and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)"),
                     "\n".join([
-                        comment,
-                        "{0}\n\t\tDSM-5 signs and symptoms\n{0}\n\n".format(ddashes)
+                        header_comment,
+                        "{0}\n\t\tSigns and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 6:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "projects"),
+                    "{0}/{1}".format(base_uri, "projects#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Projects"),
+                    "{0} — {1}".format(label, "Projects related to mental health"),
                     "\n".join([
-                        comment,
-                        "{0}\n\t\tProjects\n{0}\n\n".format(ddashes)
+                        header_comment,
+                        "{0}\n\t\tProjects related to mental health\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 7:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "references"),
+                    "{0}/{1}".format(base_uri, "references#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "References"),
+                    "{0} — {1}".format(label, "References for the Mental Health Database (MHDB)"),
                     "\n".join([
-                        comment,
-                        "{0}\n\t\tReferences\n{0}\n\n".format(ddashes)
+                        header_comment,
+                        "{0}\n\t\tReferences for the Mental Health Database (MHDB)\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 8:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "claims"),
+                    "{0}/{1}".format(base_uri, "claims#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Claims"),
+                    "{0} — {1}".format(label, "Claims related to mental health"),
                     "\n".join([
-                        comment,
-                        "{0}\n\t\tClaims\n{0}\n\n".format(ddashes)
+                        header_comment,
+                        "{0}\n\t\tClaims related to mental health\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
 
             fid = open(out_file, 'w')
-            fid.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n".format(out_turtle.rstrip(" .")))
-            fid.write("@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .\n".format(out_turtle.rstrip(" .")))
+            fid.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n")
+            fid.write("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
+            fid.write("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n")
             fid.write(header_string)
-            fid.write("{0} .\n".format(out_turtle.rstrip(" .")))
+            fid.write(out_turtle)
 
 
 if __name__ == "__main__":
