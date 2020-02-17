@@ -61,24 +61,18 @@ import pandas as pd
 run_all = 0
 if run_all:
     do_states = 0
-    do_behaviors = 0 # SKIP
+    do_disorders = 1
+    do_resources = 1
+    do_assessments = 1
     do_measures = 1
-    do_tasks = 1
-    do_questions = 1
-    do_dsm5 = 1
-    do_projects = 1
-    do_references = 1
-    do_claims = 0 # SKIP
+    do_shared = 1
 else:
     do_states = 0
-    do_behaviors = 0 # SKIP
+    do_disorders = 1
+    do_resources = 0
+    do_assessments = 0
     do_measures = 0
-    do_tasks = 0
-    do_questions = 0 #1
-    do_dsm5 = 0
-    do_projects = 0
-    do_references = 1
-    do_claims = 0 # SKIP
+    do_shared = 0
 
 
 def main():
@@ -94,61 +88,40 @@ def main():
     except:
         statesFILE = 'data/states.xlsx'
     try:
-        behaviorsFILE = download_google_sheet(
-            'data/behaviors.xlsx',
-            "1OHtVRqRXvCUuhyavcLSBU9YkiEJfThFKrXHmcg4627M"
+        disordersFILE = download_google_sheet(
+            'data/disorders.xlsx',
+            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
         )
     except:
-        behaviorsFILE = 'data/behaviors.xlsx'
+        disordersFILE = 'data/disorders.xlsx'
+    try:
+        resourcesFILE = download_google_sheet(
+            'data/resources.xlsx',
+            "1LeLlrsvBWMYTTIXTVtkynmBzzb0Uzi1OwpRLfyRAwzM"
+        )
+    except:
+        resourcesFILE = 'data/resources.xlsx'
+    try:
+        assessmentsFILE = download_google_sheet(
+            'data/assessments.xlsx',
+            "1VUf3XnieYThY8OA6JWtpNP4zI2xa9xak9LXuyH_PaoE"
+        )
+    except:
+        assessmentsFILE = 'data/assessments.xlsx'
     try:
         measuresFILE = download_google_sheet(
-            'data/measures.xlsx',
+            'data/claims.xlsx',
             "1ELaw79zmtmjmrg3J7slyoP-HXdfQRWa1Aqnbp50cmj8"
         )
     except:
         measuresFILE = 'data/measures.xlsx'
     try:
-        tasksFILE = download_google_sheet(
-            'data/tasks.xlsx',
-            "1jTeq7whH8y2MkhLpMFh52y5FOMDxKCantPTrkD48zuQ"
-        )
-    except:
-        tasksFILE = 'data/tasks.xlsx'
-    try:
-        questionsFILE = download_google_sheet(
-            'data/questions.xlsx',
-            "1VUf3XnieYThY8OA6JWtpNP4zI2xa9xak9LXuyH_PaoE"
-        )
-    except:
-        questionsFILE = 'data/questions.xlsx'
-    try:
-        dsm5FILE = download_google_sheet(
-            'data/dsm5.xlsx',
-            "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
-        )
-    except:
-        dsm5FILE = 'data/dsm5.xlsx'
-    try:
-        projectsFILE = download_google_sheet(
-            'data/projects.xlsx',
-            "1LeLlrsvBWMYTTIXTVtkynmBzzb0Uzi1OwpRLfyRAwzM"
-        )
-    except:
-        projectsFILE = 'data/projects.xlsx'
-    try:
-        referencesFILE = download_google_sheet(
-            'data/references.xlsx',
+        sharedFILE = download_google_sheet(
+            'data/shared.xlsx',
             "1KDZhoz9CgHBVclhoOKBgDegUA9Vczui5wj61sXMgh34"
         )
     except:
-        referencesFILE = 'data/references.xlsx'
-    try:
-        claimsFILE = download_google_sheet(
-            'data/claims.xlsx',
-            "1XaOcztrjtoh2Jf5c5FrxNNvbAriNnvSD9YYzgOpv474"
-        )
-    except:
-        claimsFILE = 'data/claims.xlsx'
+        sharedFILE = 'data/shared.xlsx'
 
 
     # --------------------------------------------------------------------------
@@ -156,99 +129,69 @@ def main():
     # --------------------------------------------------------------------------
     states_xls = pd.ExcelFile(statesFILE)
     states_outfile = os.path.join('../output', 'states.ttl')
-    behaviors_xls = pd.ExcelFile(behaviorsFILE)
-    behaviors_outfile = os.path.join('../output', 'behaviors.ttl')
+    disorders_xls = pd.ExcelFile(disordersFILE)
+    disorders_outfile = os.path.join('../output', 'disorders.ttl')
+    resources_xls = pd.ExcelFile(resourcesFILE)
+    resources_outfile = os.path.join('../output', 'resources.ttl')
+    assessments_xls = pd.ExcelFile(assessmentsFILE)
+    assessments_outfile = os.path.join('../output', 'assessments.ttl')
     measures_xls = pd.ExcelFile(measuresFILE)
     measures_outfile = os.path.join('../output', 'measures.ttl')
-    tasks_xls = pd.ExcelFile(tasksFILE)
-    tasks_outfile = os.path.join('../output', 'tasks.ttl')
-    questions_xls = pd.ExcelFile(questionsFILE)
-    questions_outfile = os.path.join('../output', 'questions.ttl')
-    dsm5_xls = pd.ExcelFile(dsm5FILE)
-    dsm5_outfile = os.path.join('../output', 'dsm5.ttl')
-    projects_xls = pd.ExcelFile(projectsFILE)
-    projects_outfile = os.path.join('../output', 'projects.ttl')
-    references_outfile = os.path.join('../output', 'references.ttl')
-    references_xls = pd.ExcelFile(referencesFILE)
-    claims_xls = pd.ExcelFile(claimsFILE)
-    claims_outfile = os.path.join('../output', 'claims.ttl')
+    shared_outfile = os.path.join('../output', 'shared.ttl')
+    shared_xls = pd.ExcelFile(sharedFILE)
 
 
     # --------------------------------------------------------------------------
     # Create output RDF
     # --------------------------------------------------------------------------
     if do_states:
-        states_statements = ingest_states(states_xls, references_xls,
+        states_statements = ingest_states(states_xls, shared_xls,
                                           statements={})
         states_turtle = turtle_from_dict(states_statements)
     else:
         states_statements = []
         states_turtle = []
 
-    if do_behaviors:
-        behaviors_statements = ingest_behaviors(behaviors_xls, references_xls,
-                                                dsm5_xls, statements={})
-        behaviors_turtle = turtle_from_dict(behaviors_statements)
+    if do_disorders:
+        disorders_statements = ingest_disorders(disorders_xls, shared_xls, statements={})
+        disorders_turtle = turtle_from_dict(disorders_statements)
     else:
-        behaviors_statements = []
-        behaviors_turtle = []
+        disorders_statements = []
+        disorders_turtle = []
+
+    if do_resources:
+        resources_statements = ingest_resources(resources_xls,
+                                              states_xls, measures_xls,
+                                              shared_xls, statements={})
+        resources_turtle = turtle_from_dict(resources_statements)
+    else:
+        resources_statements = []
+        resources_turtle = []
+
+    if do_assessments:
+        assessments_statements = ingest_assessments(assessments_xls,
+            shared_xls, statements={})
+        assessments_turtle = turtle_from_dict(assessments_statements)
+    else:
+        assessments_statements = []
+        assessments_turtle = []
 
     if do_measures:
-        measures_statements = ingest_measures(measures_xls, references_xls,
+        measures_statements = ingest_measures(measures_xls, shared_xls,
                                               statements={})
         measures_turtle = turtle_from_dict(measures_statements)
     else:
         measures_statements = []
         measures_turtle = []
 
-    if do_tasks:
-        tasks_statements = ingest_tasks(tasks_xls, states_xls, projects_xls,
-                                        references_xls, statements={})
-        tasks_turtle = turtle_from_dict(tasks_statements)
-    else:
-        tasks_statements = []
-        tasks_turtle = []
-
-    if do_questions:
-        questions_statements = ingest_questions(questions_xls,
-            references_xls, statements={})
-        questions_turtle = turtle_from_dict(questions_statements)
-    else:
-        questions_statements = []
-        questions_turtle = []
-
-    if do_dsm5:
-        dsm5_statements = ingest_dsm5(dsm5_xls, references_xls, statements={})
-        dsm5_turtle = turtle_from_dict(dsm5_statements)
-    else:
-        dsm5_statements = []
-        dsm5_turtle = []
-
-    if do_projects:
-        projects_statements = ingest_projects(projects_xls,
-                                              states_xls, measures_xls,
-                                              references_xls, statements={})
-        projects_turtle = turtle_from_dict(projects_statements)
-    else:
-        projects_statements = []
-        projects_turtle = []
-
-    if do_references:
-        references_statements = ingest_references(references_xls, states_xls,
-                                                  projects_xls, dsm5_xls,
+    if do_shared:
+        shared_statements = ingest_shared(shared_xls, states_xls,
+                                                  resources_xls, disorders_xls,
                                                   statements={})
-        references_turtle = turtle_from_dict(references_statements)
+        shared_turtle = turtle_from_dict(shared_statements)
     else:
-        references_statements = []
-        references_turtle = []
-
-    if do_claims:
-        claims_statements = ingest_claims(claims_xls, states_xls, measures_xls,
-                                          references_xls, statements={})
-        claims_turtle = turtle_from_dict(claims_statements)
-    else:
-        claims_statements = []
-        claims_turtle = []
+        shared_statements = []
+        shared_turtle = []
 
 
     # --------------------------------------------------------------------------
@@ -260,14 +203,11 @@ def main():
     X = ['', 'nan', np.nan, 'None', None, []]
 
     outputs_list = [[states_statements, states_outfile, states_turtle],
-                    [behaviors_statements, behaviors_outfile, behaviors_turtle],
+                    [disorders_statements, disorders_outfile, disorders_turtle],
+                    [resources_statements, resources_outfile, resources_turtle],
+                    [assessments_statements, assessments_outfile, assessments_turtle],
                     [measures_statements, measures_outfile, measures_turtle],
-                    [tasks_statements, tasks_outfile, tasks_turtle],
-                    [questions_statements, questions_outfile, questions_turtle],
-                    [dsm5_statements, dsm5_outfile, dsm5_turtle],
-                    [projects_statements, projects_outfile, projects_turtle],
-                    [references_statements, references_outfile, references_turtle],
-                    [claims_statements, claims_outfile, claims_turtle]]
+                    [shared_statements, shared_outfile, shared_turtle]]
 
     for ioutput, output_list in enumerate(outputs_list):
 
@@ -298,7 +238,7 @@ def main():
                 row[1]["Prefix"],
                 row[1]["PrefixURI"],
                 row[1]["ImportURI"]
-            ) for row in references_xls.parse(
+            ) for row in shared_xls.parse(
                 'ontologies'
             ).iterrows() if row[1]["Prefix"] in import_prefixes and
                             row[1]["Prefix"] not in ["mhdb"]]
@@ -317,16 +257,38 @@ def main():
                 )
             if ioutput == 1:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "behaviors#"), base_prefix,
+                    "{0}/{1}".format(base_uri, "disorders#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Behaviors"),
+                    "{0} — {1}".format(label, "Signs and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)"),
                     "\n".join([
                         header_comment,
-                        "{0}\n\t\tBehaviors\n{0}\n\n".format(ddashes)
+                        "{0}\n\t\tSigns and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
             if ioutput == 2:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "resources#"), base_prefix,
+                    version,
+                    "{0} — {1}".format(label, "Projects related to mental health"),
+                    "\n".join([
+                        header_comment,
+                        "{0}\n\t\tProjects related to mental health\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 3:
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, "assessments#"), base_prefix,
+                    version,
+                    "{0} — {1}".format(label, "Questions from (primarily mental health) questionnaires"),
+                    "\n".join([
+                        header_comment,
+                        "{0}\n\t\tQuestions from (primarily mental health) questionnaires\n{0}\n\n".format(ddashes)
+                    ]),
+                    prefixes=prefixes
+                )
+            if ioutput == 4:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "measures#"), base_prefix,
                     version,
@@ -337,69 +299,14 @@ def main():
                     ]),
                     prefixes=prefixes
                 )
-            if ioutput == 3:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "tasks#"), base_prefix,
-                    version,
-                    "{0} — {1}".format(label, "Tasks to observe cognition, emotion, and behaviors"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tTasks to observe cognition, emotion, and behaviors\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 4:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "questions#"), base_prefix,
-                    version,
-                    "{0} — {1}".format(label, "Questions from (primarily mental health) questionnaires"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tQuestions from (primarily mental health) questionnaires\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
             if ioutput == 5:
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "dsm5#"), base_prefix,
-                    version,
-                    "{0} — {1}".format(label, "Signs and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tSigns and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 6:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "projects#"), base_prefix,
-                    version,
-                    "{0} — {1}".format(label, "Projects related to mental health"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tProjects related to mental health\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 7:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "references#"), base_prefix,
+                    "{0}/{1}".format(base_uri, "shared#"), base_prefix,
                     version,
                     "{0} — {1}".format(label, "References for the Mental Health Database (MHDB)"),
                     "\n".join([
                         header_comment,
                         "{0}\n\t\tReferences for the Mental Health Database (MHDB)\n{0}\n\n".format(ddashes)
-                    ]),
-                    prefixes=prefixes
-                )
-            if ioutput == 8:
-                header_string = write_header(
-                    "{0}/{1}".format(base_uri, "claims#"), base_prefix,
-                    version,
-                    "{0} — {1}".format(label, "Claims related to mental health"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tClaims related to mental health\n{0}\n\n".format(ddashes)
                     ]),
                     prefixes=prefixes
                 )
