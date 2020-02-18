@@ -16,18 +16,35 @@ Apache v2.0 License
 """
 
 
-ddashes = "================================================================================"
-header_comment="""\n\n{0}\n\t\tMental Health Database (MHDB)\n{0}
-This mental health database interrelates information about:
-  - Mental states
-  - Mental health disorders
-  - Mental health resources
-  - Mental health assessments
-  - Sensors and measures
-The database is licensed under the terms of the Creative Commons BY license.
-Current information can be found on the website, https://matter.childmind.org.
-""".format(ddashes)
+header_comment="""
+The Mental Health Database (MHDB) includes:
 
+  - Mental states (mhdb-states)
+  - Mental health disorders (mhdb-disorders)
+  - Mental health resources (mhdb-resources)
+  - Mental health assessments (mhdb-assessments)
+  - Sensors and measures (mhdb-measures)
+  
+The database is licensed under the terms of the Creative Commons BY license.
+Current information can be found on the website https://matter.childmind.org.
+"""
+states_title = "mhdb-states: Mental states (categories of mental phenomena)"
+disorders_title = "mhdb-disorders: Mental health disorders, signs, and symptoms"
+resources_title = "mhdb-resources: Mental health resources (guides, therapies, and projects)"
+assessments_title = "mhdb-assessments: Mental health assessments (questionnaires and cognitive tasks)"
+measures_title = "mhdb-measures: Sensors and measures"
+ddashes = "================================================================================"
+
+header_states="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
+    ddashes, states_title, header_comment)
+header_disorders="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
+    ddashes, disorders_title, header_comment)
+header_resources="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
+    ddashes, resources_title, header_comment)
+header_assessments="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
+    ddashes, assessments_title, header_comment)
+header_measures="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
+    ddashes, measures_title, header_comment)
 
 import os
 import sys
@@ -126,15 +143,14 @@ def main():
     # Create output RDF
     # --------------------------------------------------------------------------
     if do_states:
-        states_statements = ingest_states(states_xls, shared_xls,
-                                          statements={})
+        states_statements = ingest_states(states_xls, statements={})
         states_turtle = turtle_from_dict(states_statements)
     else:
         states_statements = []
         states_turtle = []
 
     if do_disorders:
-        disorders_statements = ingest_disorders(disorders_xls, shared_xls, statements={})
+        disorders_statements = ingest_disorders(disorders_xls, statements={})
         disorders_turtle = turtle_from_dict(disorders_statements)
     else:
         disorders_statements = []
@@ -143,7 +159,7 @@ def main():
     if do_resources:
         resources_statements = ingest_resources(resources_xls,
                                               states_xls, measures_xls,
-                                              shared_xls, statements={})
+                                              statements={})
         resources_turtle = turtle_from_dict(resources_statements)
     else:
         resources_statements = []
@@ -151,15 +167,14 @@ def main():
 
     if do_assessments:
         assessments_statements = ingest_assessments(assessments_xls,
-            shared_xls, statements={})
+            statements={})
         assessments_turtle = turtle_from_dict(assessments_statements)
     else:
         assessments_statements = []
         assessments_turtle = []
 
     if do_measures:
-        measures_statements = ingest_measures(measures_xls, shared_xls,
-                                              statements={})
+        measures_statements = ingest_measures(measures_xls, statements={})
         measures_turtle = turtle_from_dict(measures_statements)
     else:
         measures_statements = []
@@ -218,55 +233,40 @@ def main():
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "states#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Categories of mental phenomena"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tCategories of mental phenomena\n{0}\n\n".format(ddashes)
-                    ]),
+                    "mhdb-states",
+                    header_states,
                     prefixes=prefixes
                 )
             if ioutput == 1:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "disorders#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Signs and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tSigns and symptoms from the Diagnostic and Statistical Manual of Mental Disorders (DSM-5)\n{0}\n\n".format(ddashes)
-                    ]),
+                    "mhdb-disorders",
+                    header_disorders,
                     prefixes=prefixes
                 )
             if ioutput == 2:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "resources#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Projects related to mental health"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tProjects related to mental health\n{0}\n\n".format(ddashes)
-                    ]),
+                    "mhdb-resources",
+                    header_resources,
                     prefixes=prefixes
                 )
             if ioutput == 3:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "assessments#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Questions from (primarily mental health) questionnaires"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tQuestions from (primarily mental health) questionnaires\n{0}\n\n".format(ddashes)
-                    ]),
+                    "mhdb-assessments",
+                    header_assessments,
                     prefixes=prefixes
                 )
             if ioutput == 4:
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, "measures#"), base_prefix,
                     version,
-                    "{0} — {1}".format(label, "Measures related to cognition, emotion, behavior, and physiology"),
-                    "\n".join([
-                        header_comment,
-                        "{0}\n\t\tMeasures related to cognition, emotion, behavior, and physiology\n{0}\n\n".format(ddashes)
-                    ]),
+                    "mhdb-measures",
+                    header_measures,
                     prefixes=prefixes
                 )
 
