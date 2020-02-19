@@ -31,7 +31,7 @@ Current information can be found on the website https://matter.childmind.org.
 states_title = "mhdb-states: Mental states (categories of mental phenomena)"
 disorders_title = "mhdb-disorders: Mental health disorders, signs, and symptoms"
 resources_title = "mhdb-resources: Mental health resources (guides, therapies, and projects)"
-assessments_title = "mhdb-assessments: Mental health assessments (questionnaires and cognitive tasks)"
+assessments_title = "mhdb-assessments: Mental health assessments (questions and cognitive tasks)"
 measures_title = "mhdb-measures: Sensors and measures"
 ddashes = "================================================================================"
 
@@ -39,9 +39,9 @@ header_states="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
     ddashes, states_title, header_comment)
 header_disorders="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
     ddashes, disorders_title, header_comment)
-header_resources="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
+header_resources="\n\n{0}\n{1}\n{0}\n{2}\n{0}\n".format(
     ddashes, resources_title, header_comment)
-header_assessments="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
+header_assessments="\n\n{0}\n{1}\n{0}\n{2}\n{0}\n".format(
     ddashes, assessments_title, header_comment)
 header_measures="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
     ddashes, measures_title, header_comment)
@@ -76,8 +76,8 @@ if run_all:
     do_measures = 1
 else:
     do_states = 0
-    do_disorders = 1
-    do_resources = 0
+    do_disorders = 0
+    do_resources = 1
     do_assessments = 0
     do_measures = 0
 
