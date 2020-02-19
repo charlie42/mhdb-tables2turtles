@@ -991,14 +991,16 @@ def ingest_disorders(disorders_xls, statements={}):
 
             # research article-specific columns
             authors = row[1]["authors"]
-            pubdate = row[1]["pubdate"]
+            year = row[1]["year"]
             PubMedID = row[1]["PubMedID"]
             if authors not in exclude_list:
                 predicates_list.append(("mhdb:hasAuthorList", language_string(authors)))
-            if pubdate not in exclude_list:
-                predicates_list.append(("mhdb:hasPublicationDate", language_string(pubdate)))
+            if year not in exclude_list:
+                predicates_list.append(("mhdb:hasPublicationYear",
+                                        '"{0}"^^xsd:integer'.format(int(year))))
             if PubMedID not in exclude_list:
-                predicates_list.append(("mhdb:hasPubMedID", language_string(PubMedID)))
+                predicates_list.append(("mhdb:hasPubMedID",
+                                        '"{0}"^^xsd:integer'.format(int(PubMedID))))
 
             for predicates in predicates_list:
                 statements = add_to_statements(
@@ -1175,9 +1177,11 @@ def ingest_resources(resources_xls, measures_xls, states_xls, statements={}):
             link = row[1]["link"]
             entry_date = row[1]["entry_date"]
             if link not in exclude_list:
-                predicates_list.append(("mhdb:hasHomePage", "<" + link.strip() + ">"))
+                predicates_list.append(("mhdb:hasHomePage",
+                                        "<" + link.strip() + ">"))
             if entry_date not in exclude_list:
-                predicates_list.append(("mhdb:hasEntryDate", language_string(entry_date)))
+                predicates_list.append(("mhdb:hasEntryDate",
+                                        language_string(entry_date)))
 
             # research article-specific columns: authors, affiliation, pubdate
             authors = row[1]["authors"]
@@ -1192,7 +1196,8 @@ def ingest_resources(resources_xls, measures_xls, states_xls, statements={}):
                         check_iri(affiliation), statements, exclude_list
                     )
             if pubdate not in exclude_list:
-                predicates_list.append(("mhdb:hasPublicationDate", language_string(pubdate)))
+                predicates_list.append(("mhdb:hasPublicationDate",
+                                        language_string(pubdate)))
 
             # guide type
             indices_guide_type = row[1]["indices_guide_type"]
@@ -1561,8 +1566,9 @@ def ingest_resources(resources_xls, measures_xls, states_xls, statements={}):
                 member_label = language_string(row[1]["member"])
                 statements = add_to_statements(member_iri, "a", "mhdb:Person",
                                                statements, exclude_list)
-                statements = add_to_statements(member_iri, "mhdb:hasName", member_label,
-                                               statements, exclude_list)
+                statements = add_to_statements(member_iri, "mhdb:hasName",
+                                               member_label, statements,
+                                               exclude_list)
                 predicates_list.append(("mhdb:hasMember", member_iri))
 
             for predicates in predicates_list:
@@ -1575,8 +1581,132 @@ def ingest_resources(resources_xls, measures_xls, states_xls, statements={}):
                 )
 
     # languages worksheet
+    for row in languages.iterrows():
+
+        predicates_list = []
+        predicates_list.append(("a", "mhdb:Language"))
+        predicates_list.append(("rdfs:label",
+                                language_string(row[1]["language"])))
+        language_iri = check_iri(row[1]["language"])
+
+        # indices to parent classes
+        if row[1]["indices_language"] not in exclude_list:
+            indices = [np.int(x) for x in
+                       row[1]["indices_language"].strip().split(',')
+                       if len(x)>0]
+            for index in indices:
+                objectRDF = languages[languages["index"] ==
+                                       index]["language"].values[0]
+                if objectRDF not in exclude_list:
+                    predicates_list.append(("rdfs:subClassOf",
+                                            check_iri(objectRDF)))
+        # equivalentClasses
+        if row[1]["equivalentClasses"] not in exclude_list:
+            equivalentClasses = row[1]["equivalentClasses"]
+            equivalentClasses = [x.strip() for x in
+                             equivalentClasses.strip().split(',') if len(x) > 0]
+            for equivalentClass in equivalentClasses:
+                if equivalentClass not in exclude_list:
+                    predicates_list.append(("rdfs:equivalentClass",
+                                            equivalentClass))
+
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                language_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
     # licenses worksheet
+    for row in licenses.iterrows():
+
+        predicates_list = []
+        predicates_list.append(("a", "mhdb:License"))
+        predicates_list.append(("rdfs:label",
+                                language_string(row[1]["license"])))
+        license_iri = check_iri(row[1]["license"])
+
+        # abbreviation
+        if row[1]["abbreviation"] not in exclude_list:
+            abbreviation = row[1]["abbreviation"]
+            predicates_list.append(("mhdb:Abbreviation",
+                                    language_string(abbreviation)))
+        # description
+        if row[1]["description"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["description"])))
+        # link
+        if row[1]["link"] not in exclude_list:
+            predicates_list.append(("mhdb:hasHomePage",
+                                    "<" + row[1]["link"].strip() + ">"))
+        # equivalentClasses
+        if row[1]["equivalentClasses"] not in exclude_list:
+            equivalentClasses = row[1]["equivalentClasses"]
+            equivalentClasses = [x.strip() for x in
+                             equivalentClasses.strip().split(',') if len(x) > 0]
+            for equivalentClass in equivalentClasses:
+                if equivalentClass not in exclude_list:
+                    predicates_list.append(("rdfs:equivalentClass",
+                                            equivalentClass))
+
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                license_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
     # references worksheet
+    for row in references.iterrows():
+
+        predicates_list = []
+
+        # require title
+        title = row[1]["title"]
+        if title not in exclude_list:
+
+            # reference IRI
+            reference_iri = check_iri(title)
+            predicates_list.append(("rdfs:label", language_string(title)))
+            predicates_list.append(("mhdb:hasTitle", language_string(title)))
+            predicates_list.append(("a", "mhdb:BibliographicResource"))
+
+            # general columns
+            link = row[1]["link"]
+            if link not in exclude_list:
+                predicates_list.append(("mhdb:hasHomePage",
+                                        "<" + link.strip() + ">"))
+            entry_date = row[1]["entry_date"]
+            if entry_date not in exclude_list:
+                predicates_list.append(("mhdb:hasEntryDate",
+                                        language_string(entry_date)))
+
+            # research article-specific columns
+            authors = row[1]["authors"]
+            year = row[1]["year"]
+            PubMedID = row[1]["PubMedID"]
+            if authors not in exclude_list:
+                predicates_list.append(("mhdb:hasAuthorList",
+                                        language_string(authors)))
+            if year not in exclude_list:
+                predicates_list.append(("mhdb:hasPublicationYear",
+                                        '"{0}"^^xsd:integer'.format(int(year))))
+            if PubMedID not in exclude_list:
+                predicates_list.append(("mhdb:hasPubMedID",
+                                        '"{0}"^^xsd:integer'.format(int(PubMedID))))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    reference_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
 
     return statements
 
@@ -2727,8 +2857,9 @@ def ingest_measures(measures_xls, statements={}):
 #             if pubdate not in exclude_list:
 #                 predicates_list.append(("npg:publicationDate", language_string(pubdate)))
 #                 # npg:publicationYear
-#             if PubMedID not in exclude_list:
-#                 predicates_list.append(("fabio:hasPubMedId", language_string(PubMedID)))
+#if PubMedID not in exclude_list:
+#    predicates_list.append(("mhdb:hasPubMedID",
+#                            '"{0}"^^xsd:integer'.format(int(PubMedID))))
 #
 #             # indices to other worksheets about who uses the shared
 #             indices_reference_type = row[1]["indices_reference_type"]

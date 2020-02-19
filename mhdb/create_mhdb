@@ -76,8 +76,8 @@ if run_all:
     do_measures = 1
 else:
     do_states = 0
-    do_disorders = 0
-    do_resources = 0
+    do_disorders = 1
+    do_resources = 1
     do_assessments = 0
     do_measures = 1
 
