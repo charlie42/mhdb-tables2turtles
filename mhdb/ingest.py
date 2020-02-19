@@ -1574,6 +1574,10 @@ def ingest_resources(resources_xls, measures_xls, states_xls, statements={}):
                     exclude_list
                 )
 
+    # languages worksheet
+    # licenses worksheet
+    # references worksheet
+
     return statements
 
 
@@ -2419,16 +2423,18 @@ def ingest_measures(measures_xls, statements={}):
     """
 
     # load worksheets as pandas dataframes
-    #measure_classes = measures_xls.parse("Classes")
-    #measure_properties = measures_xls.parse("Properties")
+    measures_classes = measures_xls.parse("Classes")
+    measures_properties = measures_xls.parse("Properties")
     sensors = measures_xls.parse("sensors")
     measures = measures_xls.parse("measures")
+    scales = measures_xls.parse("scales")
 
     # fill NANs with emptyValue
-    #measure_classes = measure_classes.fillna(emptyValue)
-    #measure_properties = measure_properties.fillna(emptyValue)
+    measures_classes = measures_classes.fillna(emptyValue)
+    measures_properties = measures_properties.fillna(emptyValue)
     sensors = sensors.fillna(emptyValue)
     measures = measures.fillna(emptyValue)
+    scales = scales.fillna(emptyValue)
 
     # Classes worksheet
     for row in measures_classes.iterrows():
@@ -2506,23 +2512,51 @@ def ingest_measures(measures_xls, statements={}):
         predicates_list.append(("a", "mhdb:SensingDevice"))
         predicates_list.append(("rdfs:label", sensor_label))
 
-        other_names = row[1]["other_names_abbreviations"]
-        if other_names not in exclude_list:
-            other_names = [x for x in other_names.strip().split(',') if len(x)>0]
-            for other_name in other_names:
-                if other_name not in exclude_list:
-                    if isinstance(other_name, str):
-                        predicates_list.append(("rdfs:label", other_name))
+        if row[1]["definition"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["definition"])))
+        if row[1]["equivalentClasses"] not in exclude_list:
+            equivalentClasses = row[1]["equivalentClasses"]
+            equivalentClasses = [x.strip() for x in
+                             equivalentClasses.strip().split(',') if len(x) > 0]
+            for equivalentClass in equivalentClasses:
+                if equivalentClass not in exclude_list:
+                    predicates_list.append(("rdfs:equivalentClass",
+                                            equivalentClass))
+
+        aliases = row[1]["aliases"]
+        if aliases not in exclude_list:
+            aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            for alias in aliases:
+                if alias not in exclude_list:
+                    if isinstance(alias, str):
+                        predicates_list.append(("rdfs:label", alias))
+
+        if row[1]["indices_sensor"] not in exclude_list:
+            indices = [np.int(x) for x in
+                       row[1]["indices_sensor"].strip().split(',')
+                       if len(x)>0]
+            for index in indices:
+                objectRDF = sensors[sensors["index"]  ==
+                                          index]["sensor"].values[0]
+                if objectRDF not in exclude_list:
+                    predicates_list.append(("rdfs:subClassOf",
+                                            check_iri(objectRDF)))
 
         indices_measure = row[1]["indices_measure"]
         if indices_measure not in exclude_list:
-            indices = [np.int(x) for x in
-                       indices_measure.strip().split(',') if len(x)>0]
+            if isinstance(indices_measure, int):
+                indices = [indices_measure]
+            else:
+                indices = [np.int(x) for x in
+                           indices_measure.strip().split(',') if len(x)>0]
             for index in indices:
-                objectRDF = measures.measure[measures["index"] == index]
+                objectRDF = measures[measures["index"] ==
+                                     index]["measure"].values[0]
                 if isinstance(objectRDF, str):
                     predicates_list.append(("mhdb:measuresQuantityKind",
                                             check_iri(objectRDF)))
+
         for predicates in predicates_list:
             statements = add_to_statements(
                 sensor_iri,
@@ -2542,13 +2576,24 @@ def ingest_measures(measures_xls, statements={}):
         predicates_list.append(("a", "mhdb:QuantityKind"))
         predicates_list.append(("rdfs:label", measure_label))
 
-        other_names = row[1]["other_names_abbreviations"]
-        if other_names not in exclude_list:
-            other_names = [x for x in other_names.strip().split(',') if len(x)>0]
-            for other_name in other_names:
-                if other_name not in exclude_list:
-                    if isinstance(other_name, str):
-                        predicates_list.append(("rdfs:label", other_name))
+        if row[1]["definition"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["definition"])))
+        if row[1]["equivalentClasses"] not in exclude_list:
+            equivalentClasses = row[1]["equivalentClasses"]
+            equivalentClasses = [x.strip() for x in
+                             equivalentClasses.strip().split(',') if len(x) > 0]
+            for equivalentClass in equivalentClasses:
+                if equivalentClass not in exclude_list:
+                    predicates_list.append(("rdfs:equivalentClass",
+                                            equivalentClass))
+        aliases = row[1]["aliases"]
+        if aliases not in exclude_list:
+            aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            for alias in aliases:
+                if alias not in exclude_list:
+                    if isinstance(alias, str):
+                        predicates_list.append(("rdfs:label", alias))
 
         indices_measure = row[1]["indices_measure"]
         if indices_measure not in exclude_list:
@@ -2564,6 +2609,55 @@ def ingest_measures(measures_xls, statements={}):
         for predicates in predicates_list:
             statements = add_to_statements(
                 measure_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # scales worksheet
+    for row in scales.iterrows():
+
+        scale_label = language_string(row[1]["scale"])
+        scale_iri = check_iri(row[1]["scale"])
+
+        predicates_list = []
+        predicates_list.append(("a", "mhdb:Scale"))
+        predicates_list.append(("rdfs:label", scale_label))
+
+        if row[1]["definition"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["definition"])))
+        if row[1]["equivalentClasses"] not in exclude_list:
+            equivalentClasses = row[1]["equivalentClasses"]
+            equivalentClasses = [x.strip() for x in
+                             equivalentClasses.strip().split(',') if len(x) > 0]
+            for equivalentClass in equivalentClasses:
+                if equivalentClass not in exclude_list:
+                    predicates_list.append(("rdfs:equivalentClass",
+                                            equivalentClass))
+        aliases = row[1]["aliases"]
+        if aliases not in exclude_list:
+            aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            for alias in aliases:
+                if alias not in exclude_list:
+                    if isinstance(alias, str):
+                        predicates_list.append(("rdfs:label", alias))
+
+        # indices_scale = row[1]["indices_scale"]
+        # if indices_scale not in exclude_list:
+        #     indices = [np.int(x) for x in
+        #                indices_scale.strip().split(',') if len(x)>0]
+        #     for index in indices:
+        #         objectRDF = scales[scales["index"] ==
+        #                              index]["scale"].values[0]
+        #         if isinstance(objectRDF, str):
+        #             predicates_list.append(("rdfs:subClassOf",
+        #                                     check_iri(objectRDF)))
+
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                scale_iri,
                 predicates[0],
                 predicates[1],
                 statements,
