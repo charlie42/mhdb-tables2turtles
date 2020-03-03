@@ -1,7 +1,7 @@
 # mentalhealthDB
 code for constructing the mental health database
 
-[![CircleCI](https://circleci.com/gh/ChildMindInstitute/mhdb/tree/master.svg?style=svg)](https://circleci.com/gh/ChildMindInstitute/mhdb/tree/master) ![Python coverage](.circleci/coverage.svg)
+[![CircleCI](https://circleci.com/gh/ChildMindInstitute/mhdb-tables2turtles/tree/master.svg?style=svg)](https://circleci.com/gh/ChildMindInstitute/mhdb-tables2turtles/tree/master) ![Python coverage](.circleci/coverage.svg)
 
 ## To run
 
@@ -9,11 +9,10 @@ code for constructing the mental health database
 sh build_and_create.sh
 ```
 
-## Completeness
-8.7% (31/357 columns)
+## Goals and resources
 
-See the Wiki for information about the content and goals of the project:
+See the mhdb Wiki for information about the content and goals of the project:
 https://github.com/ChildMindInstitute/mhdb/wiki
 
-See Links to RDF and other resources:
+See the mhdb Links to RDF and other resources:
 https://github.com/ChildMindInstitute/mhdb/wiki/Links
