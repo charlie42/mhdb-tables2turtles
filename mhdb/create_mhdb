@@ -15,24 +15,28 @@ Apache v2.0 License
 
 """
 
-
-header_comment="""
-The Mental Health Database (MHDB) includes:
+header_comment = """
+The Mental Health Database (mhdb) includes modules:
 
   - Mental states (mhdb-states)
   - Mental health disorders (mhdb-disorders)
   - Mental health resources (mhdb-resources)
   - Mental health assessments (mhdb-assessments)
-  - Sensors and measures (mhdb-measures)
-  
-The database is licensed under the terms of the Creative Commons BY license.
-Current information can be found on the website https://matter.childmind.org.
+  - Measures and sensors (mhdb-measures)
+
+The database is licensed under the terms of the 
+Creative Commons Attribution 4.0 International (CC BY 4.0) license
+(https://creativecommons.org/licenses/by/4.0/)
+It was created by Arno Klein (arno@childmind.org) 
+at the MATTER Lab of the Child Mind Institute. 
+Current information about its content, contributors, and changes 
+can be found on the website https://github.com/ChildMindInstitute/mhdb.
 """
 states_title = "mhdb-states: Mental states (categories of mental phenomena)"
 disorders_title = "mhdb-disorders: Mental health disorders, signs, and symptoms"
 resources_title = "mhdb-resources: Mental health resources (guides, therapies, and projects)"
 assessments_title = "mhdb-assessments: Mental health assessments (questions and cognitive tasks)"
-measures_title = "mhdb-measures: Sensors and measures"
+measures_title = "mhdb-measures: Physical measures and sensors"
 ddashes = "================================================================================"
 
 header_states="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(

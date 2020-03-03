@@ -108,7 +108,7 @@ def check_iri(
 
 def mhdb_iri(label):
     """
-    Function to prepend "mhdb:" to converted label
+    Function to prepend ":" to converted label
 
     Parameter
     ---------
@@ -119,14 +119,14 @@ def mhdb_iri(label):
     iri: string
     """
     return(":".join([
-        "mhdb",
+        "",
         convert_string_to_label(label)
     ]))
 
 
 def mhdb_iri_simple(label):
     """
-    Function to prepend "mhdb:" to string
+    Function to prepend ":" to string
 
     Parameter
     ---------
@@ -137,7 +137,7 @@ def mhdb_iri_simple(label):
     iri: string
     """
     return(":".join([
-        "mhdb",
+        "",
         label
     ]))
 
@@ -179,8 +179,8 @@ def turtle_from_dict(ttl_dict):
     'duck continues sitting .\\n\\ngoose begins chasing .'
     """
     x = [
-        "mhdb:None",
-        "mhdb:nan",
+        ":None",
+        ":nan",
         "nan",
         np.nan,
         None
