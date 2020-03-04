@@ -4,6 +4,7 @@ __pycache__
 /docs/_build
 doctrees
 
+output
 build
 CMakeCache.txt
 CMakeFiles

@@ -16,21 +16,22 @@ Apache v2.0 License
 """
 
 header_comment = """
-The Mental Health Database (mhdb) includes modules:
+The Mental Health Database (mhdb) includes the following modules:
 
-  - Mental states (mhdb-states)
-  - Mental health disorders (mhdb-disorders)
-  - Mental health resources (mhdb-resources)
-  - Mental health assessments (mhdb-assessments)
-  - Measures and sensors (mhdb-measures)
+  - mhdb-states: Mental states
+  - mhdb-disorders: Mental health disorders
+  - mhdb-resources: Mental health resources
+  - mhdb-assessments: Mental health assessments
+  - mhdb-measures: Physical measures and sensors
 
-The database is licensed under the terms of the 
-Creative Commons Attribution 4.0 International (CC BY 4.0) license
-(https://creativecommons.org/licenses/by/4.0/)
-It was created by Arno Klein (arno@childmind.org) 
-at the MATTER Lab of the Child Mind Institute. 
+License: Creative Commons Attribution 4.0 International (CC BY): 
+https://creativecommons.org/licenses/by/4.0/
+
+Created by: Arno Klein (arno@childmind.org)
+Developers: MATTER Lab (https://matter.childmind.org), Child Mind Institute, NY 
+
 Current information about its content, contributors, and changes 
-can be found on the website https://github.com/ChildMindInstitute/mhdb.
+can be found on the website: https://github.com/ChildMindInstitute/mhdb
 """
 states_title = "mhdb-states: Mental states (categories of mental phenomena)"
 disorders_title = "mhdb-disorders: Mental health disorders, signs, and symptoms"
@@ -80,10 +81,10 @@ if run_all:
     do_measures = 1
 else:
     do_states = 0
-    do_disorders = 0
-    do_resources = 0
+    do_disorders = 1
+    do_resources = 1
     do_assessments = 1
-    do_measures = 0
+    do_measures = 1
 
 
 def main():
@@ -188,8 +189,7 @@ def main():
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
     label = "MHDB"
-    base_uri = "http://www.purl.org/mentalhealth"
-    base_prefix = "mhdb"
+    base_uri = "http://www.purl.org/mentalhealth/ns"
     X = ['', 'nan', np.nan, 'None', None, []]
 
     outputs_list = [[states_statements, states_outfile, states_turtle],
@@ -230,46 +230,61 @@ def main():
             ) for row in resources_xls.parse(
                 'ontologies'
             ).iterrows() if row[1]["Prefix"] in import_prefixes and
-                            row[1]["Prefix"] not in ["mhdb"]]
+                            row[1]["Prefix"] not in ["mhdb-states",
+                                                     "mhdb-disorders",
+                                                     "mhdb-resources",
+                                                     "mhdb-assessments",
+                                                     "mhdb-measures"
+                                                     ]]
 
             header_string = ""
             if ioutput == 0:
+                module = "mhdb-states"
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "states#"), base_prefix,
+                    "{0}/{1}".format(base_uri, module),
+                    module,
                     version,
-                    "mhdb-states",
+                    module,
                     header_states,
                     prefixes=prefixes
                 )
             if ioutput == 1:
+                module = "mhdb-disorders"
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "disorders#"), base_prefix,
+                    "{0}/{1}".format(base_uri, module),
+                    module,
                     version,
-                    "mhdb-disorders",
+                    module,
                     header_disorders,
                     prefixes=prefixes
                 )
             if ioutput == 2:
+                module = "mhdb-resources"
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "resources#"), base_prefix,
+                    "{0}/{1}".format(base_uri, module),
+                    module,
                     version,
-                    "mhdb-resources",
+                    module,
                     header_resources,
                     prefixes=prefixes
                 )
             if ioutput == 3:
+                module = "mhdb-assessments"
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "assessments#"), base_prefix,
+                    "{0}/{1}".format(base_uri, module),
+                    module,
                     version,
-                    "mhdb-assessments",
+                    module,
                     header_assessments,
                     prefixes=prefixes
                 )
             if ioutput == 4:
+                module = "mhdb-measures"
                 header_string = write_header(
-                    "{0}/{1}".format(base_uri, "measures#"), base_prefix,
+                    "{0}/{1}".format(base_uri, module),
+                    module,
                     version,
-                    "mhdb-measures",
+                    module,
                     header_measures,
                     prefixes=prefixes
                 )
