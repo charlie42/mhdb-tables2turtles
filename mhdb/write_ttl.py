@@ -341,13 +341,17 @@ def write_header_prefixes(base_uri, base_prefix, prefixes, imports=False):
     header_prefix = ""
 
     for prefix in prefixes:
-        header_prefix="""{0}@prefix {1}: <{2}> .\n""".format(
+        header_prefix="""{0}PREFIX {1}: <{2}> .\n""".format(
             header_prefix,
             prefix[0],
             prefix[1]
         )
 
-    header_prefix = """{0}\n@base <{1}#> .\n""".format(
+    #header_prefix = """{0}\nBASE <{1}#> \n""".format(
+    #    header_prefix, base_uri
+    #)
+
+    header_prefix = """{0}\nPREFIX : <{1}#> .\n""".format(
         header_prefix, base_uri
     )
 

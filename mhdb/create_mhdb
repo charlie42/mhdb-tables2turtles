@@ -133,15 +133,15 @@ def main():
     # Import spreadsheets
     # --------------------------------------------------------------------------
     states_xls = pd.ExcelFile(statesFILE)
-    states_outfile = os.path.join('../output', 'states.ttl')
+    states_outfile = os.path.join('../output', 'mhdb-states.ttl')
     disorders_xls = pd.ExcelFile(disordersFILE)
-    disorders_outfile = os.path.join('../output', 'disorders.ttl')
+    disorders_outfile = os.path.join('../output', 'mhdb-disorders.ttl')
     resources_xls = pd.ExcelFile(resourcesFILE)
-    resources_outfile = os.path.join('../output', 'resources.ttl')
+    resources_outfile = os.path.join('../output', 'mhdb-resources.ttl')
     assessments_xls = pd.ExcelFile(assessmentsFILE)
-    assessments_outfile = os.path.join('../output', 'assessments.ttl')
+    assessments_outfile = os.path.join('../output', 'mhdb-assessments.ttl')
     measures_xls = pd.ExcelFile(measuresFILE)
-    measures_outfile = os.path.join('../output', 'measures.ttl')
+    measures_outfile = os.path.join('../output', 'mhdb-measures.ttl')
 
 
     # --------------------------------------------------------------------------
@@ -189,7 +189,7 @@ def main():
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
     label = "MHDB"
-    base_uri = "http://www.purl.org/mentalhealth/ns"
+    base_uri = "http://www.purl.org/mentalhealth"
     X = ['', 'nan', np.nan, 'None', None, []]
 
     outputs_list = [[states_statements, states_outfile, states_turtle],
@@ -290,9 +290,9 @@ def main():
                 )
 
             fid = open(out_file, 'w')
-            fid.write("@prefix owl: <http://www.w3.org/2002/07/owl#> .\n")
-            fid.write("@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
-            fid.write("@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n")
+            fid.write("PREFIX owl: <http://www.w3.org/2002/07/owl#> .\n")
+            fid.write("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
+            fid.write("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n")
             fid.write(header_string)
             fid.write(out_turtle)
 
