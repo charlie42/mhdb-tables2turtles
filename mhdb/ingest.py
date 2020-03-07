@@ -2085,16 +2085,15 @@ def ingest_assessments(assessments_xls, resources_xls, statements={}):
     old_questionnaires = []
     for row in questions.iterrows():
 
-        #print(row[1]["index"], row[1]["index_questionnaire"])
         questionnaire = questionnaires[questionnaires["index"] ==
-                            row[1]["index_questionnaire"]]["title"].values[0]
+                            row[1]["index_questionnaire"]]["title"].values[0].strip()
         if questionnaire not in old_questionnaires:
             qnum = 1
             old_questionnaires.append(questionnaire)
         else:
             qnum += 1
 
-        question = row[1]["question"]
+        question = row[1]["question"].strip()
         question_label = language_string(question)
         question_iri = check_iri("{0}_Q{1}".format(questionnaire, qnum))
 
@@ -2104,32 +2103,12 @@ def ingest_assessments(assessments_xls, resources_xls, statements={}):
         predicates_list.append((":hasQuestionText", question_label))
         predicates_list.append((":isReferencedBy", check_iri(questionnaire)))
 
-        paper_instructions_preamble = row[1]["paper_instructions_preamble"]
-        paper_instructions = row[1]["paper_instructions"]
-        digital_instructions_preamble = row[1]["digital_instructions_preamble"]
-        digital_instructions = row[1]["digital_instructions"]
+        paper_instructions_preamble = row[1]["paper_instructions_preamble"].strip()
+        paper_instructions = row[1]["paper_instructions"].strip()
+        digital_instructions_preamble = row[1]["digital_instructions_preamble"].strip()
+        digital_instructions = row[1]["digital_instructions"].strip()
         response_options = row[1]["response_options"]
 
-        if paper_instructions_preamble not in exclude_list:
-            predicates_list.append((":hasPaperInstructionsPreamble",
-                                    check_iri(paper_instructions_preamble)))
-            statements = add_to_statements(
-                check_iri(paper_instructions_preamble),
-                ":hasPaperInstructionsPreambleText",
-                language_string(paper_instructions_preamble),
-                statements,
-                exclude_list
-            )
-        if paper_instructions.strip() not in exclude_list:
-            predicates_list.append((":hasPaperInstructions",
-                                    check_iri(paper_instructions)))
-            statements = add_to_statements(
-                check_iri(paper_instructions),
-                ":hasPaperInstructionsText",
-                language_string(paper_instructions),
-                statements,
-                exclude_list
-            )
         if digital_instructions_preamble not in exclude_list:
             predicates_list.append((":hasInstructionsPreamble",
                                     check_iri(digital_instructions_preamble)))
@@ -2147,6 +2126,30 @@ def ingest_assessments(assessments_xls, resources_xls, statements={}):
                 check_iri(digital_instructions),
                 ":hasInstructionsText",
                 language_string(digital_instructions),
+                statements,
+                exclude_list
+            )
+        if paper_instructions_preamble not in exclude_list and \
+            paper_instructions_preamble != digital_instructions_preamble:
+
+            predicates_list.append((":hasPaperInstructionsPreamble",
+                                    check_iri(paper_instructions_preamble)))
+            statements = add_to_statements(
+                check_iri(paper_instructions_preamble),
+                ":hasPaperInstructionsPreambleText",
+                language_string(paper_instructions_preamble),
+                statements,
+                exclude_list
+            )
+        if paper_instructions not in exclude_list and \
+            paper_instructions != digital_instructions:
+
+            predicates_list.append((":hasPaperInstructions",
+                                    check_iri(paper_instructions)))
+            statements = add_to_statements(
+                check_iri(paper_instructions),
+                ":hasPaperInstructionsText",
+                language_string(paper_instructions),
                 statements,
                 exclude_list
             )
@@ -2759,10 +2762,14 @@ def ingest_measures(measures_xls, statements={}):
                     if isinstance(alias, str):
                         predicates_list.append(("rdfs:label", language_string(alias)))
 
-        if row[1]["indices_sensor"] not in exclude_list:
-            indices = [np.int(x) for x in
-                       row[1]["indices_sensor"].strip().split(',')
-                       if len(x)>0]
+        indices_sensor = row[1]["indices_sensor"]
+        if indices_sensor not in exclude_list:
+            if isinstance(indices_sensor, int):
+                indices = [indices_sensor]
+            else:
+                indices = [np.int(x) for x in
+                           row[1]["indices_sensor"].strip().split(',')
+                           if len(x)>0]
             for index in indices:
                 objectRDF = sensors[sensors["index"]  ==
                                           index]["sensor"].values[0]

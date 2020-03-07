@@ -94,39 +94,39 @@ def main():
     # ------------------------------------------------------------------------------
     try:
         statesFILE = download_google_sheet(
-            'data/states.xlsx',
+            '../input/mhdb-states.xlsx',
             "11OkIWLwZYi9xkpuFODAKXQZHEFeMvYCQ8BTfIBKm0Z8"
         )
     except:
-        statesFILE = 'data/states.xlsx'
+        statesFILE = '../input/mhdb-states.xlsx'
     try:
         disordersFILE = download_google_sheet(
-            'data/disorders.xlsx',
+            '../input/mhdb-disorders.xlsx',
             "13a0w3ouXq5sFCa0fBsg9xhWx67RGJJJqLjD_Oy1c3b0"
         )
     except:
-        disordersFILE = 'data/disorders.xlsx'
+        disordersFILE = '../input/disorders.xlsx'
     try:
         resourcesFILE = download_google_sheet(
-            'data/resources.xlsx',
+            '../input/mhdb-resources.xlsx',
             "1LeLlrsvBWMYTTIXTVtkynmBzzb0Uzi1OwpRLfyRAwzM"
         )
     except:
-        resourcesFILE = 'data/resources.xlsx'
+        resourcesFILE = '../input/mhdb-resources.xlsx'
     try:
         assessmentsFILE = download_google_sheet(
-            'data/assessments.xlsx',
+            '../input/mhdb-assessments.xlsx',
             "1VUf3XnieYThY8OA6JWtpNP4zI2xa9xak9LXuyH_PaoE"
         )
     except:
-        assessmentsFILE = 'data/assessments.xlsx'
+        assessmentsFILE = '../input/mhdb-assessments.xlsx'
     try:
         measuresFILE = download_google_sheet(
-            'data/claims.xlsx',
+            '../input/mhdb-measures.xlsx',
             "1ELaw79zmtmjmrg3J7slyoP-HXdfQRWa1Aqnbp50cmj8"
         )
     except:
-        measuresFILE = 'data/measures.xlsx'
+        measuresFILE = '../input/mhdb-measures.xlsx'
 
 
     # --------------------------------------------------------------------------
@@ -223,23 +223,22 @@ def main():
                         "://" not in object and \
                         not object.startswith('"'):
                             import_prefixes.add(object.split(":")[0])
-            prefixes = [(
-                row[1]["Prefix"],
-                row[1]["PrefixURI"],
-                row[1]["ImportURI"]
-            ) for row in resources_xls.parse(
-                'ontologies'
-            ).iterrows() if row[1]["Prefix"] in import_prefixes and
-                            row[1]["Prefix"] not in ["mhdb-states",
-                                                     "mhdb-disorders",
-                                                     "mhdb-resources",
-                                                     "mhdb-assessments",
-                                                     "mhdb-measures"
-                                                     ]]
 
             header_string = ""
             if ioutput == 0:
                 module = "mhdb-states"
+                prefixes = [(
+                    row[1]["Prefix"],
+                    row[1]["PrefixURI"],
+                    row[1]["ImportURI"]
+                ) for row in resources_xls.parse(
+                    'ontologies'
+                ).iterrows() if row[1]["Prefix"] in import_prefixes and
+                                row[1]["Prefix"] not in ["mhdb-disorders",
+                                                         "mhdb-resources",
+                                                         "mhdb-assessments",
+                                                         "mhdb-measures"
+                                                         ]]
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, module),
                     module,
@@ -250,6 +249,18 @@ def main():
                 )
             if ioutput == 1:
                 module = "mhdb-disorders"
+                prefixes = [(
+                    row[1]["Prefix"],
+                    row[1]["PrefixURI"],
+                    row[1]["ImportURI"]
+                ) for row in resources_xls.parse(
+                    'ontologies'
+                ).iterrows() if row[1]["Prefix"] in import_prefixes and
+                                row[1]["Prefix"] not in ["mhdb-states",
+                                                         "mhdb-resources",
+                                                         "mhdb-assessments",
+                                                         "mhdb-measures"
+                                                         ]]
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, module),
                     module,
@@ -260,6 +271,17 @@ def main():
                 )
             if ioutput == 2:
                 module = "mhdb-resources"
+                prefixes = [(
+                    row[1]["Prefix"],
+                    row[1]["PrefixURI"],
+                    row[1]["ImportURI"]
+                ) for row in resources_xls.parse(
+                    'ontologies'
+                ).iterrows() if row[1]["Prefix"] in import_prefixes and
+                                row[1]["Prefix"] not in ["mhdb-states",
+                                                         "mhdb-disorders",
+                                                         "mhdb-assessments",
+                                                         ]]
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, module),
                     module,
@@ -270,6 +292,17 @@ def main():
                 )
             if ioutput == 3:
                 module = "mhdb-assessments"
+                prefixes = [(
+                    row[1]["Prefix"],
+                    row[1]["PrefixURI"],
+                    row[1]["ImportURI"]
+                ) for row in resources_xls.parse(
+                    'ontologies'
+                ).iterrows() if row[1]["Prefix"] in import_prefixes and
+                                row[1]["Prefix"] not in ["mhdb-states",
+                                                         "mhdb-disorders",
+                                                         "mhdb-measures"
+                                                         ]]
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, module),
                     module,
@@ -280,6 +313,18 @@ def main():
                 )
             if ioutput == 4:
                 module = "mhdb-measures"
+                prefixes = [(
+                    row[1]["Prefix"],
+                    row[1]["PrefixURI"],
+                    row[1]["ImportURI"]
+                ) for row in resources_xls.parse(
+                    'ontologies'
+                ).iterrows() if row[1]["Prefix"] in import_prefixes and
+                                row[1]["Prefix"] not in ["mhdb-states",
+                                                         "mhdb-disorders",
+                                                         "mhdb-resources",
+                                                         "mhdb-assessments"
+                                                         ]]
                 header_string = write_header(
                     "{0}/{1}".format(base_uri, module),
                     module,
@@ -290,9 +335,10 @@ def main():
                 )
 
             fid = open(out_file, 'w')
-            fid.write("PREFIX owl: <http://www.w3.org/2002/07/owl#> .\n")
-            fid.write("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n")
-            fid.write("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n")
+            fid.write("PREFIX owl: <http://www.w3.org/2002/07/owl#> \n")
+            fid.write("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n")
+            fid.write("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \n")
+            fid.write("PREFIX xsd: <https://www.w3.org/2009/XMLSchema/XMLSchema#> \n")
             fid.write(header_string)
             fid.write(out_turtle)
 

@@ -97,8 +97,6 @@ def check_iri(
         elif ":/" in iri and \
             not iri.startswith('<') and not iri.endswith('>'):
             return "<{0}>".format(convert_string_to_label(iri))
-        elif ":" in iri and not "/" in iri:
-            return iri
         else:
             return mhdb_iri(iri)
         if alert_unknown:
@@ -341,7 +339,7 @@ def write_header_prefixes(base_uri, base_prefix, prefixes, imports=False):
     header_prefix = ""
 
     for prefix in prefixes:
-        header_prefix="""{0}PREFIX {1}: <{2}> .\n""".format(
+        header_prefix="""{0}PREFIX {1}: <{2}> \n""".format(
             header_prefix,
             prefix[0],
             prefix[1]
@@ -351,7 +349,7 @@ def write_header_prefixes(base_uri, base_prefix, prefixes, imports=False):
     #    header_prefix, base_uri
     #)
 
-    header_prefix = """{0}\nPREFIX : <{1}#> .\n""".format(
+    header_prefix = """{0}\nPREFIX : <{1}#> \n""".format(
         header_prefix, base_uri
     )
 
