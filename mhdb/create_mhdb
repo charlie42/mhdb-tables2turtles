@@ -25,10 +25,10 @@ The Mental Health Database (mhdb) includes the following modules:
   - mhdb-measures: Physical measures and sensors
 
 License: Creative Commons Attribution 4.0 International (CC BY): 
-https://creativecommons.org/licenses/by/4.0/
-
+License link: https://creativecommons.org/licenses/by/4.0/
 Created by: Arno Klein (arno@childmind.org)
 Developers: MATTER Lab (https://matter.childmind.org), Child Mind Institute, NY 
+Updated: March 9, 2020
 
 Current information about its content, contributors, and changes 
 can be found on the website: https://github.com/ChildMindInstitute/mhdb
@@ -72,7 +72,7 @@ except:
 import numpy as np
 import pandas as pd
 
-run_all = 0
+run_all = 1
 if run_all:
     do_states = 0
     do_disorders = 1
@@ -81,10 +81,10 @@ if run_all:
     do_measures = 1
 else:
     do_states = 0
-    do_disorders = 1
+    do_disorders = 0
     do_resources = 1
-    do_assessments = 1
-    do_measures = 1
+    do_assessments = 0
+    do_measures = 0
 
 
 def main():
@@ -188,7 +188,6 @@ def main():
     # --------------------------------------------------------------------------
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
-    label = "MHDB"
     base_uri = "http://www.purl.org/mentalhealth"
     X = ['', 'nan', np.nan, 'None', None, []]
 

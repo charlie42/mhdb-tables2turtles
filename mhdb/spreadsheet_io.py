@@ -4,10 +4,10 @@ This program contains generic input/output functions
 to read from a spreadsheet and return desired types/formats.
 
 Authors:
-    - Arno Klein, 2017  (arno@childmind.org)  http://binarybottle.com
+    - Arno Klein, 2017-2020  (arno@childmind.org)  http://binarybottle.com
     - Jon Clucas, 2017 (jon.clucas@childmind.org)
 
-Copyright 2017, Child Mind Institute (http://childmind.org), Apache v2.0 License
+Copyright 2020, Child Mind Institute (http://childmind.org), Apache v2.0 License
 
 """
 import os
@@ -104,117 +104,6 @@ def return_float(input_number):
         return float(input_number)
     else:
         return None
-
-
-def return_string(input_string, replace=[], replace_with=[]):
-    """
-    Return a stripped string with optional character replacements.
-
-    Parameters
-    ----------
-    input_string : string
-        arbitrary string
-    replace : list of strings
-        strings to substitute
-    replace_with : list of strings
-        strings with which to substitute 'replace' strings
-
-    Returns
-    -------
-    output_string : string
-        stripped input_string
-
-    """
-
-    if input_string:
-        if not isinstance(input_string, str):
-            input_string = str(input_string)
-        output_string = input_string.replace(
-            "\n",
-            " "
-        ).replace(
-            "\"",
-            "\\\""
-        ).strip()
-        if replace:
-            if len(replace) == len(replace_with):
-                for i, s in enumerate(replace):
-                    output_string = output_string.replace(s, replace_with[i])
-                return output_string
-            else:
-                raise Exception("replace and replace_with should be the same length.")
-        else:
-            return output_string
-    else:
-        return ""
-
-
-def convert_string_to_label(input_string):
-    """
-    Remove all non-alphanumeric characters from a string.
-
-    Parameters
-    ----------
-    input_string : string
-        input string
-
-    Returns
-    -------
-    output_string : string
-        output string
-
-    """
-
-    if input_string and isinstance(input_string, str):
-        input_string = return_string(input_string,
-                                     replace=['"', '\n'],
-                                     replace_with=['', ''])
-        #input_string = input_string.lower()
-        input_string = input_string.strip()
-        input_string = input_string.replace(" ", "_")
-        input_string = input_string.replace("_-_", "-")
-        keep_chars = ('-', '_')
-        output_string = "".join(c for c in str(input_string) if c.isalnum()
-                                or c in keep_chars).rstrip()
-        return output_string
-    else:
-        raise Exception('"{0}" is not a string!'.format(input_string))
-
-
-def create_label(input_string):
-    """
-    Clean up a string and create a corresponding (shortened) label.
-
-    Parameters
-    ----------
-    input_string : string
-        arbitrary string
-
-    Returns
-    -------
-    output_string : string
-        stripped input_string
-    label_string : string
-        alphanumeric characters of input_string
-
-    """
-    from mhdb.spreadsheet_io import return_string
-    from mhdb.spreadsheet_io import convert_string_to_label
-
-    if input_string:
-        if isinstance(input_string, str):
-            output_string = return_string(input_string,
-                                          replace=['"', '\n'],
-                                          replace_with=['', ''])
-            if output_string:
-                label_string = convert_string_to_label(output_string)
-                return output_string, label_string
-            else:
-                return '', ''
-        else:
-            raise Exception('input_string is not a string!')
-    else:
-        raise Exception('input_string is None!')
 
 
 def get_cell(worksheet, column_label, index, exclude=[], no_nan=True):
