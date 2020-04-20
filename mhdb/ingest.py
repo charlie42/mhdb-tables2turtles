@@ -3042,6 +3042,7 @@ def ingest_chills(chills_xls, statements={}):
     persons = chills_xls.parse("ChillsPeople")
     studies = chills_xls.parse("ResearchStudyOnProjectLink1")
     stimulus_categories = chills_xls.parse("StimulusCategory")
+    units = chills_xls.parse("unit")
 
     # fill NANs with emptyValue
     chills_classes = chills_classes.fillna(emptyValue)
@@ -3051,6 +3052,7 @@ def ingest_chills(chills_xls, statements={}):
     persons = persons.fillna(emptyValue)
     studies = studies.fillna(emptyValue)
     stimulus_categories = stimulus_categories.fillna(emptyValue)
+    units = units.fillna(emptyValue)
 
     # Classes worksheet
     for row in chills_classes.iterrows():
@@ -3212,6 +3214,24 @@ def ingest_chills(chills_xls, statements={}):
                                          index]["StimulusCategory"].values[0]
                     if isinstance(objectRDF, str):
                         predicates_list.append((":hasStimulusCategory",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_units = row[1]["unit_index"]
+            if indices_units not in exclude_list:
+                if isinstance(indices_units, float) or \
+                        isinstance(indices_units, int):
+                    indices = [np.int(indices_units)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_units.strip().split(',') if len(x)>0]
+                for index in indices:
+                    print(index)
+                    print(units[units["index"] ==
+                                         index])
+                    objectRDF = units[units["index"] ==
+                                         index]["unit"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasUnit",
                                                 check_iri(objectRDF, 'PascalCase')))
 
             for predicates in predicates_list:
@@ -3378,6 +3398,43 @@ def ingest_chills(chills_xls, statements={}):
             for predicates in predicates_list:
                 statements = add_to_statements(
                     stimulus_category_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+        
+    # units worksheet
+    for row in units.iterrows():
+        unit = row[1]["unit"].strip()
+        if unit not in exclude_list:
+
+            unit_label = language_string(unit)
+            unit_iri = check_iri(unit, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Unit"))
+            predicates_list.append(("rdfs:label", unit_label))
+
+            # if row[1]["equivalentClasses"] not in exclude_list:
+            #     equivalentClasses = row[1]["equivalentClasses"]
+            #     equivalentClasses = [x.strip() for x in
+            #                      equivalentClasses.strip().split(',') if len(x) > 0]
+            #     for equivalentClass in equivalentClasses:
+            #         if equivalentClass not in exclude_list:
+            #             predicates_list.append(("rdfs:equivalentClass",
+            #                                     equivalentClass))
+            # aliases = row[1]["aliases"]
+            # if aliases not in exclude_list:
+            #     aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            #     for alias in aliases:
+            #         if alias not in exclude_list:
+            #             if isinstance(alias, str):
+            #                 predicates_list.append(("rdfs:label", language_string(alias)))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    unit_iri,
                     predicates[0],
                     predicates[1],
                     statements,
