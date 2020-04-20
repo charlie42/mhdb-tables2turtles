@@ -3002,6 +3002,390 @@ def ingest_measures(measures_xls, statements={}):
 
     return statements
 
+def ingest_chills(chills_xls, statements={}):
+    """
+    Function to ingest chills spreadsheet
+
+    Parameters
+    ----------
+    chills_xls: pandas ExcelFile
+
+    statements:  dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Returns
+    -------
+    statements: dictionary
+        key: string
+            RDF subject
+        value: dictionary
+            key: string
+                RDF predicate
+            value: {string}
+                set of RDF objects
+
+    Example
+    -------
+    """
+
+    # load worksheets as pandas dataframes
+    chills_classes = chills_xls.parse("Classes")
+    chills_properties = chills_xls.parse("Properties")
+    papers = chills_xls.parse("Index")
+    data_or_theories = chills_xls.parse("DataOrTheory")
+    persons = chills_xls.parse("ChillsPeople")
+    studies = chills_xls.parse("ResearchStudyOnProjectLink1")
+    stimulus_categories = chills_xls.parse("StimulusCategory")
+
+    # fill NANs with emptyValue
+    chills_classes = chills_classes.fillna(emptyValue)
+    chills_properties = chills_properties.fillna(emptyValue)
+    papers = papers.fillna(emptyValue)
+    data_or_theories = data_or_theories.fillna(emptyValue)
+    persons = persons.fillna(emptyValue)
+    studies = studies.fillna(emptyValue)
+    stimulus_categories = stimulus_categories.fillna(emptyValue)
+
+    # Classes worksheet
+    for row in chills_classes.iterrows():
+        class_iri = check_iri(row[1]["ClassName"])
+        class_label = language_string(row[1]["label"])
+        predicates_list = []
+        predicates_list.append(("a", "rdf:Class"))
+        predicates_list.append(("rdfs:label", class_label))
+        if row[1]["definition"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["definition"])))
+        if row[1]["sameAs"] not in exclude_list:
+            predicates_list.append(("owl:sameAs", row[1]["sameAs"]))
+        if row[1]["equivalentClasses"] not in exclude_list:
+            equivalentClasses = row[1]["equivalentClasses"]
+            equivalentClasses = [x.strip() for x in
+                             equivalentClasses.strip().split(',') if len(x) > 0]
+            for equivalentClass in equivalentClasses:
+                if equivalentClass not in exclude_list:
+                    predicates_list.append(("rdfs:equivalentClass",
+                                            equivalentClass))
+        if row[1]["subClassOf"] not in exclude_list:
+            predicates_list.append(("rdfs:subClassOf",
+                                    check_iri(row[1]["subClassOf"])))
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                class_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # Properties worksheet
+    for row in chills_properties.iterrows():
+        property_iri = check_iri(row[1]["property"])
+        property_label = language_string(row[1]["label"])
+        predicates_list = []
+        predicates_list.append(("a", "rdf:Property"))
+        predicates_list.append(("rdfs:label", property_label))
+        if row[1]["propertyDomain"] not in exclude_list:
+            predicates_list.append(("rdfs:domain",
+                                    check_iri(row[1]["propertyDomain"])))
+        if row[1]["propertyRange"] not in exclude_list:
+            predicates_list.append(("rdfs:range",
+                                    check_iri(row[1]["propertyRange"])))
+        if row[1]["definition"] not in exclude_list:
+            predicates_list.append(("rdfs:comment",
+                                    language_string(row[1]["definition"])))
+        if row[1]["sameAs"] not in exclude_list:
+            predicates_list.append(("owl:sameAs",
+                                    row[1]["sameAs"]))
+        if row[1]["equivalentProperty"] not in exclude_list:
+            predicates_list.append(("rdfs:equivalentProperty",
+                                    row[1]["equivalentProperty"]))
+        if row[1]["subPropertyOf"] not in exclude_list:
+            predicates_list.append(("rdfs:subPropertyOf",
+                                    check_iri(row[1]["subPropertyOf"])))
+        for predicates in predicates_list:
+            statements = add_to_statements(
+                property_iri,
+                predicates[0],
+                predicates[1],
+                statements,
+                exclude_list
+            )
+
+    # papers worksheet
+    for row in papers.iterrows():
+        paper = row[1]["paper"].strip()
+        if paper not in exclude_list:
+
+            paper_label = language_string(paper)
+            paper_iri = check_iri(paper, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Paper"))
+            predicates_list.append(("rdfs:label", paper_label))
+
+            # if row[1]["definition"] not in exclude_list:
+            #     predicates_list.append(("rdfs:comment",
+            #                             language_string(row[1]["definition"])))
+
+            # if row[1]["equivalentClasses"] not in exclude_list:
+            #     equivalentClasses = row[1]["equivalentClasses"]
+            #     equivalentClasses = [x.strip() for x in
+            #                      equivalentClasses.strip().split(',') if len(x) > 0]
+            #     for equivalentClass in equivalentClasses:
+            #         if equivalentClass not in exclude_list:
+            #             predicates_list.append(("rdfs:equivalentClass",
+            #                                     equivalentClass))
+
+            # aliases = row[1]["aliases"]
+            # if aliases not in exclude_list:
+            #     aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            #     for alias in aliases:
+            #         if alias not in exclude_list:
+            #             if isinstance(alias, str):
+            #                 predicates_list.append(("rdfs:label", language_string(alias)))
+
+            indices_data_or_theory = row[1]["DataOrTheory_index"]
+            if indices_data_or_theory not in exclude_list:
+                if isinstance(indices_data_or_theory, float) or \
+                        isinstance(indices_data_or_theory, int):
+                    indices = [np.int(indices_data_or_theory)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_data_or_theory.strip().split(',') if len(x)>0]
+                for index in indices:
+                    objectRDF = data_or_theories[data_or_theories["index"]  ==
+                                              index]["DataOrTheory"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasDataOrTheory",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_persons = row[1]["ChillsPeople_index"]
+            if indices_persons not in exclude_list:
+                if isinstance(indices_persons, float) or \
+                        isinstance(indices_persons, int):
+                    indices = [np.int(indices_persons)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_persons.strip().split(',') if len(x)>0]
+                for index in indices:
+                    objectRDF = persons[persons["index"] ==
+                                         index]["Affiliate1"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasPerson",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_studies = row[1]["ResearchStudyOnProjectLink1"]
+            if indices_studies not in exclude_list:
+                if isinstance(indices_studies, float) or \
+                        isinstance(indices_studies, int):
+                    indices = [np.int(indices_studies)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_studies.strip().split(',') if len(x)>0]
+                for index in indices:
+                    objectRDF = studies[studies["index"] ==
+                                         index]["ResearchStudies"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasStudy",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_stimulus_categories = row[1]["StimulusCategory"]
+            if indices_stimulus_categories not in exclude_list:
+                if isinstance(indices_stimulus_categories, float) or \
+                        isinstance(indices_stimulus_categories, int):
+                    indices = [np.int(indices_stimulus_categories)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_stimulus_categories.strip().split(',') if len(x)>0]
+                for index in indices:
+                    print(index)
+                    print(stimulus_categories[stimulus_categories["index"] ==
+                                         index])
+                    objectRDF = stimulus_categories[stimulus_categories["index"] ==
+                                         index]["StimulusCategory"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasStimulusCategory",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    paper_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # data_or_theory worksheet
+    for row in data_or_theories.iterrows():
+        data_or_theory = row[1]["DataOrTheory"].strip()
+        if data_or_theory not in exclude_list:
+
+            data_or_theory_label = language_string(data_or_theory)
+            data_or_theory_iri = check_iri(data_or_theory, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":DataOrTheory"))
+            predicates_list.append(("rdfs:label", data_or_theory_label))
+
+            # if row[1]["definition"] not in exclude_list:
+            #     predicates_list.append(("rdfs:comment",
+            #                             language_string(row[1]["definition"])))
+
+            # if row[1]["equivalentClasses"] not in exclude_list:
+            #     equivalentClasses = row[1]["equivalentClasses"]
+            #     equivalentClasses = [x.strip() for x in
+            #                      equivalentClasses.strip().split(',') if len(x) > 0]
+            #     for equivalentClass in equivalentClasses:
+            #         if equivalentClass not in exclude_list:
+            #             predicates_list.append(("rdfs:equivalentClass",
+            #                                     equivalentClass))
+            # aliases = row[1]["aliases"]
+            # if aliases not in exclude_list:
+            #     aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            #     for alias in aliases:
+            #         if alias not in exclude_list:
+            #             if isinstance(alias, str):
+            #                 predicates_list.append(("rdfs:label", language_string(alias)))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    data_or_theory_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # persons worksheet
+    for row in persons.iterrows():
+        person = row[1]["Affiliate1"].strip()
+        if person not in exclude_list:
+
+            person_label = language_string(person)
+            person_iri = check_iri(person, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Person"))
+            predicates_list.append(("rdfs:label", person_label))
+
+            # if row[1]["definition"] not in exclude_list:
+            #     predicates_list.append(("rdfs:comment",
+            #                             language_string(row[1]["definition"])))
+
+            # if row[1]["equivalentClasses"] not in exclude_list:
+            #     equivalentClasses = row[1]["equivalentClasses"]
+            #     equivalentClasses = [x.strip() for x in
+            #                      equivalentClasses.strip().split(',') if len(x) > 0]
+            #     for equivalentClass in equivalentClasses:
+            #         if equivalentClass not in exclude_list:
+            #             predicates_list.append(("rdfs:equivalentClass",
+            #                                     equivalentClass))
+            # aliases = row[1]["aliases"]
+            # if aliases not in exclude_list:
+            #     aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            #     for alias in aliases:
+            #         if alias not in exclude_list:
+            #             if isinstance(alias, str):
+            #                 predicates_list.append(("rdfs:label", language_string(alias)))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    person_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # studies worksheet
+    for row in studies.iterrows():
+        study = row[1]["ResearchStudies"].strip()
+        if study not in exclude_list:
+
+            study_label = language_string(study)
+            study_iri = check_iri(study, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Study"))
+            predicates_list.append(("rdfs:label", study_label))
+
+            year = row[1]["Year"]
+            if year not in exclude_list:
+                predicates_list.append((":hasPublicationYear",
+                                        '"{0}"^^xsd:gyear'.format(int(year))))
+
+            # if row[1]["equivalentClasses"] not in exclude_list:
+            #     equivalentClasses = row[1]["equivalentClasses"]
+            #     equivalentClasses = [x.strip() for x in
+            #                      equivalentClasses.strip().split(',') if len(x) > 0]
+            #     for equivalentClass in equivalentClasses:
+            #         if equivalentClass not in exclude_list:
+            #             predicates_list.append(("rdfs:equivalentClass",
+            #                                     equivalentClass))
+            # aliases = row[1]["aliases"]
+            # if aliases not in exclude_list:
+            #     aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            #     for alias in aliases:
+            #         if alias not in exclude_list:
+            #             if isinstance(alias, str):
+            #                 predicates_list.append(("rdfs:label", language_string(alias)))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    study_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # stimulus categories worksheet
+    for row in stimulus_categories.iterrows():
+        stimulus_category = row[1]["StimulusCategory"].strip()
+        if stimulus_category not in exclude_list:
+
+            stimulus_category_label = language_string(stimulus_category)
+            stimulus_category_iri = check_iri(stimulus_category, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":StimulusCategory"))
+            predicates_list.append(("rdfs:label", stimulus_category_label))
+
+            # if row[1]["equivalentClasses"] not in exclude_list:
+            #     equivalentClasses = row[1]["equivalentClasses"]
+            #     equivalentClasses = [x.strip() for x in
+            #                      equivalentClasses.strip().split(',') if len(x) > 0]
+            #     for equivalentClass in equivalentClasses:
+            #         if equivalentClass not in exclude_list:
+            #             predicates_list.append(("rdfs:equivalentClass",
+            #                                     equivalentClass))
+            # aliases = row[1]["aliases"]
+            # if aliases not in exclude_list:
+            #     aliases = [x for x in aliases.strip().split(',') if len(x)>0]
+            #     for alias in aliases:
+            #         if alias not in exclude_list:
+            #             if isinstance(alias, str):
+            #                 predicates_list.append(("rdfs:label", language_string(alias)))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    stimulus_category_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    return statements
+
 
 # indices to other worksheets about content of the shared
 # indices_state = row[1]["indices_state"]

@@ -38,6 +38,7 @@ disorders_title = "mhdb-disorders: Mental health disorders, signs, and symptoms"
 resources_title = "mhdb-resources: Mental health resources (guides, therapies, and projects)"
 assessments_title = "mhdb-assessments: Mental health assessments (questions and cognitive tasks)"
 measures_title = "mhdb-measures: Physical measures and sensors"
+chills_title = "chillsdb"
 ddashes = "================================================================================"
 
 header_states="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
@@ -50,15 +51,20 @@ header_assessments="\n\n{0}\n{1}\n{0}\n{2}\n{0}\n".format(
     ddashes, assessments_title, header_comment)
 header_measures="\n\n{0}\n\t\t{1}\n{0}\n{2}\n{0}\n".format(
     ddashes, measures_title, header_comment)
+header_chills="\n\n{0}\n\t\t{1}\n{0}\n".format(
+    ddashes, chills_title)
 
 import os
 import sys
+sys.path
+print(sys.path)
 mhdb_path = os.path.abspath(os.getcwd())
 if mhdb_path not in sys.path:
     sys.path= [
         mhdb_path,
         *sys.path
     ]
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 try:
     from mhdb.info import __version__ as version
     from mhdb.spreadsheet_io import download_google_sheet
@@ -72,19 +78,29 @@ except:
 import numpy as np
 import pandas as pd
 
-run_all = 1
+run_all = 0
+only_chills = 1
 if run_all:
-    do_states = 0
+    do_states = 1
     do_disorders = 1
     do_resources = 1
     do_assessments = 1
     do_measures = 1
+    do_chills = 1
+elif only_chills:
+    do_states = 0
+    do_disorders = 0
+    do_resources = 0
+    do_assessments = 0
+    do_measures = 0
+    do_chills = 1
 else:
     do_states = 0
     do_disorders = 0
-    do_resources = 1
+    do_resources = 0
     do_assessments = 0
-    do_measures = 0
+    do_measures = 1
+    do_chills = 0
 
 
 def main():
@@ -92,13 +108,13 @@ def main():
     # Try to get latest spreadsheets
     # Except use local copies
     # ------------------------------------------------------------------------------
-    try:
-        statesFILE = download_google_sheet(
-            '../input/mhdb-states.xlsx',
-            "11OkIWLwZYi9xkpuFODAKXQZHEFeMvYCQ8BTfIBKm0Z8"
-        )
-    except:
-        statesFILE = '../input/mhdb-states.xlsx'
+    # try:
+    #     statesFILE = download_google_sheet(
+    #         '../input/mhdb-states.xlsx',
+    #         "11OkIWLwZYi9xkpuFODAKXQZHEFeMvYCQ8BTfIBKm0Z8"
+    #     )
+    # except:
+    #     statesFILE = '../input/mhdb-states.xlsx'
     try:
         disordersFILE = download_google_sheet(
             '../input/mhdb-disorders.xlsx',
@@ -127,12 +143,19 @@ def main():
         )
     except:
         measuresFILE = '../input/mhdb-measures.xlsx'
+    try:
+        chillsFILE = download_google_sheet(
+            '../input/chills.xlsx',
+            "1J7lJAV4uYcfOVXAI8vRfSFqWh4QPcNo4WRH1BPHi1E0"
+        )
+    except:
+        chillsFILE = '../input/chills.xlsx'
 
 
     # --------------------------------------------------------------------------
     # Import spreadsheets
     # --------------------------------------------------------------------------
-    states_xls = pd.ExcelFile(statesFILE)
+    # states_xls = pd.ExcelFile(statesFILE)
     states_outfile = os.path.join('../output', 'mhdb-states.ttl')
     disorders_xls = pd.ExcelFile(disordersFILE)
     disorders_outfile = os.path.join('../output', 'mhdb-disorders.ttl')
@@ -142,6 +165,8 @@ def main():
     assessments_outfile = os.path.join('../output', 'mhdb-assessments.ttl')
     measures_xls = pd.ExcelFile(measuresFILE)
     measures_outfile = os.path.join('../output', 'mhdb-measures.ttl')
+    chills_xls = pd.ExcelFile(chillsFILE)
+    chills_outfile = os.path.join('../output', 'chills.ttl')
 
 
     # --------------------------------------------------------------------------
@@ -185,17 +210,27 @@ def main():
         measures_statements = []
         measures_turtle = []
 
+    if do_chills:
+        chills_statements = ingest_chills(chills_xls, statements={})
+        chills_turtle = turtle_from_dict(chills_statements)
+    else:
+        chills_statements = []
+        chills_turtle = []
+
     # --------------------------------------------------------------------------
     # Write header and statements to turtle files
     # --------------------------------------------------------------------------
     base_uri = "http://www.purl.org/mentalhealth"
+    #base_uri = "http://examples.ontotext.com/family"
     X = ['', 'nan', np.nan, 'None', None, []]
 
-    outputs_list = [[states_statements, states_outfile, states_turtle],
+    outputs_list = [
+                    [states_statements, states_outfile, states_turtle],
                     [disorders_statements, disorders_outfile, disorders_turtle],
                     [resources_statements, resources_outfile, resources_turtle],
                     [assessments_statements, assessments_outfile, assessments_turtle],
-                    [measures_statements, measures_outfile, measures_turtle]]
+                    [measures_statements, measures_outfile, measures_turtle],
+                    [chills_statements, chills_outfile, chills_turtle]]
 
     for ioutput, output_list in enumerate(outputs_list):
 
@@ -332,7 +367,26 @@ def main():
                     header_measures,
                     prefixes=prefixes
                 )
-
+            if ioutput == 5:
+                module = "chills"
+                prefixes = [(
+                    row[1]["Prefix"],
+                    row[1]["PrefixURI"],
+                    row[1]["ImportURI"]
+                ) for row in resources_xls.parse(
+                    'ontologies'
+                ).iterrows() if row[1]["Prefix"] in import_prefixes and
+                                row[1]["Prefix"] not in ["chills"
+                                                         ]]
+                header_string = write_header(
+                    "{0}/{1}".format(base_uri, module),
+                    module,
+                    version,
+                    module,
+                    header_chills,
+                    prefixes=prefixes
+                )
+            
             fid = open(out_file, 'w')
             fid.write("PREFIX owl: <http://www.w3.org/2002/07/owl#> \n")
             fid.write("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n")
