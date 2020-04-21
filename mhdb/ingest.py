@@ -3047,6 +3047,8 @@ def ingest_chills(chills_xls, statements={}):
     subjective_measures = chills_xls.parse("SubjectiveMeasure")
     inferences = chills_xls.parse("Inference")
     claims = chills_xls.parse("claims")
+    brain_areas = chills_xls.parse("BrainAreas")
+    definitions_of_chills = chills_xls.parse("DefinitionOfChills_index")
 
     # fill NANs with emptyValue
     chills_classes = chills_classes.fillna(emptyValue)
@@ -3061,6 +3063,8 @@ def ingest_chills(chills_xls, statements={}):
     subjective_measures = subjective_measures.fillna(emptyValue)
     inferences = inferences.fillna(emptyValue)
     claims = claims.fillna(emptyValue)
+    brain_areas = brain_areas.fillna(emptyValue)
+    definitions_of_chills = definitions_of_chills.fillna(emptyValue)
 
     # Classes worksheet
     for row in chills_classes.iterrows():
@@ -3299,6 +3303,50 @@ def ingest_chills(chills_xls, statements={}):
                     if isinstance(objectRDF, str):
                         predicates_list.append((":hasClaim",
                                                 check_iri(objectRDF, 'PascalCase')))
+
+            indices_brain_areas = row[1]["Brain areas"]
+            if indices_brain_areas not in exclude_list:
+                if isinstance(indices_brain_areas, float) or \
+                        isinstance(indices_brain_areas, int):
+                    indices = [np.int(indices_brain_areas)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_brain_areas.strip().split(',') if len(x)>0]
+                for index in indices:
+                    #print(index)
+                    #print(claims[claims["index"] == index])
+                    objectRDF = brain_areas[brain_areas["index"] ==
+                                         index]["BrainAreas"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasBrainArea",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_definitions_of_chills = row[1]["Definition of chills"]
+            if indices_definitions_of_chills not in exclude_list:
+                if isinstance(indices_definitions_of_chills, float) or \
+                        isinstance(indices_definitions_of_chills, int):
+                    indices = [np.int(indices_definitions_of_chills)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_definitions_of_chills.strip().split(',') if len(x)>0]
+                for index in indices:
+                    #print(index)
+                    #print(claims[claims["index"] == index])
+                    objectRDF = definitions_of_chills[definitions_of_chills["index"] ==
+                                         index]["DefinitionOfChills"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasDefinitionOfChills",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            number_of_subjects = row[1]["N subjects"]
+            if number_of_subjects not in exclude_list:
+                predicates_list.append((":hasNumberOfSubjects",
+                                        '"{0}"^^xsd:int'.format(number_of_subjects)))
+
+            modulator = row[1]["Modulator"]
+            if modulator not in exclude_list:
+                predicates_list.append((":hasModulator",
+                                        language_string(modulator)))
 
             for predicates in predicates_list:
                 statements = add_to_statements(
@@ -3585,6 +3633,48 @@ def ingest_chills(chills_xls, statements={}):
             for predicates in predicates_list:
                 statements = add_to_statements(
                     claim_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # brain_areas worksheet
+    for row in brain_areas.iterrows():
+        brain_area = row[1]["BrainAreas"].strip()
+        if brain_area not in exclude_list:
+
+            brain_area_label = language_string(brain_area)
+            brain_area_iri = check_iri(brain_area, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":BrainArea"))
+            predicates_list.append(("rdfs:label", brain_area_label))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    brain_area_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+     # definitions_of_chills worksheet
+    for row in definitions_of_chills.iterrows():
+        definition_of_chills = row[1]["DefinitionOfChills"].strip()
+        if definition_of_chills not in exclude_list:
+
+            definition_of_chills_label = language_string(definition_of_chills)
+            definition_of_chills_iri = check_iri(definition_of_chills, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":DefinitionOfChills"))
+            predicates_list.append(("rdfs:label", definition_of_chills_label))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    definition_of_chills_iri,
                     predicates[0],
                     predicates[1],
                     statements,
