@@ -3046,6 +3046,7 @@ def ingest_chills(chills_xls, statements={}):
     subjective_sensors = chills_xls.parse("SubjectiveSensor")
     subjective_measures = chills_xls.parse("SubjectiveMeasure")
     inferences = chills_xls.parse("Inference")
+    claims = chills_xls.parse("claims")
 
     # fill NANs with emptyValue
     chills_classes = chills_classes.fillna(emptyValue)
@@ -3059,6 +3060,7 @@ def ingest_chills(chills_xls, statements={}):
     subjective_sensors = subjective_sensors.fillna(emptyValue)
     subjective_measures = subjective_measures.fillna(emptyValue)
     inferences = inferences.fillna(emptyValue)
+    claims = claims.fillna(emptyValue)
 
     # Classes worksheet
     for row in chills_classes.iterrows():
@@ -3273,12 +3275,29 @@ def ingest_chills(chills_xls, statements={}):
                     indices = [np.int(x) for x in
                                indices_inferences.strip().split(',') if len(x)>0]
                 for index in indices:
-                    print(index)
-                    print(inferences[inferences["index"] == index])
+                    #print(index)
+                    #print(inferences[inferences["index"] == index])
                     objectRDF = inferences[inferences["index"] ==
                                          index]["inference"].values[0]
                     if isinstance(objectRDF, str):
                         predicates_list.append((":hasInference",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_claims = row[1]["claims_index"]
+            if indices_claims not in exclude_list:
+                if isinstance(indices_claims, float) or \
+                        isinstance(indices_claims, int):
+                    indices = [np.int(indices_claims)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_claims.strip().split(',') if len(x)>0]
+                for index in indices:
+                    #print(index)
+                    #print(claims[claims["index"] == index])
+                    objectRDF = claims[claims["index"] ==
+                                         index]["claims"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasClaim",
                                                 check_iri(objectRDF, 'PascalCase')))
 
             for predicates in predicates_list:
@@ -3530,7 +3549,7 @@ def ingest_chills(chills_xls, statements={}):
                     exclude_list
                 )
 
-    # subjective_measure worksheet
+    # inferences worksheet
     for row in inferences.iterrows():
         inference = row[1]["inference"].strip()
         if inference not in exclude_list:
@@ -3545,6 +3564,27 @@ def ingest_chills(chills_xls, statements={}):
             for predicates in predicates_list:
                 statements = add_to_statements(
                     inference_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # claims worksheet
+    for row in claims.iterrows():
+        claim = row[1]["claims"].strip()
+        if claim not in exclude_list:
+
+            claim_label = language_string(claim)
+            claim_iri = check_iri(claim, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Claim"))
+            predicates_list.append(("rdfs:label", claim_label))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    claim_iri,
                     predicates[0],
                     predicates[1],
                     statements,
