@@ -3039,7 +3039,7 @@ def ingest_chills(chills_xls, statements={}):
     chills_properties = chills_xls.parse("Properties")
     papers = chills_xls.parse("Index")
     article_types = chills_xls.parse("ArticleType")
-    persons = chills_xls.parse("ChillsPeople")
+    researchers = chills_xls.parse("ChillsPeople")
     studies = chills_xls.parse("ResearchStudyOnProjectLink1")
     stimulus_categories = chills_xls.parse("StimulusCategory")
     units = chills_xls.parse("unit")
@@ -3055,7 +3055,7 @@ def ingest_chills(chills_xls, statements={}):
     chills_properties = chills_properties.fillna(emptyValue)
     papers = papers.fillna(emptyValue)
     article_types = article_types.fillna(emptyValue)
-    persons = persons.fillna(emptyValue)
+    researchers = researchers.fillna(emptyValue)
     studies = studies.fillna(emptyValue)
     stimulus_categories = stimulus_categories.fillna(emptyValue)
     units = units.fillna(emptyValue)
@@ -3180,19 +3180,37 @@ def ingest_chills(chills_xls, statements={}):
                         predicates_list.append((":hasArticleType",
                                                 check_iri(objectRDF, 'PascalCase')))
 
-            indices_persons = row[1]["ChillsPeople_index"]
-            if indices_persons not in exclude_list:
-                if isinstance(indices_persons, float) or \
-                        isinstance(indices_persons, int):
-                    indices = [np.int(indices_persons)]
+            indices_primary_researchers = row[1]["ChillsPeople_index"]
+            if indices_primary_researchers not in exclude_list:
+                if isinstance(indices_primary_researchers, float) or \
+                        isinstance(indices_primary_researchers, int):
+                    indices = [np.int(indices_primary_researchers)]
                 else:
                     indices = [np.int(x) for x in
-                               indices_persons.strip().split(',') if len(x)>0]
+                               indices_primary_researchers.strip().split(',') if len(x)>0]
                 for index in indices:
-                    objectRDF = persons[persons["index"] ==
+                    objectRDF = researchers[researchers["index"] ==
                                          index]["Affiliate1"].values[0]
                     if isinstance(objectRDF, str):
-                        predicates_list.append((":hasResearcher",
+                        predicates_list.append((":hasPrimaryResearcher",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_secondary_researchers = row[1]["ChillsPeople_secondary_index"]
+            if indices_secondary_researchers not in exclude_list:
+                if isinstance(indices_secondary_researchers, float) or \
+                        isinstance(indices_secondary_researchers, int):
+                    indices = [np.int(indices_secondary_researchers)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_secondary_researchers.strip().split(',') if len(x)>0]
+                for index in indices:
+                    print(index)
+                    print(researchers[researchers["index"] ==
+                                         index]["Affiliate1"])
+                    objectRDF = researchers[researchers["index"] ==
+                                         index]["Affiliate1"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasSecondaryResearcher",
                                                 check_iri(objectRDF, 'PascalCase')))
 
             # indices_studies = row[1]["ResearchStudyOnProjectLink1"]
@@ -3358,6 +3376,11 @@ def ingest_chills(chills_xls, statements={}):
                 predicates_list.append((":hasPublicationYear",
                                         '"{0}"^^xsd:gyear'.format(int(publication_year))))
 
+            abstract = row[1]["abstract"]
+            if abstract not in exclude_list:
+                predicates_list.append((":hasAbstract",
+                                        language_string(abstract)))
+
             for predicates in predicates_list:
                 statements = add_to_statements(
                     paper_iri,
@@ -3408,21 +3431,42 @@ def ingest_chills(chills_xls, statements={}):
                     exclude_list
                 )
 
-    # persons worksheet
-    for row in persons.iterrows():
-        person = row[1]["Affiliate1"].strip()
-        if person not in exclude_list:
+    # researchers worksheet
+    for row in researchers.iterrows():
+        researcher = row[1]["Affiliate1"].strip()
+        if researcher not in exclude_list:
 
-            person_label = language_string(person)
-            person_iri = check_iri(person, 'PascalCase')
+            researcher_label = language_string(researcher)
+            researcher_iri = check_iri(researcher, 'PascalCase')
 
             predicates_list = []
             predicates_list.append(("a", ":Researcher"))
-            predicates_list.append(("rdfs:label", person_label))
+            predicates_list.append(("rdfs:label", researcher_label))
 
-            # if row[1]["definition"] not in exclude_list:
-            #     predicates_list.append(("rdfs:comment",
-            #                             language_string(row[1]["definition"])))
+            discipline = row[1]["Discipline"] 
+            if row[1]["Discipline"] not in exclude_list:
+                predicates_list.append((":hasDiscipline",
+                                        language_string(discipline)))
+
+            lab = row[1]["Lab"] 
+            if lab not in exclude_list:
+                predicates_list.append((":hasLab",
+                                        language_string(lab)))
+
+            site = row[1]["Site"] 
+            if site not in exclude_list:
+                predicates_list.append((":hasSite",
+                                        language_string(site)))
+
+            url = row[1]["URL"] 
+            if url not in exclude_list:
+                predicates_list.append((":hasURL",
+                                        '"{0}"^^xsd:anyURI'.format(url.strip())))
+
+            contact = row[1]["Contact"] 
+            if contact not in exclude_list:
+                predicates_list.append((":hasContact",
+                                        '"{0}"^^xsd:string'.format(contact)))                                
 
             # if row[1]["equivalentClasses"] not in exclude_list:
             #     equivalentClasses = row[1]["equivalentClasses"]
@@ -3442,7 +3486,7 @@ def ingest_chills(chills_xls, statements={}):
 
             for predicates in predicates_list:
                 statements = add_to_statements(
-                    person_iri,
+                    researcher_iri,
                     predicates[0],
                     predicates[1],
                     statements,
