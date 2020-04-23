@@ -22,6 +22,7 @@ import re
 
 emptyValue = 'EmptyValue'
 exclude_list = [emptyValue, '', [], 'NaN', 'NAN', 'nan', np.nan, None]
+limit_label = 50
 
 
 def add_to_statements(subject, predicate, object, statements={},
@@ -3052,6 +3053,7 @@ def ingest_chills(chills_xls, statements={}):
     sensors = chills_xls.parse("Sensors")
     measures = chills_xls.parse("Measure")
     #measure_categories = chills_xls.parse("MeasureCategories")
+    stimuli = chills_xls.parse("Stimulus")
 
     # fill NANs with emptyValue
     chills_classes = chills_classes.fillna(emptyValue)
@@ -3071,6 +3073,7 @@ def ingest_chills(chills_xls, statements={}):
     sensors = sensors.fillna(emptyValue)
     measures = measures.fillna(emptyValue)
     #measure_categories = measure_categories.fillna(emptyValue)
+    stimuli = stimuli.fillna(emptyValue)
 
     print("beginnign")
     print(type(sensors["index"][0]))
@@ -3330,8 +3333,9 @@ def ingest_chills(chills_xls, statements={}):
                     objectRDF = claims[claims["index"] ==
                                          index]["claims"].values[0]
                     if isinstance(objectRDF, str):
+                        objectRDF_truncated = objectRDF[:limit_label]
                         predicates_list.append((":hasClaim",
-                                                check_iri(objectRDF, 'PascalCase')))
+                                                check_iri(objectRDF_truncated, 'PascalCase')))
 
             indices_brain_areas = row[1]["Brain areas"]
             if indices_brain_areas not in exclude_list:
@@ -3445,6 +3449,11 @@ def ingest_chills(chills_xls, statements={}):
             if abstract not in exclude_list:
                 predicates_list.append((":hasAbstract",
                                         language_string(abstract)))
+                                        
+            stimulus_url = row[1]["URL_stimulus"]
+            if stimulus_url not in exclude_list:
+                predicates_list.append((":hasStimulusURL",
+                                        '"{0}"^^xsd:anyURI'.format(stimulus_url.strip())))
 
             for predicates in predicates_list:
                 statements = add_to_statements(
@@ -3740,15 +3749,17 @@ def ingest_chills(chills_xls, statements={}):
     # claims worksheet
     for row in claims.iterrows():
         claim = row[1]["claims"].strip()
+        claim_truncated = claim[:limit_label]
         if claim not in exclude_list:
 
-            claim_label = language_string(claim)
-            claim_iri = check_iri(claim, 'PascalCase')
+            claim_label = language_string(claim_truncated)
+            claim_iri = check_iri(claim_truncated, 'PascalCase')
 
             predicates_list = []
             predicates_list.append(("a", ":Claim"))
             predicates_list.append(("rdfs:label", claim_label))
-
+            predicates_list.append(("rdfs:comment", language_string(claim)))
+            
             for predicates in predicates_list:
                 statements = add_to_statements(
                     claim_iri,
@@ -3947,6 +3958,40 @@ def ingest_chills(chills_xls, statements={}):
     #                 statements,
     #                 exclude_list
     #             )
+
+    #stimuli worksheet
+    for row in stimuli.iterrows():
+        stimulus = str(row[1]["URI"]).strip()
+        if stimulus not in exclude_list:
+
+            stimulus_label = language_string(stimulus)
+            stimulus_iri = check_iri(stimulus, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Stimulus"))
+            predicates_list.append(("rdfs:label", stimulus_label))
+
+            url = row[1]["URL to stimulus"] 
+            if url not in exclude_list:
+                print(stimulus)
+                print(url)
+                predicates_list.append((":hasURL",
+                                        '"{0}"^^xsd:anyURI'.format(url.strip())))
+
+            subjective_description = row[1]["Subjective description of the stimulus"] 
+            if subjective_description not in exclude_list:
+                predicates_list.append((":hasSubjectiveDescription",
+                                        language_string(subjective_description)))
+            
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    stimulus_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
 
     return statements
 
