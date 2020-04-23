@@ -3049,6 +3049,9 @@ def ingest_chills(chills_xls, statements={}):
     claims = chills_xls.parse("claims")
     brain_areas = chills_xls.parse("BrainAreas")
     definitions_of_chills = chills_xls.parse("DefinitionOfChills_index")
+    sensors = chills_xls.parse("Sensors")
+    measures = chills_xls.parse("Measure")
+    #measure_categories = chills_xls.parse("MeasureCategories")
 
     # fill NANs with emptyValue
     chills_classes = chills_classes.fillna(emptyValue)
@@ -3065,6 +3068,15 @@ def ingest_chills(chills_xls, statements={}):
     claims = claims.fillna(emptyValue)
     brain_areas = brain_areas.fillna(emptyValue)
     definitions_of_chills = definitions_of_chills.fillna(emptyValue)
+    sensors = sensors.fillna(emptyValue)
+    measures = measures.fillna(emptyValue)
+    #measure_categories = measure_categories.fillna(emptyValue)
+
+    print("beginnign")
+    print(type(sensors["index"][0]))
+    print(type(measures["index"][0]))
+    print("end of beginning")
+
 
     # Classes worksheet
     for row in chills_classes.iterrows():
@@ -3204,9 +3216,8 @@ def ingest_chills(chills_xls, statements={}):
                     indices = [np.int(x) for x in
                                indices_secondary_researchers.strip().split(',') if len(x)>0]
                 for index in indices:
-                    print(index)
-                    print(researchers[researchers["index"] ==
-                                         index]["Affiliate1"])
+                    #print(index)
+                    #print(researchers[researchers["index"] == index]["Affiliate1"])
                     objectRDF = researchers[researchers["index"] ==
                                          index]["Affiliate1"].values[0]
                     if isinstance(objectRDF, str):
@@ -3354,6 +3365,60 @@ def ingest_chills(chills_xls, statements={}):
                                          index]["DefinitionOfChills"].values[0]
                     if isinstance(objectRDF, str):
                         predicates_list.append((":hasDefinitionOfChills",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_sensors = row[1]["sensor_index"]
+            if indices_sensors not in exclude_list:
+                if isinstance(indices_sensors, float) or \
+                        isinstance(indices_sensors, int):
+                    indices = [np.int(indices_sensors)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_sensors.strip().split(',') if len(x)>0]
+                for index in indices:
+                    #print(index)
+                    #print(sensors["index"] == index)
+                    #print(sensors["index"][23])
+                    #print(sensors[23])
+                    #print(sensors[sensors["index"] == index])
+                    #print(sensors)
+                    #print(sensors["index"][index-1] == index)
+                    #print(type(sensors["index"][index-1]))
+                    #rint(type(index))
+                    objectRDF = sensors[sensors["index"] ==
+                                         index]["sensor"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasSensor",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_measures = row[1]["measure_index"]
+            if indices_measures not in exclude_list:
+                if isinstance(indices_measures, float) or \
+                        isinstance(indices_measures, int):
+                    indices = [np.int(indices_measures)]
+                    #print("float")
+                    #print(type(indices[0]))
+                    #print("\n")
+                else:
+                    indices = [np.int(x) for x in
+                               indices_measures.strip().split(',') if len(x)>0]
+                    #print("not float")
+                    #print(type(indices[0]))
+                    #print("\n")
+                for index in indices:
+                    print(index)
+                    #print(measures)
+                    #print(measures["measure"][1])
+                    #print(measures["index"][index-1])
+                    #print(measures["index"][index-1] == index)
+                    #print(type(measures["index"][index-1]))
+                    #print(type(index))
+                    #print(measures["index"] == index)
+                    #print(measures[measures["index"] == index])
+                    objectRDF = measures[measures["index"] ==
+                                         index]["measure"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasMeasure",
                                                 check_iri(objectRDF, 'PascalCase')))
 
             number_of_subjects = row[1]["N subjects"]
@@ -3734,6 +3799,154 @@ def ingest_chills(chills_xls, statements={}):
                     statements,
                     exclude_list
                 )
+
+    # sensors worksheet
+    for row in sensors.iterrows():
+        sensor = row[1]["sensor"].strip()
+        if sensor not in exclude_list:
+
+            sensor_label = language_string(sensor)
+            sensor_iri = check_iri(sensor, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Sensor"))
+            predicates_list.append(("rdfs:label", sensor_label))
+
+            indices_measures = row[1]["measure_index"]
+            if indices_measures not in exclude_list:
+                if isinstance(indices_measures, float) or \
+                        isinstance(indices_measures, int):
+                    indices = [np.int(indices_measures)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_measures.strip().split(',') if len(x)>0]
+                for index in indices:
+                    #print(index)
+                    #print(claims[claims["index"] == index])
+                    objectRDF = measures[measures["index"] ==
+                                         index]["measure"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasMeasure",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            indices_related_sensors = row[1]["related_sensor_index"]
+            if indices_related_sensors not in exclude_list:
+                if isinstance(indices_related_sensors, float) or \
+                        isinstance(indices_related_sensors, int):
+                    indices = [np.int(indices_related_sensors)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_related_sensors.strip().split(',') if len(x)>0]
+                for index in indices:
+                    #print(index)
+                    #print(claims[claims["index"] == index])
+                    objectRDF = sensors[sensors["index"] ==
+                                         index]["sensor"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasRelatedSensor",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    sensor_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # measures worksheet
+    for row in measures.iterrows():
+        measure = row[1]["measure"].strip()
+        if measure not in exclude_list:
+
+            measure_label = language_string(measure)
+            measure_iri = check_iri(measure, 'PascalCase')
+
+            predicates_list = []
+            predicates_list.append(("a", ":Measure"))
+            predicates_list.append(("rdfs:label", measure_label))
+
+            # indices_applications = row[1]["application_index"]
+            # if indices_applications not in exclude_list:
+            #     if isinstance(indices_applications, float) or \
+            #             isinstance(indices_applications, int):
+            #         indices = [np.int(indices_applications)]
+            #     else:
+            #         indices = [np.int(x) for x in
+            #                    indices_applications.strip().split(',') if len(x)>0]
+            #     for index in indices:
+            #         #print(index)
+            #         #print(claims[claims["index"] == index])
+            #         objectRDF = applications[applications["index"] ==
+            #                              index]["application"].values[0]
+            #         if isinstance(objectRDF, str):
+            #             predicates_list.append((":hasApplication",
+            #                                     check_iri(objectRDF, 'PascalCase')))
+
+            # indices_measure_categories = row[1]["MeasureCategory_index"]
+            # if indices_measure_categories not in exclude_list:
+            #     if isinstance(indices_measure_categories, float) or \
+            #             isinstance(indices_measure_categories, int):
+            #         indices = [np.int(indices_measure_categories)]
+            #     else:
+            #         indices = [np.int(x) for x in
+            #                    indices_measure_categories.strip().split(',') if len(x)>0]
+            #     for index in indices:
+            #         #print(index)
+            #         #print(claims[claims["index"] == index])
+            #         objectRDF = measure_categories[measure_categories["index"] ==
+            #                              index]["measureCategory"].values[0]
+            #         if isinstance(objectRDF, str):
+            #             predicates_list.append((":hasMeasureCategory",
+            #                                     check_iri(objectRDF, 'PascalCase')))
+
+            indices_related_measures = row[1]["related_measure_index"]
+            if indices_related_measures not in exclude_list:
+                if isinstance(indices_related_measures, float) or \
+                        isinstance(indices_related_measures, int):
+                    indices = [np.int(indices_related_measures)]
+                else:
+                    indices = [np.int(x) for x in
+                               indices_related_measures.strip().split(',') if len(x)>0]
+                for index in indices:
+                    #print(index)
+                    #print(claims[claims["index"] == index])
+                    objectRDF = measures[measures["index"] ==
+                                         index]["measure"].values[0]
+                    if isinstance(objectRDF, str):
+                        predicates_list.append((":hasRelatedMeasure",
+                                                check_iri(objectRDF, 'PascalCase')))
+
+            for predicates in predicates_list:
+                statements = add_to_statements(
+                    measure_iri,
+                    predicates[0],
+                    predicates[1],
+                    statements,
+                    exclude_list
+                )
+
+    # measure_categories worksheet
+    # for row in measure_categories.iterrows():
+    #     measure_category = row[1]["measureCategory"].strip()
+    #     if measure_category not in exclude_list:
+
+    #         measure_category_label = language_string(measure_category)
+    #         measure_category_iri = check_iri(measure_category, 'PascalCase')
+
+    #         predicates_list = []
+    #         predicates_list.append(("a", ":MeasureCategory"))
+    #         predicates_list.append(("rdfs:label", measure_category_label))
+
+    #         for predicates in predicates_list:
+    #             statements = add_to_statements(
+    #                 measure_category_iri,
+    #                 predicates[0],
+    #                 predicates[1],
+    #                 statements,
+    #                 exclude_list
+    #             )
 
     return statements
 
