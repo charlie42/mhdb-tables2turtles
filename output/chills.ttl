@@ -1,0 +1,2184 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <https://www.w3.org/2009/XMLSchema/XMLSchema#> 
+PREFIX fabio: <http://purl.org/spar/fabio> 
+
+PREFIX : <http://www.purl.org/mentalhealth/chills#> 
+<http://www.purl.org/mentalhealth/chills> a owl:Ontology ;
+    owl:versionIRI <http://www.purl.org/mentalhealth/chills/0.1.0> ;
+    owl:versionInfo "0.1.0"^^rdfs:Literal ;
+    rdfs:label "chills"^^rdfs:Literal ;
+    rdfs:comment """
+
+================================================================================
+		chillsdb
+================================================================================
+"""@en .
+
+:Paper a rdf:Class ;
+	rdfs:label """paper"""@en ;
+	rdfs:comment """paper"""@en .
+
+:ArticleType a rdf:Class ;
+	rdfs:label """ArticleType"""@en ;
+	rdfs:comment """ArticleType"""@en .
+
+:Researcher a rdf:Class ;
+	rdfs:label """Researcher"""@en ;
+	rdfs:comment """Researcher"""@en .
+
+:StimulusCategory a rdf:Class ;
+	rdfs:label """StimulusCategory"""@en ;
+	rdfs:comment """StimulusCategory"""@en .
+
+:Unit a rdf:Class ;
+	rdfs:label """Unit"""@en ;
+	rdfs:comment """Unit"""@en .
+
+:Sensor a rdf:Class ;
+	rdfs:label """Sensor"""@en ;
+	rdfs:comment """Sensor"""@en .
+
+:Measure a rdf:Class ;
+	rdfs:label """Measure"""@en ;
+	rdfs:comment """Measure"""@en .
+
+:SubjectiveSensor a rdf:Class ;
+	rdfs:label """SubjectiveSensor"""@en ;
+	rdfs:comment """SubjectiveSensor"""@en .
+
+:SubjectiveMeasure a rdf:Class ;
+	rdfs:label """SubjectiveMeasure"""@en ;
+	rdfs:comment """SubjectiveMeasure"""@en .
+
+:Inference a rdf:Class ;
+	rdfs:label """Inference"""@en ;
+	rdfs:comment """Inference"""@en .
+
+:Claim a rdf:Class ;
+	rdfs:label """Claim"""@en ;
+	rdfs:comment """Claim"""@en .
+
+:BrainArea a rdf:Class ;
+	rdfs:label """BrainArea"""@en ;
+	rdfs:comment """BrainArea"""@en .
+
+:DefinitionOfChills a rdf:Class ;
+	rdfs:label """DefinitionOfChills"""@en ;
+	rdfs:comment """DefinitionOfChills"""@en .
+
+:Application a rdf:Class ;
+	rdfs:label """Application"""@en ;
+	rdfs:comment """Application"""@en .
+
+:MeasureCategory a rdf:Class ;
+	rdfs:label """MeasureCategory"""@en ;
+	rdfs:comment """MeasureCategory"""@en .
+
+:Stimulus a rdf:Class ;
+	rdfs:label """Stimulus"""@en ;
+	rdfs:comment """Stimulus"""@en .
+
+:hasArticleType a rdf:Property ;
+	rdfs:label """hasArticleType"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :ArticleType ;
+	rdfs:comment """hasArticleType"""@en .
+
+:hasPrimaryResearcher a rdf:Property ;
+	rdfs:label """hasPrimaryResearcher"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :Researcher ;
+	rdfs:comment """hasPrimaryResearcher"""@en .
+
+:hasSecondaryResearcher a rdf:Property ;
+	rdfs:label """hasSecondaryResearcher"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :Researcher ;
+	rdfs:comment """hasSecondaryResearcher"""@en .
+
+:hasPublicationYear a rdf:Property ;
+	rdfs:label """has publication year"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range xsd:gyear ;
+	rdfs:comment """The year in which a resource is published. [fabio:hasPublicationYear, https://sparontologies.github.io/fabio/current/fabio.html#d4e1556]"""@en ;
+	rdfs:equivalentProperty fabio:hasPublicationYear .
+
+:hasStudy a rdf:Property ;
+	rdfs:label """hasStudy"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :Study ;
+	rdfs:comment """hasStudy"""@en .
+
+:hasStimulusCategory a rdf:Property ;
+	rdfs:label """hasStimulusCategory"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :StimulusCategory ;
+	rdfs:comment """hasStimulusCategory"""@en .
+
+:hasUnit a rdf:Property ;
+	rdfs:label """hasUnit"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :Unit ;
+	rdfs:comment """hasUnit"""@en .
+
+:hasSensor a rdf:Property ;
+	rdfs:label """hasSensor"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :Sensor ;
+	rdfs:comment """hasSensor"""@en .
+
+:hasMeasure a rdf:Property ;
+	rdfs:label """hasMeasure"""@en ;
+	rdfs:range :Measure ;
+	rdfs:comment """hasMeasure"""@en .
+
+:hasSubjectiveSensor a rdf:Property ;
+	rdfs:label """hasSubjectiveSensor"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :SubjectiveSensor ;
+	rdfs:comment """hasSubjectiveSensor"""@en .
+
+:hasSubjectiveMeasure a rdf:Property ;
+	rdfs:label """hasSubjectiveMeasure"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :SubjectiveMeasure ;
+	rdfs:comment """hasSubjectiveMeasure"""@en .
+
+:hasInference a rdf:Property ;
+	rdfs:label """hasInference"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :Inference ;
+	rdfs:comment """hasInference"""@en .
+
+:hasClaim a rdf:Property ;
+	rdfs:label """hasClaim"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :Claim ;
+	rdfs:comment """hasClaim"""@en .
+
+:hasBrainArea a rdf:Property ;
+	rdfs:label """hasBrainArea"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :BrainArea ;
+	rdfs:comment """hasBrainArea"""@en .
+
+:hasDefinitionOfChills a rdf:Property ;
+	rdfs:label """hasDefinitionOfChills"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range :DefinitionOfChills ;
+	rdfs:comment """hasDefinitionOfChills"""@en .
+
+:hasNumberOfSubjects a rdf:Property ;
+	rdfs:label """hasNumberOfSubjects"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range rdfs:literal ;
+	rdfs:comment """hasNumberOfSubjects"""@en .
+
+:hasModulator a rdf:Property ;
+	rdfs:label """hasModulator"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range rdfs:literal ;
+	rdfs:comment """hasModulator"""@en .
+
+:hasLocation a rdf:Property ;
+	rdfs:label """hasLocation"""@en ;
+	rdfs:domain :Measure .
+
+:hasRelatedSensor a rdf:Property ;
+	rdfs:label """hasRelatedSensor"""@en ;
+	rdfs:domain :Sensor ;
+	rdfs:range :Sensor .
+
+:hasApplication a rdf:Property ;
+	rdfs:label """hasApplication"""@en ;
+	rdfs:domain :Measure .
+
+:hasRelatedMeasure a rdf:Property ;
+	rdfs:label """hasRelatedMeasure"""@en ;
+	rdfs:domain :Measure ;
+	rdfs:range :Measure .
+
+:hasURL a rdf:Property ;
+	rdfs:label """hasURL"""@en ;
+	rdfs:range xsd:anyURI .
+
+:hasSubjectiveDescription a rdf:Property ;
+	rdfs:label """hasSubjectiveDescription"""@en ;
+	rdfs:domain :Stimulus ;
+	rdfs:range rdfs:literal .
+
+:hasAbstract a rdf:Property ;
+	rdfs:label """hasAbstract"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range rdfs:literal ;
+	rdfs:comment """hasAbstract"""@en .
+
+:hasDiscipline a rdf:Property ;
+	rdfs:label """hasDiscipline"""@en ;
+	rdfs:domain :Researcher ;
+	rdfs:range rdfs:literal .
+
+:hasLab a rdf:Property ;
+	rdfs:label """hasLab"""@en ;
+	rdfs:domain :Researcher ;
+	rdfs:range rdfs:literal .
+
+:hasSite a rdf:Property ;
+	rdfs:label """hasSite"""@en ;
+	rdfs:domain :Researcher ;
+	rdfs:range rdfs:literal .
+
+:hasContact a rdf:Property ;
+	rdfs:label """hasContact"""@en ;
+	rdfs:domain :Researcher ;
+	rdfs:range rdfs:literal .
+
+:hasStimulusURL a rdf:Property ;
+	rdfs:label """hasStimulusURL"""@en ;
+	rdfs:domain :Paper ;
+	rdfs:range xsd:anyURI .
+
+:WelectricThatGaveMeGoosebumpsDidYouFeelItToo a :Paper ;
+	rdfs:label """WElectric: that gave me goosebumps, did you feel it too?"""@en ;
+	:hasArticleType :Technology ;
+	:hasPrimaryResearcher :BernhardRiecke ;
+	:hasStimulusCategory :Vr ;
+	:hasInference :Awe ;
+	:hasInference :PeakEmotion ;
+	:hasClaim :AweIsHealthyBothPhysicallyAndMentally ;
+	:hasBrainArea :None ;
+	:hasDefinitionOfChills :ASuddenChillOrShudderAccompaniedByGoosebumps ;
+	:hasSensor :EdaSensorGsrSensor ;
+	:hasSensor :Ecg ;
+	:hasSensor :PpgSensor ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :HeartRateVariabilityHrv ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasMeasure :RateOfRespiration ;
+	:hasURL "dx.doi.org/10.1145/3024969.3025004"^^xsd:anyURI ;
+	:hasPublicationYear "2017"^^xsd:gyear ;
+	:hasAbstract """Awe is a powerful, visceral sensation described as a sudden chill or shudder accompanied by goosebumps. People feel awe in the face of extraordinary experiences: the sublimity of nature, the beauty of art and music, the adrenaline rush of fear. Awe is healthy, both physically and mentally. It can be shared by people who are witnessing the same phenomenon, but traditionally it cannot be communicated remotely across time or distance: to feel awe involves real time experience, and explaining the experience that gave rise to it does not always induce the feeling of awe itself. We want to make this sensation something that can be transmitted, and therefore present AWElectric, a wearable interface that can detect awe, enhance it, and create it in another person. Our shared goosebump design embeds inflatable biometric displays in 3D print fabric.The AudioTactile fabric transmits an awe-inducing sound frequency to the partner that physically manifests the tingles, chills, and goosebumps that awe provokes."""@en .
+
+:AestheticChillsKnowledge-AcquisitionMeaning-MakingAndAestheticEmotions a :Paper ;
+	rdfs:label """Aesthetic Chills: Knowledge-Acquisition, Meaning-Making, and Aesthetic Emotions."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :FelixSchoeller ;
+	:hasSecondaryResearcher :KishoreSivakumar ;
+	:hasSecondaryResearcher :LeonidPerlovsky ;
+	:hasStimulusCategory :Film ;
+	:hasStimulusCategory :Music ;
+	:hasStimulusCategory :Dance ;
+	:hasSubjectiveSensor :10PointsSurvey ;
+	:hasInference :Stress ;
+	:hasInference :Pleasure ;
+	:hasInference :SocialInteraction ;
+	:hasInference :KnowledgeInstinct ;
+	:hasInference :Meaning ;
+	:hasInference :Curiosity ;
+	:hasClaim :IncoherenceInhibitsChillsIncoherenceMakesChi ;
+	:hasBrainArea :None ;
+	:hasDefinitionOfChills :MuscleTremorDissipatingHeatUnrelatedToChangesInTemperature ;
+	:hasMeasure :AmountOfSubjectiveChills ;
+	:hasMeasure :Temperature ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/27540366"^^xsd:anyURI ;
+	:hasPublicationYear "2016"^^xsd:gyear ;
+	:hasAbstract """This article addresses the relation between aesthetic emotions, knowledge-acquisition, and meaning-making. We briefly review theoretical foundations and present experimental data related to aesthetic chills. These results suggest that aesthetic chills are inhibited by exposing the subject to an incoherent prime prior to the chill-eliciting stimulation and that a meaningful prime makes the aesthetic experience more pleasurable than a neutral or an incoherent one. Aesthetic chills induced by narrative structures seem to be related to the pinnacle of the story, to have a significant calming effect and subjects describe a strong empathy for the characters. We discuss the relation between meaning-making and aesthetic emotions at the psychological, physiological, narratological, and mathematical levels and propose a series of hypotheses to be tested in future research."""@en ;
+	:hasStimulusURL "https://www.youtube.com/watch?v=J6bGnSEwdKY"^^xsd:anyURI .
+
+:TwoTypesOfPeakEmotionalResponsesToMusicThePsychophysiologyOfChillsAndTears a :Paper ;
+	rdfs:label """Two types of peak emotional responses to music: The psychophysiology of chills and tears."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :KazumaMori ;
+	:hasStimulusCategory :Music ;
+	:hasInference :Stress ;
+	:hasInference :Sadness ;
+	:hasInference :Arousal ;
+	:hasInference :Calm ;
+	:hasInference :Pleasure ;
+	:hasInference :PeakEmotion ;
+	:hasInference :Catharsis ;
+	:hasInference :Reward ;
+	:hasClaim :ChillsAndTearsAreTwoDistinctEmotions ;
+	:hasBrainArea :None ;
+	:hasDefinitionOfChills :GooseBumpsOrShivers ;
+	:hasSensor :EdaSensorGsrSensor ;
+	:hasSensor :Ecg ;
+	:hasSensor :ForceSensor ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :RateOfRespiration ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasMeasure :RespirationDepth ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/28387335"^^xsd:anyURI ;
+	:hasPublicationYear "2017"^^xsd:gyear ;
+	:hasAbstract """People sometimes experience a strong emotional response to artworks. Previous studies have demonstrated that the peak emotional experience of chills (goose bumps or shivers) when listening to music involves psychophysiological arousal and a rewarding effect. However, many aspects of peak emotion are still not understood. The current research takes a new perspective of peak emotional response of tears (weeping, lump in the throat). A psychophysiological experiment showed that self-reported chills increased electrodermal activity and subjective arousal whereas tears produced slow respiration during heartbeat acceleration, although both chills and tears induced pleasure and deep breathing. A song that induced chills was perceived as being both happy and sad whereas a song that induced tears was perceived as sad. A tear-eliciting song was perceived as calmer than a chill-eliciting song. These results show that tears involve pleasure from sadness and that they are psychophysiologically calming; thus, psychophysiological responses permit the distinction between chills and tears. Because tears may have a cathartic effect, the functional significance of chills and tears seems to be different. We believe that the distinction of two types of peak emotions is theoretically relevant and further study of tears would contribute to more understanding of human peak emotional response."""@en .
+
+:TearsFallingOnGoosebumpsCo-OccurrenceOfEmotionalLacrimationAndEmotionalPiloerectionIndicatesAPsychophysiologicalClimaxInEmotionalArousal a :Paper ;
+	rdfs:label """Tears Falling on Goosebumps: Co-occurrence of Emotional Lacrimation and Emotional Piloerection Indicates a Psychophysiological Climax in Emotional Arousal"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :EugenWassiliwizky ;
+	:hasSecondaryResearcher :Meninghaus ;
+	:hasStimulusCategory :Film ;
+	:hasInference :Arousal ;
+	:hasInference :SocialInteraction ;
+	:hasInference :PeakEmotion ;
+	:hasInference :Altruism ;
+	:hasInference :BeingMoved ;
+	:hasClaim :DisplaysOfProsocialBehaviorPlayACrucialRole ;
+	:hasBrainArea :None ;
+	:hasDefinitionOfChills :EmotionalPiloerectionIEGoosebumps ;
+	:hasSensor :EdaSensorGsrSensor ;
+	:hasSensor :Camera ;
+	:hasSensor :ElectromyographEmg ;
+	:hasSensor :PpgSensor ;
+	:hasMeasure :Piloerection ;
+	:hasMeasure :BloodVolumePulseBvp ;
+	:hasMeasure :MuscleActivity ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasMeasure :RateOfRespiration ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5293808/"^^xsd:anyURI ;
+	:hasPublicationYear "2017"^^xsd:gyear ;
+	:hasAbstract """This psychophysiological study is the first to examine the relationship between emotional tears and emotional piloerection (i.e., goosebumps). Although both phenomena have been related to peak states of being moved, details about their temporal occurrence and the associated levels of physiological arousal have remained unknown. In our study, we used emotionally powerful film scenes that were self-selected by participants. Our findings show that even within peak moments of emotional arousal, a gradation of intensity is possible. The overlap of tears and goosebumps signifies a maximal climax within peak moments. On the side of the stimulus, we found that displays of prosocial behavior play a crucial role in the elicitation of tears and goosebumps. Finally, based on the results of a formal film analysis of the tears-eliciting clips provided by our participants, as compared to randomly extracted, equally long control clips from the same films, we show how the technical and artistic making of the clips was optimized for the display of social interaction and emotional expressions."""@en .
+
+:TheEmotionalPowerOfPoetryNeuralCircuitryPsychophysiologyAndCompositionalPrinciples a :Paper ;
+	rdfs:label """The emotional power of poetry: neural circuitry, psychophysiology and compositional principles."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :EugenWassiliwizky ;
+	:hasSecondaryResearcher :Meninghaus ;
+	:hasStimulusCategory :Poetry ;
+	:hasUnit :Hz ;
+	:hasInference :Pleasure ;
+	:hasInference :NegativeEmotions ;
+	:hasInference :PeakAestheticPleasure ;
+	:hasInference :NegativeAffect ;
+	:hasClaim :RecitedPoetryCanActAsAPowerfulStimulusFor ;
+	:hasBrainArea :SubcorticalAreasOfRewardSystemDopaminergicNeuronsPrechillActivationInVentralStriatumNucleusAccumbens ;
+	:hasDefinitionOfChills :ChillsAndPiloerectionGoosebumps ;
+	:hasSensor :EdaSensorGsrSensor ;
+	:hasSensor :Camera ;
+	:hasSensor :ElectromyographEmg ;
+	:hasSensor :PpgSensor ;
+	:hasMeasure :BloodVolumePulseBvp ;
+	:hasMeasure :MuscleActivity ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/28460078"^^xsd:anyURI ;
+	:hasPublicationYear "2017"^^xsd:gyear ;
+	:hasAbstract """It is a common experience-and well established experimentally-that music can engage us emotionally in a compelling manner. The mechanisms underlying these experiences are receiving increasing scrutiny. However, the extent to which other domains of aesthetic experience can similarly elicit strong emotions is unknown. Using psychophysiology, neuroimaging and behavioral responses, we show that recited poetry can act as a powerful stimulus for eliciting peak emotional responses, including chills and objectively measurable goosebumps that engage the primary reward circuitry. Importantly, while these responses to poetry are largely analogous to those found for music, their neural underpinnings show important differences, specifically with regard to the crucial role of the nucleus accumbens. We also go beyond replicating previous music-related studies by showing that peak aesthetic pleasure can co-occur with physiological markers of negative affect. Finally, the distribution of chills across the trajectory of poems provides insight into compositional principles of poetry."""@en .
+
+:ExploringTheSocialAspectsOfGooseBumpsAndTheirRoleInAweAndEnvy a :Paper ;
+	rdfs:label """Exploring the social aspects of goose bumps and their role in awe and envy"""@en ;
+	:hasArticleType :Data ;
+	:hasSubjectiveSensor :5PointsSurvey ;
+	:hasInference :Awe ;
+	:hasInference :SocialInteraction ;
+	:hasClaim :GooseBumpsHaveAnImportantConnectionWithSoci ;
+	:hasBrainArea :None ;
+	:hasMeasure :AmountOfSubjectiveChills ;
+	:hasURL "https://link.springer.com/article/10.1007/s11031-011-9243-8"^^xsd:anyURI ;
+	:hasPublicationYear "2012"^^xsd:gyear ;
+	:hasAbstract """Both awe and envy are emotions that can result from observing a powerful other, but awe should stabilize social hierarchies while envy should undermine them. Three studies explored how the physiological reaction of goose bumps might help in understanding these distinctive reactions to powerful others, as goose bumps should be associated with awe rather than envy. In Study 1, participants kept a four-week journal and made a detailed entry each time they experienced goose bumps. Goose bumps resulting from the emotion of awe were the second most frequently occurring type after reactions to cold. Consistent with understanding awe as an emotional reaction to powerful or superior others (Keltner and Haidt in Cogn Emot 17:297–314, 2003), many of these experiences had social triggers. In Study 2, accounts of goose bumps resulting from exposure to powerful or superior others contained greater awe than envy. Also, the intensity of goose bumps was positively correlated with awe and negatively correlated with envy. In Study 3, accounts of awe contained more goose bumps than accounts of envy, and goose bumps were positively correlated with awe."""@en .
+
+:BrainConnectivityReflectsHumanAestheticResponsesToMusic a :Paper ;
+	rdfs:label """Brain connectivity reflects human aesthetic responses to music."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :MSachs ;
+	:hasStimulusCategory :Music ;
+	:hasUnit :Hz ;
+	:hasInference :IndividualDifferences ;
+	:hasInference :MusicPreferences ;
+	:hasClaim :WhiteMatterConnectivityBetweenSensoryProcessi ;
+	:hasBrainArea :ChillsGroupShowedHigherVolumeInTractsBetweenSeedRegionsInThePstgAndTargetRegionsInTheAinsAndMpfcEspeciallyOnTheRightSide ;
+	:hasSensor :Ecg ;
+	:hasSensor :Survey ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/26966157"^^xsd:anyURI ;
+	:hasPublicationYear "2016"^^xsd:gyear ;
+	:hasAbstract """Humans uniquely appreciate aesthetics, experiencing pleasurable responses to complex stimuli that confer no clear intrinsic value for survival. However, substantial variability exists in the frequency and specificity of aesthetic responses. While pleasure from aesthetics is attributed to the neural circuitry for reward, what accounts for individual differences in aesthetic reward sensitivity remains unclear. Using a combination of survey data, behavioral and psychophysiological measures and diffusion tensor imaging, we found that white matter connectivity between sensory processing areas in the superior temporal gyrus and emotional and social processing areas in the insula and medial prefrontal cortex explains individual differences in reward sensitivity to music. Our findings provide the first evidence for a neural basis of individual differences in sensory access to the reward system, and suggest that social-emotional communication through the auditory channel may offer an evolutionary basis for music making as an aesthetically rewarding function in humans."""@en .
+
+:AFlexibleSkinPiloerectionMonitoringSensor a :Paper ;
+	rdfs:label """A flexible skin piloerection monitoring sensor."""@en ;
+	:hasArticleType :Technology ;
+	:hasPrimaryResearcher :JaeminKim ;
+	:hasInference :Human-MachineInterface ;
+	:hasInference :Emotion ;
+	:hasBrainArea :None ;
+	:hasURL "https://doi.org/10.1063/1.4881888"^^xsd:anyURI ;
+	:hasPublicationYear "2014"^^xsd:gyear ;
+	:hasAbstract """We have designed, fabricated, and tested a capacitive-type flexible micro sensor for measurement of the human skin piloerection arisen from sudden emotional and environmental change. The present skin piloerection monitoring methods are limited in objective and quantitative measurement by physical disturbance stimulation to the skin due to bulky size and heavy weight of measuring devices. The proposed flexible skin piloerection monitoring sensor is composed of 3 × 3 spiral coplanar capacitor array using conductive polymer for having high capacitive density and thin enough thickness to be attached to human skin. The performance of the skin piloerection monitoring sensor is characterized using the artificial bump, representing human skin goosebump; thus, resulting in the sensitivity of −0.00252%/μm and the nonlinearity of 25.9% for the artificial goosebump deformation in the range of 0–326 μm. We also verified successive human skin piloerection having 3.5 s duration on the subject's dorsal forearms, thus resulting in the capacitance change of −6.2 fF and −9.2 fF for the piloerection intensity of 145 μm and 194 μm, respectively. It is demonstrated experimentally that the proposed sensor is capable to measure the human skin piloerection objectively and quantitatively, thereby suggesting the quantitative evaluation method of the qualitative human emotional status for cognitive human-machine interfaces applications."""@en .
+
+:EffectsOfAestheticChillsOnACardiacSignatureOfEmotionality a :Paper ;
+	rdfs:label """Effects of Aesthetic Chills on a Cardiac Signature of Emotionality."""@en ;
+	rdfs:label """Effects of Aesthetic Chills on a Cardiac Signature of Emotionality"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :StefanKoelsh ;
+	:hasStimulusCategory :Film ;
+	:hasStimulusCategory :Music ;
+	:hasInference :PositiveEmotion ;
+	:hasClaim :ThePossibilityToModulateEcgAmplitudeSignatur ;
+	:hasBrainArea :None ;
+	:hasSensor :Camera ;
+	:hasSensor :Ecg ;
+	:hasMeasure :Piloerection ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :RateOfRespiration ;
+	:hasMeasure :PupilDiameter ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/26083383"^^xsd:anyURI ;
+	:hasURL "http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0130117"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """BACKGROUND: Previous studies have shown that a cardiac signature of emotionality (referred to as EK, which can be computed from the standard 12 lead electrocardiogram, ECG), predicts inter-individual differences in the tendency to experience and express positive emotion. Here, we investigated whether EK values can be transiently modulated during stimulation with participant-selected music pieces and film scenes that elicit strongly positive emotion.  METHODOLOGY/PRINCIPAL FINDINGS: The phenomenon of aesthetic chills, as indicated by measurable piloerection on the forearm, was used to accurately locate moments of peak emotional responses during stimulation. From 58 healthy participants, continuous EK values, heart rate, and respiratory frequency were recorded during stimulation with film scenes and music pieces, and were related to the aesthetic chills. EK values, as well as heart rate, increased significantly during moments of peak positive emotion accompanied by piloerection.  CONCLUSIONS/SIGNIFICANCE: These results are the first to provide evidence for an influence of momentary psychological state on a cardiac signature of emotional personality (as reflected in EK values). The possibility to modulate ECG amplitude signatures via stimulation with emotionally significant music pieces and film scenes opens up new perspectives for the use of emotional peak experiences in the therapy of disorders characterized by flattened emotionality, such as depression or schizoid personality disorder."""@en ;
+	:hasAbstract """Background Previous studies have shown that a cardiac signature of emotionality (referred to as EK, which can be computed from the standard 12 lead electrocardiogram, ECG), predicts inter-individual differences in the tendency to experience and express positive emotion. Here, we investigated whether EK values can be transiently modulated during stimulation with participant-selected music pieces and film scenes that elicit strongly positive emotion.  Methodology/Principal Findings The phenomenon of aesthetic chills, as indicated by measurable piloerection on the forearm, was used to accurately locate moments of peak emotional responses during stimulation. From 58 healthy participants, continuous EK values, heart rate, and respiratory frequency were recorded during stimulation with film scenes and music pieces, and were related to the aesthetic chills. EK values, as well as heart rate, increased significantly during moments of peak positive emotion accompanied by piloerection.  Conclusions/Significance These results are the first to provide evidence for an influence of momentary psychological state on a cardiac signature of emotional personality (as reflected in EK values). The possibility to modulate ECG amplitude signatures via stimulation with emotionally significant music pieces and film scenes opens up new perspectives for the use of emotional peak experiences in the therapy of disorders characterized by flattened emotionality, such as depression or schizoid personality disorder."""@en ;
+	:hasSubjectiveSensor :Survey .
+
+:EmotionalAndAestheticAntecedentsAndConsequencesOfMusic-InducedThrills a :Paper ;
+	rdfs:label """Emotional and aesthetic antecedents and consequences of music-induced thrills."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :VKonecni ;
+	:hasStimulusCategory :Music ;
+	:hasStimulusCategory :Literature ;
+	:hasSubjectiveSensor :Survey ;
+	:hasSubjectiveMeasure :Altruism ;
+	:hasInference :ProfoundAestheticExperiences ;
+	:hasInference :SenseOfSelf ;
+	:hasInference :Mood ;
+	:hasClaim :ThrillsMayOftenAccompanyProfoundAestheticExp ;
+	:hasBrainArea :None ;
+	:hasDefinitionOfChills :ASpreadingShiverDownTheSpineATinglingOnTheBackOfTheNeckOrArmsOrGooseBump ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/18277519"^^xsd:anyURI ;
+	:hasPublicationYear "2007"^^xsd:gyear ;
+	:hasAbstract """The significance of music-induced thrills or chills was explored in 3 experiments (N= 223). Specifically, the ability of antecedent (priming) stimuli in different modalities and aesthetic domains (national anthems, stories, architectural objects, paintings) to increase the participants' thrills responsiveness to music by Rachmaninoff and Haydn was examined. In addition, the differential effects of having or not having experienced thrills on the participants' subsequent willingness to donate blood, and on their mood and self-concept, were tested. It was found that while the antecedent stimuli in different modalities could themselves induce thrills in a predictable manner, these priming stimuli, and the thrills they elicited, had relatively weak effects on the thrills subsequently induced by the Rachmaninoff and Haydn pieces. The measures of altruism, self-concept, and mood were not affected by either the antecedent variables or the thrills experience. Thrills may often accompany profound aesthetic experiences and provide their physiological underpinning, yet themselves be of limited psychological significance."""@en .
+
+:TowardsAPsychologicalConstructOfBeingMoved a :Paper ;
+	rdfs:label """Towards a Psychological Construct of Being Moved"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :EugenWassiliwizky ;
+	:hasSecondaryResearcher :Meninghaus ;
+	:hasStimulusCategory :LifeEvents ;
+	:hasSubjectiveSensor :Survey ;
+	:hasSubjectiveMeasure :ElicitingScenarios ;
+	:hasSubjectiveMeasure :SubjectiveExperience ;
+	:hasInference :SocialNorms ;
+	:hasInference :SelfIdeals ;
+	:hasInference :BeingMoved ;
+	:hasBrainArea :None ;
+	:hasURL "http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0128451"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """The emotional state of being moved, though frequently referred to in both classical rhetoric and current language use, is far from established as a well-defined psychological construct. In a series of three studies, we investigated eliciting scenarios, emotional ingredients, appraisal patterns, feeling qualities, and the affective signature of being moved and related emotional states. The great majority of the eliciting scenarios can be assigned to significant relationship and critical life events (especially death, birth, marriage, separation, and reunion). Sadness and joy turned out to be the two preeminent emotions involved in episodes of being moved. Both the sad and the joyful variants of being moved showed a coactivation of positive and negative affect and can thus be ranked among the mixed emotions. Moreover, being moved, while featuring only low-to-mid arousal levels, was experienced as an emotional state of high intensity; this applied to responses to fictional artworks no less than to own-life and other real, but media-represented, events. The most distinctive findings regarding cognitive appraisal dimensions were very low ratings for causation of the event by oneself and for having the power to change its outcome, along with very high ratings for appraisals of compatibility with social norms and self-ideals. Putting together the characteristics identified and discussed throughout the three studies, the paper ends with a sketch of a psychological construct of being moved."""@en .
+
+:MusicChillsTheEyePupilAsAMirrorToMusicSSoul a :Paper ;
+	rdfs:label """Music chills: The eye pupil as a mirror to music's soul."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :LoengBruno ;
+	:hasStimulusCategory :Music ;
+	:hasInference :PeakEmotion ;
+	:hasClaim :MusicChillsCanBeVisibleInTheMoment-To-Momen ;
+	:hasBrainArea :NeuromodulatoryRoleOfTheCentralNorepinephrineSystem ;
+	:hasSensor :EyeTracking ;
+	:hasMeasure :PupilDiameter ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/27500655"^^xsd:anyURI ;
+	:hasPublicationYear "2016"^^xsd:gyear ;
+	:hasAbstract """This study evaluated whether music-induced aesthetic \'chill\' responses, which typically correspond to peak emotional experiences, can be objectively monitored by degree of pupillary dilation. Participants listened to self-chosen songs versus control songs chosen by other participants. The experiment included an active condition where participants made key presses to indicate when experiencing chills and a passive condition (without key presses). Chills were reported more frequently for self-selected songs than control songs. Pupil diameter was concurrently measured by an eye-tracker while participants listened to each of the songs. Pupil size was larger within specific time-windows around the chill events, as monitored by key responses, than in comparison to pupil size observed during 'passive' song listening. In addition, there was a clear relationship between pupil diameter within the chills-related time-windows during both active and passive conditions, thus ruling out the possibility that chills-related pupil dilations were an artifact of making a manual response. These findings strongly suggest that music chills can be visible in the moment-to-moment changes in the size of pupillary responses and that a neuromodulatory role of the central norepinephrine system is thereby implicated in this phenomenon."""@en .
+
+:EmotionsInducedByOperaticMusicPsychophysiologicalEffectsOfMusicPlotAndActingAScientistSTributeToMariaCallas a :Paper ;
+	rdfs:label """Emotions induced by operatic music: Psychophysiological effects of music, plot, and acting: A scientist’s tribute to Maria Callas"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :AcMiu ;
+	:hasSecondaryResearcher :FrBaltes ;
+	:hasStimulusCategory :Music ;
+	:hasStimulusCategory :Opera ;
+	:hasSubjectiveSensor :5PointsSurvey ;
+	:hasInference :Stress ;
+	:hasInference :NegativeEmotions ;
+	:hasInference :PositiveEmotion ;
+	:hasInference :Sadness ;
+	:hasInference :Arousal ;
+	:hasInference :Joy ;
+	:hasInference :Peace ;
+	:hasClaim :MultipleMusicalAndDramaticMeansInvolvedInOp ;
+	:hasBrainArea :None ;
+	:hasDefinitionOfChills :PhysioFasterHeartRateButSlowerRespirationRateAndReducedSkinConductance ;
+	:hasSensor :EdaSensorGsrSensor ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :RateOfRespiration ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasURL "https://www.sciencedirect.com/science/article/pii/S0278262611000212?via%3Dihub"^^xsd:anyURI ;
+	:hasPublicationYear "2011"^^xsd:gyear ;
+	:hasAbstract """Operatic music involves both singing and acting (as well as rich audiovisual background arising from the orchestra and elaborate scenery and costumes) that multiply the mechanisms by which emotions are induced in listeners. The present study investigated the effects of music, plot, and acting performance on emotions induced by opera. There were three experimental conditions: (1) participants listened to a musically complex and dramatically coherent excerpt from Tosca; (2) they read a summary of the plot and listened to the same musical excerpt again; and (3) they re-listened to music while they watched the subtitled film of this acting performance. In addition, a control condition was included, in which an independent sample of participants succesively listened three times to the same musical excerpt. We measured subjective changes using both dimensional, and specific music-induced emotion questionnaires. Cardiovascular, electrodermal, and respiratory responses were also recorded, and the participants kept track of their musical chills. Music listening alone elicited positive emotion and autonomic arousal, seen in faster heart rate, but slower respiration rate and reduced skin conductance. Knowing the (sad) plot while listening to the music a second time reduced positive emotions (peacefulness, joyful activation), and increased negative ones (sadness), while high autonomic arousal was maintained. Watching the acting performance increased emotional arousal and changed its valence again (from less positive/sad to transcendent), in the context of continued high autonomic arousal. The repeated exposure to music did not by itself induce this pattern of modifications. These results indicate that the multiple musical and dramatic means involved in operatic performance specifically contribute to the genesis of music-induced emotions and their physiological correlates."""@en .
+
+:IntenselyPleasurableResponsesToMusicCorrelateWithActivityInBrainRegionsImplicatedInRewardAndEmotion a :Paper ;
+	rdfs:label """Intensely pleasurable responses to music correlate with activity in brain regions implicated in reward and emotion"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :BloodA ;
+	:hasStimulusCategory :Music ;
+	:hasInference :Approach-Avoidance ;
+	:hasInference :PositiveEmotion ;
+	:hasInference :MentalWell-Being ;
+	:hasInference :PhysicalWell-Being ;
+	:hasInference :Pleasure ;
+	:hasInference :Reward ;
+	:hasBrainArea :None ;
+	:hasSensor :ElectromyographEmg ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :RateOfRespiration ;
+	:hasURL "http://www.pnas.org/content/98/20/11818"^^xsd:anyURI ;
+	:hasPublicationYear "2001"^^xsd:gyear ;
+	:hasAbstract """We used positron emission tomography to study neural mechanisms underlying intensely pleasant emotional responses to music. Cerebral blood flow changes were measured in response to subject-selected music that elicited the highly pleasurable experience of “shivers-down-the-spine” or “chills.” Subjective reports of chills were accompanied by changes in heart rate, electromyogram, and respiration. As intensity of these chills increased, cerebral blood flow increases and decreases were observed in brain regions thought to be involved in reward/motivation, emotion, and arousal, including ventral striatum, midbrain, amygdala, orbitofrontal cortex, and ventral medial prefrontal cortex. These brain structures are known to be active in response to other euphoria-inducing stimuli, such as food, sex, and drugs of abuse. This finding links music with biologically relevant, survival-related stimuli via their common recruitment of brain circuitry involved in pleasure and reward."""@en .
+
+:LiquidSightThingLikeWordsAndThePrecipitationOfKnowledgeSubstancesInCubanEspiritismo a :Paper ;
+	rdfs:label """Liquid sight, thing‐like words, and the precipitation of knowledge substances in Cuban espiritismo"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :DianaEspiritoSanto ;
+	:hasStimulusCategory :Rituals ;
+	:hasSubjectiveSensor :Survey ;
+	:hasBrainArea :None ;
+	:hasURL "https://doi.org/10.1111/1467-9655.12252"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """This article argues that in Cuban Creole espiritismo practices, ritually generated ‘knowledge’ has ontological, rather than just epistemological, effects, independent of the role of cognition. I will show that knowledge is experienced as a fluid, moving ‘substance’ external to the body that can accumulate, weigh down, hang suspended, and dissipate; it is also responsive to mediums‘ descriptive speech, becoming an object of vision‐knowledge at the same time that it is seen and spoken of collectively. I will also show that the circulation of knowledge ‘substances’ should be seen not as metaphorical but as tied to processes of making people, and ask whether knowledge can figure not just as something intersubjective or relational but as something substantive, even physiological."""@en .
+
+:Chill-InducingMusicEnhancesAltruismInHumans a :Paper ;
+	rdfs:label """Chill-inducing music enhances altruism in humans"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :HajimeFukui ;
+	:hasStimulusCategory :Music ;
+	:hasUnit :Money ;
+	:hasSubjectiveSensor :DictatorGame ;
+	:hasSubjectiveMeasure :TendencyToGiveMoney ;
+	:hasClaim :Chill-InducingMusicMayPromoteAltruisticBeh ;
+	:hasBrainArea :None ;
+	:hasURL "https://doi.org/10.3389/fpsyg.2014.01215"^^xsd:anyURI ;
+	:hasPublicationYear "2014"^^xsd:gyear ;
+	:hasAbstract """Music is a universal feature of human cultures, and it has both fascinated and troubled many researchers. In this paper we show through the dictator game (DG) that an individual’s listening to preferred “chill-inducing” music may promote altruistic behavior that extends beyond the bounds of kin selection or reciprocal altruism. Participants were 22 undergraduate and postgraduate students who were divided into two groups, the in-group and the out-group, and they acted as dictators. The dictators listened to their own preferred “chill-inducing” music, to music they disliked, or to silence, and then played the DG. In this hypothetical experiment, the dictators were given real money (which they did not keep) and were asked to distribute it to the recipients, who were presented as stylized images of men and women displayed on a computer screen. The dictators played the DG both before and after listening to the music. Both male and female dictators gave more money after listening to their preferred music and less after listening to the music they disliked, whereas silence had no effect on the allocated amounts. The group to which the recipient belonged did not influence these trends. The results suggest that listening to preferred “chill-inducing” music promotes altruistic behavior."""@en .
+
+:ThrillsInResponseToMusicAndOtherStimuli a :Paper ;
+	rdfs:label """Thrills in response to music and other stimuli"""@en ;
+	:hasArticleType :Data ;
+	:hasStimulusCategory :Music ;
+	:hasSubjectiveSensor :3PointsSurvey ;
+	:hasClaim :NaloxoneInhibitsChills ;
+	:hasBrainArea :None ;
+	:hasDefinitionOfChills :AThrillIsASubtleNervousTremorCausedByIntenseEmotionOrExcitementAsPleasureFearEtcProducingASlightShudderOrTinglingThroughTheBody ;
+	:hasMeasure :AmountOfSubjectiveChills ;
+	:hasModulator """Naloxone"""@en ;
+	:hasURL "https://link.springer.com/article/10.3758%2FBF03326460"^^xsd:anyURI ;
+	:hasPublicationYear "1980"^^xsd:gyear ;
+	:hasAbstract """Approximately half of those surveyed experience characteristic tingling sensations (thrills) when exposed to emotionally arousing stimuli. Music was especially effective as a stimulus. Thrills evoked by music were quantitated according to self-reports on frequency, intensity, and duration. In preliminary experiments with naloxone, an opiate receptor antagonist, thrills were attenuated in some subjects."""@en .
+
+:ChillsAsAnIndicatorOfIndividualEmotionalPeaks a :Paper ;
+	rdfs:label """Chills As an Indicator of Individual Emotional Peaks"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :Altenmuller ;
+	:hasSecondaryResearcher :Grewe ;
+	:hasInference :BeingMoved ;
+	:hasBrainArea :None ;
+	:hasURL "refhub.elsevier.com/S1571-0645(17)30184-7/bib4772656574616C32303039s1"^^xsd:anyURI ;
+	:hasPublicationYear "2009"^^xsd:gyear ;
+	:hasAbstract """Chills (goose bumps) have been repeatedly associated with positive emotional peaks. Chills seem to be related to distinct musical structures and the reward system in the brain. A new approach that uses chills as indicators of individual emotional peaks is discussed. Chill reactions of 95 participants in response to seven music pieces were recorded. Subjective intensity as well as physiological arousal (skin conductance response, heart rate) revealed peaks during chill episodes. This review suggests that chills are a reliable indicator of individual emotional peaks, combining reports of subjective feelings with physiological arousal."""@en .
+
+:PhysiologicalAndMusico-AcousticCorrelatesOfTheChillResponse a :Paper ;
+	rdfs:label """Physiological and Musico-Acoustic Correlates of the Chill Response"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :MarcelZentner ;
+	:hasStimulusCategory :Music ;
+	:hasBrainArea :None ;
+	:hasSensor :Ecg ;
+	:hasSensor :PiezoelectricSensors ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasURL "http://mp.ucpress.edu/content/24/5/473.full.pdf+html"^^xsd:anyURI ;
+	:hasPublicationYear "2007"^^xsd:gyear ;
+	:hasAbstract """LISTENING TO MUSIC OFTEN EVOKES affective states that are accompanied by distinctive subjective experiences and specific physiological changes. In this study, we examined the phenomenon of chills and its concomitant physiological reactions. In a preliminary study, experimenter-selected music excerpts were played to 27 participants, and musical passages especially apt toelicit chill experiences were identified on the basis of subjective ratings. In a subsequent study with 27 new participants, subjective chill experiences and physiological responses were recorded in real time. The highest numbers of chills were experienced during musical passages characterized by similar dynamic, harmonic, and structural characteristics, which coincided with distinct patterns of heart rate and skin conductance increases. For participants experiencing a chill during these passages, increases in skin conductance were significantly larger than for participants without chills. The heart rate response did not differ between groups."""@en .
+
+:PsychoacousticsOfAChillingSound a :Paper ;
+	rdfs:label """Psychoacoustics of a chilling sound"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :RandolphBlake ;
+	:hasStimulusCategory :Sound ;
+	:hasSubjectiveSensor :Survey ;
+	:hasInference :Pleasure ;
+	:hasBrainArea :None ;
+	:hasURL "https://link.springer.com/article/10.3758%2FBF03211488"^^xsd:anyURI ;
+	:hasPublicationYear "1986"^^xsd:gyear ;
+	:hasAbstract """We digitally synthesized versions of the sound of a sharp object scraping across a slate surface (which mimics the sound of fingernails scraping across a blackboard) to determine whether spectral content or amplitude contour contributed to its obnoxious quality. Using magnitude estimation, listeners rated each synthesized sound’s unpleasantness. Contrary to intuition, removal of low, but not of high, frequencies lessened the sound’s unpleasantness. Manipulations of the signal amplitude had no significant impact on listeners’ unpleasantness estimates. Evidently, low-frequency spectral factors contribute primarily to the discomfort associated with this sound."""@en .
+
+:TheChillsAsAPsychologicalConstructContentUniverseFactorStructureAffectiveCompositionElicitorsTraitAntecedentsAndConsequences a :Paper ;
+	rdfs:label """The chills as a psychological construct: content universe, factor structure, affective composition, elicitors, trait antecedents, and consequences."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :LauraMaruskin ;
+	:hasSecondaryResearcher :DacherKeltner ;
+	:hasSubjectiveSensor :Survey ;
+	:hasInference :Expectations ;
+	:hasInference :Approach-Avoidance ;
+	:hasInference :Relevance ;
+	:hasInference :Fear ;
+	:hasInference :Hope ;
+	:hasClaim :ChillsPositiveAndNegativeCorrespondToMecha ;
+	:hasBrainArea :None ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/22564010"^^xsd:anyURI ;
+	:hasPublicationYear "2012"^^xsd:gyear ;
+	:hasAbstract """We examined the content universe, factor structure, affective composition, elicitors, trait antecedents, and consequences of \'the chills.\' In Study 1, participants described what it means to get the chills. A second sample sorted all references to physical sensations based on similarity. Cluster analysis identified 4 lower order clusters (goosebumps, tingling, coldness, shivers) and 2 higher order clusters (\'goosetingles,\' \'coldshivers\'). In Study 2, factor analysis of questionnaire data supported a model with lower and higher order factors that corresponded to the Study 1 clusters. Goosetingles and coldshivers were predicted by approach-related traits (e.g., extraversion) and avoidance-related traits (e.g., neuroticism), respectively. In Study 3, analysis of narrative data replicated the goosetingles-coldshivers structure. Relative to coldshivers, goosetingles involved greater awe, surprise, and enjoyment and less disgust, fear, and sadness. In Study 4, analysis of diary data extended the goosetingles-coldshivers structure to between- and within-person levels of analysis. Goosetingles involved positive affects and was elicited by approach-related stimuli, whereas coldshivers involved negative affects and was elicited by avoidance-related stimuli. In Study 5, manipulation of exposure to self-actualization and self-annihilation elicited goosetingles and coldshivers, respectively. Goosetingles and coldshivers had positive and negative effects, respectively, on interpersonal closeness. In sum, diverse forms of evidence converge to indicate that the chills encompasses distinct approach- and avoidance-related constructs. Failure to distinguish these constructs explains null and inconsistent findings in the nascent literature. Goosetingles and coldshivers are posited to serve the function of signaling that an event in the environment is pertinent to one's most deep-seated hopes or fears."""@en .
+
+:PsychologicalStressAndBodyTemperatureChangesInHumans a :Paper ;
+	rdfs:label """Psychological stress and body temperature changes in humans"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :DonatellaMarazziti ;
+	:hasStimulusCategory :UniversityExam ;
+	:hasSubjectiveSensor :Survey ;
+	:hasInference :Stress ;
+	:hasInference :Calm ;
+	:hasBrainArea :None ;
+	:hasSensor :MercurySphyngomanometer ;
+	:hasSensor :Thermometer ;
+	:hasMeasure :Temperature ;
+	:hasMeasure :BloodPressure ;
+	:hasMeasure :Pressure ;
+	:hasURL "https://www.sciencedirect.com/science/article/pii/003193849290290I?via%3Dihub"^^xsd:anyURI ;
+	:hasPublicationYear "1992"^^xsd:gyear ;
+	:hasAbstract """We investigated the possible changes in body temperature, heart frequency, and blood pressure in 22 residents sitting for the yearly exam at the Specialty School of Psychiatry at Pisa University. All subjects were then evaluated 2 or 3 weeks later, in calm situations. In a subgroup, a specific plasmatic diazepam binding inhibitor (BBIA), previously described, was also measured. The results showed that all subjects underwent significant stress-related changes in the parameters studied, which suggest the involvement of different mechanisms in preexam stress."""@en .
+
+:Music-InducedChillsAsAStrongEmotionalExperience a :Paper ;
+	rdfs:label """[Music-induced chills as a strong emotional experience]."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :KazumaMori ;
+	:hasStimulusCategory :Music ;
+	:hasInference :Emotion ;
+	:hasBrainArea :None ;
+	:hasSensor :EdaSensorGsrSensor ;
+	:hasSensor :Ecg ;
+	:hasMeasure :HeartRate ;
+	:hasMeasure :RateOfRespiration ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/25639033"^^xsd:anyURI ;
+	:hasPublicationYear "2014"^^xsd:gyear ;
+	:hasAbstract """While enjoying music and other works of art, people sometimes experience \'chills,\' a strong emotional response characterized by a sensation of goose bumps or shivers. Such experiences differ from having goose bumps as a defense response or from shivering in reaction to cold temperatures. The current paper presents the phenomenon of music-induced chills and reviews the chill-related emotional response, autonomic nervous system activity, and brain activity. It also reviews the musico-acoustic features, listening contexts, and individual differences that cause chills. Based on the review, we propose a hypothetical model regarding the evocation of music-induced chills. Furthermore, we investigate the strong emotional response associated with chills by exploring the relationship between music-related chills and non-music-related chills, and discuss future research directions."""@en .
+
+:AestheticChillsAsAUniversalMarkerOfOpennessToExperience a :Paper ;
+	rdfs:label """Aesthetic Chills as a Universal Marker of Openness to Experience"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :RobertMccrae ;
+	:hasUnit :Words ;
+	:hasSubjectiveSensor :LinguisticAnalysis ;
+	:hasInference :OpenToExperience ;
+	:hasClaim :ChillsAreUniversalChillsCorrespondToAMarke ;
+	:hasBrainArea :None ;
+	:hasMeasure :WordCount ;
+	:hasURL "https://link.springer.com/article/10.1007%2Fs11031-007-9053-1"^^xsd:anyURI ;
+	:hasPublicationYear "2007"^^xsd:gyear ;
+	:hasAbstract """Aesthetic chills are transient emotional responses to music or other experiences of beauty. Item 188 of the Revised NEO Personality Inventory (NEO-PI-R) asks respondents if they have experienced these chills, and in American samples it is one of the best definers of Openness to Experience, one of the five basic personality factors. As part of the NEO-PI-R, the item has been translated into over 40 languages, and an examination of back-translations suggests that the phenomenon can be expressed in all the languages examined. Data from the Personality Profiles of Cultures Project show that Item 188 is one of the best definers of Openness in most of the 51 cultures examined. Aesthetic chills appear to be a universal emotional experience, although the functions they serve and the mechanisms that account for them remain to be discovered."""@en .
+
+:TheShiversOfKnowledge a :Paper ;
+	rdfs:label """The Shivers of Knowledge"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :FelixSchoeller ;
+	:hasSecondaryResearcher :KishoreSivakumar ;
+	:hasSecondaryResearcher :LeonidPerlovsky ;
+	:hasStimulusCategory :Physics ;
+	:hasStimulusCategory :Maths ;
+	:hasStimulusCategory :Literature ;
+	:hasStimulusCategory :Paintings ;
+	:hasStimulusCategory :Music ;
+	:hasStimulusCategory :Rituals ;
+	:hasSubjectiveSensor :Observations ;
+	:hasInference :KnowledgeInstinct ;
+	:hasInference :Expectations ;
+	:hasClaim :ChillsCorrespondToASatisfactionOfTheVitalN ;
+	:hasBrainArea :None ;
+	:hasURL "https://doi.org/10.1515/hssr-2015-0022"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """Aesthetic chills occur in artistic, scientific and religious context. We introduce a theoretical framework relating them to humans’ vital need for cognition. We discuss the implications of such a framework and the plausibility of our hypothesis. Numerous references to chills are introduced (quotes from, inter alios, artists, physicists and mathematicians)."""@en .
+
+:DynamicsOfTheKnowledgeInstinctEffectsOfIncoherenceOnTheCognitiveSystem a :Paper ;
+	rdfs:label """Dynamics of the knowledge instinct: Effects of incoherence on the cognitive system"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :FelixSchoeller ;
+	:hasSecondaryResearcher :KishoreSivakumar ;
+	:hasSecondaryResearcher :LeonidPerlovsky ;
+	:hasStimulusCategory :Film ;
+	:hasStimulusCategory :Music ;
+	:hasStimulusCategory :Dance ;
+	:hasInference :KnowledgeInstinct ;
+	:hasInference :Pleasure ;
+	:hasInference :Expectations ;
+	:hasInference :Meaning ;
+	:hasClaim :IncoherenceInhibitsChills ;
+	:hasBrainArea :None ;
+	:hasModulator """Incoherence"""@en ;
+	:hasURL "https://www.sciencedirect.com/science/article/pii/S1389041717300232"^^xsd:anyURI ;
+	:hasPublicationYear "2018"^^xsd:gyear ;
+	:hasAbstract """We successfully replicated a study about aesthetic emotions in a different socio-cultural environment. The present results suggest that incoherence is a strong inhibitor for aesthetic chills and verify a positive correlation between pleasure and meaning. These results allow for a scientific study of aesthetic emotions as it is now possible for the experimenter to have two groups of subjects, both exposed to the same stimulation, one group experiencing measurable aesthetic emotions whereas the other does not. We review the literature on the problem of both positive and negative psychogenic shivering and relate this phenomenon to the instinct of knowledge. We discuss the implications of our findings, stress the importance of studying the psychological and physiological effects of incoherence on the central nervous system, introduce a series of hypotheses to be tested in further research and conclude with a plausible explanation for the relation between temperature and cognition in humans."""@en ;
+	:hasStimulusURL "https://www.youtube.com/watch?v=J6bGnSEwdKY"^^xsd:anyURI .
+
+:PsychologyOfAestheticChills a :Paper ;
+	rdfs:label """Psychology of aesthetic chills"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :FelixSchoeller ;
+	:hasSecondaryResearcher :KishoreSivakumar ;
+	:hasSecondaryResearcher :LeonidPerlovsky ;
+	:hasStimulusCategory :Film ;
+	:hasSubjectiveSensor :Survey ;
+	:hasInference :KnowledgeInstinct ;
+	:hasInference :Trust ;
+	:hasInference :Safety ;
+	:hasInference :Expectations ;
+	:hasBrainArea :None ;
+	:hasURL "https://www.sciencedirect.com/science/article/pii/S0033298417300791?via%3Dihub"^^xsd:anyURI ;
+	:hasPublicationYear "2018"^^xsd:gyear ;
+	:hasAbstract """Cette étude porte sur le problème des émotions esthétiques et celui des frissons esthétiques en particulier. Nous avons demandé à 30 sujets de décrire une structure narrative (film, théâtre, roman) élicitant des frissons, ainsi que la phénoménologie de l’expérience esthétique. Un certain nombre de redondances non aléatoires sont observables. Les stimuli élicitant des frissons positifs dans notre population ont pour la plupart une très forte dimension sensorielle et leurs propriétés particulières sont souvent des preuves d’altruisme, des considérations existentielles très générales, des moments de recueillement et de concentration sur soi, des situations de solidarité et de communion (famille, couple, amis) ou à l’opposé de séparation violente (famille, couple, ami). En règle générale, lorsqu’il s’agit d’évènements réels (et non de scènes de fiction dans un film ou un roman), les sujets décrivent des situations où ils sont en sécurité, où ils ont confiance dans l’environnement."""@en .
+
+:MusicStructureAndEmotionalResponseSomeEmpiricalFindings a :Paper ;
+	rdfs:label """Music Structure and Emotional Response: Some Empirical Findings"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :JohnSloboda ;
+	:hasStimulusCategory :Music ;
+	:hasSubjectiveSensor :AcousticAnalysisSoftware ;
+	:hasSubjectiveSensor :Survey ;
+	:hasSubjectiveMeasure :MusicalPropertiesAndStructure ;
+	:hasInference :Expectations ;
+	:hasInference :Emotion ;
+	:hasBrainArea :None ;
+	:hasURL "http://journals.sagepub.com/doi/10.1177/0305735691192002"^^xsd:anyURI ;
+	:hasPublicationYear "1991"^^xsd:gyear ;
+	:hasAbstract """Eighty-three music listeners completed a questionnaire in which thev provided information about the occurrence of a range of physical reactions while listening to music. Shivers down the spine, laughter, tears and lump in the throat were reported by over 80(% of respondents. Respondents were asked to locate specific musical passages that reliably evoked such responses. Structural analysis of these passages showed that tears were most reliablN evoked by passages containing sequences and appogiaturas, while shivers were most reliably evoked by passages containing new or unexpected harmonies. The data generally support theoretical approaches to elmotion based on confirmations and violations of expectancv."""@en .
+
+:Art-ElicitedChillsIndicateStatesOfBeingMoved a :Paper ;
+	rdfs:label """Art-elicited chills indicate states of being moved."""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :EugenWassiliwizky ;
+	:hasSecondaryResearcher :Meninghaus ;
+	:hasInference :Sadness ;
+	:hasInference :BeingMoved ;
+	:hasInference :Joy ;
+	:hasBrainArea :None ;
+	:hasURL "http://psycnet.apa.org/record/2015-33618-001"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """Following suggestions by Benedek and Kaernbach (2011), we investigated the hypothesis that art-elicited chills might indicate emotional states of being moved. We focused on two prototypical variants of being moved: one involving sadness as a key component, and the other joy. Thirty participants watched 25 moving film excerpts of either the sadly or the joyfully moving type (e.g., farewell scenarios and reunion scenarios, respectively). They rated how sad, how joyful, and how moved they felt after each film clip, and how much they enjoyed it. They also reported whether or not they experienced chills during the exposure. Multilevel mediation analyses showed that the relation between sadness and enjoyment was almost fully mediated by being moved, whereas no such mediation effect was found for the relation between joy and enjoyment. The results of a logistic regression revealed that the higher the intensity of episodes of being moved, the more likely they were to be accompanied by chills. Moreover, being moved proved to be the best predictor for chills, compared to sadness and joy. Finally, we discuss the importance of distinguishing chills in general from art-elicited chills in particular, as well as the importance of identifying the emotion that underlies art-elicited chills. (PsycINFO Database Record (c) 2017 APA, all rights reserved)"""@en .
+
+:AnatomicallyDistinctDopamineReleaseDuringAnticipationAndExperienceOfPeakEmotionToMusic a :Paper ;
+	rdfs:label """Anatomically distinct dopamine release during anticipation and experience of peak emotion to music"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :ValorieSalimpoor ;
+	:hasStimulusCategory :Music ;
+	:hasInference :Craving ;
+	:hasInference :Expectations ;
+	:hasInference :Euphoria ;
+	:hasInference :Anticipation ;
+	:hasInference :Reward ;
+	:hasClaim :IntensePleasureInResponseToMusicCanLeadTo ;
+	:hasBrainArea :EndogenousDopamineReleaseInTheStriatumTheCaudateWasMoreInvolvedDuringTheAnticipationAndTheNucleusAccumbensWasMoreInvolvedDuringTheExperienceOfPeakEmotionalResponsesToMusic ;
+	:hasURL "https://www.nature.com/articles/nn.2726"^^xsd:anyURI ;
+	:hasPublicationYear "2011"^^xsd:gyear ;
+	:hasAbstract """Music, an abstract stimulus, can arouse feelings of euphoria and craving, similar to tangible rewards that involve the striatal dopaminergic system. Using the neurochemical specificity of [11C]raclopride positron emission tomography scanning, combined with psychophysiological measures of autonomic nervous system activity, we found endogenous dopamine release in the striatum at peak emotional arousal during music listening. To examine the time course of dopamine release, we used functional magnetic resonance imaging with the same stimuli and listeners, and found a functional dissociation: the caudate was more involved during the anticipation and the nucleus accumbens was more involved during the experience of peak emotional responses to music. These results indicate that intense pleasure in response to music can lead to dopamine release in the striatal system. Notably, the anticipation of an abstract reward can result in dopamine release in an anatomical pathway distinct from that associated with the peak pleasure itself. Our results help to explain why music is of such high value across all human societies."""@en .
+
+:TheNeuralCorrelatesOfAversiveAuditoryStimulation a :Paper ;
+	rdfs:label """The Neural Correlates of Aversive Auditory Stimulation"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :DhZald ;
+	:hasSecondaryResearcher :Pardo ;
+	:hasStimulusCategory :Sound ;
+	:hasInference :Approach-Avoidance ;
+	:hasInference :NegativeEmotions ;
+	:hasInference :Fear ;
+	:hasBrainArea :TheAversiveSoundsProducedSignificantRcbfIncreasesInTheLateralAmygdalaClaustrumRegionSignificantActivationsAlsoLocalizedToTheDorsalBrainstemMedialTemporalPoleBasalForebrainNucleusAccumbensInsulaRightAuditoryAssociationCorticesPutamenThalamusAndCerebellum ;
+	:hasURL "https://www.sciencedirect.com/science/article/pii/S1053811902911158?via%3Dihub"^^xsd:anyURI ;
+	:hasPublicationYear "2002"^^xsd:gyear ;
+	:hasAbstract """Previous neuroimaging studies indicate that the human amygdala activates during exposure to aversive visual, olfactory and gustatory stimuli. To examine amygdala responses to aversive auditory stimuli, we exposed healthy human subjects to unpleasant sounds while regional cerebral blood flow (rCBF) was assayed with O-15 PET. Eight subjects, all of whom described themselves as reactive to aversive sounds, participated in the study. Relative to white noise, the aversive sounds produced significant rCBF increases in the lateral amygdala/claustrum region. Significant activations also localized to the dorsal brainstem, medial temporal pole, basal forebrain (nucleus accumbens), insula, right auditory association cortices, putamen, thalamus and cerebellum. These data indicate that the amygdala responds to aversive auditory stimuli in a manner similar to its response to unpleasant stimuli in other sensory modalities. The data further highlight a widely distributed network of cortical and subcortical areas activated during exposure to aversive sounds."""@en .
+
+:PhysiologicalCorrelatesAndEmotionalSpecificityOfHumanPiloerection a :Paper ;
+	rdfs:label """Physiological correlates and emotional specificity of human piloerection"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :MathiasBenedek ;
+	:hasInference :PeakEmotion ;
+	:hasInference :BeingMoved ;
+	:hasClaim :EmotionalPiloerectionRepresentsAValuableIndic ;
+	:hasBrainArea :None ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3061318/"^^xsd:anyURI ;
+	:hasPublicationYear "2011"^^xsd:gyear ;
+	:hasAbstract """Piloerection is known as an indicator of strong emotional experiences. However, little is known about the physiological and emotional specificity of this psychophysiological response. In the presented study, piloerection was elicited by audio stimuli taken from music and film episodes. The physiological response accompanying the incidence of piloerection was recorded with respect to electrodermal, cardiovascular and respiratory measures and compared to a matched control condition. The employment of an optical recording system allowed for a direct and objective assessment of visible piloerection. The occurrence of piloerection was primarily accompanied by an increase of phasic electrodermal activity and increased respiration depth as compared to a matched control condition. This physiological response pattern is discussed in the context of dominant theories of human piloerection. Consideration of all available evidence suggests that emotional piloerection represents a valuable indicator of the state of being moved or touched."""@en .
+
+:ShiveringThermogenesisInHumans a :Paper ;
+	rdfs:label """Shivering thermogenesis in humans"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :HamanF ;
+	:hasClaim :ConsiderableResearchIsStillNeededToClearlyI ;
+	:hasBrainArea :None ;
+	:hasURL "http://doi.org/10.1080/23328940.2017.1328999"^^xsd:anyURI ;
+	:hasPublicationYear "2017"^^xsd:gyear ;
+	:hasAbstract """As endotherms, humans exposed to a compensable cold environment rely on an increase in thermogenic rate to counteract heat lost to the environment, thereby maintaining a stable core temperature. This review focuses primarily on the most important contributor of heat production in cold-exposed adult humans, shivering skeletal muscles. Specifically, it presents current understanding on (1) the origins of shivering, (2) the contribution of shivering to total heat production and (3) the metabolic requirements of shivering. Although shivering had commonly been measured as a metabolic outcome measure, considerable research is still needed to clearly identify the neuroanatomical structures and circuits that initiate and modulate shivering and drives the shivering patterns (continuous and burst shivering). One thing is clear, the thermogenic rate in humans can be maintained despite significant inter-individual differences in the thermogenic contribution of shivering, the muscles recruited in shivering, the burst shivering rate and the metabolic substrates used to support shivering. It has also become evident that the variability in burst shivering rate between individuals, despite not influencing heat production, does play a key role in orchestrating metabolic fuel selection in the cold. In addition, advances in our understanding of the thermogenic role of brown adipose tissue have been able to explain, at least in part, the large inter-individual differences in the contribution of shivering to total heat production. Whether these differences in the thermogenic role of shivering have any bearing on cold endurance and survival remains to be established. Despite the available research describing the relative thermogenic importance of shivering skeletal muscles in humans, the advancement in our understanding of how shivering is initiated and modulated is needed. Such research is critical to consider strategies to either reduce its role to improve occupational performance or exploit its metabolic potential for clinical purposes."""@en .
+
+:Image-BasedMeasurementOfChangesToSkinTextureUsingPiloerectionForEmotionEstimation a :Paper ;
+	rdfs:label """Image-based measurement of changes to skin texture using piloerection for emotion estimation"""@en ;
+	:hasArticleType :Data ;
+	:hasPrimaryResearcher :UchidaM ;
+	:hasInference :BeingMoved ;
+	:hasInference :Fear ;
+	:hasBrainArea :None ;
+	:hasURL "https://doi.org/10.1007/s10015-018-0435-0"^^xsd:anyURI ;
+	:hasPublicationYear "2018"^^xsd:gyear ;
+	:hasAbstract """In this paper, we find effective feature values for skin texture as captured by a non-contact camera to monitor piloerection on the skin to estimate emotion. Piloerection is observed as goose bumps on the skin when a person is emotionally moved or scared. This phenomenon is caused by the contraction of the arrector pili muscles with the activation of the sympathetic nervous system. Piloerection changes skin texture, because of which we think it effective to examine skin texture to estimate the subject’s emotions. Skin texture is important in the cosmetic industry to evaluate skin condition. Therefore, we thought that it will be effective to evaluate the condition of skin texture for emotion estimation. Evaluations were performed by extracting effective feature values from skin textures captured by using a high-resolution camera, where these feature values should be highly correlated with the degree of piloerection. The results showed that the feature value “the standard deviation of short-line inclination angles in texture” was satisfactorily correlated with the degree of piloerection."""@en .
+
+:KnowledgeCuriosityAndAestheticChills a :Paper ;
+	rdfs:label """Knowledge, curiosity, and aesthetic chills."""@en ;
+	:hasArticleType :Theory ;
+	:hasPrimaryResearcher :FelixSchoeller ;
+	:hasSecondaryResearcher :KishoreSivakumar ;
+	:hasSecondaryResearcher :LeonidPerlovsky ;
+	:hasInference :Curiosity ;
+	:hasInference :KnowledgeInstinct ;
+	:hasInference :Approach-Avoidance ;
+	:hasInference :Meaning ;
+	:hasBrainArea :None ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/26539133"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """The author propose a novel theory of chills relating it to curiosity and sense making. Chills is described in terms of the rate of change in prediction errors."""@en .
+
+:ThrillsChillsFrissonsAndSkinOrgasmsTowardAnIntegrativeModelOfTranscendentPsychophysiologicalExperiencesInMusic a :Paper ;
+	rdfs:label """Thrills, chills, frissons, and skin orgasms: toward an integrative model of transcendent psychophysiological experiences in music"""@en ;
+	:hasArticleType :Theory ;
+	:hasPrimaryResearcher :PsycheLoui ;
+	:hasBrainArea :None ;
+	:hasURL "https://www.frontiersin.org/articles/10.3389/fpsyg.2014.00790/full"^^xsd:anyURI ;
+	:hasPublicationYear "2014"^^xsd:gyear ;
+	:hasAbstract """Music has a unique power to elicit moments of intense emotional and psychophysiological response. These moments – termed “chills,” “thrills”, “frissons,” etc. – are subjects of introspection and philosophical debate, as well as scientific study in music perception and cognition. The present article integrates the existing multidisciplinary literature in an attempt to define a comprehensive, testable, and ecologically valid model of transcendent psychophysiological moments in music."""@en .
+
+:Top-DownAndBottom-UpProcessesInArtPerception a :Paper ;
+	rdfs:label """top-down and bottom-up processes in Art Perception"""@en ;
+	:hasArticleType :Theory ;
+	:hasPrimaryResearcher :HelmutLeder ;
+	:hasSecondaryResearcher :MatthewPelowsky ;
+	:hasBrainArea :DorsolateralVentrolateralAndAnteriorMedialPrefrontalCortexMpfcTemporalpolePosteriorCingulateCortexAndPrecuneus ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/28347673"^^xsd:anyURI ;
+	:hasPublicationYear "2017"^^xsd:gyear ;
+	:hasAbstract """This paper has a rather audacious purpose: to present a comprehensive theory explaining, and further providing hypotheses for the empirical study of, the multiple ways by which people respond to art. Despite common agreement that interaction with art can be based on a compelling, and occasionally profound, psychological experience, the nature of these interactions is still under debate. We propose a model, The Vienna Integrated Model of Art Perception (VIMAP), with the goal of resolving the multifarious processes that can occur when we perceive and interact with visual art. Specifically, we focus on the need to integrate bottom-up, artwork-derived processes, which have formed the bulk of previous theoretical and empirical assessments, with top-down mechanisms which can describe how individuals adapt or change within their processing experience, and thus how individuals may come to particularly moving, disturbing, transformative, as well as mundane, results. This is achieved by combining several recent lines of theoretical research into a new integrated approach built around three processing checks, which we argue can be used to systematically delineate the possible outcomes in art experience. We also connect our model's processing stages to specific hypotheses for emotional, evaluative, and physiological factors, and address main topics in psychological aesthetics including provocative reactions-chills, awe, thrills, sublime-and difference between \'aesthetic\' and \'everyday\' emotional response. Finally, we take the needed step of connecting stages to functional regions in the brain, as well as broader core networks that may coincide with the proposed cognitive checks, and which taken together can serve as a basis for future empirical and theoretical art research."""@en .
+
+:WhatDoChillsActuallyPortend a :Paper ;
+	rdfs:label """What do chills actually portend?"""@en ;
+	:hasArticleType :Theory ;
+	:hasPrimaryResearcher :HelmutLeder ;
+	:hasSecondaryResearcher :MatthewPelowsky ;
+	:hasInference :PredictiveCoding ;
+	:hasInference :Discovery ;
+	:hasInference :Incoherence ;
+	:hasInference :Insight ;
+	:hasInference :SenseOfSelf ;
+	:hasInference :KnowledgeInstinct ;
+	:hasInference :Learning ;
+	:hasInference :Reward ;
+	:hasClaim :HowExactlyDoChillsAestheticEmotionsAndEve ;
+	:hasBrainArea :None ;
+	:hasURL "https://www.ncbi.nlm.nih.gov/pubmed/29605520"^^xsd:anyURI ;
+	:hasPublicationYear "2018"^^xsd:gyear .
+
+:PerceptualPleasureAndTheBrainANovelTheoryExplainsWhyTheBrainCravesInformationAndSeeksItThroughTheSenses a :Paper ;
+	rdfs:label """Perceptual Pleasure and the Brain: A novel theory explains why the brain craves information and seeks it through the senses"""@en ;
+	:hasArticleType :Theory ;
+	:hasPrimaryResearcher :EdVessel ;
+	:hasSecondaryResearcher :IBiederman ;
+	:hasInference :InformationNeed ;
+	:hasInference :Craving ;
+	:hasBrainArea :None ;
+	:hasURL "https://www.jstor.org/stable/27858773?seq=1#page_scan_tab_contents"^^xsd:anyURI ;
+	:hasPublicationYear "2018"^^xsd:gyear .
+
+:TheUnder-AppreciatedDriveForSense-Making a :Paper ;
+	rdfs:label """The Under-Appreciated Drive for Sense-Making"""@en ;
+	:hasArticleType :Theory ;
+	:hasPrimaryResearcher :NickChater ;
+	:hasInference :Simplicity ;
+	:hasInference :Meaning ;
+	:hasBrainArea :None ;
+	:hasURL "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2596897"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """This paper draws attention to a powerful human motive that has not yet been incorporated into economics: the desire to make sense of our immediate experience, our life, and our world. We propose that evolution has produced a ‘drive for sense-making’ which motivates people to gather, attend to, and process information in a fashion that augments, and complements, autonomous sense-making. A large fraction of autonomous cognitive processes are devoted to making sense of the information we acquire: and they do this by seeking simple descriptions of the world. In some situations, however, autonomous information processing alone is inadequate to transform disparate information into simple representations, in which case, we argue, the drive for sense-making directs our attention and can lead us to seek out additional information. We propose a theoretical model of sense-making and of how it is traded off against other goals. We show that the drive for sense-making can help to make sense of a wide range of disparate phenomena, including curiosity, boredom, ‘flow’, confirmation bias and information avoidance, aesthetics (both in art and in science), why we care about others’ beliefs, the importance of narrative and the role of ‘the good life’ in human decision making."""@en .
+
+:PsychogenicFeverHowPsychologicalStressAffectsBodyTemperatureInTheClinicalPopulation a :Paper ;
+	rdfs:label """Psychogenic fever: how psychological stress affects body temperature in the clinical population"""@en ;
+	:hasArticleType :Theory ;
+	:hasPrimaryResearcher :TakakazuOka ;
+	:hasInference :Stress ;
+	:hasInference :Fear ;
+	:hasClaim :TheMechanismForPsychogenicFeverIsNotYetFul ;
+	:hasBrainArea :None ;
+	:hasURL "https://doi.org/10.1080/23328940.2015.1056907"^^xsd:anyURI ;
+	:hasPublicationYear "2015"^^xsd:gyear ;
+	:hasAbstract """Psychogenic fever is a stress-related, psychosomatic disease especially seen in young women. Some patients develop extremely high core body temperature (Tc) (up to 41°C) when they are exposed to emotional events, whereas others show persistent low-grade high Tc (37–38°C) during situations of chronic stress. The mechanism for psychogenic fever is not yet fully understood. However, clinical case reports demonstrate that psychogenic fever is not attenuated by antipyretic drugs, but by psychotropic drugs that display anxiolytic and sedative properties, or by resolving patients' difficulties via natural means or psychotherapy. Animal studies have demonstrated that psychological stress increases Tc via mechanisms distinct from infectious fever (which requires proinflammatory mediators) and that the sympathetic nervous system, particularly β3-adrenoceptor-mediated non-shivering thermogenesis in brown adipose tissue, plays an important role in the development of psychological stress-induced hyperthermia. Acute psychological stress induces a transient, monophasic increase in Tc. In contrast, repeated stress induces anticipatory hyperthermia, reduces diurnal changes in Tc, or slightly increases Tc throughout the day. Chronically stressed animals also display an enhanced hyperthermic response to a novel stress, while past fearful experiences induce conditioned hyperthermia to the fear context. The high Tc that psychogenic fever patients develop may be a complex of these diverse kinds of hyperthermic responses."""@en .
+
+:Data a :ArticleType ;
+	rdfs:label """data"""@en .
+
+:Theory a :ArticleType ;
+	rdfs:label """theory"""@en .
+
+:Technology a :ArticleType ;
+	rdfs:label """technology"""@en .
+
+:JohnSloboda a :Researcher ;
+	rdfs:label """John Sloboda"""@en ;
+	:hasDiscipline """Music psychology"""@en ;
+	:hasSite """Keele University"""@en ;
+	:hasURL "https://www.keele.ac.uk/psychology/people/otherstaff/johnsloboda/"^^xsd:anyURI ;
+	:hasContact "j.a.sloboda@keele.ac.uk"^^xsd:string .
+
+:DianaEspiritoSanto a :Researcher ;
+	rdfs:label """Diana Espirito Santo"""@en ;
+	:hasDiscipline """Anthropology"""@en ;
+	:hasSite """Chile University"""@en ;
+	:hasURL "http://antropologia.uc.cl/Academicos/diana-espirito-santo.html"^^xsd:anyURI ;
+	:hasContact "gimmefish@yahoo.com"^^xsd:string .
+
+:SaraAlgoe a :Researcher ;
+	rdfs:label """Sara Algoe"""@en ;
+	:hasDiscipline """Social psychology"""@en ;
+	:hasLab """Emotions and Social Interactions"""@en ;
+	:hasSite """Laboratory University of North Carolina"""@en ;
+	:hasURL "https://www.saraalgoe.com/"^^xsd:anyURI ;
+	:hasContact "ude.cnu@eogla"^^xsd:string .
+
+:FilipoAureli a :Researcher ;
+	rdfs:label """Filipo Aureli"""@en ;
+	:hasDiscipline """Primatology"""@en ;
+	:hasLab """Research Centre in Evolutionary Anthropology and Palaeoecology"""@en ;
+	:hasSite """Liverpool John Moores University Liverpool UK"""@en ;
+	:hasURL "https://www.ljmu.ac.uk/about-us/staff-profiles/faculty-of-science/natural-sciences-and-psychology/filippo-aureli"^^xsd:anyURI ;
+	:hasContact "F.Aureli@ljmu.ac.uk"^^xsd:string .
+
+:LauraMaruskin a :Researcher ;
+	rdfs:label """Laura Maruskin"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasLab """Berkeley Social Interaction Laboratory"""@en ;
+	:hasSite """University of California, Berkeley"""@en ;
+	:hasURL "https://greatergood.berkeley.edu/"^^xsd:anyURI ;
+	:hasContact "keltner@berkeley.edu,maruskin@berkeley.edu"^^xsd:string .
+
+:AlanFiske a :Researcher ;
+	rdfs:label """Alan Fiske"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasLab """Kama Muta Lab"""@en ;
+	:hasSite """University of Oslo, Norway"""@en ;
+	:hasURL "http://kamamutalab.org/about-us/"^^xsd:anyURI ;
+	:hasContact "afiske@ucla.edu,schubert@igroup.org,j.h.zickfeld@psykologi.uio.no,j.k.vuoskoski@imv.uio.no"^^xsd:string .
+
+:PsycheLoui a :Researcher ;
+	rdfs:label """Psyche Loui"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasLab """MIND lab"""@en ;
+	:hasSite """Wesleyan University"""@en ;
+	:hasURL "http://mindlab.research.wesleyan.edu/"^^xsd:anyURI ;
+	:hasContact "ploui@wesleyan.edu"^^xsd:string .
+
+:JoelInbody a :Researcher ;
+	rdfs:label """Joel Inbody"""@en ;
+	:hasDiscipline """Sociology"""@en ;
+	:hasSite """University of massachusetts amherst"""@en ;
+	:hasURL "https://www.researchgate.net/profile/Joel_Inbody"^^xsd:anyURI ;
+	:hasContact "joelinbo@buffalo.edu"^^xsd:string .
+
+:RandolphBlake a :Researcher ;
+	rdfs:label """Randolph Blake"""@en ;
+	:hasDiscipline """Psychophysics"""@en ;
+	:hasLab """Center for Integrative & Cognitive Neuroscience"""@en ;
+	:hasSite """Vanderbilt University"""@en ;
+	:hasURL "http://www.psy.vanderbilt.edu/faculty/blake/blake.html"^^xsd:anyURI ;
+	:hasContact "randolph.blake@vanderbilt.edu"^^xsd:string .
+
+:Zatorre a :Researcher ;
+	rdfs:label """Zatorre"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasLab """The Auditory Cognitive Neuroscience Laboratory"""@en ;
+	:hasSite """McGill University"""@en ;
+	:hasURL "https://www.zlab.mcgill.ca/"^^xsd:anyURI ;
+	:hasContact "robert.zatorre@mcgill.ca"^^xsd:string .
+
+:ValorieSalimpoor a :Researcher ;
+	rdfs:label """valorie salimpoor"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasLab """Baycrest Hospital"""@en ;
+	:hasSite """University of Toronto"""@en ;
+	:hasURL "https://sites.google.com/site/valoriesalimpoor/"^^xsd:anyURI ;
+	:hasContact "vsalimpoor@gmail.com"^^xsd:string .
+
+:BloodA a :Researcher ;
+	rdfs:label """Blood A."""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasSite """Harvard Medical School"""@en ;
+	:hasURL "https://www.nmr.mgh.harvard.edu/user/5918"^^xsd:anyURI ;
+	:hasContact "ablood@nmr.mgh.harvard.edu"^^xsd:string .
+
+:JonHaidt a :Researcher ;
+	rdfs:label """Jon Haidt"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """New York University"""@en ;
+	:hasURL "http://people.stern.nyu.edu/jhaidt/"^^xsd:anyURI ;
+	:hasContact "jhaidt@stern.nyu.edu"^^xsd:string .
+
+:RobertMccrae a :Researcher ;
+	rdfs:label """Robert McCrae"""@en ;
+	:hasDiscipline """Personality Psychology"""@en ;
+	:hasSite """University of Maryland, Baltimore"""@en ;
+	:hasURL "?"^^xsd:anyURI ;
+	:hasContact "rrmccrae@gmail.com"^^xsd:string .
+
+:HajimeFukui a :Researcher ;
+	rdfs:label """Hajime Fukui"""@en ;
+	:hasDiscipline """Music neuroscience"""@en ;
+	:hasSite """Nara University of Education"""@en ;
+	:hasURL "https://www.researchgate.net/profile/Hajime_Fukui"^^xsd:anyURI ;
+	:hasContact "fukuih@nara-edu.ac.jp"^^xsd:string .
+
+:LaurenStewart a :Researcher ;
+	rdfs:label """Lauren Stewart"""@en ;
+	:hasDiscipline """Music psychology"""@en ;
+	:hasSite """Goldsmiths University London"""@en ;
+	:hasURL "https://www.gold.ac.uk/psychology/staff/stewart/"^^xsd:anyURI ;
+	:hasContact "l.stewart@gold.ac.uk"^^xsd:string .
+
+:StefanKoelsh a :Researcher ;
+	rdfs:label """Stefan Koelsh"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasSite """University in Bergen"""@en ;
+	:hasURL "http://www.stefan-koelsch.de/"^^xsd:anyURI ;
+	:hasContact "koelsch@cbs.mpg.de"^^xsd:string .
+
+:MathiasBenedek a :Researcher ;
+	rdfs:label """Mathias Benedek"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasSite """Institute of Psychology, Karl-Franzens-Universität Graz"""@en ;
+	:hasURL "https://www.researchgate.net/profile/Mathias_Benedek"^^xsd:anyURI ;
+	:hasContact "mathias.benedek@uni-graz.at"^^xsd:string .
+
+:EugenWassiliwizky a :Researcher ;
+	rdfs:label """Eugen Wassiliwizky"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """MP Institute for Empirical Aesthetics"""@en ;
+	:hasURL "https://www.aesthetics.mpg.de/institut/mitarbeiterinnen/eugen-wassiliwizky.html"^^xsd:anyURI ;
+	:hasContact "eugen.wassiliwizky@ae.mpg.de"^^xsd:string .
+
+:ThimothyBates a :Researcher ;
+	rdfs:label """Thimothy Bates"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """University of Edinburgh"""@en ;
+	:hasContact "tim.bates@ed.ac.uk"^^xsd:string .
+
+:PaulPiff a :Researcher ;
+	rdfs:label """Paul Piff"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasLab """MESH Lab"""@en ;
+	:hasSite """University of California Irvine"""@en ;
+	:hasURL "http://paulpiff.wixsite.com/paulpiff"^^xsd:anyURI ;
+	:hasContact "?"^^xsd:string .
+
+:FelixSchoeller a :Researcher ;
+	rdfs:label """Felix Schoeller"""@en ;
+	:hasDiscipline """Cognitive Science"""@en ;
+	:hasLab """Centre for Research and Interdisciplinarity"""@en ;
+	:hasSite """INSERM"""@en ;
+	:hasURL "https://www.researchgate.net/profile/Felix_Schoeller"^^xsd:anyURI ;
+	:hasContact "felix.schoeller@gmail.com"^^xsd:string .
+
+:HelmutLeder a :Researcher ;
+	rdfs:label """Helmut Leder"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasLab """Leder Lab"""@en ;
+	:hasSite """University of Vienna"""@en ;
+	:hasContact "?"^^xsd:string .
+
+:KazumaMori a :Researcher ;
+	rdfs:label """Kazuma Mori"""@en ;
+	:hasDiscipline """Cognitive Science"""@en ;
+	:hasLab """Center for Information and Neural Networks (CiNet),"""@en ;
+	:hasSite """National Institute of Information and Communications Technology, and Osaka University"""@en ;
+	:hasURL "http://kazuma-mori.com/author/kazuma-mori/"^^xsd:anyURI ;
+	:hasContact "kazumamori@nict.go.jp"^^xsd:string .
+
+:MSachs a :Researcher ;
+	rdfs:label """M. Sachs"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasLab """Brain and Creativity Institute, Dornsife College of Letters Arts and Sciences"""@en ;
+	:hasSite """University of Southern California, Los Angeles"""@en ;
+	:hasURL "https://www.researchgate.net/scientific-contributions/2114829697_Matthew_E_Sachs"^^xsd:anyURI ;
+	:hasContact "msachs@usc.edu"^^xsd:string .
+
+:Altenmuller a :Researcher ;
+	rdfs:label """Altenmuller"""@en ;
+	:hasDiscipline """Neuroscience music"""@en ;
+	:hasLab """IMMM"""@en ;
+	:hasSite """Hanover University"""@en ;
+	:hasURL "https://www.immm.hmtm-hannover.de/en/institute/people/eckart-altenmueller/"^^xsd:anyURI ;
+	:hasContact "eckart.altenmueller@hmtm-hannover.de"^^xsd:string .
+
+:MarcelZentner a :Researcher ;
+	rdfs:label """Marcel Zentner"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasLab """Zentner Lab"""@en ;
+	:hasSite """Innsbruck University"""@en ;
+	:hasURL "http://www.zentnerlab.com/team-profile/dr-marcel-zentner"^^xsd:anyURI ;
+	:hasContact "marcel.zentner@uibk.ac.at"^^xsd:string .
+
+:ToddTrash a :Researcher ;
+	rdfs:label """Todd Trash"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """College of William and Mary"""@en ;
+	:hasContact "tmthra@wm.edu"^^xsd:string .
+
+:DonatellaMarazziti a :Researcher ;
+	rdfs:label """Donatella Marazziti"""@en ;
+	:hasDiscipline """Psychiatry"""@en ;
+	:hasLab """Institute of Psychiatry"""@en ;
+	:hasSite """University of Pisa"""@en ;
+	:hasURL "http://www.donatellamarazziti.com/"^^xsd:anyURI ;
+	:hasContact "?"^^xsd:string .
+
+:UchidaM a :Researcher ;
+	rdfs:label """Uchida, M"""@en ;
+	:hasDiscipline """Engineering"""@en ;
+	:hasLab """Graduate School of Science and Engineering"""@en ;
+	:hasSite """Chiba University, Japan"""@en ;
+	:hasContact "mihiro.uchida@gmail.com"^^xsd:string .
+
+:HamanF a :Researcher ;
+	rdfs:label """Haman, F"""@en ;
+	:hasDiscipline """Physiology"""@en ;
+	:hasLab """Faculty of Health Sciences,"""@en ;
+	:hasSite """University of Ottawa, Ottawa, Ontario, Canada K1N 6N5."""@en ;
+	:hasContact " fhaman@uottawa.ca"^^xsd:string .
+
+:JaeminKim a :Researcher ;
+	rdfs:label """Jaemin Kim"""@en ;
+	:hasDiscipline """Engineering"""@en ;
+	:hasSite """Stanford University"""@en ;
+	:hasContact "dkim98@snu.ac.kr"^^xsd:string .
+
+:BernhardRiecke a :Researcher ;
+	rdfs:label """Bernhard Riecke"""@en ;
+	:hasDiscipline """Engineering"""@en ;
+	:hasLab """iSpace Research Lab"""@en ;
+	:hasSite """Simon Fraser University"""@en ;
+	:hasURL "http://ispace.iat.sfu.ca/project/awe/"^^xsd:anyURI ;
+	:hasContact "ber1@sfu.ca "^^xsd:string .
+
+:AbyJain a :Researcher ;
+	rdfs:label """Aby Jain"""@en ;
+	:hasDiscipline """Engineering"""@en ;
+	:hasLab """Fluid Interfaces"""@en ;
+	:hasSite """MIT Media Lab"""@en ;
+	:hasURL "http://abyjain.me/"^^xsd:anyURI ;
+	:hasContact "abyjain007@gmail.com,adamjhh@mit.edu"^^xsd:string .
+
+:Young-HoCho a :Researcher ;
+	rdfs:label """Young-Ho Cho"""@en ;
+	:hasDiscipline """Engineering"""@en ;
+	:hasLab """MEMS"""@en ;
+	:hasSite """KIAST"""@en ;
+	:hasURL "http://mems.kaist.ac.kr/"^^xsd:anyURI ;
+	:hasContact "nanosys@kaist.ac.kr"^^xsd:string .
+
+:RichardHSmith a :Researcher ;
+	rdfs:label """Richard H. Smith"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """University of Kentucky"""@en .
+
+:VKonecni a :Researcher ;
+	rdfs:label """V. Konecni"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """UCSD"""@en ;
+	:hasURL "http://www.psychology.ucsd.edu/people/profiles/vkonecni.html"^^xsd:anyURI ;
+	:hasContact "vkonecni@ucsd.edu"^^xsd:string .
+
+:LoengBruno a :Researcher ;
+	rdfs:label """Loeng Bruno"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """Oslo University"""@en ;
+	:hasURL "http://www.sv.uio.no/psi/english/people/aca/brunol/"^^xsd:anyURI ;
+	:hasContact "bruno.laeng@psykologi.uio.no"^^xsd:string .
+
+:EdVessel a :Researcher ;
+	rdfs:label """Ed Vessel"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasSite """MP Institute for Empirical Aesthetics"""@en ;
+	:hasURL "https://www.aesthetics.mpg.de/en/the-institute/people/ed-vessel.html"^^xsd:anyURI ;
+	:hasContact "ed.vessel@ae.mpg.de,l.griffin@cs.ucl.ac.uk,edvessel@gmail.com"^^xsd:string .
+
+:AcMiu a :Researcher ;
+	rdfs:label """AC Miu"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasLab """Emotion and Cognition Neuroscience Laboratory"""@en ;
+	:hasSite """Babes-Bolyai University"""@en ;
+	:hasURL "http://www.cognitive-neuroscience.ro/"^^xsd:anyURI ;
+	:hasContact "andreimiu[at]psychology.ro"^^xsd:string .
+
+:NickChater a :Researcher ;
+	rdfs:label """Nick Chater"""@en ;
+	:hasDiscipline """Psychology"""@en ;
+	:hasSite """Warwick Business School"""@en ;
+	:hasURL "https://warwick.ac.uk/fac/soc/wbs/subjects/bsci/people/nickchater/"^^xsd:anyURI ;
+	:hasContact "Nick.Chater@wbs.ac.uk"^^xsd:string .
+
+:TakakazuOka a :Researcher ;
+	rdfs:label """Takakazu Oka"""@en ;
+	:hasDiscipline """Physiology"""@en ;
+	:hasLab """Department of Psychosomatic Medicine; Graduate School of Medical Sciences"""@en ;
+	:hasSite """Kyushu University; Fukuoka, Japan"""@en ;
+	:hasContact "oka-t@cephal.med.kyushu-u.ac.jp"^^xsd:string .
+
+:DhZald a :Researcher ;
+	rdfs:label """DH Zald"""@en ;
+	:hasDiscipline """Neuroscience"""@en ;
+	:hasLab """Department of Psychology and Psychiatry"""@en ;
+	:hasSite """Vanderbilt University"""@en ;
+	:hasURL "https://www.vanderbilt.edu/psychological_sciences/bio/david-zald"^^xsd:anyURI .
+
+:KhietPhuongTruong a :Researcher ;
+	rdfs:label """Khiet Phuong Truong"""@en ;
+	:hasDiscipline """Engineering"""@en ;
+	:hasLab """Human Media Interaction"""@en ;
+	:hasSite """University of Twente"""@en ;
+	:hasURL "https://loop.frontiersin.org/people/213034/overview"^^xsd:anyURI .
+
+:DacherKeltner a :Researcher ;
+	rdfs:label """Dacher Keltner"""@en .
+
+:ThomasSchubert a :Researcher ;
+	rdfs:label """Thomas Schubert"""@en .
+
+:BeateSeibtBeateSeibtPsykologiUioNo a :Researcher ;
+	rdfs:label """Beate Seibt beate.seibt@psykologi.uio.no"""@en ;
+	:hasContact "beate.seibt@psykologi.uio.no"^^xsd:string .
+
+:JonasZickfeld a :Researcher ;
+	rdfs:label """Jonas Zickfeld"""@en .
+
+:JonnaKatariinaVuoskoski a :Researcher ;
+	rdfs:label """Jonna Katariina Vuoskoski"""@en .
+
+:LaengB a :Researcher ;
+	rdfs:label """Laeng B"""@en .
+
+:Meninghaus a :Researcher ;
+	rdfs:label """Meninghaus"""@en .
+
+:LeonidPerlovsky a :Researcher ;
+	rdfs:label """Leonid Perlovsky"""@en .
+
+:KishoreSivakumar a :Researcher ;
+	rdfs:label """Kishore Sivakumar"""@en .
+
+:MatthewPelowsky a :Researcher ;
+	rdfs:label """Matthew Pelowsky"""@en .
+
+:Grewe a :Researcher ;
+	rdfs:label """Grewe"""@en .
+
+:AdamHorowitz a :Researcher ;
+	rdfs:label """Adam Horowitz"""@en .
+
+:IBiederman a :Researcher ;
+	rdfs:label """I Biederman"""@en .
+
+:FrBaltes a :Researcher ;
+	rdfs:label """FR Baltes"""@en .
+
+:Pardo a :Researcher ;
+	rdfs:label """Pardo"""@en .
+
+:Vr a :StimulusCategory ;
+	rdfs:label """VR"""@en .
+
+:Film a :StimulusCategory ;
+	rdfs:label """Film"""@en .
+
+:Music a :StimulusCategory ;
+	rdfs:label """Music"""@en .
+
+:Poetry a :StimulusCategory ;
+	rdfs:label """poetry"""@en .
+
+:Dance a :StimulusCategory ;
+	rdfs:label """dance"""@en .
+
+:Literature a :StimulusCategory ;
+	rdfs:label """literature"""@en .
+
+:LifeEvents a :StimulusCategory ;
+	rdfs:label """Life events"""@en .
+
+:Opera a :StimulusCategory ;
+	rdfs:label """opera"""@en .
+
+:Rituals a :StimulusCategory ;
+	rdfs:label """Rituals"""@en .
+
+:UniversityExam a :StimulusCategory ;
+	rdfs:label """University Exam"""@en .
+
+:Physics a :StimulusCategory ;
+	rdfs:label """physics"""@en .
+
+:Maths a :StimulusCategory ;
+	rdfs:label """maths"""@en .
+
+:Paintings a :StimulusCategory ;
+	rdfs:label """paintings"""@en .
+
+:Sound a :StimulusCategory ;
+	a :Measure ;
+	rdfs:label """sound"""@en ;
+	rdfs:label """Sound"""@en .
+
+:Science a :StimulusCategory ;
+	rdfs:label """science"""@en .
+
+:Hz a :Unit ;
+	rdfs:label """Hz"""@en .
+
+:Money a :Unit ;
+	rdfs:label """Money"""@en .
+
+:Words a :Unit ;
+	rdfs:label """Words"""@en .
+
+:Survey a :Sensor ;
+	a :SubjectiveSensor ;
+	rdfs:label """Survey"""@en ;
+	rdfs:label """survey"""@en .
+
+:DictatorGame a :SubjectiveSensor ;
+	rdfs:label """dictator game"""@en .
+
+:Observations a :SubjectiveSensor ;
+	rdfs:label """observations"""@en .
+
+:10PointsSurvey a :SubjectiveSensor ;
+	rdfs:label """10points survey"""@en .
+
+:5PointsSurvey a :SubjectiveSensor ;
+	rdfs:label """5points survey"""@en .
+
+:3PointsSurvey a :SubjectiveSensor ;
+	rdfs:label """3points survey"""@en .
+
+:AcousticAnalysisSoftware a :SubjectiveSensor ;
+	rdfs:label """Acoustic analysis software"""@en .
+
+:LinguisticAnalysis a :SubjectiveSensor ;
+	rdfs:label """Linguistic analysis"""@en .
+
+:Altruism a :Inference ;
+	a :SubjectiveMeasure ;
+	rdfs:label """altruism"""@en .
+
+:ElicitingScenarios a :SubjectiveMeasure ;
+	rdfs:label """eliciting scenarios"""@en .
+
+:TendencyToGiveMoney a :SubjectiveMeasure ;
+	rdfs:label """Tendency to give money"""@en .
+
+:MusicalPropertiesAndStructure a :SubjectiveMeasure ;
+	rdfs:label """Musical properties and structure"""@en .
+
+:SubjectiveExperience a :SubjectiveMeasure ;
+	rdfs:label """subjective experience"""@en .
+
+:Awe a :Inference ;
+	rdfs:label """awe"""@en .
+
+:PeakEmotion a :Inference ;
+	rdfs:label """peak emotion"""@en .
+
+:SocialInteraction a :Inference ;
+	rdfs:label """social interaction"""@en .
+
+:Anticipation a :Inference ;
+	rdfs:label """anticipation"""@en .
+
+:Approach-Avoidance a :Inference ;
+	rdfs:label """approach-avoidance"""@en .
+
+:Arousal a :Inference ;
+	rdfs:label """arousal"""@en .
+
+:BeingMoved a :Inference ;
+	rdfs:label """being moved"""@en .
+
+:Calm a :Inference ;
+	rdfs:label """calm"""@en .
+
+:Catharsis a :Inference ;
+	rdfs:label """catharsis"""@en .
+
+:Craving a :Inference ;
+	rdfs:label """craving"""@en .
+
+:Curiosity a :Inference ;
+	rdfs:label """curiosity"""@en .
+
+:Discovery a :Inference ;
+	rdfs:label """discovery"""@en .
+
+:Emotion a :Inference ;
+	rdfs:label """emotion"""@en .
+
+:Euphoria a :Inference ;
+	rdfs:label """euphoria"""@en .
+
+:Expectations a :Inference ;
+	rdfs:label """expectations"""@en .
+
+:Fear a :Inference ;
+	rdfs:label """fear"""@en .
+
+:Hope a :Inference ;
+	rdfs:label """hope"""@en .
+
+:Human-MachineInterface a :Inference ;
+	rdfs:label """human-machine interface"""@en .
+
+:Incoherence a :Inference ;
+	rdfs:label """incoherence"""@en .
+
+:IndividualDifferences a :Inference ;
+	rdfs:label """individual differences"""@en .
+
+:InformationNeed a :Inference ;
+	rdfs:label """information need"""@en .
+
+:Insight a :Inference ;
+	rdfs:label """insight"""@en .
+
+:Joy a :Inference ;
+	rdfs:label """joy"""@en .
+
+:KnowledgeInstinct a :Inference ;
+	rdfs:label """knowledge instinct"""@en .
+
+:Learning a :Inference ;
+	rdfs:label """learning"""@en .
+
+:Meaning a :Inference ;
+	rdfs:label """meaning"""@en .
+
+:MentalWell-Being a :Inference ;
+	rdfs:label """mental well-being"""@en .
+
+:PhysicalWell-Being a :Inference ;
+	rdfs:label """physical well-being"""@en .
+
+:Mood a :Inference ;
+	rdfs:label """mood"""@en .
+
+:MusicPreferences a :Inference ;
+	rdfs:label """music preferences"""@en .
+
+:NegativeAffect a :Inference ;
+	rdfs:label """negative affect"""@en .
+
+:NegativeEmotions a :Inference ;
+	rdfs:label """negative emotions"""@en .
+
+:Peace a :Inference ;
+	rdfs:label """peace"""@en .
+
+:PeakAestheticPleasure a :Inference ;
+	rdfs:label """peak aesthetic pleasure"""@en .
+
+:Pleasure a :Inference ;
+	rdfs:label """pleasure"""@en .
+
+:PositiveEmotion a :Inference ;
+	rdfs:label """positive emotion"""@en .
+
+:PredictiveCoding a :Inference ;
+	rdfs:label """predictive coding"""@en .
+
+:ProfoundAestheticExperiences a :Inference ;
+	rdfs:label """profound aesthetic experiences"""@en .
+
+:Relevance a :Inference ;
+	rdfs:label """relevance"""@en .
+
+:Reward a :Inference ;
+	rdfs:label """reward"""@en .
+
+:Sadness a :Inference ;
+	rdfs:label """sadness"""@en .
+
+:Safety a :Inference ;
+	rdfs:label """safety"""@en .
+
+:SelfIdeals a :Inference ;
+	rdfs:label """self ideals"""@en .
+
+:SenseOfSelf a :Inference ;
+	rdfs:label """sense of self"""@en .
+
+:Simplicity a :Inference ;
+	rdfs:label """simplicity"""@en .
+
+:SocialNorms a :Inference ;
+	rdfs:label """social norms"""@en .
+
+:Stress a :Inference ;
+	rdfs:label """stress"""@en .
+
+:Trust a :Inference ;
+	rdfs:label """trust"""@en .
+
+:Self-Concept a :Inference ;
+	rdfs:label """self-concept"""@en .
+
+:OpenToExperience a :Inference ;
+	rdfs:label """open to experience"""@en .
+
+:AweIsHealthyBothPhysicallyAndMentally a :Claim ;
+	rdfs:label """Awe is healthy, both physically and mentally."""@en ;
+	rdfs:comment """Awe is healthy, both physically and mentally."""@en .
+
+:IncoherenceInhibitsChillsIncoherenceMakesChi a :Claim ;
+	rdfs:label """Incoherence inhibits chills, incoherence makes chi"""@en ;
+	rdfs:comment """Incoherence inhibits chills, incoherence makes chills experience less pleasurable, chills correspond a satisfaction of curiosity"""@en .
+
+:DisplaysOfProsocialBehaviorPlayACrucialRole a :Claim ;
+	rdfs:label """displays of prosocial behavior play a crucial role"""@en ;
+	rdfs:comment """displays of prosocial behavior play a crucial role in the elicitation of tears and goosebumps"""@en .
+
+:RecitedPoetryCanActAsAPowerfulStimulusFor a :Claim ;
+	rdfs:label """recited poetry can act as a powerful stimulus for"""@en ;
+	rdfs:comment """recited poetry can act as a powerful stimulus for eliciting peak emotional responses. chills and objectively measurable goosebumps that engage the primary reward circuitry. the distribution of chills across the trajectory of poems provides insight into compositional principles of poetry."""@en .
+
+:GooseBumpsHaveAnImportantConnectionWithSoci a :Claim ;
+	rdfs:label """goose bumps have an important connection with soci"""@en ;
+	rdfs:comment """goose bumps have an important connection with social stimuli and the emotion of awe"""@en .
+
+:WhiteMatterConnectivityBetweenSensoryProcessi a :Claim ;
+	rdfs:label """white matter connectivity between sensory processi"""@en ;
+	rdfs:comment """white matter connectivity between sensory processing areas in the superior temporal gyrus and emotional and social processing areas in the insula and medial prefrontal cortex explains individual differences in reward sensitivity to music."""@en .
+
+:ThePossibilityToModulateEcgAmplitudeSignatur a :Claim ;
+	rdfs:label """The possibility to modulate ECG amplitude signatur"""@en ;
+	rdfs:comment """The possibility to modulate ECG amplitude signatures via stimulation with emotionally significant music pieces and film scenes opens up new perspectives for the use of emotional peak experiences in the therapy of disorders characterized by flattened emotionality, such as depression or schizoid personality disorder."""@en .
+
+:ThrillsMayOftenAccompanyProfoundAestheticExp a :Claim ;
+	rdfs:label """Thrills may often accompany profound aesthetic exp"""@en ;
+	rdfs:comment """Thrills may often accompany profound aesthetic experiences and provide their physiological underpinning, yet themselves be of limited psychological significance."""@en .
+
+:MusicChillsCanBeVisibleInTheMoment-To-Momen a :Claim ;
+	rdfs:label """music chills can be visible in the moment-to-momen"""@en ;
+	rdfs:comment """music chills can be visible in the moment-to-moment changes in the size of pupillary responses and that a neuromodulatory role of the central norepinephrine system is thereby implicated in this phenomenon"""@en .
+
+:MultipleMusicalAndDramaticMeansInvolvedInOp a :Claim ;
+	rdfs:label """multiple musical and dramatic means involved in op"""@en ;
+	rdfs:comment """multiple musical and dramatic means involved in operatic performance specifically contribute to the genesis of music-induced emotions and their physiological correlates"""@en .
+
+:Chill-InducingMusicMayPromoteAltruisticBeha a :Claim ;
+	rdfs:label """“chill-inducing” music may promote altruistic beha"""@en ;
+	rdfs:comment """“chill-inducing” music may promote altruistic behavior that extends beyond the bounds of kin selection or reciprocal altruism"""@en .
+
+:NaloxoneInhibitsChills a :Claim ;
+	rdfs:label """Naloxone inhibits chills"""@en ;
+	rdfs:comment """Naloxone inhibits chills"""@en .
+
+:ChillsPositiveAndNegativeCorrespondToMecha a :Claim ;
+	rdfs:label """Chills (positive and negative) correspond to mecha"""@en ;
+	rdfs:comment """Chills (positive and negative) correspond to mechanism of approach and avoidance"""@en .
+
+:ChillsAreUniversalChillsCorrespondToAMarke a :Claim ;
+	rdfs:label """Chills are universal. Chills correspond to a marke"""@en ;
+	rdfs:comment """Chills are universal. Chills correspond to a marker of the personality Openness to Experience"""@en .
+
+:ChillsCorrespondToASatisfactionOfTheVitalN a :Claim ;
+	rdfs:label """Chills correspond to a satisfaction of the vital n"""@en ;
+	rdfs:comment """Chills correspond to a satisfaction of the vital need for cognition"""@en .
+
+:IncoherenceInhibitsChills a :Claim ;
+	rdfs:label """incoherence inhibits chills"""@en ;
+	rdfs:comment """incoherence inhibits chills"""@en .
+
+:IntensePleasureInResponseToMusicCanLeadTo a :Claim ;
+	rdfs:label """intense pleasure in response to music can lead to"""@en ;
+	rdfs:comment """intense pleasure in response to music can lead to dopamine release in the striatal system"""@en .
+
+:EmotionalPiloerectionRepresentsAValuableIndic a :Claim ;
+	rdfs:label """emotional piloerection represents a valuable indic"""@en ;
+	rdfs:comment """emotional piloerection represents a valuable indicator of the state of being moved or touched."""@en .
+
+:ConsiderableResearchIsStillNeededToClearlyI a :Claim ;
+	rdfs:label """considerable research is still needed to clearly i"""@en ;
+	rdfs:comment """considerable research is still needed to clearly identify the neuroanatomical structures and circuits that initiate and modulate shivering and drives the shivering patterns (continuous and burst shivering)."""@en .
+
+:HowExactlyDoChillsAestheticEmotionsAndEve a :Claim ;
+	rdfs:label """How exactly do chills, aesthetic emotions, and eve"""@en ;
+	rdfs:comment """How exactly do chills, aesthetic emotions, and even more broadly the knowledge instinct, tie to schema and predictions themselves? More specifically, would chills actually coincide with a “change function”/“adaptation” or a schema confirmation — would these be different?"""@en .
+
+:TheMechanismForPsychogenicFeverIsNotYetFul a :Claim ;
+	rdfs:label """The mechanism for psychogenic fever is not yet ful"""@en ;
+	rdfs:comment """The mechanism for psychogenic fever is not yet fully understood. Past fearful experiences induce conditioned hyperthermia to the fear context"""@en .
+
+:ChillsAndTearsAreTwoDistinctEmotions a :Claim ;
+	rdfs:label """chills and tears are two distinct emotions"""@en ;
+	rdfs:comment """chills and tears are two distinct emotions"""@en .
+
+:SubcorticalAreasOfRewardSystemDopaminergicNeuronsPrechillActivationInVentralStriatumNucleusAccumbens a :BrainArea ;
+	rdfs:label """Subcortical areas of reward system, dopaminergic neurons, prechill activation in ventral striatum, nucleus accumbens"""@en .
+
+:ChillsGroupShowedHigherVolumeInTractsBetweenSeedRegionsInThePstgAndTargetRegionsInTheAinsAndMpfcEspeciallyOnTheRightSide a :BrainArea ;
+	rdfs:label """Chills group showed higher volume in tracts between seed regions in the pSTG and target regions in the aIns and mPFC, especially on the right side."""@en .
+
+:None a :BrainArea ;
+	rdfs:label """none"""@en .
+
+:NeuromodulatoryRoleOfTheCentralNorepinephrineSystem a :BrainArea ;
+	rdfs:label """neuromodulatory role of the central norepinephrine system"""@en .
+
+:EndogenousDopamineReleaseInTheStriatumTheCaudateWasMoreInvolvedDuringTheAnticipationAndTheNucleusAccumbensWasMoreInvolvedDuringTheExperienceOfPeakEmotionalResponsesToMusic a :BrainArea ;
+	rdfs:label """endogenous dopamine release in the striatum, the caudate was more involved during the anticipation and the nucleus accumbens was more involved during the experience of peak emotional responses to music,"""@en .
+
+:TheAversiveSoundsProducedSignificantRcbfIncreasesInTheLateralAmygdalaClaustrumRegionSignificantActivationsAlsoLocalizedToTheDorsalBrainstemMedialTemporalPoleBasalForebrainNucleusAccumbensInsulaRightAuditoryAssociationCorticesPutamenThalamusAndCerebellum a :BrainArea ;
+	rdfs:label """the aversive sounds produced significant rCBF increases in the lateral amygdala/claustrum region. Significant activations also localized to the dorsal brainstem, medial temporal pole, basal forebrain (nucleus accumbens), insula, right auditory association cortices, putamen, thalamus and cerebellum"""@en .
+
+:DorsolateralVentrolateralAndAnteriorMedialPrefrontalCortexMpfcTemporalpolePosteriorCingulateCortexAndPrecuneus a :BrainArea ;
+	rdfs:label """dorsolateral, ventrolateral, and anterior medial prefrontal cortex (MPFC), temporalpole, posterior cingulate cortex, and precuneus"""@en .
+
+:ASuddenChillOrShudderAccompaniedByGoosebumps a :DefinitionOfChills ;
+	rdfs:label """a sudden chill or shudder accompanied by goosebumps"""@en .
+
+:MuscleTremorDissipatingHeatUnrelatedToChangesInTemperature a :DefinitionOfChills ;
+	rdfs:label """Muscle tremor dissipating heat unrelated to changes in temperature"""@en .
+
+:GooseBumpsOrShivers a :DefinitionOfChills ;
+	rdfs:label """goose bumps or shivers"""@en .
+
+:EmotionalPiloerectionIEGoosebumps a :DefinitionOfChills ;
+	rdfs:label """emotional piloerection (i.e., goosebumps)"""@en .
+
+:ChillsAndPiloerectionGoosebumps a :DefinitionOfChills ;
+	rdfs:label """chills and piloerection (goosebumps)"""@en .
+
+:ASpreadingShiverDownTheSpineATinglingOnTheBackOfTheNeckOrArmsOrGooseBump a :DefinitionOfChills ;
+	rdfs:label """a spreading shiver down the spine, a tingling on the back of the neck or arms, or goose bump"""@en .
+
+:PhysioFasterHeartRateButSlowerRespirationRateAndReducedSkinConductance a :DefinitionOfChills ;
+	rdfs:label """physio: faster heart rate, but slower respiration rate and reduced skin conductance."""@en .
+
+:AThrillIsASubtleNervousTremorCausedByIntenseEmotionOrExcitementAsPleasureFearEtcProducingASlightShudderOrTinglingThroughTheBody a :DefinitionOfChills ;
+	rdfs:label """A thrill is \'a subtle nervous tremor caused by intense emotion or excitement (as pleasure, fear,etc.), producing a slight shudder or tingling through the body\'"""@en .
+
+:PpgSensor a :Sensor ;
+	rdfs:label """PPG sensor"""@en ;
+	:hasMeasure :Light .
+
+:ForceSensor a :Sensor ;
+	rdfs:label """Force sensor"""@en ;
+	:hasMeasure :Force .
+
+:PiezoelectricSensors a :Sensor ;
+	rdfs:label """Piezoelectric sensors"""@en ;
+	:hasMeasure :Pressure ;
+	:hasMeasure :Acceleration ;
+	:hasMeasure :Strain ;
+	:hasMeasure :Force ;
+	:hasMeasure :Temperature .
+
+:EdaSensorGsrSensor a :Sensor ;
+	rdfs:label """EDA sensor/GSR sensor"""@en ;
+	:hasMeasure :GalvanicSkinResponseGsrSkinConductance .
+
+:Eeg a :Sensor ;
+	rdfs:label """EEG"""@en ;
+	:hasMeasure :SynchronousElectricalActivity ;
+	:hasMeasure :BrainElectricalActivity .
+
+:Accelerometer a :Sensor ;
+	rdfs:label """Accelerometer"""@en ;
+	:hasMeasure :Acceleration .
+
+:Microphone a :Sensor ;
+	rdfs:label """Microphone"""@en ;
+	:hasMeasure :Audio .
+
+:OpticalSensors a :Sensor ;
+	rdfs:label """optical sensors"""@en ;
+	:hasMeasure :Light .
+
+:Camera a :Sensor ;
+	rdfs:label """camera"""@en ;
+	:hasMeasure :Light .
+
+:PressureSensor a :Sensor ;
+	rdfs:label """pressure sensor"""@en ;
+	:hasMeasure :Pressure .
+
+:SpringActuator a :Sensor ;
+	rdfs:label """spring actuator"""@en ;
+	:hasMeasure :Pressure .
+
+:TouchScreenSensor a :Sensor ;
+	rdfs:label """touch screen sensor"""@en .
+
+:Altimeter a :Sensor ;
+	rdfs:label """Altimeter"""@en ;
+	:hasMeasure :Altitude .
+
+:Magnetometer a :Sensor ;
+	rdfs:label """Magnetometer"""@en .
+
+:Gyroscope a :Sensor ;
+	rdfs:label """Gyroscope"""@en .
+
+:Gps a :Sensor ;
+	rdfs:label """GPS"""@en .
+
+:Kinect a :Sensor ;
+	rdfs:label """Kinect"""@en ;
+	:hasMeasure :Movement .
+
+:MotionSensor a :Sensor ;
+	rdfs:label """motion sensor"""@en ;
+	:hasMeasure :Movement .
+
+:Pedometer a :Sensor ;
+	rdfs:label """pedometer"""@en ;
+	:hasMeasure :RateOfResponse .
+
+:InfraredThermophiles a :Sensor ;
+	rdfs:label """infrared thermophiles"""@en ;
+	:hasMeasure :Temperature .
+
+:SoundSensors a :Sensor ;
+	rdfs:label """sound sensors"""@en ;
+	:hasMeasure :Audio .
+
+:VibrationSensor a :Sensor ;
+	rdfs:label """vibration sensor"""@en ;
+	:hasMeasure :FrequencyOfVibrations .
+
+:Ecg a :Sensor ;
+	rdfs:label """ECG"""@en .
+
+:Biosensors a :Sensor ;
+	rdfs:label """biosensors"""@en .
+
+:AndroidSensorFramework a :Sensor ;
+	rdfs:label """android sensor framework"""@en .
+
+:Bluetooth a :Sensor ;
+	rdfs:label """bluetooth"""@en .
+
+:ElectromyographEmg a :Sensor ;
+	rdfs:label """electromyograph/EMG"""@en .
+
+:MoistureSensor a :Sensor ;
+	rdfs:label """moisture sensor"""@en .
+
+:PulsewaveSensor a :Sensor ;
+	rdfs:label """pulsewave sensor"""@en .
+
+:ElectroglottographyEgg a :Sensor ;
+	rdfs:label """electroglottography/EGG"""@en ;
+	:hasMeasure :ElectricityFlowingAcrossTheLarynx .
+
+:StrainSensor a :Sensor ;
+	rdfs:label """strain sensor"""@en ;
+	:hasMeasure :Strain ;
+	:hasMeasure :Movement ;
+	:hasMeasure :FrequencyOfVibrations .
+
+:Electrogastrography a :Sensor ;
+	rdfs:label """electrogastrography"""@en .
+
+:CapacitiveSensorsCapacitanceSensors a :Sensor ;
+	rdfs:label """capacitive sensors/capacitance sensors"""@en ;
+	:hasMeasure :Capacitance .
+
+:ProximitySensor a :Sensor ;
+	rdfs:label """proximity sensor"""@en ;
+	:hasMeasure :Distance .
+
+:RespiratoryInductancePlethysmographySensor a :Sensor ;
+	rdfs:label """Respiratory Inductance Plethysmography sensor"""@en ;
+	:hasMeasure :RateOfRespiration .
+
+:Three-AxisAccelerometer a :Sensor ;
+	rdfs:label """three-axis accelerometer"""@en ;
+	:hasRelatedSensor :Accelerometer .
+
+:Single-AxisAccelerometer a :Sensor ;
+	rdfs:label """single-axis accelerometer"""@en ;
+	:hasRelatedSensor :Accelerometer .
+
+:ElectrogastrogramEgg a :Sensor ;
+	rdfs:label """Electrogastrogram/EGG"""@en ;
+	:hasMeasure :GastricActivity .
+
+:StretchSensitiveSensors a :Sensor ;
+	rdfs:label """Stretch sensitive sensors"""@en .
+
+:MagneticResoananceImaging a :Sensor ;
+	rdfs:label """Magnetic Resoanance Imaging"""@en .
+
+:EyeTracking a :Sensor ;
+	rdfs:label """eye tracking"""@en .
+
+:Thermometer a :Sensor ;
+	rdfs:label """thermometer"""@en .
+
+:MercurySphyngomanometer a :Sensor ;
+	rdfs:label """mercury sphyngomanometer"""@en .
+
+:BloodVolumePulseBvp a :Measure ;
+	rdfs:label """Blood Volume Pulse/BVP"""@en .
+
+:HeartRate a :Measure ;
+	rdfs:label """heart rate"""@en .
+
+:HeartRateVariabilityHrv a :Measure ;
+	rdfs:label """Heart Rate Variability/HRV"""@en .
+
+:RateOfRespiration a :Measure ;
+	rdfs:label """rate of respiration"""@en .
+
+:FrequencyOfTremors a :Measure ;
+	rdfs:label """frequency of tremors"""@en .
+
+:SweatVolume a :Measure ;
+	rdfs:label """sweat volume"""@en .
+
+:Electrolytes a :Measure ;
+	rdfs:label """electrolytes"""@en .
+
+:GalvanicSkinResponseGsrSkinConductance a :Measure ;
+	rdfs:label """galvanic skin response/GSR/skin conductance"""@en .
+
+:BrainElectricalActivity a :Measure ;
+	rdfs:label """brain electrical activity"""@en .
+
+:Shaking a :Measure ;
+	rdfs:label """shaking"""@en .
+
+:SpeechRate a :Measure ;
+	rdfs:label """speech rate"""@en .
+
+:SpeechFrequency a :Measure ;
+	rdfs:label """speech frequency"""@en .
+
+:SpeechProsody a :Measure ;
+	rdfs:label """speech prosody"""@en .
+
+:SpeechJitter a :Measure ;
+	rdfs:label """speech jitter"""@en .
+
+:SpeechShimmer a :Measure ;
+	rdfs:label """speech shimmer"""@en .
+
+:SpeechPitch a :Measure ;
+	rdfs:label """speech pitch"""@en .
+
+:SpeechVolume a :Measure ;
+	rdfs:label """speech volume"""@en .
+
+:SpeechRhythm a :Measure ;
+	rdfs:label """speech rhythm"""@en .
+
+:Light a :Measure ;
+	rdfs:label """light"""@en .
+
+:Pressure a :Measure ;
+	rdfs:label """pressure"""@en .
+
+:Jitter a :Measure ;
+	rdfs:label """jitter"""@en .
+
+:Shimmer a :Measure ;
+	rdfs:label """shimmer"""@en .
+
+:Amplitude a :Measure ;
+	rdfs:label """amplitude"""@en .
+
+:Pitch a :Measure ;
+	rdfs:label """pitch"""@en .
+
+:Temperature a :Measure ;
+	rdfs:label """temperature"""@en .
+
+:SpeechStress a :Measure ;
+	rdfs:label """speech stress"""@en .
+
+:SpeechIntonation a :Measure ;
+	rdfs:label """speech intonation"""@en .
+
+:Force a :Measure ;
+	rdfs:label """force"""@en .
+
+:Acceleration a :Measure ;
+	rdfs:label """acceleration"""@en .
+
+:Strain a :Measure ;
+	rdfs:label """strain"""@en .
+
+:SynchronousElectricalActivity a :Measure ;
+	rdfs:label """synchronous electrical activity"""@en .
+
+:Audio a :Measure ;
+	rdfs:label """audio"""@en .
+
+:AmountOfSpeech a :Measure ;
+	rdfs:label """amount of speech"""@en .
+
+:WordCount a :Measure ;
+	rdfs:label """word count"""@en .
+
+:SquealCount a :Measure ;
+	rdfs:label """squeal count"""@en .
+
+:GruntCount a :Measure ;
+	rdfs:label """grunt count"""@en .
+
+:FrequencyOfVibrations a :Measure ;
+	rdfs:label """frequency of vibrations"""@en .
+
+:Movement a :Measure ;
+	rdfs:label """movement"""@en .
+
+:RateOfResponse a :Measure ;
+	rdfs:label """rate of response"""@en .
+
+:Altitude a :Measure ;
+	rdfs:label """altitude"""@en .
+
+:MuscleActivity a :Measure ;
+	rdfs:label """muscle activity"""@en .
+
+:Weight a :Measure ;
+	rdfs:label """weight"""@en .
+
+:NumberCount a :Measure ;
+	rdfs:label """number count"""@en .
+
+:NumberQuantity a :Measure ;
+	rdfs:label """number/quantity"""@en .
+
+:Colour a :Measure ;
+	rdfs:label """colour"""@en .
+
+:Liquid a :Measure ;
+	rdfs:label """liquid"""@en .
+
+:Tears a :Measure ;
+	rdfs:label """tears"""@en .
+
+:Pulse a :Measure ;
+	rdfs:label """pulse"""@en .
+
+:ElectricityFlowingAcrossTheLarynx a :Measure ;
+	rdfs:label """electricity flowing across the larynx"""@en ;
+	:hasRelatedMeasure :Electricity .
+
+:Distance a :Measure ;
+	rdfs:label """distance"""@en .
+
+:Posture a :Measure ;
+	rdfs:label """posture"""@en .
+
+:Blood-OxygenSaturationLevel a :Measure ;
+	rdfs:label """blood-oxygen saturation level"""@en .
+
+:SweatGlandActivity a :Measure ;
+	rdfs:label """sweat gland activity"""@en .
+
+:Expansion a :Measure ;
+	rdfs:label """expansion"""@en ;
+	:hasRelatedMeasure :RateOfRespiration ;
+	:hasRelatedMeasure :Force ;
+	:hasRelatedMeasure :Movement .
+
+:Contraction a :Measure ;
+	rdfs:label """contraction"""@en ;
+	:hasRelatedMeasure :RateOfRespiration ;
+	:hasRelatedMeasure :Force ;
+	:hasRelatedMeasure :Movement .
+
+:Capacitance a :Measure ;
+	rdfs:label """capacitance"""@en ;
+	:hasRelatedMeasure :Electricity .
+
+:Electricity a :Measure ;
+	rdfs:label """electricity"""@en .
+
+:MuscleMovement a :Measure ;
+	rdfs:label """muscle movement"""@en ;
+	:hasRelatedMeasure :MuscleActivity .
+
+:Volume a :Measure ;
+	rdfs:label """volume"""@en .
+
+:Laser a :Measure ;
+	rdfs:label """laser"""@en .
+
+:GastricActivity a :Measure ;
+	rdfs:label """gastric activity"""@en .
+
+:Photo a :Measure ;
+	rdfs:label """photo"""@en .
+
+:Video a :Measure ;
+	rdfs:label """video"""@en .
+
+:BloodPressure a :Measure ;
+	rdfs:label """blood pressure"""@en .
+
+:RespirationDepth a :Measure ;
+	rdfs:label """Respiration Depth"""@en .
+
+:Piloerection a :Measure ;
+	rdfs:label """Piloerection"""@en .
+
+:RespirationFrequency a :Measure ;
+	rdfs:label """Respiration frequency"""@en .
+
+:AmountOfSubjectiveChills a :Measure ;
+	rdfs:label """amount of subjective chills"""@en .
+
+:PupilDiameter a :Measure ;
+	rdfs:label """pupil diameter"""@en .
+
+:AmountOfAltruism a :Measure ;
+	rdfs:label """amount of altruism"""@en .
+
+:Frl447Odid4 a :Stimulus ;
+	rdfs:label """fRL447oDId4"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=fRL447oDId4"^^xsd:anyURI .
+
+:Kp218E7Ekuc a :Stimulus ;
+	rdfs:label """kP218E7Ekuc"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=kP218E7Ekuc"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Track name- Dark souls"""@en .
+
+:Vtdbyugyo7A a :Stimulus ;
+	rdfs:label """VtdbyugYO7A"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=VtdbyugYO7A&list=PL8S4Nk9L38pmwRJYpvsmb1zIJ1upsuf1P"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Frollo decides to punish Esmeralda for not being attracted to him. Quasimodo saves the day. Movie: The Hunchback of Notre Dame (1996)"""@en .
+
+:Measkichdbe a :Stimulus ;
+	rdfs:label """MeAskiCHdbE"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=MeAskiCHdbE"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Scenes from the movie Rocky"""@en .
+
+:NednpgzppvyT a :Stimulus ;
+	rdfs:label """neDnpgZPPvY?t"""@en ;
+	:hasURL "https://youtu.be/neDnpgZPPvY?t=59"^^xsd:anyURI .
+
+:Xpzdb0G3Tju a :Stimulus ;
+	rdfs:label """xpzdB0G3TJU"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=xpzdB0G3TJU"^^xsd:anyURI ;
+	:hasSubjectiveDescription """In February 1994 Peter Phillips and the Tallis Scholars performed on the 400th anniversary of the death of Palestrina in the Basilica of Santa Maria Maggiore, Rome"""@en .
+
+:1Koa2Xaxcaw a :Stimulus ;
+	rdfs:label """1koa2xAxCAw"""@en ;
+	:hasURL "https://www.youtube.com/watch?time_continue=3&v=1koa2xAxCAw"^^xsd:anyURI ;
+	:hasSubjectiveDescription """TRex scene from the film Jurassic park"""@en .
+
+:LondonGrammar a :Stimulus ;
+	rdfs:label """London grammar"""@en ;
+	:hasSubjectiveDescription """London grammar"""@en .
+
+:J6Bgnsewdky a :Stimulus ;
+	rdfs:label """J6bGnSEwdKY"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=J6bGnSEwdKY"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Commercial Air France with Adagio from Mozart and choreography by Angelin Prejlocaj"""@en .
+
+:1466484160108439 a :Stimulus ;
+	rdfs:label """1466484160108439"""@en ;
+	:hasURL "https://www.facebook.com/MyHeroesAnime/videos/1466484160108439/"^^xsd:anyURI ;
+	:hasSubjectiveDescription """A particular sequence of scene from the animation series Naruto"""@en .
+
+:998881986260406272 a :Stimulus ;
+	rdfs:label """998881986260406272"""@en ;
+	:hasURL "https://twitter.com/JanayMarie/status/998881986260406272"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Granny sings a gospel song unexpectedly"""@en .
+
+:999634290605408256 a :Stimulus ;
+	rdfs:label """999634290605408256"""@en ;
+	:hasURL "https://twitter.com/taeforguk/status/999634290605408256"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Television reality show and it was group singing performance in Korea"""@en .
+
+:999631918823084032 a :Stimulus ;
+	rdfs:label """999631918823084032"""@en ;
+	:hasURL "https://twitter.com/absolutejeon/status/999631918823084032"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Television reality show (BTS comeback show) and it was group dancing performance in Korea"""@en .
+
+:998758600100253696 a :Stimulus ;
+	rdfs:label """998758600100253696"""@en ;
+	:hasURL "https://twitter.com/hemsthorth/status/998758600100253696"^^xsd:anyURI ;
+	:hasSubjectiveDescription """End title scene from avengers infinity war"""@en .
+
+:999680366486093825 a :Stimulus ;
+	rdfs:label """999680366486093825"""@en ;
+	:hasURL "https://twitter.com/AnfieldAn/status/999680366486093825"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Champions league football adveretisements for finals Real madrid vs Liverpool"""@en .
+
+:999707981351702531 a :Stimulus ;
+	rdfs:label """999707981351702531"""@en ;
+	:hasURL "https://twitter.com/louewts/status/999707981351702531"^^xsd:anyURI ;
+	:hasSubjectiveDescription """video of a live concert"""@en .
+
+:999665116164521985 a :Stimulus ;
+	rdfs:label """999665116164521985"""@en ;
+	:hasURL "https://twitter.com/inlove4awhile/status/999665116164521985"^^xsd:anyURI ;
+	:hasSubjectiveDescription """A competitive performance from Eurovision singing competition"""@en .
+
+:Nor0Na6Mkjq a :Stimulus ;
+	rdfs:label """nOr0na6mKJQ"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=nOr0na6mKJQ"^^xsd:anyURI ;
+	:hasSubjectiveDescription """The Ecstasy of Gold - Ennio Morricone (from The Good, the Bad and the Ugly.)"""@en .
+
+:LifeOnMarsByDavidBowie a :Stimulus ;
+	rdfs:label """Life on Mars by David Bowie."""@en ;
+	:hasSubjectiveDescription """Life on Mars by David Bowie. Not an avid fan of Bowie, but Space Oddity gets me every time. The idea of a man getting lost in space is just devastating, combined with the beautiful contrasting melody and vocals of Bowie. I always shed a tear when I'm playing it."""@en .
+
+:OutroByM83 a :Stimulus ;
+	rdfs:label """Outro by M83"""@en ;
+	:hasSubjectiveDescription """Outro by M83, when it comes to a peak. Wait, by m83. The music video is excellent too"""@en .
+
+:ThePrayerByAndreaBocelliAndCelineDion a :Stimulus ;
+	rdfs:label """The Prayer by Andrea Bocelli and Celine Dion"""@en ;
+	:hasSubjectiveDescription """\'The Prayer\' by Andrea Bocelli and Celine Dion gives me chills everytime I listen to it. His voice is amazing."""@en .
+
+:TimeToSayGoodbyeByTwentyOnePilots a :Stimulus ;
+	rdfs:label """Time To Say Goodbye by twenty one pilots"""@en ;
+	:hasSubjectiveDescription """\'Time To Say Goodbye\' by twenty one pilots. They took this classic and made it into an amazing emotional song."""@en .
+
+:LandslideFleetwoodMac a :Stimulus ;
+	rdfs:label """Landslide Fleetwood Mac"""@en ;
+	:hasSubjectiveDescription """Landslide - Fleetwood Mac"""@en .
+
+:Rxabla7Uq9K a :Stimulus ;
+	rdfs:label """RxabLA7UQ9k"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=RxabLA7UQ9k&feature=youtu.be"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Time - Hans Zimmer"""@en .
+
+:8Waj7W3Qcjc a :Stimulus ;
+	rdfs:label """8waJ7W3QcJc"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=8waJ7W3QcJc"^^xsd:anyURI ;
+	:hasSubjectiveDescription """The Once Upon a Dream cover by Lana Del Rey. It's basically a kill-switch for my brain, and I have to stop what I'm doing for three and a half minutes when it starts."""@en .
+
+:8Tz7Uhgnjq4 a :Stimulus ;
+	rdfs:label """8tz7UHGnjq4"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=8tz7UHGnjq4"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Tuning out by Bastille"""@en .
+
+:Ydoenzedim8 a :Stimulus ;
+	rdfs:label """YDOENZediM8"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=YDOENZediM8"^^xsd:anyURI ;
+	:hasSubjectiveDescription """The high C in Allegri's Miserere by the Tallis Scholars always gives me tingles up my spine.: https://www.youtube.com/watch?v=YDOENZediM8"""@en .
+
+:W8Hdohrc3Oq a :Stimulus ;
+	rdfs:label """w8HdOHrc3OQ"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=w8HdOHrc3OQ"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Dictator speech + music If you haven't already seen it you should check out the Great Dictator speech over this song. It works so well. Dictator speech + music"""@en .
+
+:Wchtqyldjti a :Stimulus ;
+	rdfs:label """WChTqYlDjtI"""@en ;
+	:hasURL "https://www.youtube.com/watch?v=WChTqYlDjtI"^^xsd:anyURI ;
+	:hasSubjectiveDescription """Little context before my answer. I've played at many concerts for various things and there is a special moment that happens every once in a while after a piece concludes. Most people think that the audience immediately clapping with a standing ovation is the peak for a performance. But when a piece really speaks with the audience there will be silence at the end of a piece. Absolute silence, as if they had just said goodbye to a friend longing to hear more. That is the moment you shoot for when playing a concert. I was a trumpet player in the army, one of my responsibilities was to play taps at military funerals and every time as the last note was ringing through the field over the family, the moment I described above happens; except this silence is a distilled, deafening silence. The families emotions silently reverberating through the crowd as they say goodbye. It was an honor for me to do that for the families, and as painful as those moments where I wouldn't trade it for the world. Wow, goosebumps. Link"""@en .
+
+:Bua3Tsgnp2S a :Stimulus ;
+	rdfs:label """buA3tsGnp2s"""@en ;
+	:hasURL "https://www.youtube.com/watch?time_continue=88&v=buA3tsGnp2s"^^xsd:anyURI ;
+	:hasSubjectiveDescription """University Commercial"""@en .
